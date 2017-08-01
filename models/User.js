@@ -15,15 +15,16 @@ const userSchema = new Schema({
     validate: [validator.isEmail, 'Invalid Email Address'],
     required: 'Please Supply an email address'
   },
-  name: {
+  username: {
     type: String,
     required: 'Please supply a name',
     trim: true
   },
-  isAdmin: {
-    type: Boolean,
-    required: true,
-    default: false
+  userabbr: {
+    type: String
+  },
+  cratel: {
+    type: String
   }
 });
 
@@ -32,7 +33,7 @@ userSchema.virtual('gravatar').get(function() {
   return `https://gravatar.com/avatar/${hash}?s=200`;
 });
 
-userSchema.plugin(passportLocalMongoose, { usernameField: 'name' });
+userSchema.plugin(passportLocalMongoose, {usernameField: 'username'});
 userSchema.plugin(mongodbErrorHandler);
 
 module.exports = mongoose.model('User', userSchema);
