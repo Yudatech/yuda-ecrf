@@ -1,0 +1,31 @@
+extends ../caseLayout
+
+block case-content
+  .case-content
+    form.form-horizontal
+      fieldset
+        legend 合并用药情况
+        .checkbox
+          label
+            input(type="checkbox" name="conmed_1")
+            span 抗生素
+        
+        .checkbox
+          label
+            input(type="checkbox" name="conmed_2")
+            span 抗凝血剂
+
+        .checkbox
+          label
+            input(type="checkbox" name="conmed_3")
+            span 止痛药
+
+        .checkbox
+          label
+            input(type="checkbox" name="conmed_4")
+            span 激素药物
+
+        .checkbox
+          label
+            input(type="checkbox" name="conmed_5")
+            span 其他药物

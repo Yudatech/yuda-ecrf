@@ -1,0 +1,16 @@
+.case-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid red;
+
+    .case-nav {
+        width: 30%;
+        border: 1px solid blue;
+    }
+
+    .case-content {
+        width: 70%;
+        border: 1px solid green;
+    }
+}

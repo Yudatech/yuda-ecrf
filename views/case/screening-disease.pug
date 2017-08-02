@@ -1,0 +1,49 @@
+extends ../caseLayout
+
+block case-content
+  .case-content
+    form.form-horizontal
+      fieldset
+        legend #{config.title}
+        .checkbox
+          label
+            input(type="checkbox" name="disease_1")
+            span #{config.disease_1.text}
+        
+        .checkbox
+          label
+            input(type="checkbox" name="disease_2")
+            span #{config.disease_2.text}
+
+        .checkbox
+          label
+            input(type="checkbox" name="disease_3")
+            span #{config.disease_3.text}
+
+        .checkbox
+          label
+            input(type="checkbox" name="disease_4")
+            span #{config.disease_4.text}
+
+        .checkbox
+          label
+            input(type="checkbox" name="disease_5")
+            span #{config.disease_5.text}
+        
+        .checkbox
+          label
+            input(type="checkbox" name="disease_6")
+            span #{config.disease_6.text}
+
+        .checkbox
+          label
+            input(type="checkbox" name="disease_7")
+            span #{config.disease_7.text}
+
+        .checkbox
+          label
+            input(type="checkbox" name="disease_8")
+            span #{config.disease_8.text}
+
+        label #{config.disease_9.text}
+        textarea.form-control(rows="5" name="disease_9")

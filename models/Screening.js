@@ -72,7 +72,7 @@ const screeningSchema = new Schema({
   // 其他外科医生认为不适宜参加本试验研究的情况 
   exclusion_16: Boolean,
   // 其他外科医生认为不适宜参加本试验研究的情况 说明
-  exclusion_17: Boolean,
+  exclusion_17: String,
   // 饮酒
   disease_1: Boolean,
   // 肝硬化

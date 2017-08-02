@@ -525,4 +525,19 @@ pre.error {
   line-height: 3;
   white-space: pre-line; }
 
+.case-container {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: center;
+      justify-content: center;
+  -ms-flex-align: center;
+      align-items: center;
+  border: 1px solid red; }
+  .case-container .case-nav {
+    width: 30%;
+    border: 1px solid blue; }
+  .case-container .case-content {
+    width: 70%;
+    border: 1px solid green; }
+
 /*# sourceMappingURL=style.css.map*/

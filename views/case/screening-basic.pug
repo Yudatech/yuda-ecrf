@@ -1,0 +1,29 @@
+extends ../caseLayout
+
+block case-content
+  .case-content
+    form.form-horizontal
+      fieldset
+        legend #{config.title}
+        .form-group
+          label.col-sm-2.control-label #{config.sex.text}
+          .col-sm-10
+            each sexItem in sexConfig
+              label.radio-inline
+                input(type="radio" name="sex" value=sexItem.value)
+                span #{sexItem.text}
+        
+        .form-group
+          label.col-sm-2.control-label #{config.birth.text}
+          .col-sm-10
+            input.form-control(type="number" name="birth")
+
+        .form-group
+          label.col-sm-2.control-label #{config.weight.text}
+          .col-sm-10
+            input.form-control(type="number" name="weight")
+
+        .form-group
+          label.col-sm-2.control-label #{config.height.text}
+          .col-sm-10
+            input.form-control(type="number" name="height")

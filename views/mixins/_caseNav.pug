@@ -1,0 +1,10 @@
+mixin _caseNav(caseNav)
+  ul
+    each naviMenuItem in caseNav
+      li
+        a(href=naviMenuItem.link) #{naviMenuItem.title}
+        if naviMenuItem.children
+          ul
+            each childMenuItem in naviMenuItem.children
+              li
+                a(href=childMenuItem.link) #{childMenuItem.title}

@@ -1,0 +1,12 @@
+extends layout
+
+include mixins/_caseNav
+
+block content
+  .inner
+    .case-container
+
+      .case-nav
+        +_caseNav(caseNav)
+      
+      block case-content
