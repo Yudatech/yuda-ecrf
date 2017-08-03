@@ -33,5 +33,7 @@ router.get('/screening/conmed', caseController.caseConMedForm);
 router.get('/screening/vitalsign', caseController.caseVitalSignForm);
 router.get('/screening/lab', caseController.caseLabForm);
 router.get('/screening/assistant', caseController.caseAssistantForm);
+router.get('/screening/method', caseController.caseMethodForm);
+router.get('/screening/region', caseController.caseRegionForm);
 
 module.exports = router;

@@ -1,0 +1,47 @@
+extends ../caseLayout
+
+block case-content
+  .case-content
+    form.form-horizontal
+      fieldset
+        legend #{config.title}
+
+        .row
+          .col-sm-10
+            .checkbox
+              label
+                input(type="checkbox" name="region_1")
+                span #{config.method_1.text}
+          .col-sm-2
+            button.btn.btn-default(type="button")
+              span.glyphicon.glyphicon-question-sign
+        
+        .row
+          .col-sm-10
+            .checkbox
+              label
+                input(type="checkbox" name="method_2")
+                span #{config.method_2.text}
+          .col-sm-2
+            button.btn.btn-default(type="button")
+              span.glyphicon.glyphicon-question-sign
+
+        .row
+          .col-sm-10
+            .checkbox
+              label
+                input(type="checkbox" name="method_3")
+                span #{config.method_3.text}
+          .col-sm-2
+            button.btn.btn-default(type="button")
+              span.glyphicon.glyphicon-question-sign
+
+        .row
+          .col-sm-10
+            .checkbox
+              label
+                input(type="checkbox" name="method_4")
+                span #{config.method_4.text}
+          .col-sm-2
+            button.btn.btn-default(type="button")
+              span.glyphicon.glyphicon-question-sign

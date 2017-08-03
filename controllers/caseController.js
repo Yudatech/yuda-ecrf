@@ -11,6 +11,8 @@ const getScreeningLabConfig = require('../config/getScreeningLabConfig');
 const getLabResultEvaluationConfig = require('../config/getLabResultEvaluationConfig');
 const getScreeningAssistantConfig = require('../config/getScreeningAssistantConfig');
 const getAssistantExamResultConfig = require('../config/getAssistantExamResultConfig');
+const getScreeningMethodConfig = require('../config/getScreeningMethodConfig');
+const getScreeningRegionConfig = require('../config/getScreeningRegionConfig');
 
 exports.caseForm = (req, res) => {
   res.render('case');
@@ -73,5 +75,19 @@ exports.caseAssistantForm = (req, res) => {
     caseNav: CaseNav,
     config: getScreeningAssistantConfig(),
     assistantExamResultConfig: getAssistantExamResultConfig()
+  });
+};
+
+exports.caseMethodForm = (req, res) => {
+  res.render('case/screening-method', {
+    caseNav: CaseNav,
+    config: getScreeningMethodConfig()
+  });
+};
+
+exports.caseRegionForm = (req, res) => {
+  res.render('case/screening-region', {
+    caseNav: CaseNav,
+    config: getScreeningRegionConfig()
   });
 };

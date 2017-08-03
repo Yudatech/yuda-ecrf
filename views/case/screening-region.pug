@@ -1,0 +1,65 @@
+extends ../caseLayout
+
+block case-content
+  .case-content
+    form.form-horizontal
+      fieldset
+        legend #{config.title}
+
+        .row
+          .col-sm-10
+            .form-group
+              .col-sm-offset-2.col-sm-10
+                .checkbox
+                  label
+                    input(type="checkbox" name="region_1")
+                    span #{config.region_1.text}
+          .col-sm-2
+            button.btn.btn-default(type="button")
+              span.glyphicon.glyphicon-question-sign
+        
+        .row
+          .col-sm-10
+            .form-group
+              .col-sm-offset-2.col-sm-10
+                .checkbox
+                  label
+                    input(type="checkbox" name="region_2")
+                    span #{config.region_2.text}
+          .col-sm-2
+            button.btn.btn-default(type="button")
+              span.glyphicon.glyphicon-question-sign
+
+        .row
+          .col-sm-10
+            .form-group
+              .col-sm-offset-2.col-sm-10
+                .checkbox
+                  label
+                    input(type="checkbox" name="region_3")
+                    span #{config.region_3.text}
+          .col-sm-2
+            button.btn.btn-default(type="button")
+              span.glyphicon.glyphicon-question-sign
+
+        .row
+          .col-sm-10
+            .form-group
+              .col-sm-offset-2.col-sm-10
+                .checkbox
+                  label
+                    input(type="checkbox" name="region_4")
+                    span #{config.region_4.text}
+          .col-sm-2
+            button.btn.btn-default(type="button")
+              span.glyphicon.glyphicon-question-sign
+
+        .row
+          .col-sm-10
+            .form-group
+              label.col-sm-2 #{config.region_5.text}
+              .col-sm-10
+                textarea.form-control(rows="5" name="region_9")
+          .col-sm-2
+            button.btn.btn-default(type="button")
+              span.glyphicon.glyphicon-question-sign

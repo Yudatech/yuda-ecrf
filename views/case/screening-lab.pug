@@ -5,308 +5,377 @@ block case-content
     form.form-horizontal
       fieldset
         legend #{config.title}
-        .form-group
-          label.col-sm-4.control-label #{config.lab_1.text}
-          .col-sm-7.input-group
-            input.form-control(type="number" step="any" name="lab_1")
-            span.input-group-btn
-              button.btn.btn-default(type="button")
-                span.glyphicon.glyphicon-question-sign
 
-        .form-group
-          label.col-sm-4.control-label #{config.lab_2.text}
-          .col-sm-7.input-group
-            select.form-control(name="lab_2")
-              each labResultEvaluationItem in labResultEvaluationConfig
-                option(value=labResultEvaluationItem.value) #{labResultEvaluationItem.text}
-            span.input-group-btn
-              button.btn.btn-default(type="button")
-                span.glyphicon.glyphicon-question-sign
+        .row
+          .col-sm-10
+            .form-group
+              label.col-sm-4.control-label #{config.lab_1.text}
+              .col-sm-8
+                input.form-control(type="number" step="any" name="lab_1")
+          .col-sm-2
+            button.btn.btn-default(type="button")
+              span.glyphicon.glyphicon-question-sign
 
-        .form-group
-          label.col-sm-4.control-label #{config.lab_3.text}
-          .col-sm-7.input-group
-            input.form-control(type="number" step="any" name="lab_1")
-            span.input-group-btn
-              button.btn.btn-default(type="button")
-                span.glyphicon.glyphicon-question-sign
+        .row
+          .col-sm-10
+            .form-group
+              label.col-sm-4.control-label #{config.lab_2.text}
+              .col-sm-8
+                select.form-control(name="lab_2")
+                  each labResultEvaluationItem in labResultEvaluationConfig
+                    option(value=labResultEvaluationItem.value) #{labResultEvaluationItem.text}
+          .col-sm-2
+            button.btn.btn-default(type="button")
+              span.glyphicon.glyphicon-question-sign
 
-        .form-group
-          label.col-sm-4.control-label #{config.lab_4.text}
-          .col-sm-7.input-group
-            select.form-control(name="lab_4")
-              each labResultEvaluationItem in labResultEvaluationConfig
-                option(value=labResultEvaluationItem.value) #{labResultEvaluationItem.text}
-            span.input-group-btn
-              button.btn.btn-default(type="button")
-                span.glyphicon.glyphicon-question-sign
+        .row
+          .col-sm-10
+            .form-group
+              label.col-sm-4.control-label #{config.lab_3.text}
+              .col-sm-8
+                input.form-control(type="number" step="any" name="lab_1")
+          .col-sm-2
+            button.btn.btn-default(type="button")
+              span.glyphicon.glyphicon-question-sign
 
-        .form-group
-          label.col-sm-4.control-label #{config.lab_5.text}
-          .col-sm-7.input-group
-            input.form-control(type="number" step="any" name="lab_1")
-            span.input-group-btn
-              button.btn.btn-default(type="button")
-                span.glyphicon.glyphicon-question-sign
+        .row
+          .col-sm-10
+            .form-group
+              label.col-sm-4.control-label #{config.lab_4.text}
+              .col-sm-8
+                select.form-control(name="lab_4")
+                  each labResultEvaluationItem in labResultEvaluationConfig
+                    option(value=labResultEvaluationItem.value) #{labResultEvaluationItem.text}
+          .col-sm-2
+            button.btn.btn-default(type="button")
+              span.glyphicon.glyphicon-question-sign
 
-        .form-group
-          label.col-sm-4.control-label #{config.lab_6.text}
-          .col-sm-7.input-group
-            select.form-control(name="lab_6")
-              each labResultEvaluationItem in labResultEvaluationConfig
-                option(value=labResultEvaluationItem.value) #{labResultEvaluationItem.text}
-            span.input-group-btn
-              button.btn.btn-default(type="button")
-                span.glyphicon.glyphicon-question-sign
+        .row
+          .col-sm-10
+            .form-group
+              label.col-sm-4.control-label #{config.lab_5.text}
+              .col-sm-8
+                input.form-control(type="number" step="any" name="lab_1")
+          .col-sm-2
+            button.btn.btn-default(type="button")
+              span.glyphicon.glyphicon-question-sign
 
-        .form-group
-          label.col-sm-4.control-label #{config.lab_7.text}
-          .col-sm-7.input-group
-            input.form-control(type="number" step="any" name="lab_1")
-            span.input-group-btn
-              button.btn.btn-default(type="button")
-                span.glyphicon.glyphicon-question-sign
+        .row
+          .col-sm-10
+            .form-group
+              label.col-sm-4.control-label #{config.lab_6.text}
+              .col-sm-8
+                select.form-control(name="lab_6")
+                  each labResultEvaluationItem in labResultEvaluationConfig
+                    option(value=labResultEvaluationItem.value) #{labResultEvaluationItem.text}
+          .col-sm-2
+            button.btn.btn-default(type="button")
+              span.glyphicon.glyphicon-question-sign
 
-        .form-group
-          label.col-sm-4.control-label #{config.lab_8.text}
-          .col-sm-7.input-group
-            select.form-control(name="lab_8")
-              each labResultEvaluationItem in labResultEvaluationConfig
-                option(value=labResultEvaluationItem.value) #{labResultEvaluationItem.text}
-            span.input-group-btn
-              button.btn.btn-default(type="button")
-                span.glyphicon.glyphicon-question-sign
+        .row
+          .col-sm-10
+            .form-group
+              label.col-sm-4.control-label #{config.lab_7.text}
+              .col-sm-8
+                input.form-control(type="number" step="any" name="lab_1")
+          .col-sm-2
+            button.btn.btn-default(type="button")
+              span.glyphicon.glyphicon-question-sign
 
-        .form-group
-          label.col-sm-4.control-label #{config.lab_9.text}
-          .col-sm-7.input-group
-            input.form-control(type="number" step="any" name="lab_1")
-            span.input-group-btn
-              button.btn.btn-default(type="button")
-                span.glyphicon.glyphicon-question-sign
+        .row
+          .col-sm-10
+            .form-group
+              label.col-sm-4.control-label #{config.lab_8.text}
+              .col-sm-8
+                select.form-control(name="lab_8")
+                  each labResultEvaluationItem in labResultEvaluationConfig
+                    option(value=labResultEvaluationItem.value) #{labResultEvaluationItem.text}
+          .col-sm-2
+            button.btn.btn-default(type="button")
+              span.glyphicon.glyphicon-question-sign
 
-        .form-group
-          label.col-sm-4.control-label #{config.lab_10.text}
-          .col-sm-7.input-group
-            select.form-control(name="lab_10")
-              each labResultEvaluationItem in labResultEvaluationConfig
-                option(value=labResultEvaluationItem.value) #{labResultEvaluationItem.text}
-            span.input-group-btn
-              button.btn.btn-default(type="button")
-                span.glyphicon.glyphicon-question-sign
+        .row
+          .col-sm-10
+            .form-group
+              label.col-sm-4.control-label #{config.lab_9.text}
+              .col-sm-8
+                input.form-control(type="number" step="any" name="lab_1")
+          .col-sm-2
+            button.btn.btn-default(type="button")
+              span.glyphicon.glyphicon-question-sign
 
-        .form-group
-          label.col-sm-4.control-label #{config.lab_11.text}
-          .col-sm-7.input-group
-            input.form-control(type="number" step="any" name="lab_1")
-            span.input-group-btn
-              button.btn.btn-default(type="button")
-                span.glyphicon.glyphicon-question-sign
+        .row
+          .col-sm-10
+            .form-group
+              label.col-sm-4.control-label #{config.lab_10.text}
+              .col-sm-8
+                select.form-control(name="lab_10")
+                  each labResultEvaluationItem in labResultEvaluationConfig
+                    option(value=labResultEvaluationItem.value) #{labResultEvaluationItem.text}
+          .col-sm-2
+            button.btn.btn-default(type="button")
+              span.glyphicon.glyphicon-question-sign
 
-        .form-group
-          label.col-sm-4.control-label #{config.lab_12.text}
-          .col-sm-7.input-group
-            select.form-control(name="lab_12")
-              each labResultEvaluationItem in labResultEvaluationConfig
-                option(value=labResultEvaluationItem.value) #{labResultEvaluationItem.text}
-            span.input-group-btn
-              button.btn.btn-default(type="button")
-                span.glyphicon.glyphicon-question-sign
+        .row
+          .col-sm-10
+            .form-group
+              label.col-sm-4.control-label #{config.lab_11.text}
+              .col-sm-8
+                input.form-control(type="number" step="any" name="lab_1")
+          .col-sm-2
+            button.btn.btn-default(type="button")
+              span.glyphicon.glyphicon-question-sign
 
-        .form-group
-          label.col-sm-4.control-label #{config.lab_13.text}
-          .col-sm-7.input-group
-            input.form-control(type="number" step="any" name="lab_1")
-            span.input-group-btn
-              button.btn.btn-default(type="button")
-                span.glyphicon.glyphicon-question-sign
+        .row
+          .col-sm-10
+            .form-group
+              label.col-sm-4.control-label #{config.lab_12.text}
+              .col-sm-8
+                select.form-control(name="lab_12")
+                  each labResultEvaluationItem in labResultEvaluationConfig
+                    option(value=labResultEvaluationItem.value) #{labResultEvaluationItem.text}
+          .col-sm-2
+            button.btn.btn-default(type="button")
+              span.glyphicon.glyphicon-question-sign
 
-        .form-group
-          label.col-sm-4.control-label #{config.lab_14.text}
-          .col-sm-7.input-group
-            select.form-control(name="lab_14")
-              each labResultEvaluationItem in labResultEvaluationConfig
-                option(value=labResultEvaluationItem.value) #{labResultEvaluationItem.text}
-            span.input-group-btn
-              button.btn.btn-default(type="button")
-                span.glyphicon.glyphicon-question-sign
+        .row
+          .col-sm-10
+            .form-group
+              label.col-sm-4.control-label #{config.lab_13.text}
+              .col-sm-8
+                input.form-control(type="number" step="any" name="lab_1")
+          .col-sm-2
+            button.btn.btn-default(type="button")
+              span.glyphicon.glyphicon-question-sign
 
-        .form-group
-          label.col-sm-4.control-label #{config.lab_15.text}
-          .col-sm-7.input-group
-            input.form-control(type="number" step="any" name="lab_1")
-            span.input-group-btn
-              button.btn.btn-default(type="button")
-                span.glyphicon.glyphicon-question-sign
+        .row
+          .col-sm-10
+            .form-group
+              label.col-sm-4.control-label #{config.lab_14.text}
+              .col-sm-8
+                select.form-control(name="lab_14")
+                  each labResultEvaluationItem in labResultEvaluationConfig
+                    option(value=labResultEvaluationItem.value) #{labResultEvaluationItem.text}
+          .col-sm-2
+            button.btn.btn-default(type="button")
+              span.glyphicon.glyphicon-question-sign
 
-        .form-group
-          label.col-sm-4.control-label #{config.lab_16.text}
-          .col-sm-7.input-group
-            select.form-control(name="lab_16")
-              each labResultEvaluationItem in labResultEvaluationConfig
-                option(value=labResultEvaluationItem.value) #{labResultEvaluationItem.text}
-            span.input-group-btn
-              button.btn.btn-default(type="button")
-                span.glyphicon.glyphicon-question-sign
+        .row
+          .col-sm-10
+            .form-group
+              label.col-sm-4.control-label #{config.lab_15.text}
+              .col-sm-8
+                input.form-control(type="number" step="any" name="lab_1")
+          .col-sm-2
+            button.btn.btn-default(type="button")
+              span.glyphicon.glyphicon-question-sign
 
-        .form-group
-          label.col-sm-4.control-label #{config.lab_17.text}
-          .col-sm-7.input-group
-            input.form-control(type="number" step="any" name="lab_1")
-            span.input-group-btn
-              button.btn.btn-default(type="button")
-                span.glyphicon.glyphicon-question-sign
+        .row
+          .col-sm-10
+            .form-group
+              label.col-sm-4.control-label #{config.lab_16.text}
+              .col-sm-8
+                select.form-control(name="lab_16")
+                  each labResultEvaluationItem in labResultEvaluationConfig
+                    option(value=labResultEvaluationItem.value) #{labResultEvaluationItem.text}
+          .col-sm-2
+            button.btn.btn-default(type="button")
+              span.glyphicon.glyphicon-question-sign
 
-        .form-group
-          label.col-sm-4.control-label #{config.lab_18.text}
-          .col-sm-7.input-group
-            select.form-control(name="lab_18")
-              each labResultEvaluationItem in labResultEvaluationConfig
-                option(value=labResultEvaluationItem.value) #{labResultEvaluationItem.text}
-            span.input-group-btn
-              button.btn.btn-default(type="button")
-                span.glyphicon.glyphicon-question-sign
+        .row
+          .col-sm-10
+            .form-group
+              label.col-sm-4.control-label #{config.lab_17.text}
+              .col-sm-8
+                input.form-control(type="number" step="any" name="lab_1")
+          .col-sm-2
+            button.btn.btn-default(type="button")
+              span.glyphicon.glyphicon-question-sign
 
-        .form-group
-          label.col-sm-4.control-label #{config.lab_19.text}
-          .col-sm-7.input-group
-            input.form-control(type="number" step="any" name="lab_1")
-            span.input-group-btn
-              button.btn.btn-default(type="button")
-                span.glyphicon.glyphicon-question-sign
+        .row
+          .col-sm-10
+            .form-group
+              label.col-sm-4.control-label #{config.lab_18.text}
+              .col-sm-8
+                select.form-control(name="lab_18")
+                  each labResultEvaluationItem in labResultEvaluationConfig
+                    option(value=labResultEvaluationItem.value) #{labResultEvaluationItem.text}
+          .col-sm-2
+            button.btn.btn-default(type="button")
+              span.glyphicon.glyphicon-question-sign
 
-        .form-group
-          label.col-sm-4.control-label #{config.lab_20.text}
-          .col-sm-7.input-group
-            select.form-control(name="lab_20")
-              each labResultEvaluationItem in labResultEvaluationConfig
-                option(value=labResultEvaluationItem.value) #{labResultEvaluationItem.text}
-            span.input-group-btn
-              button.btn.btn-default(type="button")
-                span.glyphicon.glyphicon-question-sign
+        .row
+          .col-sm-10
+            .form-group
+              label.col-sm-4.control-label #{config.lab_19.text}
+              .col-sm-8
+                input.form-control(type="number" step="any" name="lab_1")
+          .col-sm-2
+            button.btn.btn-default(type="button")
+              span.glyphicon.glyphicon-question-sign
 
-        .form-group
-          label.col-sm-4.control-label #{config.lab_21.text}
-          .col-sm-7.input-group
-            input.form-control(type="number" step="any" name="lab_1")
-            span.input-group-btn
-              button.btn.btn-default(type="button")
-                span.glyphicon.glyphicon-question-sign
+        .row
+          .col-sm-10
+            .form-group
+              label.col-sm-4.control-label #{config.lab_20.text}
+              .col-sm-8
+                select.form-control(name="lab_20")
+                  each labResultEvaluationItem in labResultEvaluationConfig
+                    option(value=labResultEvaluationItem.value) #{labResultEvaluationItem.text}
+          .col-sm-2
+            button.btn.btn-default(type="button")
+              span.glyphicon.glyphicon-question-sign
 
-        .form-group
-          label.col-sm-4.control-label #{config.lab_22.text}
-          .col-sm-7.input-group
-            select.form-control(name="lab_22")
-              each labResultEvaluationItem in labResultEvaluationConfig
-                option(value=labResultEvaluationItem.value) #{labResultEvaluationItem.text}
-            span.input-group-btn
-              button.btn.btn-default(type="button")
-                span.glyphicon.glyphicon-question-sign
+        .row
+          .col-sm-10
+            .form-group
+              label.col-sm-4.control-label #{config.lab_21.text}
+              .col-sm-8
+                input.form-control(type="number" step="any" name="lab_1")
+          .col-sm-2
+            button.btn.btn-default(type="button")
+              span.glyphicon.glyphicon-question-sign
 
-        .form-group
-          label.col-sm-4.control-label #{config.lab_23.text}
-          .col-sm-7.input-group
-            input.form-control(type="number" step="any" name="lab_1")
-            span.input-group-btn
-              button.btn.btn-default(type="button")
-                span.glyphicon.glyphicon-question-sign
+        .row
+          .col-sm-10
+            .form-group
+              label.col-sm-4.control-label #{config.lab_22.text}
+              .col-sm-8
+                select.form-control(name="lab_22")
+                  each labResultEvaluationItem in labResultEvaluationConfig
+                    option(value=labResultEvaluationItem.value) #{labResultEvaluationItem.text}
+          .col-sm-2
+            button.btn.btn-default(type="button")
+              span.glyphicon.glyphicon-question-sign
 
-        .form-group
-          label.col-sm-4.control-label #{config.lab_24.text}
-          .col-sm-7.input-group
-            select.form-control(name="lab_24")
-              each labResultEvaluationItem in labResultEvaluationConfig
-                option(value=labResultEvaluationItem.value) #{labResultEvaluationItem.text}
-            span.input-group-btn
-              button.btn.btn-default(type="button")
-                span.glyphicon.glyphicon-question-sign
+        .row
+          .col-sm-10
+            .form-group
+              label.col-sm-4.control-label #{config.lab_23.text}
+              .col-sm-8
+                input.form-control(type="number" step="any" name="lab_1")
+          .col-sm-2
+            button.btn.btn-default(type="button")
+              span.glyphicon.glyphicon-question-sign
 
-        .form-group
-          label.col-sm-4.control-label #{config.lab_25.text}
-          .col-sm-7.input-group
-            input.form-control(type="number" step="any" name="lab_1")
-            span.input-group-btn
-              button.btn.btn-default(type="button")
-                span.glyphicon.glyphicon-question-sign
+        .row
+          .col-sm-10
+            .form-group
+              label.col-sm-4.control-label #{config.lab_24.text}
+              .col-sm-8
+                select.form-control(name="lab_24")
+                  each labResultEvaluationItem in labResultEvaluationConfig
+                    option(value=labResultEvaluationItem.value) #{labResultEvaluationItem.text}
+          .col-sm-2
+            button.btn.btn-default(type="button")
+              span.glyphicon.glyphicon-question-sign
 
-        .form-group
-          label.col-sm-4.control-label #{config.lab_26.text}
-          .col-sm-7.input-group
-            select.form-control(name="lab_26")
-              each labResultEvaluationItem in labResultEvaluationConfig
-                option(value=labResultEvaluationItem.value) #{labResultEvaluationItem.text}
-            span.input-group-btn
-              button.btn.btn-default(type="button")
-                span.glyphicon.glyphicon-question-sign
+        .row
+          .col-sm-10
+            .form-group
+              label.col-sm-4.control-label #{config.lab_25.text}
+              .col-sm-8
+                input.form-control(type="number" step="any" name="lab_1")
+          .col-sm-2
+            button.btn.btn-default(type="button")
+              span.glyphicon.glyphicon-question-sign
 
-        .form-group
-          label.col-sm-4.control-label #{config.lab_27.text}
-          .col-sm-7.input-group
-            input.form-control(type="number" step="any" name="lab_1")
-            span.input-group-btn
-              button.btn.btn-default(type="button")
-                span.glyphicon.glyphicon-question-sign
+        .row
+          .col-sm-10
+            .form-group
+              label.col-sm-4.control-label #{config.lab_26.text}
+              .col-sm-8
+                select.form-control(name="lab_26")
+                  each labResultEvaluationItem in labResultEvaluationConfig
+                    option(value=labResultEvaluationItem.value) #{labResultEvaluationItem.text}
+          .col-sm-2
+            button.btn.btn-default(type="button")
+              span.glyphicon.glyphicon-question-sign
 
-        .form-group
-          label.col-sm-4.control-label #{config.lab_28.text}
-          .col-sm-7.input-group
-            select.form-control(name="lab_28")
-              each labResultEvaluationItem in labResultEvaluationConfig
-                option(value=labResultEvaluationItem.value) #{labResultEvaluationItem.text}
-            span.input-group-btn
-              button.btn.btn-default(type="button")
-                span.glyphicon.glyphicon-question-sign
+        .row
+          .col-sm-10
+            .form-group
+              label.col-sm-4.control-label #{config.lab_27.text}
+              .col-sm-8
+                input.form-control(type="number" step="any" name="lab_1")
+          .col-sm-2
+            button.btn.btn-default(type="button")
+              span.glyphicon.glyphicon-question-sign
 
-        .form-group
-          label.col-sm-4.control-label #{config.lab_29.text}
-          .col-sm-7.input-group
-            input.form-control(type="number" step="any" name="lab_1")
-            span.input-group-btn
-              button.btn.btn-default(type="button")
-                span.glyphicon.glyphicon-question-sign
+        .row
+          .col-sm-10
+            .form-group
+              label.col-sm-4.control-label #{config.lab_28.text}
+              .col-sm-8
+                select.form-control(name="lab_28")
+                  each labResultEvaluationItem in labResultEvaluationConfig
+                    option(value=labResultEvaluationItem.value) #{labResultEvaluationItem.text}
+          .col-sm-2
+            button.btn.btn-default(type="button")
+              span.glyphicon.glyphicon-question-sign
 
-        .form-group
-          label.col-sm-4.control-label #{config.lab_30.text}
-          .col-sm-7.input-group
-            select.form-control(name="lab_30")
-              each labResultEvaluationItem in labResultEvaluationConfig
-                option(value=labResultEvaluationItem.value) #{labResultEvaluationItem.text}
-            span.input-group-btn
-              button.btn.btn-default(type="button")
-                span.glyphicon.glyphicon-question-sign
+        .row
+          .col-sm-10
+            .form-group
+              label.col-sm-4.control-label #{config.lab_29.text}
+              .col-sm-8
+                input.form-control(type="number" step="any" name="lab_1")
+          .col-sm-2
+            button.btn.btn-default(type="button")
+              span.glyphicon.glyphicon-question-sign
 
-        .form-group
-          label.col-sm-4.control-label #{config.lab_31.text}
-          .col-sm-7.input-group
-            input.form-control(type="number" step="any" name="lab_1")
-            span.input-group-btn
-              button.btn.btn-default(type="button")
-                span.glyphicon.glyphicon-question-sign
+        .row
+          .col-sm-10
+            .form-group
+              label.col-sm-4.control-label #{config.lab_30.text}
+              .col-sm-8
+                select.form-control(name="lab_30")
+                  each labResultEvaluationItem in labResultEvaluationConfig
+                    option(value=labResultEvaluationItem.value) #{labResultEvaluationItem.text}
+          .col-sm-2
+            button.btn.btn-default(type="button")
+              span.glyphicon.glyphicon-question-sign
 
-        .form-group
-          label.col-sm-4.control-label #{config.lab_32.text}
-          .col-sm-7.input-group
-            select.form-control(name="lab_32")
-              each labResultEvaluationItem in labResultEvaluationConfig
-                option(value=labResultEvaluationItem.value) #{labResultEvaluationItem.text}
-            span.input-group-btn
-              button.btn.btn-default(type="button")
-                span.glyphicon.glyphicon-question-sign
+        .row
+          .col-sm-10
+            .form-group
+              label.col-sm-4.control-label #{config.lab_31.text}
+              .col-sm-8
+                input.form-control(type="number" step="any" name="lab_1")
+          .col-sm-2
+            button.btn.btn-default(type="button")
+              span.glyphicon.glyphicon-question-sign
 
-        .form-group
-          label.col-sm-4.control-label #{config.lab_33.text}
-          .col-sm-7.input-group
-            input.form-control(type="number" step="any" name="lab_1")
-            span.input-group-btn
-              button.btn.btn-default(type="button")
-                span.glyphicon.glyphicon-question-sign
+        .row
+          .col-sm-10
+            .form-group
+              label.col-sm-4.control-label #{config.lab_32.text}
+              .col-sm-8
+                select.form-control(name="lab_32")
+                  each labResultEvaluationItem in labResultEvaluationConfig
+                    option(value=labResultEvaluationItem.value) #{labResultEvaluationItem.text}
+          .col-sm-2
+            button.btn.btn-default(type="button")
+              span.glyphicon.glyphicon-question-sign
 
-        .form-group
-          label.col-sm-4.control-label #{config.lab_34.text}
-          .col-sm-7.input-group
-            select.form-control(name="lab_34")
-              each labResultEvaluationItem in labResultEvaluationConfig
-                option(value=labResultEvaluationItem.value) #{labResultEvaluationItem.text}
-            span.input-group-btn
-              button.btn.btn-default(type="button")
-                span.glyphicon.glyphicon-question-sign
+        .row
+          .col-sm-10
+            .form-group
+              label.col-sm-4.control-label #{config.lab_33.text}
+              .col-sm-8
+                input.form-control(type="number" step="any" name="lab_1")
+          .col-sm-2
+            button.btn.btn-default(type="button")
+              span.glyphicon.glyphicon-question-sign
+
+        .row
+          .col-sm-10
+            .form-group
+              label.col-sm-4.control-label #{config.lab_34.text}
+              .col-sm-8
+                select.form-control(name="lab_34")
+                  each labResultEvaluationItem in labResultEvaluationConfig
+                    option(value=labResultEvaluationItem.value) #{labResultEvaluationItem.text}
+          .col-sm-2
+            button.btn.btn-default(type="button")
+              span.glyphicon.glyphicon-question-sign
