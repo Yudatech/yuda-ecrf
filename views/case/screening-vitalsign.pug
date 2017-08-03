@@ -5,57 +5,105 @@ block case-content
     form.form-horizontal
       fieldset
         legend #{config.title}
-        .form-group
-          .col-sm-offset-2.col-sm-10
-            .checkbox
-              label
-                input(type="checkbox" name="vitalsign_1")
-                span #{config.vitalsign_1.text}
 
-        .form-group
-          .col-sm-offset-2.col-sm-10
-            .checkbox
-              label
-                input(type="checkbox" name="vitalsign_2")
-                span #{config.vitalsign_2.text}
-
-        .form-group
-          .col-sm-offset-2.col-sm-10
-            .checkbox
-              label
-                input(type="checkbox" name="vitalsign_3")
-                span #{config.vitalsign_3.text}
-
-        .form-group
-          label.col-sm-2.control-label #{config.vitalsign_4.text}
+        .row
           .col-sm-10
-            select.form-control
-              each abdominalExamResultItem in abdominalExamResultConfig
-                option(value=abdominalExamResultItem.value) #{abdominalExamResultItem.text}
+            .form-group
+              .col-sm-offset-2.col-sm-10
+                .checkbox
+                  label
+                    input(type="checkbox" name="vitalsign_1")
+                    span #{config.vitalsign_1.text}
+          .col-sm-2
+            button.btn.btn-default(type="button")
+              span.glyphicon.glyphicon-question-sign
+
+        .row
+          .col-sm-10
+            .form-group
+              .col-sm-offset-2.col-sm-10
+                .checkbox
+                  label
+                    input(type="checkbox" name="vitalsign_2")
+                    span #{config.vitalsign_2.text}
+          .col-sm-2
+            button.btn.btn-default(type="button")
+              span.glyphicon.glyphicon-question-sign
+
+        .row
+          .col-sm-10
+            .form-group
+              .col-sm-offset-2.col-sm-10
+                .checkbox
+                  label
+                    input(type="checkbox" name="vitalsign_3")
+                    span #{config.vitalsign_3.text}
+          .col-sm-2
+            button.btn.btn-default(type="button")
+              span.glyphicon.glyphicon-question-sign
+
+        .row
+          .col-sm-10
+            .form-group
+              label.col-sm-2.control-label #{config.vitalsign_4.text}
+              .col-sm-10
+                select.form-control
+                  each abdominalExamResultItem in abdominalExamResultConfig
+                    option(value=abdominalExamResultItem.value) #{abdominalExamResultItem.text}
+          .col-sm-2
+            button.btn.btn-default(type="button")
+              span.glyphicon.glyphicon-question-sign
         
-        .form-group
-          label.col-sm-2.control-label #{config.vitalsign_5.text}
+        .row
           .col-sm-10
-            input.form-control(type="number" name="vitalsign_5")
+            .form-group
+              label.col-sm-2.control-label #{config.vitalsign_5.text}
+              .col-sm-10
+                input.form-control(type="number" name="vitalsign_5")
+          .col-sm-2
+            button.btn.btn-default(type="button")
+              span.glyphicon.glyphicon-question-sign
 
-        .form-group
-          .col-sm-offset-2.col-sm-10
-            .checkbox
-              label
-                input(type="checkbox" name="vitalsign_6")
-                span #{config.vitalsign_6.text}
-
-        .form-group
-          label.col-sm-2.control-label #{config.vitalsign_7.text}
+        .row
           .col-sm-10
-            input.form-control(type="number" name="vitalsign_6")
+            .form-group
+              .col-sm-offset-2.col-sm-10
+                .checkbox
+                  label
+                    input(type="checkbox" name="vitalsign_6")
+                    span #{config.vitalsign_6.text}
+          .col-sm-2
+            button.btn.btn-default(type="button")
+              span.glyphicon.glyphicon-question-sign
 
-        .form-group
-          .col-sm-offset-2.col-sm-10
-            .checkbox
-              label
-                input(type="checkbox" name="vitalsign_8")
-                span #{config.vitalsign_8.text}
+        .row
+          .col-sm-10
+            .form-group
+              label.col-sm-2.control-label #{config.vitalsign_7.text}
+              .col-sm-10
+                input.form-control(type="number" name="vitalsign_6")
+          .col-sm-2
+            button.btn.btn-default(type="button")
+              span.glyphicon.glyphicon-question-sign
 
-        label #{config.vitalsign_9.text}
-        textarea.form-control(rows="5" name="vitalsign_9")
+        .row
+          .col-sm-10
+            .form-group
+              .col-sm-offset-2.col-sm-10
+                .checkbox
+                  label
+                    input(type="checkbox" name="vitalsign_8")
+                    span #{config.vitalsign_8.text}
+          .col-sm-2
+            button.btn.btn-default(type="button")
+              span.glyphicon.glyphicon-question-sign
+
+        .row
+          .col-sm-10
+            .form-group
+              label.col-sm-2 #{config.vitalsign_9.text}
+              .col-sm-10
+                textarea.form-control(rows="5" name="vitalsign_9")
+          .col-sm-2
+            button.btn.btn-default(type="button")
+              span.glyphicon.glyphicon-question-sign

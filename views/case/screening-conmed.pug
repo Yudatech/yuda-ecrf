@@ -4,28 +4,54 @@ block case-content
   .case-content
     form.form-horizontal
       fieldset
-        legend 合并用药情况
-        .checkbox
-          label
-            input(type="checkbox" name="conmed_1")
-            span 抗生素
+        legend #{config.title}
+
+        .row
+          .col-sm-10
+            .checkbox
+              label
+                input(type="checkbox" name="conmed_1")
+                span #{config.conmed_1.text}
+          .col-sm-2
+            button.btn.btn-default(type="button")
+              span.glyphicon.glyphicon-question-sign
         
-        .checkbox
-          label
-            input(type="checkbox" name="conmed_2")
-            span 抗凝血剂
+        .row
+          .col-sm-10
+            .checkbox
+              label
+                input(type="checkbox" name="conmed_2")
+                span #{config.conmed_2.text}
+          .col-sm-2
+            button.btn.btn-default(type="button")
+              span.glyphicon.glyphicon-question-sign
 
-        .checkbox
-          label
-            input(type="checkbox" name="conmed_3")
-            span 止痛药
+        .row
+          .col-sm-10
+            .checkbox
+              label
+                input(type="checkbox" name="conmed_3")
+                span #{config.conmed_3.text}
+          .col-sm-2
+            button.btn.btn-default(type="button")
+              span.glyphicon.glyphicon-question-sign
 
-        .checkbox
-          label
-            input(type="checkbox" name="conmed_4")
-            span 激素药物
+        .row
+          .col-sm-10
+            .checkbox
+              label
+                input(type="checkbox" name="conmed_4")
+                span #{config.conmed_4.text}
+          .col-sm-2
+            button.btn.btn-default(type="button")
+              span.glyphicon.glyphicon-question-sign
 
-        .checkbox
-          label
-            input(type="checkbox" name="conmed_5")
-            span 其他药物
+        .row
+          .col-sm-10
+            .checkbox
+              label
+                input(type="checkbox" name="conmed_5")
+                span #{config.conmed_5.text}
+          .col-sm-2
+            button.btn.btn-default(type="button")
+              span.glyphicon.glyphicon-question-sign

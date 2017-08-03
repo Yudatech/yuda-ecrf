@@ -5,22 +5,43 @@ block case-content
     form.form-horizontal
       fieldset
         legend #{config.title}
-        .checkbox
-          label
-            input(type="checkbox" name="inclusion_1")
-            span #{config.inclusion_1.text}
+
+        .row
+          .col-sm-10
+            .checkbox
+              label
+                input(type="checkbox" name="inclusion_1")
+                span #{config.inclusion_1.text}
+          .col-sm-2
+            button.btn.btn-default(type="button")
+              span.glyphicon.glyphicon-question-sign
         
-        .checkbox
-          label
-            input(type="checkbox" name="inclusion_2")
-            span #{config.inclusion_2.text}
+        .row
+          .col-sm-10
+            .checkbox
+              label
+                input(type="checkbox" name="inclusion_2")
+                span #{config.inclusion_2.text}
+          .col-sm-2
+            button.btn.btn-default(type="button")
+              span.glyphicon.glyphicon-question-sign
 
-        .checkbox
-          label
-            input(type="checkbox" name="inclusion_3")
-            span #{config.inclusion_3.text}
+        .row
+          .col-sm-10
+            .checkbox
+              label
+                input(type="checkbox" name="inclusion_3")
+                span #{config.inclusion_3.text}
+          .col-sm-2
+            button.btn.btn-default(type="button")
+              span.glyphicon.glyphicon-question-sign
 
-        .checkbox
-          label
-            input(type="checkbox" name="inclusion_4")
-            span #{config.inclusion_4.text}
+        .row
+          .col-sm-10
+            .checkbox
+              label
+                input(type="checkbox" name="inclusion_4")
+                span #{config.inclusion_4.text}
+          .col-sm-2
+            button.btn.btn-default(type="button")
+              span.glyphicon.glyphicon-question-sign
