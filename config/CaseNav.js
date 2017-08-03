@@ -52,7 +52,7 @@ module.exports = [
   {
     title: '首诊清单',
     name: 'screening-checklist',
-    link: '/'
+    link: '/screening-checklist'
   },
   {
     title: '复诊',
