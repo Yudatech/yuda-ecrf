@@ -27,17 +27,17 @@ const surgerySchema = new Schema({
   device_1: numberWithIntValidate,
   // C-REX DMH/DMHC型号
   device_2: numberWithIntValidate,
-  // Descending colon
+  // 肠切除术-Descending colon
   surgery_1: Boolean,
-  // Sigmoid colon
+  // 肠切除术-Sigmoid colon
   surgery_2: Boolean,
-  // Rectum
+  // 肠切除术-Rectum
   surgery_3: Boolean,
   // 肿瘤距离肛门
   surgery_4: numberWithFloatValidate,
-  // 肿瘤大小(first number)
+  // 肿瘤大小-长度(cm)
   surgery_5: numberWithFloatValidate,
-  // 肿瘤大小(second number)
+  // 肿瘤大小-宽度(cm)
   surgery_6: numberWithFloatValidate,
   // 肿瘤浸润范围
   surgery_7: String,
@@ -62,9 +62,7 @@ const surgerySchema = new Schema({
   // 其他
   surgery_17: Boolean,
   // 其他，请注明原因
-  surgery_18: String,
-  // 从试验中排除(否)
-  surgery_19: Boolean
+  surgery_18: String
 });
 
 surgerySchema.plugin(mongodbErrorHandler);

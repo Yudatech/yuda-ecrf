@@ -8,6 +8,8 @@ const userController = require('../controllers/userController');
 const caseController = require('../controllers/caseController');
 const screeningChecklistController = require('../controllers/screeningChecklistController');
 const reviewChecklistController = require('../controllers/reviewChecklistController');
+const discontinuationController = require('../controllers/discontinuationController');
+const surgeryController = require('../controllers/surgeryController');
 
 router.get('/', mainController.homePage);
 
@@ -44,5 +46,11 @@ router.get('/screening-checklist', screeningChecklistController.screeningCheckli
 
 // Router for review-checklist
 router.get('/review-checklist', reviewChecklistController.reviewChecklistForm);
+
+// Router for discontinuation
+router.get('/discontinuation', discontinuationController.discontinuationForm);
+
+// Router for surgery
+router.get('/surgery', surgeryController.surgeryForm);
 
 module.exports = router;

@@ -1,0 +1,228 @@
+extends caseLayout
+
+block case-content
+  .case-content
+    form.form-horizontal
+      fieldset
+        legend #{config.title.device}
+
+        .row
+          .col-sm-10
+            .form-group
+              label.col-sm-4.control-label #{config.device_1.text}
+              .col-sm-8
+                select.form-control(name="device_1")
+                  each surgeryLapAidModelItem in surgeryLapAidModelConfig
+                    option(value=surgeryLapAidModelItem.value) #{surgeryLapAidModelItem.text}
+          .col-sm-2
+            button.btn.btn-default(type="button")
+              span.glyphicon.glyphicon-question-sign
+
+        .row
+          .col-sm-10
+            .form-group
+              label.col-sm-4.control-label #{config.device_2.text}
+              .col-sm-8
+                select.form-control(name="device_2")
+                  each surgeryDmhDmhcModelItem in surgeryDmhDmhcModelConfig
+                    option(value=surgeryDmhDmhcModelItem.value) #{surgeryDmhDmhcModelItem.text}
+          .col-sm-2
+            button.btn.btn-default(type="button")
+              span.glyphicon.glyphicon-question-sign
+
+      fieldset
+        legend #{config.title.surgery}
+
+        .row
+          .col-sm-10
+            .form-group
+              .col-sm-offset-2.col-sm-10
+                .checkbox
+                  label
+                    input(type="checkbox" name="surgery_1")
+                    span #{config.surgery_1.text}
+          .col-sm-2
+            button.btn.btn-default(type="button")
+              span.glyphicon.glyphicon-question-sign
+
+        .row
+          .col-sm-10
+            .form-group
+              .col-sm-offset-2.col-sm-10
+                .checkbox
+                  label
+                    input(type="checkbox" name="surgery_2")
+                    span #{config.surgery_2.text}
+          .col-sm-2
+            button.btn.btn-default(type="button")
+              span.glyphicon.glyphicon-question-sign
+
+        .row
+          .col-sm-10
+            .form-group
+              .col-sm-offset-2.col-sm-10
+                .checkbox
+                  label
+                    input(type="checkbox" name="surgery_3")
+                    span #{config.surgery_3.text}
+          .col-sm-2
+            button.btn.btn-default(type="button")
+              span.glyphicon.glyphicon-question-sign
+        
+        .row
+          .col-sm-10
+            .form-group
+              label.col-sm-2.control-label #{config.surgery_4.text}
+              .col-sm-10
+                input.form-control(type="number" step="any" name="surgery_4")
+          .col-sm-2
+            button.btn.btn-default(type="button")
+              span.glyphicon.glyphicon-question-sign
+
+        .row
+          .col-sm-10
+            .form-group
+              label.col-sm-2.control-label #{config.surgery_5.text}
+              .col-sm-10
+                input.form-control(type="number" step="any" name="surgery_5")
+          .col-sm-2
+            button.btn.btn-default(type="button")
+              span.glyphicon.glyphicon-question-sign
+
+        .row
+          .col-sm-10
+            .form-group
+              label.col-sm-2.control-label #{config.surgery_6.text}
+              .col-sm-10
+                input.form-control(type="number" step="any" name="surgery_6")
+          .col-sm-2
+            button.btn.btn-default(type="button")
+              span.glyphicon.glyphicon-question-sign
+
+        .row
+          .col-sm-10
+            .form-group
+              label.col-sm-2.control-label #{config.surgery_7.text}
+              .col-sm-10
+                input.form-control(type="text" name="surgery_7")
+          .col-sm-2
+            button.btn.btn-default(type="button")
+              span.glyphicon.glyphicon-question-sign
+
+        .row
+          .col-sm-10
+            .form-group
+              label.col-sm-2.control-label #{config.surgery_8.text}
+              .col-sm-10
+                input.form-control(type="number" step="1" name="surgery_8")
+          .col-sm-2
+            button.btn.btn-default(type="button")
+              span.glyphicon.glyphicon-question-sign
+
+        .row
+          .col-sm-10
+            .form-group
+              label.col-sm-2.control-label #{config.surgery_9.text}
+              .col-sm-10
+                input.form-control(type="number" step="1" name="surgery_9")
+          .col-sm-2
+            button.btn.btn-default(type="button")
+              span.glyphicon.glyphicon-question-sign
+
+        .row
+          .col-sm-10
+            .form-group
+              label.col-sm-2.control-label #{config.surgery_10.text}
+              .col-sm-10
+                input.form-control(type="number" step="any" name="surgery_10")
+          .col-sm-2
+            button.btn.btn-default(type="button")
+              span.glyphicon.glyphicon-question-sign
+
+        .row
+          .col-sm-10
+            .form-group
+              label.col-sm-2.control-label #{config.surgery_11.text}
+              .col-sm-10
+                input.form-control(type="number" step="any" name="surgery_11")
+          .col-sm-2
+            button.btn.btn-default(type="button")
+              span.glyphicon.glyphicon-question-sign
+
+        .row
+          .col-sm-10
+            .form-group
+              label.col-sm-2.control-label #{config.surgery_12.text}
+              .col-sm-10
+                input.form-control(type="number" step="1" name="surgery_12")
+          .col-sm-2
+            button.btn.btn-default(type="button")
+              span.glyphicon.glyphicon-question-sign
+
+        .row
+          .col-sm-10
+            .form-group
+              label.col-sm-2.control-label #{config.surgery_13.text}
+              .col-sm-10
+                input.form-control(type="number" step="any" name="surgery_13")
+          .col-sm-2
+            button.btn.btn-default(type="button")
+              span.glyphicon.glyphicon-question-sign
+
+        .row
+          .col-sm-10
+            .form-group
+              .col-sm-offset-2.col-sm-10
+                .checkbox
+                  label
+                    input(type="checkbox" name="surgery_14")
+                    span #{config.surgery_14.text}
+          .col-sm-2
+            button.btn.btn-default(type="button")
+              span.glyphicon.glyphicon-question-sign
+
+        .row
+          .col-sm-10
+            .form-group
+              .col-sm-offset-2.col-sm-10
+                .checkbox
+                  label
+                    input(type="checkbox" name="surgery_15")
+                    span #{config.surgery_15.text}
+          .col-sm-2
+            button.btn.btn-default(type="button")
+              span.glyphicon.glyphicon-question-sign
+
+        .row
+          .col-sm-10
+            .form-group
+              .col-sm-offset-2.col-sm-10
+                .checkbox
+                  label
+                    input(type="checkbox" name="surgery_16")
+                    span #{config.surgery_16.text}
+          .col-sm-2
+            button.btn.btn-default(type="button")
+              span.glyphicon.glyphicon-question-sign
+
+        .row
+          .col-sm-10
+            .form-group
+              .col-sm-offset-2.col-sm-10
+                .checkbox
+                  label
+                    input(type="checkbox" name="surgery_17")
+                    span #{config.surgery_17.text}
+          .col-sm-2
+            button.btn.btn-default(type="button")
+              span.glyphicon.glyphicon-question-sign
+
+        .row
+          .col-sm-10
+            .form-group
+              label.col-sm-2 #{config.surgery_18.text}
+              .col-sm-10
+                textarea.form-control(rows="5" name="surgery_18")
+          .col-sm-2
+            button.btn.btn-default(type="button")
+              span.glyphicon.glyphicon-question-sign

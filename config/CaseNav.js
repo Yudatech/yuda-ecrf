@@ -62,12 +62,12 @@ module.exports = [
   {
     title: '中途退出试验',
     name: 'discontinuation',
-    link: '/'
+    link: '/discontinuation'
   },
   {
     title: '手术',
     name: 'surgery',
-    link: '/'
+    link: '/surgery'
   },
   {
     title: '访视',
