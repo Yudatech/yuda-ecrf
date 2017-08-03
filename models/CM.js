@@ -37,14 +37,7 @@ const cmSchema = new Schema({
     default: Date.now
   },
   // 用药原因/目的
-  cmrsn: String,
-  // 签字
-  cmsignature_1: String,
-  // 日期
-  cmsignature_2: {
-    type: Date,
-    default: Date.now
-  }
+  cmrsn: String
 });
 
 cmSchema.plugin(mongodbErrorHandler);

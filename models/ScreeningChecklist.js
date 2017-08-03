@@ -29,14 +29,7 @@ const screeningChecklistSchema = new Schema({
   // 向受试者下医嘱行术前肠道清洁
   screeningcheck_8: Boolean,
   // 诊断方法、结果记录在病
-  screeningcheck_9: Boolean,
-  // 签字
-  screeningchecksignature_1: String,
-  // 日期
-  screeningchecksignature_2: {
-    type: Date,
-    default: Date.now
-  }
+  screeningcheck_9: Boolean
 });
 
 screeningChecklistSchema.plugin(mongodbErrorHandler);

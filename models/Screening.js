@@ -226,14 +226,7 @@ const screeningSchema = new Schema({
   // 转移灶
   dignose_4: Boolean,
   // 转移灶部位
-  dignose_5: String,
-  // 签字
-  screeningsignature_1: String,
-  // 日期
-  screeningsignature_2: {
-    type: Date,
-    default: Date.now
-  }
+  dignose_5: String
 });
 
 screeningSchema.plugin(mongodbErrorHandler);

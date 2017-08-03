@@ -32,14 +32,7 @@ const discontinuationSchema = new Schema({
   // 其他原因
   discontinuersn_6: Boolean,
   // 其他原因，请注明
-  discontinuersn_7: String,
-  // 签字
-  discontinuationsignature_1: String,
-  // 日期
-  discontinuationsignature_2: {
-    type: Date,
-    default: Date.now
-  }
+  discontinuersn_7: String
 });
 
 discontinuationSchema.plugin(mongodbErrorHandler);

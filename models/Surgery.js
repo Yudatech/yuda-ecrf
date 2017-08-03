@@ -64,14 +64,7 @@ const surgerySchema = new Schema({
   // 其他，请注明原因
   surgery_18: String,
   // 从试验中排除(否)
-  surgery_19: Boolean,
-  // 签字
-  surgerysignature_1: String,
-  // 日期
-  surgerysignature_2: {
-    type: Date,
-    default: Date.now
-  }
+  surgery_19: Boolean
 });
 
 surgerySchema.plugin(mongodbErrorHandler);

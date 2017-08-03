@@ -77,14 +77,7 @@ const visitSchema = new Schema({
   // 人工取出或经外科操作取出
   param_21: Boolean,
   // 不良事件
-  param_22: Boolean,
-  // 签字
-  visitsignature_1: String,
-  // 日期
-  visitsignature_2: {
-    type: Date,
-    default: Date.now
-  }
+  param_22: Boolean
 });
 
 visitSchema.plugin(mongodbErrorHandler);

@@ -13,6 +13,8 @@ const getScreeningAssistantConfig = require('../config/getScreeningAssistantConf
 const getAssistantExamResultConfig = require('../config/getAssistantExamResultConfig');
 const getScreeningMethodConfig = require('../config/getScreeningMethodConfig');
 const getScreeningRegionConfig = require('../config/getScreeningRegionConfig');
+const getScreeningDignoseConfig = require('../config/getScreeningDignoseConfig');
+const getClinicalStageConfig = require('../config/getClinicalStageConfig');
 
 exports.caseForm = (req, res) => {
   res.render('case');
@@ -89,5 +91,13 @@ exports.caseRegionForm = (req, res) => {
   res.render('case/screening-region', {
     caseNav: CaseNav,
     config: getScreeningRegionConfig()
+  });
+};
+
+exports.caseDignoseForm = (req, res) => {
+  res.render('case/screening-dignose', {
+    caseNav: CaseNav,
+    config: getScreeningDignoseConfig(),
+    clinicalStageConfig: getClinicalStageConfig()
   });
 };

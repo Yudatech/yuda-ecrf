@@ -1,0 +1,62 @@
+extends ../caseLayout
+
+block case-content
+  .case-content
+    form.form-horizontal
+      fieldset
+        legend #{config.title}
+
+        .row
+          .col-sm-10
+            .form-group
+              label.col-sm-2.control-label #{config.dignose_1.text}
+              .col-sm-10
+                input.form-control(type="text" name="dignose_1")
+          .col-sm-2
+            button.btn.btn-default(type="button")
+              span.glyphicon.glyphicon-question-sign
+
+        .row
+          .col-sm-10
+            .form-group
+              label.col-sm-2.control-label #{config.dignose_2.text}
+              .col-sm-10
+                input.form-control(type="text" name="dignose_2")
+          .col-sm-2
+            button.btn.btn-default(type="button")
+              span.glyphicon.glyphicon-question-sign
+
+        .row
+          .col-sm-10
+            .form-group
+              label.col-sm-2.control-label #{config.dignose_3.text}
+              .col-sm-10
+                each clinicalStageItem in clinicalStageConfig
+                  label.radio-inline
+                    input(type="radio" name="sex" value=clinicalStageItem.value)
+                    span #{clinicalStageItem.text}
+          .col-sm-2
+            button.btn.btn-default(type="button")
+              span.glyphicon.glyphicon-question-sign
+
+        .row
+          .col-sm-10
+            .form-group
+              .col-sm-offset-2.col-sm-10
+                .checkbox
+                  label
+                    input(type="checkbox" name="dignose_4")
+                    span #{config.dignose_4.text}
+          .col-sm-2
+            button.btn.btn-default(type="button")
+              span.glyphicon.glyphicon-question-sign
+
+        .row
+          .col-sm-10
+            .form-group
+              label.col-sm-2.control-label #{config.dignose_5.text}
+              .col-sm-10
+                input.form-control(type="text" name="dignose_5")
+          .col-sm-2
+            button.btn.btn-default(type="button")
+              span.glyphicon.glyphicon-question-sign

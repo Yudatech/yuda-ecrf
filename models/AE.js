@@ -49,14 +49,7 @@ const aeSchema = new Schema({
   // 器械缺陷
   aedevicedft: Boolean,
   // 因该事件退出试验
-  aediscon: Boolean,
-  // 签字
-  aesignature_1: String,
-  // 日期
-  aesignature_2: {
-    type: Date,
-    default: Date.now
-  }
+  aediscon: Boolean
 });
 
 aeSchema.plugin(mongodbErrorHandler);

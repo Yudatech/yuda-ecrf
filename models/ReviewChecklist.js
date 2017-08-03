@@ -19,14 +19,7 @@ const reviewChecklistSchema = new Schema({
   // 预防性抗生素
   reviewcheck_3: Boolean,
   // 预防性抗凝血药
-  reviewcheck_4: Boolean,
-  // 签字
-  reviewchecksignature_1: String,
-  // 日期
-  reviewchecksignature_2: {
-    type: Date,
-    default: Date.now
-  }
+  reviewcheck_4: Boolean
 });
 
 reviewChecklistSchema.plugin(mongodbErrorHandler);
