@@ -15,15 +15,24 @@ block case-content
         
         .form-group
           label.col-sm-2.control-label #{config.birth.text}
-          .col-sm-10
+          .col-sm-9.input-group
             input.form-control(type="number" name="birth")
+            span.input-group-btn
+              button.btn.btn-default(type="button")
+                span.glyphicon.glyphicon-question-sign
 
         .form-group
           label.col-sm-2.control-label #{config.weight.text}
-          .col-sm-10
+          .col-sm-9.input-group
             input.form-control(type="number" name="weight")
+            span.input-group-btn
+              button.btn.btn-default(type="button")
+                span.glyphicon.glyphicon-question-sign
 
         .form-group
           label.col-sm-2.control-label #{config.height.text}
-          .col-sm-10
+          .col-sm-9.input-group
             input.form-control(type="number" name="height")
+            span.input-group-btn
+              button.btn.btn-default(type="button")
+                span.glyphicon.glyphicon-question-sign

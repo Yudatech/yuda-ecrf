@@ -149,7 +149,7 @@ const screeningSchema = new Schema({
   lab_14: numberWithIntValidate,
   // 丙氨酸氨基转移酶 (ALT)
   lab_15: numberWithFloatValidate,
-  // 丙氨酸氨基转移酶 (ALT)
+  // 丙氨酸氨基转移酶 (ALT)临床评估
   lab_16: numberWithIntValidate,
   // 天门冬氨酸氨基转移酶 (AST)
   lab_17: numberWithFloatValidate,

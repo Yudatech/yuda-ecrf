@@ -5,14 +5,11 @@ exports.getOptionsLang = function(options, lang) {
 
   const result = {};
   options.map((item) => {
-    return {
-      name: item.name,
-      text: item.text[lang]
-    };
+    const itemCopy = Object.assign({}, item);
+    itemCopy.text = item.text[lang];
+    return itemCopy;
   }).forEach((item) => {
-    result[item.name] = {
-      text: item.text
-    };
+    result[item.name] = item;
   });
   return result;
 };

@@ -1,0 +1,73 @@
+extends ../caseLayout
+
+block case-content
+  .case-content
+    form.form-horizontal
+      fieldset
+        legend #{config.title}
+
+        .row
+          .col-sm-10
+            .form-group
+              label.col-sm-4.control-label #{config.assistant_1.text}
+              .col-sm-8
+                select.form-control(name="assistant_1")
+                  each assistantExamResultItem in assistantExamResultConfig
+                    option(value=assistantExamResultItem.value) #{assistantExamResultItem.text}
+          .col-sm-2
+            button.btn.btn-default(type="button")
+              span.glyphicon.glyphicon-question-sign
+
+        .row
+          .col-sm-10
+            .form-group
+              label.col-sm-4.control-label #{config.assistant_2.text}
+              .col-sm-8
+                textarea.form-control(rows="5" name="assistant_2")
+          .col-sm-2
+            button.btn.btn-default(type="button")
+              span.glyphicon.glyphicon-question-sign
+
+        .row
+          .col-sm-10
+            .form-group
+              label.col-sm-4.control-label #{config.assistant_3.text}
+              .col-sm-8
+                select.form-control(name="assistant_3")
+                  each assistantExamResultItem in assistantExamResultConfig
+                    option(value=assistantExamResultItem.value) #{assistantExamResultItem.text}
+          .col-sm-2
+            button.btn.btn-default(type="button")
+              span.glyphicon.glyphicon-question-sign
+
+        .row
+          .col-sm-10
+            .form-group
+              label.col-sm-4.control-label #{config.assistant_4.text}
+              .col-sm-8
+                textarea.form-control(rows="5" name="assistant_4")
+          .col-sm-2
+            button.btn.btn-default(type="button")
+              span.glyphicon.glyphicon-question-sign
+
+        .row
+          .col-sm-10
+            .form-group
+              label.col-sm-4.control-label #{config.assistant_5.text}
+              .col-sm-8
+                select.form-control(name="assistant_5")
+                  each assistantExamResultItem in assistantExamResultConfig
+                    option(value=assistantExamResultItem.value) #{assistantExamResultItem.text}
+          .col-sm-2
+            button.btn.btn-default(type="button")
+              span.glyphicon.glyphicon-question-sign
+
+        .row
+          .col-sm-10
+            .form-group
+              label.col-sm-4.control-label #{config.assistant_6.text}
+              .col-sm-8
+                textarea.form-control(rows="5" name="assistant_6")
+          .col-sm-2
+            button.btn.btn-default(type="button")
+              span.glyphicon.glyphicon-question-sign

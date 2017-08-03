@@ -30,5 +30,8 @@ router.get('/screening/inclusion', caseController.caseInclusionForm);
 router.get('/screening/exclusion', caseController.caseExclusionForm);
 router.get('/screening/disease', caseController.caseDiseaseForm);
 router.get('/screening/conmed', caseController.caseConMedForm);
+router.get('/screening/vitalsign', caseController.caseVitalSignForm);
+router.get('/screening/lab', caseController.caseLabForm);
+router.get('/screening/assistant', caseController.caseAssistantForm);
 
 module.exports = router;

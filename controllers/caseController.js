@@ -5,6 +5,12 @@ const getScreeningInclusionConfig = require('../config/getScreeningInclusionConf
 const getScreeningExclusionConfig = require('../config/getScreeningExclusionConfig');
 const getScreeningDiseaseConfig = require('../config/getScreeningDiseaseConfig');
 const getScreeningConMedConfig = require('../config/getScreeningConMedConfig');
+const getScreeningVitalSignConfig = require('../config/getScreeningVitalSignConfig');
+const getAbdominalExamResultConfig = require('../config/getAbdominalExamResultConfig');
+const getScreeningLabConfig = require('../config/getScreeningLabConfig');
+const getLabResultEvaluationConfig = require('../config/getLabResultEvaluationConfig');
+const getScreeningAssistantConfig = require('../config/getScreeningAssistantConfig');
+const getAssistantExamResultConfig = require('../config/getAssistantExamResultConfig');
 
 exports.caseForm = (req, res) => {
   res.render('case');
@@ -43,5 +49,29 @@ exports.caseConMedForm = (req, res) => {
   res.render('case/screening-conmed', {
     caseNav: CaseNav,
     config: getScreeningConMedConfig()
+  });
+};
+
+exports.caseVitalSignForm = (req, res) => {
+  res.render('case/screening-vitalsign', {
+    caseNav: CaseNav,
+    config: getScreeningVitalSignConfig(),
+    abdominalExamResultConfig: getAbdominalExamResultConfig()
+  });
+};
+
+exports.caseLabForm = (req, res) => {
+  res.render('case/screening-lab', {
+    caseNav: CaseNav,
+    config: getScreeningLabConfig(),
+    labResultEvaluationConfig: getLabResultEvaluationConfig()
+  });
+};
+
+exports.caseAssistantForm = (req, res) => {
+  res.render('case/screening-assistant', {
+    caseNav: CaseNav,
+    config: getScreeningAssistantConfig(),
+    assistantExamResultConfig: getAssistantExamResultConfig()
   });
 };
