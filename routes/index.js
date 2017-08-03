@@ -7,6 +7,7 @@ const authController = require('../controllers/authController');
 const userController = require('../controllers/userController');
 const caseController = require('../controllers/caseController');
 const screeningChecklistController = require('../controllers/screeningChecklistController');
+const reviewChecklistController = require('../controllers/reviewChecklistController');
 
 router.get('/', mainController.homePage);
 
@@ -40,5 +41,8 @@ router.get('/screening/dignose', caseController.caseDignoseForm);
 
 // Router for screening-checklist
 router.get('/screening-checklist', screeningChecklistController.screeningChecklistForm);
+
+// Router for review-checklist
+router.get('/review-checklist', reviewChecklistController.reviewChecklistForm);
 
 module.exports = router;

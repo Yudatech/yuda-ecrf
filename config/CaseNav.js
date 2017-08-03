@@ -57,7 +57,7 @@ module.exports = [
   {
     title: '复诊',
     name: 'review-checklist',
-    link: '/'
+    link: '/review-checklist'
   },
   {
     title: '中途退出试验',

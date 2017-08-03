@@ -16,9 +16,9 @@ const reviewChecklistSchema = new Schema({
   reviewcheck_1: Boolean,
   // 肠道清洁
   reviewcheck_2: Boolean,
-  // 预防性抗生素
+  // 预防性抗生素 (若使用抗生素，请完整填写《合并用药情况表》)
   reviewcheck_3: Boolean,
-  // 预防性抗凝血药
+  // 预防性抗凝血药 (若使用抗凝血药，请完整填写《合并用药情况表》)
   reviewcheck_4: Boolean
 });
 
