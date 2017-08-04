@@ -5,6 +5,7 @@ const md5 = require('md5');
 const validator = require('validator');
 const mongodbErrorHandler = require('mongoose-mongodb-errors');
 const passportLocalMongoose = require('passport-local-mongoose');
+const uniqueValidator = require('mongoose-unique-validator');
 
 const userSchema = new Schema({
   email: {
@@ -21,7 +22,8 @@ const userSchema = new Schema({
     trim: true
   },
   userabbr: {
-    type: String
+    type: String,
+    unique: true
   },
   cratel: {
     type: String
@@ -35,5 +37,6 @@ userSchema.virtual('gravatar').get(function() {
 
 userSchema.plugin(passportLocalMongoose, {usernameField: 'username'});
 userSchema.plugin(mongodbErrorHandler);
+userSchema.plugin(uniqueValidator);
 
 module.exports = mongoose.model('User', userSchema);
