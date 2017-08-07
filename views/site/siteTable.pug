@@ -3,10 +3,26 @@ extends ../layout
 block content
   .inner
     h2 #{siteTableConfig.title}
-    table.table
+    table.table.table-striped
       thead
         tr
           each siteTableHeader in siteTableConfig.headers
             th #{siteTableHeader.text}
+      tbody
+        each site in sites
+          tr
+            each siteTableHeader in siteTableConfig.headers
+              if siteTableHeader.name !== 'operations'
+                td #{site[siteTableHeader.name]}
+              else
+                td
+                  .row
+                    .col-sm-2
+                      a.btn.btn-default(role="button" href=`/site/${site._id}`)
+                        span.glyphicon.glyphicon-pencil
+
+                    .col-sm-2
+                      a.btn.btn-default(role="button" href=`/remove/site/${site._id}`)
+                        span.glyphicon.glyphicon-trash
 
     a.btn.btn-default(href="/site" role="button") #{siteTableConfig.buttons.createNewSite.text}

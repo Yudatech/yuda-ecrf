@@ -24,6 +24,11 @@ const config = {
     text: {
       zh: '所在国家'
     }
+  }, {
+    name: 'operations',
+    text: {
+      zh: '操作'
+    }
   }],
   buttons: [{
     name: 'createNewSite',

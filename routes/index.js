@@ -49,8 +49,20 @@ router.get('/discontinuation', discontinuationController.discontinuationForm);
 // Router for surgery
 router.get('/surgery', surgeryController.surgeryForm);
 
-// Router for site
+/**
+ * Router for site
+ */
+// show sites table
 router.get('/sites', siteController.sitesTable);
+// site form to create new site
 router.get('/site', siteController.siteForm);
+// create new site
+router.post('/site', siteController.createSite);
+// open site to edit
+router.get('/site/:id', siteController.siteForm);
+// update site
+router.post('/site/:id', siteController.updateSite);
+// remove site
+router.get('/remove/site/:id', siteController.removeSite);
 
 module.exports = router;

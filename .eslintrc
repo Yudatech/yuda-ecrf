@@ -11,6 +11,7 @@
   "rules": {
     "comma-dangle": ["error", "never"],
     "no-console": "off",
-    "max-len": "off"
+    "max-len": "off",
+    "brace-style": ["warn", "stroustrup"]
   }
 }
