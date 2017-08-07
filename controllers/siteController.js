@@ -1,7 +1,14 @@
+const getSiteTableConfig = require('../config/site/getSiteTableConfig');
+const getSiteConfig = require('../config/site/getSiteConfig');
+
 exports.siteForm = (req, res) => {
-  res.render('site');
+  res.render('site/site', {
+    siteConfig: getSiteConfig()
+  });
 };
 
-exports.createSite = (req, res) => {
-  
+exports.sitesTable = (req, res) => {
+  res.render('site/siteTable', {
+    siteTableConfig: getSiteTableConfig()
+  });
 };

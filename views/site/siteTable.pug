@@ -1,0 +1,12 @@
+extends ../layout
+
+block content
+  .inner
+    h2 #{siteTableConfig.title}
+    table.table
+      thead
+        tr
+          each siteTableHeader in siteTableConfig.headers
+            th #{siteTableHeader.text}
+
+    a.btn.btn-default(href="/site" role="button") #{siteTableConfig.buttons.createNewSite.text}

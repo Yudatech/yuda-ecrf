@@ -13,10 +13,6 @@ const surgeryController = require('../controllers/surgeryController');
 
 router.get('/', mainController.homePage);
 
-// Router for site
-router.get('/site', siteController.siteForm);
-router.post('/site', siteController.createSite);
-
 // Router for user
 router.get('/login', userController.loginForm);
 router.post('/login', authController.login);
@@ -52,5 +48,9 @@ router.get('/discontinuation', discontinuationController.discontinuationForm);
 
 // Router for surgery
 router.get('/surgery', surgeryController.surgeryForm);
+
+// Router for site
+router.get('/sites', siteController.sitesTable);
+router.get('/site', siteController.siteForm);
 
 module.exports = router;

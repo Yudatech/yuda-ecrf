@@ -1,0 +1,27 @@
+extends ../layout
+
+block content
+  .inner
+    form.form-horizontal
+      fieldset
+        legend #{siteConfig.title}
+
+        .form-group
+          label.col-sm-2.control-label #{siteConfig.labels.sitename.text}
+          .col-sm-10
+            input.form-control(type="text" name="sitename")
+
+        .form-group
+          label.col-sm-2.control-label #{siteConfig.labels.sitemail.text}
+          .col-sm-10
+            input.form-control(type="email" name="sitemail")
+
+        .form-group
+          label.col-sm-2.control-label #{siteConfig.labels.sitetel.text}
+          .col-sm-10
+            input.form-control(type="text" name="sitetel")
+
+        .form-group
+          label.col-sm-2.control-label #{siteConfig.labels.country.text}
+          .col-sm-10
+            input.form-control(type="text" name="country")
