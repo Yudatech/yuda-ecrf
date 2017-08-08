@@ -1,0 +1,28 @@
+extends ../layout
+
+block content
+  .inner
+    h2 #{userTableConfig.title}
+    table.table.table-striped
+      thead
+        tr
+          each userTableHeader in userTableConfig.headers
+            th #{userTableHeader.text}
+      tbody
+        each user in users
+          tr
+            each userTableHeader in userTableConfig.headers
+              if userTableHeader.name !== 'operations'
+                td #{user[userTableHeader.name]}
+              else
+                td
+                  .row
+                    .col-sm-2
+                      a.btn.btn-default(role="button" href=`/user/${user._id}`)
+                        span.glyphicon.glyphicon-pencil
+
+                    .col-sm-2
+                      a.btn.btn-default(role="button" href=`/remove/user/${user._id}`)
+                        span.glyphicon.glyphicon-trash
+
+    a.btn.btn-default(href="/register" role="button") #{userTableConfig.buttons.createNewUser.text}

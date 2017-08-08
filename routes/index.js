@@ -13,15 +13,24 @@ const surgeryController = require('../controllers/surgeryController');
 
 router.get('/', mainController.homePage);
 
-// Router for user
+/**
+ * Router for user
+ */
 router.get('/login', userController.loginForm);
 router.post('/login', authController.login);
+// show users table
+router.get('/users', userController.usersTable);
+// show form to create new user
 router.get('/register', userController.registerForm);
+// create new user
 router.post('/register',
   userController.validateRegister,
-  userController.register,
-  mainController.homePage
+  userController.register
 );
+// update user
+router.post('/user/:id', userController.updateUser);
+// remove user
+router.get('/remove/user/:id', userController.removeUser);
 
 // Router for case
 router.get('/case', caseController.caseForm);

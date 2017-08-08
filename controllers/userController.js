@@ -1,13 +1,24 @@
 const mongoose = require('mongoose');
 const User = mongoose.model('User');
+const Site = mongoose.model('Site');
 const promisify = require('es6-promisify');
+
+const getUserTableConfig = require('../config/user/getUserTableConfig');
+const getRegisterConfig = require('../config/user/getRegisterConfig');
+const getRoleConfig = require('../config/user/getRoleConfig');
 
 exports.loginForm = (req, res) => {
   res.render('login', {title: 'Login'});
 };
 
-exports.registerForm = (req, res) => {
-  res.render('register', {title: 'Register'});
+exports.registerForm = async (req, res) => {
+  const sites = await Site.find();
+  res.render('user/register', {
+    sites,
+    registerConfig: getRegisterConfig(),
+    roleConfig: getRoleConfig(),
+    user: {}
+  });
 };
 
 exports.validateRegister = (req, res, next) => {
@@ -32,9 +43,29 @@ exports.validateRegister = (req, res, next) => {
   next(); // there were no errors!
 };
 
-exports.register = async (req, res, next) => {
+exports.register = async (req, res) => {
   const user = new User({email: req.body.email, name: req.body.name, isAdmin: req.body.isAdmin});
   const register = promisify(User.register, User);
   await register(user, req.body.password);
-  next(); // pass to authController.login
+  res.redirect('/users');
+};
+
+exports.usersTable = async (req, res) => {
+  const users = await User.find();
+  res.render('user/usersTable', {
+    userTableConfig: getUserTableConfig(),
+    users
+  });
+};
+
+exports.updateUser = async (req, res) => {
+  const userId = req.params.id;
+  await User.findByIdAndUpdate(userId, req.body);
+  res.redirect('/users');
+};
+
+exports.removeUser = async (req, res) => {
+  const userId = req.params.id;
+  await User.findByIdAndRemove(userId);
+  res.redirect('/users');
 };

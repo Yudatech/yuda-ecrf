@@ -25,8 +25,21 @@ const userSchema = new Schema({
     type: String,
     unique: true
   },
-  cratel: {
+  tel: {
     type: String
+  },
+  role: {
+    type: String,
+    required: 'You must supply a role',
+    enum: {
+      values: ['cra', 'supervisor', 'monitor', 'admin'],
+      message: 'enum validator failed for path `{PATH}` with value `{VALUE}`'
+    }
+  },
+  site: {
+    type: mongoose.Schema.ObjectId,
+    ref: 'Site',
+    required: false
   }
 });
 
@@ -34,6 +47,14 @@ userSchema.virtual('gravatar').get(function() {
   const hash = md5(this.email);
   return `https://gravatar.com/avatar/${hash}?s=200`;
 });
+
+function autopopulate(next) {
+  this.populate('site');
+  next();
+}
+
+userSchema.pre('find', autopopulate);
+userSchema.pre('findOne', autopopulate);
 
 userSchema.plugin(passportLocalMongoose, {usernameField: 'username'});
 userSchema.plugin(mongodbErrorHandler);
