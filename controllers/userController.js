@@ -21,9 +21,9 @@ exports.registerForm = async (req, res) => {
   });
 };
 
-exports.validateRegister = (req, res, next) => {
-  req.sanitizeBody('name');
-  req.checkBody('name', 'You must supply a name!').notEmpty();
+exports.validateRegister = async (req, res, next) => {
+  req.sanitizeBody('username');
+  req.checkBody('username', 'You must supply a name!').notEmpty();
   req.checkBody('email', 'That Email is not valid!').isEmail();
   req.sanitizeBody('email').normalizeEmail({
     gmail_remove_dots: false,
@@ -36,15 +36,27 @@ exports.validateRegister = (req, res, next) => {
 
   const errors = req.validationErrors();
   if (errors) {
-    req.flash('error', errors.map( (err) => err.msg));
-    res.render('register', {title: 'Register', body: req.body, flashes: req.flash()});
+    const sites = await Site.find();
+    res.render('user/register', {
+      sites,
+      registerConfig: getRegisterConfig(),
+      roleConfig: getRoleConfig(),
+      user: req.body
+    });
     return; // stop the fn from running
   }
-  next(); // there were no errors!
+  next();
 };
 
 exports.register = async (req, res) => {
-  const user = new User({email: req.body.email, name: req.body.name, isAdmin: req.body.isAdmin});
+  const user = new User({
+    email: req.body.email,
+    username: req.body.username,
+    userabbr: req.body.userabbr,
+    site: req.body.site,
+    role: req.body.role,
+    tel: req.body.tel
+  });
   const register = promisify(User.register, User);
   await register(user, req.body.password);
   res.redirect('/users');

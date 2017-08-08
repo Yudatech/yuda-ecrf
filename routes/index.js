@@ -23,7 +23,7 @@ router.get('/users', userController.usersTable);
 // show form to create new user
 router.get('/register', userController.registerForm);
 // create new user
-router.post('/register',
+router.post('/user',
   userController.validateRegister,
   userController.register
 );
