@@ -3,9 +3,7 @@ const Schema = mongoose.Schema;
 mongoose.Promise = global.Promise;
 const md5 = require('md5');
 const validator = require('validator');
-const mongodbErrorHandler = require('mongoose-mongodb-errors');
 const passportLocalMongoose = require('passport-local-mongoose');
-const uniqueValidator = require('mongoose-unique-validator');
 
 const userSchema = new Schema({
   email: {
@@ -22,8 +20,7 @@ const userSchema = new Schema({
     trim: true
   },
   userabbr: {
-    type: String,
-    unique: true
+    type: String
   },
   tel: {
     type: String
@@ -55,9 +52,8 @@ function autopopulate(next) {
 
 userSchema.pre('find', autopopulate);
 userSchema.pre('findOne', autopopulate);
+userSchema.pre('findById', autopopulate);
 
-userSchema.plugin(passportLocalMongoose, {usernameField: 'username'});
-userSchema.plugin(mongodbErrorHandler);
-userSchema.plugin(uniqueValidator);
+userSchema.plugin(passportLocalMongoose, {usernameField: 'userabbr'});
 
 module.exports = mongoose.model('User', userSchema);

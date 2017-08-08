@@ -5,7 +5,6 @@ const getSiteTableConfig = require('../config/site/getSiteTableConfig');
 const getSiteConfig = require('../config/site/getSiteConfig');
 
 exports.siteForm = async (req, res) => {
-  console.log(req.params);
   if (req.params.id !== undefined) {
     const siteId = req.params.id;
     // site id is not undefined, edit site

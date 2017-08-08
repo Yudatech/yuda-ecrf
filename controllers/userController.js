@@ -13,12 +13,24 @@ exports.loginForm = (req, res) => {
 
 exports.registerForm = async (req, res) => {
   const sites = await Site.find();
-  res.render('user/register', {
-    sites,
-    registerConfig: getRegisterConfig(),
-    roleConfig: getRoleConfig(),
-    user: {}
-  });
+  if (req.params.id !== undefined) {
+    const userId = req.params.id;
+    const user = User.findById(userId);
+    res.render('user/register', {
+      sites,
+      registerConfig: getRegisterConfig(),
+      roleConfig: getRoleConfig(),
+      user: user
+    });
+  }
+  else {
+    res.render('user/register', {
+      sites,
+      registerConfig: getRegisterConfig(),
+      roleConfig: getRoleConfig(),
+      user: {}
+    });
+  }
 };
 
 exports.validateRegister = async (req, res, next) => {
@@ -49,17 +61,28 @@ exports.validateRegister = async (req, res, next) => {
 };
 
 exports.register = async (req, res) => {
-  const user = new User({
-    email: req.body.email,
-    username: req.body.username,
-    userabbr: req.body.userabbr,
-    site: req.body.site,
-    role: req.body.role,
-    tel: req.body.tel
+  try {
+    const user = new User({
+      email: req.body.email,
+      username: req.body.username,
+      userabbr: req.body.userabbr,
+      site: req.body.site,
+      role: req.body.role,
+      tel: req.body.tel
+    });
+    const register = promisify(User.register, User);
+    await register(user, req.body.password);
+    res.redirect('/users');
+  }
+  catch (e) {
+    const sites = await Site.find();
+    res.render('user/register', {
+      sites,
+      registerConfig: getRegisterConfig(),
+      roleConfig: getRoleConfig(),
+      user: req.body
   });
-  const register = promisify(User.register, User);
-  await register(user, req.body.password);
-  res.redirect('/users');
+  }
 };
 
 exports.usersTable = async (req, res) => {

@@ -27,6 +27,8 @@ router.post('/user',
   userController.validateRegister,
   userController.register
 );
+// open user to edit
+router.get('/user/:id', userController.registerForm);
 // update user
 router.post('/user/:id', userController.updateUser);
 // remove user

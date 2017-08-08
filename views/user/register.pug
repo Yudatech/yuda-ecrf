@@ -1,6 +1,7 @@
 extends ../layout
 
 block content
+  pre= h.dump(user)
   .inner
     form.form-horizontal(action=`/user/${user._id || ''}` method="POST")
       fieldset
@@ -15,16 +16,17 @@ block content
           label.col-sm-2.control-label #{registerConfig.labels.userabbr.text}
           .col-sm-10
             input.form-control(type="text" name="userabbr" required value=user.userabbr)
+        if user._id === undefined
+          .form-group
+            label.col-sm-2.control-label #{registerConfig.labels.password.text}
+            .col-sm-10
+              input.form-control(type="password" name="password")
 
-        .form-group
-          label.col-sm-2.control-label #{registerConfig.labels.password.text}
-          .col-sm-10
-            input.form-control(type="password" name="password")
-
-        .form-group
-          label.col-sm-2.control-label #{registerConfig.labels['password-confirm'].text}
-          .col-sm-10
-            input.form-control(type="password" name="password-confirm")
+        if user._id === undefined
+          .form-group
+            label.col-sm-2.control-label #{registerConfig.labels['password-confirm'].text}
+            .col-sm-10
+              input.form-control(type="password" name="password-confirm")
 
         .form-group
           label.col-sm-2.control-label #{registerConfig.labels.email.text}
