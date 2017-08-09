@@ -1,18 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 mongoose.Promise = global.Promise;
-const validator = require('validator');
 const mongodbErrorHandler = require('mongoose-mongodb-errors');
-
-const numberWithIntValidate = {
-  type: Number,
-  validate: [validator.isInt, 'Int value required.']
-};
-
-const numberWithFloatValidate = {
-  type: Number,
-  validate: [validator.isFloat, 'Float value required.']
-};
 
 const caseSchema = new Schema({
   /**
@@ -29,7 +18,7 @@ const caseSchema = new Schema({
     default: 'CREX-005'
   },
   // 建档人
-  userid: {
+  user: {
     type: mongoose.Schema.ObjectId,
     ref: 'User',
     required: 'You must supply a userid'

@@ -1,19 +1,4 @@
-extends layout
+extends ../layout
 
 block content
   .inner
-    form.form(action="/site" method="POST")
-      h2 Site
-      .form-group
-        label(for="sitename") Site Name
-        input.form-control(type="text" name="sitename")
-      .form-group
-        label(for="sitemail") Site Email
-        input.form-control(type="email" name="sitemail")
-      .form-group
-        label(for="sitetel") Site Tel
-        input.form-control(type="text" name="sitetel")
-      .form-group
-        label(for="country") Site Country
-        input.form-control(type="text" name="country")
-      button.btn.btn-default(type="submit") Create Site

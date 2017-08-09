@@ -3,6 +3,29 @@ extends layout
 block content
   .inner
     .row
+      each summaryTitleItem in homeConfig.summary.titles
+        .col-sm-2
+          span #{summaryTitleItem.text}
     .row
       .col-sm-8
+        .row
+          .col-sm-4
+            h2 #{homeConfig.cases.title}
+          .col-sm-4
+            a.btn.btn-default(href="/" role="button") #{homeConfig.cases.buttons.committed.text}
+            a.btn.btn-default(href="/" role="button") #{homeConfig.cases.buttons.ongoing.text}
+            a.btn.btn-default(href="/" role="button") #{homeConfig.cases.buttons.all.text}
+        .row
+          table.table.table-striped
+            thead
+              tr
+                each casesHeader in homeConfig.cases.headers
+                  th #{casesHeader.text}
+        
       .col-sm-4
+        h2 #{homeConfig.questions.title}
+        table.table.table-striped
+            thead
+              tr
+                each questionsHeader in homeConfig.questions.headers
+                  th #{questionsHeader.text}
