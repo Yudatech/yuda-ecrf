@@ -1,3 +1,3 @@
 exports.homePage = (req, res) => {
-  res.redirect('screening/basic');
+  res.render('home');
 };

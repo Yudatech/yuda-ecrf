@@ -11,13 +11,17 @@ const reviewChecklistController = require('../controllers/reviewChecklistControl
 const discontinuationController = require('../controllers/discontinuationController');
 const surgeryController = require('../controllers/surgeryController');
 
-router.get('/', mainController.homePage);
+router.get('/', authController.isLoggedIn, mainController.homePage);
 
 /**
  * Router for user
  */
+// show login form
 router.get('/login', userController.loginForm);
+// do login
 router.post('/login', authController.login);
+// do logout
+router.get('/logout', authController.logout);
 // show users table
 router.get('/users', userController.usersTable);
 // show form to create new user

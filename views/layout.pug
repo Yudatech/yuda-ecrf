@@ -24,8 +24,12 @@ html
                 a(href="/sites") Sites
               li
                 a(href="/users") Users
-              li
-                a(href="/login") Login
+              if user
+                li
+                  a(href="/logout") Logout
+              else
+                li
+                  a(href="/login") Login
 
     .content
       block content
