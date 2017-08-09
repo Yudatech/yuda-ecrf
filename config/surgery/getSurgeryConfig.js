@@ -1,4 +1,4 @@
-const getOptionsLang = require('./configHelpers').getOptionsLang;
+const getOptionsLang = require('../configHelpers').getOptionsLang;
 
 const config = {
   title: {

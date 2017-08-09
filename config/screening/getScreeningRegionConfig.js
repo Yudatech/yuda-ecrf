@@ -1,33 +1,33 @@
-const getOptionsLang = require('./configHelpers').getOptionsLang;
+const getOptionsLang = require('../configHelpers').getOptionsLang;
 
 const config = {
   title: {
-    zh: '合并用药情况'
+    zh: '病变位置'
   },
   options: [{
-    name: 'conmed_1',
+    name: 'region_1',
     text: {
-      zh: '抗生素'
+      zh: '降结肠'
     }
   }, {
-    name: 'conmed_2',
+    name: 'region_2',
     text: {
-      zh: '抗凝血剂'
+      zh: '乙状结肠'
     }
   }, {
-    name: 'conmed_3',
+    name: 'region_3',
     text: {
-      zh: '止痛药'
+      zh: '直肠上段 (距离肛缘15cm以上)'
     }
   }, {
-    name: 'conmed_4',
+    name: 'region_4',
     text: {
-      zh: '激素药物'
+      zh: '其他位置'
     }
   }, {
-    name: 'conmed_5',
+    name: 'region_5',
     text: {
-      zh: '其他药物'
+      zh: '其他位置，请注明'
     }
   }]
 };

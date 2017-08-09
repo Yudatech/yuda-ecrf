@@ -1,23 +1,23 @@
 const CaseNav = require('../config/CaseNav');
-const getSexConfig = require('../config/getSexConfig');
-const getScreeningBasicConfig = require('../config/getScreeningBasicConfig');
-const getScreeningInclusionConfig = require('../config/getScreeningInclusionConfig');
-const getScreeningExclusionConfig = require('../config/getScreeningExclusionConfig');
-const getScreeningDiseaseConfig = require('../config/getScreeningDiseaseConfig');
-const getScreeningConMedConfig = require('../config/getScreeningConMedConfig');
-const getScreeningVitalSignConfig = require('../config/getScreeningVitalSignConfig');
-const getAbdominalExamResultConfig = require('../config/getAbdominalExamResultConfig');
-const getScreeningLabConfig = require('../config/getScreeningLabConfig');
-const getLabResultEvaluationConfig = require('../config/getLabResultEvaluationConfig');
-const getScreeningAssistantConfig = require('../config/getScreeningAssistantConfig');
-const getAssistantExamResultConfig = require('../config/getAssistantExamResultConfig');
-const getScreeningMethodConfig = require('../config/getScreeningMethodConfig');
-const getScreeningRegionConfig = require('../config/getScreeningRegionConfig');
-const getScreeningDignoseConfig = require('../config/getScreeningDignoseConfig');
-const getClinicalStageConfig = require('../config/getClinicalStageConfig');
+const getSexConfig = require('../config/common/getSexConfig');
+const getScreeningBasicConfig = require('../config/screening/getScreeningBasicConfig');
+const getScreeningInclusionConfig = require('../config/screening/getScreeningInclusionConfig');
+const getScreeningExclusionConfig = require('../config/screening/getScreeningExclusionConfig');
+const getScreeningDiseaseConfig = require('../config/screening/getScreeningDiseaseConfig');
+const getScreeningConMedConfig = require('../config/screening/getScreeningConMedConfig');
+const getScreeningVitalSignConfig = require('../config/screening/getScreeningVitalSignConfig');
+const getAbdominalExamResultConfig = require('../config/common/getAbdominalExamResultConfig');
+const getScreeningLabConfig = require('../config/screening/getScreeningLabConfig');
+const getLabResultEvaluationConfig = require('../config/common/getLabResultEvaluationConfig');
+const getScreeningAssistantConfig = require('../config/screening/getScreeningAssistantConfig');
+const getAssistantExamResultConfig = require('../config/common/getAssistantExamResultConfig');
+const getScreeningMethodConfig = require('../config/screening/getScreeningMethodConfig');
+const getScreeningRegionConfig = require('../config/screening/getScreeningRegionConfig');
+const getScreeningDignoseConfig = require('../config/screening/getScreeningDignoseConfig');
+const getClinicalStageConfig = require('../config/common/getClinicalStageConfig');
 
 exports.caseForm = (req, res) => {
-  res.render('case');
+  res.render('case/caseForm');
 };
 
 exports.caseBasicForm = (req, res) => {
