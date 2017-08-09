@@ -1,6 +1,5 @@
 const passport = require('passport');
 const mongoose = require('mongoose');
-const User = mongoose.model('User');
 
 exports.login = passport.authenticate('local', {
   failureRedirect: '/login',
@@ -12,7 +11,7 @@ exports.login = passport.authenticate('local', {
 exports.logout = (req, res) => {
   req.logout();
   req.flash('success', 'You are now logged out! 👋');
-  res.redirect('/');
+  res.redirect('/login');
 };
 
 exports.isLoggedIn = (req, res, next) => {

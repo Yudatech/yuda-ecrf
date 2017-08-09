@@ -12,7 +12,9 @@ block content
         each user in users
           tr
             each userTableHeader in userTableConfig.headers
-              if userTableHeader.name !== 'operations'
+              if userTableHeader.name === 'sitename'
+                td #{user.site.sitename}
+              else if userTableHeader.name !== 'operations'
                 td #{user[userTableHeader.name]}
               else
                 td

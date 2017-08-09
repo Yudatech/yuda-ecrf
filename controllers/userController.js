@@ -6,9 +6,12 @@ const promisify = require('es6-promisify');
 const getUserTableConfig = require('../config/user/getUserTableConfig');
 const getRegisterConfig = require('../config/user/getRegisterConfig');
 const getRoleConfig = require('../config/user/getRoleConfig');
+const getLoginConfig = require('../config/getLoginConfig');
 
 exports.loginForm = (req, res) => {
-  res.render('login', {title: 'Login'});
+  res.render('login', {
+    loginConfig: getLoginConfig()
+  });
 };
 
 exports.registerForm = async (req, res) => {
