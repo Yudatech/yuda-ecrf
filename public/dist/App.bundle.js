@@ -63,11 +63,38 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 2);
+/******/ 	return __webpack_require__(__webpack_require__.s = 1);
 /******/ })
 /************************************************************************/
-/******/ ([
-/* 0 */
+/******/ ({
+
+/***/ 0:
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
+/***/ 1:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+__webpack_require__(0);
+
+var _acceptDocPreview = __webpack_require__(8);
+
+var _acceptDocPreview2 = _interopRequireDefault(_acceptDocPreview);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+$('.input-group.date').datepicker({});
+window.acceptDocPreview = _acceptDocPreview2.default;
+
+/***/ }),
+
+/***/ 8:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -76,43 +103,21 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-// based on https://gist.github.com/paulirish/12fb951a8b893a454b32
+function acceptDocPreview(input) {
+  if (input.files && input.files[0]) {
+    var reader = new FileReader();
 
-var $ = document.querySelector.bind(document);
-var $$ = document.querySelectorAll.bind(document);
+    reader.onload = function (e) {
+      $('#accept-doc-preview').attr('src', e.target.result);
+    };
 
-Node.prototype.on = window.on = function (name, fn) {
-  this.addEventListener(name, fn);
-};
+    reader.readAsDataURL(input.files[0]);
+  }
+}
 
-NodeList.prototype.__proto__ = Array.prototype; // eslint-disable-line
-
-NodeList.prototype.on = NodeList.prototype.addEventListener = function (name, fn) {
-  this.forEach(function (elem) {
-    elem.on(name, fn);
-  });
-};
-
-exports.$ = $;
-exports.$$ = $$;
-
-/***/ }),
-/* 1 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 2 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-__webpack_require__(1);
-
-var _bling = __webpack_require__(0);
+exports.default = acceptDocPreview;
 
 /***/ })
-/******/ ]);
+
+/******/ });
 //# sourceMappingURL=App.bundle.js.map

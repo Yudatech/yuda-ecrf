@@ -41,7 +41,13 @@ const caseSchema = new Schema({
   createDate: {
     type: Date,
     default: Date.now
-  }
+  },
+  // 知情同意书签署日期
+  subjAcceptDate: {
+    type: Date,
+    default: Date.now
+  },
+  attachedDoc: String
 });
 
 caseSchema.plugin(mongodbErrorHandler);

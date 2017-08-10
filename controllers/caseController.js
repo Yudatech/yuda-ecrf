@@ -16,8 +16,12 @@ const getScreeningRegionConfig = require('../config/screening/getScreeningRegion
 const getScreeningDignoseConfig = require('../config/screening/getScreeningDignoseConfig');
 const getClinicalStageConfig = require('../config/common/getClinicalStageConfig');
 
+const getCaseFormConfig = require('../config/getCaseFormConfig');
+
 exports.caseForm = (req, res) => {
-  res.render('case/caseForm');
+  res.render('case/caseForm', {
+    caseFormConfig: getCaseFormConfig()
+  });
 };
 
 exports.caseBasicForm = (req, res) => {

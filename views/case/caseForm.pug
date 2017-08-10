@@ -2,3 +2,39 @@ extends ../layout
 
 block content
   .inner
+    h2 #{caseFormConfig.title}
+    .row
+      .col-sm-6
+        img#accept-doc-preview
+      .col-sm-6
+        form.form-horizontal(action="/case" method="POST")
+
+          .form-group
+            label.col-sm-4.control-label #{caseFormConfig.labels._id.text}
+            .col-sm-8
+              input.form-control(type="text" name="_id" required disabled)
+
+          .form-group
+            label.col-sm-4.control-label #{caseFormConfig.labels.subjname.text}
+            .col-sm-8
+              input.form-control(type="text" name="subjname" required)
+
+          .form-group
+            label.col-sm-4.control-label #{caseFormConfig.labels.subjabbr.text}
+            .col-sm-8
+              input.form-control(type="text" name="subjabbr" required)
+
+          .form-group
+            label.col-sm-4.control-label #{caseFormConfig.labels.subjAcceptDate.text}
+            .col-sm-8
+              .input-group.date
+                input.form-control
+                span.input-group-addon
+                  i.glyphicon.glyphicon-th
+
+          .form-group
+            label.col-sm-4.control-label #{caseFormConfig.labels.attachedDoc.text}
+            .col-sm-8
+              input(type="file" name="attachedDoc" id="attachedDoc" accept="image/gif, image/png, image/jpeg" onchange="acceptDocPreview(this)")
+
+          input(type="submit" value=caseFormConfig.buttons.saveNewCase.text)
