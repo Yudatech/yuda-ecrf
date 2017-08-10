@@ -12,6 +12,14 @@ const caseSchema = new Schema({
     type: String,
     required: 'You must supply a subject id'
   },
+  // 受试者姓名
+  subjname: {
+    type: String
+  },
+  // 受试者姓名缩写
+  subjabbr: {
+    type: String
+  },
   // 临床实验代码
   studyid: {
     type: String,
