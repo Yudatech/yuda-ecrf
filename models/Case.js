@@ -31,12 +31,6 @@ const caseSchema = new Schema({
     ref: 'User',
     required: 'You must supply a userid'
   },
-  // 中心编号
-  siteid: {
-    type: mongoose.Schema.ObjectId,
-    ref: 'Site',
-    required: false
-  },
   // 建档日期
   createDate: {
     type: Date,

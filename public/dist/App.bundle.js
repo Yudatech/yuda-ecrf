@@ -89,7 +89,11 @@ var _acceptDocPreview2 = _interopRequireDefault(_acceptDocPreview);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-$('.input-group.date').datepicker({});
+$('.input-group.date').datepicker({}).on('changeDate', function (e) {
+  var targetId = e.target.id;
+  var realId = '#' + targetId + 'Real';
+  $(realId).val(e.format('mm/dd/yyyy'));
+});
 window.acceptDocPreview = _acceptDocPreview2.default;
 
 /***/ }),

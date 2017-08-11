@@ -18,8 +18,68 @@ const getClinicalStageConfig = require('../config/common/getClinicalStageConfig'
 
 const getCaseFormConfig = require('../config/getCaseFormConfig');
 
-exports.caseForm = (req, res) => {
+const mongoose = require('mongoose');
+const Case = mongoose.model('Case');
+
+const multer = require('multer');
+const jimp = require('jimp');
+const uuid = require('uuid');
+
+const multerOptions = {
+  storage: multer.memoryStorage(),
+  fileFilter(req, file, next) {
+    const isPhoto = file.mimetype.startsWith('image/');
+    if (isPhoto) {
+      next(null, true);
+    }
+    else {
+      next({
+        message: 'That filetype isn\'t allowed!'
+      }, false);
+    }
+  }
+};
+
+exports.uploadAcceptDoc = multer(multerOptions).single('attachedDoc');
+
+exports.saveAcceptDoc = async (req, res, next) => {
+  // check if there is no new file to resize
+  if (!req.file) {
+    next(); // skip to the next middleware
+    return;
+  }
+  const extension = req.file.mimetype.split('/')[1];
+  req.body.attachedDoc = `${uuid.v4()}.${extension}`;
+  // now we resize
+  const photo = await jimp.read(req.file.buffer);
+  await photo.write(`./public/uploads/${req.body.attachedDoc}`);
+  // once we have written the photo to our filesystem, keep going!
+  next();
+};
+
+exports.createCase = async (req, res) => {
+  req.body.user = req.user._id;
+  console.log(req.body);
+  await (new Case(req.body)).save();
+  res.redirect('/screening/basic');
+};
+
+exports.caseForm = async (req, res) => {
+  const userAbbr = req.user.userabbr;
+  const userCases = await Case.find({
+    user: req.user._id
+  });
+  const caseIndexArray = userCases.map((item) => {
+    const caseId = item._id;
+    return parseInt(caseId.split(userAbbr)[1]);
+  });
+  let max = caseIndexArray.length === 0 ? 0 : Math.max(...caseIndexArray);
+  max++;
+  max = '' + max;
+  const num = 4;
+  const newId = `${userAbbr}${'0'.repeat(num - max.length)}${max}`;
   res.render('case/caseForm', {
+    _id: newId,
     caseFormConfig: getCaseFormConfig()
   });
 };

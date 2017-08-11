@@ -3,6 +3,9 @@
 # dependencies
 node_modules
 
+# upload images
+public/uploads
+
 # misc
 .DS_Store
 .env

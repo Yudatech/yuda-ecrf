@@ -38,8 +38,13 @@ router.post('/user/:id', userController.updateUser);
 // remove user
 router.get('/remove/user/:id', userController.removeUser);
 
-// Router for case
+/**
+ * Router for case
+ */ 
+// Show create case form
 router.get('/case', caseController.caseForm);
+// create case
+router.post('/case', caseController.uploadAcceptDoc, caseController.saveAcceptDoc, caseController.createCase);
 router.get('/screening/basic', caseController.caseBasicForm);
 router.get('/screening/inclusion', caseController.caseInclusionForm);
 router.get('/screening/exclusion', caseController.caseExclusionForm);
