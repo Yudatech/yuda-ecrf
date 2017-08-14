@@ -2,7 +2,7 @@ extends caseLayout
 
 block case-content
   .case-content
-    form.form-horizontal
+    form.form-horizontal(action=`/review-checklist/${reviewChecklistObj.case || ''}` method="POST")
       fieldset
         legend #{config.title}
 
@@ -10,7 +10,7 @@ block case-content
           .col-sm-10
             .checkbox
               label
-                input(type="checkbox" name="reviewcheck_1")
+                input(type="checkbox" name="reviewcheck_1" checked=reviewChecklistObj.reviewcheck_1)
                 span #{config.reviewcheck_1.text}
           .col-sm-2
             button.btn.btn-default(type="button")
@@ -20,7 +20,7 @@ block case-content
           .col-sm-10
             .checkbox
               label
-                input(type="checkbox" name="reviewcheck_2")
+                input(type="checkbox" name="reviewcheck_2" checked=reviewChecklistObj.reviewcheck_2)
                 span #{config.reviewcheck_2.text}
           .col-sm-2
             button.btn.btn-default(type="button")
@@ -30,7 +30,7 @@ block case-content
           .col-sm-10
             .checkbox
               label
-                input(type="checkbox" name="reviewcheck_3")
+                input(type="checkbox" name="reviewcheck_3" checked=reviewChecklistObj.reviewcheck_3)
                 span #{config.reviewcheck_3.text}
           .col-sm-2
             button.btn.btn-default(type="button")
@@ -40,8 +40,10 @@ block case-content
           .col-sm-10
             .checkbox
               label
-                input(type="checkbox" name="reviewcheck_4")
+                input(type="checkbox" name="reviewcheck_4" checked=reviewChecklistObj.reviewcheck_4)
                 span #{config.reviewcheck_4.text}
           .col-sm-2
             button.btn.btn-default(type="button")
               span.glyphicon.glyphicon-question-sign
+
+        input(type="submit" value=buttonConfig.buttons.save.text)

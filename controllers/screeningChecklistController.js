@@ -17,10 +17,10 @@ async function updateScreeningChecklist(caseId, obj) {
 }
 
 async function createOrUpdateScreeningChecklist(caseId, obj) {
-  const caseItem = await ScreeningChecklist.findOne({
+  const screeningChecklistItem = await ScreeningChecklist.findOne({
     case: caseId
   });
-  if (caseItem === null) {
+  if (screeningChecklistItem === null) {
     await createScreeningChecklist(caseId, obj);
   }
   else {

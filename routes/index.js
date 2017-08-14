@@ -84,7 +84,8 @@ router.get('/screening-checklist/:caseId', screeningChecklistController.screenin
 router.post('/screening-checklist/:caseId', screeningChecklistController.updateScreeningChecklist);
 
 // Router for review-checklist
-router.get('/review-checklist', reviewChecklistController.reviewChecklistForm);
+router.get('/review-checklist/:caseId', reviewChecklistController.reviewChecklistForm);
+router.post('/review-checklist/:caseId', reviewChecklistController.updateReviewChecklist);
 
 // Router for discontinuation
 router.get('/discontinuation', discontinuationController.discontinuationForm);
