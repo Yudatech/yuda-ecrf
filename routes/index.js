@@ -88,7 +88,8 @@ router.get('/review-checklist/:caseId', reviewChecklistController.reviewChecklis
 router.post('/review-checklist/:caseId', reviewChecklistController.updateReviewChecklist);
 
 // Router for discontinuation
-router.get('/discontinuation', discontinuationController.discontinuationForm);
+router.get('/discontinuation/:caseId', discontinuationController.discontinuationForm);
+router.post('/discontinuation/:caseId', discontinuationController.updateDiscontinuation);
 
 // Router for surgery
 router.get('/surgery', surgeryController.surgeryForm);
