@@ -2,7 +2,7 @@ extends ../caseLayout
 
 block case-content
   .case-content
-    form.form-horizontal
+    form.form-horizontal(action=`/screening/region/${screeningObj.case || ''}` method="POST")
       fieldset
         legend #{config.title}
 
@@ -12,7 +12,7 @@ block case-content
               .col-sm-offset-2.col-sm-10
                 .checkbox
                   label
-                    input(type="checkbox" name="region_1")
+                    input(type="checkbox" name="region_1" checked=screeningObj.region_1)
                     span #{config.region_1.text}
           .col-sm-2
             button.btn.btn-default(type="button")
@@ -24,7 +24,7 @@ block case-content
               .col-sm-offset-2.col-sm-10
                 .checkbox
                   label
-                    input(type="checkbox" name="region_2")
+                    input(type="checkbox" name="region_2" checked=screeningObj.region_2)
                     span #{config.region_2.text}
           .col-sm-2
             button.btn.btn-default(type="button")
@@ -36,7 +36,7 @@ block case-content
               .col-sm-offset-2.col-sm-10
                 .checkbox
                   label
-                    input(type="checkbox" name="region_3")
+                    input(type="checkbox" name="region_3" checked=screeningObj.region_3)
                     span #{config.region_3.text}
           .col-sm-2
             button.btn.btn-default(type="button")
@@ -48,7 +48,7 @@ block case-content
               .col-sm-offset-2.col-sm-10
                 .checkbox
                   label
-                    input(type="checkbox" name="region_4")
+                    input(type="checkbox" name="region_4" checked=screeningObj.region_4)
                     span #{config.region_4.text}
           .col-sm-2
             button.btn.btn-default(type="button")
@@ -59,7 +59,9 @@ block case-content
             .form-group
               label.col-sm-2 #{config.region_5.text}
               .col-sm-10
-                textarea.form-control(rows="5" name="region_9")
+                textarea.form-control(rows="5" name="region_9" value=screeningObj.region_5)
           .col-sm-2
             button.btn.btn-default(type="button")
               span.glyphicon.glyphicon-question-sign
+
+        input(type="submit" value=buttonConfig.buttons.save.text)

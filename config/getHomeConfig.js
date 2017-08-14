@@ -58,6 +58,11 @@ const config = {
       text: {
         zh: '进度'
       }
+    }, {
+      name: 'operations',
+      text: {
+        zh: '操作'
+      }
     }],
     buttons: [{
       name: 'committed',

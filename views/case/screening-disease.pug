@@ -2,7 +2,7 @@ extends ../caseLayout
 
 block case-content
   .case-content
-    form.form-horizontal
+    form.form-horizontal(action=`/screening/disease/${screeningObj.case || ''}` method="POST")
       fieldset
         legend #{config.title}
 
@@ -10,7 +10,7 @@ block case-content
           .col-sm-10
             .checkbox
               label
-                input(type="checkbox" name="disease_1")
+                input(type="checkbox" name="disease_1" checked=screeningObj.disease_1)
                 span #{config.disease_1.text}
           .col-sm-2
             button.btn.btn-default(type="button")
@@ -20,7 +20,7 @@ block case-content
           .col-sm-10
             .checkbox
               label
-                input(type="checkbox" name="disease_2")
+                input(type="checkbox" name="disease_2" checked=screeningObj.disease_2)
                 span #{config.disease_2.text}
           .col-sm-2
             button.btn.btn-default(type="button")
@@ -30,7 +30,7 @@ block case-content
           .col-sm-10
             .checkbox
               label
-                input(type="checkbox" name="disease_3")
+                input(type="checkbox" name="disease_3" checked=screeningObj.disease_3)
                 span #{config.disease_3.text}
           .col-sm-2
             button.btn.btn-default(type="button")
@@ -40,7 +40,7 @@ block case-content
           .col-sm-10
             .checkbox
               label
-                input(type="checkbox" name="disease_4")
+                input(type="checkbox" name="disease_4" checked=screeningObj.disease_4)
                 span #{config.disease_4.text}
           .col-sm-2
             button.btn.btn-default(type="button")
@@ -50,7 +50,7 @@ block case-content
           .col-sm-10
             .checkbox
               label
-                input(type="checkbox" name="disease_5")
+                input(type="checkbox" name="disease_5" checked=screeningObj.disease_5)
                 span #{config.disease_5.text}
           .col-sm-2
             button.btn.btn-default(type="button")
@@ -60,7 +60,7 @@ block case-content
           .col-sm-10
             .checkbox
               label
-                input(type="checkbox" name="disease_6")
+                input(type="checkbox" name="disease_6" checked=screeningObj.disease_6)
                 span #{config.disease_6.text}
           .col-sm-2
             button.btn.btn-default(type="button")
@@ -70,7 +70,7 @@ block case-content
           .col-sm-10
             .checkbox
               label
-                input(type="checkbox" name="disease_7")
+                input(type="checkbox" name="disease_7" checked=screeningObj.disease_7)
                 span #{config.disease_7.text}
           .col-sm-2
             button.btn.btn-default(type="button")
@@ -80,7 +80,7 @@ block case-content
           .col-sm-10
             .checkbox
               label
-                input(type="checkbox" name="disease_8")
+                input(type="checkbox" name="disease_8" checked=screeningObj.disease_8)
                 span #{config.disease_8.text}
           .col-sm-2
             button.btn.btn-default(type="button")
@@ -89,7 +89,9 @@ block case-content
         .row
           .col-sm-10
             label #{config.disease_9.text}
-            textarea.form-control(rows="5" name="disease_9")
+            textarea.form-control(rows="5" name="disease_9" value=screeningObj.disease_9)
           .col-sm-2
             button.btn.btn-default(type="button")
               span.glyphicon.glyphicon-question-sign
+
+        input(type="submit" value=buttonConfig.buttons.save.text)

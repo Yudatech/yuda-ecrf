@@ -42,6 +42,17 @@ const multerOptions = {
   }
 };
 
+function appendCaseIdToCaseNav(caseId) {
+  CaseNav.forEach((item) => {
+    item.caseId = caseId;
+    if (item.children) {
+      item.children.forEach((child) => {
+        child.caseId = caseId;
+      });
+    }
+  });
+}
+
 exports.uploadAcceptDoc = multer(multerOptions).single('attachedDoc');
 
 exports.saveAcceptDoc = async (req, res, next) => {
@@ -97,104 +108,228 @@ async function updateScreening(caseId, obj) {
   }, obj);
 }
 
-exports.caseBasicForm = async (req, res) => {
-  const caseId = req.params.caseId;
-  const screeningItem = await Screening.findOne({
+async function createOrUpdateScreening(caseId, obj) {
+  const caseItem = await Case.findOne({
     case: caseId
   });
+  if (caseItem === null) {
+    await createScreening(caseId, obj);
+  }
+  else {
+    await updateScreening(caseId, obj);
+  }
+}
+
+async function getScreeningItemByCaseId(caseId) {
+  let screeningItem = await Screening.findOne({
+    case: caseId
+  });
+  if (!screeningItem) {
+    screeningItem = {
+      case: caseId
+    };
+  }
+  return screeningItem;
+}
+
+exports.caseBasicForm = async (req, res) => {
+  appendCaseIdToCaseNav(req.params.caseId);
+  const screeningItem = await getScreeningItemByCaseId(req.params.caseId);
   res.render('case/screening-basic', {
     caseNav: CaseNav,
     config: getScreeningBasicConfig(),
     sexConfig: getSexConfig(),
     buttonConfig: getButtonConfig(),
-    screeningObj: screeningItem || {case: caseId}
+    screeningObj: screeningItem
   });
 };
 
 exports.updateCaseBasic = async (req, res) => {
   const caseId = req.params.caseId;
-  const caseItem = await Case.findOne({
-    case: caseId
-  });
-  if (caseItem === null) {
-    await createScreening(caseId, req.body);
-  }
-  else {
-    await updateScreening(caseId, req.body);
-  }
+  await createOrUpdateScreening(caseId, req.body);
   res.redirect(`/screening/basic/${caseId}`);
 };
 
-exports.caseInclusionForm = (req, res) => {
+exports.caseInclusionForm = async (req, res) => {
+  const caseId = req.params.caseId;
+  appendCaseIdToCaseNav(caseId);
+  const screeningItem = await getScreeningItemByCaseId(caseId);
   res.render('case/screening-inclusion', {
     caseNav: CaseNav,
-    config: getScreeningInclusionConfig()
+    buttonConfig: getButtonConfig(),
+    config: getScreeningInclusionConfig(),
+    screeningObj: screeningItem
   });
 };
 
-exports.caseExclusionForm = (req, res) => {
+exports.updateCaseInclusion = async (req, res) => {
+  const caseId = req.params.caseId;
+  await createOrUpdateScreening(caseId, req.body);
+  res.redirect(`/screening/inclusion/${caseId}`);
+};
+
+exports.caseExclusionForm = async (req, res) => {
+  const caseId = req.params.caseId;
+  appendCaseIdToCaseNav(caseId);
+  const screeningItem = await getScreeningItemByCaseId(caseId);
   res.render('case/screening-exclusion', {
     caseNav: CaseNav,
-    config: getScreeningExclusionConfig()
+    buttonConfig: getButtonConfig(),
+    config: getScreeningExclusionConfig(),
+    screeningObj: screeningItem
   });
 };
 
-exports.caseDiseaseForm = (req, res) => {
+exports.updateCaseExclusion = async (req, res) => {
+  const caseId = req.params.caseId;
+  await createOrUpdateScreening(caseId, req.body);
+  res.redirect(`/screening/exclusion/${caseId}`);
+};
+
+exports.caseDiseaseForm = async (req, res) => {
+  const caseId = req.params.caseId;
+  appendCaseIdToCaseNav(caseId);
+  const screeningItem = await getScreeningItemByCaseId(caseId);
   res.render('case/screening-disease', {
     caseNav: CaseNav,
-    config: getScreeningDiseaseConfig()
+    buttonConfig: getButtonConfig(),
+    config: getScreeningDiseaseConfig(),
+    screeningObj: screeningItem
   });
 };
 
-exports.caseConMedForm = (req, res) => {
+exports.updateCaseDisease = async (req, res) => {
+  const caseId = req.params.caseId;
+  await createOrUpdateScreening(caseId, req.body);
+  res.redirect(`/screening/disease/${caseId}`);
+};
+
+exports.caseConMedForm = async (req, res) => {
+  const caseId = req.params.caseId;
+  appendCaseIdToCaseNav(caseId);
+  const screeningItem = await getScreeningItemByCaseId(caseId);
   res.render('case/screening-conmed', {
     caseNav: CaseNav,
-    config: getScreeningConMedConfig()
+    buttonConfig: getButtonConfig(),
+    config: getScreeningConMedConfig(),
+    screeningObj: screeningItem
   });
 };
 
-exports.caseVitalSignForm = (req, res) => {
+exports.updateCaseConMed = async (req, res) => {
+  const caseId = req.params.caseId;
+  await createOrUpdateScreening(caseId, req.body);
+  res.redirect(`/screening/conmed/${caseId}`);
+};
+
+exports.caseVitalSignForm = async (req, res) => {
+  const caseId = req.params.caseId;
+  appendCaseIdToCaseNav(caseId);
+  const screeningItem = await getScreeningItemByCaseId(caseId);
   res.render('case/screening-vitalsign', {
     caseNav: CaseNav,
+    buttonConfig: getButtonConfig(),
     config: getScreeningVitalSignConfig(),
-    abdominalExamResultConfig: getAbdominalExamResultConfig()
+    abdominalExamResultConfig: getAbdominalExamResultConfig(),
+    screeningObj: screeningItem
   });
 };
 
-exports.caseLabForm = (req, res) => {
+exports.updateCaseVitalSign = async (req, res) => {
+  const caseId = req.params.caseId;
+  await createOrUpdateScreening(caseId, req.body);
+  res.redirect(`/screening/vitalsign/${caseId}`);
+};
+
+exports.caseLabForm = async (req, res) => {
+  const caseId = req.params.caseId;
+  appendCaseIdToCaseNav(caseId);
+  const screeningItem = await getScreeningItemByCaseId(caseId);
   res.render('case/screening-lab', {
     caseNav: CaseNav,
+    buttonConfig: getButtonConfig(),
     config: getScreeningLabConfig(),
-    labResultEvaluationConfig: getLabResultEvaluationConfig()
+    labResultEvaluationConfig: getLabResultEvaluationConfig(),
+    screeningObj: screeningItem
   });
 };
 
-exports.caseAssistantForm = (req, res) => {
+exports.updateCaseLab = async (req, res) => {
+  const caseId = req.params.caseId;
+  await createOrUpdateScreening(caseId, req.body);
+  res.redirect(`/screening/lab/${caseId}`);
+};
+
+exports.caseAssistantForm = async (req, res) => {
+  const caseId = req.params.caseId;
+  appendCaseIdToCaseNav(caseId);
+  const screeningItem = await getScreeningItemByCaseId(caseId);
   res.render('case/screening-assistant', {
     caseNav: CaseNav,
+    buttonConfig: getButtonConfig(),
     config: getScreeningAssistantConfig(),
-    assistantExamResultConfig: getAssistantExamResultConfig()
+    assistantExamResultConfig: getAssistantExamResultConfig(),
+    screeningObj: screeningItem
   });
 };
 
-exports.caseMethodForm = (req, res) => {
+exports.updateCaseAssistant = async (req, res) => {
+  const caseId = req.params.caseId;
+  await createOrUpdateScreening(caseId, req.body);
+  res.redirect(`/screening/assistant/${caseId}`);
+};
+
+exports.caseMethodForm = async (req, res) => {
+  const caseId = req.params.caseId;
+  appendCaseIdToCaseNav(caseId);
+  const screeningItem = await getScreeningItemByCaseId(caseId);
   res.render('case/screening-method', {
     caseNav: CaseNav,
-    config: getScreeningMethodConfig()
+    buttonConfig: getButtonConfig(),
+    config: getScreeningMethodConfig(),
+    screeningObj: screeningItem
   });
 };
 
-exports.caseRegionForm = (req, res) => {
+exports.updateCaseMethod = async (req, res) => {
+  const caseId = req.params.caseId;
+  await createOrUpdateScreening(caseId, req.body);
+  res.redirect(`/screening/method/${caseId}`);
+};
+
+exports.caseRegionForm = async (req, res) => {
+  const caseId = req.params.caseId;
+  appendCaseIdToCaseNav(caseId);
+  const screeningItem = await getScreeningItemByCaseId(caseId);
   res.render('case/screening-region', {
     caseNav: CaseNav,
-    config: getScreeningRegionConfig()
+    buttonConfig: getButtonConfig(),
+    config: getScreeningRegionConfig(),
+    screeningObj: screeningItem
   });
 };
 
-exports.caseDignoseForm = (req, res) => {
+exports.updateCaseRegion = async (req, res) => {
+  const caseId = req.params.caseId;
+  await createOrUpdateScreening(caseId, req.body);
+  res.redirect(`/screening/region/${caseId}`);
+};
+
+exports.caseDignoseForm = async (req, res) => {
+  const caseId = req.params.caseId;
+  appendCaseIdToCaseNav(caseId);
+  const screeningItem = await getScreeningItemByCaseId(caseId);
   res.render('case/screening-dignose', {
     caseNav: CaseNav,
+    buttonConfig: getButtonConfig(),
     config: getScreeningDignoseConfig(),
-    clinicalStageConfig: getClinicalStageConfig()
+    clinicalStageConfig: getClinicalStageConfig(),
+    screeningObj: screeningItem
   });
+};
+
+exports.updateCaseDignose = async (req, res) => {
+  const caseId = req.params.caseId;
+  await createOrUpdateScreening(caseId, req.body);
+  res.redirect(`/screening/dignose/${caseId}`);
 };

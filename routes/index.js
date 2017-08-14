@@ -49,16 +49,35 @@ router.post('/case', caseController.uploadAcceptDoc, caseController.saveAcceptDo
 router.get('/screening/basic/:caseId', caseController.caseBasicForm);
 router.post('/screening/basic/:caseId', caseController.updateCaseBasic);
 
-router.get('/screening/inclusion', caseController.caseInclusionForm);
-router.get('/screening/exclusion', caseController.caseExclusionForm);
-router.get('/screening/disease', caseController.caseDiseaseForm);
-router.get('/screening/conmed', caseController.caseConMedForm);
-router.get('/screening/vitalsign', caseController.caseVitalSignForm);
-router.get('/screening/lab', caseController.caseLabForm);
-router.get('/screening/assistant', caseController.caseAssistantForm);
-router.get('/screening/method', caseController.caseMethodForm);
-router.get('/screening/region', caseController.caseRegionForm);
-router.get('/screening/dignose', caseController.caseDignoseForm);
+router.get('/screening/inclusion/:caseId', caseController.caseInclusionForm);
+router.post('/screening/inclusion/:caseId', caseController.updateCaseInclusion);
+
+router.get('/screening/exclusion/:caseId', caseController.caseExclusionForm);
+router.post('/screening/exclusion/:caseId', caseController.updateCaseExclusion);
+
+router.get('/screening/disease/:caseId', caseController.caseDiseaseForm);
+router.pose('/screening/disease/:caseId', caseController.updateCaseDisease);
+
+router.get('/screening/conmed/:caseId', caseController.caseConMedForm);
+router.post('/screening/conmed/:caseId', caseController.updateCaseConMed);
+
+router.get('/screening/vitalsign/:caseId', caseController.caseVitalSignForm);
+router.post('/screening/vitalsign/:caseId', caseController.updateCaseVitalSign);
+
+router.get('/screening/lab/:caseId', caseController.caseLabForm);
+router.post('/screening/lab/:caseId', caseController.updateCaseLab);
+
+router.get('/screening/assistant/:caseId', caseController.caseAssistantForm);
+router.post('/screening/assistant/:caseId', caseController.updateCaseAssistant);
+
+router.get('/screening/method/:caseId', caseController.caseMethodForm);
+router.post('/screening/method/:caseId', caseController.updateCaseMethod);
+
+router.get('/screening/region/:caseId', caseController.caseRegionForm);
+router.post('/screening/region/:caseId', caseController.updateCaseRegion);
+
+router.get('/screening/dignose/:caseId', caseController.caseDignoseForm);
+router.post('/screening/dignose/:caseId', caseController.updateCaseDignose);
 
 // Router for screening-checklist
 router.get('/screening-checklist', screeningChecklistController.screeningChecklistForm);

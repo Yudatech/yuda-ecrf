@@ -2,7 +2,7 @@ module.exports = [
   {
     title: '首诊',
     name: 'screening',
-    link: '/',
+    link: '/screening/basic',
     children: [{
       name: 'basic',
       title: '人口学资料',

@@ -2,7 +2,7 @@ extends ../caseLayout
 
 block case-content
   .case-content
-    form.form-horizontal
+    form.form-horizontal(action=`/screening/method/${screeningObj.case || ''}` method="POST")
       fieldset
         legend #{config.title}
 
@@ -10,7 +10,7 @@ block case-content
           .col-sm-10
             .checkbox
               label
-                input(type="checkbox" name="region_1")
+                input(type="checkbox" name="method_1" checked=screeningObj.method_1)
                 span #{config.method_1.text}
           .col-sm-2
             button.btn.btn-default(type="button")
@@ -20,7 +20,7 @@ block case-content
           .col-sm-10
             .checkbox
               label
-                input(type="checkbox" name="method_2")
+                input(type="checkbox" name="method_2" checked=screeningObj.method_2)
                 span #{config.method_2.text}
           .col-sm-2
             button.btn.btn-default(type="button")
@@ -30,7 +30,7 @@ block case-content
           .col-sm-10
             .checkbox
               label
-                input(type="checkbox" name="method_3")
+                input(type="checkbox" name="method_3" checked=screeningObj.method_3)
                 span #{config.method_3.text}
           .col-sm-2
             button.btn.btn-default(type="button")
@@ -40,8 +40,10 @@ block case-content
           .col-sm-10
             .checkbox
               label
-                input(type="checkbox" name="method_4")
+                input(type="checkbox" name="method_4" checked=screeningObj.method_4)
                 span #{config.method_4.text}
           .col-sm-2
             button.btn.btn-default(type="button")
               span.glyphicon.glyphicon-question-sign
+
+        input(type="submit" value=buttonConfig.buttons.save.text)

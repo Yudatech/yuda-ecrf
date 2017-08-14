@@ -2,7 +2,7 @@ extends ../caseLayout
 
 block case-content
   .case-content
-    form.form-horizontal
+    form.form-horizontal(action=`/screening/exclusion/${screeningObj.case || ''}` method="POST")
       fieldset
         legend #{config.title}
 
@@ -10,7 +10,7 @@ block case-content
           .col-sm-10
             .checkbox
               label
-                input(type="checkbox" name="exclusion_1")
+                input(type="checkbox" name="exclusion_1" value=screeningObj.exclusion_1)
                 span #{config.exclusion_1.text}
           .col-sm-2
             button.btn.btn-default(type="button")
@@ -20,7 +20,7 @@ block case-content
           .col-sm-10
             .checkbox
               label
-                input(type="checkbox" name="exclusion_2")
+                input(type="checkbox" name="exclusion_2" value=screeningObj.exclusion_2)
                 span #{config.exclusion_2.text}
           .col-sm-2
             button.btn.btn-default(type="button")
@@ -30,7 +30,7 @@ block case-content
           .col-sm-10
             .checkbox
               label
-                input(type="checkbox" name="exclusion_3")
+                input(type="checkbox" name="exclusion_3" value=screeningObj.exclusion_3)
                 span #{config.exclusion_3.text}
           .col-sm-2
             button.btn.btn-default(type="button")
@@ -40,7 +40,7 @@ block case-content
           .col-sm-10
             .checkbox
               label
-                input(type="checkbox" name="exclusion_4")
+                input(type="checkbox" name="exclusion_4" value=screeningObj.exclusion_4)
                 span #{config.exclusion_4.text}
           .col-sm-2
             button.btn.btn-default(type="button")
@@ -50,7 +50,7 @@ block case-content
           .col-sm-10
             .checkbox
               label
-                input(type="checkbox" name="exclusion_5")
+                input(type="checkbox" name="exclusion_5" value=screeningObj.exclusion_5)
                 span #{config.exclusion_5.text}
           .col-sm-2
             button.btn.btn-default(type="button")
@@ -60,7 +60,7 @@ block case-content
           .col-sm-10
             .checkbox
               label
-                input(type="checkbox" name="exclusion_6")
+                input(type="checkbox" name="exclusion_6" value=screeningObj.exclusion_6)
                 span #{config.exclusion_6.text}
           .col-sm-2
             button.btn.btn-default(type="button")
@@ -70,7 +70,7 @@ block case-content
           .col-sm-10
             .checkbox
               label
-                input(type="checkbox" name="exclusion_7")
+                input(type="checkbox" name="exclusion_7" value=screeningObj.exclusion_7)
                 span #{config.exclusion_7.text}
           .col-sm-2
             button.btn.btn-default(type="button")
@@ -80,7 +80,7 @@ block case-content
           .col-sm-10
             .checkbox
               label
-                input(type="checkbox" name="exclusion_8")
+                input(type="checkbox" name="exclusion_8" value=screeningObj.exclusion_8)
                 span #{config.exclusion_8.text}
           .col-sm-2
             button.btn.btn-default(type="button")
@@ -90,7 +90,7 @@ block case-content
           .col-sm-10
             .checkbox
               label
-                input(type="checkbox" name="exclusion_9")
+                input(type="checkbox" name="exclusion_9" value=screeningObj.exclusion_9)
                 span #{config.exclusion_9.text}
           .col-sm-2
             button.btn.btn-default(type="button")
@@ -100,7 +100,7 @@ block case-content
           .col-sm-10
             .checkbox
               label
-                input(type="checkbox" name="exclusion_10")
+                input(type="checkbox" name="exclusion_10" value=screeningObj.exclusion_10)
                 span #{config.exclusion_10.text}
           .col-sm-2
             button.btn.btn-default(type="button")
@@ -110,7 +110,7 @@ block case-content
           .col-sm-10
             .checkbox
               label
-                input(type="checkbox" name="exclusion_11")
+                input(type="checkbox" name="exclusion_11" value=screeningObj.exclusion_11)
                 span #{config.exclusion_11.text}
           .col-sm-2
             button.btn.btn-default(type="button")
@@ -120,7 +120,7 @@ block case-content
           .col-sm-10
             .checkbox
               label
-                input(type="checkbox" name="exclusion_12")
+                input(type="checkbox" name="exclusion_12" value=screeningObj.exclusion_12)
                 span #{config.exclusion_12.text}
           .col-sm-2
             button.btn.btn-default(type="button")
@@ -130,7 +130,7 @@ block case-content
           .col-sm-10
             .checkbox
               label
-                input(type="checkbox" name="exclusion_13")
+                input(type="checkbox" name="exclusion_13" value=screeningObj.exclusion_13)
                 span #{config.exclusion_13.text}
           .col-sm-2
             button.btn.btn-default(type="button")
@@ -140,7 +140,7 @@ block case-content
           .col-sm-10
             .checkbox
               label
-                input(type="checkbox" name="exclusion_14")
+                input(type="checkbox" name="exclusion_14" value=screeningObj.exclusion_14)
                 span #{config.exclusion_14.text}
           .col-sm-2
             button.btn.btn-default(type="button")
@@ -150,7 +150,7 @@ block case-content
           .col-sm-10
             .checkbox
               label
-                input(type="checkbox" name="exclusion_15")
+                input(type="checkbox" name="exclusion_15" value=screeningObj.exclusion_15)
                 span #{config.exclusion_15.text}
           .col-sm-2
             button.btn.btn-default(type="button")
@@ -160,7 +160,7 @@ block case-content
           .col-sm-10
             .checkbox
               label
-                input(type="checkbox" name="exclusion_16")
+                input(type="checkbox" name="exclusion_16" value=screeningObj.exclusion_16)
                 span #{config.exclusion_16.text}
           .col-sm-2
             button.btn.btn-default(type="button")
@@ -169,7 +169,9 @@ block case-content
         .row
           .col-sm-10
             label #{config.exclusion_17.text}
-            textarea.form-control(rows="5" name="exclusion_17")
+            textarea.form-control(rows="5" name="exclusion_17" value=screeningObj.exclusion_17)
           .col-sm-2
             button.btn.btn-default(type="button")
               span.glyphicon.glyphicon-question-sign
+
+        input(type="submit" value=buttonConfig.buttons.save.text)

@@ -2,7 +2,7 @@ extends ../caseLayout
 
 block case-content
   .case-content
-    form.form-horizontal
+    form.form-horizontal(action=`/screening/conmed/${screeningObj.case || ''}` method="POST")
       fieldset
         legend #{config.title}
 
@@ -10,7 +10,7 @@ block case-content
           .col-sm-10
             .checkbox
               label
-                input(type="checkbox" name="conmed_1")
+                input(type="checkbox" name="conmed_1" checked=screeningObj.conmed_1)
                 span #{config.conmed_1.text}
           .col-sm-2
             button.btn.btn-default(type="button")
@@ -20,7 +20,7 @@ block case-content
           .col-sm-10
             .checkbox
               label
-                input(type="checkbox" name="conmed_2")
+                input(type="checkbox" name="conmed_2" checked=screeningObj.conmed_2)
                 span #{config.conmed_2.text}
           .col-sm-2
             button.btn.btn-default(type="button")
@@ -30,7 +30,7 @@ block case-content
           .col-sm-10
             .checkbox
               label
-                input(type="checkbox" name="conmed_3")
+                input(type="checkbox" name="conmed_3" checked=screeningObj.conmed_3)
                 span #{config.conmed_3.text}
           .col-sm-2
             button.btn.btn-default(type="button")
@@ -40,7 +40,7 @@ block case-content
           .col-sm-10
             .checkbox
               label
-                input(type="checkbox" name="conmed_4")
+                input(type="checkbox" name="conmed_4" checked=screeningObj.conmed_4)
                 span #{config.conmed_4.text}
           .col-sm-2
             button.btn.btn-default(type="button")
@@ -50,8 +50,10 @@ block case-content
           .col-sm-10
             .checkbox
               label
-                input(type="checkbox" name="conmed_5")
+                input(type="checkbox" name="conmed_5" checked=screeningObj.conmed_5)
                 span #{config.conmed_5.text}
           .col-sm-2
             button.btn.btn-default(type="button")
               span.glyphicon.glyphicon-question-sign
+
+        input(type="submit" value=buttonConfig.buttons.save.text)

@@ -2,7 +2,7 @@ extends ../caseLayout
 
 block case-content
   .case-content
-    form.form-horizontal
+    form.form-horizontal(action=`/screening/dignose/${screeningObj.case || ''}` method="POST")
       fieldset
         legend #{config.title}
 
@@ -11,7 +11,7 @@ block case-content
             .form-group
               label.col-sm-2.control-label #{config.dignose_1.text}
               .col-sm-10
-                input.form-control(type="text" name="dignose_1")
+                input.form-control(type="text" name="dignose_1" value=screeningObj.dignose_1)
           .col-sm-2
             button.btn.btn-default(type="button")
               span.glyphicon.glyphicon-question-sign
@@ -21,7 +21,7 @@ block case-content
             .form-group
               label.col-sm-2.control-label #{config.dignose_2.text}
               .col-sm-10
-                input.form-control(type="text" name="dignose_2")
+                input.form-control(type="text" name="dignose_2" value=screeningObj.dignose_2)
           .col-sm-2
             button.btn.btn-default(type="button")
               span.glyphicon.glyphicon-question-sign
@@ -33,7 +33,7 @@ block case-content
               .col-sm-10
                 each clinicalStageItem in clinicalStageConfig
                   label.radio-inline
-                    input(type="radio" name="sex" value=clinicalStageItem.value)
+                    input(type="radio" name="sex" value=clinicalStageItem.value checked=(screeningObj.dignose_3 === clinicalStageItem.value))
                     span #{clinicalStageItem.text}
           .col-sm-2
             button.btn.btn-default(type="button")
@@ -45,7 +45,7 @@ block case-content
               .col-sm-offset-2.col-sm-10
                 .checkbox
                   label
-                    input(type="checkbox" name="dignose_4")
+                    input(type="checkbox" name="dignose_4" checked=screeningObj.dignose_4)
                     span #{config.dignose_4.text}
           .col-sm-2
             button.btn.btn-default(type="button")
@@ -56,7 +56,9 @@ block case-content
             .form-group
               label.col-sm-2.control-label #{config.dignose_5.text}
               .col-sm-10
-                input.form-control(type="text" name="dignose_5")
+                input.form-control(type="text" name="dignose_5" value=screeningObj.dignose_5)
           .col-sm-2
             button.btn.btn-default(type="button")
               span.glyphicon.glyphicon-question-sign
+
+        input(type="submit" value=buttonConfig.buttons.save.text)

@@ -25,8 +25,19 @@ block content
               each caseItem in cases
                 tr
                   each casesHeader in homeConfig.cases.headers
-                    td #{caseItem[casesHeader.name]}
-        
+                    if casesHeader.name !== 'operations'
+                      td #{caseItem[casesHeader.name]}
+                    else
+                      td
+                        .row
+                          .col-sm-3
+                            a.btn.btn-default(role="button" href=`/screening/basic/${caseItem._id}`)
+                              span.glyphicon.glyphicon-pencil
+
+                          .col-sm-3
+                            a.btn.btn-default(role="button" href=`/remove/case/${caseItem._id}`)
+                              span.glyphicon.glyphicon-trash
+
       .col-sm-4
         h2 #{homeConfig.questions.title}
         table.table.table-striped

@@ -2,7 +2,7 @@ extends ../caseLayout
 
 block case-content
   .case-content
-    form.form-horizontal
+    form.form-horizontal(action=`/screening/vitalsign/${screeningObj.case || ''}` method="POST")
       fieldset
         legend #{config.title}
 
@@ -12,7 +12,7 @@ block case-content
               .col-sm-offset-2.col-sm-10
                 .checkbox
                   label
-                    input(type="checkbox" name="vitalsign_1")
+                    input(type="checkbox" name="vitalsign_1" checked=screeningObj.vitalsign_1)
                     span #{config.vitalsign_1.text}
           .col-sm-2
             button.btn.btn-default(type="button")
@@ -24,7 +24,7 @@ block case-content
               .col-sm-offset-2.col-sm-10
                 .checkbox
                   label
-                    input(type="checkbox" name="vitalsign_2")
+                    input(type="checkbox" name="vitalsign_2" checked=screeningObj.vitalsign_2)
                     span #{config.vitalsign_2.text}
           .col-sm-2
             button.btn.btn-default(type="button")
@@ -36,7 +36,7 @@ block case-content
               .col-sm-offset-2.col-sm-10
                 .checkbox
                   label
-                    input(type="checkbox" name="vitalsign_3")
+                    input(type="checkbox" name="vitalsign_3" checked=screeningObj.vitalsign_3)
                     span #{config.vitalsign_3.text}
           .col-sm-2
             button.btn.btn-default(type="button")
@@ -49,7 +49,7 @@ block case-content
               .col-sm-10
                 select.form-control
                   each abdominalExamResultItem in abdominalExamResultConfig
-                    option(value=abdominalExamResultItem.value) #{abdominalExamResultItem.text}
+                    option(value=abdominalExamResultItem.value checked=(abdominalExamResultItem.value === screeningObj.vitalsign_4)) #{abdominalExamResultItem.text}
           .col-sm-2
             button.btn.btn-default(type="button")
               span.glyphicon.glyphicon-question-sign
@@ -59,7 +59,7 @@ block case-content
             .form-group
               label.col-sm-2.control-label #{config.vitalsign_5.text}
               .col-sm-10
-                input.form-control(type="number" name="vitalsign_5")
+                input.form-control(type="number" name="vitalsign_5" value=screeningObj.vitalsign_5)
           .col-sm-2
             button.btn.btn-default(type="button")
               span.glyphicon.glyphicon-question-sign
@@ -70,7 +70,7 @@ block case-content
               .col-sm-offset-2.col-sm-10
                 .checkbox
                   label
-                    input(type="checkbox" name="vitalsign_6")
+                    input(type="checkbox" name="vitalsign_6" checked=screeningObj.vitalsign_6)
                     span #{config.vitalsign_6.text}
           .col-sm-2
             button.btn.btn-default(type="button")
@@ -81,7 +81,7 @@ block case-content
             .form-group
               label.col-sm-2.control-label #{config.vitalsign_7.text}
               .col-sm-10
-                input.form-control(type="number" name="vitalsign_6")
+                input.form-control(type="number" name="vitalsign_7" value=screeningObj.vitalsign_7)
           .col-sm-2
             button.btn.btn-default(type="button")
               span.glyphicon.glyphicon-question-sign
@@ -92,7 +92,7 @@ block case-content
               .col-sm-offset-2.col-sm-10
                 .checkbox
                   label
-                    input(type="checkbox" name="vitalsign_8")
+                    input(type="checkbox" name="vitalsign_8" checked=screeningObj.vitalsign_8)
                     span #{config.vitalsign_8.text}
           .col-sm-2
             button.btn.btn-default(type="button")
@@ -103,7 +103,9 @@ block case-content
             .form-group
               label.col-sm-2 #{config.vitalsign_9.text}
               .col-sm-10
-                textarea.form-control(rows="5" name="vitalsign_9")
+                textarea.form-control(rows="5" name="vitalsign_9" value=screeningObj.vitalsign_9)
           .col-sm-2
             button.btn.btn-default(type="button")
               span.glyphicon.glyphicon-question-sign
+
+        input(type="submit" value=buttonConfig.buttons.save.text)

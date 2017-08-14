@@ -2,9 +2,11 @@ mixin _caseNav(caseNav)
   ul
     each naviMenuItem in caseNav
       li
-        a(href=naviMenuItem.link) #{naviMenuItem.title}
+        - const naviItemLink = `${naviMenuItem.link}/${naviMenuItem.caseId}`;
+        a(href=naviItemLink) #{naviMenuItem.title}
         if naviMenuItem.children
           ul
             each childMenuItem in naviMenuItem.children
               li
-                a(href=childMenuItem.link) #{childMenuItem.title}
+                - const link = `${childMenuItem.link}/${childMenuItem.caseId}`;
+                a(href=link) #{childMenuItem.title}
