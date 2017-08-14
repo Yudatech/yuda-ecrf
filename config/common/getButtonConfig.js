@@ -6,6 +6,11 @@ const config = {
     text: {
       zh: '保存'
     }
+  }, {
+    name: 'add',
+    text: {
+      zh: '添加'
+    }
   }]
 };
 

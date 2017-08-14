@@ -77,7 +77,7 @@ module.exports = [
   {
     title: '合并用药情况',
     name: 'cm',
-    link: '/'
+    link: '/cmlist'
   },
   {
     title: '不良事件',

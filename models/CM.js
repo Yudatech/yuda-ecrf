@@ -4,7 +4,7 @@ mongoose.Promise = global.Promise;
 const mongodbErrorHandler = require('mongoose-mongodb-errors');
 
 const cmSchema = new Schema({
-  caseid: {
+  case: {
     type: String,
     ref: 'Case',
     required: 'You must supply a caseid'
@@ -22,7 +22,7 @@ const cmSchema = new Schema({
   dosemtd_2: String,
   // 开始日期
   cmstdtc: {
-    Date,
+    type: Date,
     default: Date.now
   },
   // 结束日期

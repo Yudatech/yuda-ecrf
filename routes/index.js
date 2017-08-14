@@ -10,6 +10,7 @@ const screeningChecklistController = require('../controllers/screeningChecklistC
 const reviewChecklistController = require('../controllers/reviewChecklistController');
 const discontinuationController = require('../controllers/discontinuationController');
 const surgeryController = require('../controllers/surgeryController');
+const cmController = require('../controllers/cmController');
 
 router.get('/', authController.isLoggedIn, mainController.homePage);
 
@@ -94,6 +95,13 @@ router.post('/discontinuation/:caseId', discontinuationController.updateDisconti
 // Router for surgery
 router.get('/surgery/:caseId', surgeryController.surgeryForm);
 router.post('/surgery/:caseId', surgeryController.updateSurgery);
+
+// Router for cm
+router.get('/cmlist/:caseId', cmController.cmTable);
+router.get('/cm/:caseId', cmController.cmForm);
+router.post('/cm/:caseId', cmController.createCm);
+router.get('/cm/:caseId/:cmId', cmController.cmForm);
+router.post('/cm/:caseId/:cmId', cmController.updateCm);
 
 /**
  * Router for site
