@@ -92,7 +92,8 @@ router.get('/discontinuation/:caseId', discontinuationController.discontinuation
 router.post('/discontinuation/:caseId', discontinuationController.updateDiscontinuation);
 
 // Router for surgery
-router.get('/surgery', surgeryController.surgeryForm);
+router.get('/surgery/:caseId', surgeryController.surgeryForm);
+router.post('/surgery/:caseId', surgeryController.updateSurgery);
 
 /**
  * Router for site

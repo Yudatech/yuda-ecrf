@@ -2,7 +2,7 @@ extends caseLayout
 
 block case-content
   .case-content
-    form.form-horizontal
+    form.form-horizontal(action=`/surgery/${surgeryObj.case || ''}` method="POST")
       fieldset
         legend #{config.title.device}
 
@@ -13,7 +13,7 @@ block case-content
               .col-sm-8
                 select.form-control(name="device_1")
                   each surgeryLapAidModelItem in surgeryLapAidModelConfig
-                    option(value=surgeryLapAidModelItem.value) #{surgeryLapAidModelItem.text}
+                    option(value=surgeryLapAidModelItem.value checked=(surgeryObj.device_1 === surgeryLapAidModelItem.value)) #{surgeryLapAidModelItem.text}
           .col-sm-2
             button.btn.btn-default(type="button")
               span.glyphicon.glyphicon-question-sign
@@ -25,7 +25,7 @@ block case-content
               .col-sm-8
                 select.form-control(name="device_2")
                   each surgeryDmhDmhcModelItem in surgeryDmhDmhcModelConfig
-                    option(value=surgeryDmhDmhcModelItem.value) #{surgeryDmhDmhcModelItem.text}
+                    option(value=surgeryDmhDmhcModelItem.value checked=(surgeryDmhDmhcModelItem.value === surgeryObj.device_2)) #{surgeryDmhDmhcModelItem.text}
           .col-sm-2
             button.btn.btn-default(type="button")
               span.glyphicon.glyphicon-question-sign
@@ -39,7 +39,7 @@ block case-content
               .col-sm-offset-2.col-sm-10
                 .checkbox
                   label
-                    input(type="checkbox" name="surgery_1")
+                    input(type="checkbox" name="surgery_1" checked=surgeryObj.surgery_1)
                     span #{config.surgery_1.text}
           .col-sm-2
             button.btn.btn-default(type="button")
@@ -51,7 +51,7 @@ block case-content
               .col-sm-offset-2.col-sm-10
                 .checkbox
                   label
-                    input(type="checkbox" name="surgery_2")
+                    input(type="checkbox" name="surgery_2" checked=surgeryObj.surgery_2)
                     span #{config.surgery_2.text}
           .col-sm-2
             button.btn.btn-default(type="button")
@@ -63,7 +63,7 @@ block case-content
               .col-sm-offset-2.col-sm-10
                 .checkbox
                   label
-                    input(type="checkbox" name="surgery_3")
+                    input(type="checkbox" name="surgery_3" checked=surgeryObj.surgery_3)
                     span #{config.surgery_3.text}
           .col-sm-2
             button.btn.btn-default(type="button")
@@ -74,7 +74,7 @@ block case-content
             .form-group
               label.col-sm-2.control-label #{config.surgery_4.text}
               .col-sm-10
-                input.form-control(type="number" step="any" name="surgery_4")
+                input.form-control(type="number" step="any" name="surgery_4" value=surgeryObj.surgery_4)
           .col-sm-2
             button.btn.btn-default(type="button")
               span.glyphicon.glyphicon-question-sign
@@ -84,7 +84,7 @@ block case-content
             .form-group
               label.col-sm-2.control-label #{config.surgery_5.text}
               .col-sm-10
-                input.form-control(type="number" step="any" name="surgery_5")
+                input.form-control(type="number" step="any" name="surgery_5" value=surgeryObj.surgery_5)
           .col-sm-2
             button.btn.btn-default(type="button")
               span.glyphicon.glyphicon-question-sign
@@ -94,7 +94,7 @@ block case-content
             .form-group
               label.col-sm-2.control-label #{config.surgery_6.text}
               .col-sm-10
-                input.form-control(type="number" step="any" name="surgery_6")
+                input.form-control(type="number" step="any" name="surgery_6" value=surgeryObj.surgery_6)
           .col-sm-2
             button.btn.btn-default(type="button")
               span.glyphicon.glyphicon-question-sign
@@ -104,7 +104,7 @@ block case-content
             .form-group
               label.col-sm-2.control-label #{config.surgery_7.text}
               .col-sm-10
-                input.form-control(type="text" name="surgery_7")
+                input.form-control(type="text" name="surgery_7" value=surgeryObj.surgery_7)
           .col-sm-2
             button.btn.btn-default(type="button")
               span.glyphicon.glyphicon-question-sign
@@ -114,7 +114,7 @@ block case-content
             .form-group
               label.col-sm-2.control-label #{config.surgery_8.text}
               .col-sm-10
-                input.form-control(type="number" step="1" name="surgery_8")
+                input.form-control(type="number" step="1" name="surgery_8" value=surgeryObj.surgery_8)
           .col-sm-2
             button.btn.btn-default(type="button")
               span.glyphicon.glyphicon-question-sign
@@ -124,7 +124,7 @@ block case-content
             .form-group
               label.col-sm-2.control-label #{config.surgery_9.text}
               .col-sm-10
-                input.form-control(type="number" step="1" name="surgery_9")
+                input.form-control(type="number" step="1" name="surgery_9" value=surgeryObj.surgery_9)
           .col-sm-2
             button.btn.btn-default(type="button")
               span.glyphicon.glyphicon-question-sign
@@ -134,7 +134,7 @@ block case-content
             .form-group
               label.col-sm-2.control-label #{config.surgery_10.text}
               .col-sm-10
-                input.form-control(type="number" step="any" name="surgery_10")
+                input.form-control(type="number" step="any" name="surgery_10" value=surgeryObj.surgery_10)
           .col-sm-2
             button.btn.btn-default(type="button")
               span.glyphicon.glyphicon-question-sign
@@ -144,7 +144,7 @@ block case-content
             .form-group
               label.col-sm-2.control-label #{config.surgery_11.text}
               .col-sm-10
-                input.form-control(type="number" step="any" name="surgery_11")
+                input.form-control(type="number" step="any" name="surgery_11" value=surgeryObj.surgery_11)
           .col-sm-2
             button.btn.btn-default(type="button")
               span.glyphicon.glyphicon-question-sign
@@ -154,7 +154,7 @@ block case-content
             .form-group
               label.col-sm-2.control-label #{config.surgery_12.text}
               .col-sm-10
-                input.form-control(type="number" step="1" name="surgery_12")
+                input.form-control(type="number" step="1" name="surgery_12" value=surgeryObj.surgery_12)
           .col-sm-2
             button.btn.btn-default(type="button")
               span.glyphicon.glyphicon-question-sign
@@ -164,7 +164,7 @@ block case-content
             .form-group
               label.col-sm-2.control-label #{config.surgery_13.text}
               .col-sm-10
-                input.form-control(type="number" step="any" name="surgery_13")
+                input.form-control(type="number" step="any" name="surgery_13" value=surgeryObj.surgery_13)
           .col-sm-2
             button.btn.btn-default(type="button")
               span.glyphicon.glyphicon-question-sign
@@ -175,7 +175,7 @@ block case-content
               .col-sm-offset-2.col-sm-10
                 .checkbox
                   label
-                    input(type="checkbox" name="surgery_14")
+                    input(type="checkbox" name="surgery_14" checked=surgeryObj.surgery_14)
                     span #{config.surgery_14.text}
           .col-sm-2
             button.btn.btn-default(type="button")
@@ -187,7 +187,7 @@ block case-content
               .col-sm-offset-2.col-sm-10
                 .checkbox
                   label
-                    input(type="checkbox" name="surgery_15")
+                    input(type="checkbox" name="surgery_15" checked=surgeryObj.surgery_15)
                     span #{config.surgery_15.text}
           .col-sm-2
             button.btn.btn-default(type="button")
@@ -199,7 +199,7 @@ block case-content
               .col-sm-offset-2.col-sm-10
                 .checkbox
                   label
-                    input(type="checkbox" name="surgery_16")
+                    input(type="checkbox" name="surgery_16" checked=surgeryObj.surgery_16)
                     span #{config.surgery_16.text}
           .col-sm-2
             button.btn.btn-default(type="button")
@@ -211,7 +211,7 @@ block case-content
               .col-sm-offset-2.col-sm-10
                 .checkbox
                   label
-                    input(type="checkbox" name="surgery_17")
+                    input(type="checkbox" name="surgery_17" checked=surgeryObj.surgery_17)
                     span #{config.surgery_17.text}
           .col-sm-2
             button.btn.btn-default(type="button")
@@ -222,7 +222,9 @@ block case-content
             .form-group
               label.col-sm-2 #{config.surgery_18.text}
               .col-sm-10
-                textarea.form-control(rows="5" name="surgery_18")
+                textarea.form-control(rows="5" name="surgery_18" value=surgeryObj.surgery_18)
           .col-sm-2
             button.btn.btn-default(type="button")
               span.glyphicon.glyphicon-question-sign
+
+        input(type="submit" value=buttonConfig.buttons.save.text)

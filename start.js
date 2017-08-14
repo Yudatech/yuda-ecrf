@@ -27,6 +27,7 @@ require('./models/Screening');
 require('./models/ScreeningChecklist');
 require('./models/ReviewChecklist');
 require('./models/Discontinuation');
+require('./models/Surgery');
 
 // Start our app!
 const app = require('./app');

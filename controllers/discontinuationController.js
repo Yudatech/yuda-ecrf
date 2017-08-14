@@ -51,7 +51,7 @@ exports.discontinuationForm = async (req, res) => {
   });
 };
 
-exports.updateDiscontinuatiion = async (req, res) => {
+exports.updateDiscontinuation = async (req, res) => {
   const caseId = req.params.caseId;
   await createOrUpdateDiscontinuation(caseId, req.body);
   res.redirect(`/discontinuation/${caseId}`);
