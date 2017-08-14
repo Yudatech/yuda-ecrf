@@ -11,6 +11,7 @@ const reviewChecklistController = require('../controllers/reviewChecklistControl
 const discontinuationController = require('../controllers/discontinuationController');
 const surgeryController = require('../controllers/surgeryController');
 const cmController = require('../controllers/cmController');
+const aeController = require('../controllers/aeController');
 
 router.get('/', authController.isLoggedIn, mainController.homePage);
 
@@ -102,6 +103,13 @@ router.get('/cm/:caseId', cmController.cmForm);
 router.post('/cm/:caseId', cmController.createCm);
 router.get('/cm/:caseId/:cmId', cmController.cmForm);
 router.post('/cm/:caseId/:cmId', cmController.updateCm);
+
+// Router for ae
+router.get('/aelist/:caseId', aeController.aeTable);
+router.get('/ae/:caseId', aeController.aeForm);
+router.post('/ae/:caseId', aeController.createAe);
+router.get('/ae/:caseId/:aeId', aeController.aeForm);
+router.post('/ae/:caseId/:aeId', aeController.updateAe);
 
 /**
  * Router for site
