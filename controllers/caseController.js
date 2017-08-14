@@ -99,7 +99,7 @@ async function updateScreening(caseId, obj) {
 
 exports.caseBasicForm = async (req, res) => {
   const caseId = req.params.caseId;
-  const caseItem = await Case.findOne({
+  const screeningItem = await Screening.findOne({
     case: caseId
   });
   res.render('case/screening-basic', {
@@ -107,7 +107,7 @@ exports.caseBasicForm = async (req, res) => {
     config: getScreeningBasicConfig(),
     sexConfig: getSexConfig(),
     buttonConfig: getButtonConfig(),
-    caseObj: caseItem || {case: caseId}
+    screeningObj: screeningItem || {case: caseId}
   });
 };
 

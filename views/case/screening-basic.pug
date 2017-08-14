@@ -2,7 +2,7 @@ extends ../caseLayout
 
 block case-content
   .case-content
-    form.form-horizontal(action=`/screening/basic/${caseObj.case || ''}` method="POST")
+    form.form-horizontal(action=`/screening/basic/${screeningObj.case || ''}` method="POST")
       fieldset
         legend #{config.title}
         .row
@@ -12,7 +12,7 @@ block case-content
               .col-sm-10
                 each sexItem in sexConfig
                   label.radio-inline
-                    input(type="radio" name="sex" value=sexItem.value checked=(caseObj.sex === sexItem.value))
+                    input(type="radio" name="sex" value=sexItem.value checked=(screeningObj.sex === sexItem.value))
                     span #{sexItem.text}
           .col-sm-2
             button.btn.btn-default(type="button")
@@ -23,7 +23,7 @@ block case-content
             .form-group
               label.col-sm-2.control-label #{config.birth.text}
               .col-sm-10
-                input.form-control(type="number" name="birth" value=caseObj.birth)
+                input.form-control(type="number" name="birth" value=screeningObj.birth)
           .col-sm-2
             button.btn.btn-default(type="button")
               span.glyphicon.glyphicon-question-sign
@@ -33,7 +33,7 @@ block case-content
             .form-group
               label.col-sm-2.control-label #{config.weight.text}
               .col-sm-10
-                input.form-control(type="number" name="weight" value=caseObj.weight)
+                input.form-control(type="number" name="weight" value=screeningObj.weight)
           .col-sm-2
             button.btn.btn-default(type="button")
               span.glyphicon.glyphicon-question-sign          
@@ -43,7 +43,7 @@ block case-content
             .form-group
               label.col-sm-2.control-label #{config.height.text}
               .col-sm-10
-                input.form-control(type="number" name="height" value=caseObj.height)
+                input.form-control(type="number" name="height" value=screeningObj.height)
           .col-sm-2
             button.btn.btn-default(type="button")
               span.glyphicon.glyphicon-question-sign

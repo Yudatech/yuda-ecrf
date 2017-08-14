@@ -1,6 +1,9 @@
 const mongoose = require('mongoose');
 const Case = mongoose.model('Case');
 
+const moment = require('moment');
+moment.locale('zh-cn');
+
 const getHomeConfig = require('../config/getHomeConfig');
 
 exports.homePage = async (req, res) => {
@@ -11,7 +14,7 @@ exports.homePage = async (req, res) => {
     return {
       _id: item._id,
       subjabbr: item.subjabbr,
-      createDate: item.createDate,
+      createDate: moment(item.createDate).format('ll'),
       username: item.user.username
     };
   });
