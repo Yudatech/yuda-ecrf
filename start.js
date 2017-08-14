@@ -24,6 +24,7 @@ require('./models/User');
 require('./models/Site');
 require('./models/Case');
 require('./models/Screening');
+require('./models/ScreeningChecklist');
 
 // Start our app!
 const app = require('./app');

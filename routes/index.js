@@ -56,7 +56,7 @@ router.get('/screening/exclusion/:caseId', caseController.caseExclusionForm);
 router.post('/screening/exclusion/:caseId', caseController.updateCaseExclusion);
 
 router.get('/screening/disease/:caseId', caseController.caseDiseaseForm);
-router.pose('/screening/disease/:caseId', caseController.updateCaseDisease);
+router.post('/screening/disease/:caseId', caseController.updateCaseDisease);
 
 router.get('/screening/conmed/:caseId', caseController.caseConMedForm);
 router.post('/screening/conmed/:caseId', caseController.updateCaseConMed);
@@ -80,7 +80,8 @@ router.get('/screening/dignose/:caseId', caseController.caseDignoseForm);
 router.post('/screening/dignose/:caseId', caseController.updateCaseDignose);
 
 // Router for screening-checklist
-router.get('/screening-checklist', screeningChecklistController.screeningChecklistForm);
+router.get('/screening-checklist/:caseId', screeningChecklistController.screeningChecklistForm);
+router.post('/screening-checklist/:caseId', screeningChecklistController.updateScreeningChecklist);
 
 // Router for review-checklist
 router.get('/review-checklist', reviewChecklistController.reviewChecklistForm);

@@ -1,4 +1,3 @@
-const CaseNav = require('../config/CaseNav');
 const getSexConfig = require('../config/common/getSexConfig');
 const getScreeningBasicConfig = require('../config/screening/getScreeningBasicConfig');
 const getScreeningInclusionConfig = require('../config/screening/getScreeningInclusionConfig');
@@ -18,6 +17,8 @@ const getClinicalStageConfig = require('../config/common/getClinicalStageConfig'
 const getButtonConfig = require('../config/common/getButtonConfig');
 
 const getCaseFormConfig = require('../config/getCaseFormConfig');
+
+const helpers = require('./helpers');
 
 const mongoose = require('mongoose');
 const Case = mongoose.model('Case');
@@ -41,17 +42,6 @@ const multerOptions = {
     }
   }
 };
-
-function appendCaseIdToCaseNav(caseId) {
-  CaseNav.forEach((item) => {
-    item.caseId = caseId;
-    if (item.children) {
-      item.children.forEach((child) => {
-        child.caseId = caseId;
-      });
-    }
-  });
-}
 
 exports.uploadAcceptDoc = multer(multerOptions).single('attachedDoc');
 
@@ -98,7 +88,6 @@ exports.caseForm = async (req, res) => {
 
 async function createScreening(caseId, obj) {
   obj.case = caseId;
-  console.log(obj);
   await (new Screening(obj)).save();
 }
 
@@ -133,7 +122,7 @@ async function getScreeningItemByCaseId(caseId) {
 }
 
 exports.caseBasicForm = async (req, res) => {
-  appendCaseIdToCaseNav(req.params.caseId);
+  const CaseNav = helpers.appendCaseIdToCaseNav(req.params.caseId);
   const screeningItem = await getScreeningItemByCaseId(req.params.caseId);
   res.render('case/screening-basic', {
     caseNav: CaseNav,
@@ -152,7 +141,7 @@ exports.updateCaseBasic = async (req, res) => {
 
 exports.caseInclusionForm = async (req, res) => {
   const caseId = req.params.caseId;
-  appendCaseIdToCaseNav(caseId);
+  const CaseNav = helpers.appendCaseIdToCaseNav(caseId);
   const screeningItem = await getScreeningItemByCaseId(caseId);
   res.render('case/screening-inclusion', {
     caseNav: CaseNav,
@@ -170,7 +159,7 @@ exports.updateCaseInclusion = async (req, res) => {
 
 exports.caseExclusionForm = async (req, res) => {
   const caseId = req.params.caseId;
-  appendCaseIdToCaseNav(caseId);
+  const CaseNav = helpers.appendCaseIdToCaseNav(caseId);
   const screeningItem = await getScreeningItemByCaseId(caseId);
   res.render('case/screening-exclusion', {
     caseNav: CaseNav,
@@ -188,7 +177,7 @@ exports.updateCaseExclusion = async (req, res) => {
 
 exports.caseDiseaseForm = async (req, res) => {
   const caseId = req.params.caseId;
-  appendCaseIdToCaseNav(caseId);
+  const CaseNav = helpers.appendCaseIdToCaseNav(caseId);
   const screeningItem = await getScreeningItemByCaseId(caseId);
   res.render('case/screening-disease', {
     caseNav: CaseNav,
@@ -206,7 +195,7 @@ exports.updateCaseDisease = async (req, res) => {
 
 exports.caseConMedForm = async (req, res) => {
   const caseId = req.params.caseId;
-  appendCaseIdToCaseNav(caseId);
+  const CaseNav = helpers.appendCaseIdToCaseNav(caseId);
   const screeningItem = await getScreeningItemByCaseId(caseId);
   res.render('case/screening-conmed', {
     caseNav: CaseNav,
@@ -224,7 +213,7 @@ exports.updateCaseConMed = async (req, res) => {
 
 exports.caseVitalSignForm = async (req, res) => {
   const caseId = req.params.caseId;
-  appendCaseIdToCaseNav(caseId);
+  const CaseNav = helpers.appendCaseIdToCaseNav(caseId);
   const screeningItem = await getScreeningItemByCaseId(caseId);
   res.render('case/screening-vitalsign', {
     caseNav: CaseNav,
@@ -243,7 +232,7 @@ exports.updateCaseVitalSign = async (req, res) => {
 
 exports.caseLabForm = async (req, res) => {
   const caseId = req.params.caseId;
-  appendCaseIdToCaseNav(caseId);
+  const CaseNav = helpers.appendCaseIdToCaseNav(caseId);
   const screeningItem = await getScreeningItemByCaseId(caseId);
   res.render('case/screening-lab', {
     caseNav: CaseNav,
@@ -262,7 +251,7 @@ exports.updateCaseLab = async (req, res) => {
 
 exports.caseAssistantForm = async (req, res) => {
   const caseId = req.params.caseId;
-  appendCaseIdToCaseNav(caseId);
+  const CaseNav = helpers.appendCaseIdToCaseNav(caseId);
   const screeningItem = await getScreeningItemByCaseId(caseId);
   res.render('case/screening-assistant', {
     caseNav: CaseNav,
@@ -281,7 +270,7 @@ exports.updateCaseAssistant = async (req, res) => {
 
 exports.caseMethodForm = async (req, res) => {
   const caseId = req.params.caseId;
-  appendCaseIdToCaseNav(caseId);
+  const CaseNav = helpers.appendCaseIdToCaseNav(caseId);
   const screeningItem = await getScreeningItemByCaseId(caseId);
   res.render('case/screening-method', {
     caseNav: CaseNav,
@@ -299,7 +288,7 @@ exports.updateCaseMethod = async (req, res) => {
 
 exports.caseRegionForm = async (req, res) => {
   const caseId = req.params.caseId;
-  appendCaseIdToCaseNav(caseId);
+  const CaseNav = helpers.appendCaseIdToCaseNav(caseId);
   const screeningItem = await getScreeningItemByCaseId(caseId);
   res.render('case/screening-region', {
     caseNav: CaseNav,
@@ -317,7 +306,7 @@ exports.updateCaseRegion = async (req, res) => {
 
 exports.caseDignoseForm = async (req, res) => {
   const caseId = req.params.caseId;
-  appendCaseIdToCaseNav(caseId);
+  const CaseNav = helpers.appendCaseIdToCaseNav(caseId);
   const screeningItem = await getScreeningItemByCaseId(caseId);
   res.render('case/screening-dignose', {
     caseNav: CaseNav,
