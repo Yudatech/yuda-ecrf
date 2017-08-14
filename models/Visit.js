@@ -1,18 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 mongoose.Promise = global.Promise;
-const validator = require('validator');
 const mongodbErrorHandler = require('mongoose-mongodb-errors');
-
-const numberWithIntValidate = {
-  type: Number,
-  validate: [validator.isInt, 'Int value required.']
-};
-
-const numberWithFloatValidate = {
-  type: Number,
-  validate: [validator.isFloat, 'Float value required.']
-};
 
 const visitSchema = new Schema({
   caseid: {
@@ -26,30 +15,30 @@ const visitSchema = new Schema({
   // 第n次查房
   visit: String,
   // 第n次查房
-  visitnum: numberWithIntValidate,
+  visitnum: Number,
   // 查房日期
   visitdtc: {
     type: Date,
     default: Date.now
   },
   // 访视方式
-  visittype: numberWithIntValidate,
+  visittype: Number,
   // 腹痛
-  param_1: numberWithIntValidate,
+  param_1: Number,
   // 腹部触诊
-  param_2: numberWithIntValidate,
+  param_2: Number,
   // 切口感染
-  param_3: numberWithIntValidate,
+  param_3: Number,
   // 血常规检查(必要时)
   param_4: Boolean,
   // 血红蛋白 (Hb)
-  param_5: numberWithFloatValidate,
+  param_5: Number,
   // 白细胞 (WBC)
-  param_6: numberWithFloatValidate,
+  param_6: Number,
   // 体温
-  param_7: numberWithFloatValidate,
+  param_7: Number,
   // 肠鸣音(根据医生检查)
-  param_8: numberWithIntValidate,
+  param_8: Number,
   // 肠鸣音(根据受试者感受)
   param_9: Boolean,
   // 排气
@@ -59,7 +48,7 @@ const visitSchema = new Schema({
   // 进食
   param_12: Boolean,
   // 食物类型
-  param_13: numberWithIntValidate,
+  param_13: Number,
   // 拔除胃管
   param_14: Boolean,
   // 拔除腹部引流

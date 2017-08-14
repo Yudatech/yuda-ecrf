@@ -21,6 +21,11 @@ block content
               tr
                 each casesHeader in homeConfig.cases.headers
                   th #{casesHeader.text}
+            tbody
+              each caseItem in cases
+                tr
+                  each casesHeader in homeConfig.cases.headers
+                    td #{caseItem[casesHeader.name]}
         
       .col-sm-4
         h2 #{homeConfig.questions.title}

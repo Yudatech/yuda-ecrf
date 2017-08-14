@@ -1,21 +1,10 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 mongoose.Promise = global.Promise;
-const validator = require('validator');
 const mongodbErrorHandler = require('mongoose-mongodb-errors');
 
-const numberWithIntValidate = {
-  type: Number,
-  validate: [validator.isInt, 'Int value required.']
-};
-
-const numberWithFloatValidate = {
-  type: Number,
-  validate: [validator.isFloat, 'Float value required.']
-};
-
 const screeningSchema = new Schema({
-  caseid: {
+  case: {
     type: String,
     ref: 'Case',
     required: 'You must supply a caseid'
@@ -24,13 +13,13 @@ const screeningSchema = new Schema({
    * SCREENING
    */
   // 性别
-  sex: numberWithIntValidate,
+  sex: Number,
   // 出生年份
-  birth: numberWithIntValidate,
+  birth: Number,
   // 体重
-  weight: numberWithFloatValidate,
+  weight: Number,
   // 身高
-  height: numberWithFloatValidate,
+  height: Number,
   // 年龄在18至80岁的男／女患者
   inclusion_1: Boolean,
   // 欲行择期手术切除左侧结肠 (降结肠、乙状结肠) 或直肠上段 (距离肛缘15cm以上)  良性或恶性病变的患者
@@ -108,95 +97,95 @@ const screeningSchema = new Schema({
   // 呼吸音清晰
   vitalsign_3: Boolean,
   // 腹部检查
-  vitalsign_4: numberWithIntValidate,
+  vitalsign_4: Number,
   // 脉搏 (次/分)
-  vitalsign_5: numberWithIntValidate,
+  vitalsign_5: Number,
   // 肿瘤可触及
   vitalsign_6: Boolean,
   // 血压 (mmHg)
-  vitalsign_7: numberWithFloatValidate,
+  vitalsign_7: Number,
   // 肝脏可触及
   vitalsign_8: Boolean,
   // 其他相关情况
   vitalsign_9: String,
   // 红细胞 (RBC)
-  lab_1: numberWithFloatValidate,
+  lab_1: Number,
   // 红细胞 (RBC)临床评估
-  lab_2: numberWithIntValidate,
+  lab_2: Number,
   // 白细胞 (WBC)
-  lab_3: numberWithFloatValidate,
+  lab_3: Number,
   // 白细胞 (WBC)临床评估
-  lab_4: numberWithIntValidate,
+  lab_4: Number,
   // 血红蛋白 (Hb)
-  lab_5: numberWithFloatValidate,
+  lab_5: Number,
   // 血红蛋白 (Hb)临床评估
-  lab_6: numberWithIntValidate,
+  lab_6: Number,
   // 中性粒细胞绝对计数 (ANC)
-  lab_7: numberWithFloatValidate,
+  lab_7: Number,
   // 中性粒细胞绝对计数 (ANC)临床评估
-  lab_8: numberWithIntValidate,
+  lab_8: Number,
   // 血小板 (PLT)
-  lab_9: numberWithFloatValidate,
+  lab_9: Number,
   // 血小板 (PLT)临床评估
-  lab_10: numberWithIntValidate,
+  lab_10: Number,
   // 单核细胞百分比
-  lab_11: numberWithFloatValidate,
+  lab_11: Number,
   // 单核细胞百分比临床评估
-  lab_12: numberWithIntValidate,
+  lab_12: Number,
   // 淋巴细胞百分比
-  lab_13: numberWithFloatValidate,
+  lab_13: Number,
   // 淋巴细胞百分比临床评估
-  lab_14: numberWithIntValidate,
+  lab_14: Number,
   // 丙氨酸氨基转移酶 (ALT)
-  lab_15: numberWithFloatValidate,
+  lab_15: Number,
   // 丙氨酸氨基转移酶 (ALT)临床评估
-  lab_16: numberWithIntValidate,
+  lab_16: Number,
   // 天门冬氨酸氨基转移酶 (AST)
-  lab_17: numberWithFloatValidate,
+  lab_17: Number,
   // 天门冬氨酸氨基转移酶 (AST)临床评估
-  lab_18: numberWithIntValidate,
+  lab_18: Number,
   // 白蛋白 (ALB)
-  lab_19: numberWithFloatValidate,
+  lab_19: Number,
   // 白蛋白 (ALB)临床评估
-  lab_20: numberWithIntValidate,
+  lab_20: Number,
   // 血尿素氮 (BUN)
-  lab_21: numberWithFloatValidate,
+  lab_21: Number,
   // 血尿素氮 (BUN)临床评估
-  lab_22: numberWithIntValidate,
+  lab_22: Number,
   // 肌酐 (Cr)
-  lab_23: numberWithFloatValidate,
+  lab_23: Number,
   // 肌酐 (Cr)临床评估
-  lab_24: numberWithIntValidate,
+  lab_24: Number,
   // 血糖 (Glu)
-  lab_25: numberWithFloatValidate,
+  lab_25: Number,
   // 血糖 (Glu)临床评估
-  lab_26: numberWithIntValidate,
+  lab_26: Number,
   // 凝血酶原时间 (PT)
-  lab_27: numberWithFloatValidate,
+  lab_27: Number,
   // 凝血酶原时间 (PT)临床评估
-  lab_28: numberWithIntValidate,
+  lab_28: Number,
   // 活化部分凝血活酶时间 (APTT)
-  lab_29: numberWithFloatValidate,
+  lab_29: Number,
   // 活化部分凝血活酶时间 (APTT)临床评估
-  lab_30: numberWithIntValidate,
+  lab_30: Number,
   // 凝血酶时间 (TT)
-  lab_31: numberWithFloatValidate,
+  lab_31: Number,
   // 凝血酶时间 (TT)临床评估
-  lab_32: numberWithIntValidate,
+  lab_32: Number,
   // 纤维蛋白原 (FIB)
-  lab_33: numberWithFloatValidate,
+  lab_33: Number,
   // 纤维蛋白原 (FIB)临床评估
-  lab_34: numberWithIntValidate,
+  lab_34: Number,
   // 心电图
-  assistant_1: numberWithIntValidate,
+  assistant_1: Number,
   // 心电图(异常，有临床意义),请注明
   assistant_2: String,
   // 腹部B超
-  assistant_3: numberWithIntValidate,
+  assistant_3: Number,
   // 腹部B超(异常，有临床意义),请注明
   assistant_4: String,
   // 胸部CT/胸部X线
-  assistant_5: numberWithIntValidate,
+  assistant_5: Number,
   // 胸部CT/胸部X线(异常，有临床意义),请注明
   assistant_6: String,
   // 内窥镜检查
@@ -222,7 +211,7 @@ const screeningSchema = new Schema({
   // 入组前临床诊断
   dignose_2: String,
   // 临床分期 (若适用)
-  dignose_3: numberWithIntValidate,
+  dignose_3: Number,
   // 转移灶
   dignose_4: Boolean,
   // 转移灶部位

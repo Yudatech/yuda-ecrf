@@ -1,13 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 mongoose.Promise = global.Promise;
-const validator = require('validator');
 const mongodbErrorHandler = require('mongoose-mongodb-errors');
-
-const numberWithIntValidate = {
-  type: Number,
-  validate: [validator.isInt, 'Int value required.']
-};
 
 const cmSchema = new Schema({
   caseid: {
@@ -23,7 +17,7 @@ const cmSchema = new Schema({
   // 剂量
   dosing: String,
   // 给药途径
-  dosemtd_1: numberWithIntValidate,
+  dosemtd_1: Number,
   // 给药途径 其他，请注明
   dosemtd_2: String,
   // 开始日期

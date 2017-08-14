@@ -1,13 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 mongoose.Promise = global.Promise;
-const validator = require('validator');
 const mongodbErrorHandler = require('mongoose-mongodb-errors');
-
-const numberWithIntValidate = {
-  type: Number,
-  validate: [validator.isInt, 'Int value required.']
-};
 
 const saeSchema = new Schema({
   caseid: {
@@ -21,7 +15,7 @@ const saeSchema = new Schema({
   // 来源
   saeorigion: String,
   // 报告类型
-  saetpe: numberWithIntValidate,
+  saetpe: Number,
   // 报告时间
   saedtc: {
     type: Date,
@@ -47,7 +41,7 @@ const saeSchema = new Schema({
   // SAE是否预期
   saeanti: Boolean,
   // SAE情况
-  saecaus_1: numberWithIntValidate,
+  saecaus_1: Number,
   // SAE情况 死亡时间
   saecaus_2: {
     type: Date,
@@ -80,17 +74,17 @@ const saeSchema = new Schema({
     default: Date.now
   },
   // 对受试器械采取的措施
-  saeact: numberWithIntValidate,
+  saeact: Number,
   // SAE转归
-  saeres_1: numberWithIntValidate,
+  saeres_1: Number,
   // SAE转归(后遗症 )
   saeres_2: Boolean,
   // SAE与受试器械的关系
-  saerel: numberWithIntValidate,
+  saerel: Number,
   // SAE报道情况(国内)
-  saerpt_1: numberWithIntValidate,
+  saerpt_1: Number,
   // SAE报道情况(国外)
-  saerpt_2: numberWithIntValidate,
+  saerpt_2: Number,
   // SAE发生及处理的详细情况
   saedesc: String
 });

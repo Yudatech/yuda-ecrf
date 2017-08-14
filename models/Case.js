@@ -44,6 +44,15 @@ const caseSchema = new Schema({
   attachedDoc: String
 });
 
+function autopopulate(next) {
+  this.populate('user');
+  next();
+}
+
+caseSchema.pre('find', autopopulate);
+caseSchema.pre('findOne', autopopulate);
+caseSchema.pre('findById', autopopulate);
+
 caseSchema.plugin(mongodbErrorHandler);
 
 module.exports = mongoose.model('Case', caseSchema);

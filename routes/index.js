@@ -45,7 +45,10 @@ router.get('/remove/user/:id', userController.removeUser);
 router.get('/case', caseController.caseForm);
 // create case
 router.post('/case', caseController.uploadAcceptDoc, caseController.saveAcceptDoc, caseController.createCase);
-router.get('/screening/basic', caseController.caseBasicForm);
+
+router.get('/screening/basic/:caseId', caseController.caseBasicForm);
+router.post('/screening/basic/:caseId', caseController.updateCaseBasic);
+
 router.get('/screening/inclusion', caseController.caseInclusionForm);
 router.get('/screening/exclusion', caseController.caseExclusionForm);
 router.get('/screening/disease', caseController.caseDiseaseForm);

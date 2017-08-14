@@ -63,42 +63,11 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 1);
+/******/ 	return __webpack_require__(__webpack_require__.s = 2);
 /******/ })
 /************************************************************************/
-/******/ ({
-
-/***/ 0:
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-
-/***/ 1:
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-__webpack_require__(0);
-
-var _acceptDocPreview = __webpack_require__(8);
-
-var _acceptDocPreview2 = _interopRequireDefault(_acceptDocPreview);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-$('.input-group.date').datepicker({}).on('changeDate', function (e) {
-  var targetId = e.target.id;
-  var realId = '#' + targetId + 'Real';
-  $(realId).val(e.format('mm/dd/yyyy'));
-});
-window.acceptDocPreview = _acceptDocPreview2.default;
-
-/***/ }),
-
-/***/ 8:
+/******/ ([
+/* 0 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -121,7 +90,34 @@ function acceptDocPreview(input) {
 
 exports.default = acceptDocPreview;
 
-/***/ })
+/***/ }),
+/* 1 */
+/***/ (function(module, exports) {
 
-/******/ });
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 2 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+__webpack_require__(1);
+
+var _acceptDocPreview = __webpack_require__(0);
+
+var _acceptDocPreview2 = _interopRequireDefault(_acceptDocPreview);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+$('.input-group.date').datepicker({}).on('changeDate', function (e) {
+  var targetId = e.target.id;
+  var realId = '#' + targetId + 'Real';
+  $(realId).val(e.format('mm/dd/yyyy'));
+});
+window.acceptDocPreview = _acceptDocPreview2.default;
+
+/***/ })
+/******/ ]);
 //# sourceMappingURL=App.bundle.js.map

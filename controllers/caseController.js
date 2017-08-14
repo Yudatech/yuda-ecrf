@@ -15,11 +15,13 @@ const getScreeningMethodConfig = require('../config/screening/getScreeningMethod
 const getScreeningRegionConfig = require('../config/screening/getScreeningRegionConfig');
 const getScreeningDignoseConfig = require('../config/screening/getScreeningDignoseConfig');
 const getClinicalStageConfig = require('../config/common/getClinicalStageConfig');
+const getButtonConfig = require('../config/common/getButtonConfig');
 
 const getCaseFormConfig = require('../config/getCaseFormConfig');
 
 const mongoose = require('mongoose');
 const Case = mongoose.model('Case');
+const Screening = mongoose.model('Screening');
 
 const multer = require('multer');
 const jimp = require('jimp');
@@ -59,9 +61,8 @@ exports.saveAcceptDoc = async (req, res, next) => {
 
 exports.createCase = async (req, res) => {
   req.body.user = req.user._id;
-  console.log(req.body);
   await (new Case(req.body)).save();
-  res.redirect('/screening/basic');
+  res.redirect(`/screening/basic/${req.body._id}`);
 };
 
 exports.caseForm = async (req, res) => {
@@ -84,12 +85,44 @@ exports.caseForm = async (req, res) => {
   });
 };
 
-exports.caseBasicForm = (req, res) => {
+async function createScreening(caseId, obj) {
+  obj.case = caseId;
+  console.log(obj);
+  await (new Screening(obj)).save();
+}
+
+async function updateScreening(caseId, obj) {
+  await Screening.findOneAndUpdate({
+    case: caseId
+  }, obj);
+}
+
+exports.caseBasicForm = async (req, res) => {
+  const caseId = req.params.caseId;
+  const caseItem = await Case.findOne({
+    case: caseId
+  });
   res.render('case/screening-basic', {
     caseNav: CaseNav,
     config: getScreeningBasicConfig(),
-    sexConfig: getSexConfig()
+    sexConfig: getSexConfig(),
+    buttonConfig: getButtonConfig(),
+    caseObj: caseItem || {case: caseId}
   });
+};
+
+exports.updateCaseBasic = async (req, res) => {
+  const caseId = req.params.caseId;
+  const caseItem = await Case.findOne({
+    case: caseId
+  });
+  if (caseItem === null) {
+    await createScreening(caseId, req.body);
+  }
+  else {
+    await updateScreening(caseId, req.body);
+  }
+  res.redirect(`/screening/basic/${caseId}`);
 };
 
 exports.caseInclusionForm = (req, res) => {

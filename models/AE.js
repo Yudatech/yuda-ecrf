@@ -1,13 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 mongoose.Promise = global.Promise;
-const validator = require('validator');
 const mongodbErrorHandler = require('mongoose-mongodb-errors');
-
-const numberWithIntValidate = {
-  type: Number,
-  validate: [validator.isInt, 'Int value required.']
-};
 
 const aeSchema = new Schema({
   caseid: {
@@ -33,15 +27,15 @@ const aeSchema = new Schema({
     default: Date.now
   },
   // 严重程度
-  aeserv: numberWithIntValidate,
+  aeserv: Number,
   // 采取措施
   aeact: Boolean,
   // 报告
   aerpt: Boolean,
   // 与试验器械和/或试验操作的关系
-  aerel: numberWithIntValidate,
+  aerel: Number,
   // 转归
-  aeres_1: numberWithIntValidate,
+  aeres_1: Number,
   // 转归后遗症
   aeres_2: Boolean,
   // SAE
