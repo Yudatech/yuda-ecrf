@@ -12,6 +12,11 @@ const surgerySchema = new Schema({
   /**
    * SURGERY
    */
+  // 手术日期
+  surgerydtc: {
+    type: Date,
+    default: Date.now
+  },
   // C-REX LapAid型号
   device_1: Number,
   // C-REX DMH/DMHC型号

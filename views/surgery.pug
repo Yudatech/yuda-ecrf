@@ -8,6 +8,19 @@ block case-content
 
         .row
           .col-sm-10
+            label.col-sm-4.control-label #{config.surgerydtc.text}
+            .col-sm-8
+              #surgerydtc.input-group.date(data-provide="datepicker")
+                input.form-control(value=surgeryObj.surgerydtc)
+                span.input-group-addon
+                  i.glyphicon.glyphicon-th
+              input#surgerydtcReal(type="hidden" name="surgerydtc" value=surgeryObj.surgerydtc)
+          .col-sm-2
+            button.btn.btn-default(type="button")
+              span.glyphicon.glyphicon-question-sign
+
+        .row
+          .col-sm-10
             .form-group
               label.col-sm-4.control-label #{config.device_1.text}
               .col-sm-8

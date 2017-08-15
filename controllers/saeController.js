@@ -22,30 +22,6 @@ async function getSaeListByCaseId(caseId) {
   return saeList;
 }
 
-function getSaeActText(saeact) {
-  return getSaeActConfig().find((item) => {
-    return item.value === saeact;
-  }).text;
-}
-
-function getSaeRelText(value) {
-  return getSaeRelConfig().find((item) => {
-    return item.value === value;
-  }).text;
-}
-
-function getSaeResText(value) {
-  return getSaeResConfig().find((item) => {
-    return item.value === value;
-  }).text;
-}
-
-function getSaeReportText(value) {
-  return getSaeReportConfig().find((item) => {
-    return item.value === value;
-  }).text;
-}
-
 function getSaeTypeText(value) {
   return getSaeTypesConfig().find((item) => {
     return item.value === value;

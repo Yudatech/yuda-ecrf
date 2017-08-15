@@ -12,11 +12,9 @@ const visitSchema = new Schema({
   /**
    * VISIT
    */
-  // 第n次查房
-  visit: String,
-  // 第n次查房
+  // 当天第n次访视
   visitnum: Number,
-  // 查房日期
+  // 访视日期
   visitdtc: {
     type: Date,
     default: Date.now
@@ -56,9 +54,9 @@ const visitSchema = new Schema({
   // 食物类型
   param_13: Number,
   // 拔除胃管
-  param_14: Boolean,
+  param_14: Number,
   // 拔除腹部引流
-  param_15: Boolean,
+  param_15: Number,
   // 其他检查
   param_16: Boolean,
   // 其他检查(有，请注明检查项目及结果)

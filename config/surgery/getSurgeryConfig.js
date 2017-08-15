@@ -10,6 +10,11 @@ const config = {
     }
   },
   options: [{
+    name: 'surgerydtc',
+    text: {
+      zh: '手术日期'
+    }
+  }, {
     name: 'device_1',
     text: {
       zh: 'C-REX LapAid型号'
