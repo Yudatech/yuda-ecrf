@@ -12,6 +12,7 @@ const discontinuationController = require('../controllers/discontinuationControl
 const surgeryController = require('../controllers/surgeryController');
 const cmController = require('../controllers/cmController');
 const aeController = require('../controllers/aeController');
+const saeController = require('../controllers/saeController');
 
 router.get('/', authController.isLoggedIn, mainController.homePage);
 
@@ -110,6 +111,13 @@ router.get('/ae/:caseId', aeController.aeForm);
 router.post('/ae/:caseId', aeController.createAe);
 router.get('/ae/:caseId/:aeId', aeController.aeForm);
 router.post('/ae/:caseId/:aeId', aeController.updateAe);
+
+// Router for sae
+router.get('/saelist/:caseId', saeController.saeTable);
+router.get('/sae/:caseId', saeController.saeForm);
+router.post('/sae/:caseId', saeController.createSae);
+router.get('/sae/:caseId/:saeId', saeController.saeForm);
+router.post('/sae/:caseId/:saeId', saeController.updateSae);
 
 /**
  * Router for site

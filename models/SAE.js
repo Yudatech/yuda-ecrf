@@ -21,21 +21,6 @@ const saeSchema = new Schema({
     type: Date,
     default: Date.now
   },
-  // 医疗机构及专业名称
-  siteid: {
-    type: mongoose.Schema.ObjectId,
-    ref: 'Site'
-  },
-  // 受试器械名称
-  saedevice: String,
-  // 医疗器械分类
-  saecat_1: String,
-  // 临床研究分类
-  saecat_2: String,
-  // 临床试验适应症
-  saediag: String,
-  // 合并疾病及治疗
-  saecmdisease: Boolean,
   // SAE的医学术语(诊断)
   saeterm: String,
   // SAE是否预期
@@ -47,22 +32,8 @@ const saeSchema = new Schema({
     type: Date,
     default: Date.now
   },
-  // SAE情况 导致住院
-  saecaus_3: Boolean,
-  // SAE情况 延长住院时间  
-  saecaus_4: Boolean,
-  // SAE情况 伤残
-  saecaus_5: Boolean,
-  // SAE情况  功能障碍
-  saecaus_6: Boolean,
-  // SAE情况  导致先天畸形
-  saecaus_7: Boolean,
-  // SAE情况 危及生命 
-  saecaus_8: Boolean,
-  // SAE情况 其它 
-  saecaus_9: Boolean,
   // SAE情况 其它 (填写)
-  saecaus_10: String,
+  saecaus_3: String,
   // SAE发生时间
   saestdtc: {
     type: Date,

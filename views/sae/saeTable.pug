@@ -1,0 +1,29 @@
+extends ../caseLayout
+
+block case-content
+  .case-content
+    h2 #{saeTableConfig.title}
+
+    table.table.table-striped
+      thead
+        tr
+          each saeTableHeader in saeTableConfig.headers
+            th #{saeTableHeader.text}
+      tbody
+        each sae in saeList
+          tr
+            each saeTableHeader in saeTableConfig.headers
+              if saeTableHeader.name !== 'operations'
+                td #{sae[saeTableHeader.name]}
+              else
+                td
+                  .row
+                    .col-sm-4
+                      a.btn.btn-default(role="button" href=`/sae/${caseId}/${sae._id}`)
+                        span.glyphicon.glyphicon-pencil
+
+                    .col-sm-4
+                      a.btn.btn-default(role="button" href=`/remove/sae/${caseId}/${sae._id}`)
+                        span.glyphicon.glyphicon-trash
+
+    a.btn.btn-default(href=`/sae/${caseId}` role="button") #{buttonConfig.buttons.add.text}
