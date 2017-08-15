@@ -30,6 +30,7 @@ require('./models/Discontinuation');
 require('./models/Surgery');
 require('./models/Cm');
 require('./models/Ae');
+require('./models/Sae');
 
 // Start our app!
 const app = require('./app');
