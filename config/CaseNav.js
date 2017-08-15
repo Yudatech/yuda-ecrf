@@ -82,7 +82,7 @@ module.exports = [
   {
     title: '不良事件',
     name: 'ae',
-    link: '/'
+    link: '/aelist'
   },
   {
     title: '严重不良事件',

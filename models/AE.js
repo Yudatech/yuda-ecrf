@@ -4,7 +4,7 @@ mongoose.Promise = global.Promise;
 const mongodbErrorHandler = require('mongoose-mongodb-errors');
 
 const aeSchema = new Schema({
-  caseid: {
+  case: {
     type: String,
     ref: 'Case',
     required: 'You must supply a caseid'

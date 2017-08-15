@@ -1,0 +1,177 @@
+extends ../caseLayout
+
+block case-content
+  .case-content
+    form.form-horizontal(action=`/ae/${caseId}/${ae._id || ''}` method="POST")
+      fieldset
+        legend #{aeConfig.title}
+
+        .row
+          .col-sm-10
+            .form-group
+              label.col-sm-4.control-label #{aeConfig.labels.aeorigion.text}
+              .col-sm-8
+                input.form-control(type="text" name="aeorigion" value=ae.aeorigion)
+          .col-sm-2
+            button.btn.btn-default(type="button")
+              span.glyphicon.glyphicon-question-sign
+
+        .row
+          .col-sm-10
+            .form-group
+              label.col-sm-4.control-label #{aeConfig.labels.event.text}
+              .col-sm-8
+                input.form-control(type="text" name="event" value=ae.event)
+          .col-sm-2
+            button.btn.btn-default(type="button")
+              span.glyphicon.glyphicon-question-sign
+
+        .row
+          .col-sm-10
+            label.col-sm-4.control-label #{aeConfig.labels.aestdtc.text}
+            .col-sm-4
+              #aestdtcdate.input-group.date(data-provide="datepicker")
+                input.form-control(value=ae.aestdtc_date)
+                span.input-group-addon
+                  i.glyphicon.glyphicon-th
+              input#aestdtcdateReal(type="hidden" name="aestdtc_date" value=ae.aestdtc_date)
+            .col-sm-4
+              #aestdtctime.input-group.bootstrap-timepicker.timepicker
+                input#aestdtctime.form-control.input-small(type="text" value=ae.aestdtc_time)
+                span.input-group-addon
+                  i.glyphicon.glyphicon-time
+              input#aestdtctimeReal(type="hidden" name="aestdtc_time" value=ae.aestdtc_time)
+
+          .col-sm-2
+            button.btn.btn-default(type="button")
+              span.glyphicon.glyphicon-question-sign
+
+        .row
+          .col-sm-10
+            label.col-sm-4.control-label #{aeConfig.labels.aeeddtc.text}
+            .col-sm-4
+              #aeeddtcdate.input-group.date(data-provide="datepicker")
+                input.form-control(value=ae.aeeddtc_date)
+                span.input-group-addon
+                  i.glyphicon.glyphicon-th
+              input#aeeddtcdateReal(type="hidden" name="aeeddtc_date" value=ae.aeeddtc_date)
+            .col-sm-4
+              #aeeddtctime.input-group.bootstrap-timepicker.timepicker
+                input#aeeddtctime.form-control.input-small(type="text" value=ae.aeeddtc_time)
+                span.input-group-addon
+                  i.glyphicon.glyphicon-time
+              input#aeeddtctimeReal(type="hidden" name="aeeddtc_time" value=ae.aeeddtc_time)
+
+          .col-sm-2
+            button.btn.btn-default(type="button")
+              span.glyphicon.glyphicon-question-sign
+
+        .row
+          .col-sm-10
+            .form-group
+              label.col-sm-4.control-label #{aeConfig.labels.aeserv.text}
+              .col-sm-8
+                select.form-control(name="aeserv")
+                  each aeLevelItem in aeLevelConfig
+                    option(value=aeLevelItem.value selected=(ae.aeserv === aeLevelItem.value)) #{aeLevelItem.text}
+          .col-sm-2
+            button.btn.btn-default(type="button")
+              span.glyphicon.glyphicon-question-sign
+
+        .row
+          .col-sm-10
+            .form-group
+              .col-sm-offset-4.col-sm-8
+                .checkbox
+                  label
+                    input(type="checkbox" name="aeact" checked=ae.aeact)
+                    span #{aeConfig.labels.aeact.text}
+          .col-sm-2
+            button.btn.btn-default(type="button")
+              span.glyphicon.glyphicon-question-sign
+
+        .row
+          .col-sm-10
+            .form-group
+              .col-sm-offset-4.col-sm-8
+                .checkbox
+                  label
+                    input(type="checkbox" name="aerpt" checked=ae.aerpt)
+                    span #{aeConfig.labels.aerpt.text}
+          .col-sm-2
+            button.btn.btn-default(type="button")
+              span.glyphicon.glyphicon-question-sign
+
+        .row
+          .col-sm-10
+            .form-group
+              label.col-sm-4.control-label #{aeConfig.labels.aerel.text}
+              .col-sm-8
+                select.form-control(name="aerel")
+                  each aeRelItem in aeRelConfig
+                    option(value=aeRelItem.value selected=(ae.aerel === aeRelItem.value)) #{aeRelItem.text}
+          .col-sm-2
+            button.btn.btn-default(type="button")
+              span.glyphicon.glyphicon-question-sign
+
+        .row
+          .col-sm-10
+            .form-group
+              label.col-sm-4.control-label #{aeConfig.labels.aeres_1.text}
+              .col-sm-8
+                select.form-control(name="aeres_1")
+                  each aeResItem in aeResConfig
+                    option(value=aeResItem.value selected=(ae.aeres_1 === aeResItem.value)) #{aeResItem.text}
+          .col-sm-2
+            button.btn.btn-default(type="button")
+              span.glyphicon.glyphicon-question-sign
+
+        .row
+          .col-sm-10
+            .form-group
+              .col-sm-offset-4.col-sm-8
+                .checkbox
+                  label
+                    input(type="checkbox" name="aeres_2" checked=ae.aeres_2)
+                    span #{aeConfig.labels.aeres_2.text}
+          .col-sm-2
+            button.btn.btn-default(type="button")
+              span.glyphicon.glyphicon-question-sign
+
+        .row
+          .col-sm-10
+            .form-group
+              .col-sm-offset-4.col-sm-8
+                .checkbox
+                  label
+                    input(type="checkbox" name="aesae" checked=ae.aesae)
+                    span #{aeConfig.labels.aesae.text}
+          .col-sm-2
+            button.btn.btn-default(type="button")
+              span.glyphicon.glyphicon-question-sign
+
+        .row
+          .col-sm-10
+            .form-group
+              .col-sm-offset-4.col-sm-8
+                .checkbox
+                  label
+                    input(type="checkbox" name="aedevicedft" checked=ae.aedevicedft)
+                    span #{aeConfig.labels.aedevicedft.text}
+          .col-sm-2
+            button.btn.btn-default(type="button")
+              span.glyphicon.glyphicon-question-sign
+
+        .row
+          .col-sm-10
+            .form-group
+              .col-sm-offset-4.col-sm-8
+                .checkbox
+                  label
+                    input(type="checkbox" name="aediscon" checked=ae.aediscon)
+                    span #{aeConfig.labels.aediscon.text}
+          .col-sm-2
+            button.btn.btn-default(type="button")
+              span.glyphicon.glyphicon-question-sign
+
+        input(type="submit" value=buttonConfig.buttons.save.text)

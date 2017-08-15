@@ -116,6 +116,14 @@ $('.input-group.date').datepicker({}).on('changeDate', function (e) {
   var realId = '#' + targetId + 'Real';
   $(realId).val(e.format('mm/dd/yyyy'));
 });
+$('.bootstrap-timepicker.timepicker>input').timepicker({
+  showMeridian: false,
+  defaultTime: false
+}).on('changeTime.timepicker', function (e) {
+  var targetId = e.target.id;
+  var realId = '#' + targetId + 'Real';
+  $(realId).val(e.time.value);
+});
 window.acceptDocPreview = _acceptDocPreview2.default;
 
 /***/ })
