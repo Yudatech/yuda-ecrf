@@ -23,6 +23,12 @@ const visitSchema = new Schema({
   },
   // 访视方式
   visittype: Number,
+  // 计划外访视原因
+  visitreason: String,
+  // 处理/治疗
+  visittreat: String,
+  // 转归
+  visitres: Number,
   // 腹痛
   param_1: Number,
   // 腹部触诊
