@@ -87,7 +87,7 @@ module.exports = [
   {
     title: '严重不良事件',
     name: 'sae',
-    link: '/'
+    link: '/saelist'
   },
   {
     title: '提交并锁定',
