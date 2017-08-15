@@ -72,7 +72,7 @@ module.exports = [
   {
     title: '访视',
     name: 'visit',
-    link: '/'
+    link: '/visitlist'
   },
   {
     title: '合并用药情况',

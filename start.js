@@ -31,6 +31,7 @@ require('./models/Surgery');
 require('./models/Cm');
 require('./models/Ae');
 require('./models/Sae');
+require('./models/Visit');
 
 // Start our app!
 const app = require('./app');
