@@ -105,6 +105,7 @@ router.get('/cm/:caseId', cmController.cmForm);
 router.post('/cm/:caseId', cmController.createCm);
 router.get('/cm/:caseId/:cmId', cmController.cmForm);
 router.post('/cm/:caseId/:cmId', cmController.updateCm);
+router.get('/remove/cm/:caseId/:cmId', cmController.removeCm);
 
 // Router for ae
 router.get('/aelist/:caseId', aeController.aeTable);
@@ -112,6 +113,7 @@ router.get('/ae/:caseId', aeController.aeForm);
 router.post('/ae/:caseId', aeController.createAe);
 router.get('/ae/:caseId/:aeId', aeController.aeForm);
 router.post('/ae/:caseId/:aeId', aeController.updateAe);
+router.get('/remove/ae/:caseId/:aeId', aeController.removeAe);
 
 // Router for sae
 router.get('/saelist/:caseId', saeController.saeTable);
@@ -119,6 +121,7 @@ router.get('/sae/:caseId', saeController.saeForm);
 router.post('/sae/:caseId', saeController.createSae);
 router.get('/sae/:caseId/:saeId', saeController.saeForm);
 router.post('/sae/:caseId/:saeId', saeController.updateSae);
+router.get('/remove/sae/:caseId/:saeId', saeController.removeSae);
 
 // Router for visit
 router.get('/visitlist/:caseId', visitController.visitTable);
@@ -126,6 +129,7 @@ router.get('/visit/:caseId', visitController.visitForm);
 router.post('/visit/:caseId', visitController.createVisit);
 router.get('/visit/:caseId/:visitId', visitController.visitForm);
 router.post('/visit/:caseId/:visitId', visitController.updateVisit);
+router.get('/remove/visit/:caseId/:visitId', visitController.removeVisit);
 
 /**
  * Router for site

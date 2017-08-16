@@ -99,3 +99,10 @@ exports.updateCm = async (req, res) => {
   await Cm.findByIdAndUpdate(cmId, req.body);
   res.redirect(`/cmlist/${caseId}`);
 };
+
+exports.removeCm = async (req, res) => {
+  const caseId = req.params.caseId;
+  const id = req.params.cmId;
+  await Cm.findByIdAndRemove(id);
+  res.redirect(`/cmlist/${caseId}`);
+};

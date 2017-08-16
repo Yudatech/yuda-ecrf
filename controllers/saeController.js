@@ -121,3 +121,10 @@ exports.updateSae = async (req, res) => {
   await Sae.findByIdAndUpdate(saeId, req.body);
   res.redirect(`/saelist/${caseId}`);
 };
+
+exports.removeSae = async (req, res) => {
+  const caseId = req.params.caseId;
+  const id = req.params.saeId;
+  await Sae.findByIdAndRemove(id);
+  res.redirect(`/saelist/${caseId}`);
+};

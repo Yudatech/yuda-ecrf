@@ -136,3 +136,10 @@ exports.updateVisit = async (req, res) => {
   await Visit.findByIdAndUpdate(visitId, req.body);
   res.redirect(`/visitlist/${caseId}`);
 };
+
+exports.removeVisit = async (req, res) => {
+  const caseId = req.params.caseId;
+  const id = req.params.visitId;
+  await Visit.findByIdAndRemove(id);
+  res.redirect(`/visitlist/${caseId}`);
+};

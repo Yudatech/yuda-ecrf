@@ -123,3 +123,10 @@ exports.updateAe = async (req, res) => {
   await Ae.findByIdAndUpdate(aeId, req.body);
   res.redirect(`/aelist/${caseId}`);
 };
+
+exports.removeAe = async (req, res) => {
+  const caseId = req.params.caseId;
+  const id = req.params.aeId;
+  await Ae.findByIdAndRemove(id);
+  res.redirect(`/aelist/${caseId}`);
+};
