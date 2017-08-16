@@ -11,6 +11,21 @@ const config = {
     text: {
       zh: '添加'
     }
+  }, {
+    name: 'committed',
+    text: {
+      zh: '已提交'
+    }
+  }, {
+    name: 'ongoing',
+    text: {
+      zh: '待完成'
+    }
+  }, {
+    name: 'all',
+    text: {
+      zh: '全部'
+    }
   }]
 };
 

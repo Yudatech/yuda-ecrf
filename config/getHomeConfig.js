@@ -1,5 +1,3 @@
-const getOptionsLang = require('./configHelpers').getOptionsLang;
-
 const config = {
   summary: {
     titles: [{
@@ -63,22 +61,6 @@ const config = {
       text: {
         zh: '操作'
       }
-    }],
-    buttons: [{
-      name: 'committed',
-      text: {
-        zh: '已提交'
-      }
-    }, {
-      name: 'ongoing',
-      text: {
-        zh: '待完成'
-      }
-    }, {
-      name: 'all',
-      text: {
-        zh: '全部'
-      }
     }]
   },
   questions: {
@@ -99,6 +81,11 @@ const config = {
       name: 'orig',
       text: {
         zh: '发起人'
+      }
+    }, {
+      name: 'operations',
+      text: {
+        zh: '操作'
       }
     }]
   }
@@ -125,8 +112,7 @@ module.exports = function(lang) {
         name: item.name,
         text: item.text[lang]
       };
-    }),
-    buttons: getOptionsLang(config.cases.buttons)
+    })
   };
   result.questions = {
     title: config.questions.title[lang],

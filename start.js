@@ -32,6 +32,8 @@ require('./models/Cm');
 require('./models/Ae');
 require('./models/Sae');
 require('./models/Visit');
+require('./models/Question');
+require('./models/Comment');
 
 // Start our app!
 const app = require('./app');

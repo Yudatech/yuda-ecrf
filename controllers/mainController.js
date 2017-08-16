@@ -5,6 +5,7 @@ const moment = require('moment');
 moment.locale('zh-cn');
 
 const getHomeConfig = require('../config/getHomeConfig');
+const getButtonConfig = require('../config/common/getButtonConfig');
 
 exports.homePage = async (req, res) => {
   const cases = await Case.find({
@@ -20,6 +21,7 @@ exports.homePage = async (req, res) => {
   });
   res.render('home', {
     homeConfig: getHomeConfig(),
-    cases: casesFormated
+    cases: casesFormated,
+    buttonConfig: getButtonConfig()
   });
 };

@@ -131,6 +131,9 @@ router.get('/visit/:caseId/:visitId', visitController.visitForm);
 router.post('/visit/:caseId/:visitId', visitController.updateVisit);
 router.get('/remove/visit/:caseId/:visitId', visitController.removeVisit);
 
+// Router for question
+
+
 /**
  * Router for site
  */

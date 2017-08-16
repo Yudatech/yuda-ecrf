@@ -20,7 +20,9 @@ const userSchema = new Schema({
     trim: true
   },
   userabbr: {
-    type: String
+    type: String,
+    required: 'Please supply a name',
+    trim: true
   },
   tel: {
     type: String

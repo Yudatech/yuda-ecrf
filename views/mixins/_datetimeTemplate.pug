@@ -1,0 +1,17 @@
+mixin _datetimeTemplate(text, date_name, date_value, time_name, time_value)
+  - const dateIdReal = date_name + 'Real'
+  - const timeIdReal = time_name + 'Real'
+  .form-group
+    label.col-sm-4.control-label #{text}
+      .col-sm-4
+        div.input-group.date(data-provide="datepicker" id=date_name)
+          input.form-control(value=date_value)
+          span.input-group-addon
+            i.glyphicon.glyphicon-th
+        input(id=dateIdReal type="hidden" name=date_name value=date_value)
+      .col-sm-4
+        div.input-group.bootstrap-timepicker.timepicker
+          input.form-control.input-small(id=time_name type="text" value=time_value)
+          span.input-group-addon
+            i.glyphicon.glyphicon-time
+        input(id=timeIdReal type="hidden" name=time_name value=time_value)

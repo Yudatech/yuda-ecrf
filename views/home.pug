@@ -7,14 +7,14 @@ block content
         .col-sm-2
           span #{summaryTitleItem.text}
     .row
-      .col-sm-8
+      .col-sm-7
         .row
           .col-sm-4
             h2 #{homeConfig.cases.title}
           .col-sm-4
-            a.btn.btn-default(href="/" role="button") #{homeConfig.cases.buttons.committed.text}
-            a.btn.btn-default(href="/" role="button") #{homeConfig.cases.buttons.ongoing.text}
-            a.btn.btn-default(href="/" role="button") #{homeConfig.cases.buttons.all.text}
+            a.btn.btn-default(href="/" role="button") #{buttonConfig.buttons.committed.text}
+            a.btn.btn-default(href="/" role="button") #{buttonConfig.buttons.ongoing.text}
+            a.btn.btn-default(href="/" role="button") #{buttonConfig.buttons.all.text}
         .row
           table.table.table-striped
             thead
@@ -38,7 +38,7 @@ block content
                             a.btn.btn-default(role="button" href=`/remove/case/${caseItem._id}`)
                               span.glyphicon.glyphicon-trash
 
-      .col-sm-4
+      .col-sm-5
         h2 #{homeConfig.questions.title}
         table.table.table-striped
             thead
