@@ -124,12 +124,21 @@ async function getScreeningItemByCaseId(caseId) {
 exports.caseBasicForm = async (req, res) => {
   const CaseNav = helpers.appendCaseIdToCaseNav(req.params.caseId);
   const screeningItem = await getScreeningItemByCaseId(req.params.caseId);
+  const config = getScreeningBasicConfig();
+  Object.keys(config.formConfigs).forEach((key) => {
+    if (key === 'sex') {
+      config.formConfigs[key].value = screeningItem.sex;
+      config.formConfigs[key].options = getSexConfig();
+    }
+    else {
+      config.formConfigs[key].value = screeningItem[key];
+    }
+  });
   res.render('case/screening-basic', {
     caseNav: CaseNav,
-    config: getScreeningBasicConfig(),
-    sexConfig: getSexConfig(),
+    config,
     buttonConfig: getButtonConfig(),
-    screeningObj: screeningItem
+    caseId: req.params.caseId
   });
 };
 

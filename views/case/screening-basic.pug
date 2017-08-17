@@ -1,51 +1,36 @@
 extends ../caseLayout
 
+include ../mixins/_formTemplate
+include ../mixins/_questionBtn
+
 block case-content
   .case-content
-    form.form-horizontal(action=`/screening/basic/${screeningObj.case || ''}` method="POST")
+    form.form-horizontal(action=`/screening/basic/${caseId}` method="POST")
       fieldset
         legend #{config.title}
+
         .row
           .col-sm-10
-            .form-group
-              label.col-sm-2.control-label #{config.sex.text}
-              .col-sm-10
-                each sexItem in sexConfig
-                  label.radio-inline
-                    input(type="radio" name="sex" value=sexItem.value checked=(screeningObj.sex === sexItem.value))
-                    span #{sexItem.text}
+            +_formTemplate(config.formConfigs.sex)
           .col-sm-2
-            button.btn.btn-default(type="button")
-              span.glyphicon.glyphicon-question-sign
+            +_questionBtn()
         
         .row
           .col-sm-10
-            .form-group
-              label.col-sm-2.control-label #{config.birth.text}
-              .col-sm-10
-                input.form-control(type="number" name="birth" value=screeningObj.birth)
+            +_formTemplate(config.formConfigs.birth)
           .col-sm-2
-            button.btn.btn-default(type="button")
-              span.glyphicon.glyphicon-question-sign
+            +_questionBtn()
 
         .row
           .col-sm-10
-            .form-group
-              label.col-sm-2.control-label #{config.weight.text}
-              .col-sm-10
-                input.form-control(type="number" name="weight" value=screeningObj.weight)
+            +_formTemplate(config.formConfigs.weight)
           .col-sm-2
-            button.btn.btn-default(type="button")
-              span.glyphicon.glyphicon-question-sign          
+            +_questionBtn()          
 
         .row
           .col-sm-10
-            .form-group
-              label.col-sm-2.control-label #{config.height.text}
-              .col-sm-10
-                input.form-control(type="number" name="height" value=screeningObj.height)
+            +_formTemplate(config.formConfigs.height)
           .col-sm-2
-            button.btn.btn-default(type="button")
-              span.glyphicon.glyphicon-question-sign
-
+            +_questionBtn()
+            
         input(type="submit" value=buttonConfig.buttons.save.text)

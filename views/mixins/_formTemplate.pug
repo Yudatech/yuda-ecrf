@@ -3,6 +3,8 @@ include _checkboxTemplate
 include _textfieldTemplate
 include _dateTemplate
 include _textareaTemplate
+include _numberfieldTemplate
+include _selectTemplate
 
 mixin _formTemplate(formConfig)
   if formConfig.type === 'checkbox'
@@ -15,8 +17,10 @@ mixin _formTemplate(formConfig)
     +_textareaTemplate(formConfig.name, formConfig.text, formConfig.value)
 
   else if formConfig.type === 'numberfield'
+    +_numberfieldTemplate(formConfig.name, formConfig.text, formConfig.value, formConfig.step)
 
   else if formConfig.type === 'select'
+    +_selectTemplate(formConfig.name, formConfig.text, formConfig.value, formConfig.options)
 
   else if formConfig.type === 'date'
     +_dateTemplate(formConfig.name, formConfig.text, formConfig.value)
