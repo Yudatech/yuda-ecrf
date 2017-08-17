@@ -1,3 +1,6 @@
+const moment = require('moment');
+moment.locale('zh-cn');
+
 const mongoose = require('mongoose');
 const Discontinuation = mongoose.model('Discontinuation');
 
@@ -43,11 +46,20 @@ async function getDiscontinuationItemByCaseId(caseId) {
 exports.discontinuationForm = async (req, res) => {
   const CaseNav = helpers.appendCaseIdToCaseNav(req.params.caseId);
   const discontinuationItem = await getDiscontinuationItemByCaseId(req.params.caseId);
+  const config = getDiscontinuationConfig();
+  Object.keys(config.formConfigs).forEach((key) => {
+    if (key === 'discontinuedt') {
+      config.formConfigs[key].value = moment(discontinuationItem.discontinuedt).format('MM/DD/YYYY');
+    }
+    else {
+      config.formConfigs[key].value = discontinuationItem[key];
+    }
+  });
   res.render('discontinuation', {
     caseNav: CaseNav,
-    config: getDiscontinuationConfig(),
+    config,
     buttonConfig: getButtonConfig(),
-    discontinuationObj: discontinuationItem
+    caseId: req.params.caseId
   });
 };
 

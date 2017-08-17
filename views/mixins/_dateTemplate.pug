@@ -1,10 +1,10 @@
 mixin _dateTemplate(name, text, value)
   - const idReal = name + 'Real'
   .form-group
-    label.col-sm-4.control-label #{visitConfig.labels.visitdtc.text}
-      .col-sm-8
-        div.input-group.date(data-provide="datepicker" id=name)
-          input.form-control(value=value)
-          span.input-group-addon
-            i.glyphicon.glyphicon-th
-        input(id=idReal type="hidden" name=name value=value)
+    label.col-sm-4.control-label #{text}
+    .col-sm-8
+      div.input-group.date(data-provide="datepicker" id=name)
+        input.form-control(value=value)
+        span.input-group-addon
+          i.glyphicon.glyphicon-th
+      input(id=idReal type="hidden" name=name value=value)

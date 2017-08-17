@@ -1,75 +1,78 @@
 extends caseLayout
 
+include mixins/_formTemplate
+include mixins/_questionBtn
+
 block case-content
   .case-content
-    form.form-horizontal(action=`/discontinuation/${reviewChecklistObj.case || ''}` method="POST")
+    form.form-horizontal(action=`/discontinuation/${caseId}` method="POST")
       fieldset
         legend #{config.title}
 
         .row
           .col-sm-10
-            .checkbox
-              label
-                input(type="checkbox" name="discontinuersn_1" checked=discontinuationObj.discontinuersn_1)
-                span #{config.discontinuersn_1.text}
+            .form-group
+              .col-sm-offset-4.col-sm-8
+                +_formTemplate(config.formConfigs.discontinue)
           .col-sm-2
-            button.btn.btn-default(type="button")
-              span.glyphicon.glyphicon-question-sign
+            +_questionBtn()
+
+        .row
+          .col-sm-10
+            +_formTemplate(config.formConfigs.discontinuedt)
+          .col-sm-2
+            +_questionBtn()
+
+        .row
+          .col-sm-10
+            .form-group
+              .col-sm-offset-4.col-sm-8
+                +_formTemplate(config.formConfigs.discontinuersn_1)
+          .col-sm-2
+            +_questionBtn()
         
         .row
           .col-sm-10
-            .checkbox
-              label
-                input(type="checkbox" name="discontinuersn_2" checked=discontinuationObj.discontinuersn_2)
-                span #{config.discontinuersn_2.text}
+            .form-group
+              .col-sm-offset-4.col-sm-8
+                +_formTemplate(config.formConfigs.discontinuersn_2)
           .col-sm-2
-            button.btn.btn-default(type="button")
-              span.glyphicon.glyphicon-question-sign
+            +_questionBtn()
 
         .row
           .col-sm-10
-            .checkbox
-              label
-                input(type="checkbox" name="discontinuersn_3" checked=discontinuationObj.discontinuersn_3)
-                span #{config.discontinuersn_3.text}
+            .form-group
+              .col-sm-offset-4.col-sm-8
+                +_formTemplate(config.formConfigs.discontinuersn_3)
           .col-sm-2
-            button.btn.btn-default(type="button")
-              span.glyphicon.glyphicon-question-sign
+            +_questionBtn()
 
         .row
           .col-sm-10
-            label #{config.discontinuersn_4.text}
-            textarea.form-control(rows="5" name="discontinuersn_4" checked=discontinuationObj.discontinuersn_4)
+            +_formTemplate(config.formConfigs.discontinuersn_4)
           .col-sm-2
-            button.btn.btn-default(type="button")
-              span.glyphicon.glyphicon-question-sign
+            +_questionBtn()
 
         .row
           .col-sm-10
-            .checkbox
-              label
-                input(type="checkbox" name="discontinuersn_5" checked=discontinuationObj.discontinuersn_5)
-                span #{config.discontinuersn_5.text}
+            .form-group
+              .col-sm-offset-4.col-sm-8
+                +_formTemplate(config.formConfigs.discontinuersn_5)
           .col-sm-2
-            button.btn.btn-default(type="button")
-              span.glyphicon.glyphicon-question-sign
+            +_questionBtn()
 
         .row
           .col-sm-10
-            .checkbox
-              label
-                input(type="checkbox" name="discontinuersn_6" checked=discontinuationObj.discontinuersn_6)
-                span #{config.discontinuersn_6.text}
+            .form-group
+              .col-sm-offset-4.col-sm-8
+                +_formTemplate(config.formConfigs.discontinuersn_6)
           .col-sm-2
-            button.btn.btn-default(type="button")
-              span.glyphicon.glyphicon-question-sign
+            +_questionBtn()
 
         .row
           .col-sm-10
-            label #{config.discontinuersn_7.text}
-            textarea.form-control(rows="5" name="discontinuersn_7" value=discontinuationObj.discontinuersn_7)
+            +_formTemplate(config.formConfigs.discontinuersn_7)
           .col-sm-2
-            button.btn.btn-default(type="button")
-              span.glyphicon.glyphicon-question-sign
+            +_questionBtn()
 
         input(type="submit" value=buttonConfig.buttons.save.text)

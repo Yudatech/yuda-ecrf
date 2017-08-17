@@ -1,5 +1,5 @@
 mixin _textareaTemplate(name, text, value)
   .form-group
-    label.col-sm-4 #{text}
-    .col-sm-10
-      textarea.form-control(rows="5" name=name value=value)
+    label.col-sm-4.control-label #{text}
+    .col-sm-8
+      textarea.form-control(rows="5" name=name) #{value}
