@@ -152,11 +152,15 @@ exports.caseInclusionForm = async (req, res) => {
   const caseId = req.params.caseId;
   const CaseNav = helpers.appendCaseIdToCaseNav(caseId);
   const screeningItem = await getScreeningItemByCaseId(caseId);
+  const config = getScreeningInclusionConfig();
+  Object.keys(config.formConfigs).forEach((key) => {
+    config.formConfigs[key].value = screeningItem[key];
+  });
   res.render('case/screening-inclusion', {
     caseNav: CaseNav,
     buttonConfig: getButtonConfig(),
     config: getScreeningInclusionConfig(),
-    screeningObj: screeningItem
+    caseId: req.params.caseId
   });
 };
 
