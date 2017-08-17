@@ -39,42 +39,22 @@ async function getSurgeryItemByCaseId(caseId) {
   let surgeryItem = await Surgery.findOne({
     case: caseId
   });
-  if (!surgeryItem) {
-    surgeryItem = {
-      case: caseId
-    };
-  }
   return surgeryItem;
 }
 
 exports.surgeryForm = async (req, res) => {
   const CaseNav = helpers.appendCaseIdToCaseNav(req.params.caseId);
   const surgeryItem = await getSurgeryItemByCaseId(req.params.caseId);
-  const surgeryObj = {
-    _id: surgeryItem._id,
-    case: surgeryItem.case,
-    device_1: surgeryItem.device_1,
-    device_2: surgeryItem.device_2,
-    surgery_1: surgeryItem.surgery_1,
-    surgery_2: surgeryItem.surgery_2,
-    surgery_3: surgeryItem.surgery_3,
-    surgery_4: surgeryItem.surgery_4,
-    surgery_5: surgeryItem.surgery_5,
-    surgery_6: surgeryItem.surgery_6,
-    surgery_7: surgeryItem.surgery_7,
-    surgery_8: surgeryItem.surgery_8,
-    surgery_9: surgeryItem.surgery_9,
-    surgery_10: surgeryItem.surgery_10,
-    surgery_11: surgeryItem.surgery_11,
-    surgery_12: surgeryItem.surgery_12,
-    surgery_13: surgeryItem.surgery_13,
-    surgery_14: surgeryItem.surgery_14,
-    surgery_15: surgeryItem.surgery_15,
-    surgery_16: surgeryItem.surgery_16,
-    surgery_17: surgeryItem.surgery_17,
-    surgery_18: surgeryItem.surgery_18,
-    surgerydtc: moment(surgeryItem.surgerydtc).format('ll')
-  };
+  let surgeryObj;
+  if (!surgeryItem) {
+    surgeryObj = {
+      case: req.params.caseId
+    };
+  }
+  else {
+    surgeryObj = surgeryItem.toObject();
+    surgeryObj.surgerydtc = moment(surgeryItem.surgerydtc).format('MM/DD/YYYY');
+  }
   res.render('surgery', {
     caseNav: CaseNav,
     config: getSurgeryConfig(),

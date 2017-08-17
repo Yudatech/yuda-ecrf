@@ -57,17 +57,9 @@ exports.cmForm = async (req, res) => {
 
   if (cmId !== undefined) {
     const cmItem = await Cm.findById(cmId);
-    cm = {
-      _id: cmItem._id,
-      case: cmItem.case,
-      drug: cmItem.drug,
-      dosing: cmItem.dosing,
-      dosemtd_1: cmItem.dosemtd_1,
-      dosemtd_2: cmItem.dosemtd_2,
-      cmstdtc: moment(cmItem.cmstdtc).format('MM/DD/YYYY'),
-      cmeddtc: moment(cmItem.cmeddtc).format('MM/DD/YYYY'),
-      cmrsn: cmItem.cmrsn
-    };
+    cm = cmItem.toObject();
+    cm.cmstdtc = moment(cmItem.cmstdtc).format('MM/DD/YYYY');
+    cm.cmeddtc = moment(cmItem.cmeddtc).format('MM/DD/YYYY');
   }
   else {
     cm = {

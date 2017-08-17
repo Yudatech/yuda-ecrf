@@ -64,27 +64,11 @@ exports.saeForm = async (req, res) => {
 
   if (saeId !== undefined) {
     const saeItem = await Sae.findById(saeId);
-    sae = {
-      _id: saeItem._id,
-      case: saeItem.case,
-      saeorigion: saeItem.saeorigion,
-      saetpe: saeItem.saetpe,
-      saedtc: moment(saeItem.saedtc).format('MM/DD/YYYY'),
-      saeterm: saeItem.saeterm,
-      saeanti: saeItem.saeanti,
-      saecaus_1: saeItem.saecaus_1,
-      saecaus_2: moment(saeItem.saecaus_2).format('MM/DD/YYYY'),
-      saecaus_3: saeItem.saecaus_3,
-      saestdtc: moment(saeItem.saestdtc).format('MM/DD/YYYY'),
-      saenoticedtc: moment(saeItem.saenoticedtc).format('MM/DD/YYYY'),
-      saeact: saeItem.saeact,
-      saeres_1: saeItem.saeres_1,
-      saeres_2: saeItem.saeres_2,
-      saerel: saeItem.saerel,
-      saerpt_1: saeItem.saerpt_1,
-      saerpt_2: saeItem.saerpt_2,
-      saedesc: saeItem.saedesc
-    };
+    sae = saeItem.toObject();
+    sae.saedtc = moment(saeItem.saedtc).format('MM/DD/YYYY');
+    sae.saecaus_2 = moment(saeItem.saecaus_2).format('MM/DD/YYYY');
+    sae.saestdtc = moment(saeItem.saestdtc).format('MM/DD/YYYY');
+    sae.saenoticedtc = moment(saeItem.saenoticedtc).format('MM/DD/YYYY');
   }
   else {
     sae = {

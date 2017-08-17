@@ -66,38 +66,8 @@ exports.visitForm = async (req, res) => {
 
   if (visitId !== undefined) {
     const visitItem = await Visit.findById(visitId);
-    visit = {
-      _id: visitItem._id,
-      case: visitItem.case,
-      visitnum: visitItem.visitnum,
-      visitdtc: moment(visitItem.visitdtc).format('MM/DD/YYYY'),
-      visittype: visitItem.visittype,
-      visitreason: visitItem.visitreason,
-      visittreat: visitItem.visittreat,
-      visitres: visitItem.visitres,
-      param_1: visitItem.param_1,
-      param_2: visitItem.param_2,
-      param_3: visitItem.param_3,
-      param_4: visitItem.param_4,
-      param_5: visitItem.param_5,
-      param_6: visitItem.param_6,
-      param_7: visitItem.param_7,
-      param_8: visitItem.param_8,
-      param_9: visitItem.param_9,
-      param_10: visitItem.param_10,
-      param_11: visitItem.param_11,
-      param_12: visitItem.param_12,
-      param_13: visitItem.param_13,
-      param_14: visitItem.param_14,
-      param_15: visitItem.param_15,
-      param_16: visitItem.param_16,
-      param_17: visitItem.param_17,
-      param_18: visitItem.param_18,
-      param_19: visitItem.param_19,
-      param_20: visitItem.param_20,
-      param_21: visitItem.param_21,
-      param_22: visitItem.param_22
-    };
+    visit = visitItem.toObject();
+    visit.visitdtc = moment(visitItem.visitdtc).format('MM/DD/YYYY');
   }
   else {
     visit = {

@@ -69,25 +69,11 @@ exports.aeForm = async (req, res) => {
 
   if (aeId !== undefined) {
     const aeItem = await Ae.findById(aeId);
-    ae = {
-      _id: aeItem._id,
-      case: aeItem.case,
-      aeorigion: aeItem.aeorigion,
-      event: aeItem.event,
-      aestdtc_date: moment(aeItem.aestdtc).format('MM/DD/YYYY'),
-      aestdtc_time: moment(aeItem.aestdtc).format('HH:mm'),
-      aeeddtc_date: moment(aeItem.aeeddtc).format('MM/DD/YYYY'),
-      aeeddtc_time: moment(aeItem.aeeddtc).format('HH:mm'),
-      aeserv: aeItem.aeserv,
-      aeact: aeItem.aeact,
-      aerpt: aeItem.aerpt,
-      aerel: aeItem.aerel,
-      aeres_1: aeItem.aeres_1,
-      aeres_2: aeItem.aeres_2,
-      aesae: aeItem.aesae,
-      aedevicedft: aeItem.aedevicedft,
-      aediscon: aeItem.aediscon
-    };
+    ae = aeItem.toObject();
+    ae.aestdtc_date = moment(aeItem.aestdtc).format('MM/DD/YYYY');
+    ae.aestdtc_time = moment(aeItem.aestdtc).format('HH:mm');
+    ae.aeeddtc_date = moment(aeItem.aeeddtc).format('MM/DD/YYYY');
+    ae.aeeddtc_time = moment(aeItem.aeeddtc).format('HH:mm');
   }
   else {
     ae = {
