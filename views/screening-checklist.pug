@@ -1,99 +1,66 @@
 extends caseLayout
 
+include mixins/_formTemplate
+include mixins/_questionBtn
+
 block case-content
   .case-content
-    form.form-horizontal(action=`/screening-checklist/${screeningChecklistObj.case || ''}` method="POST")
+    form.form-horizontal(action=`/screening-checklist/${caseId}` method="POST")
       fieldset
         legend #{config.title}
 
         .row
           .col-sm-10
-            .checkbox
-              label
-                input(type="checkbox" name="screeningcheck_1" checked=screeningChecklistObj.screeningcheck_1)
-                span #{config.screeningcheck_1.text}
+            +_formTemplate(config.formConfigs.screeningcheck_1)
           .col-sm-2
-            button.btn.btn-default(type="button")
-              span.glyphicon.glyphicon-question-sign
+            +_questionBtn()
         
         .row
           .col-sm-10
-            .checkbox
-              label
-                input(type="checkbox" name="screeningcheck_2" checked=screeningChecklistObj.screeningcheck_2)
-                span #{config.screeningcheck_2.text}
+            +_formTemplate(config.formConfigs.screeningcheck_2)
           .col-sm-2
-            button.btn.btn-default(type="button")
-              span.glyphicon.glyphicon-question-sign
+            +_questionBtn()
 
         .row
           .col-sm-10
-            .checkbox
-              label
-                input(type="checkbox" name="screeningcheck_3" checked=screeningChecklistObj.screeningcheck_3)
-                span #{config.screeningcheck_3.text}
+            +_formTemplate(config.formConfigs.screeningcheck_3)
           .col-sm-2
-            button.btn.btn-default(type="button")
-              span.glyphicon.glyphicon-question-sign
+            +_questionBtn()
 
         .row
           .col-sm-10
-            .checkbox
-              label
-                input(type="checkbox" name="screeningcheck_4" checked=screeningChecklistObj.screeningcheck_4)
-                span #{config.screeningcheck_4.text}
+            +_formTemplate(config.formConfigs.screeningcheck_4)
           .col-sm-2
-            button.btn.btn-default(type="button")
-              span.glyphicon.glyphicon-question-sign
+            +_questionBtn()
 
         .row
           .col-sm-10
-            .checkbox
-              label
-                input(type="checkbox" name="screeningcheck_5" checked=screeningChecklistObj.screeningcheck_5)
-                span #{config.screeningcheck_5.text}
+            +_formTemplate(config.formConfigs.screeningcheck_5)
           .col-sm-2
-            button.btn.btn-default(type="button")
-              span.glyphicon.glyphicon-question-sign
+            +_questionBtn()
         
         .row
           .col-sm-10
-            .checkbox
-              label
-                input(type="checkbox" name="screeningcheck_6" checked=screeningChecklistObj.screeningcheck_6)
-                span #{config.screeningcheck_6.text}
+            +_formTemplate(config.formConfigs.screeningcheck_6)
           .col-sm-2
-            button.btn.btn-default(type="button")
-              span.glyphicon.glyphicon-question-sign
+            +_questionBtn()
 
         .row
           .col-sm-10
-            .checkbox
-              label
-                input(type="checkbox" name="screeningcheck_7" checked=screeningChecklistObj.screeningcheck_7)
-                span #{config.screeningcheck_7.text}
+            +_formTemplate(config.formConfigs.screeningcheck_7)
           .col-sm-2
-            button.btn.btn-default(type="button")
-              span.glyphicon.glyphicon-question-sign
+            +_questionBtn()
 
         .row
           .col-sm-10
-            .checkbox
-              label
-                input(type="checkbox" name="screeningcheck_8" checked=screeningChecklistObj.screeningcheck_8)
-                span #{config.screeningcheck_8.text}
+            +_formTemplate(config.formConfigs.screeningcheck_8)
           .col-sm-2
-            button.btn.btn-default(type="button")
-              span.glyphicon.glyphicon-question-sign
+            +_questionBtn()
 
         .row
           .col-sm-10
-            .checkbox
-              label
-                input(type="checkbox" name="screeningcheck_9" checked=screeningChecklistObj.screeningcheck_9)
-                span #{config.screeningcheck_9.text}
+            +_formTemplate(config.formConfigs.screeningcheck_9)
           .col-sm-2
-            button.btn.btn-default(type="button")
-              span.glyphicon.glyphicon-question-sign
+            +_questionBtn()
 
         input(type="submit" value=buttonConfig.buttons.save.text)

@@ -43,11 +43,15 @@ async function getScreeningChecklistItemByCaseId(caseId) {
 exports.screeningChecklistForm = async (req, res) => {
   const CaseNav = helpers.appendCaseIdToCaseNav(req.params.caseId);
   const screeningChecklistItem = await getScreeningChecklistItemByCaseId(req.params.caseId);
+  const config = getScreeningChecklistConfig();
+  Object.keys(config.formConfigs).forEach((key) => {
+    config.formConfigs[key].value = screeningChecklistItem[key];
+  });
   res.render('screening-checklist', {
     caseNav: CaseNav,
-    config: getScreeningChecklistConfig(),
+    config,
     buttonConfig: getButtonConfig(),
-    screeningChecklistObj: screeningChecklistItem
+    caseId: req.params.caseId
   });
 };
 
