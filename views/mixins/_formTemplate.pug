@@ -1,0 +1,20 @@
+include _acceptdocTemplate
+include _checkboxTemplate
+
+mixin _formTemplate(formConfig)
+  if formConfig.type === 'checkbox'
+    +_checkboxTemplate(formConfig.name, formConfig.text, formConfig.value)
+
+  else if formConfig.type === 'textfield'
+
+  else if formConfig.type === 'textarea'
+
+  else if formConfig.type === 'numberfield'
+
+  else if formConfig.type === 'select'
+
+  else if formConfig.type === 'date'
+
+  else if formConfig.type === 'datetime'
+
+  else if formConfig.type === 'acceptdoc'

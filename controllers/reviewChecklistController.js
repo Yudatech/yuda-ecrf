@@ -43,11 +43,15 @@ async function getReviewChecklistItemByCaseId(caseId) {
 exports.reviewChecklistForm = async (req, res) => {
   const CaseNav = helpers.appendCaseIdToCaseNav(req.params.caseId);
   const reviewChecklistItem = await getReviewChecklistItemByCaseId(req.params.caseId);
+  const config = getReviewChecklistConfig();
+  Object.keys(config.formConfigs).forEach((key) => {
+    config.formConfigs[key].value = reviewChecklistItem[key];
+  });
   res.render('review-checklist', {
     caseNav: CaseNav,
-    config: getReviewChecklistConfig(),
+    config,
     buttonConfig: getButtonConfig(),
-    reviewChecklistObj: reviewChecklistItem
+    caseId: req.params.caseId
   });
 };
 
