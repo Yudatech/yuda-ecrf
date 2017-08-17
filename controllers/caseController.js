@@ -174,11 +174,15 @@ exports.caseExclusionForm = async (req, res) => {
   const caseId = req.params.caseId;
   const CaseNav = helpers.appendCaseIdToCaseNav(caseId);
   const screeningItem = await getScreeningItemByCaseId(caseId);
+  const config = getScreeningExclusionConfig();
+  Object.keys(config.formConfigs).forEach((key) => {
+    config.formConfigs[key].value = screeningItem[key];
+  });
   res.render('case/screening-exclusion', {
     caseNav: CaseNav,
     buttonConfig: getButtonConfig(),
-    config: getScreeningExclusionConfig(),
-    screeningObj: screeningItem
+    config,
+    caseId: req.params.caseId
   });
 };
 
