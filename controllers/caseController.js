@@ -348,11 +348,15 @@ exports.caseRegionForm = async (req, res) => {
   const caseId = req.params.caseId;
   const CaseNav = helpers.appendCaseIdToCaseNav(caseId);
   const screeningItem = await getScreeningItemByCaseId(caseId);
+  const config = getScreeningRegionConfig();
+  Object.keys(config.formConfigs).forEach((key) => {
+    config.formConfigs[key].value = screeningItem[key];
+  });
   res.render('case/screening-region', {
     caseNav: CaseNav,
     buttonConfig: getButtonConfig(),
-    config: getScreeningRegionConfig(),
-    screeningObj: screeningItem
+    config,
+    caseId: req.params.caseId
   });
 };
 
