@@ -1,49 +1,36 @@
 extends ../caseLayout
 
+include ../mixins/_formTemplate
+include ../mixins/_questionBtn
+
 block case-content
   .case-content
-    form.form-horizontal(action=`/screening/method/${screeningObj.case || ''}` method="POST")
+    form.form-horizontal(action=`/screening/method/${caseId}` method="POST")
       fieldset
         legend #{config.title}
 
         .row
           .col-sm-10
-            .checkbox
-              label
-                input(type="checkbox" name="method_1" checked=screeningObj.method_1)
-                span #{config.method_1.text}
+            +_formTemplate(config.formConfigs.method_1)
           .col-sm-2
-            button.btn.btn-default(type="button")
-              span.glyphicon.glyphicon-question-sign
+            +_questionBtn()
         
         .row
           .col-sm-10
-            .checkbox
-              label
-                input(type="checkbox" name="method_2" checked=screeningObj.method_2)
-                span #{config.method_2.text}
+            +_formTemplate(config.formConfigs.method_2)
           .col-sm-2
-            button.btn.btn-default(type="button")
-              span.glyphicon.glyphicon-question-sign
+            +_questionBtn()
 
         .row
           .col-sm-10
-            .checkbox
-              label
-                input(type="checkbox" name="method_3" checked=screeningObj.method_3)
-                span #{config.method_3.text}
+            +_formTemplate(config.formConfigs.method_3)
           .col-sm-2
-            button.btn.btn-default(type="button")
-              span.glyphicon.glyphicon-question-sign
+            +_questionBtn()
 
         .row
           .col-sm-10
-            .checkbox
-              label
-                input(type="checkbox" name="method_4" checked=screeningObj.method_4)
-                span #{config.method_4.text}
+            +_formTemplate(config.formConfigs.method_4)
           .col-sm-2
-            button.btn.btn-default(type="button")
-              span.glyphicon.glyphicon-question-sign
+            +_questionBtn()
 
         input(type="submit" value=buttonConfig.buttons.save.text)

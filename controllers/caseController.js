@@ -326,11 +326,15 @@ exports.caseMethodForm = async (req, res) => {
   const caseId = req.params.caseId;
   const CaseNav = helpers.appendCaseIdToCaseNav(caseId);
   const screeningItem = await getScreeningItemByCaseId(caseId);
+  const config = getScreeningMethodConfig();
+  Object.keys(config.formConfigs).forEach((key) => {
+    config.formConfigs[key].value = screeningItem[key];
+  });
   res.render('case/screening-method', {
     caseNav: CaseNav,
     buttonConfig: getButtonConfig(),
-    config: getScreeningMethodConfig(),
-    screeningObj: screeningItem
+    config,
+    caseId: req.params.caseId
   });
 };
 
