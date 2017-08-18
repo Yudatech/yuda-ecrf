@@ -1,7 +1,6 @@
 extends ../layout
 
 block content
-  pre= h.dump(user)
   .inner
     form.form-horizontal(action=`/user/${user._id || ''}` method="POST")
       fieldset

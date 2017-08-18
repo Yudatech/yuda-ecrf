@@ -1,5 +1,10 @@
 module.exports = [
   {
+    title: '概况',
+    name: 'overview',
+    link: '/overview'
+  },
+  {
     title: '首诊',
     name: 'screening',
     link: '/screening/basic',

@@ -2,7 +2,7 @@ const getOptionsLang = require('./configHelpers').getOptionsLang;
 
 const config = {
   title: {
-    zh: '新建病例'
+    zh: '病例概况'
   },
   labels: [{
     name: '_id',
@@ -27,7 +27,7 @@ const config = {
   }, {
     name: 'attachedDoc',
     text: {
-      zh: '知情同意书原件上传'
+      zh: '知情同意书'
     }
   }]
 };

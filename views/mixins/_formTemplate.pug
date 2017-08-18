@@ -1,4 +1,3 @@
-include _acceptdocTemplate
 include _checkboxTemplate
 include _textfieldTemplate
 include _dateTemplate
@@ -28,5 +27,3 @@ mixin _formTemplate(formConfig)
 
   else if formConfig.type === 'datetime'
     +_datetimeTemplate(formConfig.text, formConfig.date.name, formConfig.date.value, formConfig.time.name, formConfig.time.value)
-    
-  else if formConfig.type === 'acceptdoc'

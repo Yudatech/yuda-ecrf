@@ -1,3 +1,6 @@
+const moment = require('moment');
+moment.locale('zh-cn');
+
 const getSexConfig = require('../config/common/getSexConfig');
 const getScreeningBasicConfig = require('../config/screening/getScreeningBasicConfig');
 const getScreeningInclusionConfig = require('../config/screening/getScreeningInclusionConfig');
@@ -17,6 +20,7 @@ const getClinicalStageConfig = require('../config/common/getClinicalStageConfig'
 const getButtonConfig = require('../config/common/getButtonConfig');
 
 const getCaseFormConfig = require('../config/getCaseFormConfig');
+const getCaseOverviewConfig = require('../config/getCaseOverviewConfig');
 
 const helpers = require('./helpers');
 
@@ -82,7 +86,27 @@ exports.caseForm = async (req, res) => {
   const newId = `${userAbbr}${'0'.repeat(num - max.length)}${max}`;
   res.render('case/caseForm', {
     _id: newId,
-    caseFormConfig: getCaseFormConfig()
+    caseFormConfig: getCaseFormConfig(),
+    buttonConfig: getButtonConfig()
+  });
+};
+
+exports.caseOverviewForm = async (req, res) => {
+  const caseId = req.params.caseId;
+  const CaseNav = helpers.appendCaseIdToCaseNav(caseId);
+  const caseItem = await Case.findById(caseId);
+  const caseObj = caseItem.toObject();
+  const config = {
+    _id: caseObj._id,
+    subjname: caseObj.subjname,
+    subjabbr: caseObj.subjabbr,
+    subjAcceptDate: moment(caseObj.subjAcceptDate).format('ll'),
+    attachedDoc: caseObj.attachedDoc
+  };
+  res.render('case-overview', {
+    caseNav: CaseNav,
+    config,
+    caseOverviewConfig: getCaseOverviewConfig()
   });
 };
 

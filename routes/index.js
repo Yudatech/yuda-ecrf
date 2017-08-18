@@ -50,6 +50,8 @@ router.get('/case', caseController.caseForm);
 // create case
 router.post('/case', caseController.uploadAcceptDoc, caseController.saveAcceptDoc, caseController.createCase);
 
+router.get('/overview/:caseId', caseController.caseOverviewForm);
+
 router.get('/screening/basic/:caseId', caseController.caseBasicForm);
 router.post('/screening/basic/:caseId', caseController.updateCaseBasic);
 
