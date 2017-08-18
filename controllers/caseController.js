@@ -370,12 +370,21 @@ exports.caseDignoseForm = async (req, res) => {
   const caseId = req.params.caseId;
   const CaseNav = helpers.appendCaseIdToCaseNav(caseId);
   const screeningItem = await getScreeningItemByCaseId(caseId);
+  const config = getScreeningDignoseConfig();
+  Object.keys(config.formConfigs).forEach((key) => {
+    if (key === 'dignose_3') {
+      config.formConfigs[key].value = screeningItem.key;
+      config.formConfigs[key].options = getClinicalStageConfig();
+    }
+    else {
+      config.formConfigs[key].value = screeningItem[key];
+    }
+  });
   res.render('case/screening-dignose', {
     caseNav: CaseNav,
     buttonConfig: getButtonConfig(),
-    config: getScreeningDignoseConfig(),
-    clinicalStageConfig: getClinicalStageConfig(),
-    screeningObj: screeningItem
+    config,
+    caseId: req.params.caseId
   });
 };
 
