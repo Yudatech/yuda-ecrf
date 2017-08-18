@@ -1,59 +1,42 @@
 extends ../caseLayout
 
+include ../mixins/_formTemplate
+include ../mixins/_questionBtn
+
 block case-content
   .case-content
-    form.form-horizontal(action=`/screening/conmed/${screeningObj.case || ''}` method="POST")
+    form.form-horizontal(action=`/screening/conmed/${caseId}` method="POST")
       fieldset
         legend #{config.title}
 
         .row
           .col-sm-10
-            .checkbox
-              label
-                input(type="checkbox" name="conmed_1" checked=screeningObj.conmed_1)
-                span #{config.conmed_1.text}
+            +_formTemplate(config.formConfigs.conmed_1)
           .col-sm-2
-            button.btn.btn-default(type="button")
-              span.glyphicon.glyphicon-question-sign
+            +_questionBtn()
         
         .row
           .col-sm-10
-            .checkbox
-              label
-                input(type="checkbox" name="conmed_2" checked=screeningObj.conmed_2)
-                span #{config.conmed_2.text}
+            +_formTemplate(config.formConfigs.conmed_2)
           .col-sm-2
-            button.btn.btn-default(type="button")
-              span.glyphicon.glyphicon-question-sign
+            +_questionBtn()
 
         .row
           .col-sm-10
-            .checkbox
-              label
-                input(type="checkbox" name="conmed_3" checked=screeningObj.conmed_3)
-                span #{config.conmed_3.text}
+            +_formTemplate(config.formConfigs.conmed_3)
           .col-sm-2
-            button.btn.btn-default(type="button")
-              span.glyphicon.glyphicon-question-sign
+            +_questionBtn()
 
         .row
           .col-sm-10
-            .checkbox
-              label
-                input(type="checkbox" name="conmed_4" checked=screeningObj.conmed_4)
-                span #{config.conmed_4.text}
+            +_formTemplate(config.formConfigs.conmed_4)
           .col-sm-2
-            button.btn.btn-default(type="button")
-              span.glyphicon.glyphicon-question-sign
+            +_questionBtn()
 
         .row
           .col-sm-10
-            .checkbox
-              label
-                input(type="checkbox" name="conmed_5" checked=screeningObj.conmed_5)
-                span #{config.conmed_5.text}
+            +_formTemplate(config.formConfigs.conmed_5)
           .col-sm-2
-            button.btn.btn-default(type="button")
-              span.glyphicon.glyphicon-question-sign
+            +_questionBtn()
 
         input(type="submit" value=buttonConfig.buttons.save.text)

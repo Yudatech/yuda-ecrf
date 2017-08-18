@@ -196,11 +196,15 @@ exports.caseDiseaseForm = async (req, res) => {
   const caseId = req.params.caseId;
   const CaseNav = helpers.appendCaseIdToCaseNav(caseId);
   const screeningItem = await getScreeningItemByCaseId(caseId);
+  const config = getScreeningDiseaseConfig();
+  Object.keys(config.formConfigs).forEach((key) => {
+    config.formConfigs[key].value = screeningItem[key];
+  });
   res.render('case/screening-disease', {
     caseNav: CaseNav,
     buttonConfig: getButtonConfig(),
-    config: getScreeningDiseaseConfig(),
-    screeningObj: screeningItem
+    config,
+    caseId: req.params.caseId
   });
 };
 
@@ -214,11 +218,15 @@ exports.caseConMedForm = async (req, res) => {
   const caseId = req.params.caseId;
   const CaseNav = helpers.appendCaseIdToCaseNav(caseId);
   const screeningItem = await getScreeningItemByCaseId(caseId);
+  const config = getScreeningConMedConfig();
+  Object.keys(config.formConfigs).forEach((key) => {
+    config.formConfigs[key].value = screeningItem[key];
+  });
   res.render('case/screening-conmed', {
     caseNav: CaseNav,
     buttonConfig: getButtonConfig(),
-    config: getScreeningConMedConfig(),
-    screeningObj: screeningItem
+    config,
+    caseId: req.params.caseId
   });
 };
 
@@ -232,12 +240,21 @@ exports.caseVitalSignForm = async (req, res) => {
   const caseId = req.params.caseId;
   const CaseNav = helpers.appendCaseIdToCaseNav(caseId);
   const screeningItem = await getScreeningItemByCaseId(caseId);
+  const config = getScreeningVitalSignConfig();
+  Object.keys(config.formConfigs).forEach((key) => {
+    if (key === 'vitalsign_4') {
+      config.formConfigs[key].value = screeningItem.vitalsign_4;
+      config.formConfigs[key].options = getAbdominalExamResultConfig();
+    }
+    else {
+      config.formConfigs[key].value = screeningItem[key];
+    }
+  });
   res.render('case/screening-vitalsign', {
     caseNav: CaseNav,
     buttonConfig: getButtonConfig(),
-    config: getScreeningVitalSignConfig(),
-    abdominalExamResultConfig: getAbdominalExamResultConfig(),
-    screeningObj: screeningItem
+    config,
+    caseId: req.params.caseId
   });
 };
 

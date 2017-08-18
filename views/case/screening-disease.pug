@@ -1,97 +1,82 @@
 extends ../caseLayout
 
+include ../mixins/_formTemplate
+include ../mixins/_questionBtn
+
 block case-content
   .case-content
-    form.form-horizontal(action=`/screening/disease/${screeningObj.case || ''}` method="POST")
+    form.form-horizontal(action=`/screening/disease/${caseId}` method="POST")
       fieldset
         legend #{config.title}
 
         .row
           .col-sm-10
-            .checkbox
-              label
-                input(type="checkbox" name="disease_1" checked=screeningObj.disease_1)
-                span #{config.disease_1.text}
+            .form-group
+              .col-sm-offset-4.col-sm-8
+                +_formTemplate(config.formConfigs.disease_1)
           .col-sm-2
-            button.btn.btn-default(type="button")
-              span.glyphicon.glyphicon-question-sign
+            +_questionBtn()
         
         .row
           .col-sm-10
-            .checkbox
-              label
-                input(type="checkbox" name="disease_2" checked=screeningObj.disease_2)
-                span #{config.disease_2.text}
+            .form-group
+              .col-sm-offset-4.col-sm-8
+                +_formTemplate(config.formConfigs.disease_2)
           .col-sm-2
-            button.btn.btn-default(type="button")
-              span.glyphicon.glyphicon-question-sign
+            +_questionBtn()
 
         .row
           .col-sm-10
-            .checkbox
-              label
-                input(type="checkbox" name="disease_3" checked=screeningObj.disease_3)
-                span #{config.disease_3.text}
+            .form-group
+              .col-sm-offset-4.col-sm-8
+                +_formTemplate(config.formConfigs.disease_3)
           .col-sm-2
-            button.btn.btn-default(type="button")
-              span.glyphicon.glyphicon-question-sign
+            +_questionBtn()
 
         .row
           .col-sm-10
-            .checkbox
-              label
-                input(type="checkbox" name="disease_4" checked=screeningObj.disease_4)
-                span #{config.disease_4.text}
+            .form-group
+              .col-sm-offset-4.col-sm-8
+                +_formTemplate(config.formConfigs.disease_4)
           .col-sm-2
-            button.btn.btn-default(type="button")
-              span.glyphicon.glyphicon-question-sign
+            +_questionBtn()
 
         .row
           .col-sm-10
-            .checkbox
-              label
-                input(type="checkbox" name="disease_5" checked=screeningObj.disease_5)
-                span #{config.disease_5.text}
+            .form-group
+              .col-sm-offset-4.col-sm-8
+                +_formTemplate(config.formConfigs.disease_5)
           .col-sm-2
-            button.btn.btn-default(type="button")
-              span.glyphicon.glyphicon-question-sign
+            +_questionBtn()
         
         .row
           .col-sm-10
-            .checkbox
-              label
-                input(type="checkbox" name="disease_6" checked=screeningObj.disease_6)
-                span #{config.disease_6.text}
+            .form-group
+              .col-sm-offset-4.col-sm-8
+                +_formTemplate(config.formConfigs.disease_6)
           .col-sm-2
-            button.btn.btn-default(type="button")
-              span.glyphicon.glyphicon-question-sign
+            +_questionBtn()
 
         .row
           .col-sm-10
-            .checkbox
-              label
-                input(type="checkbox" name="disease_7" checked=screeningObj.disease_7)
-                span #{config.disease_7.text}
+            .form-group
+              .col-sm-offset-4.col-sm-8
+                +_formTemplate(config.formConfigs.disease_7)
           .col-sm-2
-            button.btn.btn-default(type="button")
-              span.glyphicon.glyphicon-question-sign
+            +_questionBtn()
 
         .row
           .col-sm-10
-            .checkbox
-              label
-                input(type="checkbox" name="disease_8" checked=screeningObj.disease_8)
-                span #{config.disease_8.text}
+            .form-group
+              .col-sm-offset-4.col-sm-8
+                +_formTemplate(config.formConfigs.disease_8)
           .col-sm-2
-            button.btn.btn-default(type="button")
-              span.glyphicon.glyphicon-question-sign
+            +_questionBtn()
 
         .row
           .col-sm-10
-            label #{config.disease_9.text}
-            textarea.form-control(rows="5" name="disease_9" value=screeningObj.disease_9)
+            +_formTemplate(config.formConfigs.disease_9)
           .col-sm-2
-            button.btn.btn-default(type="button")
-              span.glyphicon.glyphicon-question-sign
+            +_questionBtn()
 
         input(type="submit" value=buttonConfig.buttons.save.text)
