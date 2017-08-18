@@ -1,47 +1,31 @@
 extends caseLayout
 
+include mixins/_formTemplate
+include mixins/_questionBtn
+
 block case-content
   .case-content
-    form.form-horizontal(action=`/surgery/${surgeryObj.case || ''}` method="POST")
+    form.form-horizontal(action=`/surgery/${caseId}` method="POST")
       fieldset
         legend #{config.title.device}
 
         .row
           .col-sm-10
-            label.col-sm-4.control-label #{config.surgerydtc.text}
-            .col-sm-8
-              #surgerydtc.input-group.date(data-provide="datepicker")
-                input.form-control(value=surgeryObj.surgerydtc)
-                span.input-group-addon
-                  i.glyphicon.glyphicon-th
-              input#surgerydtcReal(type="hidden" name="surgerydtc" value=surgeryObj.surgerydtc)
+            +_formTemplate(config.formConfigs.surgerydtc)
           .col-sm-2
-            button.btn.btn-default(type="button")
-              span.glyphicon.glyphicon-question-sign
+            +_questionBtn()
 
         .row
           .col-sm-10
-            .form-group
-              label.col-sm-4.control-label #{config.device_1.text}
-              .col-sm-8
-                select.form-control(name="device_1")
-                  each surgeryLapAidModelItem in surgeryLapAidModelConfig
-                    option(value=surgeryLapAidModelItem.value checked=(surgeryObj.device_1 === surgeryLapAidModelItem.value)) #{surgeryLapAidModelItem.text}
+            +_formTemplate(config.formConfigs.device_1)
           .col-sm-2
-            button.btn.btn-default(type="button")
-              span.glyphicon.glyphicon-question-sign
+            +_questionBtn()
 
         .row
           .col-sm-10
-            .form-group
-              label.col-sm-4.control-label #{config.device_2.text}
-              .col-sm-8
-                select.form-control(name="device_2")
-                  each surgeryDmhDmhcModelItem in surgeryDmhDmhcModelConfig
-                    option(value=surgeryDmhDmhcModelItem.value checked=(surgeryDmhDmhcModelItem.value === surgeryObj.device_2)) #{surgeryDmhDmhcModelItem.text}
+            +_formTemplate(config.formConfigs.device_2)
           .col-sm-2
-            button.btn.btn-default(type="button")
-              span.glyphicon.glyphicon-question-sign
+            +_questionBtn()
 
       fieldset
         legend #{config.title.surgery}
@@ -49,195 +33,131 @@ block case-content
         .row
           .col-sm-10
             .form-group
-              .col-sm-offset-2.col-sm-10
-                .checkbox
-                  label
-                    input(type="checkbox" name="surgery_1" checked=surgeryObj.surgery_1)
-                    span #{config.surgery_1.text}
+              .col-sm-offset-4.col-sm-10
+                +_formTemplate(config.formConfigs.surgery_1)
           .col-sm-2
-            button.btn.btn-default(type="button")
-              span.glyphicon.glyphicon-question-sign
+            +_questionBtn()
 
         .row
           .col-sm-10
             .form-group
-              .col-sm-offset-2.col-sm-10
-                .checkbox
-                  label
-                    input(type="checkbox" name="surgery_2" checked=surgeryObj.surgery_2)
-                    span #{config.surgery_2.text}
+              .col-sm-offset-4.col-sm-10
+                +_formTemplate(config.formConfigs.surgery_2)
           .col-sm-2
-            button.btn.btn-default(type="button")
-              span.glyphicon.glyphicon-question-sign
+            +_questionBtn()
 
         .row
           .col-sm-10
             .form-group
-              .col-sm-offset-2.col-sm-10
-                .checkbox
-                  label
-                    input(type="checkbox" name="surgery_3" checked=surgeryObj.surgery_3)
-                    span #{config.surgery_3.text}
+              .col-sm-offset-4.col-sm-10
+                +_formTemplate(config.formConfigs.surgery_3)
           .col-sm-2
-            button.btn.btn-default(type="button")
-              span.glyphicon.glyphicon-question-sign
+            +_questionBtn()
         
         .row
           .col-sm-10
-            .form-group
-              label.col-sm-2.control-label #{config.surgery_4.text}
-              .col-sm-10
-                input.form-control(type="number" step="any" name="surgery_4" value=surgeryObj.surgery_4)
+            +_formTemplate(config.formConfigs.surgery_4)
           .col-sm-2
-            button.btn.btn-default(type="button")
-              span.glyphicon.glyphicon-question-sign
+            +_questionBtn()
+
+        .row
+          .col-sm-10
+            +_formTemplate(config.formConfigs.surgery_5)
+          .col-sm-2
+            +_questionBtn()
+
+        .row
+          .col-sm-10
+            +_formTemplate(config.formConfigs.surgery_6)
+          .col-sm-2
+            +_questionBtn()
+
+        .row
+          .col-sm-10
+            +_formTemplate(config.formConfigs.surgery_7)
+          .col-sm-2
+            +_questionBtn()
+
+        .row
+          .col-sm-10
+            +_formTemplate(config.formConfigs.surgery_8)
+          .col-sm-2
+            +_questionBtn()
+
+        .row
+          .col-sm-10
+            +_formTemplate(config.formConfigs.surgery_9)
+          .col-sm-2
+            +_questionBtn()
+
+        .row
+          .col-sm-10
+            +_formTemplate(config.formConfigs.surgery_10)
+          .col-sm-2
+            +_questionBtn()
+
+        .row
+          .col-sm-10
+            +_formTemplate(config.formConfigs.surgery_11)
+          .col-sm-2
+            +_questionBtn()
+
+        .row
+          .col-sm-10
+            +_formTemplate(config.formConfigs.surgery_12)
+          .col-sm-2
+            +_questionBtn()
+
+        .row
+          .col-sm-10
+            +_formTemplate(config.formConfigs.surgery_13)
+          .col-sm-2
+            +_questionBtn()
 
         .row
           .col-sm-10
             .form-group
-              label.col-sm-2.control-label #{config.surgery_5.text}
-              .col-sm-10
-                input.form-control(type="number" step="any" name="surgery_5" value=surgeryObj.surgery_5)
+              .col-sm-offset-4.col-sm-10
+                +_formTemplate(config.formConfigs.surgery_14)
           .col-sm-2
-            button.btn.btn-default(type="button")
-              span.glyphicon.glyphicon-question-sign
+            +_questionBtn()
 
         .row
           .col-sm-10
             .form-group
-              label.col-sm-2.control-label #{config.surgery_6.text}
-              .col-sm-10
-                input.form-control(type="number" step="any" name="surgery_6" value=surgeryObj.surgery_6)
+              .col-sm-offset-4.col-sm-10
+                +_formTemplate(config.formConfigs.surgery_15)
           .col-sm-2
-            button.btn.btn-default(type="button")
-              span.glyphicon.glyphicon-question-sign
+            +_questionBtn()
 
         .row
           .col-sm-10
             .form-group
-              label.col-sm-2.control-label #{config.surgery_7.text}
-              .col-sm-10
-                input.form-control(type="text" name="surgery_7" value=surgeryObj.surgery_7)
+              .col-sm-offset-4.col-sm-10
+                +_formTemplate(config.formConfigs.surgery_16)
           .col-sm-2
-            button.btn.btn-default(type="button")
-              span.glyphicon.glyphicon-question-sign
+            +_questionBtn()
 
         .row
           .col-sm-10
             .form-group
-              label.col-sm-2.control-label #{config.surgery_8.text}
-              .col-sm-10
-                input.form-control(type="number" step="1" name="surgery_8" value=surgeryObj.surgery_8)
+              .col-sm-offset-4.col-sm-10
+                +_formTemplate(config.formConfigs.surgery_17)
           .col-sm-2
-            button.btn.btn-default(type="button")
-              span.glyphicon.glyphicon-question-sign
+            +_questionBtn()
+
+        .row
+          .col-sm-10
+            +_formTemplate(config.formConfigs.surgery_18)
+          .col-sm-2
+            +_questionBtn()
 
         .row
           .col-sm-10
             .form-group
-              label.col-sm-2.control-label #{config.surgery_9.text}
-              .col-sm-10
-                input.form-control(type="number" step="1" name="surgery_9" value=surgeryObj.surgery_9)
+              .col-sm-offset-4.col-sm-10
+                +_formTemplate(config.formConfigs.surgery_19)
           .col-sm-2
-            button.btn.btn-default(type="button")
-              span.glyphicon.glyphicon-question-sign
-
-        .row
-          .col-sm-10
-            .form-group
-              label.col-sm-2.control-label #{config.surgery_10.text}
-              .col-sm-10
-                input.form-control(type="number" step="any" name="surgery_10" value=surgeryObj.surgery_10)
-          .col-sm-2
-            button.btn.btn-default(type="button")
-              span.glyphicon.glyphicon-question-sign
-
-        .row
-          .col-sm-10
-            .form-group
-              label.col-sm-2.control-label #{config.surgery_11.text}
-              .col-sm-10
-                input.form-control(type="number" step="any" name="surgery_11" value=surgeryObj.surgery_11)
-          .col-sm-2
-            button.btn.btn-default(type="button")
-              span.glyphicon.glyphicon-question-sign
-
-        .row
-          .col-sm-10
-            .form-group
-              label.col-sm-2.control-label #{config.surgery_12.text}
-              .col-sm-10
-                input.form-control(type="number" step="1" name="surgery_12" value=surgeryObj.surgery_12)
-          .col-sm-2
-            button.btn.btn-default(type="button")
-              span.glyphicon.glyphicon-question-sign
-
-        .row
-          .col-sm-10
-            .form-group
-              label.col-sm-2.control-label #{config.surgery_13.text}
-              .col-sm-10
-                input.form-control(type="number" step="any" name="surgery_13" value=surgeryObj.surgery_13)
-          .col-sm-2
-            button.btn.btn-default(type="button")
-              span.glyphicon.glyphicon-question-sign
-
-        .row
-          .col-sm-10
-            .form-group
-              .col-sm-offset-2.col-sm-10
-                .checkbox
-                  label
-                    input(type="checkbox" name="surgery_14" checked=surgeryObj.surgery_14)
-                    span #{config.surgery_14.text}
-          .col-sm-2
-            button.btn.btn-default(type="button")
-              span.glyphicon.glyphicon-question-sign
-
-        .row
-          .col-sm-10
-            .form-group
-              .col-sm-offset-2.col-sm-10
-                .checkbox
-                  label
-                    input(type="checkbox" name="surgery_15" checked=surgeryObj.surgery_15)
-                    span #{config.surgery_15.text}
-          .col-sm-2
-            button.btn.btn-default(type="button")
-              span.glyphicon.glyphicon-question-sign
-
-        .row
-          .col-sm-10
-            .form-group
-              .col-sm-offset-2.col-sm-10
-                .checkbox
-                  label
-                    input(type="checkbox" name="surgery_16" checked=surgeryObj.surgery_16)
-                    span #{config.surgery_16.text}
-          .col-sm-2
-            button.btn.btn-default(type="button")
-              span.glyphicon.glyphicon-question-sign
-
-        .row
-          .col-sm-10
-            .form-group
-              .col-sm-offset-2.col-sm-10
-                .checkbox
-                  label
-                    input(type="checkbox" name="surgery_17" checked=surgeryObj.surgery_17)
-                    span #{config.surgery_17.text}
-          .col-sm-2
-            button.btn.btn-default(type="button")
-              span.glyphicon.glyphicon-question-sign
-
-        .row
-          .col-sm-10
-            .form-group
-              label.col-sm-2 #{config.surgery_18.text}
-              .col-sm-10
-                textarea.form-control(rows="5" name="surgery_18" value=surgeryObj.surgery_18)
-          .col-sm-2
-            button.btn.btn-default(type="button")
-              span.glyphicon.glyphicon-question-sign
+            +_questionBtn()
 
         input(type="submit" value=buttonConfig.buttons.save.text)

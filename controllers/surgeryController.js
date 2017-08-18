@@ -39,31 +39,47 @@ async function getSurgeryItemByCaseId(caseId) {
   let surgeryItem = await Surgery.findOne({
     case: caseId
   });
+  if (!surgeryItem) {
+    surgeryItem = {
+      case: caseId
+    };
+  }
   return surgeryItem;
 }
 
 exports.surgeryForm = async (req, res) => {
   const CaseNav = helpers.appendCaseIdToCaseNav(req.params.caseId);
   const surgeryItem = await getSurgeryItemByCaseId(req.params.caseId);
-  let surgeryObj;
-  if (!surgeryItem) {
-    surgeryObj = {
-      case: req.params.caseId
-    };
-  }
-  else {
-    surgeryObj = surgeryItem.toObject();
-    surgeryObj.surgerydtc = moment(surgeryItem.surgerydtc).format('MM/DD/YYYY');
-  }
+  const config = getSurgeryConfig();
+  Object.keys(config.formConfigs).forEach((key) => {
+    if (key === 'device_1') {
+      config.formConfigs[key].value = surgeryItem.key;
+      config.formConfigs[key].options = getSurgeryLapAidModelConfig();
+    }
+    else if (key === 'device_2') {
+      config.formConfigs[key].value = surgeryItem.key;
+      config.formConfigs[key].options = getSurgeryDmhDmhcModelConfig();
+    }
+    else if (key === 'surgery_8') {
+      config.formConfigs[key].value = surgeryItem.key;
+      config.formConfigs[key].options = getSurgeryAnastomoticMethodsConfig();
+    }
+    else if (key === 'surgery_9') {
+      config.formConfigs[key].value = surgeryItem.key;
+      config.formConfigs[key].options = getSurgeryMethodsConfig();
+    }
+    else if (key === 'surgerydtc') {
+      config.formConfigs[key].value = moment(surgeryItem.surgerydtc).format('MM/DD/YYYY');
+    }
+    else {
+      config.formConfigs[key].value = surgeryItem[key];
+    }
+  });
   res.render('surgery', {
     caseNav: CaseNav,
-    config: getSurgeryConfig(),
-    surgeryAnastomoticMethodsConfig: getSurgeryAnastomoticMethodsConfig(),
-    surgeryLapAidModelConfig: getSurgeryLapAidModelConfig(),
-    surgeryDmhDmhcModelConfig: getSurgeryDmhDmhcModelConfig(),
-    surgeryMethodsConfig: getSurgeryMethodsConfig(),
+    config,
     buttonConfig: getButtonConfig(),
-    surgeryObj: surgeryObj
+    caseId: req.params.caseId
   });
 };
 
