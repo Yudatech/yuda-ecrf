@@ -5,6 +5,7 @@ include _dateTemplate
 include _textareaTemplate
 include _numberfieldTemplate
 include _selectTemplate
+include _datetimeTemplate
 
 mixin _formTemplate(formConfig)
   if formConfig.type === 'checkbox'
@@ -26,5 +27,6 @@ mixin _formTemplate(formConfig)
     +_dateTemplate(formConfig.name, formConfig.text, formConfig.value)
 
   else if formConfig.type === 'datetime'
-
+    +_datetimeTemplate(formConfig.text, formConfig.date.name, formConfig.date.value, formConfig.time.name, formConfig.time.value)
+    
   else if formConfig.type === 'acceptdoc'

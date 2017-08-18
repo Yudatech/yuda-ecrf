@@ -81,15 +81,51 @@ exports.aeForm = async (req, res) => {
     };
   }
 
+  const config = getAeConfig();
+  Object.keys(config.formConfigs).forEach((key) => {
+    if (key === 'aeserv') {
+      config.formConfigs[key].value = ae[key];
+      config.formConfigs[key].options = getAeLevelConfig();
+    }
+    else if (key === 'aerel') {
+      config.formConfigs[key].value = ae[key];
+      config.formConfigs[key].options = getAeRelConfig();
+    }
+    else if (key === 'aeres_1') {
+      config.formConfigs[key].value = ae[key];
+      config.formConfigs[key].options = getAeResConfig();
+    }
+    else if (key === 'aestdtc') {
+      config.formConfigs[key].date = {
+        name: 'aestdtc_date',
+        value: moment(ae.aestdtc).format('MM/DD/YYYY')
+      };
+      config.formConfigs[key].time = {
+        name: 'aestdtc_time',
+        value: moment(ae.aestdtc).format('HH:mm')
+      };
+    }
+    else if (key === 'aeeddtc') {
+      config.formConfigs[key].date = {
+        name: 'aeeddtc_date',
+        value: moment(ae.aeeddtc).format('MM/DD/YYYY')
+      };
+      config.formConfigs[key].time = {
+        name: 'aeeddtc_time',
+        value: moment(ae.aeeddtc).format('HH:mm')
+      };
+    }
+    else {
+      config.formConfigs[key].value = ae[key];
+    }
+  });
+
   res.render('ae/aeForm', {
     caseNav: CaseNav,
-    aeConfig: getAeConfig(),
-    aeLevelConfig: getAeLevelConfig(),
-    aeRelConfig: getAeRelConfig(),
-    aeResConfig: getAeResConfig(),
+    config,
     buttonConfig: getButtonConfig(),
-    ae: ae,
-    caseId: caseId
+    caseId: caseId,
+    aeId: aeId
   });
 };
 
