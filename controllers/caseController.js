@@ -297,12 +297,22 @@ exports.caseAssistantForm = async (req, res) => {
   const caseId = req.params.caseId;
   const CaseNav = helpers.appendCaseIdToCaseNav(caseId);
   const screeningItem = await getScreeningItemByCaseId(caseId);
+  const selectFields = ['assistant_1', 'assistant_3', 'assistant_5'];
+  const config = getScreeningAssistantConfig();
+  Object.keys(config.formConfigs).forEach((key) => {
+    if (selectFields.includes(key)) {
+      config.formConfigs[key].value = screeningItem.key;
+      config.formConfigs[key].options = getAssistantExamResultConfig();
+    }
+    else {
+      config.formConfigs[key].value = screeningItem[key];
+    }
+  });
   res.render('case/screening-assistant', {
     caseNav: CaseNav,
     buttonConfig: getButtonConfig(),
-    config: getScreeningAssistantConfig(),
-    assistantExamResultConfig: getAssistantExamResultConfig(),
-    screeningObj: screeningItem
+    config,
+    caseId: req.params.caseId
   });
 };
 

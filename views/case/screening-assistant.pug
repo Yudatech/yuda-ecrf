@@ -1,75 +1,48 @@
 extends ../caseLayout
 
+include ../mixins/_formTemplate
+include ../mixins/_questionBtn
+
 block case-content
   .case-content
-    form.form-horizontal(action=`/screening/assistant/${screeningObj.case || ''}` method="POST")
+    form.form-horizontal(action=`/screening/assistant/${caseId}` method="POST")
       fieldset
         legend #{config.title}
 
         .row
           .col-sm-10
-            .form-group
-              label.col-sm-4.control-label #{config.assistant_1.text}
-              .col-sm-8
-                select.form-control(name="assistant_1")
-                  each assistantExamResultItem in assistantExamResultConfig
-                    option(value=assistantExamResultItem.value selected=(screeningObj.assistant_1 === assistantExamResultItem.value)) #{assistantExamResultItem.text}
+            +_formTemplate(config.formConfigs.assistant_1)
           .col-sm-2
-            button.btn.btn-default(type="button")
-              span.glyphicon.glyphicon-question-sign
+            +_questionBtn()
 
         .row
           .col-sm-10
-            .form-group
-              label.col-sm-4.control-label #{config.assistant_2.text}
-              .col-sm-8
-                textarea.form-control(rows="5" name="assistant_2" value=screeningObj.assistant_2)
+            +_formTemplate(config.formConfigs.assistant_2)
           .col-sm-2
-            button.btn.btn-default(type="button")
-              span.glyphicon.glyphicon-question-sign
+            +_questionBtn()
 
         .row
           .col-sm-10
-            .form-group
-              label.col-sm-4.control-label #{config.assistant_3.text}
-              .col-sm-8
-                select.form-control(name="assistant_3")
-                  each assistantExamResultItem in assistantExamResultConfig
-                    option(value=assistantExamResultItem.value selected=(screeningObj.assistant_3 === assistantExamResultItem.value)) #{assistantExamResultItem.text}
+            +_formTemplate(config.formConfigs.assistant_3)
           .col-sm-2
-            button.btn.btn-default(type="button")
-              span.glyphicon.glyphicon-question-sign
+            +_questionBtn()
 
         .row
           .col-sm-10
-            .form-group
-              label.col-sm-4.control-label #{config.assistant_4.text}
-              .col-sm-8
-                textarea.form-control(rows="5" name="assistant_4" value=screeningObj.assistant_4)
+            +_formTemplate(config.formConfigs.assistant_4)
           .col-sm-2
-            button.btn.btn-default(type="button")
-              span.glyphicon.glyphicon-question-sign
+            +_questionBtn()
 
         .row
           .col-sm-10
-            .form-group
-              label.col-sm-4.control-label #{config.assistant_5.text}
-              .col-sm-8
-                select.form-control(name="assistant_5")
-                  each assistantExamResultItem in assistantExamResultConfig
-                    option(value=assistantExamResultItem.value selected=(screeningObj.assistant_5 === assistantExamResultItem.value)) #{assistantExamResultItem.text}
+            +_formTemplate(config.formConfigs.assistant_5)
           .col-sm-2
-            button.btn.btn-default(type="button")
-              span.glyphicon.glyphicon-question-sign
+            +_questionBtn()
 
         .row
           .col-sm-10
-            .form-group
-              label.col-sm-4.control-label #{config.assistant_6.text}
-              .col-sm-8
-                textarea.form-control(rows="5" name="assistant_6" value=screeningObj.assistant_6)
+            +_formTemplate(config.formConfigs.assistant_6)
           .col-sm-2
-            button.btn.btn-default(type="button")
-              span.glyphicon.glyphicon-question-sign
+            +_questionBtn()
 
         input(type="submit" value=buttonConfig.buttons.save.text)
