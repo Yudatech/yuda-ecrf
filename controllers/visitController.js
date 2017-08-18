@@ -67,7 +67,6 @@ exports.visitForm = async (req, res) => {
   if (visitId !== undefined) {
     const visitItem = await Visit.findById(visitId);
     visit = visitItem.toObject();
-    visit.visitdtc = moment(visitItem.visitdtc).format('MM/DD/YYYY');
   }
   else {
     visit = {
@@ -75,20 +74,58 @@ exports.visitForm = async (req, res) => {
     };
   }
 
+  const config = getVisitConfig();
+  Object.keys(config.formConfigs).forEach((key) => {
+    if (key === 'visittype') {
+      config.formConfigs[key].value = visit.key;
+      config.formConfigs[key].options = getVisitTypesConfig();
+    }
+    else if (key === 'visitres') {
+      config.formConfigs[key].value = visit.key;
+      config.formConfigs[key].options = getVisitResConfig();
+    }
+    else if (key === 'param_1') {
+      config.formConfigs[key].value = visit.key;
+      config.formConfigs[key].options = getVisitParam1Config();
+    }
+    else if (key === 'param_2') {
+      config.formConfigs[key].value = visit.key;
+      config.formConfigs[key].options = getVisitParam2Config();
+    }
+    else if (key === 'param_3') {
+      config.formConfigs[key].value = visit.key;
+      config.formConfigs[key].options = getVisitParam3Config();
+    }
+    else if (key === 'param_8') {
+      config.formConfigs[key].value = visit.key;
+      config.formConfigs[key].options = getVisitParam8Config();
+    }
+    else if (key === 'param_13') {
+      config.formConfigs[key].value = visit.key;
+      config.formConfigs[key].options = getVisitFoodTypesConfig();
+    }
+    else if (key === 'param_14') {
+      config.formConfigs[key].value = visit.key;
+      config.formConfigs[key].options = getVisitParam14Config();
+    }
+    else if (key === 'param_15') {
+      config.formConfigs[key].value = visit.key;
+      config.formConfigs[key].options = getVisitParam14Config();
+    }
+    else if (key === 'visitdtc') {
+      config.formConfigs[key].value = moment(visit.visitdtc).format('MM/DD/YYYY');
+    }
+    else {
+      config.formConfigs[key].value = visit[key];
+    }
+  });
+
   res.render('visit/visitForm', {
     caseNav: CaseNav,
-    visitConfig: getVisitConfig(),
-    visitFoodTypesConfig: getVisitFoodTypesConfig(),
-    visitParam14Config: getVisitParam14Config(),
-    visitParam1Config: getVisitParam1Config(),
-    visitParam2Config: getVisitParam2Config(),
-    visitParam3Config: getVisitParam3Config(),
-    visitParam8Config: getVisitParam8Config(),
-    visitResConfig: getVisitResConfig(),
-    visitTypesConfig: getVisitTypesConfig(),
+    config,
     buttonConfig: getButtonConfig(),
-    visit: visit,
-    caseId: caseId
+    caseId: caseId,
+    visitId: visit._id
   });
 };
 

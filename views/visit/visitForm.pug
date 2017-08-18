@@ -1,332 +1,200 @@
 extends ../caseLayout
 
+include ../mixins/_formTemplate
+include ../mixins/_questionBtn
+
 block case-content
   .case-content
-    form.form-horizontal(action=`/visit/${caseId}/${visit._id || ''}` method="POST")
+    form.form-horizontal(action=`/visit/${caseId}/${visitId || ''}` method="POST")
       fieldset
-        legend #{visitConfig.title}
+        legend #{config.title}
 
         .row
           .col-sm-10
-            .form-group
-              label.col-sm-4.control-label #{visitConfig.labels.visitnum.text}
-              .col-sm-8
-                input.form-control(type="number" step="1" name="visitnum" value=visit.visitnum)
+            +_formTemplate(config.formConfigs.visitnum)
           .col-sm-2
-            button.btn.btn-default(type="button")
-              span.glyphicon.glyphicon-question-sign
+            +_questionBtn()
 
         .row
           .col-sm-10
-            label.col-sm-4.control-label #{visitConfig.labels.visitdtc.text}
-            .col-sm-8
-              #visitdtc.input-group.date(data-provide="datepicker")
-                input.form-control(value=visit.visitdtc)
-                span.input-group-addon
-                  i.glyphicon.glyphicon-th
-              input#visitdtcReal(type="hidden" name="visitdtc" value=visit.visitdtc)
+            +_formTemplate(config.formConfigs.visitdtc)
           .col-sm-2
-            button.btn.btn-default(type="button")
-              span.glyphicon.glyphicon-question-sign
+            +_questionBtn()
 
         .row
           .col-sm-10
-            .form-group
-              label.col-sm-4.control-label #{visitConfig.labels.visittype.text}
-              .col-sm-8
-                select.form-control(name="visittype")
-                  each visitTypesItem in visitTypesConfig
-                    option(value=visitTypesItem.value selected=(visit.visittype === visitTypesItem.value)) #{visitTypesItem.text}
+            +_formTemplate(config.formConfigs.visittype)
           .col-sm-2
-            button.btn.btn-default(type="button")
-              span.glyphicon.glyphicon-question-sign
+            +_questionBtn()
 
         .row
           .col-sm-10
-            .form-group
-              label.col-sm-4.control-label #{visitConfig.labels.visitreason.text}
-              .col-sm-8
-                input.form-control(type="text" name="visitreason" value=visit.visitreason)
+            +_formTemplate(config.formConfigs.visitreason)
           .col-sm-2
-            button.btn.btn-default(type="button")
-              span.glyphicon.glyphicon-question-sign
+            +_questionBtn()
 
         .row
           .col-sm-10
-            .form-group
-              label.col-sm-4.control-label #{visitConfig.labels.visittreat.text}
-              .col-sm-8
-                input.form-control(type="text" name="visittreat" value=visit.visittreat)
+            +_formTemplate(config.formConfigs.visittreat)
           .col-sm-2
-            button.btn.btn-default(type="button")
-              span.glyphicon.glyphicon-question-sign
+            +_questionBtn()
 
         .row
           .col-sm-10
-            .form-group
-              label.col-sm-4.control-label #{visitConfig.labels.visitres.text}
-              .col-sm-8
-                select.form-control(name="visitres")
-                  each visitResItem in visitResConfig
-                    option(value=visitResItem.value selected=(visit.visitres === visitResItem.value)) #{visitResItem.text}
+            +_formTemplate(config.formConfigs.visitres)
           .col-sm-2
-            button.btn.btn-default(type="button")
-              span.glyphicon.glyphicon-question-sign
+            +_questionBtn()
 
         .row
           .col-sm-10
-            .form-group
-              label.col-sm-4.control-label #{visitConfig.labels.param_1.text}
-              .col-sm-8
-                select.form-control(name="param_1")
-                  each visitParam1Item in visitParam1Config
-                    option(value=visitParam1Item.value selected=(visit.param_1 === visitParam1Item.value)) #{visitParam1Item.text}
+            +_formTemplate(config.formConfigs.param_1)
           .col-sm-2
-            button.btn.btn-default(type="button")
-              span.glyphicon.glyphicon-question-sign
+            +_questionBtn()
 
         .row
           .col-sm-10
-            .form-group
-              label.col-sm-4.control-label #{visitConfig.labels.param_2.text}
-              .col-sm-8
-                select.form-control(name="param_2")
-                  each visitParam2Item in visitParam2Config
-                    option(value=visitParam2Item.value selected=(visit.param_2 === visitParam2Item.value)) #{visitParam2Item.text}
+            +_formTemplate(config.formConfigs.param_2)
           .col-sm-2
-            button.btn.btn-default(type="button")
-              span.glyphicon.glyphicon-question-sign
+            +_questionBtn()
 
         .row
           .col-sm-10
-            .form-group
-              label.col-sm-4.control-label #{visitConfig.labels.param_3.text}
-              .col-sm-8
-                select.form-control(name="param_3")
-                  each visitParam3Item in visitParam3Config
-                    option(value=visitParam3Item.value selected=(visit.param_3 === visitParam3Item.value)) #{visitParam3Item.text}
+            +_formTemplate(config.formConfigs.param_3)
           .col-sm-2
-            button.btn.btn-default(type="button")
-              span.glyphicon.glyphicon-question-sign
+            +_questionBtn()
+
+        .row
+          .col-sm-10
+            +_formTemplate(config.formConfigs.param_4)
+          .col-sm-2
+            +_questionBtn()
+
+        .row
+          .col-sm-10
+            +_formTemplate(config.formConfigs.param_5)
+          .col-sm-2
+            +_questionBtn()
+
+        .row
+          .col-sm-10
+            +_formTemplate(config.formConfigs.param_6)
+          .col-sm-2
+            +_questionBtn()
+
+        .row
+          .col-sm-10
+            +_formTemplate(config.formConfigs.param_7)
+          .col-sm-2
+            +_questionBtn()
+
+        .row
+          .col-sm-10
+            +_formTemplate(config.formConfigs.param_8)
+          .col-sm-2
+            +_questionBtn()
 
         .row
           .col-sm-10
             .form-group
               .col-sm-offset-4.col-sm-8
-                .checkbox
-                  label
-                    input(type="checkbox" name="param_4" checked=visit.param_4)
-                    span #{visitConfig.labels.param_4.text}
+                +_formTemplate(config.formConfigs.param_9)
           .col-sm-2
-            button.btn.btn-default(type="button")
-              span.glyphicon.glyphicon-question-sign
-
-        .row
-          .col-sm-10
-            .form-group
-              label.col-sm-4.control-label #{visitConfig.labels.param_5.text}
-              .col-sm-8
-                input.form-control(type="number" step="any" name="param_5" value=visit.param_5)
-          .col-sm-2
-            button.btn.btn-default(type="button")
-              span.glyphicon.glyphicon-question-sign
-
-        .row
-          .col-sm-10
-            .form-group
-              label.col-sm-4.control-label #{visitConfig.labels.param_6.text}
-              .col-sm-8
-                input.form-control(type="number" step="any" name="param_6" value=visit.param_6)
-          .col-sm-2
-            button.btn.btn-default(type="button")
-              span.glyphicon.glyphicon-question-sign
-
-        .row
-          .col-sm-10
-            .form-group
-              label.col-sm-4.control-label #{visitConfig.labels.param_7.text}
-              .col-sm-8
-                input.form-control(type="number" step="any" name="param_7" value=visit.param_7)
-          .col-sm-2
-            button.btn.btn-default(type="button")
-              span.glyphicon.glyphicon-question-sign
-
-        .row
-          .col-sm-10
-            .form-group
-              label.col-sm-4.control-label #{visitConfig.labels.param_8.text}
-              .col-sm-8
-                select.form-control(name="param_8")
-                  each visitParam8Item in visitParam8Config
-                    option(value=visitParam8Item.value selected=(visit.param_8 === visitParam8Item.value)) #{visitParam8Item.text}
-          .col-sm-2
-            button.btn.btn-default(type="button")
-              span.glyphicon.glyphicon-question-sign
+            +_questionBtn()
 
         .row
           .col-sm-10
             .form-group
               .col-sm-offset-4.col-sm-8
-                .checkbox
-                  label
-                    input(type="checkbox" name="param_9" checked=visit.param_9)
-                    span #{visitConfig.labels.param_9.text}
+                +_formTemplate(config.formConfigs.param_10)
           .col-sm-2
-            button.btn.btn-default(type="button")
-              span.glyphicon.glyphicon-question-sign
+            +_questionBtn()
 
         .row
           .col-sm-10
             .form-group
               .col-sm-offset-4.col-sm-8
-                .checkbox
-                  label
-                    input(type="checkbox" name="param_10" checked=visit.param_10)
-                    span #{visitConfig.labels.param_10.text}
+                +_formTemplate(config.formConfigs.param_11)
           .col-sm-2
-            button.btn.btn-default(type="button")
-              span.glyphicon.glyphicon-question-sign
+            +_questionBtn()
 
         .row
           .col-sm-10
             .form-group
               .col-sm-offset-4.col-sm-8
-                .checkbox
-                  label
-                    input(type="checkbox" name="param_11" checked=visit.param_11)
-                    span #{visitConfig.labels.param_11.text}
+                +_formTemplate(config.formConfigs.param_12)
           .col-sm-2
-            button.btn.btn-default(type="button")
-              span.glyphicon.glyphicon-question-sign
+            +_questionBtn()
+
+        .row
+          .col-sm-10
+            +_formTemplate(config.formConfigs.param_13)
+          .col-sm-2
+            +_questionBtn()
+
+        .row
+          .col-sm-10
+            +_formTemplate(config.formConfigs.param_14)
+          .col-sm-2
+            +_questionBtn()
+
+        .row
+          .col-sm-10
+            +_formTemplate(config.formConfigs.param_15)
+          .col-sm-2
+            +_questionBtn()
 
         .row
           .col-sm-10
             .form-group
               .col-sm-offset-4.col-sm-8
-                .checkbox
-                  label
-                    input(type="checkbox" name="param_12" checked=visit.param_12)
-                    span #{visitConfig.labels.param_12.text}
+                +_formTemplate(config.formConfigs.param_16)
           .col-sm-2
-            button.btn.btn-default(type="button")
-              span.glyphicon.glyphicon-question-sign
+            +_questionBtn()
 
         .row
           .col-sm-10
-            .form-group
-              label.col-sm-4.control-label #{visitConfig.labels.param_13.text}
-              .col-sm-8
-                select.form-control(name="param_13")
-                  each visitFoodTypesItem in visitFoodTypesConfig
-                    option(value=visitFoodTypesItem.value selected=(visit.param_13 === visitFoodTypesItem.value)) #{visitFoodTypesItem.text}
+            +_formTemplate(config.formConfigs.param_17)
           .col-sm-2
-            button.btn.btn-default(type="button")
-              span.glyphicon.glyphicon-question-sign
-
-        .row
-          .col-sm-10
-            .form-group
-              label.col-sm-4.control-label #{visitConfig.labels.param_14.text}
-              .col-sm-8
-                select.form-control(name="param_14")
-                  each visitParam14Item in visitParam14Config
-                    option(value=visitParam14Item.value selected=(visit.param_14 === visitParam14Item.value)) #{visitParam14Item.text}
-          .col-sm-2
-            button.btn.btn-default(type="button")
-              span.glyphicon.glyphicon-question-sign
-
-        .row
-          .col-sm-10
-            .form-group
-              label.col-sm-4.control-label #{visitConfig.labels.param_15.text}
-              .col-sm-8
-                select.form-control(name="param_15")
-                  each visitParam14Item in visitParam14Config
-                    option(value=visitParam14Item.value selected=(visit.param_15 === visitParam14Item.value)) #{visitParam14Item.text}
-          .col-sm-2
-            button.btn.btn-default(type="button")
-              span.glyphicon.glyphicon-question-sign
+            +_questionBtn()
 
         .row
           .col-sm-10
             .form-group
               .col-sm-offset-4.col-sm-8
-                .checkbox
-                  label
-                    input(type="checkbox" name="param_16" checked=visit.param_16)
-                    span #{visitConfig.labels.param_16.text}
+                +_formTemplate(config.formConfigs.param_18)
           .col-sm-2
-            button.btn.btn-default(type="button")
-              span.glyphicon.glyphicon-question-sign
-
-        .row
-          .col-sm-10
-            .form-group
-              label.col-sm-4.control-label #{visitConfig.labels.param_17.text}
-              .col-sm-8
-                input.form-control(type="text" name="param_17" value=visit.param_17)
-          .col-sm-2
-            button.btn.btn-default(type="button")
-              span.glyphicon.glyphicon-question-sign
+            +_questionBtn()
 
         .row
           .col-sm-10
             .form-group
               .col-sm-offset-4.col-sm-8
-                .checkbox
-                  label
-                    input(type="checkbox" name="param_18" checked=visit.param_18)
-                    span #{visitConfig.labels.param_18.text}
+                +_formTemplate(config.formConfigs.param_19)
           .col-sm-2
-            button.btn.btn-default(type="button")
-              span.glyphicon.glyphicon-question-sign
+            +_questionBtn()
 
         .row
           .col-sm-10
             .form-group
               .col-sm-offset-4.col-sm-8
-                .checkbox
-                  label
-                    input(type="checkbox" name="param_19" checked=visit.param_19)
-                    span #{visitConfig.labels.param_19.text}
+                +_formTemplate(config.formConfigs.param_20)
           .col-sm-2
-            button.btn.btn-default(type="button")
-              span.glyphicon.glyphicon-question-sign
+            +_questionBtn()
 
         .row
           .col-sm-10
             .form-group
               .col-sm-offset-4.col-sm-8
-                .checkbox
-                  label
-                    input(type="checkbox" name="param_21" checked=visit.param_21)
-                    span #{visitConfig.labels.param_21.text}
+                +_formTemplate(config.formConfigs.param_21)
           .col-sm-2
-            button.btn.btn-default(type="button")
-              span.glyphicon.glyphicon-question-sign
+            +_questionBtn()
 
         .row
           .col-sm-10
             .form-group
               .col-sm-offset-4.col-sm-8
-                .checkbox
-                  label
-                    input(type="checkbox" name="param_21" checked=visit.param_21)
-                    span #{visitConfig.labels.param_21.text}
+                +_formTemplate(config.formConfigs.param_22)
           .col-sm-2
-            button.btn.btn-default(type="button")
-              span.glyphicon.glyphicon-question-sign
-
-        .row
-          .col-sm-10
-            .form-group
-              .col-sm-offset-4.col-sm-8
-                .checkbox
-                  label
-                    input(type="checkbox" name="param_22" checked=visit.param_22)
-                    span #{visitConfig.labels.param_22.text}
-          .col-sm-2
-            button.btn.btn-default(type="button")
-              span.glyphicon.glyphicon-question-sign
+            +_questionBtn()
 
         input(type="submit" value=buttonConfig.buttons.save.text)
