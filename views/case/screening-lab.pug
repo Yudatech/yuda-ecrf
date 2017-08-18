@@ -1,383 +1,216 @@
 extends ../caseLayout
 
+include ../mixins/_formTemplate
+include ../mixins/_questionBtn
+
 block case-content
   .case-content
-    form.form-horizontal(action=`/screening/lab/${screeningObj.case || ''}` method="POST")
+    form.form-horizontal(action=`/screening/lab/${caseId}` method="POST")
       fieldset
         legend #{config.title}
 
         .row
           .col-sm-10
-            .form-group
-              label.col-sm-4.control-label #{config.lab_1.text}
-              .col-sm-8
-                input.form-control(type="number" step="any" name="lab_1" value=screeningObj.lab_1)
+            +_formTemplate(config.formConfigs.lab_1)
           .col-sm-2
-            button.btn.btn-default(type="button")
-              span.glyphicon.glyphicon-question-sign
+            +_questionBtn()
 
         .row
           .col-sm-10
-            .form-group
-              label.col-sm-4.control-label #{config.lab_2.text}
-              .col-sm-8
-                select.form-control(name="lab_2")
-                  each labResultEvaluationItem in labResultEvaluationConfig
-                    option(value=labResultEvaluationItem.value checked=(labResultEvaluationItem.value === screeningObj.lab_2)) #{labResultEvaluationItem.text}
+            +_formTemplate(config.formConfigs.lab_2)
           .col-sm-2
-            button.btn.btn-default(type="button")
-              span.glyphicon.glyphicon-question-sign
+            +_questionBtn()
 
         .row
           .col-sm-10
-            .form-group
-              label.col-sm-4.control-label #{config.lab_3.text}
-              .col-sm-8
-                input.form-control(type="number" step="any" name="lab_3" value=screeningObj.lab_3)
+            +_formTemplate(config.formConfigs.lab_3)
           .col-sm-2
-            button.btn.btn-default(type="button")
-              span.glyphicon.glyphicon-question-sign
+            +_questionBtn()
 
         .row
           .col-sm-10
-            .form-group
-              label.col-sm-4.control-label #{config.lab_4.text}
-              .col-sm-8
-                select.form-control(name="lab_4")
-                  each labResultEvaluationItem in labResultEvaluationConfig
-                    option(value=labResultEvaluationItem.value checked=(labResultEvaluationItem.value === screeningObj.lab_4)) #{labResultEvaluationItem.text}
+            +_formTemplate(config.formConfigs.lab_4)
           .col-sm-2
-            button.btn.btn-default(type="button")
-              span.glyphicon.glyphicon-question-sign
+            +_questionBtn()
 
         .row
           .col-sm-10
-            .form-group
-              label.col-sm-4.control-label #{config.lab_5.text}
-              .col-sm-8
-                input.form-control(type="number" step="any" name="lab_5" value=screeningObj.lab_5)
+            +_formTemplate(config.formConfigs.lab_5)
           .col-sm-2
-            button.btn.btn-default(type="button")
-              span.glyphicon.glyphicon-question-sign
+            +_questionBtn()
 
         .row
           .col-sm-10
-            .form-group
-              label.col-sm-4.control-label #{config.lab_6.text}
-              .col-sm-8
-                select.form-control(name="lab_6")
-                  each labResultEvaluationItem in labResultEvaluationConfig
-                    option(value=labResultEvaluationItem.value checked=(labResultEvaluationItem.value === screeningObj.lab_6)) #{labResultEvaluationItem.text}
+            +_formTemplate(config.formConfigs.lab_6)
           .col-sm-2
-            button.btn.btn-default(type="button")
-              span.glyphicon.glyphicon-question-sign
+            +_questionBtn()
 
         .row
           .col-sm-10
-            .form-group
-              label.col-sm-4.control-label #{config.lab_7.text}
-              .col-sm-8
-                input.form-control(type="number" step="any" name="lab_7" value=screeningObj.lab_7)
+            +_formTemplate(config.formConfigs.lab_7)
           .col-sm-2
-            button.btn.btn-default(type="button")
-              span.glyphicon.glyphicon-question-sign
+            +_questionBtn()
 
         .row
           .col-sm-10
-            .form-group
-              label.col-sm-4.control-label #{config.lab_8.text}
-              .col-sm-8
-                select.form-control(name="lab_8")
-                  each labResultEvaluationItem in labResultEvaluationConfig
-                    option(value=labResultEvaluationItem.value checked=(labResultEvaluationItem.value === screeningObj.lab_8)) #{labResultEvaluationItem.text}
+            +_formTemplate(config.formConfigs.lab_8)
           .col-sm-2
-            button.btn.btn-default(type="button")
-              span.glyphicon.glyphicon-question-sign
+            +_questionBtn()
 
         .row
           .col-sm-10
-            .form-group
-              label.col-sm-4.control-label #{config.lab_9.text}
-              .col-sm-8
-                input.form-control(type="number" step="any" name="lab_9" value=screeningObj.lab_9)
+            +_formTemplate(config.formConfigs.lab_9)
           .col-sm-2
-            button.btn.btn-default(type="button")
-              span.glyphicon.glyphicon-question-sign
+            +_questionBtn()
 
         .row
           .col-sm-10
-            .form-group
-              label.col-sm-4.control-label #{config.lab_10.text}
-              .col-sm-8
-                select.form-control(name="lab_10")
-                  each labResultEvaluationItem in labResultEvaluationConfig
-                    option(value=labResultEvaluationItem.value checked=(labResultEvaluationItem.value === screeningObj.lab_10)) #{labResultEvaluationItem.text}
+            +_formTemplate(config.formConfigs.lab_10)
           .col-sm-2
-            button.btn.btn-default(type="button")
-              span.glyphicon.glyphicon-question-sign
+            +_questionBtn()
 
         .row
           .col-sm-10
-            .form-group
-              label.col-sm-4.control-label #{config.lab_11.text}
-              .col-sm-8
-                input.form-control(type="number" step="any" name="lab_11" value=screeningObj.lab_11)
+            +_formTemplate(config.formConfigs.lab_11)
           .col-sm-2
-            button.btn.btn-default(type="button")
-              span.glyphicon.glyphicon-question-sign
+            +_questionBtn()
 
         .row
           .col-sm-10
-            .form-group
-              label.col-sm-4.control-label #{config.lab_12.text}
-              .col-sm-8
-                select.form-control(name="lab_12")
-                  each labResultEvaluationItem in labResultEvaluationConfig
-                    option(value=labResultEvaluationItem.value checked=(labResultEvaluationItem.value === screeningObj.lab_12)) #{labResultEvaluationItem.text}
+            +_formTemplate(config.formConfigs.lab_12)
           .col-sm-2
-            button.btn.btn-default(type="button")
-              span.glyphicon.glyphicon-question-sign
+            +_questionBtn()
 
         .row
           .col-sm-10
-            .form-group
-              label.col-sm-4.control-label #{config.lab_13.text}
-              .col-sm-8
-                input.form-control(type="number" step="any" name="lab_13" value=screeningObj.lab_13)
+            +_formTemplate(config.formConfigs.lab_13)
           .col-sm-2
-            button.btn.btn-default(type="button")
-              span.glyphicon.glyphicon-question-sign
+            +_questionBtn()
 
         .row
           .col-sm-10
-            .form-group
-              label.col-sm-4.control-label #{config.lab_14.text}
-              .col-sm-8
-                select.form-control(name="lab_14")
-                  each labResultEvaluationItem in labResultEvaluationConfig
-                    option(value=labResultEvaluationItem.value checked=(labResultEvaluationItem.value === screeningObj.lab_14)) #{labResultEvaluationItem.text}
+            +_formTemplate(config.formConfigs.lab_14)
           .col-sm-2
-            button.btn.btn-default(type="button")
-              span.glyphicon.glyphicon-question-sign
+            +_questionBtn()
 
         .row
           .col-sm-10
-            .form-group
-              label.col-sm-4.control-label #{config.lab_15.text}
-              .col-sm-8
-                input.form-control(type="number" step="any" name="lab_15" value=screeningObj.lab_15)
+            +_formTemplate(config.formConfigs.lab_15)
           .col-sm-2
-            button.btn.btn-default(type="button")
-              span.glyphicon.glyphicon-question-sign
+            +_questionBtn()
 
         .row
           .col-sm-10
-            .form-group
-              label.col-sm-4.control-label #{config.lab_16.text}
-              .col-sm-8
-                select.form-control(name="lab_16")
-                  each labResultEvaluationItem in labResultEvaluationConfig
-                    option(value=labResultEvaluationItem.value checked=(labResultEvaluationItem.value === screeningObj.lab_16)) #{labResultEvaluationItem.text}
+            +_formTemplate(config.formConfigs.lab_16)
           .col-sm-2
-            button.btn.btn-default(type="button")
-              span.glyphicon.glyphicon-question-sign
+            +_questionBtn()
 
         .row
           .col-sm-10
-            .form-group
-              label.col-sm-4.control-label #{config.lab_17.text}
-              .col-sm-8
-                input.form-control(type="number" step="any" name="lab_17" value=screeningObj.lab_17)
+            +_formTemplate(config.formConfigs.lab_17)
           .col-sm-2
-            button.btn.btn-default(type="button")
-              span.glyphicon.glyphicon-question-sign
+            +_questionBtn()
 
         .row
           .col-sm-10
-            .form-group
-              label.col-sm-4.control-label #{config.lab_18.text}
-              .col-sm-8
-                select.form-control(name="lab_18")
-                  each labResultEvaluationItem in labResultEvaluationConfig
-                    option(value=labResultEvaluationItem.value checked=(labResultEvaluationItem.value === screeningObj.lab_18)) #{labResultEvaluationItem.text}
+            +_formTemplate(config.formConfigs.lab_18)
           .col-sm-2
-            button.btn.btn-default(type="button")
-              span.glyphicon.glyphicon-question-sign
+            +_questionBtn()
 
         .row
           .col-sm-10
-            .form-group
-              label.col-sm-4.control-label #{config.lab_19.text}
-              .col-sm-8
-                input.form-control(type="number" step="any" name="lab_19" value=screeningObj.lab_19)
+            +_formTemplate(config.formConfigs.lab_19)
           .col-sm-2
-            button.btn.btn-default(type="button")
-              span.glyphicon.glyphicon-question-sign
+            +_questionBtn()
 
         .row
           .col-sm-10
-            .form-group
-              label.col-sm-4.control-label #{config.lab_20.text}
-              .col-sm-8
-                select.form-control(name="lab_20")
-                  each labResultEvaluationItem in labResultEvaluationConfig
-                    option(value=labResultEvaluationItem.value checked=(labResultEvaluationItem.value === screeningObj.lab_20)) #{labResultEvaluationItem.text}
+            +_formTemplate(config.formConfigs.lab_20)
           .col-sm-2
-            button.btn.btn-default(type="button")
-              span.glyphicon.glyphicon-question-sign
+            +_questionBtn()
 
         .row
           .col-sm-10
-            .form-group
-              label.col-sm-4.control-label #{config.lab_21.text}
-              .col-sm-8
-                input.form-control(type="number" step="any" name="lab_21" value=screeningObj.lab_21)
+            +_formTemplate(config.formConfigs.lab_21)
           .col-sm-2
-            button.btn.btn-default(type="button")
-              span.glyphicon.glyphicon-question-sign
+            +_questionBtn()
 
         .row
           .col-sm-10
-            .form-group
-              label.col-sm-4.control-label #{config.lab_22.text}
-              .col-sm-8
-                select.form-control(name="lab_22")
-                  each labResultEvaluationItem in labResultEvaluationConfig
-                    option(value=labResultEvaluationItem.value checked=(labResultEvaluationItem.value === screeningObj.lab_22)) #{labResultEvaluationItem.text}
+            +_formTemplate(config.formConfigs.lab_22)
           .col-sm-2
-            button.btn.btn-default(type="button")
-              span.glyphicon.glyphicon-question-sign
+            +_questionBtn()
 
         .row
           .col-sm-10
-            .form-group
-              label.col-sm-4.control-label #{config.lab_23.text}
-              .col-sm-8
-                input.form-control(type="number" step="any" name="lab_23" value=screeningObj.lab_23)
+            +_formTemplate(config.formConfigs.lab_23)
           .col-sm-2
-            button.btn.btn-default(type="button")
-              span.glyphicon.glyphicon-question-sign
+            +_questionBtn()
 
         .row
           .col-sm-10
-            .form-group
-              label.col-sm-4.control-label #{config.lab_24.text}
-              .col-sm-8
-                select.form-control(name="lab_24")
-                  each labResultEvaluationItem in labResultEvaluationConfig
-                    option(value=labResultEvaluationItem.value checked=(labResultEvaluationItem.value === screeningObj.lab_24)) #{labResultEvaluationItem.text}
+            +_formTemplate(config.formConfigs.lab_24)
           .col-sm-2
-            button.btn.btn-default(type="button")
-              span.glyphicon.glyphicon-question-sign
+            +_questionBtn()
 
         .row
           .col-sm-10
-            .form-group
-              label.col-sm-4.control-label #{config.lab_25.text}
-              .col-sm-8
-                input.form-control(type="number" step="any" name="lab_25" value=screeningObj.lab_25)
+            +_formTemplate(config.formConfigs.lab_25)
           .col-sm-2
-            button.btn.btn-default(type="button")
-              span.glyphicon.glyphicon-question-sign
+            +_questionBtn()
 
         .row
           .col-sm-10
-            .form-group
-              label.col-sm-4.control-label #{config.lab_26.text}
-              .col-sm-8
-                select.form-control(name="lab_26")
-                  each labResultEvaluationItem in labResultEvaluationConfig
-                    option(value=labResultEvaluationItem.value checked=(labResultEvaluationItem.value === screeningObj.lab_26)) #{labResultEvaluationItem.text}
+            +_formTemplate(config.formConfigs.lab_26)
           .col-sm-2
-            button.btn.btn-default(type="button")
-              span.glyphicon.glyphicon-question-sign
+            +_questionBtn()
 
         .row
           .col-sm-10
-            .form-group
-              label.col-sm-4.control-label #{config.lab_27.text}
-              .col-sm-8
-                input.form-control(type="number" step="any" name="lab_27" value=screeningObj.lab_27)
+            +_formTemplate(config.formConfigs.lab_27)
           .col-sm-2
-            button.btn.btn-default(type="button")
-              span.glyphicon.glyphicon-question-sign
+            +_questionBtn()
 
         .row
           .col-sm-10
-            .form-group
-              label.col-sm-4.control-label #{config.lab_28.text}
-              .col-sm-8
-                select.form-control(name="lab_28")
-                  each labResultEvaluationItem in labResultEvaluationConfig
-                    option(value=labResultEvaluationItem.value checked=(labResultEvaluationItem.value === screeningObj.lab_28)) #{labResultEvaluationItem.text}
+            +_formTemplate(config.formConfigs.lab_28)
           .col-sm-2
-            button.btn.btn-default(type="button")
-              span.glyphicon.glyphicon-question-sign
+            +_questionBtn()
 
         .row
           .col-sm-10
-            .form-group
-              label.col-sm-4.control-label #{config.lab_29.text}
-              .col-sm-8
-                input.form-control(type="number" step="any" name="lab_29" value=screeningObj.lab_29)
+            +_formTemplate(config.formConfigs.lab_29)
           .col-sm-2
-            button.btn.btn-default(type="button")
-              span.glyphicon.glyphicon-question-sign
+            +_questionBtn()
 
         .row
           .col-sm-10
-            .form-group
-              label.col-sm-4.control-label #{config.lab_30.text}
-              .col-sm-8
-                select.form-control(name="lab_30")
-                  each labResultEvaluationItem in labResultEvaluationConfig
-                    option(value=labResultEvaluationItem.value checked=(labResultEvaluationItem.value === screeningObj.lab_30)) #{labResultEvaluationItem.text}
+            +_formTemplate(config.formConfigs.lab_30)
           .col-sm-2
-            button.btn.btn-default(type="button")
-              span.glyphicon.glyphicon-question-sign
+            +_questionBtn()
 
         .row
           .col-sm-10
-            .form-group
-              label.col-sm-4.control-label #{config.lab_31.text}
-              .col-sm-8
-                input.form-control(type="number" step="any" name="lab_31" value=screeningObj.lab_31)
+            +_formTemplate(config.formConfigs.lab_31)
           .col-sm-2
-            button.btn.btn-default(type="button")
-              span.glyphicon.glyphicon-question-sign
+            +_questionBtn()
 
         .row
           .col-sm-10
-            .form-group
-              label.col-sm-4.control-label #{config.lab_32.text}
-              .col-sm-8
-                select.form-control(name="lab_32")
-                  each labResultEvaluationItem in labResultEvaluationConfig
-                    option(value=labResultEvaluationItem.value checked=(labResultEvaluationItem.value === screeningObj.lab_32)) #{labResultEvaluationItem.text}
+            +_formTemplate(config.formConfigs.lab_32)
           .col-sm-2
-            button.btn.btn-default(type="button")
-              span.glyphicon.glyphicon-question-sign
+            +_questionBtn()
 
         .row
           .col-sm-10
-            .form-group
-              label.col-sm-4.control-label #{config.lab_33.text}
-              .col-sm-8
-                input.form-control(type="number" step="any" name="lab_33" value=screeningObj.lab_33)
+            +_formTemplate(config.formConfigs.lab_33)
           .col-sm-2
-            button.btn.btn-default(type="button")
-              span.glyphicon.glyphicon-question-sign
+            +_questionBtn()
 
         .row
           .col-sm-10
-            .form-group
-              label.col-sm-4.control-label #{config.lab_34.text}
-              .col-sm-8
-                select.form-control(name="lab_34")
-                  each labResultEvaluationItem in labResultEvaluationConfig
-                    option(value=labResultEvaluationItem.value checked=(labResultEvaluationItem.value === screeningObj.lab_34)) #{labResultEvaluationItem.text}
+            +_formTemplate(config.formConfigs.lab_34)
           .col-sm-2
-            button.btn.btn-default(type="button")
-              span.glyphicon.glyphicon-question-sign
+            +_questionBtn()
 
         input(type="submit" value=buttonConfig.buttons.save.text)

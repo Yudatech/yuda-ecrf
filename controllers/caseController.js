@@ -268,12 +268,22 @@ exports.caseLabForm = async (req, res) => {
   const caseId = req.params.caseId;
   const CaseNav = helpers.appendCaseIdToCaseNav(caseId);
   const screeningItem = await getScreeningItemByCaseId(caseId);
+  const config = getScreeningLabConfig();
+  const selectFields = ['lab_2', 'lab_4', 'lab_6', 'lab_8', 'lab_10', 'lab_12', 'lab_14', 'lab_16', 'lab_18', 'lab_20', 'lab_22', 'lab_24', 'lab_26', 'lab_28', 'lab_30', 'lab_32', 'lab_34'];
+  Object.keys(config.formConfigs).forEach((key) => {
+    if (selectFields.includes(key)) {
+      config.formConfigs[key].value = screeningItem.key;
+      config.formConfigs[key].options = getLabResultEvaluationConfig();
+    }
+    else {
+      config.formConfigs[key].value = screeningItem[key];
+    }
+  });
   res.render('case/screening-lab', {
     caseNav: CaseNav,
     buttonConfig: getButtonConfig(),
-    config: getScreeningLabConfig(),
-    labResultEvaluationConfig: getLabResultEvaluationConfig(),
-    screeningObj: screeningItem
+    config,
+    caseId: req.params.caseId
   });
 };
 
