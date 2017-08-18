@@ -65,10 +65,6 @@ exports.saeForm = async (req, res) => {
   if (saeId !== undefined) {
     const saeItem = await Sae.findById(saeId);
     sae = saeItem.toObject();
-    sae.saedtc = moment(saeItem.saedtc).format('MM/DD/YYYY');
-    sae.saecaus_2 = moment(saeItem.saecaus_2).format('MM/DD/YYYY');
-    sae.saestdtc = moment(saeItem.saestdtc).format('MM/DD/YYYY');
-    sae.saenoticedtc = moment(saeItem.saenoticedtc).format('MM/DD/YYYY');
   }
   else {
     sae = {
@@ -76,18 +72,55 @@ exports.saeForm = async (req, res) => {
     };
   }
 
+  const config = getSaeConfig();
+  Object.keys(config.formConfigs).forEach((key) => {
+    if (key === 'saetpe') {
+      config.formConfigs[key].value = sae[key];
+      config.formConfigs[key].options = getSaeTypesConfig();
+    }
+    else if (key === 'saedtc') {
+      config.formConfigs[key].value = moment(sae.saedtc).format('MM/DD/YYYY');
+    }
+    else if (key === 'saecaus_1') {
+      config.formConfigs[key].value = sae[key];
+      config.formConfigs[key].options = getSaeCauseConfig();
+    }
+    else if (key === 'saecaus_2') {
+      config.formConfigs[key].value = moment(sae.saecaus_2).format('MM/DD/YYYY');
+    }
+    else if (key === 'saestdtc') {
+      config.formConfigs[key].value = moment(sae.saestdtc).format('MM/DD/YYYY');
+    }
+    else if (key === 'saenoticedtc') {
+      config.formConfigs[key].value = moment(sae.saenoticedtc).format('MM/DD/YYYY');
+    }
+    else if (key === 'saeact') {
+      config.formConfigs[key].value = sae[key];
+      config.formConfigs[key].options = getSaeActConfig();
+    }
+    else if (key === 'saeres_1') {
+      config.formConfigs[key].value = sae[key];
+      config.formConfigs[key].options = getSaeResConfig();
+    }
+    else if (key === 'saerel') {
+      config.formConfigs[key].value = sae[key];
+      config.formConfigs[key].options = getSaeRelConfig();
+    }
+    else if (key === 'saerpt_1' || key === 'saerpt_2') {
+      config.formConfigs[key].value = sae[key];
+      config.formConfigs[key].options = getSaeReportConfig();
+    }
+    else {
+      config.formConfigs[key].value = sae[key];
+    }
+  });
+
   res.render('sae/saeForm', {
     caseNav: CaseNav,
-    saeConfig: getSaeConfig(),
-    saeActConfig: getSaeActConfig(),
-    saeCauseConfig: getSaeCauseConfig(),
-    saeRelConfig: getSaeRelConfig(),
-    saeReportConfig: getSaeReportConfig(),
-    saeResConfig: getSaeResConfig(),
-    saeTypesConfig: getSaeTypesConfig(),
+    config,
     buttonConfig: getButtonConfig(),
-    sae: sae,
-    caseId: caseId
+    caseId: caseId,
+    saeId: saeId
   });
 };
 

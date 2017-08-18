@@ -1,209 +1,118 @@
 extends ../caseLayout
 
+include ../mixins/_formTemplate
+include ../mixins/_questionBtn
+
 block case-content
   .case-content
-    form.form-horizontal(action=`/sae/${caseId}/${sae._id || ''}` method="POST")
+    form.form-horizontal(action=`/sae/${caseId}/${saeId || ''}` method="POST")
       fieldset
-        legend #{saeConfig.title}
+        legend #{config.title}
 
         .row
           .col-sm-10
-            .form-group
-              label.col-sm-4.control-label #{saeConfig.labels.saeorigion.text}
-              .col-sm-8
-                input.form-control(type="text" name="saeorigion" value=sae.saeorigion)
+            +_formTemplate(config.formConfigs.saeorigion)
           .col-sm-2
-            button.btn.btn-default(type="button")
-              span.glyphicon.glyphicon-question-sign
+            +_questionBtn()
 
         .row
           .col-sm-10
-            .form-group
-              label.col-sm-4.control-label #{saeConfig.labels.saetpe.text}
-              .col-sm-8
-                select.form-control(name="saetpe")
-                  each saeTypesItem in saeTypesConfig
-                    option(value=saeTypesItem.value selected=(sae.saetpe === saeTypesItem.value)) #{saeTypesItem.text}
+            +_formTemplate(config.formConfigs.saetpe)
           .col-sm-2
-            button.btn.btn-default(type="button")
-              span.glyphicon.glyphicon-question-sign
+            +_questionBtn()
 
         .row
           .col-sm-10
-            label.col-sm-4.control-label #{saeConfig.labels.saedtc.text}
-            .col-sm-8
-              #saedtc.input-group.date(data-provide="datepicker")
-                input.form-control(value=sae.saedtc)
-                span.input-group-addon
-                  i.glyphicon.glyphicon-th
-              input#saedtcReal(type="hidden" name="aestdtc_date" value=sae.saedtc)
+            +_formTemplate(config.formConfigs.saedtc)
           .col-sm-2
-            button.btn.btn-default(type="button")
-              span.glyphicon.glyphicon-question-sign
+            +_questionBtn()
 
         .row
           .col-sm-10
-            .form-group
-              label.col-sm-4.control-label #{saeConfig.labels.saeterm.text}
-              .col-sm-8
-                input.form-control(type="text" name="saeterm" value=sae.saeterm)
+            +_formTemplate(config.formConfigs.saeterm)
           .col-sm-2
-            button.btn.btn-default(type="button")
-              span.glyphicon.glyphicon-question-sign
+            +_questionBtn()
 
         .row
           .col-sm-10
             .form-group
               .col-sm-offset-4.col-sm-8
-                .checkbox
-                  label
-                    input(type="checkbox" name="saeanti" checked=sae.saeanti)
-                    span #{saeConfig.labels.saeanti.text}
+                +_formTemplate(config.formConfigs.saeanti)
           .col-sm-2
-            button.btn.btn-default(type="button")
-              span.glyphicon.glyphicon-question-sign
+            +_questionBtn()
 
         .row
           .col-sm-10
-            .form-group
-              label.col-sm-4.control-label #{saeConfig.labels.saecaus_1.text}
-              .col-sm-8
-                select.form-control(name="saecaus_1")
-                  each saeCauseItem in saeCauseConfig
-                    option(value=saeCauseItem.value selected=(sae.saecaus_1 === saeCauseItem.value)) #{saeCauseItem.text}
+            +_formTemplate(config.formConfigs.saecaus_1)
           .col-sm-2
-            button.btn.btn-default(type="button")
-              span.glyphicon.glyphicon-question-sign
+            +_questionBtn()
 
         .row
           .col-sm-10
-            label.col-sm-4.control-label #{saeConfig.labels.saecaus_2.text}
-            .col-sm-8
-              #saecaus2.input-group.date(data-provide="datepicker")
-                input.form-control(value=sae.saecaus_2)
-                span.input-group-addon
-                  i.glyphicon.glyphicon-th
-              input#saecaus2Real(type="hidden" name="saecaus_2" value=sae.saecaus_2)
+            +_formTemplate(config.formConfigs.saecaus_2)
           .col-sm-2
-            button.btn.btn-default(type="button")
-              span.glyphicon.glyphicon-question-sign
+            +_questionBtn()
 
         .row
           .col-sm-10
-            .form-group
-              label.col-sm-4.control-label #{saeConfig.labels.saecaus_3.text}
-              .col-sm-8
-                input.form-control(type="text" name="saecaus_3" value=sae.saecaus_3)
+            +_formTemplate(config.formConfigs.saecaus_3)
           .col-sm-2
-            button.btn.btn-default(type="button")
-              span.glyphicon.glyphicon-question-sign
+            +_questionBtn()
 
         .row
           .col-sm-10
-            label.col-sm-4.control-label #{saeConfig.labels.saestdtc.text}
-            .col-sm-8
-              #saestdtc.input-group.date(data-provide="datepicker")
-                input.form-control(value=sae.saestdtc)
-                span.input-group-addon
-                  i.glyphicon.glyphicon-th
-              input#saestdtcReal(type="hidden" name="saestdtc" value=sae.saestdtc)
+            +_formTemplate(config.formConfigs.saestdtc)
           .col-sm-2
-            button.btn.btn-default(type="button")
-              span.glyphicon.glyphicon-question-sign
+            +_questionBtn()
 
         .row
           .col-sm-10
-            label.col-sm-4.control-label #{saeConfig.labels.saenoticedtc.text}
-            .col-sm-8
-              #saenoticedtc.input-group.date(data-provide="datepicker")
-                input.form-control(value=sae.saenoticedtc)
-                span.input-group-addon
-                  i.glyphicon.glyphicon-th
-              input#saenoticedtcReal(type="hidden" name="saenoticedtc" value=sae.saenoticedtc)
+            +_formTemplate(config.formConfigs.saenoticedtc)
           .col-sm-2
-            button.btn.btn-default(type="button")
-              span.glyphicon.glyphicon-question-sign
+            +_questionBtn()
 
         .row
           .col-sm-10
-            .form-group
-              label.col-sm-4.control-label #{saeConfig.labels.saeact.text}
-              .col-sm-8
-                select.form-control(name="saeact")
-                  each saeActItem in saeActConfig
-                    option(value=saeActItem.value selected=(sae.saeact === saeActItem.value)) #{saeActItem.text}
+            +_formTemplate(config.formConfigs.saeact)
           .col-sm-2
-            button.btn.btn-default(type="button")
-              span.glyphicon.glyphicon-question-sign
+            +_questionBtn()
 
         .row
           .col-sm-10
-            .form-group
-              label.col-sm-4.control-label #{saeConfig.labels.saeres_1.text}
-              .col-sm-8
-                select.form-control(name="saeres_1")
-                  each saeResItem in saeResConfig
-                    option(value=saeResItem.value selected=(sae.saeres_1 === saeResItem.value)) #{saeResItem.text}
+            +_formTemplate(config.formConfigs.saeres_1)
           .col-sm-2
-            button.btn.btn-default(type="button")
-              span.glyphicon.glyphicon-question-sign
+            +_questionBtn()
 
         .row
           .col-sm-10
             .form-group
               .col-sm-offset-4.col-sm-8
-                .checkbox
-                  label
-                    input(type="checkbox" name="saeres_2" checked=sae.saeres_2)
-                    span #{saeConfig.labels.saeres_2.text}
+                +_formTemplate(config.formConfigs.saeres_2)
           .col-sm-2
-            button.btn.btn-default(type="button")
-              span.glyphicon.glyphicon-question-sign
+            +_questionBtn()
 
         .row
           .col-sm-10
-            .form-group
-              label.col-sm-4.control-label #{saeConfig.labels.saerel.text}
-              .col-sm-8
-                select.form-control(name="saerel")
-                  each saeRelItem in saeRelConfig
-                    option(value=saeRelItem.value selected=(sae.saerel === saeRelItem.value)) #{saeRelItem.text}
+            +_formTemplate(config.formConfigs.saerel)
           .col-sm-2
-            button.btn.btn-default(type="button")
-              span.glyphicon.glyphicon-question-sign
+            +_questionBtn()
 
         .row
           .col-sm-10
-            .form-group
-              label.col-sm-4.control-label #{saeConfig.labels.saerpt_1.text}
-              .col-sm-8
-                select.form-control(name="saerpt_1")
-                  each saeReportItem in saeReportConfig
-                    option(value=saeReportItem.value selected=(sae.saerpt_1 === saeReportItem.value)) #{saeReportItem.text}
+            +_formTemplate(config.formConfigs.saerpt_1)
           .col-sm-2
-            button.btn.btn-default(type="button")
-              span.glyphicon.glyphicon-question-sign
+            +_questionBtn()
 
         .row
           .col-sm-10
-            .form-group
-              label.col-sm-4.control-label #{saeConfig.labels.saerpt_2.text}
-              .col-sm-8
-                select.form-control(name="saerpt_2")
-                  each saeReportItem in saeReportConfig
-                    option(value=saeReportItem.value selected=(sae.saerpt_2 === saeReportItem.value)) #{saeReportItem.text}
+            +_formTemplate(config.formConfigs.saerpt_2)
           .col-sm-2
-            button.btn.btn-default(type="button")
-              span.glyphicon.glyphicon-question-sign
+            +_questionBtn()
 
         .row
           .col-sm-10
-            .form-group
-              label.col-sm-4.control-label #{saeConfig.labels.saedesc.text}
-              .col-sm-8
-                input.form-control(type="text" name="saedesc" value=sae.saedesc)
+            +_formTemplate(config.formConfigs.saedesc)
           .col-sm-2
-            button.btn.btn-default(type="button")
-              span.glyphicon.glyphicon-question-sign
+            +_questionBtn()
 
         input(type="submit" value=buttonConfig.buttons.save.text)
