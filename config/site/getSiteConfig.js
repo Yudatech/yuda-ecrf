@@ -4,7 +4,7 @@ const config = {
   title: {
     zh: '新建临床中心'
   },
-  labels: [{
+  formConfigs: [{
     name: 'sitename',
     text: {
       zh: '临床中心名称'
@@ -24,12 +24,6 @@ const config = {
     text: {
       zh: '所在国家'
     }
-  }],
-  buttons: [{
-    name: 'saveNewSite',
-    text: {
-      zh: '保存'
-    }
   }]
 };
 
@@ -39,9 +33,8 @@ module.exports = function(lang) {
   }
 
   const result = {};
-  result.labels = getOptionsLang(config.labels);
+  result.formConfigs = getOptionsLang(config.formConfigs);
   result.title = config.title[lang];
-  result.buttons = getOptionsLang(config.buttons);
 
   return result;
 };

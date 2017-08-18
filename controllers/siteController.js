@@ -3,27 +3,27 @@ const Site = mongoose.model('Site');
 
 const getSiteTableConfig = require('../config/site/getSiteTableConfig');
 const getSiteConfig = require('../config/site/getSiteConfig');
+const getButtonConfig = require('../config/common/getButtonConfig');
 
 exports.siteForm = async (req, res) => {
+  let site;
   if (req.params.id !== undefined) {
     const siteId = req.params.id;
-    // site id is not undefined, edit site
-
-    // query site from db
-    const site = await Site.findById(siteId);
-
-    res.render('site/site', {
-      siteConfig: getSiteConfig(),
-      site: site
-    });
+    site = await Site.findById(siteId);
   }
   else {
-    // otherwise, it's create new site
-    res.render('site/site', {
-      siteConfig: getSiteConfig(),
-      site: {}
-    });
+    site = {};
   }
+  const config = getSiteConfig();
+  Object.keys(config.formConfigs).forEach((key) => {
+    config.formConfigs[key].value = site[key];
+  });
+
+  res.render('site/site', {
+    siteConfig: config,
+    buttonConfig: getButtonConfig(),
+    siteId: site._id
+  });
 };
 
 exports.sitesTable = async (req, res) => {
