@@ -58,8 +58,6 @@ exports.cmForm = async (req, res) => {
   if (cmId !== undefined) {
     const cmItem = await Cm.findById(cmId);
     cm = cmItem.toObject();
-    cm.cmstdtc = moment(cmItem.cmstdtc).format('MM/DD/YYYY');
-    cm.cmeddtc = moment(cmItem.cmeddtc).format('MM/DD/YYYY');
   }
   else {
     cm = {
@@ -67,13 +65,29 @@ exports.cmForm = async (req, res) => {
     };
   }
 
+  const config = getCmConfig();
+  Object.keys(config.formConfigs).forEach((key) => {
+    if (key === 'dosemtd_1') {
+      config.formConfigs[key].value = cm[key];
+      config.formConfigs[key].options = getDoseMethodsConfig();
+    }
+    else if (key === 'cmstdtc') {
+      config.formConfigs[key].value = moment(cm.cmstdtc).format('MM/DD/YYYY');
+    }
+    else if (key === 'cmeddtc') {
+      config.formConfigs[key].value = moment(cm.cmeddtc).format('MM/DD/YYYY');
+    }
+    else {
+      config.formConfigs[key].value = cm[key];
+    }
+  });
+
   res.render('cm/cmForm', {
     caseNav: CaseNav,
-    cmConfig: getCmConfig(),
-    doseMethodsConfig: getDoseMethodsConfig(),
+    config,
     buttonConfig: getButtonConfig(),
-    cm: cm,
-    caseId: caseId
+    caseId: caseId,
+    cmId: cm._id
   });
 };
 

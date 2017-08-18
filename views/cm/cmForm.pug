@@ -1,87 +1,54 @@
 extends ../caseLayout
 
+include ../mixins/_formTemplate
+include ../mixins/_questionBtn
+
 block case-content
   .case-content
-    form.form-horizontal(action=`/cm/${caseId}/${cm._id || ''}` method="POST")
+    form.form-horizontal(action=`/cm/${caseId}/${cmId || ''}` method="POST")
       fieldset
-        legend #{cmConfig.title}
+        legend #{config.title}
 
         .row
           .col-sm-10
-            .form-group
-              label.col-sm-2.control-label #{cmConfig.labels.drug.text}
-              .col-sm-10
-                input.form-control(type="text" name="drug" value=cm.drug)
+            +_formTemplate(config.formConfigs.drug)
           .col-sm-2
-            button.btn.btn-default(type="button")
-              span.glyphicon.glyphicon-question-sign
+            +_questionBtn()
 
         .row
           .col-sm-10
-            .form-group
-              label.col-sm-2.control-label #{cmConfig.labels.dosing.text}
-              .col-sm-10
-                input.form-control(type="text" name="dosing" value=cm.dosing)
+            +_formTemplate(config.formConfigs.dosing)
           .col-sm-2
-            button.btn.btn-default(type="button")
-              span.glyphicon.glyphicon-question-sign
+            +_questionBtn()
 
         .row
           .col-sm-10
-            .form-group
-              label.col-sm-2.control-label #{cmConfig.labels.dosemtd_1.text}
-              .col-sm-10
-                select.form-control(name="dosemtd_1")
-                  each doseMethodsItem in doseMethodsConfig
-                    option(value=doseMethodsItem.value selected=(cm.dosemtd_1 === doseMethodsItem.value)) #{doseMethodsItem.text}
+            +_formTemplate(config.formConfigs.dosemtd_1)
           .col-sm-2
-            button.btn.btn-default(type="button")
-              span.glyphicon.glyphicon-question-sign
+            +_questionBtn()
 
         .row
           .col-sm-10
-            .form-group
-              label.col-sm-2.control-label #{cmConfig.labels.dosemtd_2.text}
-              .col-sm-10
-                input.form-control(type="text" name="dosemtd_2" value=cm.dosemtd_2)
+            +_formTemplate(config.formConfigs.dosemtd_2)
           .col-sm-2
-            button.btn.btn-default(type="button")
-              span.glyphicon.glyphicon-question-sign
+            +_questionBtn()
 
         .row
           .col-sm-10
-            label.col-sm-2.control-label #{cmConfig.labels.cmstdtc.text}
-            .col-sm-10
-              #cmstdtc.input-group.date(data-provide="datepicker")
-                input.form-control(value=cm.cmstdtc)
-                span.input-group-addon
-                  i.glyphicon.glyphicon-th
-              input#cmstdtcReal(type="hidden" name="cmstdtc" value=cm.cmstdtc)
+            +_formTemplate(config.formConfigs.cmstdtc)
           .col-sm-2
-            button.btn.btn-default(type="button")
-              span.glyphicon.glyphicon-question-sign
+            +_questionBtn()
 
         .row
           .col-sm-10
-            label.col-sm-2.control-label #{cmConfig.labels.cmeddtc.text}
-            .col-sm-10
-              #cmeddtc.input-group.date(data-provide="datepicker")
-                input.form-control(value=cm.cmeddtc)
-                span.input-group-addon
-                  i.glyphicon.glyphicon-th
-              input#cmeddtcReal(type="hidden" name="cmeddtc" value=cm.cmeddtc)
+            +_formTemplate(config.formConfigs.cmeddtc)
           .col-sm-2
-            button.btn.btn-default(type="button")
-              span.glyphicon.glyphicon-question-sign
+            +_questionBtn()
 
         .row
           .col-sm-10
-            .form-group
-              label.col-sm-2.control-label #{cmConfig.labels.cmrsn.text}
-              .col-sm-10
-                input.form-control(type="text" name="cmrsn" value=cm.cmrsn)
+            +_formTemplate(config.formConfigs.cmrsn)
           .col-sm-2
-            button.btn.btn-default(type="button")
-              span.glyphicon.glyphicon-question-sign
+            +_questionBtn()
 
         input(type="submit" value=buttonConfig.buttons.save.text)
