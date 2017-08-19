@@ -1,54 +1,55 @@
 extends ../layout
 
 block content
-  .inner
-    form.form-horizontal(action=`/user/${user._id || ''}` method="POST")
-      fieldset
-        legend #{registerConfig.title}
-
-        .form-group
-          label.col-sm-2.control-label #{registerConfig.labels.username.text}
-          .col-sm-10
-            input.form-control(type="text" name="username" required value=user.username)
-        
-        .form-group
-          label.col-sm-2.control-label #{registerConfig.labels.userabbr.text}
-          .col-sm-10
-            input.form-control(type="text" name="userabbr" required value=user.userabbr)
-        if user._id === undefined
+  .inner.pading-right-15
+    .panel.panel-default
+      .panel-heading
+        h3 #{registerConfig.title}
+      .panel-body
+        form.form-horizontal(action=`/user/${user._id || ''}` method="POST")
           .form-group
-            label.col-sm-2.control-label #{registerConfig.labels.password.text}
+            label.col-sm-2.control-label #{registerConfig.labels.username.text}
             .col-sm-10
-              input.form-control(type="password" name="password")
+              input.form-control(type="text" name="username" required value=user.username)
 
-        if user._id === undefined
           .form-group
-            label.col-sm-2.control-label #{registerConfig.labels['password-confirm'].text}
+            label.col-sm-2.control-label #{registerConfig.labels.userabbr.text}
             .col-sm-10
-              input.form-control(type="password" name="password-confirm")
+              input.form-control(type="text" name="userabbr" required value=user.userabbr)
+          if user._id === undefined
+            .form-group
+              label.col-sm-2.control-label #{registerConfig.labels.password.text}
+              .col-sm-10
+                input.form-control(type="password" name="password")
 
-        .form-group
-          label.col-sm-2.control-label #{registerConfig.labels.email.text}
-          .col-sm-10
-            input.form-control(type="email" name="email" required value=user.email)
+          if user._id === undefined
+            .form-group
+              label.col-sm-2.control-label #{registerConfig.labels['password-confirm'].text}
+              .col-sm-10
+                input.form-control(type="password" name="password-confirm")
 
-        .form-group
-          label.col-sm-2.control-label #{registerConfig.labels.tel.text}
-          .col-sm-10
-            input.form-control(type="text" name="tel" required value=user.tel)
+          .form-group
+            label.col-sm-2.control-label #{registerConfig.labels.email.text}
+            .col-sm-10
+              input.form-control(type="email" name="email" required value=user.email)
 
-        .form-group
-          label.col-sm-2.control-label #{registerConfig.labels.role.text}
-          .col-sm-10
-            select.form-control(name="role")
-              each roleConfigItem in roleConfig
-                option(value=roleConfigItem.value) #{roleConfigItem.text}
+          .form-group
+            label.col-sm-2.control-label #{registerConfig.labels.tel.text}
+            .col-sm-10
+              input.form-control(type="text" name="tel" required value=user.tel)
 
-        .form-group
-          label.col-sm-2.control-label #{registerConfig.labels.site.text}
-          .col-sm-10
-            select.form-control(name="site")
-              each site in sites
-                option(value=site._id) #{site.sitename}
+          .form-group
+            label.col-sm-2.control-label #{registerConfig.labels.role.text}
+            .col-sm-10
+              select.form-control(name="role")
+                each roleConfigItem in roleConfig
+                  option(value=roleConfigItem.value) #{roleConfigItem.text}
 
-        input(type="submit" value=registerConfig.buttons.saveNewUser.text)  
+          .form-group
+            label.col-sm-2.control-label #{registerConfig.labels.site.text}
+            .col-sm-10
+              select.form-control(name="site")
+                each site in sites
+                  option(value=site._id) #{site.sitename}
+
+          input.btn.btn-default.yuda-input-btn-2(type="submit" value=registerConfig.buttons.saveNewUser.text)

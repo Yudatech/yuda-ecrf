@@ -1,16 +1,28 @@
+.case-nav {
+  padding-left: 0;
+}
+
 .case-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border: 1px solid red;
+  height: 100%;
+  padding-left: 0;
 
-    .case-nav {
-        width: 30%;
-        border: 1px solid blue;
-    }
+  .case-heading{
+  }
 
-    .case-content {
-        width: 70%;
-        border: 1px solid green;
+  .panel-body{
+    overflow: auto;
+    height:calc(100% - 60px);
+  }
+
+  .case-content {
+    width: 100%;
+
+    .yuda-input-btn{
+      position: absolute;
+      top: 14px;
+      right: 32px;
+      background: $green;
+      color: $white;
     }
+  }
 }

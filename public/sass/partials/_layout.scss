@@ -1,23 +1,105 @@
 html {
   font-size: 10px;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
 }
 
 body {
   background: $purple;
-  background:#efefef;
-  &:before {
-    content: '';
-    display: block;
-    background: $grad;
-    height: 10px;
-    width: 100%;
-  }
+  background: #efefef;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
 }
 
 .inner {
   width: 100%;
+  height: 100%;
   margin: 0 auto;
   @media all and (max-width: 900px) {
     padding: 2rem;
   }
+}
+
+.content {
+  padding-left: 15px;
+  height: calc(100% - 82px);
+}
+
+.kpi-panel {
+  padding-right: 15px;
+
+  .kpi-title {
+    margin: 10px;
+    text-align: center;
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+}
+
+.yuda-nav {
+  background: $black;
+  border: none;
+  border-radius: 0;
+
+  .yuda-menu-btn {
+    color: $white !important;
+  }
+
+  a:hover {
+    background: $green !important;
+  }
+
+  .navbar-brand {
+    color: $green;
+    font-weight: bold;
+  }
+
+  .yuda-menu-user-icon {
+    background: #555;
+    color: $white !important;
+  }
+
+  .active {
+    background: $green-dark;
+  }
+}
+
+.yuda-login-form {
+  background: $white;
+  border: 2px solid #555;
+  border-radius: 10px;
+  padding: 20px;
+
+  h2 {
+    text-align: center;
+  }
+
+  br {
+    line-height:30px;
+  }
+
+  .login-btn{
+    width: 100%;
+    margin-top:20px;
+    background: $green;
+    color: $white;
+  }
+}
+
+.yuda-dashboard-panel {
+  padding-left: 0;
+}
+
+.pading-right-15 {
+  padding-right: 15px;
+}
+
+.yuda-input-btn-2{
+  position: absolute;
+  top: 100px;
+  right: 32px;
+  background: $green;
+  color: $white;
 }

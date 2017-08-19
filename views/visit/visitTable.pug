@@ -17,13 +17,10 @@ block case-content
                 td #{visit[visitTableHeader.name]}
               else
                 td
-                  .row
-                    .col-sm-4
-                      a.btn.btn-default(role="button" href=`/visit/${caseId}/${visit._id}`)
-                        span.glyphicon.glyphicon-pencil
+                  .btn-group
+                    a.btn.btn-default(role="button" href=`/visit/${caseId}/${visit._id}`)
+                      span.glyphicon.glyphicon-pencil
+                    a.btn.btn-default(role="button" href=`/remove/visit/${caseId}/${visit._id}`)
+                      span.glyphicon.glyphicon-trash
 
-                    .col-sm-4
-                      a.btn.btn-default(role="button" href=`/remove/visit/${caseId}/${visit._id}`)
-                        span.glyphicon.glyphicon-trash
-
-    a.btn.btn-default(href=`/visit/${caseId}` role="button") #{buttonConfig.buttons.add.text}
+    a.btn.btn-default.yuda-input-btn(href=`/visit/${caseId}` role="button") #{buttonConfig.buttons.add.text}

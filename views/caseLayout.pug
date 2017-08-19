@@ -3,10 +3,13 @@ extends layout
 include mixins/_caseNav
 
 block content
-  .inner
-    .case-container
+  .inner.row
+    .case-nav.col-sm-3
+      +_caseNav(caseNav)
 
-      .case-nav
-        +_caseNav(caseNav)
-      
-      block case-content
+    .case-container.col-sm-9
+      .inner.panel.panel-default
+        .panel-heading.case-heading
+          h4 CRF 表单
+        .panel-body
+          block case-content

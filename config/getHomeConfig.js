@@ -1,5 +1,8 @@
 const config = {
   summary: {
+    title: {
+      zh: '指表数据一览'
+    },
     titles: [{
       name: 'comitted',
       text: {
@@ -91,7 +94,7 @@ const config = {
   }
 };
 
-module.exports = function(lang) {
+module.exports = function (lang) {
   if (lang === undefined) {
     lang = 'zh';
   }

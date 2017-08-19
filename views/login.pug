@@ -1,18 +1,23 @@
 extends layout
 
 block content
-  .inner
-    form.form(action="/login" method="POST")
-      fieldset
-        legend #{loginConfig.title}
+  .inner.row
+    .hidden-sm.col-md-3
+    form.form.col-sm-12.col-md-6.yuda-login-form(action="/login" method="POST")
+      h2 #{loginConfig.title}
 
-        .form-group
-          label.col-sm-2.control-label #{loginConfig.labels.userabbr.text}
-          .col-sm-10
-            input.form-control(type="text" name="userabbr" required)
+      br
 
-        .form-group
-          label.col-sm-2.control-label #{loginConfig.labels.password.text}
-          .col-sm-10
-            input.form-control(type="text" name="password" required)
-        input(type="submit" value=loginConfig.buttons.login.text)
+      .form-group
+        label.col-sm-3.control-label #{loginConfig.labels.userabbr.text}
+        .col-sm-12
+          input.form-control(type="text" name="userabbr" required)
+
+      .form-group
+        label.col-sm-3.control-label #{loginConfig.labels.password.text}
+        .col-sm-12
+          input.form-control(type="text" name="password" required)
+
+
+      .col-sm-12
+        input.btn.btn-default.login-btn(type="submit" value=loginConfig.buttons.login.text)

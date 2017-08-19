@@ -12,7 +12,7 @@ const config = {
   }, {
     name: 'password',
     text: {
-      zh: '密码'
+      zh: '登录密码'
     }
   }],
   buttons: [{

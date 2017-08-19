@@ -3,28 +3,29 @@ extends ../layout
 include ../mixins/_formTemplate
 
 block content
-  .inner
-    form.form-horizontal(action=`/site/${siteId || ''}` method="POST")
-      fieldset
-        legend #{siteConfig.title}
+  .inner.pading-right-15
+    .panel.panel-default
+      .panel-heading
+        h3 #{siteConfig.title}
+      .panel-body
+        form.form-horizontal(action=`/site/${siteId || ''}` method="POST")
+          .form-group
+            label.col-sm-2.control-label #{siteConfig.formConfigs.sitename.text}
+            .col-sm-10
+              input.form-control(type="text" name="sitename" required value=siteConfig.formConfigs.sitename.value)
 
-        .form-group
-          label.col-sm-2.control-label #{siteConfig.formConfigs.sitename.text}
-          .col-sm-10
-            input.form-control(type="text" name="sitename" required value=siteConfig.formConfigs.sitename.value)
+          .form-group
+            label.col-sm-2.control-label #{siteConfig.formConfigs.sitemail.text}
+            .col-sm-10
+              input.form-control(type="email" name="sitemail" required value=siteConfig.formConfigs.sitemail.value)
 
-        .form-group
-          label.col-sm-2.control-label #{siteConfig.formConfigs.sitemail.text}
-          .col-sm-10
-            input.form-control(type="email" name="sitemail" required value=siteConfig.formConfigs.sitemail.value)
+          .form-group
+            label.col-sm-2.control-label #{siteConfig.formConfigs.sitetel.text}
+            .col-sm-10
+              input.form-control(type="text" name="sitetel" required value=siteConfig.formConfigs.sitetel.value)
 
-        .form-group
-          label.col-sm-2.control-label #{siteConfig.formConfigs.sitetel.text}
-          .col-sm-10
-            input.form-control(type="text" name="sitetel" required value=siteConfig.formConfigs.sitetel.value)
-
-        .form-group
-          label.col-sm-2.control-label #{siteConfig.formConfigs.country.text}
-          .col-sm-10
-            input.form-control(type="text" name="country" required value=siteConfig.formConfigs.country.value)
-        input(type="submit" value=buttonConfig.buttons.save.text)
+          .form-group
+            label.col-sm-2.control-label #{siteConfig.formConfigs.country.text}
+            .col-sm-10
+              input.form-control(type="text" name="country" required value=siteConfig.formConfigs.country.value)
+          input.btn.btn-default.yuda-input-btn-2(type="submit" value=buttonConfig.buttons.save.text)

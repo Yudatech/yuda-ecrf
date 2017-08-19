@@ -1,21 +1,28 @@
 extends layout
 
 block content
-  .inner
+  .inner.container
+    .row.kpi-panel
+      .panel.panel-default
+        .panel-heading
+          h2 #{homeConfig.summary.title}
+        .panel-body
+          each summaryTitleItem in homeConfig.summary.titles
+            .col-sm-2.well.kpi-title
+              h4 #{summaryTitleItem.text}
+              span 100%
     .row
-      each summaryTitleItem in homeConfig.summary.titles
-        .col-sm-2
-          span #{summaryTitleItem.text}
-    .row
-      .col-sm-7
-        .row
-          .col-sm-4
-            h2 #{homeConfig.cases.title}
-          .col-sm-4
-            a.btn.btn-default(href="/" role="button") #{buttonConfig.buttons.committed.text}
-            a.btn.btn-default(href="/" role="button") #{buttonConfig.buttons.ongoing.text}
-            a.btn.btn-default(href="/" role="button") #{buttonConfig.buttons.all.text}
-        .row
+      .col-sm-7.yuda-dashboard-panel
+        .panel.panel-default
+          .panel-heading
+
+            h3 #{homeConfig.cases.title}
+            .table-filter
+              .btn-group
+                a.btn.btn-default(href="/" role="button") #{buttonConfig.buttons.committed.text}
+                a.btn.btn-default(href="/" role="button") #{buttonConfig.buttons.ongoing.text}
+                a.btn.btn-default.active(href="/" role="button") #{buttonConfig.buttons.all.text}
+
           table.table.table-striped
             thead
               tr
@@ -30,31 +37,35 @@ block content
                     else
                       td
                         .row
-                          .col-sm-3
+                          .btn-group
                             a.btn.btn-default(role="button" href=`/screening/basic/${caseItem._id}`)
                               span.glyphicon.glyphicon-pencil
-
-                          .col-sm-3
                             a.btn.btn-default(role="button" href=`/remove/case/${caseItem._id}`)
                               span.glyphicon.glyphicon-trash
+          .panel-footer
 
-      .col-sm-5
-        h2 #{homeConfig.questions.title}
-        table.table.table-striped
-            thead
-              tr
-                each questionsHeader in homeConfig.questions.headers
-                  th #{questionsHeader.text}
+      .col-sm-5.yuda-dashboard-panel
+        .panel.panel-default
+          .panel-heading
+            h3 #{homeConfig.questions.title}
 
-            tbody
-              each questionItem in questions
+
+          table.table.table-striped
+              thead
                 tr
                   each questionsHeader in homeConfig.questions.headers
-                    if questionsHeader.name !== 'operations'
-                      td #{questionItem[questionsHeader.name]}
-                    else
-                      td
-                        .row
-                          a.btn.btn-default(role="button" href=`/question/${questionItem.questionId}`)
-                            span.glyphicon.glyphicon-pencil
-                            
+                    th #{questionsHeader.text}
+
+              tbody
+                each questionItem in questions
+                  tr
+                    each questionsHeader in homeConfig.questions.headers
+                      if questionsHeader.name !== 'operations'
+                        td #{questionItem[questionsHeader.name]}
+                      else
+                        td
+                          .row
+                            a.btn.btn-default(role="button" href=`/question/${questionItem.questionId}`)
+                              span.glyphicon.glyphicon-pencil
+
+          .panel-footer
