@@ -1,22 +1,80 @@
 html {
-  font-size: 10px; }
+  font-size: 10px;
+  height: 100%;
+  width: 100%;
+  overflow: hidden; }
 
 body {
   background: #262161;
-  background: #efefef; }
-  body:before {
-    content: '';
-    display: block;
-    background: linear-gradient(90deg, #48ded4 0%, #a026bf 20%, #e82c75 60%, #FFC40E 85%, #48ded4 95%);
-    height: 10px;
-    width: 100%; }
+  background: #efefef;
+  height: 100%;
+  width: 100%;
+  overflow: hidden; }
 
 .inner {
   width: 100%;
+  height: 100%;
   margin: 0 auto; }
   @media all and (max-width: 900px) {
     .inner {
       padding: 2rem; } }
+
+.content {
+  padding-left: 15px;
+  height: calc(100% - 82px); }
+
+.kpi-panel {
+  padding-right: 15px; }
+  .kpi-panel .kpi-title {
+    margin: 10px;
+    text-align: center;
+    padding-top: 0;
+    padding-bottom: 0; }
+
+.yuda-nav {
+  background: #303030;
+  border: none;
+  border-radius: 0; }
+  .yuda-nav .yuda-menu-btn {
+    color: #f8f8f8 !important; }
+  .yuda-nav a:hover {
+    background: #05a59a !important; }
+  .yuda-nav .navbar-brand {
+    color: #05a59a;
+    font-weight: bold; }
+  .yuda-nav .yuda-menu-user-icon {
+    background: #555;
+    color: #f8f8f8 !important; }
+  .yuda-nav .active {
+    background: rgba(5, 165, 154, 0.8); }
+
+.yuda-login-form {
+  background: #f8f8f8;
+  border: 2px solid #555;
+  border-radius: 10px;
+  padding: 20px; }
+  .yuda-login-form h2 {
+    text-align: center; }
+  .yuda-login-form br {
+    line-height: 30px; }
+  .yuda-login-form .login-btn {
+    width: 100%;
+    margin-top: 20px;
+    background: #05a59a;
+    color: #f8f8f8; }
+
+.yuda-dashboard-panel {
+  padding-left: 0; }
+
+.pading-right-15 {
+  padding-right: 15px; }
+
+.yuda-input-btn-2 {
+  position: absolute;
+  top: 100px;
+  right: 32px;
+  background: #05a59a;
+  color: #f8f8f8; }
 
 html {
   box-sizing: border-box; }
@@ -445,7 +503,6 @@ body {
   color: #303030; }
 
 h1, h2, h3, h4, h5, h6 {
-  font-size: 5rem;
   font-family: 'Panama';
   font-weight: 600;
   letter-spacing: -1px; }
@@ -548,6 +605,53 @@ p {
   .flash p {
     margin: 0; }
 
+.yuda-nav-stack {
+  list-style-type: none;
+  padding: 0; }
+  .yuda-nav-stack li {
+    margin-bottom: 5px; }
+    .yuda-nav-stack li.active {
+      background: #05a59a;
+      border-radius: 10px; }
+      .yuda-nav-stack li.active a {
+        color: #f8f8f8; }
+    .yuda-nav-stack li:hover {
+      background: rgba(5, 165, 154, 0.34);
+      border-radius: 10px; }
+      .yuda-nav-stack li:hover a {
+        text-decoration: none; }
+
+.level-2 {
+  padding-left: 30px; }
+
+.level-1 {
+  padding: 0 10px;
+  font-weight: bold; }
+
+.table {
+  width: 100%;
+  margin-bottom: 0; }
+  .table td {
+    padding: 5px; }
+  .table tr:nth-child(even) {
+    background: white; }
+  .table tr:nth-child(odd):not(:first-child) {
+    background: #f7f7f7; }
+  .table thead tr {
+    background: #303030;
+    color: white; }
+
+.table-filter {
+  text-align: right;
+  padding-right: 0;
+  padding-top: 20px;
+  float: right;
+  position: absolute;
+  right: 25px;
+  top: 10px; }
+  .table-filter .active {
+    background: #e6e6e6; }
+
 .hide {
   text-indent: -999999px;
   font-size: 0; }
@@ -578,19 +682,22 @@ pre.error {
   line-height: 3;
   white-space: pre-line; }
 
+.case-nav {
+  padding-left: 0; }
+
 .case-container {
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-pack: center;
-      justify-content: center;
-  -ms-flex-align: center;
-      align-items: center;
-  border: 1px solid red; }
-  .case-container .case-nav {
-    width: 30%;
-    border: 1px solid blue; }
+  height: 100%;
+  padding-left: 0; }
+  .case-container .panel-body {
+    overflow: auto;
+    height: calc(100% - 60px); }
   .case-container .case-content {
-    width: 70%;
-    border: 1px solid green; }
+    width: 100%; }
+    .case-container .case-content .yuda-input-btn {
+      position: absolute;
+      top: 14px;
+      right: 32px;
+      background: #05a59a;
+      color: #f8f8f8; }
 
 /*# sourceMappingURL=style.css.map*/
