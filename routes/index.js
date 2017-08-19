@@ -1,6 +1,8 @@
 const express = require('express');
 const router = express.Router(); // eslint-disable-line
 
+const {catchErrors} = require('../handlers/errorHandlers');
+
 const mainController = require('../controllers/mainController');
 const siteController = require('../controllers/siteController');
 const authController = require('../controllers/authController');
@@ -37,102 +39,106 @@ router.post('/user',
   userController.register
 );
 // open user to edit
-router.get('/user/:id', userController.registerForm);
+router.get('/user/:id', catchErrors(userController.registerForm));
 // update user
-router.post('/user/:id', userController.updateUser);
+router.post('/user/:id', catchErrors(userController.updateUser));
 // remove user
-router.get('/remove/user/:id', userController.removeUser);
+router.get('/remove/user/:id', catchErrors(userController.removeUser));
 
 /**
  * Router for case
  */ 
 // Show create case form
-router.get('/case', caseController.caseForm);
+router.get('/case', catchErrors(caseController.caseForm));
 // create case
-router.post('/case', caseController.uploadAcceptDoc, caseController.saveAcceptDoc, caseController.createCase);
+router.post('/case',
+  caseController.uploadAcceptDoc,
+  catchErrors(caseController.saveAcceptDoc),
+  catchErrors(caseController.createCase)
+);
 
-router.get('/overview/:caseId', caseController.caseOverviewForm);
+router.get('/overview/:caseId', catchErrors(caseController.caseOverviewForm));
 
-router.get('/screening/basic/:caseId', caseController.caseBasicForm);
-router.post('/screening/basic/:caseId', caseController.updateCaseBasic);
+router.get('/screening/basic/:caseId', catchErrors(caseController.caseBasicForm));
+router.post('/screening/basic/:caseId', catchErrors(caseController.updateCaseBasic));
 
-router.get('/screening/inclusion/:caseId', caseController.caseInclusionForm);
-router.post('/screening/inclusion/:caseId', caseController.updateCaseInclusion);
+router.get('/screening/inclusion/:caseId', catchErrors(caseController.caseInclusionForm));
+router.post('/screening/inclusion/:caseId', catchErrors(caseController.updateCaseInclusion));
 
-router.get('/screening/exclusion/:caseId', caseController.caseExclusionForm);
-router.post('/screening/exclusion/:caseId', caseController.updateCaseExclusion);
+router.get('/screening/exclusion/:caseId', catchErrors(caseController.caseExclusionForm));
+router.post('/screening/exclusion/:caseId', catchErrors(caseController.updateCaseExclusion));
 
-router.get('/screening/disease/:caseId', caseController.caseDiseaseForm);
-router.post('/screening/disease/:caseId', caseController.updateCaseDisease);
+router.get('/screening/disease/:caseId', catchErrors(caseController.caseDiseaseForm));
+router.post('/screening/disease/:caseId', catchErrors(caseController.updateCaseDisease));
 
-router.get('/screening/conmed/:caseId', caseController.caseConMedForm);
-router.post('/screening/conmed/:caseId', caseController.updateCaseConMed);
+router.get('/screening/conmed/:caseId', catchErrors(caseController.caseConMedForm));
+router.post('/screening/conmed/:caseId', catchErrors(caseController.updateCaseConMed));
 
-router.get('/screening/vitalsign/:caseId', caseController.caseVitalSignForm);
-router.post('/screening/vitalsign/:caseId', caseController.updateCaseVitalSign);
+router.get('/screening/vitalsign/:caseId', catchErrors(caseController.caseVitalSignForm));
+router.post('/screening/vitalsign/:caseId', catchErrors(caseController.updateCaseVitalSign));
 
-router.get('/screening/lab/:caseId', caseController.caseLabForm);
-router.post('/screening/lab/:caseId', caseController.updateCaseLab);
+router.get('/screening/lab/:caseId', catchErrors(caseController.caseLabForm));
+router.post('/screening/lab/:caseId', catchErrors(caseController.updateCaseLab));
 
-router.get('/screening/assistant/:caseId', caseController.caseAssistantForm);
-router.post('/screening/assistant/:caseId', caseController.updateCaseAssistant);
+router.get('/screening/assistant/:caseId', catchErrors(caseController.caseAssistantForm));
+router.post('/screening/assistant/:caseId', catchErrors(caseController.updateCaseAssistant));
 
-router.get('/screening/method/:caseId', caseController.caseMethodForm);
-router.post('/screening/method/:caseId', caseController.updateCaseMethod);
+router.get('/screening/method/:caseId', catchErrors(caseController.caseMethodForm));
+router.post('/screening/method/:caseId', catchErrors(caseController.updateCaseMethod));
 
-router.get('/screening/region/:caseId', caseController.caseRegionForm);
-router.post('/screening/region/:caseId', caseController.updateCaseRegion);
+router.get('/screening/region/:caseId', catchErrors(caseController.caseRegionForm));
+router.post('/screening/region/:caseId', catchErrors(caseController.updateCaseRegion));
 
-router.get('/screening/dignose/:caseId', caseController.caseDignoseForm);
-router.post('/screening/dignose/:caseId', caseController.updateCaseDignose);
+router.get('/screening/dignose/:caseId', catchErrors(caseController.caseDignoseForm));
+router.post('/screening/dignose/:caseId', catchErrors(caseController.updateCaseDignose));
 
 // Router for screening-checklist
-router.get('/screening-checklist/:caseId', screeningChecklistController.screeningChecklistForm);
-router.post('/screening-checklist/:caseId', screeningChecklistController.updateScreeningChecklist);
+router.get('/screening-checklist/:caseId', catchErrors(screeningChecklistController.screeningChecklistForm));
+router.post('/screening-checklist/:caseId', catchErrors(screeningChecklistController.updateScreeningChecklist));
 
 // Router for review-checklist
-router.get('/review-checklist/:caseId', reviewChecklistController.reviewChecklistForm);
-router.post('/review-checklist/:caseId', reviewChecklistController.updateReviewChecklist);
+router.get('/review-checklist/:caseId', catchErrors(reviewChecklistController.reviewChecklistForm));
+router.post('/review-checklist/:caseId', catchErrors(reviewChecklistController.updateReviewChecklist));
 
 // Router for discontinuation
-router.get('/discontinuation/:caseId', discontinuationController.discontinuationForm);
-router.post('/discontinuation/:caseId', discontinuationController.updateDiscontinuation);
+router.get('/discontinuation/:caseId', catchErrors(discontinuationController.discontinuationForm));
+router.post('/discontinuation/:caseId', catchErrors(discontinuationController.updateDiscontinuation));
 
 // Router for surgery
-router.get('/surgery/:caseId', surgeryController.surgeryForm);
-router.post('/surgery/:caseId', surgeryController.updateSurgery);
+router.get('/surgery/:caseId', catchErrors(surgeryController.surgeryForm));
+router.post('/surgery/:caseId', catchErrors(surgeryController.updateSurgery));
 
 // Router for cm
-router.get('/cmlist/:caseId', cmController.cmTable);
-router.get('/cm/:caseId', cmController.cmForm);
-router.post('/cm/:caseId', cmController.createCm);
-router.get('/cm/:caseId/:cmId', cmController.cmForm);
-router.post('/cm/:caseId/:cmId', cmController.updateCm);
-router.get('/remove/cm/:caseId/:cmId', cmController.removeCm);
+router.get('/cmlist/:caseId', catchErrors(cmController.cmTable));
+router.get('/cm/:caseId', catchErrors(cmController.cmForm));
+router.post('/cm/:caseId', catchErrors(cmController.createCm));
+router.get('/cm/:caseId/:cmId', catchErrors(cmController.cmForm));
+router.post('/cm/:caseId/:cmId', catchErrors(cmController.updateCm));
+router.get('/remove/cm/:caseId/:cmId', catchErrors(cmController.removeCm));
 
 // Router for ae
-router.get('/aelist/:caseId', aeController.aeTable);
-router.get('/ae/:caseId', aeController.aeForm);
-router.post('/ae/:caseId', aeController.createAe);
-router.get('/ae/:caseId/:aeId', aeController.aeForm);
-router.post('/ae/:caseId/:aeId', aeController.updateAe);
-router.get('/remove/ae/:caseId/:aeId', aeController.removeAe);
+router.get('/aelist/:caseId', catchErrors(aeController.aeTable));
+router.get('/ae/:caseId', catchErrors(aeController.aeForm));
+router.post('/ae/:caseId', catchErrors(aeController.createAe));
+router.get('/ae/:caseId/:aeId', catchErrors(aeController.aeForm));
+router.post('/ae/:caseId/:aeId', catchErrors(aeController.updateAe));
+router.get('/remove/ae/:caseId/:aeId', catchErrors(aeController.removeAe));
 
 // Router for sae
-router.get('/saelist/:caseId', saeController.saeTable);
-router.get('/sae/:caseId', saeController.saeForm);
-router.post('/sae/:caseId', saeController.createSae);
-router.get('/sae/:caseId/:saeId', saeController.saeForm);
-router.post('/sae/:caseId/:saeId', saeController.updateSae);
-router.get('/remove/sae/:caseId/:saeId', saeController.removeSae);
+router.get('/saelist/:caseId', catchErrors(saeController.saeTable));
+router.get('/sae/:caseId', catchErrors(saeController.saeForm));
+router.post('/sae/:caseId', catchErrors(saeController.createSae));
+router.get('/sae/:caseId/:saeId', catchErrors(saeController.saeForm));
+router.post('/sae/:caseId/:saeId', catchErrors(saeController.updateSae));
+router.get('/remove/sae/:caseId/:saeId', catchErrors(saeController.removeSae));
 
 // Router for visit
-router.get('/visitlist/:caseId', visitController.visitTable);
-router.get('/visit/:caseId', visitController.visitForm);
-router.post('/visit/:caseId', visitController.createVisit);
-router.get('/visit/:caseId/:visitId', visitController.visitForm);
-router.post('/visit/:caseId/:visitId', visitController.updateVisit);
-router.get('/remove/visit/:caseId/:visitId', visitController.removeVisit);
+router.get('/visitlist/:caseId', catchErrors(visitController.visitTable));
+router.get('/visit/:caseId', catchErrors(visitController.visitForm));
+router.post('/visit/:caseId', catchErrors(visitController.createVisit));
+router.get('/visit/:caseId/:visitId', catchErrors(visitController.visitForm));
+router.post('/visit/:caseId/:visitId', catchErrors(visitController.updateVisit));
+router.get('/remove/visit/:caseId/:visitId', catchErrors(visitController.removeVisit));
 
 // Router for question
 
@@ -141,23 +147,23 @@ router.get('/remove/visit/:caseId/:visitId', visitController.removeVisit);
  * Router for site
  */
 // show sites table
-router.get('/sites', siteController.sitesTable);
+router.get('/sites', catchErrors(siteController.sitesTable));
 // site form to create new site
-router.get('/site', siteController.siteForm);
+router.get('/site', catchErrors(siteController.siteForm));
 // create new site
-router.post('/site', siteController.createSite);
+router.post('/site', catchErrors(siteController.createSite));
 // open site to edit
-router.get('/site/:id', siteController.siteForm);
+router.get('/site/:id', catchErrors(siteController.siteForm));
 // update site
-router.post('/site/:id', siteController.updateSite);
+router.post('/site/:id', catchErrors(siteController.updateSite));
 // remove site
-router.get('/remove/site/:id', siteController.removeSite);
+router.get('/remove/site/:id', catchErrors(siteController.removeSite));
 
 /**
  * Router for question
  */
-router.get('/new/question', questionController.startQuestion);
-router.post('/comment/:questionId', questionController.addNewComment);
-router.get('/question/:questionId', questionController.showQuestionPage);
+router.get('/new/question', catchErrors(questionController.startQuestion));
+router.post('/comment/:questionId', catchErrors(questionController.addNewComment));
+router.get('/question/:questionId', catchErrors(questionController.showQuestionPage));
 
 module.exports = router;

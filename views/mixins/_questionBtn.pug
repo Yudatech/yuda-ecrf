@@ -1,3 +1,4 @@
 mixin _questionBtn(link)
-  a.btn.btn-default(href=link)
-    span.glyphicon.glyphicon-question-sign
+  if locals.user.role !== 'cra'
+    a.btn.btn-default(href=link)
+      span.glyphicon.glyphicon-question-sign
