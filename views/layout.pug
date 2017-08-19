@@ -42,7 +42,7 @@ html
 
     block messages
       if locals.flashes
-        .inner.inner--flashes
+        .inner--flashes
           .flash-messages
             - const categories = Object.keys(locals.flashes)
             each category in categories
