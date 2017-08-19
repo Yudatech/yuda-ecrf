@@ -5,6 +5,7 @@ const mongoose = require('mongoose');
 const Cm = mongoose.model('Cm');
 
 const helpers = require('./helpers');
+const decorationHelper = require('./decorationHelper');
 const getCmConfig = require('../config/cm/getCmConfig');
 const getCmTableConfig = require('../config/cm/getCmTableConfig');
 const getDoseMethodsConfig = require('../config/cm/getDoseMethodsConfig');
@@ -16,6 +17,8 @@ async function getCmListByCaseId(caseId) {
   });
   return cmList;
 }
+
+const tableName = 'cm';
 
 exports.cmTable = async (req, res) => {
   const CaseNav = helpers.appendCaseIdToCaseNav(req.params.caseId);
@@ -67,11 +70,10 @@ exports.cmForm = async (req, res) => {
 
   const config = getCmConfig();
   Object.keys(config.formConfigs).forEach((key) => {
-    if (key === 'dosemtd_1') {
-      config.formConfigs[key].value = cm[key];
-      config.formConfigs[key].options = getDoseMethodsConfig();
+    if (config.formConfigs[key].type === 'select') {
+      config.formConfigs[key].options = decorationHelper[config.formConfigs[key].optionsGetter]();
     }
-    else if (key === 'cmstdtc') {
+    if (key === 'cmstdtc') {
       config.formConfigs[key].value = moment(cm.cmstdtc).format('MM/DD/YYYY');
     }
     else if (key === 'cmeddtc') {
@@ -79,6 +81,10 @@ exports.cmForm = async (req, res) => {
     }
     else {
       config.formConfigs[key].value = cm[key];
+    }
+
+    if (cmId !== undefined) {
+      config.formConfigs[key].questionLink = helpers.getQuestionLink(tableName, req.params.caseId, config.formConfigs[key], cmId);
     }
   });
 

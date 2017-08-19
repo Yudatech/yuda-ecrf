@@ -13,42 +13,42 @@ block case-content
           .col-sm-10
             +_formTemplate(config.formConfigs.drug)
           .col-sm-2
-            +_questionBtn()
+            +_questionBtn(config.formConfigs.drug.questionLink)
 
         .row
           .col-sm-10
             +_formTemplate(config.formConfigs.dosing)
           .col-sm-2
-            +_questionBtn()
+            +_questionBtn(config.formConfigs.dosing.questionLink)
 
         .row
           .col-sm-10
             +_formTemplate(config.formConfigs.dosemtd_1)
           .col-sm-2
-            +_questionBtn()
+            +_questionBtn(config.formConfigs.dosemtd_1.questionLink)
 
         .row
           .col-sm-10
             +_formTemplate(config.formConfigs.dosemtd_2)
           .col-sm-2
-            +_questionBtn()
+            +_questionBtn(config.formConfigs.dosemtd_2.questionLink)
 
         .row
           .col-sm-10
             +_formTemplate(config.formConfigs.cmstdtc)
           .col-sm-2
-            +_questionBtn()
+            +_questionBtn(config.formConfigs.cmstdtc.questionLink)
 
         .row
           .col-sm-10
             +_formTemplate(config.formConfigs.cmeddtc)
           .col-sm-2
-            +_questionBtn()
+            +_questionBtn(config.formConfigs.cmeddtc.questionLink)
 
         .row
           .col-sm-10
             +_formTemplate(config.formConfigs.cmrsn)
           .col-sm-2
-            +_questionBtn()
+            +_questionBtn(config.formConfigs.cmrsn.questionLink)
 
         input(type="submit" value=buttonConfig.buttons.save.text)

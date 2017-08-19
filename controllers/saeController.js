@@ -5,6 +5,7 @@ const mongoose = require('mongoose');
 const Sae = mongoose.model('Sae');
 
 const helpers = require('./helpers');
+const decorationHelper = require('./decorationHelper');
 const getSaeConfig = require('../config/sae/getSaeConfig');
 const getSaeTableConfig = require('../config/sae/getSaeTableConfig');
 const getSaeActConfig = require('../config/sae/getSaeActConfig');
@@ -33,6 +34,8 @@ function getSaeCauseText(value) {
     return item.value === value;
   }).text;
 }
+
+const tableName = 'sae';
 
 exports.saeTable = async (req, res) => {
   const CaseNav = helpers.appendCaseIdToCaseNav(req.params.caseId);
@@ -74,16 +77,11 @@ exports.saeForm = async (req, res) => {
 
   const config = getSaeConfig();
   Object.keys(config.formConfigs).forEach((key) => {
-    if (key === 'saetpe') {
-      config.formConfigs[key].value = sae[key];
-      config.formConfigs[key].options = getSaeTypesConfig();
+    if (config.formConfigs[key].type === 'select') {
+      config.formConfigs[key].options = decorationHelper[config.formConfigs[key].optionsGetter]();
     }
-    else if (key === 'saedtc') {
+    if (key === 'saedtc') {
       config.formConfigs[key].value = moment(sae.saedtc).format('MM/DD/YYYY');
-    }
-    else if (key === 'saecaus_1') {
-      config.formConfigs[key].value = sae[key];
-      config.formConfigs[key].options = getSaeCauseConfig();
     }
     else if (key === 'saecaus_2') {
       config.formConfigs[key].value = moment(sae.saecaus_2).format('MM/DD/YYYY');
@@ -94,24 +92,12 @@ exports.saeForm = async (req, res) => {
     else if (key === 'saenoticedtc') {
       config.formConfigs[key].value = moment(sae.saenoticedtc).format('MM/DD/YYYY');
     }
-    else if (key === 'saeact') {
-      config.formConfigs[key].value = sae[key];
-      config.formConfigs[key].options = getSaeActConfig();
-    }
-    else if (key === 'saeres_1') {
-      config.formConfigs[key].value = sae[key];
-      config.formConfigs[key].options = getSaeResConfig();
-    }
-    else if (key === 'saerel') {
-      config.formConfigs[key].value = sae[key];
-      config.formConfigs[key].options = getSaeRelConfig();
-    }
-    else if (key === 'saerpt_1' || key === 'saerpt_2') {
-      config.formConfigs[key].value = sae[key];
-      config.formConfigs[key].options = getSaeReportConfig();
-    }
     else {
       config.formConfigs[key].value = sae[key];
+    }
+
+    if (saeId !== undefined) {
+      config.formConfigs[key].questionLink = helpers.getQuestionLink(tableName, req.params.caseId, config.formConfigs[key], saeId);
     }
   });
 

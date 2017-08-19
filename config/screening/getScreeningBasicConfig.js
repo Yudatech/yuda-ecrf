@@ -7,6 +7,7 @@ const config = {
   formConfigs: [{
     name: 'sex',
     type: 'select',
+    optionsGetter: 'getSexConfig',
     text: {
       zh: '性别'
     }

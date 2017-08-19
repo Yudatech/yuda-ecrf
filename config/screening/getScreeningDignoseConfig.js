@@ -19,6 +19,7 @@ const config = {
   }, {
     name: 'dignose_3',
     type: 'select',
+    optionsGetter: 'getClinicalStageConfig',
     text: {
       zh: '临床分期 (若适用)'
     }

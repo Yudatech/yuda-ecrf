@@ -25,6 +25,7 @@ const config = {
   }, {
     name: 'vitalsign_4',
     type: 'select',
+    optionsGetter: 'getAbdominalExamResultConfig',
     text: {
       zh: '腹部检查'
     }

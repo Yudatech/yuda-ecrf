@@ -45,3 +45,16 @@ block content
               tr
                 each questionsHeader in homeConfig.questions.headers
                   th #{questionsHeader.text}
+
+            tbody
+              each questionItem in questions
+                tr
+                  each questionsHeader in homeConfig.questions.headers
+                    if questionsHeader.name !== 'operations'
+                      td #{questionItem[questionsHeader.name]}
+                    else
+                      td
+                        .row
+                          a.btn.btn-default(role="button" href=`/question/${questionItem.questionId}`)
+                            span.glyphicon.glyphicon-pencil
+                            

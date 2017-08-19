@@ -6,7 +6,7 @@ const mongodbErrorHandler = require('mongoose-mongodb-errors');
 const questionSchema = new Schema({
   // case id
   case: {
-    type: mongoose.Schema.ObjectId,
+    type: String,
     ref: 'Case',
     required: 'You must supply a caseid'
   },
@@ -21,6 +21,11 @@ const questionSchema = new Schema({
     type: mongoose.Schema.ObjectId,
     ref: 'User',
     required: 'You must supply an orig userid'
+  },
+  owner: {
+    type: mongoose.Schema.ObjectId,
+    ref: 'User',
+    required: 'You must supply an owner userid'
   },
   // 创建日期
   createDate: {

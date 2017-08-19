@@ -20,6 +20,7 @@ const config = {
   }, {
     name: 'visittype',
     type: 'select',
+    optionsGetter: 'getVisitTypesConfig',
     text: {
       zh: '访视方式'
     }
@@ -38,24 +39,28 @@ const config = {
   }, {
     name: 'visitres',
     type: 'select',
+    optionsGetter: 'getVisitResConfig',
     text: {
       zh: '转归'
     }
   }, {
     name: 'param_1',
     type: 'select',
+    optionsGetter: 'getVisitParam1Config',
     text: {
       zh: '腹痛'
     }
   }, {
     name: 'param_2',
     type: 'select',
+    optionsGetter: 'getVisitParam2Config',
     text: {
       zh: '腹部触诊'
     }
   }, {
     name: 'param_3',
     type: 'select',
+    optionsGetter: 'getVisitParam3Config',
     text: {
       zh: '切口感染'
     }
@@ -89,6 +94,7 @@ const config = {
   }, {
     name: 'param_8',
     type: 'select',
+    optionsGetter: 'getVisitParam8Config',
     text: {
       zh: '肠鸣音(根据医生检查)'
     }
@@ -119,18 +125,21 @@ const config = {
   }, {
     name: 'param_13',
     type: 'select',
+    optionsGetter: 'getVisitFoodTypesConfig',
     text: {
       zh: '食物类型'
     }
   }, {
     name: 'param_14',
     type: 'select',
+    optionsGetter: 'getVisitParam14Config',
     text: {
       zh: '拔除胃管'
     }
   }, {
     name: 'param_15',
     type: 'select',
+    optionsGetter: 'getVisitParam14Config',
     text: {
       zh: '拔除腹部引流'
     }

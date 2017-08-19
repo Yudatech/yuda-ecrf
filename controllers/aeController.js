@@ -5,6 +5,7 @@ const mongoose = require('mongoose');
 const Ae = mongoose.model('Ae');
 
 const helpers = require('./helpers');
+const decorationHelper = require('./decorationHelper');
 const getAeConfig = require('../config/ae/getAeConfig');
 const getAeTableConfig = require('../config/ae/getAeTableConfig');
 const getAeLevelConfig = require('../config/ae/getAeLevelConfig');
@@ -36,6 +37,8 @@ function getAeResText(aeres) {
     return item.value === aeres;
   }).text;
 }
+
+const tableName = 'ae';
 
 exports.aeTable = async (req, res) => {
   const CaseNav = helpers.appendCaseIdToCaseNav(req.params.caseId);
@@ -83,19 +86,11 @@ exports.aeForm = async (req, res) => {
 
   const config = getAeConfig();
   Object.keys(config.formConfigs).forEach((key) => {
-    if (key === 'aeserv') {
-      config.formConfigs[key].value = ae[key];
-      config.formConfigs[key].options = getAeLevelConfig();
+    if (config.formConfigs[key].type === 'select') {
+      config.formConfigs[key].options = decorationHelper[config.formConfigs[key].optionsGetter]();
     }
-    else if (key === 'aerel') {
-      config.formConfigs[key].value = ae[key];
-      config.formConfigs[key].options = getAeRelConfig();
-    }
-    else if (key === 'aeres_1') {
-      config.formConfigs[key].value = ae[key];
-      config.formConfigs[key].options = getAeResConfig();
-    }
-    else if (key === 'aestdtc') {
+
+    if (key === 'aestdtc') {
       config.formConfigs[key].date = {
         name: 'aestdtc_date',
         value: moment(ae.aestdtc).format('MM/DD/YYYY')
@@ -117,6 +112,10 @@ exports.aeForm = async (req, res) => {
     }
     else {
       config.formConfigs[key].value = ae[key];
+    }
+
+    if (aeId !== undefined) {
+      config.formConfigs[key].questionLink = helpers.getQuestionLink(tableName, req.params.caseId, config.formConfigs[key], aeId);
     }
   });
 

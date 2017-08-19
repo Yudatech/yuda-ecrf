@@ -13,24 +13,24 @@ block case-content
           .col-sm-10
             +_formTemplate(config.formConfigs.method_1)
           .col-sm-2
-            +_questionBtn()
+            +_questionBtn(config.formConfigs.method_1.questionLink)
         
         .row
           .col-sm-10
             +_formTemplate(config.formConfigs.method_2)
           .col-sm-2
-            +_questionBtn()
+            +_questionBtn(config.formConfigs.method_2.questionLink)
 
         .row
           .col-sm-10
             +_formTemplate(config.formConfigs.method_3)
           .col-sm-2
-            +_questionBtn()
+            +_questionBtn(config.formConfigs.method_3.questionLink)
 
         .row
           .col-sm-10
             +_formTemplate(config.formConfigs.method_4)
           .col-sm-2
-            +_questionBtn()
+            +_questionBtn(config.formConfigs.method_4.questionLink)
 
         input(type="submit" value=buttonConfig.buttons.save.text)

@@ -14,6 +14,7 @@ const cmController = require('../controllers/cmController');
 const aeController = require('../controllers/aeController');
 const saeController = require('../controllers/saeController');
 const visitController = require('../controllers/visitController');
+const questionController = require('../controllers/questionController');
 
 router.get('/', authController.isLoggedIn, mainController.homePage);
 
@@ -151,5 +152,12 @@ router.get('/site/:id', siteController.siteForm);
 router.post('/site/:id', siteController.updateSite);
 // remove site
 router.get('/remove/site/:id', siteController.removeSite);
+
+/**
+ * Router for question
+ */
+router.get('/new/question', questionController.startQuestion);
+router.post('/comment/:questionId', questionController.addNewComment);
+router.get('/question/:questionId', questionController.showQuestionPage);
 
 module.exports = router;

@@ -31,6 +31,7 @@ const config = {
   }, {
     name: 'aeserv',
     type: 'select',
+    optionsGetter: 'getAeLevelConfig',
     text: {
       zh: '严重程度'
     }
@@ -49,12 +50,14 @@ const config = {
   }, {
     name: 'aerel',
     type: 'select',
+    optionsGetter: 'getAeRelConfig',
     text: {
       zh: '与试验器械和/或试验操作的关系'
     }
   }, {
     name: 'aeres_1',
     type: 'select',
+    optionsGetter: 'getAeResConfig',
     text: {
       zh: '转归'
     }

@@ -40,12 +40,15 @@ async function getReviewChecklistItemByCaseId(caseId) {
   return reviewItem;
 }
 
+const tableName = 'reviewchecklist';
+
 exports.reviewChecklistForm = async (req, res) => {
   const CaseNav = helpers.appendCaseIdToCaseNav(req.params.caseId);
   const reviewChecklistItem = await getReviewChecklistItemByCaseId(req.params.caseId);
   const config = getReviewChecklistConfig();
   Object.keys(config.formConfigs).forEach((key) => {
     config.formConfigs[key].value = reviewChecklistItem[key];
+    config.formConfigs[key].questionLink = helpers.getQuestionLink(tableName, req.params.caseId, config.formConfigs[key]);
   });
   res.render('review-checklist', {
     caseNav: CaseNav,

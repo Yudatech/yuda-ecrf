@@ -40,12 +40,15 @@ async function getScreeningChecklistItemByCaseId(caseId) {
   return screeningItem;
 }
 
+const tableName = 'screeningchecklist';
+
 exports.screeningChecklistForm = async (req, res) => {
   const CaseNav = helpers.appendCaseIdToCaseNav(req.params.caseId);
   const screeningChecklistItem = await getScreeningChecklistItemByCaseId(req.params.caseId);
   const config = getScreeningChecklistConfig();
   Object.keys(config.formConfigs).forEach((key) => {
     config.formConfigs[key].value = screeningChecklistItem[key];
+    config.formConfigs[key].questionLink = helpers.getQuestionLink(tableName, req.params.caseId, config.formConfigs[key]);
   });
   res.render('screening-checklist', {
     caseNav: CaseNav,

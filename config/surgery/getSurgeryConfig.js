@@ -18,12 +18,14 @@ const config = {
   }, {
     name: 'device_1',
     type: 'select',
+    optionsGetter: 'getSurgeryLapAidModelConfig',
     text: {
       zh: 'C-REX LapAid型号'
     }
   }, {
     name: 'device_2',
     type: 'select',
+    optionsGetter: 'getSurgeryDmhDmhcModelConfig',
     text: {
       zh: 'C-REX DMH/DMHC型号'
     }
@@ -75,12 +77,14 @@ const config = {
   }, {
     name: 'surgery_8',
     type: 'select',
+    optionsGetter: 'getSurgeryAnastomoticMethodsConfig',
     text: {
       zh: '吻合方式'
     }
   }, {
     name: 'surgery_9',
     type: 'select',
+    optionsGetter: 'getSurgeryMethodsConfig',
     text: {
       zh: '手术方式'
     }

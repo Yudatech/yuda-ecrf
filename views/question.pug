@@ -1,0 +1,31 @@
+extends layout
+
+include mixins/_formTemplate
+
+block content
+  .inner
+    form.form-horizontal(action=`/question/${questionId}` method="POST")
+      fieldset
+        legend #{questionConfig.title.question}
+
+        .row
+          .col-sm-12
+            +_formTemplate(fieldConfig)
+
+        .row
+          .col-sm-12
+            +_formTemplate(questionConfig.questionConfigs.question_status)
+
+        input(type="submit" value=buttonConfig.buttons.commit.text)
+    
+    h4 #{questionConfig.title.comment}
+    form.form-horizontal(action=`/comment/${questionId}` method="POST")
+        .row
+          .col-sm-12
+            +_formTemplate(questionConfig.commentConfigs.new_comment)
+
+        input(type="submit" value=buttonConfig.buttons.publish.text)
+
+    ul
+      each comment in comments
+        li #{comment.text}

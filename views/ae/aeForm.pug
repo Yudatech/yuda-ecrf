@@ -13,31 +13,31 @@ block case-content
           .col-sm-10
             +_formTemplate(config.formConfigs.aeorigion)
           .col-sm-2
-            +_questionBtn()
+            +_questionBtn(config.formConfigs.aeorigion.questionLink)
 
         .row
           .col-sm-10
             +_formTemplate(config.formConfigs.event)
           .col-sm-2
-            +_questionBtn()
+            +_questionBtn(config.formConfigs.event.questionLink)
 
         .row
           .col-sm-10
             +_formTemplate(config.formConfigs.aestdtc)
           .col-sm-2
-            +_questionBtn()
+            +_questionBtn(config.formConfigs.aestdtc.questionLink)
 
         .row
           .col-sm-10
             +_formTemplate(config.formConfigs.aeeddtc)
           .col-sm-2
-            +_questionBtn()
+            +_questionBtn(config.formConfigs.aeeddtc.questionLink)
 
         .row
           .col-sm-10
             +_formTemplate(config.formConfigs.aeserv)
           .col-sm-2
-            +_questionBtn()
+            +_questionBtn(config.formConfigs.aeserv.questionLink)
 
         .row
           .col-sm-10
@@ -45,7 +45,7 @@ block case-content
               .col-sm-offset-4.col-sm-8
                 +_formTemplate(config.formConfigs.aeact)
           .col-sm-2
-            +_questionBtn()
+            +_questionBtn(config.formConfigs.aeact.questionLink)
 
         .row
           .col-sm-10
@@ -53,19 +53,19 @@ block case-content
               .col-sm-offset-4.col-sm-8
                 +_formTemplate(config.formConfigs.aerpt)
           .col-sm-2
-            +_questionBtn()
+            +_questionBtn(config.formConfigs.aerpt.questionLink)
 
         .row
           .col-sm-10
             +_formTemplate(config.formConfigs.aerel)
           .col-sm-2
-            +_questionBtn()
+            +_questionBtn(config.formConfigs.aerel.questionLink)
 
         .row
           .col-sm-10
             +_formTemplate(config.formConfigs.aeres_1)
           .col-sm-2
-            +_questionBtn()
+            +_questionBtn(config.formConfigs.aeres_1.questionLink)
 
         .row
           .col-sm-10
@@ -73,7 +73,7 @@ block case-content
               .col-sm-offset-4.col-sm-8
                 +_formTemplate(config.formConfigs.aeres_2)
           .col-sm-2
-            +_questionBtn()
+            +_questionBtn(config.formConfigs.aeres_2.questionLink)
 
         .row
           .col-sm-10
@@ -81,7 +81,7 @@ block case-content
               .col-sm-offset-4.col-sm-8
                 +_formTemplate(config.formConfigs.aesae)
           .col-sm-2
-            +_questionBtn()
+            +_questionBtn(config.formConfigs.aesae.questionLink)
 
         .row
           .col-sm-10
@@ -89,7 +89,7 @@ block case-content
               .col-sm-offset-4.col-sm-8
                 +_formTemplate(config.formConfigs.aedevicedft)
           .col-sm-2
-            +_questionBtn()
+            +_questionBtn(config.formConfigs.aedevicedft.questionLink)
 
         .row
           .col-sm-10
@@ -97,6 +97,6 @@ block case-content
               .col-sm-offset-4.col-sm-8
                 +_formTemplate(config.formConfigs.aediscon)
           .col-sm-2
-            +_questionBtn()
+            +_questionBtn(config.formConfigs.aediscon.questionLink)
 
         input(type="submit" value=buttonConfig.buttons.save.text)

@@ -19,6 +19,7 @@ const config = {
   }, {
     name: 'dosemtd_1',
     type: 'select',
+    optionsGetter: 'getDoseMethodsConfig',
     text: {
       zh: '给药途径'
     }

@@ -43,6 +43,8 @@ async function getDiscontinuationItemByCaseId(caseId) {
   return discontinuationItem;
 }
 
+const tableName = 'discontinuation';
+
 exports.discontinuationForm = async (req, res) => {
   const CaseNav = helpers.appendCaseIdToCaseNav(req.params.caseId);
   const discontinuationItem = await getDiscontinuationItemByCaseId(req.params.caseId);
@@ -54,6 +56,7 @@ exports.discontinuationForm = async (req, res) => {
     else {
       config.formConfigs[key].value = discontinuationItem[key];
     }
+    config.formConfigs[key].questionLink = helpers.getQuestionLink(tableName, req.params.caseId, config.formConfigs[key]);
   });
   res.render('discontinuation', {
     caseNav: CaseNav,

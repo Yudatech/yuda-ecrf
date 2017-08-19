@@ -7,6 +7,7 @@ const config = {
   formConfigs: [{
     name: 'assistant_1',
     type: 'select',
+    optionsGetter: 'getAssistantExamResultConfig',
     text: {
       zh: '心电图'
     }
@@ -19,6 +20,7 @@ const config = {
   }, {
     name: 'assistant_3',
     type: 'select',
+    optionsGetter: 'getAssistantExamResultConfig',
     text: {
       zh: '腹部B超'
     }
@@ -31,6 +33,7 @@ const config = {
   }, {
     name: 'assistant_5',
     type: 'select',
+    optionsGetter: 'getAssistantExamResultConfig',
     text: {
       zh: '胸部CT/胸部X线'
     }

@@ -6,16 +6,9 @@ const Visit = mongoose.model('Visit');
 const Surgery = mongoose.model('Surgery');
 
 const helpers = require('./helpers');
+const decorationHelper = require('./decorationHelper');
 const getVisitConfig = require('../config/visit/getVisitConfig');
 const getVisitTableConfig = require('../config/visit/getVisitTableConfig');
-const getVisitFoodTypesConfig = require('../config/visit/getVisitFoodTypesConfig');
-const getVisitParam1Config = require('../config/visit/getVisitParam1Config');
-const getVisitParam2Config = require('../config/visit/getVisitParam2Config');
-const getVisitParam3Config = require('../config/visit/getVisitParam3Config');
-const getVisitParam8Config = require('../config/visit/getVisitParam8Config');
-const getVisitParam14Config = require('../config/visit/getVisitParam14Config');
-const getVisitResConfig = require('../config/visit/getVisitResConfig');
-const getVisitTypesConfig = require('../config/visit/getVisitTypesConfig');
 const getButtonConfig = require('../config/common/getButtonConfig');
 
 async function getVisitListByCaseId(caseId) {
@@ -34,6 +27,8 @@ async function getDaysAfterSurgery(caseId, visitdtc){
   const visitdtcValue = moment(visitdtc).valueOf();
   return (visitdtcValue - surgerydtcValue) / 24 / 60 / 60 / 1000;
 }
+
+const tableName = 'visit';
 
 exports.visitTable = async (req, res) => {
   const CaseNav = helpers.appendCaseIdToCaseNav(req.params.caseId);
@@ -76,47 +71,17 @@ exports.visitForm = async (req, res) => {
 
   const config = getVisitConfig();
   Object.keys(config.formConfigs).forEach((key) => {
-    if (key === 'visittype') {
-      config.formConfigs[key].value = visit[key];
-      config.formConfigs[key].options = getVisitTypesConfig();
+    if (config.formConfigs[key].type === 'select') {
+      config.formConfigs[key].options = decorationHelper[config.formConfigs[key].optionsGetter]();
     }
-    else if (key === 'visitres') {
-      config.formConfigs[key].value = visit[key];
-      config.formConfigs[key].options = getVisitResConfig();
-    }
-    else if (key === 'param_1') {
-      config.formConfigs[key].value = visit[key];
-      config.formConfigs[key].options = getVisitParam1Config();
-    }
-    else if (key === 'param_2') {
-      config.formConfigs[key].value = visit[key];
-      config.formConfigs[key].options = getVisitParam2Config();
-    }
-    else if (key === 'param_3') {
-      config.formConfigs[key].value = visit[key];
-      config.formConfigs[key].options = getVisitParam3Config();
-    }
-    else if (key === 'param_8') {
-      config.formConfigs[key].value = visit[key];
-      config.formConfigs[key].options = getVisitParam8Config();
-    }
-    else if (key === 'param_13') {
-      config.formConfigs[key].value = visit[key];
-      config.formConfigs[key].options = getVisitFoodTypesConfig();
-    }
-    else if (key === 'param_14') {
-      config.formConfigs[key].value = visit[key];
-      config.formConfigs[key].options = getVisitParam14Config();
-    }
-    else if (key === 'param_15') {
-      config.formConfigs[key].value = visit[key];
-      config.formConfigs[key].options = getVisitParam14Config();
-    }
-    else if (key === 'visitdtc') {
+    if (key === 'visitdtc') {
       config.formConfigs[key].value = moment(visit.visitdtc).format('MM/DD/YYYY');
     }
     else {
       config.formConfigs[key].value = visit[key];
+    }
+    if (visitId !== undefined) {
+      config.formConfigs[key].questionLink = helpers.getQuestionLink(tableName, req.params.caseId, config.formConfigs[key], visitId);
     }
   });
 

@@ -13,6 +13,7 @@ const config = {
   }, {
     name: 'saetpe',
     type: 'select',
+    optionsGetter: 'getSaeTypesConfig',
     text: {
       zh: '报告类型'
     }
@@ -37,6 +38,7 @@ const config = {
   }, {
     name: 'saecaus_1',
     type: 'select',
+    optionsGetter: 'getSaeCauseConfig',
     text: {
       zh: 'SAE情况'
     }
@@ -67,12 +69,14 @@ const config = {
   }, {
     name: 'saeact',
     type: 'select',
+    optionsGetter: 'getSaeActConfig',
     text: {
       zh: '对受试器械采取的措施'
     }
   }, {
     name: 'saeres_1',
     type: 'select',
+    optionsGetter: 'getSaeResConfig',
     text: {
       zh: 'SAE转归'
     }
@@ -85,18 +89,21 @@ const config = {
   }, {
     name: 'saerel',
     type: 'select',
+    optionsGetter: 'getSaeRelConfig',
     text: {
       zh: 'SAE与受试器械的关系'
     }
   }, {
     name: 'saerpt_1',
     type: 'select',
+    optionsGetter: 'getSaeReportConfig',
     text: {
       zh: 'SAE报道情况(国内)'
     }
   }, {
     name: 'saerpt_2',
     type: 'select',
+    optionsGetter: 'getSaeReportConfig',
     text: {
       zh: 'SAE报道情况(国外)'
     }

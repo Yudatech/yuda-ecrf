@@ -26,6 +26,16 @@ const config = {
     text: {
       zh: '全部'
     }
+  }, {
+    name: 'commit',
+    text: {
+      zh: '提交'
+    }
+  }, {
+    name: 'publish',
+    text: {
+      zh: '发布'
+    }
   }]
 };
 

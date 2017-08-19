@@ -15,6 +15,7 @@ const config = {
   }, {
     name: 'lab_2',
     type: 'select',
+    optionsGetter: 'getLabResultEvaluationConfig',
     text: {
       zh: '红细胞 (RBC)临床评估'
     }
@@ -29,6 +30,7 @@ const config = {
   }, {
     name: 'lab_4',
     type: 'select',
+    optionsGetter: 'getLabResultEvaluationConfig',
     text: {
       zh: '白细胞 (WBC)临床评估'
     }
@@ -43,6 +45,7 @@ const config = {
   }, {
     name: 'lab_6',
     type: 'select',
+    optionsGetter: 'getLabResultEvaluationConfig',
     text: {
       zh: '血红蛋白 (Hb)临床评估'
     }
@@ -57,6 +60,7 @@ const config = {
   }, {
     name: 'lab_8',
     type: 'select',
+    optionsGetter: 'getLabResultEvaluationConfig',
     text: {
       zh: '中性粒细胞绝对计数 (ANC)临床评估'
     }
@@ -71,6 +75,7 @@ const config = {
   }, {
     name: 'lab_10',
     type: 'select',
+    optionsGetter: 'getLabResultEvaluationConfig',
     text: {
       zh: '血小板 (PLT)临床评估'
     }
@@ -85,6 +90,7 @@ const config = {
   }, {
     name: 'lab_12',
     type: 'select',
+    optionsGetter: 'getLabResultEvaluationConfig',
     text: {
       zh: '单核细胞百分比临床评估'
     }
@@ -99,6 +105,7 @@ const config = {
   }, {
     name: 'lab_14',
     type: 'select',
+    optionsGetter: 'getLabResultEvaluationConfig',
     text: {
       zh: '淋巴细胞百分比临床评估'
     }
@@ -113,6 +120,7 @@ const config = {
   }, {
     name: 'lab_16',
     type: 'select',
+    optionsGetter: 'getLabResultEvaluationConfig',
     text: {
       zh: '丙氨酸氨基转移酶 (ALT)临床评估'
     }
@@ -127,6 +135,7 @@ const config = {
   }, {
     name: 'lab_18',
     type: 'select',
+    optionsGetter: 'getLabResultEvaluationConfig',
     text: {
       zh: '天门冬氨酸氨基转移酶 (AST)临床评估'
     }
@@ -141,6 +150,7 @@ const config = {
   }, {
     name: 'lab_20',
     type: 'select',
+    optionsGetter: 'getLabResultEvaluationConfig',
     text: {
       zh: '白蛋白 (ALB)临床评估'
     }
@@ -155,6 +165,7 @@ const config = {
   }, {
     name: 'lab_22',
     type: 'select',
+    optionsGetter: 'getLabResultEvaluationConfig',
     text: {
       zh: '血尿素氮 (BUN)临床评估'
     }
@@ -169,6 +180,7 @@ const config = {
   }, {
     name: 'lab_24',
     type: 'select',
+    optionsGetter: 'getLabResultEvaluationConfig',
     text: {
       zh: '肌酐 (Cr)临床评估'
     }
@@ -183,6 +195,7 @@ const config = {
   }, {
     name: 'lab_26',
     type: 'select',
+    optionsGetter: 'getLabResultEvaluationConfig',
     text: {
       zh: '血糖 (Glu)临床评估'
     }
@@ -197,6 +210,7 @@ const config = {
   }, {
     name: 'lab_28',
     type: 'select',
+    optionsGetter: 'getLabResultEvaluationConfig',
     text: {
       zh: '凝血酶原时间 (PT)临床评估'
     }
@@ -211,6 +225,7 @@ const config = {
   }, {
     name: 'lab_30',
     type: 'select',
+    optionsGetter: 'getLabResultEvaluationConfig',
     text: {
       zh: '活化部分凝血活酶时间 (APTT)临床评估'
     }
@@ -225,6 +240,7 @@ const config = {
   }, {
     name: 'lab_32',
     type: 'select',
+    optionsGetter: 'getLabResultEvaluationConfig',
     text: {
       zh: '凝血酶时间 (TT)临床评估'
     }
@@ -239,6 +255,7 @@ const config = {
   }, {
     name: 'lab_34',
     type: 'select',
+    optionsGetter: 'getLabResultEvaluationConfig',
     text: {
       zh: '纤维蛋白原 (FIB)临床评估'
     }

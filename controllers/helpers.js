@@ -11,3 +11,12 @@ exports.appendCaseIdToCaseNav = function(caseId) {
   });
   return CaseNav;
 };
+
+exports.getQuestionLink = function(table, caseId, formConfig, secondaryId) {
+  if (secondaryId === undefined) {
+    return `/new/question?table=${table}&caseId=${caseId}&field=${formConfig.name}`;
+  }
+  else {
+    return `/new/question?table=${table}&caseId=${caseId}&field=${formConfig.name}&secondaryId=${secondaryId}`;
+  }
+};

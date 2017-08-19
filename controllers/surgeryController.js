@@ -5,11 +5,8 @@ const mongoose = require('mongoose');
 const Surgery = mongoose.model('Surgery');
 
 const helpers = require('./helpers');
+const decorationHelper = require('./decorationHelper');
 const getSurgeryConfig = require('../config/surgery/getSurgeryConfig');
-const getSurgeryAnastomoticMethodsConfig = require('../config/surgery/getSurgeryAnastomoticMethodsConfig');
-const getSurgeryDmhDmhcModelConfig = require('../config/surgery/getSurgeryDmhDmhcModelConfig');
-const getSurgeryLapAidModelConfig = require('../config/surgery/getSurgeryLapAidModelConfig');
-const getSurgeryMethodsConfig = require('../config/surgery/getSurgeryMethodsConfig');
 const getButtonConfig = require('../config/common/getButtonConfig');
 
 async function createSurgery(caseId, obj) {
@@ -47,33 +44,23 @@ async function getSurgeryItemByCaseId(caseId) {
   return surgeryItem;
 }
 
+const tableName = 'surgery';
+
 exports.surgeryForm = async (req, res) => {
   const CaseNav = helpers.appendCaseIdToCaseNav(req.params.caseId);
   const surgeryItem = await getSurgeryItemByCaseId(req.params.caseId);
   const config = getSurgeryConfig();
   Object.keys(config.formConfigs).forEach((key) => {
-    if (key === 'device_1') {
-      config.formConfigs[key].value = surgeryItem.key;
-      config.formConfigs[key].options = getSurgeryLapAidModelConfig();
+    if (config.formConfigs[key].type === 'select') {
+      config.formConfigs[key].options = decorationHelper[config.formConfigs[key].optionsGetter]();
     }
-    else if (key === 'device_2') {
-      config.formConfigs[key].value = surgeryItem.key;
-      config.formConfigs[key].options = getSurgeryDmhDmhcModelConfig();
-    }
-    else if (key === 'surgery_8') {
-      config.formConfigs[key].value = surgeryItem.key;
-      config.formConfigs[key].options = getSurgeryAnastomoticMethodsConfig();
-    }
-    else if (key === 'surgery_9') {
-      config.formConfigs[key].value = surgeryItem.key;
-      config.formConfigs[key].options = getSurgeryMethodsConfig();
-    }
-    else if (key === 'surgerydtc') {
+    if (key === 'surgerydtc') {
       config.formConfigs[key].value = moment(surgeryItem.surgerydtc).format('MM/DD/YYYY');
     }
     else {
       config.formConfigs[key].value = surgeryItem[key];
     }
+    config.formConfigs[key].questionLink = helpers.getQuestionLink(tableName, req.params.caseId, config.formConfigs[key]);
   });
   res.render('surgery', {
     caseNav: CaseNav,

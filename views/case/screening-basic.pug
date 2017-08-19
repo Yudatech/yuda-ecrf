@@ -13,24 +13,24 @@ block case-content
           .col-sm-10
             +_formTemplate(config.formConfigs.sex)
           .col-sm-2
-            +_questionBtn()
+            +_questionBtn(config.formConfigs.sex.questionLink)
         
         .row
           .col-sm-10
             +_formTemplate(config.formConfigs.birth)
           .col-sm-2
-            +_questionBtn()
+            +_questionBtn(config.formConfigs.birth.questionLink)
 
         .row
           .col-sm-10
             +_formTemplate(config.formConfigs.weight)
           .col-sm-2
-            +_questionBtn()          
+            +_questionBtn(config.formConfigs.weight.questionLink)          
 
         .row
           .col-sm-10
             +_formTemplate(config.formConfigs.height)
           .col-sm-2
-            +_questionBtn()
+            +_questionBtn(config.formConfigs.height.questionLink)
             
         input(type="submit" value=buttonConfig.buttons.save.text)
