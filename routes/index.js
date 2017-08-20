@@ -66,7 +66,10 @@ router.post('/commit/:caseId',
   catchErrors(caseController.commitCase)
 );
 
-router.get('/overview/:caseId', catchErrors(screeningController.caseOverviewForm));
+router.get('/overview/:caseId',
+  catchErrors(authController.checkCasePermission),
+  catchErrors(screeningController.caseOverviewForm)
+);
 
 router.get('/screening/basic/:caseId',
   catchErrors(authController.checkCasePermission),

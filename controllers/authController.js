@@ -29,7 +29,7 @@ exports.checkCasePermission = async (req, res, next) => {
   const user = req.user;
   const caseItem = await Case.findById(caseId);
   if (user.role === 'cra') {
-    if (caseItem.user._id === user._id) {
+    if (caseItem.user._id.toString() === user._id.toString()) {
       next();
     }
     else {
@@ -41,7 +41,7 @@ exports.checkCasePermission = async (req, res, next) => {
     next();
   }
   else {
-    if (user.site._id === caseItem.user.site._id) {
+    if (user.site._id.toString() === caseItem.user.site._id.toString()) {
       next();
     }
     else {
