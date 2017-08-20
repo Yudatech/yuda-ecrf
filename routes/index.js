@@ -17,6 +17,7 @@ const aeController = require('../controllers/aeController');
 const saeController = require('../controllers/saeController');
 const visitController = require('../controllers/visitController');
 const questionController = require('../controllers/questionController');
+const screeningController = require('../controllers/screeningController');
 
 router.get('/', authController.isLoggedIn, mainController.homePage);
 
@@ -56,106 +57,114 @@ router.post('/case',
   catchErrors(caseController.saveAcceptDoc),
   catchErrors(caseController.createCase)
 );
+router.get('/commit/:caseId',
+  catchErrors(authController.checkCasePermission),
+  catchErrors(caseController.showCaseCommitForm)
+);
+router.post('/commit/:caseId',
+  catchErrors(authController.checkCasePermission),
+  catchErrors(caseController.commitCase)
+);
 
-router.get('/overview/:caseId', catchErrors(caseController.caseOverviewForm));
+router.get('/overview/:caseId', catchErrors(screeningController.caseOverviewForm));
 
 router.get('/screening/basic/:caseId',
   catchErrors(authController.checkCasePermission),
-  catchErrors(caseController.caseBasicForm)
+  catchErrors(screeningController.caseBasicForm)
 );
 router.post('/screening/basic/:caseId',
   catchErrors(authController.checkCasePermission),
-  catchErrors(caseController.updateCaseBasic)
+  catchErrors(screeningController.updateCaseBasic)
 );
 
 router.get('/screening/inclusion/:caseId',
   catchErrors(authController.checkCasePermission),
-  catchErrors(caseController.caseInclusionForm)
+  catchErrors(screeningController.caseInclusionForm)
 );
 router.post('/screening/inclusion/:caseId',
   catchErrors(authController.checkCasePermission),
-  catchErrors(caseController.updateCaseInclusion)
+  catchErrors(screeningController.updateCaseInclusion)
 );
 
 router.get('/screening/exclusion/:caseId',
   catchErrors(authController.checkCasePermission),
-  catchErrors(caseController.caseExclusionForm)
+  catchErrors(screeningController.caseExclusionForm)
 );
 router.post('/screening/exclusion/:caseId',
   catchErrors(authController.checkCasePermission),
-  catchErrors(caseController.updateCaseExclusion)
+  catchErrors(screeningController.updateCaseExclusion)
 );
 
 router.get('/screening/disease/:caseId',
   catchErrors(authController.checkCasePermission),
-  catchErrors(caseController.caseDiseaseForm)
+  catchErrors(screeningController.caseDiseaseForm)
 );
 router.post('/screening/disease/:caseId',
   catchErrors(authController.checkCasePermission),
-  catchErrors(caseController.updateCaseDisease)
+  catchErrors(screeningController.updateCaseDisease)
 );
 
 router.get('/screening/conmed/:caseId',
   catchErrors(authController.checkCasePermission),
-  catchErrors(caseController.caseConMedForm)
+  catchErrors(screeningController.caseConMedForm)
 );
 router.post('/screening/conmed/:caseId',
   catchErrors(authController.checkCasePermission),
-  catchErrors(caseController.updateCaseConMed)
+  catchErrors(screeningController.updateCaseConMed)
 );
 
 router.get('/screening/vitalsign/:caseId',
   catchErrors(authController.checkCasePermission),
-  catchErrors(caseController.caseVitalSignForm)
+  catchErrors(screeningController.caseVitalSignForm)
 );
 router.post('/screening/vitalsign/:caseId',
   catchErrors(authController.checkCasePermission),
-  catchErrors(caseController.updateCaseVitalSign)
+  catchErrors(screeningController.updateCaseVitalSign)
 );
 
 router.get('/screening/lab/:caseId',
   catchErrors(authController.checkCasePermission),
-  catchErrors(caseController.caseLabForm)
+  catchErrors(screeningController.caseLabForm)
 );
 router.post('/screening/lab/:caseId',
   catchErrors(authController.checkCasePermission),
-  catchErrors(caseController.updateCaseLab)
+  catchErrors(screeningController.updateCaseLab)
 );
 
 router.get('/screening/assistant/:caseId',
   catchErrors(authController.checkCasePermission),
-  catchErrors(caseController.caseAssistantForm)
+  catchErrors(screeningController.caseAssistantForm)
 );
 router.post('/screening/assistant/:caseId',
   catchErrors(authController.checkCasePermission),
-  catchErrors(caseController.updateCaseAssistant)
+  catchErrors(screeningController.updateCaseAssistant)
 );
 
 router.get('/screening/method/:caseId',
   catchErrors(authController.checkCasePermission),
-  catchErrors(caseController.caseMethodForm)
+  catchErrors(screeningController.caseMethodForm)
 );
 router.post('/screening/method/:caseId',
   catchErrors(authController.checkCasePermission),
-  catchErrors(caseController.updateCaseMethod)
+  catchErrors(screeningController.updateCaseMethod)
 );
 
 router.get('/screening/region/:caseId',
   catchErrors(authController.checkCasePermission),
-  catchErrors(caseController.caseRegionForm)
+  catchErrors(screeningController.caseRegionForm)
 );
 router.post('/screening/region/:caseId',
   catchErrors(authController.checkCasePermission),
-  catchErrors(caseController.updateCaseRegion)
+  catchErrors(screeningController.updateCaseRegion)
 );
 
 router.get('/screening/dignose/:caseId',
   catchErrors(authController.checkCasePermission),
-  catchErrors(caseController.caseDignoseForm)
+  catchErrors(screeningController.caseDignoseForm)
 );
 router.post('/screening/dignose/:caseId',
   catchErrors(authController.checkCasePermission),
-  catchErrors(caseController.updateCaseDignose)
+  catchErrors(screeningController.updateCaseDignose)
 );
 
 // Router for screening-checklist

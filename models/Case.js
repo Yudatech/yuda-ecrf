@@ -41,7 +41,15 @@ const caseSchema = new Schema({
     type: Date,
     default: Date.now
   },
-  attachedDoc: String
+  attachedDoc: String,
+  status: {
+    type: String,
+    enum: {
+      values: ['open', 'committed', 'locked'],
+      message: 'enum validator failed for path `{PATH}` with value `{VALUE}`'
+    },
+    default: 'open'
+  }
 });
 
 function autopopulate(next) {

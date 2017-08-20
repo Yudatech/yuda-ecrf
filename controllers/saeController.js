@@ -99,6 +99,10 @@ exports.saeForm = async (req, res) => {
     if (saeId !== undefined) {
       config.formConfigs[key].questionLink = helpers.getQuestionLink(tableName, req.params.caseId, config.formConfigs[key], saeId);
     }
+
+    if (config.formConfigs[key].type === 'checkbox' && config.formConfigs[key].value === undefined) {
+      config.formConfigs[key].value = false;
+    }
   });
 
   res.render('sae/saeForm', {

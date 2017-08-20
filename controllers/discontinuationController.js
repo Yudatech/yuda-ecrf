@@ -57,6 +57,10 @@ exports.discontinuationForm = async (req, res) => {
       config.formConfigs[key].value = discontinuationItem[key];
     }
     config.formConfigs[key].questionLink = helpers.getQuestionLink(tableName, req.params.caseId, config.formConfigs[key]);
+
+    if (config.formConfigs[key].type === 'checkbox' && config.formConfigs[key].value === undefined) {
+      config.formConfigs[key].value = false;
+    }
   });
   res.render('discontinuation', {
     caseNav: CaseNav,

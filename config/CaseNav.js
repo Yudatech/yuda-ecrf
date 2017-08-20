@@ -95,8 +95,8 @@ module.exports = [
     link: '/saelist'
   },
   {
-    title: '提交并锁定',
+    title: '提交',
     name: 'commit',
-    link: '/'
+    link: '/commit'
   }
 ];

@@ -18,6 +18,9 @@ body {
   @media all and (max-width: 900px) {
     .inner {
       padding: 2rem; } }
+  @media screen and (max-width: 480px) {
+    .inner {
+      overflow: auto; } }
 
 .content {
   padding-left: 15px;

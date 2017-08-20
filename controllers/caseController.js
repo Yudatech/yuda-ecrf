@@ -1,28 +1,23 @@
 const moment = require('moment');
 moment.locale('zh-cn');
 
-const getScreeningBasicConfig = require('../config/screening/getScreeningBasicConfig');
-const getScreeningInclusionConfig = require('../config/screening/getScreeningInclusionConfig');
-const getScreeningExclusionConfig = require('../config/screening/getScreeningExclusionConfig');
-const getScreeningDiseaseConfig = require('../config/screening/getScreeningDiseaseConfig');
-const getScreeningConMedConfig = require('../config/screening/getScreeningConMedConfig');
-const getScreeningVitalSignConfig = require('../config/screening/getScreeningVitalSignConfig');
-const getScreeningLabConfig = require('../config/screening/getScreeningLabConfig');
-const getScreeningAssistantConfig = require('../config/screening/getScreeningAssistantConfig');
-const getScreeningMethodConfig = require('../config/screening/getScreeningMethodConfig');
-const getScreeningRegionConfig = require('../config/screening/getScreeningRegionConfig');
-const getScreeningDignoseConfig = require('../config/screening/getScreeningDignoseConfig');
 const getButtonConfig = require('../config/common/getButtonConfig');
-
+const getCommitCaseConfig = require('../config/getCommitCaseConfig');
 const getCaseFormConfig = require('../config/getCaseFormConfig');
-const getCaseOverviewConfig = require('../config/getCaseOverviewConfig');
 
 const helpers = require('./helpers');
-const decorationHelper = require('./decorationHelper');
 
 const mongoose = require('mongoose');
 const Case = mongoose.model('Case');
 const Screening = mongoose.model('Screening');
+const ScreeningChecklist = mongoose.model('ScreeningChecklist');
+const ReviewChecklist = mongoose.model('ReviewChecklist');
+const Discontinuation = mongoose.model('Discontinuation');
+const Cm = mongoose.model('Cm');
+const Sae = mongoose.model('Sae');
+const Ae = mongoose.model('Ae');
+const Surgery = mongoose.model('Surgery');
+const Visit = mongoose.model('Visit');
 
 const multer = require('multer');
 const jimp = require('jimp');
@@ -87,325 +82,114 @@ exports.caseForm = async (req, res) => {
   });
 };
 
-exports.caseOverviewForm = async (req, res) => {
+exports.commitCase = async (req, res) => {
+  const caseId = req.params.caseId;
+  const obj = {
+    status: 'committed'
+  };
+  await Case.findByIdAndUpdate(caseId, obj);
+  res.redirect('back');
+};
+
+exports.showCaseCommitForm = async (req, res) => {
   const caseId = req.params.caseId;
   const CaseNav = helpers.appendCaseIdToCaseNav(caseId);
-  const caseItem = await Case.findById(caseId);
-  const caseObj = caseItem.toObject();
-  const config = {
-    _id: caseObj._id,
-    subjname: caseObj.subjname,
-    subjabbr: caseObj.subjabbr,
-    subjAcceptDate: moment(caseObj.subjAcceptDate).format('ll'),
-    attachedDoc: caseObj.attachedDoc
-  };
-  res.render('case-overview', {
+  const commitCaseConfig = getCommitCaseConfig();
+  const configs = [];
+  await Promise.all(commitCaseConfig.configs.map(async (item) => {
+    item = await getCommitConfigMessage(caseId, item);
+    configs.push(item);
+  }));
+  let finished = configs.find((config) => {
+    return config.finished === false;
+  }) === undefined;
+
+  res.render('commit-case', {
     caseNav: CaseNav,
-    config,
-    caseOverviewConfig: getCaseOverviewConfig()
+    caseId,
+    configs,
+    finished,
+    buttonConfig: getButtonConfig()
   });
 };
 
-async function createScreening(caseId, obj) {
-  obj.case = caseId;
-  await (new Screening(obj)).save();
-}
+async function getCommitConfigMessage(caseId, config) {
+  const commitCaseConfig = getCommitCaseConfig();
+  const table = config.name;
 
-async function updateScreening(caseId, obj) {
-  await Screening.findOneAndUpdate({
-    case: caseId
-  }, obj);
-}
+  let items = [];
+  if (table === 'screening') {
+    items.push(await Screening.findOne({
+      case: caseId
+    }));
+  }
+  else if (table === 'screeningchecklist') {
+    items.push(await ScreeningChecklist.findOne({
+      case: caseId
+    }));
+  }
+  else if (table === 'reviewchecklist') {
+    items.push(await ReviewChecklist.findOne({
+      case: caseId
+    }));
+  }
+  else if (table === 'discontinuation') {
+    items.push(await Discontinuation.findOne({
+      case: caseId
+    }));
+  }
+  else if (table === 'cm') {
+    items = await Cm.find({
+      case: caseId
+    });
+  }
+  else if (table === 'sae') {
+    items = await Sae.find({
+      case: caseId
+    });
+  }
+  else if (table === 'ae') {
+    items = await Ae.find({
+      case: caseId
+    });
+  }
+  else if (table === 'surgery') {
+    items = await Surgery.find({
+      case: caseId
+    });
+  }
+  else if (table === 'visit') {
+    items = await Visit.find({
+      case: caseId
+    });
+  }
 
-async function createOrUpdateScreening(caseId, obj) {
-  const caseItem = await Case.findOne({
-    case: caseId
-  });
-  if (caseItem === null) {
-    await createScreening(caseId, obj);
+  const total = config.total;
+  if (items.length === 0 || items[0] === null) {
+    config.message = commitCaseConfig.empty;
+    config.finished = false;
   }
   else {
-    await updateScreening(caseId, obj);
+    let num = 0;
+    items.forEach((item) => {
+      const obj = item.toObject();
+      let finished = 0;
+      Object.keys(obj).forEach((key) => {
+        if (key.charAt(0) !== '_' && obj[key] !== null) {
+          finished++;
+        }
+      });
+      num = num + (total - finished);
+    });
+    if (num === 0) {
+      config.message = commitCaseConfig.finished;
+      config.finished = true;
+    }
+    else {
+      config.message = commitCaseConfig.ongoing.replace('__NUM__', num);
+      config.finished = false;
+    }
   }
+
+  return config;
 }
-
-async function getScreeningItemByCaseId(caseId) {
-  let screeningItem = await Screening.findOne({
-    case: caseId
-  });
-  if (!screeningItem) {
-    screeningItem = {
-      case: caseId
-    };
-  }
-  return screeningItem;
-}
-
-const tableName = 'screening';
-
-exports.caseBasicForm = async (req, res) => {
-  const CaseNav = helpers.appendCaseIdToCaseNav(req.params.caseId);
-  const screeningItem = await getScreeningItemByCaseId(req.params.caseId);
-  const config = getScreeningBasicConfig();
-  Object.keys(config.formConfigs).forEach((key) => {
-    if (config.formConfigs[key].type === 'select') {
-      config.formConfigs[key].options = decorationHelper[config.formConfigs[key].optionsGetter]();
-    }
-    config.formConfigs[key].value = screeningItem[key];
-    config.formConfigs[key].questionLink = helpers.getQuestionLink(tableName, req.params.caseId, config.formConfigs[key]);
-  });
-  res.render('case/screening-basic', {
-    caseNav: CaseNav,
-    config,
-    buttonConfig: getButtonConfig(),
-    caseId: req.params.caseId
-  });
-};
-
-exports.updateCaseBasic = async (req, res) => {
-  const caseId = req.params.caseId;
-  await createOrUpdateScreening(caseId, req.body);
-  res.redirect(`/screening/basic/${caseId}`);
-};
-
-exports.caseInclusionForm = async (req, res) => {
-  const caseId = req.params.caseId;
-  const CaseNav = helpers.appendCaseIdToCaseNav(caseId);
-  const screeningItem = await getScreeningItemByCaseId(caseId);
-  const config = getScreeningInclusionConfig();
-  Object.keys(config.formConfigs).forEach((key) => {
-    config.formConfigs[key].value = screeningItem[key];
-    config.formConfigs[key].questionLink = helpers.getQuestionLink(tableName, req.params.caseId, config.formConfigs[key]);
-  });
-  res.render('case/screening-inclusion', {
-    caseNav: CaseNav,
-    buttonConfig: getButtonConfig(),
-    config: getScreeningInclusionConfig(),
-    caseId: req.params.caseId
-  });
-};
-
-exports.updateCaseInclusion = async (req, res) => {
-  const caseId = req.params.caseId;
-  await createOrUpdateScreening(caseId, req.body);
-  res.redirect(`/screening/inclusion/${caseId}`);
-};
-
-exports.caseExclusionForm = async (req, res) => {
-  const caseId = req.params.caseId;
-  const CaseNav = helpers.appendCaseIdToCaseNav(caseId);
-  const screeningItem = await getScreeningItemByCaseId(caseId);
-  const config = getScreeningExclusionConfig();
-  Object.keys(config.formConfigs).forEach((key) => {
-    config.formConfigs[key].value = screeningItem[key];
-    config.formConfigs[key].questionLink = helpers.getQuestionLink(tableName, req.params.caseId, config.formConfigs[key]);
-  });
-  res.render('case/screening-exclusion', {
-    caseNav: CaseNav,
-    buttonConfig: getButtonConfig(),
-    config,
-    caseId: req.params.caseId
-  });
-};
-
-exports.updateCaseExclusion = async (req, res) => {
-  const caseId = req.params.caseId;
-  await createOrUpdateScreening(caseId, req.body);
-  res.redirect(`/screening/exclusion/${caseId}`);
-};
-
-exports.caseDiseaseForm = async (req, res) => {
-  const caseId = req.params.caseId;
-  const CaseNav = helpers.appendCaseIdToCaseNav(caseId);
-  const screeningItem = await getScreeningItemByCaseId(caseId);
-  const config = getScreeningDiseaseConfig();
-  Object.keys(config.formConfigs).forEach((key) => {
-    config.formConfigs[key].value = screeningItem[key];
-    config.formConfigs[key].questionLink = helpers.getQuestionLink(tableName, req.params.caseId, config.formConfigs[key]);
-  });
-  res.render('case/screening-disease', {
-    caseNav: CaseNav,
-    buttonConfig: getButtonConfig(),
-    config,
-    caseId: req.params.caseId
-  });
-};
-
-exports.updateCaseDisease = async (req, res) => {
-  const caseId = req.params.caseId;
-  await createOrUpdateScreening(caseId, req.body);
-  res.redirect(`/screening/disease/${caseId}`);
-};
-
-exports.caseConMedForm = async (req, res) => {
-  const caseId = req.params.caseId;
-  const CaseNav = helpers.appendCaseIdToCaseNav(caseId);
-  const screeningItem = await getScreeningItemByCaseId(caseId);
-  const config = getScreeningConMedConfig();
-  Object.keys(config.formConfigs).forEach((key) => {
-    config.formConfigs[key].value = screeningItem[key];
-    config.formConfigs[key].questionLink = helpers.getQuestionLink(tableName, req.params.caseId, config.formConfigs[key]);
-  });
-  res.render('case/screening-conmed', {
-    caseNav: CaseNav,
-    buttonConfig: getButtonConfig(),
-    config,
-    caseId: req.params.caseId
-  });
-};
-
-exports.updateCaseConMed = async (req, res) => {
-  const caseId = req.params.caseId;
-  await createOrUpdateScreening(caseId, req.body);
-  res.redirect(`/screening/conmed/${caseId}`);
-};
-
-exports.caseVitalSignForm = async (req, res) => {
-  const caseId = req.params.caseId;
-  const CaseNav = helpers.appendCaseIdToCaseNav(caseId);
-  const screeningItem = await getScreeningItemByCaseId(caseId);
-  const config = getScreeningVitalSignConfig();
-  Object.keys(config.formConfigs).forEach((key) => {
-    if (config.formConfigs[key].type === 'select') {
-      config.formConfigs[key].options = decorationHelper[config.formConfigs[key].optionsGetter]();
-    }
-    config.formConfigs[key].value = screeningItem[key];
-    config.formConfigs[key].questionLink = helpers.getQuestionLink(tableName, req.params.caseId, config.formConfigs[key]);
-  });
-  res.render('case/screening-vitalsign', {
-    caseNav: CaseNav,
-    buttonConfig: getButtonConfig(),
-    config,
-    caseId: req.params.caseId
-  });
-};
-
-exports.updateCaseVitalSign = async (req, res) => {
-  const caseId = req.params.caseId;
-  await createOrUpdateScreening(caseId, req.body);
-  res.redirect(`/screening/vitalsign/${caseId}`);
-};
-
-exports.caseLabForm = async (req, res) => {
-  const caseId = req.params.caseId;
-  const CaseNav = helpers.appendCaseIdToCaseNav(caseId);
-  const screeningItem = await getScreeningItemByCaseId(caseId);
-  const config = getScreeningLabConfig();
-  Object.keys(config.formConfigs).forEach((key) => {
-    if (config.formConfigs[key].type === 'select') {
-      config.formConfigs[key].options = decorationHelper[config.formConfigs[key].optionsGetter]();
-    }
-    config.formConfigs[key].value = screeningItem[key];
-    config.formConfigs[key].questionLink = helpers.getQuestionLink(tableName, req.params.caseId, config.formConfigs[key]);
-  });
-  res.render('case/screening-lab', {
-    caseNav: CaseNav,
-    buttonConfig: getButtonConfig(),
-    config,
-    caseId: req.params.caseId
-  });
-};
-
-exports.updateCaseLab = async (req, res) => {
-  const caseId = req.params.caseId;
-  await createOrUpdateScreening(caseId, req.body);
-  res.redirect(`/screening/lab/${caseId}`);
-};
-
-exports.caseAssistantForm = async (req, res) => {
-  const caseId = req.params.caseId;
-  const CaseNav = helpers.appendCaseIdToCaseNav(caseId);
-  const screeningItem = await getScreeningItemByCaseId(caseId);
-  const config = getScreeningAssistantConfig();
-  Object.keys(config.formConfigs).forEach((key) => {
-    if (config.formConfigs[key].type === 'select') {
-      config.formConfigs[key].options = decorationHelper[config.formConfigs[key].optionsGetter]();
-    }
-    config.formConfigs[key].value = screeningItem[key];
-    config.formConfigs[key].questionLink = helpers.getQuestionLink(tableName, req.params.caseId, config.formConfigs[key]);
-  });
-  res.render('case/screening-assistant', {
-    caseNav: CaseNav,
-    buttonConfig: getButtonConfig(),
-    config,
-    caseId: req.params.caseId
-  });
-};
-
-exports.updateCaseAssistant = async (req, res) => {
-  const caseId = req.params.caseId;
-  await createOrUpdateScreening(caseId, req.body);
-  res.redirect(`/screening/assistant/${caseId}`);
-};
-
-exports.caseMethodForm = async (req, res) => {
-  const caseId = req.params.caseId;
-  const CaseNav = helpers.appendCaseIdToCaseNav(caseId);
-  const screeningItem = await getScreeningItemByCaseId(caseId);
-  const config = getScreeningMethodConfig();
-  Object.keys(config.formConfigs).forEach((key) => {
-    config.formConfigs[key].value = screeningItem[key];
-    config.formConfigs[key].questionLink = helpers.getQuestionLink(tableName, req.params.caseId, config.formConfigs[key]);
-  });
-  res.render('case/screening-method', {
-    caseNav: CaseNav,
-    buttonConfig: getButtonConfig(),
-    config,
-    caseId: req.params.caseId
-  });
-};
-
-exports.updateCaseMethod = async (req, res) => {
-  const caseId = req.params.caseId;
-  await createOrUpdateScreening(caseId, req.body);
-  res.redirect(`/screening/method/${caseId}`);
-};
-
-exports.caseRegionForm = async (req, res) => {
-  const caseId = req.params.caseId;
-  const CaseNav = helpers.appendCaseIdToCaseNav(caseId);
-  const screeningItem = await getScreeningItemByCaseId(caseId);
-  const config = getScreeningRegionConfig();
-  Object.keys(config.formConfigs).forEach((key) => {
-    config.formConfigs[key].value = screeningItem[key];
-    config.formConfigs[key].questionLink = helpers.getQuestionLink(tableName, req.params.caseId, config.formConfigs[key]);
-  });
-  res.render('case/screening-region', {
-    caseNav: CaseNav,
-    buttonConfig: getButtonConfig(),
-    config,
-    caseId: req.params.caseId
-  });
-};
-
-exports.updateCaseRegion = async (req, res) => {
-  const caseId = req.params.caseId;
-  await createOrUpdateScreening(caseId, req.body);
-  res.redirect(`/screening/region/${caseId}`);
-};
-
-exports.caseDignoseForm = async (req, res) => {
-  const caseId = req.params.caseId;
-  const CaseNav = helpers.appendCaseIdToCaseNav(caseId);
-  const screeningItem = await getScreeningItemByCaseId(caseId);
-  const config = getScreeningDignoseConfig();
-  Object.keys(config.formConfigs).forEach((key) => {
-    if (config.formConfigs[key].type === 'select') {
-      config.formConfigs[key].options = decorationHelper[config.formConfigs[key].optionsGetter]();
-    }
-    config.formConfigs[key].value = screeningItem[key];
-    config.formConfigs[key].questionLink = helpers.getQuestionLink(tableName, req.params.caseId, config.formConfigs[key]);
-  });
-  res.render('case/screening-dignose', {
-    caseNav: CaseNav,
-    buttonConfig: getButtonConfig(),
-    config,
-    caseId: req.params.caseId
-  });
-};
-
-exports.updateCaseDignose = async (req, res) => {
-  const caseId = req.params.caseId;
-  await createOrUpdateScreening(caseId, req.body);
-  res.redirect(`/screening/dignose/${caseId}`);
-};
