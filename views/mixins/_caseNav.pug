@@ -1,12 +1,12 @@
 mixin _caseNav(caseNav)
   ul.yuda-nav-stack
     each naviMenuItem in caseNav
-      li.level-1
+      li.level-1(class=(currentPath.startsWith(`/${naviMenuItem.name}/`) ? 'active' : ''))
         - const naviItemLink = `${naviMenuItem.link}/${naviMenuItem.caseId}`;
         a(href=naviItemLink) #{naviMenuItem.title}
         if naviMenuItem.children
 
             each childMenuItem in naviMenuItem.children
-              li.level-2
+              li.level-2(class=(currentPath.startsWith(`/${childMenuItem.name}/`) ? 'active' : ''))
                 - const link = `${childMenuItem.link}/${childMenuItem.caseId}`;
                 a(href=link) #{childMenuItem.title}

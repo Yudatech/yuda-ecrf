@@ -7,62 +7,62 @@ module.exports = [
   {
     title: '首诊',
     name: 'screening',
-    link: '/screening/basic',
+    link: '/screening-basic',
     children: [{
-      name: 'basic',
+      name: 'screening-basic',
       title: '人口学资料',
-      link: '/screening/basic'
+      link: '/screening-basic'
     }, {
-      name: 'inclusion',
+      name: 'screening-inclusion',
       title: '入选标准',
-      link: '/screening/inclusion'
+      link: '/screening-inclusion'
     }, {
-      name: 'exclusion',
+      name: 'screening-exclusion',
       title: '排除标准',
-      link: '/screening/exclusion'
+      link: '/screening-exclusion'
     }, {
-      name: 'disease',
+      name: 'screening-disease',
       title: '既往史',
-      link: '/screening/disease'
+      link: '/screening-disease'
     }, {
-      name: 'conmed',
+      name: 'screening-conmed',
       title: '合并用药情况',
-      link: '/screening/conmed'
+      link: '/screening-conmed'
     }, {
-      name: 'vitalsign',
+      name: 'screening-vitalsign',
       title: '体格检查',
-      link: '/screening/vitalsign'
+      link: '/screening-vitalsign'
     }, {
-      name: 'lab',
+      name: 'screening-lab',
       title: '实验室检查',
-      link: '/screening/lab'
+      link: '/screening-lab'
     }, {
-      name: 'assistant',
+      name: 'screening-assistant',
       title: '辅助检查',
-      link: '/screening/assistant'
+      link: '/screening-assistant'
     }, {
-      name: 'method',
+      name: 'screening-method',
       title: '诊断方法',
-      link: '/screening/method'
+      link: '/screening-method'
     }, {
-      name: 'region',
+      name: 'screening-region',
       title: '病变位置',
-      link: '/screening/region'
+      link: '/screening-region'
     }, {
-      name: 'dignose',
+      name: 'screening-dignose',
       title: '临床，病理诊断及分期',
-      link: '/screening/dignose'
+      link: '/screening-dignose'
     }]
   },
   {
     title: '首诊清单',
-    name: 'screening-checklist',
-    link: '/screening-checklist'
+    name: 'screeningchecklist',
+    link: '/screeningchecklist'
   },
   {
     title: '复诊',
-    name: 'review-checklist',
-    link: '/review-checklist'
+    name: 'reviewchecklist',
+    link: '/reviewchecklist'
   },
   {
     title: '中途退出试验',
