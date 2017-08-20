@@ -50,3 +50,25 @@ exports.checkCasePermission = async (req, res, next) => {
     }
   }
 };
+
+exports.checkCaseStatus = async (req, res, next) => {
+  const caseId = req.params.caseId;
+  const caseItem = await Case.findById(caseId);
+  const method = req.method.toLowerCase();
+  if (method === 'get') {
+    res.locals.caseStatus = caseItem.status;
+    next();
+  }
+  else if (method === 'post') {
+    if (caseItem.status !== 'open') {
+      req.flash('error', `Case ${caseId} status is not open anymore, you can not modify it.`);
+      res.redirect('back');
+    }
+    else {
+      next();
+    }
+  }
+  else {
+    res.redirect('back');
+  }
+};

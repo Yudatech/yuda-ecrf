@@ -57,9 +57,6 @@ async function createOrUpdateScreening(caseId, obj) {
   const caseItem = await Screening.findOne({
     case: caseId
   });
-  console.log('********');
-  console.log(caseItem);
-  console.log('********');
   if (caseItem === null) {
     await createScreening(caseId, obj);
   }
