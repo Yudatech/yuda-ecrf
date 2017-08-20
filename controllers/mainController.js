@@ -9,9 +9,21 @@ const getHomeConfig = require('../config/getHomeConfig');
 const getButtonConfig = require('../config/common/getButtonConfig');
 
 exports.homePage = async (req, res) => {
-  const cases = await Case.find({
-    user: req.user._id
-  });
+  const role = req.user.role;
+  let cases;
+  if (role === 'cra') {
+    cases = await Case.find({
+      user: req.user._id
+    });
+  }
+  else if (role === 'admin') {
+    cases = await Case.find();
+  }
+  else {
+    cases = await Case.find({
+      site: req.user.site._id
+    });
+  }
   const casesFormated = cases.map((item) => {
     return {
       _id: item._id,

@@ -57,6 +57,7 @@ exports.saveAcceptDoc = async (req, res, next) => {
 
 exports.createCase = async (req, res) => {
   req.body.user = req.user._id;
+  req.body.site = req.user.site._id;
   await (new Case(req.body)).save();
   res.redirect(`/overview/${req.body._id}`);
 };

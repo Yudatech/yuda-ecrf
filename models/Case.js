@@ -31,6 +31,11 @@ const caseSchema = new Schema({
     ref: 'User',
     required: 'You must supply a userid'
   },
+  site: {
+    type: mongoose.Schema.ObjectId,
+    ref: 'Site',
+    required: 'You must supply a siteid'
+  },
   // 建档日期
   createDate: {
     type: Date,
