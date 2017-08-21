@@ -5,7 +5,7 @@ module.exports = [
     link: '/overview'
   },
   {
-    title: '首诊',
+    title: '首诊(筛选)',
     name: 'screening',
     link: '/screening-basic',
     children: [{
@@ -60,7 +60,7 @@ module.exports = [
     link: '/screeningchecklist'
   },
   {
-    title: '复诊',
+    title: '复诊(入组)',
     name: 'reviewchecklist',
     link: '/reviewchecklist'
   },
