@@ -1,13 +1,13 @@
 [Unit]
-Description=Resource Service
+Description=Yuda eCRF
 
 [Service]
-WorkingDirectory=/opt/polystar/resourceService/
-User=oss
+WorkingDirectory=/opt/yuda-ecrf/
+User=yuda
 StandardInput=null
 StandardOutput=journal
 StandardError=journal
-ExecStart=/usr/bin/node /opt/polystar/resourceService/server.js
+ExecStart=/usr/bin/node /opt/yuda-ecrf/start.js
 KillMode=process
 TimeoutStopSec=5s
 Restart=always
