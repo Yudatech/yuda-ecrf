@@ -15,3 +15,11 @@ $('.bootstrap-timepicker.timepicker>input').timepicker({
   $(realId).val(e.time.value);
 });
 window.acceptDocPreview = acceptDocPreview;
+
+window.handleCheckboxClick = function(el) {
+  const checked = el.checked;
+  const realId = '#' + el.id + 'Real';
+  const value = checked === true ? 'true' : 'false';
+  console.log($(realId));
+  $(realId).val(value);
+}
