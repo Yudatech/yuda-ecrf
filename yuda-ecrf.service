@@ -3,7 +3,7 @@ Description=Yuda eCRF
 
 [Service]
 WorkingDirectory=/opt/yuda-ecrf/
-User=yuda
+User=root
 StandardInput=null
 StandardOutput=journal
 StandardError=journal
