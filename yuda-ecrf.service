@@ -1,0 +1,17 @@
+[Unit]
+Description=Resource Service
+
+[Service]
+WorkingDirectory=/opt/polystar/resourceService/
+User=oss
+StandardInput=null
+StandardOutput=journal
+StandardError=journal
+ExecStart=/usr/bin/node /opt/polystar/resourceService/server.js
+KillMode=process
+TimeoutStopSec=5s
+Restart=always
+RestartSec=3s
+
+[Install]
+WantedBy=multi-user.target
