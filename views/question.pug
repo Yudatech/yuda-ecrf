@@ -4,6 +4,15 @@ include mixins/_formTemplate
 
 block content
   .inner
+    form.form-horizontal
+      fieldset(disabled=true)
+        legend #{config.title}
+
+        each configItem in config.formConfigs
+          .row
+            .col-sm-12
+              +_formTemplate(configItem)
+
     form.form-horizontal(action=`/question/${questionId}` method="POST")
       fieldset
         legend #{questionConfig.title.question}

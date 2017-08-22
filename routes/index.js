@@ -395,5 +395,6 @@ router.get('/remove/site/:id', catchErrors(siteController.removeSite));
 router.get('/new/question', catchErrors(questionController.startQuestion));
 router.post('/comment/:questionId', catchErrors(questionController.addNewComment));
 router.get('/question/:questionId', catchErrors(questionController.showQuestionPage));
+router.post('/question/:questionId', catchErrors(questionController.updateQuestion));
 
 module.exports = router;

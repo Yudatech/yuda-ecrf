@@ -1,3 +1,6 @@
+const moment = require('moment');
+moment.locale('zh-cn');
+
 const mongoose = require('mongoose');
 const Screening = mongoose.model('Screening');
 const ScreeningChecklist = mongoose.model('ScreeningChecklist');
@@ -30,58 +33,84 @@ const getAeConfig = require('../config/ae/getAeConfig');
 const getSurgeryConfig = require('../config/surgery/getSurgeryConfig');
 const getVisitConfig = require('../config/visit/getVisitConfig');
 
-const decorationHelper = require('./decorationHelper');
-
-exports.getFormConfigForQuestion = function(table, field) {
-  let fieldConfig;
-  const formConfigs = {};
-
+exports.getConfigForQuestion = function(table, field) {
   if (table === 'screening') {
-    Object.assign(formConfigs, getScreeningBasicConfig().formConfigs);
-    Object.assign(formConfigs, getScreeningAssistantConfig().formConfigs);
-    Object.assign(formConfigs, getScreeningConMedConfig());
-    Object.assign(formConfigs, getScreeningDignoseConfig().formConfigs);
-    Object.assign(formConfigs, getScreeningDiseaseConfig().formConfigs);
-    Object.assign(formConfigs, getScreeningExclusionConfig().formConfigs);
-    Object.assign(formConfigs, getScreeningInclusionConfig().formConfigs);
-    Object.assign(formConfigs, getScreeningLabConfig().formConfigs);
-    Object.assign(formConfigs, getScreeningMethodConfig().formConfigs);
-    Object.assign(formConfigs, getScreeningRegionConfig().formConfigs);
-    Object.assign(formConfigs, getScreeningVitalSignConfig().formConfigs);
+    let formConfigs;
+
+    formConfigs = getScreeningBasicConfig().formConfigs;
+    if (formConfigs[field]) {
+      return getScreeningBasicConfig();
+    }
+    formConfigs = getScreeningAssistantConfig().formConfigs;
+    if (formConfigs[field]) {
+      return getScreeningAssistantConfig();
+    }
+    formConfigs = getScreeningConMedConfig().formConfigs;
+    if (formConfigs[field]) {
+      return getScreeningConMedConfig();
+    }
+    formConfigs = getScreeningDignoseConfig().formConfigs;
+    if (formConfigs[field]) {
+      return getScreeningDignoseConfig();
+    }
+    formConfigs = getScreeningDiseaseConfig().formConfigs;
+    if (formConfigs[field]) {
+      return getScreeningDiseaseConfig();
+    }
+    formConfigs = getScreeningExclusionConfig().formConfigs;
+    if (formConfigs[field]) {
+      return getScreeningExclusionConfig();
+    }
+    formConfigs = getScreeningInclusionConfig().formConfigs;
+    if (formConfigs[field]) {
+      return getScreeningInclusionConfig();
+    }
+    formConfigs = getScreeningLabConfig().formConfigs;
+    if (formConfigs[field]) {
+      return getScreeningLabConfig();
+    }
+    formConfigs = getScreeningMethodConfig().formConfigs;
+    if (formConfigs[field]) {
+      return getScreeningMethodConfig();
+    }
+    formConfigs = getScreeningRegionConfig().formConfigs;
+    if (formConfigs[field]) {
+      return getScreeningRegionConfig();
+    }
+    formConfigs = getScreeningVitalSignConfig().formConfigs;
+    if (formConfigs[field]) {
+      return getScreeningVitalSignConfig();
+    }
   }
   else if (table === 'screeningchecklist') {
-    Object.assign(formConfigs, getScreeningChecklistConfig().formConfigs);
+    return getScreeningChecklistConfig();
   }
   else if (table === 'reviewchecklist') {
-    Object.assign(formConfigs, getReviewChecklistConfig().formConfigs);
+    return getReviewChecklistConfig();
   }
   else if (table === 'discontinuation') {
-    Object.assign(formConfigs, getDiscontinuationConfig().formConfigs);
+    return getDiscontinuationConfig();
   }
   else if (table === 'cm') {
-    Object.assign(formConfigs, getCmConfig().formConfigs);
+    return getCmConfig();
   }
   else if (table === 'sae') {
-    Object.assign(formConfigs, getSaeConfig().formConfigs);
+    return getSaeConfig();
   }
   else if (table === 'ae') {
-    Object.assign(formConfigs, getAeConfig().formConfigs);
+    return getAeConfig();
   }
   else if (table === 'surgery') {
-    Object.assign(formConfigs, getSurgeryConfig().formConfigs);
+    const surgeryConfig = getSurgeryConfig();
+    surgeryConfig.title = surgeryConfig.title.surgery;
+    return surgeryConfig;
   }
   else if (table === 'visit') {
-    Object.assign(formConfigs, getVisitConfig().formConfigs);
+    return getVisitConfig();
   }
-
-  fieldConfig = formConfigs[field];
-  if (fieldConfig.type === 'select') {
-    fieldConfig.options = decorationHelper[fieldConfig.optionsGetter]();
-  }
-  return fieldConfig;
 };
 
-exports.getFieldValueForQuestion = async function(table, caseId, field, secondaryId) {
+exports.getValueForQuestion = async function(table, caseId, secondaryId) {
   let item;
   if (table === 'screening') {
     item = await Screening.findOne({
@@ -118,5 +147,35 @@ exports.getFieldValueForQuestion = async function(table, caseId, field, secondar
   else if (table === 'visit') {
     item = await Visit.findById(secondaryId);
   }
-  return item[field];
+  return item;
+};
+
+exports.appendValueToFormConfig = function(fieldConfig, fieldValue) {
+  if (fieldConfig.type === 'date') {
+    fieldConfig.value = moment(fieldValue).format('MM/DD/YYYY');
+  }
+  else if (fieldConfig.name === 'aestdtc') {
+    fieldConfig.date = {
+      name: 'aestdtc_date',
+      value: moment(fieldValue).format('MM/DD/YYYY')
+    };
+    fieldConfig.time = {
+      name: 'aestdtc_time',
+      value: moment(fieldValue).format('HH:mm')
+    };
+  }
+  else if (fieldConfig.name === 'aeeddtc') {
+    fieldConfig.date = {
+      name: 'aeeddtc_date',
+      value: moment(fieldValue).format('MM/DD/YYYY')
+    };
+    fieldConfig.time = {
+      name: 'aeeddtc_time',
+      value: moment(fieldValue).format('HH:mm')
+    };
+  }
+  else {
+    fieldConfig.value = fieldValue;
+  }
+  return fieldConfig;
 };

@@ -11,6 +11,7 @@ const getQuestionConfig = require('../config/getQuestionConfig');
 const getQuestionStatusConfig = require('../config/getQuestionStatusConfig');
 
 const questionHelper = require('./questionHelper');
+const decorationHelper = require('./decorationHelper');
 
 exports.startQuestion = async (req, res) => {
   const caseId = req.query.caseId;
@@ -48,41 +49,26 @@ exports.showQuestionPage = async (req, res) => {
   const field = question.fieldname;
   const caseId = question.case._id;
 
-  const fieldConfig = questionHelper.getFormConfigForQuestion(table, field);
-  const fieldValue = await questionHelper.getFieldValueForQuestion(table, caseId, field, question.secondaryid);
+  const config = questionHelper.getConfigForQuestion(table, field);
+  let fieldConfig = config.formConfigs[field];
+  if (fieldConfig.type === 'select') {
+    fieldConfig.options = decorationHelper[fieldConfig.optionsGetter]();
+  }
+  const values = await questionHelper.getValueForQuestion(table, caseId, question.secondaryid);
+  const fieldValue = values[field];
 
-  if (fieldConfig.type === 'date') {
-    fieldConfig.value = moment(fieldValue).format('MM/DD/YYYY');
-  }
-  else if (field === 'aestdtc') {
-    fieldConfig.date = {
-      name: 'aestdtc_date',
-      value: moment(fieldValue).format('MM/DD/YYYY')
-    };
-    fieldConfig.time = {
-      name: 'aestdtc_time',
-      value: moment(fieldValue).format('HH:mm')
-    };
-  }
-  else if (field === 'aeeddtc') {
-    fieldConfig.date = {
-      name: 'aeeddtc_date',
-      value: moment(fieldValue).format('MM/DD/YYYY')
-    };
-    fieldConfig.time = {
-      name: 'aeeddtc_time',
-      value: moment(fieldValue).format('HH:mm')
-    };
-  }
-  else {
-    fieldConfig.value = fieldValue;
-  }
+  config.formConfigs = Object.keys(config.formConfigs).map((key) => {
+    return questionHelper.appendValueToFormConfig(config.formConfigs[key], values[key]);
+  });
+
+  fieldConfig = questionHelper.appendValueToFormConfig(fieldConfig, fieldValue);
 
   const questionConfig = getQuestionConfig();
   questionConfig.questionConfigs.question_status.options = getQuestionStatusConfig();
 
   res.render('question', {
     questionId: question._id,
+    config,
     questionConfig,
     fieldConfig,
     buttonConfig: getButtonConfig(),
@@ -101,4 +87,9 @@ exports.addNewComment = async (req, res) => {
   })).save();
 
   res.redirect(`/question/${questionId}`);
+};
+
+exports.updateQuestion = async (req, res) => {
+  const questionId = req.params.questionId;
+  console.log(req.body);
 };
