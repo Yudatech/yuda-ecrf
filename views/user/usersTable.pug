@@ -15,7 +15,7 @@ block content
             tr
               each userTableHeader in userTableConfig.headers
                 if userTableHeader.name === 'sitename'
-                  td #{user.site.sitename}
+                  td #{user.site ? user.site.sitename : ''}
                 else if userTableHeader.name !== 'operations'
                   td #{user[userTableHeader.name]}
                 else
