@@ -6,6 +6,7 @@ node_modules
 # upload images
 public/uploads
 
+public/dist
 
 # misc
 .DS_Store
