@@ -101,7 +101,7 @@ exports.caseBasicForm = async (req, res) => {
 exports.updateCaseBasic = async (req, res) => {
   const caseId = req.params.caseId;
   await createOrUpdateScreening(caseId, req.body);
-  res.redirect(`/screening/basic/${caseId}`);
+  res.redirect(`/screening-basic/${caseId}`);
 };
 
 exports.caseInclusionForm = async (req, res) => {
@@ -127,7 +127,7 @@ exports.caseInclusionForm = async (req, res) => {
 exports.updateCaseInclusion = async (req, res) => {
   const caseId = req.params.caseId;
   await createOrUpdateScreening(caseId, req.body);
-  res.redirect(`/screening/inclusion/${caseId}`);
+  res.redirect(`/screening-inclusion/${caseId}`);
 };
 
 exports.caseExclusionForm = async (req, res) => {
@@ -153,7 +153,7 @@ exports.caseExclusionForm = async (req, res) => {
 exports.updateCaseExclusion = async (req, res) => {
   const caseId = req.params.caseId;
   await createOrUpdateScreening(caseId, req.body);
-  res.redirect(`/screening/exclusion/${caseId}`);
+  res.redirect(`/screening-exclusion/${caseId}`);
 };
 
 exports.caseDiseaseForm = async (req, res) => {
@@ -179,7 +179,7 @@ exports.caseDiseaseForm = async (req, res) => {
 exports.updateCaseDisease = async (req, res) => {
   const caseId = req.params.caseId;
   await createOrUpdateScreening(caseId, req.body);
-  res.redirect(`/screening/disease/${caseId}`);
+  res.redirect(`/screening-disease/${caseId}`);
 };
 
 exports.caseConMedForm = async (req, res) => {
@@ -205,7 +205,7 @@ exports.caseConMedForm = async (req, res) => {
 exports.updateCaseConMed = async (req, res) => {
   const caseId = req.params.caseId;
   await createOrUpdateScreening(caseId, req.body);
-  res.redirect(`/screening/conmed/${caseId}`);
+  res.redirect(`/screening-conmed/${caseId}`);
 };
 
 exports.caseVitalSignForm = async (req, res) => {
@@ -234,7 +234,7 @@ exports.caseVitalSignForm = async (req, res) => {
 exports.updateCaseVitalSign = async (req, res) => {
   const caseId = req.params.caseId;
   await createOrUpdateScreening(caseId, req.body);
-  res.redirect(`/screening/vitalsign/${caseId}`);
+  res.redirect(`/screening-vitalsign/${caseId}`);
 };
 
 exports.caseLabForm = async (req, res) => {
@@ -263,7 +263,7 @@ exports.caseLabForm = async (req, res) => {
 exports.updateCaseLab = async (req, res) => {
   const caseId = req.params.caseId;
   await createOrUpdateScreening(caseId, req.body);
-  res.redirect(`/screening/lab/${caseId}`);
+  res.redirect(`/screening-lab/${caseId}`);
 };
 
 exports.caseAssistantForm = async (req, res) => {
@@ -292,7 +292,7 @@ exports.caseAssistantForm = async (req, res) => {
 exports.updateCaseAssistant = async (req, res) => {
   const caseId = req.params.caseId;
   await createOrUpdateScreening(caseId, req.body);
-  res.redirect(`/screening/assistant/${caseId}`);
+  res.redirect(`/screening-assistant/${caseId}`);
 };
 
 exports.caseMethodForm = async (req, res) => {
@@ -318,7 +318,7 @@ exports.caseMethodForm = async (req, res) => {
 exports.updateCaseMethod = async (req, res) => {
   const caseId = req.params.caseId;
   await createOrUpdateScreening(caseId, req.body);
-  res.redirect(`/screening/method/${caseId}`);
+  res.redirect(`/screening-method/${caseId}`);
 };
 
 exports.caseRegionForm = async (req, res) => {
@@ -344,7 +344,7 @@ exports.caseRegionForm = async (req, res) => {
 exports.updateCaseRegion = async (req, res) => {
   const caseId = req.params.caseId;
   await createOrUpdateScreening(caseId, req.body);
-  res.redirect(`/screening/region/${caseId}`);
+  res.redirect(`/screening-region/${caseId}`);
 };
 
 exports.caseDignoseForm = async (req, res) => {
@@ -373,5 +373,5 @@ exports.caseDignoseForm = async (req, res) => {
 exports.updateCaseDignose = async (req, res) => {
   const caseId = req.params.caseId;
   await createOrUpdateScreening(caseId, req.body);
-  res.redirect(`/screening/dignose/${caseId}`);
+  res.redirect(`/screening-dignose/${caseId}`);
 };

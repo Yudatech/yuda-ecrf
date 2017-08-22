@@ -64,5 +64,5 @@ exports.screeningChecklistForm = async (req, res) => {
 exports.updateScreeningChecklist = async (req, res) => {
   const caseId = req.params.caseId;
   await createOrUpdateScreeningChecklist(caseId, req.body);
-  res.redirect(`/screening-checklist/${caseId}`);
+  res.redirect(`/screeningchecklist/${caseId}`);
 };

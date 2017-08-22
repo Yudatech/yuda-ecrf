@@ -64,5 +64,5 @@ exports.reviewChecklistForm = async (req, res) => {
 exports.updateReviewChecklist = async (req, res) => {
   const caseId = req.params.caseId;
   await createOrUpdateReviewChecklist(caseId, req.body);
-  res.redirect(`/review-checklist/${caseId}`);
+  res.redirect(`/reviewchecklist/${caseId}`);
 };
