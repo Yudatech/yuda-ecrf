@@ -7,6 +7,8 @@ const getUserTableConfig = require('../config/user/getUserTableConfig');
 const getRegisterConfig = require('../config/user/getRegisterConfig');
 const getRoleConfig = require('../config/user/getRoleConfig');
 const getLoginConfig = require('../config/getLoginConfig');
+const getLanguageConfig = require('../config/common/getLanguageConfig');
+const getButtonConfig = require('../config/common/getButtonConfig');
 
 exports.loginForm = (req, res) => {
   res.render('login', {
@@ -16,24 +18,22 @@ exports.loginForm = (req, res) => {
 
 exports.registerForm = async (req, res) => {
   const sites = await Site.find();
+  let user;
   if (req.params.id !== undefined) {
     const userId = req.params.id;
-    const user = User.findById(userId);
-    res.render('user/register', {
-      sites,
-      registerConfig: getRegisterConfig(),
-      roleConfig: getRoleConfig(),
-      user: user
-    });
+    user = User.findById(userId);
   }
   else {
-    res.render('user/register', {
-      sites,
-      registerConfig: getRegisterConfig(),
-      roleConfig: getRoleConfig(),
-      user: {}
-    });
+    user = {};
   }
+  res.render('user/register', {
+    sites,
+    registerConfig: getRegisterConfig(),
+    roleConfig: getRoleConfig(),
+    languageConfig: getLanguageConfig(),
+    buttonConfig: getButtonConfig(),
+    user: user
+  });
 };
 
 exports.validateRegister = async (req, res, next) => {
@@ -71,7 +71,8 @@ exports.register = async (req, res) => {
       userabbr: req.body.userabbr,
       site: req.body.site,
       role: req.body.role,
-      tel: req.body.tel
+      tel: req.body.tel,
+      language: req.body.language
     });
     const register = promisify(User.register, User);
     await register(user, req.body.password);
@@ -79,10 +80,13 @@ exports.register = async (req, res) => {
   }
   catch (e) {
     const sites = await Site.find();
+    req.flash('error', e.toString());
     res.render('user/register', {
       sites,
       registerConfig: getRegisterConfig(),
       roleConfig: getRoleConfig(),
+      languageConfig: getLanguageConfig(),
+      buttonConfig: getButtonConfig(),
       user: req.body
   });
   }

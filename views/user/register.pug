@@ -52,4 +52,11 @@ block content
                 each site in sites
                   option(value=site._id) #{site.sitename}
 
-          input.btn.btn-default.yuda-input-btn-2(type="submit" value=registerConfig.buttons.saveNewUser.text)
+          .form-group
+            label.col-sm-2.control-label #{registerConfig.labels.language.text}
+            .col-sm-10
+              select.form-control(name="language")
+                each language in languageConfig
+                  option(value=language.value) #{language.text}
+
+          input.btn.btn-default.yuda-input-btn-2(type="submit" value=buttonConfig.buttons.save.text)

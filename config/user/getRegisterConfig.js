@@ -44,11 +44,10 @@ const config = {
     text: {
       zh: '临床中心'
     }
-  }],
-  buttons: [{
-    name: 'saveNewUser',
+  }, {
+    name: 'language',
     text: {
-      zh: '保存'
+      zh: '语言'
     }
   }]
 };
@@ -61,7 +60,6 @@ module.exports = function(lang) {
   const result = {};
   result.labels = getOptionsLang(config.labels);
   result.title = config.title[lang];
-  result.buttons = getOptionsLang(config.buttons);
 
   return result;
 };
