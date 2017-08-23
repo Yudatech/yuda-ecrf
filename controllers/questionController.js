@@ -65,6 +65,11 @@ exports.showQuestionPage = async (req, res) => {
 
   const questionConfig = getQuestionConfig();
   questionConfig.questionConfigs.question_status.options = getQuestionStatusConfig();
+  if (req.user.role === 'cra') {
+    questionConfig.questionConfigs.question_status.options = questionConfig.questionConfigs.question_status.options.filter((option) => {
+      return option.value !== 2;
+    });
+  }
 
   res.render('question', {
     questionId: question._id,
