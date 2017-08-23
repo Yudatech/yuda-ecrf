@@ -91,5 +91,14 @@ exports.addNewComment = async (req, res) => {
 
 exports.updateQuestion = async (req, res) => {
   const questionId = req.params.questionId;
-  console.log(req.body);
+  const questionItem = await Question.findById(questionId);
+  const table = questionItem.modelname;
+  const field = questionItem.fieldname;
+  const caseId = questionItem.case._id;
+  const secondaryId = questionItem.secondaryid;
+  await questionHelper.updateValueForQuestion(table, caseId, secondaryId, field, req.body[field]);
+  await Question.findByIdAndUpdate(questionId, {
+    status: req.body.question_status
+  });
+  res.redirect(`/question/${questionId}`);
 };
