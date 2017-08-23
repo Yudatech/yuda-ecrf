@@ -394,11 +394,16 @@ router.get('/remove/site/:id', catchErrors(siteController.removeSite));
  */
 router.get('/new/question', catchErrors(questionController.startQuestion));
 router.post('/comment/:questionId',
+  catchErrors(authController.checkQuestionPermission),
   catchErrors(authController.checkQuestionStatus),
   catchErrors(questionController.addNewComment)
 );
-router.get('/question/:questionId', catchErrors(questionController.showQuestionPage));
+router.get('/question/:questionId',
+  catchErrors(authController.checkQuestionPermission),
+  catchErrors(questionController.showQuestionPage)
+);
 router.post('/question/:questionId',
+  catchErrors(authController.checkQuestionPermission),
   catchErrors(authController.checkQuestionStatus),
   catchErrors(questionController.updateQuestion)
 );
