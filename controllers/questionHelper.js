@@ -150,6 +150,46 @@ exports.getValueForQuestion = async function(table, caseId, secondaryId) {
   return item;
 };
 
+exports.updateValueForQuestion = async function(table, caseId, secondaryId, field, value) {
+  const obj = {};
+  obj[field] = value;
+  if (table === 'screening') {
+    await Screening.findOneAndUpdate({
+      case: caseId
+    }, obj);
+  }
+  else if (table === 'screeningchecklist') {
+    await ScreeningChecklist.findOneAndUpdate({
+      case: caseId
+    }, obj);
+  }
+  else if (table === 'reviewchecklist') {
+    await ReviewChecklist.findOneAndUpdate({
+      case: caseId
+    }, obj);
+  }
+  else if (table === 'discontinuation') {
+    await Discontinuation.findOneAndUpdate({
+      case: caseId
+    }, obj);
+  }
+  else if (table === 'cm') {
+    await Cm.findByIdAndUpdate(secondaryId, obj);
+  }
+  else if (table === 'sae') {
+    await Sae.findByIdAndUpdate(secondaryId, obj);
+  }
+  else if (table === 'ae') {
+    await Ae.findByIdAndUpdate(secondaryId, obj);
+  }
+  else if (table === 'surgery') {
+    await Surgery.findByIdAndUpdate(secondaryId, obj);
+  }
+  else if (table === 'visit') {
+    await Visit.findByIdAndUpdate(secondaryId, obj);
+  }
+};
+
 exports.appendValueToFormConfig = function(fieldConfig, fieldValue) {
   if (fieldConfig.type === 'date') {
     fieldConfig.value = moment(fieldValue).format('MM/DD/YYYY');
