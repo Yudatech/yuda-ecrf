@@ -14,7 +14,7 @@ block content
               +_formTemplate(configItem)
 
     form.form-horizontal(action=`/question/${questionId}` method="POST")
-      fieldset
+      fieldset(disabled=(questionConfig.questionConfigs.question_status === 2))
         legend #{questionConfig.title.question}
 
         .row
@@ -29,6 +29,7 @@ block content
     
     h4 #{questionConfig.title.comment}
     form.form-horizontal(action=`/comment/${questionId}` method="POST")
+      fieldset(disabled=(questionConfig.questionConfigs.question_status === 2))
         .row
           .col-sm-12
             +_formTemplate(questionConfig.commentConfigs.new_comment)
