@@ -55,9 +55,9 @@ const config = {
         zh: '建档人'
       }
     }, {
-      name: 'progress',
+      name: 'status',
       text: {
-        zh: '进度'
+        zh: '状态'
       }
     }, {
       name: 'operations',

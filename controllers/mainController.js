@@ -6,6 +6,7 @@ const moment = require('moment');
 moment.locale('zh-cn');
 
 const getHomeConfig = require('../config/getHomeConfig');
+const getCaseStatusConfig = require('../config/common/getCaseStatusConfig');
 const getButtonConfig = require('../config/common/getButtonConfig');
 
 exports.homePage = async (req, res) => {
@@ -24,12 +25,14 @@ exports.homePage = async (req, res) => {
       site: req.user.site._id
     });
   }
+  const caseStatusConfig = getCaseStatusConfig();
   const casesFormated = cases.map((item) => {
     return {
       _id: item._id,
       subjabbr: item.subjabbr,
       createDate: moment(item.createDate).format('ll'),
-      username: item.user.username
+      username: item.user.username,
+      status: caseStatusConfig.find((statusConfig) => statusConfig.value === item.status).text
     };
   });
 

@@ -50,7 +50,7 @@ const caseSchema = new Schema({
   status: {
     type: String,
     enum: {
-      values: ['open', 'committed', 'locked'],
+      values: ['open', 'committed', 'audited', 'locked', 'quit'],
       message: 'enum validator failed for path `{PATH}` with value `{VALUE}`'
     },
     default: 'open'
