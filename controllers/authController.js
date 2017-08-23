@@ -87,7 +87,7 @@ exports.checkQuestionStatus = async (req, res, next) => {
 };
 
 exports.checkQuestionPermission = async (req, res, next) => {
-  const caseId = req.params.questionId;
+  const questionId = req.params.questionId;
   const user = req.user;
   const questionItem = await Question.findById(questionId);
   if (user.role === 'cra') {

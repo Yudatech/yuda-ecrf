@@ -1,4 +1,4 @@
-mixin _dateTemplate(name, text, value)
+mixin _dateTemplate(name, text, value, disabled)
   - const idReal = name + 'Real'
   .form-group
     label.col-sm-4.control-label #{text}
@@ -7,4 +7,5 @@ mixin _dateTemplate(name, text, value)
         input.form-control(value=value)
         span.input-group-addon
           i.glyphicon.glyphicon-th
-      input(id=idReal type="hidden" name=name value=value)
+      if disabled !== true
+        input(id=idReal type="hidden" name=name value=value)

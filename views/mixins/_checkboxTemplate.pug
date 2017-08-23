@@ -1,8 +1,9 @@
-mixin _checkboxTemplate(name, text, value)
+mixin _checkboxTemplate(name, text, value, disabled)
   - const realId = name + 'Real'
   - const hiddenValue = value === true ? 'true' : 'false'
   .checkbox
     label
-      input(id=realId type="hidden" name=name value=hiddenValue)
+      if disabled !== true
+        input(id=realId type="hidden" name=name value=hiddenValue)
       input(id=name type="checkbox" checked=value onclick='handleCheckboxClick(this)')
       span #{text}

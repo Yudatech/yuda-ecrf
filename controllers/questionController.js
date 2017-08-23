@@ -41,8 +41,15 @@ exports.startQuestion = async (req, res) => {
 exports.showQuestionPage = async (req, res) => {
   const questionId = req.params.questionId;
   const question = await Question.findById(questionId);
-  const comments = await Comment.find({
+  const commentItems = await Comment.find({
     question: questionId
+  }).sort({
+    createDate: 'asc'
+  });
+  const comments = commentItems.map((item) => {
+    const obj = item.toObject();
+    obj.createDate = moment(obj.createDate).format('LLL');
+    return obj;
   });
 
   const table = question.modelname;
@@ -65,6 +72,7 @@ exports.showQuestionPage = async (req, res) => {
 
   const questionConfig = getQuestionConfig();
   questionConfig.questionConfigs.question_status.options = getQuestionStatusConfig();
+  questionConfig.questionConfigs.question_status.value = question.status;
   if (req.user.role === 'cra') {
     questionConfig.questionConfigs.question_status.options = questionConfig.questionConfigs.question_status.options.filter((option) => {
       return option.value !== 2;

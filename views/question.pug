@@ -11,7 +11,7 @@ block content
         each configItem in config.formConfigs
           .row
             .col-sm-12
-              +_formTemplate(configItem)
+              +_formTemplate(configItem, true)
 
     form.form-horizontal(action=`/question/${questionId}` method="POST")
       fieldset(disabled=(questionConfig.questionConfigs.question_status === 2))
@@ -38,4 +38,4 @@ block content
 
     ul
       each comment in comments
-        li #{comment.text}
+        li #{`${comment.user.username}(${comment.createDate}): ${comment.text}`}

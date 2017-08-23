@@ -35,6 +35,7 @@ const questionSchema = new Schema({
 function autopopulate(next) {
   this.populate('case');
   this.populate('orig');
+  this.populate('owner');
   next();
 }
 

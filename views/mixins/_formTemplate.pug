@@ -6,9 +6,9 @@ include _numberfieldTemplate
 include _selectTemplate
 include _datetimeTemplate
 
-mixin _formTemplate(formConfig)
+mixin _formTemplate(formConfig, disabled)
   if formConfig.type === 'checkbox'
-    +_checkboxTemplate(formConfig.name, formConfig.text, formConfig.value)
+    +_checkboxTemplate(formConfig.name, formConfig.text, formConfig.value, disabled)
 
   else if formConfig.type === 'textfield'
     +_textfieldTemplate(formConfig.name, formConfig.text, formConfig.value)
@@ -23,7 +23,7 @@ mixin _formTemplate(formConfig)
     +_selectTemplate(formConfig.name, formConfig.text, formConfig.value, formConfig.options)
 
   else if formConfig.type === 'date'
-    +_dateTemplate(formConfig.name, formConfig.text, formConfig.value)
+    +_dateTemplate(formConfig.name, formConfig.text, formConfig.value, disabled)
 
   else if formConfig.type === 'datetime'
-    +_datetimeTemplate(formConfig.text, formConfig.date.name, formConfig.date.value, formConfig.time.name, formConfig.time.value)
+    +_datetimeTemplate(formConfig.text, formConfig.date.name, formConfig.date.value, formConfig.time.name, formConfig.time.value, disabled)
