@@ -111,10 +111,9 @@ exports.removeUser = async (req, res) => {
 exports.setUserLang = async (req, res) => {
   const userId = req.user._id;
   const lang = req.params.lang;
-  req.user = await User.findByIdAndUpdate(userId, {
+  await User.findByIdAndUpdate(userId, {
     lang
-  }, {
-    new: true
   });
-  res.redirect('/');
+  req.logout();
+  res.redirect('/login');
 };
