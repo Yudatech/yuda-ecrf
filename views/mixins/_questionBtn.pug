@@ -1,4 +1,4 @@
-mixin _questionBtn(link)
-  if locals.user.role !== 'cra'
-    a.btn.btn-default(href=link)
+mixin _questionBtn(config, questionFields)
+  if locals.user.role !== 'cra' && !questionFields.includes(config.name)
+    a.btn.btn-default(href=config.questionLink)
       span.glyphicon.glyphicon-question-sign

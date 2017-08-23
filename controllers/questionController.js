@@ -115,3 +115,15 @@ exports.updateQuestion = async (req, res) => {
   });
   res.redirect(`/question/${questionId}`);
 };
+
+exports.checkQuestionedFields = async (req, res, next) => {
+  const caseId = req.params.caseId;
+  const questions = await Question.find({
+    case: caseId
+  });
+  const fields = questions.map((question) => {
+    return question.fieldname;
+  });
+  res.locals.questionFields = fields;
+  next();
+};

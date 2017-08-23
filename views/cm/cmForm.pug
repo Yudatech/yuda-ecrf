@@ -13,42 +13,42 @@ block case-content
           .col-sm-10
             +_formTemplate(config.formConfigs.drug)
           .col-sm-2
-            +_questionBtn(config.formConfigs.drug.questionLink)
+            +_questionBtn(config.formConfigs.drug, questionFields)
 
         .row
           .col-sm-10
             +_formTemplate(config.formConfigs.dosing)
           .col-sm-2
-            +_questionBtn(config.formConfigs.dosing.questionLink)
+            +_questionBtn(config.formConfigs.dosing, questionFields)
 
         .row
           .col-sm-10
             +_formTemplate(config.formConfigs.dosemtd_1)
           .col-sm-2
-            +_questionBtn(config.formConfigs.dosemtd_1.questionLink)
+            +_questionBtn(config.formConfigs.dosemtd_1, questionFields)
 
         .row
           .col-sm-10
             +_formTemplate(config.formConfigs.dosemtd_2)
           .col-sm-2
-            +_questionBtn(config.formConfigs.dosemtd_2.questionLink)
+            +_questionBtn(config.formConfigs.dosemtd_2, questionFields)
 
         .row
           .col-sm-10
             +_formTemplate(config.formConfigs.cmstdtc)
           .col-sm-2
-            +_questionBtn(config.formConfigs.cmstdtc.questionLink)
+            +_questionBtn(config.formConfigs.cmstdtc, questionFields)
 
         .row
           .col-sm-10
             +_formTemplate(config.formConfigs.cmeddtc)
           .col-sm-2
-            +_questionBtn(config.formConfigs.cmeddtc.questionLink)
+            +_questionBtn(config.formConfigs.cmeddtc, questionFields)
 
         .row
           .col-sm-10
             +_formTemplate(config.formConfigs.cmrsn)
           .col-sm-2
-            +_questionBtn(config.formConfigs.cmrsn.questionLink)
+            +_questionBtn(config.formConfigs.cmrsn, questionFields)
 
         input.btn.btn-default.yuda-input-btn(type="submit" value=buttonConfig.buttons.save.text)

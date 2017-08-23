@@ -13,19 +13,19 @@ block case-content
           .col-sm-10
             +_formTemplate(config.formConfigs.surgerydtc)
           .col-sm-2
-            +_questionBtn(config.formConfigs.surgerydtc.questionLink)
+            +_questionBtn(config.formConfigs.surgerydtc, questionFields)
 
         .row
           .col-sm-10
             +_formTemplate(config.formConfigs.device_1)
           .col-sm-2
-            +_questionBtn(config.formConfigs.device_1.questionLink)
+            +_questionBtn(config.formConfigs.device_1, questionFields)
 
         .row
           .col-sm-10
             +_formTemplate(config.formConfigs.device_2)
           .col-sm-2
-            +_questionBtn(config.formConfigs.device_2.questionLink)
+            +_questionBtn(config.formConfigs.device_2, questionFields)
 
       fieldset
         legend #{config.title.surgery}
@@ -36,7 +36,7 @@ block case-content
               .col-sm-offset-4.col-sm-8
                 +_formTemplate(config.formConfigs.surgery_1)
           .col-sm-2
-            +_questionBtn(config.formConfigs.surgery_1.questionLink)
+            +_questionBtn(config.formConfigs.surgery_1, questionFields)
 
         .row
           .col-sm-10
@@ -44,7 +44,7 @@ block case-content
               .col-sm-offset-4.col-sm-8
                 +_formTemplate(config.formConfigs.surgery_2)
           .col-sm-2
-            +_questionBtn(config.formConfigs.surgery_2.questionLink)
+            +_questionBtn(config.formConfigs.surgery_2, questionFields)
 
         .row
           .col-sm-10
@@ -52,67 +52,67 @@ block case-content
               .col-sm-offset-4.col-sm-8
                 +_formTemplate(config.formConfigs.surgery_3)
           .col-sm-2
-            +_questionBtn(config.formConfigs.surgery_3.questionLink)
+            +_questionBtn(config.formConfigs.surgery_3, questionFields)
         
         .row
           .col-sm-10
             +_formTemplate(config.formConfigs.surgery_4)
           .col-sm-2
-            +_questionBtn(config.formConfigs.surgery_4.questionLink)
+            +_questionBtn(config.formConfigs.surgery_4, questionFields)
 
         .row
           .col-sm-10
             +_formTemplate(config.formConfigs.surgery_5)
           .col-sm-2
-            +_questionBtn(config.formConfigs.surgery_5.questionLink)
+            +_questionBtn(config.formConfigs.surgery_5, questionFields)
 
         .row
           .col-sm-10
             +_formTemplate(config.formConfigs.surgery_6)
           .col-sm-2
-            +_questionBtn(config.formConfigs.surgery_6.questionLink)
+            +_questionBtn(config.formConfigs.surgery_6, questionFields)
 
         .row
           .col-sm-10
             +_formTemplate(config.formConfigs.surgery_7)
           .col-sm-2
-            +_questionBtn(config.formConfigs.surgery_7.questionLink)
+            +_questionBtn(config.formConfigs.surgery_7, questionFields)
 
         .row
           .col-sm-10
             +_formTemplate(config.formConfigs.surgery_8)
           .col-sm-2
-            +_questionBtn(config.formConfigs.surgery_8.questionLink)
+            +_questionBtn(config.formConfigs.surgery_8, questionFields)
 
         .row
           .col-sm-10
             +_formTemplate(config.formConfigs.surgery_9)
           .col-sm-2
-            +_questionBtn(config.formConfigs.surgery_9.questionLink)
+            +_questionBtn(config.formConfigs.surgery_9, questionFields)
 
         .row
           .col-sm-10
             +_formTemplate(config.formConfigs.surgery_10)
           .col-sm-2
-            +_questionBtn(config.formConfigs.surgery_10.questionLink)
+            +_questionBtn(config.formConfigs.surgery_10, questionFields)
 
         .row
           .col-sm-10
             +_formTemplate(config.formConfigs.surgery_11)
           .col-sm-2
-            +_questionBtn(config.formConfigs.surgery_11.questionLink)
+            +_questionBtn(config.formConfigs.surgery_11, questionFields)
 
         .row
           .col-sm-10
             +_formTemplate(config.formConfigs.surgery_12)
           .col-sm-2
-            +_questionBtn(config.formConfigs.surgery_12.questionLink)
+            +_questionBtn(config.formConfigs.surgery_12, questionFields)
 
         .row
           .col-sm-10
             +_formTemplate(config.formConfigs.surgery_13)
           .col-sm-2
-            +_questionBtn(config.formConfigs.surgery_13.questionLink)
+            +_questionBtn(config.formConfigs.surgery_13, questionFields)
 
         .row
           .col-sm-10
@@ -120,7 +120,7 @@ block case-content
               .col-sm-offset-4.col-sm-8
                 +_formTemplate(config.formConfigs.surgery_14)
           .col-sm-2
-            +_questionBtn(config.formConfigs.surgery_14.questionLink)
+            +_questionBtn(config.formConfigs.surgery_14, questionFields)
 
         .row
           .col-sm-10
@@ -128,7 +128,7 @@ block case-content
               .col-sm-offset-4.col-sm-8
                 +_formTemplate(config.formConfigs.surgery_15)
           .col-sm-2
-            +_questionBtn(config.formConfigs.surgery_15.questionLink)
+            +_questionBtn(config.formConfigs.surgery_15, questionFields)
 
         .row
           .col-sm-10
@@ -136,7 +136,7 @@ block case-content
               .col-sm-offset-4.col-sm-8
                 +_formTemplate(config.formConfigs.surgery_16)
           .col-sm-2
-            +_questionBtn(config.formConfigs.surgery_16.questionLink)
+            +_questionBtn(config.formConfigs.surgery_16, questionFields)
 
         .row
           .col-sm-10
@@ -144,13 +144,13 @@ block case-content
               .col-sm-offset-4.col-sm-8
                 +_formTemplate(config.formConfigs.surgery_17)
           .col-sm-2
-            +_questionBtn(config.formConfigs.surgery_17.questionLink)
+            +_questionBtn(config.formConfigs.surgery_17, questionFields)
 
         .row
           .col-sm-10
             +_formTemplate(config.formConfigs.surgery_18)
           .col-sm-2
-            +_questionBtn(config.formConfigs.surgery_18.questionLink)
+            +_questionBtn(config.formConfigs.surgery_18, questionFields)
 
         .row
           .col-sm-10
@@ -158,6 +158,6 @@ block case-content
               .col-sm-offset-4.col-sm-8
                 +_formTemplate(config.formConfigs.surgery_19)
           .col-sm-2
-            +_questionBtn(config.formConfigs.surgery_19.questionLink)
+            +_questionBtn(config.formConfigs.surgery_19, questionFields)
 
         input.btn.btn-default.yuda-input-btn(type="submit" value=buttonConfig.buttons.save.text)

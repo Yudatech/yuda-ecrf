@@ -78,6 +78,7 @@ router.get('/overview/:caseId',
 router.get('/screening-basic/:caseId',
   catchErrors(authController.checkCaseStatus),
   catchErrors(authController.checkCasePermission),
+  catchErrors(questionController.checkQuestionedFields),
   catchErrors(screeningController.caseBasicForm)
 );
 router.post('/screening-basic/:caseId',
@@ -89,6 +90,7 @@ router.post('/screening-basic/:caseId',
 router.get('/screening-inclusion/:caseId',
   catchErrors(authController.checkCaseStatus),
   catchErrors(authController.checkCasePermission),
+  catchErrors(questionController.checkQuestionedFields),
   catchErrors(screeningController.caseInclusionForm)
 );
 router.post('/screening-inclusion/:caseId',
@@ -100,6 +102,7 @@ router.post('/screening-inclusion/:caseId',
 router.get('/screening-exclusion/:caseId',
   catchErrors(authController.checkCaseStatus),
   catchErrors(authController.checkCasePermission),
+  catchErrors(questionController.checkQuestionedFields),
   catchErrors(screeningController.caseExclusionForm)
 );
 router.post('/screening-exclusion/:caseId',
@@ -111,6 +114,7 @@ router.post('/screening-exclusion/:caseId',
 router.get('/screening-disease/:caseId',
   catchErrors(authController.checkCaseStatus),
   catchErrors(authController.checkCasePermission),
+  catchErrors(questionController.checkQuestionedFields),
   catchErrors(screeningController.caseDiseaseForm)
 );
 router.post('/screening-disease/:caseId',
@@ -122,6 +126,7 @@ router.post('/screening-disease/:caseId',
 router.get('/screening-conmed/:caseId',
   catchErrors(authController.checkCaseStatus),
   catchErrors(authController.checkCasePermission),
+  catchErrors(questionController.checkQuestionedFields),
   catchErrors(screeningController.caseConMedForm)
 );
 router.post('/screening-conmed/:caseId',
@@ -133,6 +138,7 @@ router.post('/screening-conmed/:caseId',
 router.get('/screening-vitalsign/:caseId',
   catchErrors(authController.checkCaseStatus),
   catchErrors(authController.checkCasePermission),
+  catchErrors(questionController.checkQuestionedFields),
   catchErrors(screeningController.caseVitalSignForm)
 );
 router.post('/screening-vitalsign/:caseId',
@@ -144,6 +150,7 @@ router.post('/screening-vitalsign/:caseId',
 router.get('/screening-lab/:caseId',
   catchErrors(authController.checkCaseStatus),
   catchErrors(authController.checkCasePermission),
+  catchErrors(questionController.checkQuestionedFields),
   catchErrors(screeningController.caseLabForm)
 );
 router.post('/screening-lab/:caseId',
@@ -155,6 +162,7 @@ router.post('/screening-lab/:caseId',
 router.get('/screening-assistant/:caseId',
   catchErrors(authController.checkCaseStatus),
   catchErrors(authController.checkCasePermission),
+  catchErrors(questionController.checkQuestionedFields),
   catchErrors(screeningController.caseAssistantForm)
 );
 router.post('/screening-assistant/:caseId',
@@ -166,6 +174,7 @@ router.post('/screening-assistant/:caseId',
 router.get('/screening-method/:caseId',
   catchErrors(authController.checkCaseStatus),
   catchErrors(authController.checkCasePermission),
+  catchErrors(questionController.checkQuestionedFields),
   catchErrors(screeningController.caseMethodForm)
 );
 router.post('/screening-method/:caseId',
@@ -177,6 +186,7 @@ router.post('/screening-method/:caseId',
 router.get('/screening-region/:caseId',
   catchErrors(authController.checkCaseStatus),
   catchErrors(authController.checkCasePermission),
+  catchErrors(questionController.checkQuestionedFields),
   catchErrors(screeningController.caseRegionForm)
 );
 router.post('/screening-region/:caseId',
@@ -188,6 +198,7 @@ router.post('/screening-region/:caseId',
 router.get('/screening-dignose/:caseId',
   catchErrors(authController.checkCaseStatus),
   catchErrors(authController.checkCasePermission),
+  catchErrors(questionController.checkQuestionedFields),
   catchErrors(screeningController.caseDignoseForm)
 );
 router.post('/screening-dignose/:caseId',
@@ -200,6 +211,7 @@ router.post('/screening-dignose/:caseId',
 router.get('/screeningchecklist/:caseId',
   catchErrors(authController.checkCaseStatus),
   catchErrors(authController.checkCasePermission),
+  catchErrors(questionController.checkQuestionedFields),
   catchErrors(screeningChecklistController.screeningChecklistForm)
 );
 router.post('/screeningchecklist/:caseId',
@@ -212,6 +224,7 @@ router.post('/screeningchecklist/:caseId',
 router.get('/reviewchecklist/:caseId',
   catchErrors(authController.checkCaseStatus),
   catchErrors(authController.checkCasePermission),
+  catchErrors(questionController.checkQuestionedFields),
   catchErrors(reviewChecklistController.reviewChecklistForm)
 );
 router.post('/reviewchecklist/:caseId',
@@ -224,6 +237,7 @@ router.post('/reviewchecklist/:caseId',
 router.get('/discontinuation/:caseId',
   catchErrors(authController.checkCaseStatus),
   catchErrors(authController.checkCasePermission),
+  catchErrors(questionController.checkQuestionedFields),
   catchErrors(discontinuationController.discontinuationForm)
 );
 router.post('/discontinuation/:caseId',
@@ -236,6 +250,7 @@ router.post('/discontinuation/:caseId',
 router.get('/surgery/:caseId',
   catchErrors(authController.checkCaseStatus),
   catchErrors(authController.checkCasePermission),
+  catchErrors(questionController.checkQuestionedFields),
   catchErrors(surgeryController.surgeryForm)
 );
 router.post('/surgery/:caseId',
@@ -263,6 +278,7 @@ router.post('/cm/:caseId',
 router.get('/cm/:caseId/:cmId',
   catchErrors(authController.checkCaseStatus),
   catchErrors(authController.checkCasePermission),
+  catchErrors(questionController.checkQuestionedFields),
   catchErrors(cmController.cmForm)
 );
 router.post('/cm/:caseId/:cmId',
@@ -295,6 +311,7 @@ router.post('/ae/:caseId',
 router.get('/ae/:caseId/:aeId',
   catchErrors(authController.checkCaseStatus),
   catchErrors(authController.checkCasePermission),
+  catchErrors(questionController.checkQuestionedFields),
   catchErrors(aeController.aeForm)
 );
 router.post('/ae/:caseId/:aeId',
@@ -327,6 +344,7 @@ router.post('/sae/:caseId',
 router.get('/sae/:caseId/:saeId',
   catchErrors(authController.checkCaseStatus),
   catchErrors(authController.checkCasePermission),
+  catchErrors(questionController.checkQuestionedFields),
   catchErrors(saeController.saeForm)
 );
 router.post('/sae/:caseId/:saeId',
@@ -359,6 +377,7 @@ router.post('/visit/:caseId',
 router.get('/visit/:caseId/:visitId',
   catchErrors(authController.checkCaseStatus),
   catchErrors(authController.checkCasePermission),
+  catchErrors(questionController.checkQuestionedFields),
   catchErrors(visitController.visitForm)
 );
 router.post('/visit/:caseId/:visitId',
