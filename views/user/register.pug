@@ -6,23 +6,23 @@ block content
       .panel-heading
         h3 #{registerConfig.title}
       .panel-body
-        form.form-horizontal(action=`/user/${user._id || ''}` method="POST")
+        form.form-horizontal(action=`/user/${userInfo._id || ''}` method="POST")
           .form-group
             label.col-sm-2.control-label #{registerConfig.labels.username.text}
             .col-sm-10
-              input.form-control(type="text" name="username" required value=user.username)
+              input.form-control(type="text" name="username" required value=userInfo.username)
 
           .form-group
             label.col-sm-2.control-label #{registerConfig.labels.userabbr.text}
             .col-sm-10
-              input.form-control(type="text" name="userabbr" required value=user.userabbr)
-          if user._id === undefined
+              input.form-control(type="text" name="userabbr" required value=userInfo.userabbr)
+          if userInfo._id === undefined
             .form-group
               label.col-sm-2.control-label #{registerConfig.labels.password.text}
               .col-sm-10
                 input.form-control(type="password" name="password")
 
-          if user._id === undefined
+          if userInfo._id === undefined
             .form-group
               label.col-sm-2.control-label #{registerConfig.labels['password-confirm'].text}
               .col-sm-10
@@ -31,32 +31,34 @@ block content
           .form-group
             label.col-sm-2.control-label #{registerConfig.labels.email.text}
             .col-sm-10
-              input.form-control(type="email" name="email" required value=user.email)
+              input.form-control(type="email" name="email" required value=userInfo.email)
 
           .form-group
             label.col-sm-2.control-label #{registerConfig.labels.tel.text}
             .col-sm-10
-              input.form-control(type="text" name="tel" required value=user.tel)
+              input.form-control(type="text" name="tel" required value=userInfo.tel)
 
           .form-group
             label.col-sm-2.control-label #{registerConfig.labels.role.text}
             .col-sm-10
               select.form-control(name="role")
                 each roleConfigItem in roleConfig
-                  option(value=roleConfigItem.value) #{roleConfigItem.text}
+                  option(value=roleConfigItem.value selected=(userInfo.role === roleConfigItem.value)) #{roleConfigItem.text}
 
-          .form-group
-            label.col-sm-2.control-label #{registerConfig.labels.site.text}
-            .col-sm-10
-              select.form-control(name="site")
-                each site in sites
-                  option(value=site._id) #{site.sitename}
+          if userInfo.role !== 'admin'
+            - const selectedSite = userInfo.site ? userInfo.site._id : undefined
+            .form-group
+              label.col-sm-2.control-label #{registerConfig.labels.site.text}
+              .col-sm-10
+                select.form-control(name="site")
+                  each site in sites
+                    option(value=site._id selected=(selectedSite === site._id)) #{site.sitename}
 
           .form-group
             label.col-sm-2.control-label #{registerConfig.labels.language.text}
             .col-sm-10
               select.form-control(name="language")
                 each language in languageConfig
-                  option(value=language.value) #{language.text}
+                  option(value=language.value selected=(userInfo.language === language.value)) #{language.text}
 
           input.btn.btn-default.yuda-input-btn-2(type="submit" value=buttonConfig.buttons.save.text)

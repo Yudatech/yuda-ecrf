@@ -32,7 +32,7 @@ exports.registerForm = async (req, res) => {
     roleConfig: getRoleConfig(),
     languageConfig: getLanguageConfig(),
     buttonConfig: getButtonConfig(),
-    user: user
+    userInfo: user
   });
 };
 
@@ -56,7 +56,9 @@ exports.validateRegister = async (req, res, next) => {
       sites,
       registerConfig: getRegisterConfig(),
       roleConfig: getRoleConfig(),
-      user: req.body
+      languageConfig: getLanguageConfig(),
+      buttonConfig: getButtonConfig(),
+      userInfo: req.body
     });
     return; // stop the fn from running
   }
@@ -87,7 +89,7 @@ exports.register = async (req, res) => {
       roleConfig: getRoleConfig(),
       languageConfig: getLanguageConfig(),
       buttonConfig: getButtonConfig(),
-      user: req.body
+      userInfo: req.body
   });
   }
 };
