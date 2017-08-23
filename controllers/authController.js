@@ -85,3 +85,30 @@ exports.checkQuestionStatus = async (req, res, next) => {
     next();
   }
 };
+
+exports.checkQuestionPermission = async (req, res, next) => {
+  const caseId = req.params.questionId;
+  const user = req.user;
+  const questionItem = await Question.findById(questionId);
+  if (user.role === 'cra') {
+    if (questionItem.owner._id.toString() === user._id.toString()) {
+      next();
+    }
+    else {
+      req.flash('error', `You do not have permission to this query.`);
+      res.redirect('back');
+    }
+  }
+  else if (user.role === 'admin') {
+    next();
+  }
+  else {
+    if (user.site._id.toString() === questionItem.owner.site._id.toString()) {
+      next();
+    }
+    else {
+      req.flash('error', `You do not have permission to this query`);
+      res.redirect('back');
+    }
+  }
+};
