@@ -9,7 +9,7 @@ const questionStatus = [{
     zh: '待审核'
   }
 }, {
-  value: 1,
+  value: 2,
   text: {
     zh: '完成'
   }
