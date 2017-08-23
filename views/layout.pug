@@ -37,14 +37,15 @@ html
 
             if user
               ul.nav.navbar-nav.navbar-right
-                li
-                  .dropdown
-                    button.btn.dropdown-toggle(id="languageDropdownMenu" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false")
-                      - const languageText = user.language === 'en' ? 'EN' : '中文'
-                      span #{languageText}
-                    .dropdown-menu(aria-labelledby="languageDropdownMenu")
-                      a.dropdown-item(href="/set/userlang/zh") 中文
-                      a.dropdown-item(href="/set/userlang/en") EN
+                li.nav-item.dropdown
+                  a.nav-link.dropdown-toggle(id="languageDropdownMenu" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false")
+                    - const languageText = user.language === 'en' ? 'EN' : '中文'
+                    span #{languageText}
+                  ul.dropdown-menu(aria-labelledby="languageDropdownMenu")
+                    li
+                      a(href="/set/userlang/zh") 中文
+                    li
+                      a(href="/set/userlang/en") EN
 
                 li
                   a.yuda-menu-user-icon #{user.userabbr}
