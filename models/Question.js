@@ -27,17 +27,9 @@ const questionSchema = new Schema({
     ref: 'User',
     required: 'You must supply an owner userid'
   },
-  // 创建日期
-  createDate: {
-    type: Date,
-    default: Date.now
-  },
-  // 创建日期
-  lastUpdateDate: {
-    type: Date,
-    default: Date.now
-  },
   status: Number
+}, {
+  timestamps: true
 });
 
 function autopopulate(next) {
