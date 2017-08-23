@@ -45,6 +45,8 @@ router.get('/user/:id', catchErrors(userController.registerForm));
 router.post('/user/:id', catchErrors(userController.updateUser));
 // remove user
 router.get('/remove/user/:id', catchErrors(userController.removeUser));
+// set user language
+router.get('/set/userlang/:lang', catchErrors(userController.setUserLang));
 
 /**
  * Router for case

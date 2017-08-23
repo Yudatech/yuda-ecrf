@@ -107,3 +107,14 @@ exports.removeUser = async (req, res) => {
   await User.findByIdAndRemove(userId);
   res.redirect('/users');
 };
+
+exports.setUserLang = async (req, res) => {
+  const userId = req.user._id;
+  const lang = req.params.lang;
+  req.user = await User.findByIdAndUpdate(userId, {
+    lang
+  }, {
+    new: true
+  });
+  res.redirect('/');
+};
