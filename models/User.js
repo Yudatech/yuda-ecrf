@@ -39,6 +39,10 @@ const userSchema = new Schema({
     type: mongoose.Schema.ObjectId,
     ref: 'Site',
     required: false
+  },
+  language: {
+    type: String,
+    default: 'zh'
   }
 });
 
