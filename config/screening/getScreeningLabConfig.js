@@ -2,14 +2,16 @@ const getOptionsLang = require('../configHelpers').getOptionsLang;
 
 const config = {
   title: {
-    zh: '实验室检查'
+    zh: '实验室检查',
+    en: 'Laboratorial tests'
   },
   formConfigs: [{
     name: 'lab_1',
     type: 'numberfield',
     step: 'any',
     text: {
-      zh: '红细胞 (RBC)'
+      zh: '红细胞 (RBC)',
+      en: 'RBC'
     },
     unit: '×10^12/L'
   }, {
@@ -17,14 +19,16 @@ const config = {
     type: 'select',
     optionsGetter: 'getLabResultEvaluationConfig',
     text: {
-      zh: '红细胞 (RBC)临床评估'
+      zh: '红细胞 (RBC)临床评估',
+      en: 'RBC Evaluation'
     }
   }, {
     name: 'lab_3',
     type: 'numberfield',
     step: 'any',
     text: {
-      zh: '白细胞 (WBC)'
+      zh: '白细胞 (WBC)',
+      en: 'WBC'
     },
     unit: '×10^9/L'
   }, {
@@ -32,14 +36,16 @@ const config = {
     type: 'select',
     optionsGetter: 'getLabResultEvaluationConfig',
     text: {
-      zh: '白细胞 (WBC)临床评估'
+      zh: '白细胞 (WBC)临床评估',
+      en: 'WBC Evaluation'
     }
   }, {
     name: 'lab_5',
     type: 'numberfield',
     step: 'any',
     text: {
-      zh: '血红蛋白 (Hb)'
+      zh: '血红蛋白 (Hb)',
+      en: 'Hb'
     },
     unit: 'g/L'
   }, {
@@ -47,14 +53,16 @@ const config = {
     type: 'select',
     optionsGetter: 'getLabResultEvaluationConfig',
     text: {
-      zh: '血红蛋白 (Hb)临床评估'
+      zh: '血红蛋白 (Hb)临床评估',
+      en: 'Hb Evaluation'
     }
   }, {
     name: 'lab_7',
     type: 'numberfield',
     step: 'any',
     text: {
-      zh: '中性粒细胞绝对计数 (ANC)'
+      zh: '中性粒细胞绝对计数 (ANC)',
+      en: 'NEUT'
     },
     unit: '×10^9/L'
   }, {
@@ -62,14 +70,16 @@ const config = {
     type: 'select',
     optionsGetter: 'getLabResultEvaluationConfig',
     text: {
-      zh: '中性粒细胞绝对计数 (ANC)临床评估'
+      zh: '中性粒细胞绝对计数 (ANC)临床评估',
+      en: 'NEUT Evaluation'
     }
   }, {
     name: 'lab_9',
     type: 'numberfield',
     step: 'any',
     text: {
-      zh: '血小板 (PLT)'
+      zh: '血小板 (PLT)',
+      en: 'PLT'
     },
     unit: '×10^9/L'
   }, {
@@ -77,14 +87,16 @@ const config = {
     type: 'select',
     optionsGetter: 'getLabResultEvaluationConfig',
     text: {
-      zh: '血小板 (PLT)临床评估'
+      zh: '血小板 (PLT)临床评估',
+      en: 'PLT Evaluation'
     }
   }, {
     name: 'lab_11',
     type: 'numberfield',
     step: 'any',
     text: {
-      zh: '单核细胞百分比'
+      zh: '单核细胞百分比',
+      en: 'MON%'
     },
     unit: '%'
   }, {
@@ -92,14 +104,16 @@ const config = {
     type: 'select',
     optionsGetter: 'getLabResultEvaluationConfig',
     text: {
-      zh: '单核细胞百分比临床评估'
+      zh: '单核细胞百分比临床评估',
+      en: 'MON% Evaluation'
     }
   }, {
     name: 'lab_13',
     type: 'numberfield',
     step: 'any',
     text: {
-      zh: '淋巴细胞百分比'
+      zh: '淋巴细胞百分比',
+      en: 'LYM%'
     },
     unit: '%'
   }, {
@@ -107,14 +121,16 @@ const config = {
     type: 'select',
     optionsGetter: 'getLabResultEvaluationConfig',
     text: {
-      zh: '淋巴细胞百分比临床评估'
+      zh: '淋巴细胞百分比临床评估',
+      en: 'LYM% Evaluation'
     }
   }, {
     name: 'lab_15',
     type: 'numberfield',
     step: 'any',
     text: {
-      zh: '丙氨酸氨基转移酶 (ALT)'
+      zh: '丙氨酸氨基转移酶 (ALT)',
+      en: 'ALT'
     },
     unit: 'U/L'
   }, {
@@ -122,14 +138,16 @@ const config = {
     type: 'select',
     optionsGetter: 'getLabResultEvaluationConfig',
     text: {
-      zh: '丙氨酸氨基转移酶 (ALT)临床评估'
+      zh: '丙氨酸氨基转移酶 (ALT)临床评估',
+      en: 'ALT Evaluation'
     }
   }, {
     name: 'lab_17',
     type: 'numberfield',
     step: 'any',
     text: {
-      zh: '天门冬氨酸氨基转移酶 (AST)'
+      zh: '天门冬氨酸氨基转移酶 (AST)',
+      en: 'AST'
     },
     unit: 'U/L'
   }, {
@@ -137,14 +155,16 @@ const config = {
     type: 'select',
     optionsGetter: 'getLabResultEvaluationConfig',
     text: {
-      zh: '天门冬氨酸氨基转移酶 (AST)临床评估'
+      zh: '天门冬氨酸氨基转移酶 (AST)临床评估',
+      en: 'AST Evaluation'
     }
   }, {
     name: 'lab_19',
     type: 'numberfield',
     step: 'any',
     text: {
-      zh: '白蛋白 (ALB)'
+      zh: '白蛋白 (ALB)',
+      en: 'Albumin (ALB)'
     },
     unit: 'g/L'
   }, {
@@ -152,14 +172,16 @@ const config = {
     type: 'select',
     optionsGetter: 'getLabResultEvaluationConfig',
     text: {
-      zh: '白蛋白 (ALB)临床评估'
+      zh: '白蛋白 (ALB)临床评估',
+      en: 'Albumin (ALB) Evaluation'
     }
   }, {
     name: 'lab_21',
     type: 'numberfield',
     step: 'any',
     text: {
-      zh: '血尿素氮 (BUN)'
+      zh: '血尿素氮 (BUN)',
+      en: 'BUN'
     },
     unit: 'mmol/L'
   }, {
@@ -167,14 +189,16 @@ const config = {
     type: 'select',
     optionsGetter: 'getLabResultEvaluationConfig',
     text: {
-      zh: '血尿素氮 (BUN)临床评估'
+      zh: '血尿素氮 (BUN)临床评估',
+      en: 'BUN Evaluation'
     }
   }, {
     name: 'lab_23',
     type: 'numberfield',
     step: 'any',
     text: {
-      zh: '肌酐 (Cr)'
+      zh: '肌酐 (Cr)',
+      en: 'Cr'
     },
     unit: 'μmol/L'
   }, {
@@ -182,14 +206,16 @@ const config = {
     type: 'select',
     optionsGetter: 'getLabResultEvaluationConfig',
     text: {
-      zh: '肌酐 (Cr)临床评估'
+      zh: '肌酐 (Cr)临床评估',
+      en: 'Cr Evaluation'
     }
   }, {
     name: 'lab_25',
     type: 'numberfield',
     step: 'any',
     text: {
-      zh: '血糖 (Glu)'
+      zh: '血糖 (Glu)',
+      en: 'Glucose (Glu)'
     },
     unit: 'mmol/L'
   }, {
@@ -197,14 +223,16 @@ const config = {
     type: 'select',
     optionsGetter: 'getLabResultEvaluationConfig',
     text: {
-      zh: '血糖 (Glu)临床评估'
+      zh: '血糖 (Glu)临床评估',
+      en: 'Glucose (Glu) Evaluation'
     }
   }, {
     name: 'lab_27',
     type: 'numberfield',
     step: 'any',
     text: {
-      zh: '凝血酶原时间 (PT)'
+      zh: '凝血酶原时间 (PT)',
+      en: 'PT'
     },
     unit: 'S'
   }, {
@@ -212,14 +240,16 @@ const config = {
     type: 'select',
     optionsGetter: 'getLabResultEvaluationConfig',
     text: {
-      zh: '凝血酶原时间 (PT)临床评估'
+      zh: '凝血酶原时间 (PT)临床评估',
+      en: 'PT Evaluation'
     }
   }, {
     name: 'lab_29',
     type: 'numberfield',
     step: 'any',
     text: {
-      zh: '活化部分凝血活酶时间 (APTT)'
+      zh: '活化部分凝血活酶时间 (APTT)',
+      en: 'APTT'
     },
     unit: 'S'
   }, {
@@ -227,14 +257,16 @@ const config = {
     type: 'select',
     optionsGetter: 'getLabResultEvaluationConfig',
     text: {
-      zh: '活化部分凝血活酶时间 (APTT)临床评估'
+      zh: '活化部分凝血活酶时间 (APTT)临床评估',
+      en: 'APTT Evaluation'
     }
   }, {
     name: 'lab_31',
     type: 'numberfield',
     step: 'any',
     text: {
-      zh: '凝血酶时间 (TT)'
+      zh: '凝血酶时间 (TT)',
+      en: 'TT'
     },
     unit: 'S'
   }, {
@@ -242,14 +274,16 @@ const config = {
     type: 'select',
     optionsGetter: 'getLabResultEvaluationConfig',
     text: {
-      zh: '凝血酶时间 (TT)临床评估'
+      zh: '凝血酶时间 (TT)临床评估',
+      en: 'TT Evaluation'
     }
   }, {
     name: 'lab_33',
     type: 'numberfield',
     step: 'any',
     text: {
-      zh: '纤维蛋白原 (FIB)'
+      zh: '纤维蛋白原 (FIB)',
+      en: 'FIB'
     },
     unit: 'g/L'
   }, {
@@ -257,7 +291,8 @@ const config = {
     type: 'select',
     optionsGetter: 'getLabResultEvaluationConfig',
     text: {
-      zh: '纤维蛋白原 (FIB)临床评估'
+      zh: '纤维蛋白原 (FIB)临床评估',
+      en: 'FIB Evaluation'
     }
   }]
 };
