@@ -94,7 +94,7 @@ const config = {
   }
 };
 
-module.exports = function (lang) {
+module.exports = function(lang) {
   if (lang === undefined) {
     lang = 'zh';
   }

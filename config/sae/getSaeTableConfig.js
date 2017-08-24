@@ -29,7 +29,7 @@ const config = {
   }, {
     name: 'operations',
     text: {
-      zh: '操作'
+      zh: '操作',
       en: 'Operations'
     }
   }]

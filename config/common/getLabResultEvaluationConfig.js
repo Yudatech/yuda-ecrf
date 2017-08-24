@@ -3,7 +3,7 @@
 const labResultEvaluationConfig = [{
   value: 0,
   text: {
-    zh: '正常值 (在正常值范围以内)'
+    zh: '正常值 (在正常值范围以内)',
     en: 'Normal (within the normal range)'
   }
 }, {

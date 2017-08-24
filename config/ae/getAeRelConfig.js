@@ -19,7 +19,7 @@ const aeRels = [{
 }, {
   value: 3,
   text: {
-    zh: '无关'
+    zh: '无关',
     en: 'No'
   }
 }];
