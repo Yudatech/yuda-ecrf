@@ -38,6 +38,7 @@ exports.caseOverviewForm = async (req, res) => {
   res.render('case-overview', {
     caseNav: CaseNav,
     config,
+    buttonConfig: getButtonConfig(),
     caseOverviewConfig: getCaseOverviewConfig()
   });
 };

@@ -157,13 +157,5 @@ module.exports = [
     },
     name: 'sae',
     link: '/saelist'
-  },
-  {
-    title: {
-      zh: '提交',
-      en: 'Commit'
-    },
-    name: 'commit',
-    link: '/commit'
   }
 ];

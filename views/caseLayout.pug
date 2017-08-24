@@ -6,6 +6,17 @@ block content
   .inner.row
     .case-nav.col-sm-3
       +_caseNav(caseNav)
+      
+      if locals.case
+        .btn-group(role="group")
+          if (user.role === 'cra' || user.role === 'admin') && locals.case.status === 'open'
+            a.btn.btn-success(role="button" href=`/commit/${locals.case._id}`) #{buttonConfig.buttons.commit.text}
+          if (user.role === 'supervisor' || user.role === 'monitor') && locals.case.status === 'committed'
+            a.btn.btn-success(role="button" href=`/audit/${locals.case._id}`) #{buttonConfig.buttons.audit.text}
+          if (user.role === 'cra' || user.role === 'admin') && locals.case.status === 'open'
+            a.btn.btn-danger(role="button" href=`/discontinuation/${locals.case._id}`) #{buttonConfig.buttons.quit.text}
+          if user.role === 'admin' && locals.case.status !== 'locked' && locals.case.status !== 'quit'
+            a.btn.btn-primary(role="button" href=`/lock/${locals.case._id}`) #{buttonConfig.buttons.lock.text}
 
     .case-container.col-sm-9
       .inner.panel.panel-default

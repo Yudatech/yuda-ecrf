@@ -33,8 +33,7 @@ const caseSchema = new Schema({
   },
   site: {
     type: mongoose.Schema.ObjectId,
-    ref: 'Site',
-    required: 'You must supply a siteid'
+    ref: 'Site'
   },
   // 建档日期
   createDate: {
@@ -47,6 +46,16 @@ const caseSchema = new Schema({
     default: Date.now
   },
   attachedDoc: String,
+  auditBy: [
+    {
+      type: mongoose.Schema.ObjectId,
+      ref: 'User'
+    }
+  ],
+  lockBy: {
+    type: mongoose.Schema.ObjectId,
+    ref: 'User'
+  },
   status: {
     type: String,
     enum: {
@@ -57,8 +66,37 @@ const caseSchema = new Schema({
   }
 });
 
+caseSchema.method('audit', function(auditorId, cb) {
+  const auditBy = this.toObject().auditBy;
+  const match = auditBy.find((item) => item.toString() === auditorId.toString());
+  if (match !== undefined) {
+    cb('You can not audit a case twice!');
+  }
+  else {
+    auditBy.push(auditorId);
+    this.auditBy = auditBy;
+    if (auditBy.length === 2) {
+      this.status = 'audited';
+    }
+    this.save(cb);
+  }
+});
+
+caseSchema.method('lock', function(caseId, adminId, cb) {
+  const lockBy = this.toObject().lockBy;
+  if (lockBy !== undefined) {
+    cb('Case already locked!');
+  }
+  else {
+    this.lockBy = adminId;
+    this.status = 'locked';
+    this.save(cb);
+  }
+});
+
 function autopopulate(next) {
   this.populate('user');
+  this.populate('site');
   next();
 }
 

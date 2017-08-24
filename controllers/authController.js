@@ -57,7 +57,7 @@ exports.checkCaseStatus = async (req, res, next) => {
   const caseItem = await Case.findById(caseId);
   const method = req.method.toLowerCase();
   if (method === 'get') {
-    res.locals.caseStatus = caseItem.status;
+    res.locals.case = caseItem;
     next();
   }
   else if (method === 'post') {
