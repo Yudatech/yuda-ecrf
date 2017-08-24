@@ -1,11 +1,17 @@
 const CaseNav = require('../config/CaseNav');
 
-exports.appendCaseIdToCaseNav = function(caseId) {
-  CaseNav.forEach((item) => {
+exports.appendCaseIdToCaseNav = function(caseId, lang) {
+  const navs = JSON.parse(JSON.stringify(CaseNav));
+  if (lang === undefined) {
+    lang = 'zh';
+  }
+  navs.forEach((item) => {
     item.caseId = caseId;
+    item.title = item.title[lang];
     if (item.children) {
       item.children.forEach((child) => {
         child.caseId = caseId;
+        child.title = child.title[lang];
       });
     }
   });
