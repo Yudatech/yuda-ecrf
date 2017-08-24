@@ -3,24 +3,28 @@ const getOptionsLang = require('./configHelpers').getOptionsLang;
 const config = {
   title: {
     question: {
-      zh: '质疑'
+      zh: '质疑',
+      en: 'Query'
     },
     comment: {
-      zh: '评论'
+      zh: '评论',
+      en: 'Comment'
     }
   },
   questionConfigs: [{
     name: 'question_status',
     type: 'select',
     text: {
-      zh: '状态'
+      zh: '状态',
+      en: 'Status'
     }
   }],
   commentConfigs: [{
     name: 'new_comment',
     type: 'textarea',
     text: {
-      zh: '新评论'
+      zh: '新评论',
+      en: 'New comment'
     }
   }]
 };

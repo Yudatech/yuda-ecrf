@@ -5,17 +5,20 @@
 const param14 = [{
   value: 0,
   text: {
-    zh: '是'
+    zh: '是',
+    en: 'Yes'
   }
 }, {
   value: 1,
   text: {
-    zh: '否'
+    zh: '否',
+    en: 'No'
   }
 }, {
   value: 2,
   text: {
-    zh: '不适用'
+    zh: '不适用',
+    en: 'NA'
   }
 }];
 

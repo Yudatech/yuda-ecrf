@@ -121,7 +121,7 @@ const config = {
     name: 'exclusion_17',
     type: 'textarea',
     text: {
-      zh: '其他外科医生认为不适宜参加本试验研究的情况 说明',
+      zh: '请注明',
       en: 'Reasons:'
     }
   }]

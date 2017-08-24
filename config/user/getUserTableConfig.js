@@ -3,47 +3,56 @@ const getOptionsLang = require('../configHelpers').getOptionsLang;
 const config = {
   title: {
     zh: '用户列表'
+    en: 'User list'
   },
   headers: [{
     name: 'username',
     text: {
-      zh: '姓名'
+      zh: '姓名',
+      en: 'User name'
     }
   }, {
     name: 'userabbr',
     text: {
-      zh: '姓名缩写'
+      zh: '姓名缩写',
+      en: 'User abbreviation'
     }
   }, {
     name: 'email',
     text: {
-      zh: '邮件'
+      zh: '邮件',
+      en: 'Email'
     }
   }, {
     name: 'tel',
     text: {
-      zh: '电话'
+      zh: '电话',
+      en: 'Tel'
     }
   }, {
     name: 'role',
     text: {
-      zh: '权限等级'
+      zh: '权限等级',
+      en: 'Role'
     }
   }, {
     name: 'sitename',
     text: {
-      zh: '临床中心名称'
+      zh: '临床中心名称',
+      en: 'Investigation Center'
     }
   }, {
     name: 'operations',
     text: {
-      zh: '操作'
+      zh: '操作',
+      en: 'Operations'
     }
   }],
   buttons: [{
     name: 'createNewUser',
     text: {
-      zh: '新建用户'
+      zh: '新建用户',
+      en: 'Create new user'
     }
   }]
 };

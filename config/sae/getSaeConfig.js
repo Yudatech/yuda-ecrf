@@ -38,8 +38,8 @@ const config = {
     name: 'saeanti',
     type: 'checkbox',
     text: {
-      zh: 'SAE是否预期',
-      en: 'Anticipated SAE?'
+      zh: '预期的SAE',
+      en: 'Anticipated SAE'
     }
   }, {
     name: 'saecaus_1',
@@ -53,14 +53,14 @@ const config = {
     name: 'saecaus_2',
     type: 'date',
     text: {
-      zh: 'SAE情况 死亡时间',
+      zh: '死亡时间',
       en: 'Death time'
     }
   }, {
     name: 'saecaus_3',
     type: 'textarea',
     text: {
-      zh: 'SAE情况 其它 (填写)',
+      zh: '其它SAE情况',
       en: 'Other (Consequence of SAE)'
     }
   }, {
@@ -97,7 +97,7 @@ const config = {
     name: 'saeres_2',
     type: 'checkbox',
     text: {
-      zh: 'SAE转归(后遗症)',
+      zh: '有后遗症',
       en: 'Sequela'
     }
   }, {

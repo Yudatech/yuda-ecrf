@@ -3,63 +3,72 @@ const getOptionsLang = require('../configHelpers').getOptionsLang;
 const config = {
   title: {
     device: {
-      zh: '器械'
+      zh: '器械',
+      en: 'Device'
     },
     surgery: {
-      zh: '手术'
+      zh: '手术',
+      en: 'Operation'
     }
   },
   formConfigs: [{
     name: 'surgerydtc',
     type: 'date',
     text: {
-      zh: '手术日期'
+      zh: '手术日期',
+      en: 'Date'
     }
   }, {
     name: 'device_1',
     type: 'select',
     optionsGetter: 'getSurgeryLapAidModelConfig',
     text: {
-      zh: 'C-REX LapAid型号'
+      zh: 'C-REX LapAid型号',
+      en: 'C-REX LapAid'
     }
   }, {
     name: 'device_2',
     type: 'select',
     optionsGetter: 'getSurgeryDmhDmhcModelConfig',
     text: {
-      zh: 'C-REX DMH/DMHC型号'
+      zh: 'C-REX DMH/DMHC型号',
+      en: 'C-REX DMH/DMHC'
     }
   }, {
     name: 'surgery_1',
     type: 'checkbox',
     text: {
-      zh: '肠切除术-Descending colon'
+      zh: '降结肠',
+      en: 'Descending colon'
     }
   }, {
     name: 'surgery_2',
     type: 'checkbox',
     text: {
-      zh: '肠切除术-Sigmoid colon'
+      zh: '乙状结肠',
+      en: 'Sigmoid colon'
     }
   }, {
     name: 'surgery_3',
     type: 'checkbox',
     text: {
-      zh: '肠切除术-Rectum'
+      zh: '直肠',
+      en: 'Rectum'
     }
   }, {
     name: 'surgery_4',
     type: 'numberfield',
     step: 'any',
     text: {
-      zh: '肿瘤距离肛门(cm)'
+      zh: '肿瘤距离肛门(cm)',
+      en: 'Distance from the anal verge'
     }
   }, {
     name: 'surgery_5',
     type: 'numberfield',
     step: 'any',
     text: {
-      zh: '肿瘤大小-长度(cm)'
+      zh: '肿瘤大小-长度(cm)' 
     }
   }, {
     name: 'surgery_6',
@@ -72,85 +81,98 @@ const config = {
     name: 'surgery_7',
     type: 'textfield',
     text: {
-      zh: '肿瘤浸润范围'
+      zh: '肿瘤浸润范围',
+      en: 'Tumor involvement'
     }
   }, {
     name: 'surgery_8',
     type: 'select',
     optionsGetter: 'getSurgeryAnastomoticMethodsConfig',
     text: {
-      zh: '吻合方式'
+      zh: '吻合方式',
+      en: 'Type of anastomosis'
     }
   }, {
     name: 'surgery_9',
     type: 'select',
     optionsGetter: 'getSurgeryMethodsConfig',
     text: {
-      zh: '手术方式'
+      zh: '手术方式',
+      en: 'Type of surgery'
     }
   }, {
     name: 'surgery_10',
     type: 'numberfield',
     step: 'any',
     text: {
-      zh: '术中吻合口完整性压力(mbar)'
+      zh: '术中吻合口完整性压力(mbar)',
+      en: 'Integrity pressure (mbar) (optional)'
     }
   }, {
     name: 'surgery_11',
     type: 'numberfield',
     step: 'any',
     text: {
-      zh: '肛门外监测导管长度-若使用DMC(cm)'
+      zh: '肛门外监测导管长度-若使用DMC(cm)',
+      en: 'Length of catheters (cm) (in case DMC is applied)'
     }
   }, {
     name: 'surgery_12',
     type: 'numberfield',
     step: '1',
     text: {
-      zh: '手术时间(分钟)'
+      zh: '手术时间(分钟)',
+      en: 'Time of surgery'
     }
   }, {
     name: 'surgery_13',
     type: 'numberfield',
     step: 'any',
     text: {
-      zh: '术中出血量(mL)'
+      zh: '术中出血量(mL)',
+      en: 'Blood lost(mL)'
     }
   }, {
     name: 'surgery_14',
     type: 'checkbox',
     text: {
-      zh: '不良事件(若发生不良事件，请完整填写《不良事件及器械缺陷报告表》)'
+      zh: '不良事件(若发生不良事件，请完整填写《不良事件及器械缺陷报告表》)',
+      en: 'Adverse events (Complete Adverse Events and Device Deficiency (AE) Report)'
     }
   }, {
     name: 'surgery_15',
     type: 'checkbox',
     text: {
-      zh: '术中发现肠管直径异常或肠管壁厚度异常，例如憩室炎，慢性的肠梗阻'
+      zh: '术中发现肠管直径异常或肠管壁厚度异常，例如憩室炎，慢性的肠梗阻',
+      en: 'Detection of extreme variants of intestinal wall thickness during operation, for instance diverticulitis, chronic obstruction.'
     }
   }, {
     name: 'surgery_16',
     type: 'checkbox',
     text: {
-      zh: '术中发现癌扩散'
+      zh: '术中发现癌扩散',
+      en: 'Detection of metastasis during operation.'
     }
   }, {
     name: 'surgery_17',
     type: 'checkbox',
     text: {
-      zh: '其他'
+      zh: '其他',
+      en: 'Other'
     }
   }, {
     name: 'surgery_18',
     type: 'textarea',
     text: {
-      zh: '其他，请注明原因'
+      zh: '请注明'
+      en: 'Note reasons'
     }
   }, {
     name: 'surgery_19',
     type: 'checkbox',
     text: {
-      zh: '从试验中排除'
+      zh: '从试验中排除',
+      en: 'Excluded from the study'
     }
   }]
 };

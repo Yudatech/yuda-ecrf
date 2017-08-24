@@ -2,7 +2,8 @@ const getOptionsLang = require('./configHelpers').getOptionsLang;
 
 const config = {
   title: {
-    zh: '中途退出试验'
+    zh: '中途退出试验',
+    en: ''
   },
   formConfigs: [{
     name: 'discontinue',

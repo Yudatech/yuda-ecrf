@@ -5,17 +5,20 @@
 const param14 = [{
   value: 0,
   text: {
-    zh: '病房'
+    zh: '病房',
+    en: 'Patient'
   }
 }, {
   value: 1,
   text: {
-    zh: '电话'
+    zh: '电话',
+    en: 'Telephone interview'
   }
 }, {
   value: 2,
   text: {
-    zh: '门诊'
+    zh: '门诊',
+    en: 'Outpatient'
   }
 }];
 

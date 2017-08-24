@@ -5,17 +5,20 @@
 const param3 = [{
   value: 0,
   text: {
-    zh: '严重感染'
+    zh: '严重感染',
+    en: 'Severe'
   }
 }, {
   value: 1,
   text: {
-    zh: '轻微感染'
+    zh: '轻微感染',
+    en: 'Mild'
   }
 }, {
   value: 2,
   text: {
-    zh: '无'
+    zh: '无',
+    en: 'No infection'
   }
 }];
 

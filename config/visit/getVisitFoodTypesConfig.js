@@ -5,17 +5,20 @@
 const foodTypes = [{
   value: 0,
   text: {
-    zh: '流食'
+    zh: '流食',
+    en: 'Liquid'
   }
 }, {
   value: 1,
   text: {
-    zh: '半流食'
+    zh: '半流食',
+    en: 'Semi liquid'
   }
 }, {
   value: 2,
   text: {
-    zh: '普食'
+    zh: '普食',
+    en: 'Solid'
   }
 }];
 

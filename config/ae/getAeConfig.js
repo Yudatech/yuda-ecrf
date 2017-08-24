@@ -3,7 +3,7 @@ const getOptionsLang = require('../configHelpers').getOptionsLang;
 const config = {
   title: {
     zh: '添加不良事件',
-    en: 'add AE'
+    en: 'add Adverse Event (AE)/ Device Deficiency '
   },
   formConfigs: [{
     name: 'aeorigion',
@@ -75,15 +75,15 @@ const config = {
     name: 'aeres_2',
     type: 'checkbox',
     text: {
-      zh: '转归后遗症',
+      zh: '有后遗症',
       en: 'Sequela'
     }
   }, {
     name: 'aesae',
     type: 'checkbox',
     text: {
-      zh: 'SAE',
-      en: 'SAE'
+      zh: 'SAE（请完整填写《严重不良事件（SAE）报告表》',
+      en: 'SAE (Complete Severe Adverse Event (SAE) report, please.)' 
     }
   }, {
     name: 'aedevicedft',
@@ -96,8 +96,8 @@ const config = {
     name: 'aediscon',
     type: 'checkbox',
     text: {
-      zh: '因该事件退出试验',
-      en: 'Withdrawal from the study'
+      zh: '因该事件退出试验（请完整填写《中途退出试验》表',
+      en: 'Withdrawal from the study (Complete Withdrawal from the Study report, please.)'
     }
   }]
 };

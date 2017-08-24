@@ -5,12 +5,14 @@
 const param2 = [{
   value: 0,
   text: {
-    zh: '腹紧张'
+    zh: '腹紧张',
+    en: 'Rigid'
   }
 }, {
   value: 1,
   text: {
-    zh: '腹软'
+    zh: '腹软',
+    en: 'Soft'
   }
 }];
 

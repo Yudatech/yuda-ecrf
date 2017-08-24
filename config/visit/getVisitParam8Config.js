@@ -5,17 +5,20 @@
 const param8 = [{
   value: 0,
   text: {
-    zh: '无'
+    zh: '无',
+    en: 'Absent'
   }
 }, {
   value: 1,
   text: {
-    zh: '少量'
+    zh: '少量',
+    en: 'Infrequent'
   }
 }, {
   value: 2,
   text: {
-    zh: '正常'
+    zh: '正常',
+    en: 'Normal'
   }
 }];
 

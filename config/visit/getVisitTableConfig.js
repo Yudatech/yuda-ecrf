@@ -1,31 +1,37 @@
 const config = {
   title: {
-    zh: '访视'
+    zh: '访视',
+    en: 'Postoperative visit'
   },
   headers: [{
     name: 'visitid',
     text: {
-      zh: '访视ID'
+      zh: '访视ID',
+      en: 'Visit ID'
     }
   }, {
     name: 'visitdtc',
     text: {
-      zh: '访视日期'
+      zh: '访视日期',
+      en: 'Date'
     }
   }, {
     name: 'daysaftersurgery',
     text: {
-      zh: '术后天数'
+      zh: '术后天数',
+      en: '(Nomber of date after the surgery'
     }
   }, {
     name: 'visitnum',
     text: {
-      zh: '当天第n次访视'
+      zh: '当天第n次访视',
+      en: 'Patient rounds no. of the day'
     }
   }, {
     name: 'operations',
     text: {
-      zh: '操作'
+      zh: '操作',
+      en: 'Operations'
     }
   }]
 };

@@ -25,8 +25,8 @@ const doseMethods = [{
 }, {
   value: 4,
   text: {
-    zh: '其他',
-    en: 'Other'
+    zh: '其他，请注明',
+    en: 'Other，please specify:'
   }
 }];
 

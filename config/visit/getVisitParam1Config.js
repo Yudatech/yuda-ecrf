@@ -5,17 +5,20 @@
 const param1 = [{
   value: 0,
   text: {
-    zh: '重度'
+    zh: '重度',
+    en: 'Severe'
   }
 }, {
   value: 1,
   text: {
-    zh: '轻度'
+    zh: '轻度',
+    en: 'Mild'
   }
 }, {
   value: 2,
   text: {
-    zh: '无'
+    zh: '无',
+    en: 'No pain'
   }
 }];
 

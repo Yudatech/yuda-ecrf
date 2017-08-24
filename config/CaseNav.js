@@ -145,7 +145,7 @@ module.exports = [
   {
     title: {
       zh: '不良事件',
-      en: 'Adverse Event (AE)'
+      en: 'REPORT: Adverse Event (AE)/ Device Deficiency'
     },
     name: 'ae',
     link: '/aelist'

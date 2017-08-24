@@ -17,8 +17,8 @@ const config = {
     name: 'assistant_2',
     type: 'textarea',
     text: {
-      zh: '心电图(异常，有临床意义),请注明',
-      en: 'Abnormal with clinical significancy. Please specify:'
+      zh: '异常情况',
+      en: 'Exceptional situation'
     }
   }, {
     name: 'assistant_3',
@@ -32,8 +32,8 @@ const config = {
     name: 'assistant_4',
     type: 'textarea',
     text: {
-      zh: '腹部B超(异常，有临床意义),请注明',
-      en: 'Abnormal with Clinical Significancy. Please specify:'
+      zh: '异常情况',
+      en: 'Exceptional situation'
     }
   }, {
     name: 'assistant_5',
@@ -47,8 +47,8 @@ const config = {
     name: 'assistant_6',
     type: 'textarea',
     text: {
-      zh: '胸部CT/胸部X线(异常，有临床意义),请注明',
-      en: 'Abnormal with clinical significancy. Please specify:'
+      zh: '异常情况',
+      en: 'Exceptional situation'
     }
   }]
 };

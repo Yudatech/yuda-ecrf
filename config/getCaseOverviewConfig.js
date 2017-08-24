@@ -2,32 +2,38 @@ const getOptionsLang = require('./configHelpers').getOptionsLang;
 
 const config = {
   title: {
-    zh: '病例概况'
+    zh: '病例概况',
+    en: 'Case overview'
   },
   labels: [{
     name: '_id',
     text: {
-      zh: '受试者编号'
+      zh: '受试者编号',
+      en: 'Subject Identification No.'
     }
   }, {
     name: 'subjname',
     text: {
-      zh: '受试者姓名'
+      zh: '受试者姓名',
+      en: 'Subject Name'
     }
   }, {
     name: 'subjabbr',
     text: {
-      zh: '受试者姓名缩写'
+      zh: '受试者姓名缩写',
+      en: 'Subject abbreviation'
     }
   }, {
     name: 'subjAcceptDate',
     text: {
-      zh: '知情同意书签署日期'
+      zh: '知情同意书签署日期',
+      en: 'Informed Consent filling date'
     }
   }, {
     name: 'attachedDoc',
     text: {
-      zh: '知情同意书'
+      zh: '知情同意书签字页预览',
+      en: 'Informed Consent signature page preview'
     }
   }]
 };
