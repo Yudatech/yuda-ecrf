@@ -2,7 +2,8 @@ const getOptionsLang = require('../configHelpers').getOptionsLang;
 
 const config = {
   title: {
-    zh: '添加严重不良事件'
+    zh: '添加严重不良事件',
+    en: 'Add SAE'
   },
   formConfigs: [{
     name: 'saeorigion',

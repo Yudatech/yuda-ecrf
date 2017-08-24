@@ -103,7 +103,8 @@ module.exports = [
   },
   {
     title: {
-      zh: '手术'
+      zh: '手术',
+      en: 'Operation'
     },
     name: 'surgery',
     link: '/surgery'
@@ -117,21 +118,24 @@ module.exports = [
   },
   {
     title: {
-      zh: '合并用药情况'
+      zh: '合并用药情况',
+      en: 'Concomitant Medication Report'
     },
     name: 'cm',
     link: '/cmlist'
   },
   {
     title: {
-      zh: '不良事件'
+      zh: '不良事件',
+      en: 'Adverse Event (AE)'
     },
     name: 'ae',
     link: '/aelist'
   },
   {
     title: {
-      zh: '严重不良事件'
+      zh: '严重不良事件',
+      en: 'Severe Adverse Event (SAE)'
     },
     name: 'sae',
     link: '/saelist'

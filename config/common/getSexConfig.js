@@ -1,12 +1,14 @@
 const sex = [{
   value: 0,
   text: {
-    zh: '男'
+    zh: '男',
+    en: 'Male'
   }
 }, {
   value: 1,
   text: {
-    zh: '女'
+    zh: '女',
+    en: 'Female'
   }
 }];
 
