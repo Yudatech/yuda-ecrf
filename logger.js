@@ -1,19 +1,19 @@
-var winston = require('winston')
-
+const winston = require('winston');
+require('winston-daily-rotate-file');
 // set default log level.
-var logLevel = 'info'
+const logLevel = 'info';
 
 // Set up logger
-var customColors = {
+const customColors = {
   trace: 'white',
   debug: 'green',
   info: 'blue',
   warn: 'yellow',
   crit: 'red',
   fatal: 'red'
-}
+};
 
-var logger = new (winston.Logger)({
+const logger = new (winston.Logger)({
   colors: customColors,
   level: logLevel,
   levels: {
@@ -25,30 +25,33 @@ var logger = new (winston.Logger)({
     trace: 5
   },
   transports: [
-    new (winston.transports.Console)({
-      colorize: true,
-      timestamp: true
-    }),
-    new (winston.transports.File)({ filename: 'somefile.log' })
+    new winston.transports.DailyRotateFile({
+      filename: `./${process.env.EVENT_LOG}.log`,
+      maxsize: 107374182400,
+      maxFiles: 10,
+      datePattern: 'yyyy-MM-dd.',
+      prepend: true
+    })
   ]
-})
+});
 
-winston.addColors(customColors)
+winston.addColors(customColors);
 
 // Extend logger object to properly log 'Error' types
-var origLog = logger.log
+const origLog = logger.log;
 
-logger.log = function (level, msg) {
+logger.log = function(level, msg) {
   if (msg instanceof Error) {
-    var args = Array.prototype.slice.call(arguments)
+    const args = Array.prototype.slice.call(arguments);
     args[1] = msg.stack
-    origLog.apply(logger, args)
-  } else {
-    origLog.apply(logger, arguments)
+    origLog.apply(logger, args);
   }
-}
+  else {
+    origLog.apply(logger, arguments);
+  }
+};
 /* LOGGER EXAMPLES
-  var log = require('./log.js')
+  const log = require('./log.js')
   log.trace('testing')
   log.debug('testing')
   log.info('testing')
@@ -57,4 +60,4 @@ logger.log = function (level, msg) {
   log.fatal('testing')
  */
 
-module.exports = logger
+module.exports = logger;

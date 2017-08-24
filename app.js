@@ -10,6 +10,9 @@ const passport = require('passport');
 const promisify = require('es6-promisify');
 const flash = require('connect-flash');
 const expressValidator = require('express-validator');
+const winston = require('winston');
+const expressWinston = require('express-winston');
+require('winston-daily-rotate-file');
 const routes = require('./routes/index');
 const helpers = require('./helpers');
 const errorHandlers = require('./handlers/errorHandlers');
@@ -69,6 +72,20 @@ app.use((req, res, next) => {
   req.login = promisify(req.login, req);
   next();
 });
+
+app.use(expressWinston.logger({
+  transports: [
+    new winston.transports.DailyRotateFile({
+      filename: `./${process.env.HTTP_LOG}.log`,
+      maxsize: 107374182400,
+      maxFiles: 10,
+      prepend: true,
+      datePattern: 'yyyy-MM-dd.'
+    })
+  ],
+  expressFormat: true, // Use the default Express/morgan request formatting. Enabling this will override any msg if true. Will only output colors with colorize set to true 
+  colorize: true // Color the text and status code, using the Express/morgan color palette (text: gray, status: default green, 3XX cyan, 4XX yellow, 5XX red). 
+}));
 
 // After allllll that above middleware, we finally handle our own routes!
 app.use('/', routes);
