@@ -212,15 +212,62 @@ exports.lockCase = async (req, res) => {
 
 exports.commitCase = async (req, res) => {
   const caseId = req.params.caseId;
-  const obj = {
-    status: 'committed'
-  };
-  await Case.findByIdAndUpdate(caseId, obj);
-  res.redirect('back');
+  const caseItem = await Case.findById(caseId);
+  res.locals.case = caseItem;
+  if (caseItem.status !== 'open') {
+    req.flash('error', `Case ${caseId} status is not open anymore, you can not commit it.`);
+    res.redirect('back');
+  }
+  else if (req.user.role !== 'admin' && req.user.role !== 'cra') {
+    req.flash('error', `You do not have permission to commit a case.`);
+    res.redirect('back');
+  }
+  else if (req.user.role === 'cra' && caseItem.user._id.toString() !== req.user._id.toString()) {
+    req.flash('error', `You do not have permission to commit a case.`);
+    res.redirect('back');
+  }
+  else {
+    const password = req.body.password;
+    req.user.authenticate(password, function(err, model) {
+      if (model === false) {
+        req.flash('error', 'Wrong password.');
+        res.redirect('back');
+      }
+      else {
+        const obj = {
+          status: 'committed'
+        };
+        Case.findByIdAndUpdate(caseId, obj, {new: true}, function(err, caseNew) {
+          if (err) {
+            req.flash('error', err.toString());
+            res.redirect('back');
+          }
+          else {
+            res.locals.case = caseNew;
+            res.redirect(`/overview/${caseId}`);
+          }
+        });
+      }
+    });
+  }
 };
 
 exports.showCaseCommitForm = async (req, res) => {
   const caseId = req.params.caseId;
+  const caseItem = await Case.findById(caseId);
+  res.locals.case = caseItem;
+  if (caseItem.status !== 'open') {
+    req.flash('error', `Case ${caseId} status is not open anymore, you can not commit it.`);
+    res.redirect('back');
+  }
+  else if (req.user.role !== 'admin' && req.user.role !== 'cra') {
+    req.flash('error', `You do not have permission to commit a case.`);
+    res.redirect('back');
+  }
+  else if (req.user.role === 'cra' && caseItem.user._id.toString() !== req.user._id.toString()) {
+    req.flash('error', `You do not have permission to commit a case.`);
+    res.redirect('back');
+  }
   const CaseNav = helpers.appendCaseIdToCaseNav(caseId);
   const commitCaseConfig = getCommitCaseConfig();
   const configs = [];
@@ -237,7 +284,8 @@ exports.showCaseCommitForm = async (req, res) => {
     caseId,
     configs,
     finished,
-    buttonConfig: getButtonConfig()
+    buttonConfig: getButtonConfig(),
+    commitCaseConfig: getCommitCaseConfig()
   });
 };
 

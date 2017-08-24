@@ -8,6 +8,10 @@ const config = {
   ongoing: {
     zh: '__NUM__ 项未填写'
   },
+  password: {
+    zh: '密码',
+    en: 'Password'
+  },
   configs: [{
     name: 'screening',
     total: 102,
@@ -80,6 +84,7 @@ module.exports = function(lang) {
   result.empty = config.empty[lang];
   result.finish = config.finish[lang];
   result.ongoing = config.ongoing[lang];
+  result.password = config.password[lang];
 
   return result;
 };
