@@ -69,6 +69,22 @@ router.post('/commit/:caseId',
   catchErrors(caseController.commitCase)
 );
 
+router.get('/audit/:caseId',
+  catchErrors(caseController.showAuditCaseForm)
+);
+
+router.post('/audit/:caseId',
+  catchErrors(caseController.auditCase)
+);
+
+router.get('/lock/:caseId',
+catchErrors(caseController.showLockCaseForm)
+);
+
+router.post('/lock/:caseId',
+catchErrors(caseController.lockCase)
+);
+
 router.get('/overview/:caseId',
   catchErrors(authController.checkCaseStatus),
   catchErrors(authController.checkCasePermission),

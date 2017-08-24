@@ -15,7 +15,7 @@ exports.appendCaseIdToCaseNav = function(caseId, lang) {
       });
     }
   });
-  return CaseNav;
+  return navs;
 };
 
 exports.getQuestionLink = function(table, caseId, formConfig, secondaryId) {

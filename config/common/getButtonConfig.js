@@ -43,6 +43,24 @@ const config = {
       zh: '发布',
       en: 'Publish'
     }
+  }, {
+    name: 'audit',
+    text: {
+      zh: '审核',
+      en: 'Audit'
+    }
+  }, {
+    name: 'quit',
+    text: {
+      zh: '中途退出',
+      en: 'discontinue'
+    }
+  }, {
+    name: 'lock',
+    text: {
+      zh: '锁定',
+      en: 'Lock'
+    }
   }]
 };
 
