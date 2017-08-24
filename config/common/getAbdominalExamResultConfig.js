@@ -3,17 +3,20 @@
 const abdominalExamResult = [{
   value: 0,
   text: {
-    zh: '肥胖'
+    zh: '肥胖',
+    en: 'Fat'
   }
 }, {
   value: 1,
   text: {
-    zh: '正常'
+    zh: '正常',
+    en: 'Normal'
   }
 }, {
   value: 2,
   text: {
-    zh: '偏瘦'
+    zh: '偏瘦',
+    en: 'Skinny'
   }
 }];
 

@@ -9,110 +9,127 @@ const config = {
     name: 'saeorigion',
     type: 'textfield',
     text: {
-      zh: '来源'
+      zh: '来源',
+      en: 'Source'
     }
   }, {
     name: 'saetpe',
     type: 'select',
     optionsGetter: 'getSaeTypesConfig',
     text: {
-      zh: '报告类型'
+      zh: '报告类型',
+      en: 'Type of report'
     }
   }, {
     name: 'saedtc',
     type: 'date',
     text: {
-      zh: '报告时间'
+      zh: '报告时间',
+      en: 'Time of report'
     }
   }, {
     name: 'saeterm',
     type: 'textfield',
     text: {
-      zh: 'SAE的医学术语(诊断)'
+      zh: 'SAE的医学术语(诊断)',
+      en: 'Medical terminology of SAE (diagnosis)'
     }
   }, {
     name: 'saeanti',
     type: 'checkbox',
     text: {
-      zh: 'SAE是否预期'
+      zh: 'SAE是否预期',
+      en: 'Anticipated SAE?'
     }
   }, {
     name: 'saecaus_1',
     type: 'select',
     optionsGetter: 'getSaeCauseConfig',
     text: {
-      zh: 'SAE情况'
+      zh: 'SAE情况',
+      en: 'Consequence of SAE'
     }
   }, {
     name: 'saecaus_2',
     type: 'date',
     text: {
-      zh: 'SAE情况 死亡时间'
+      zh: 'SAE情况 死亡时间',
+      en: 'Death time'
     }
   }, {
     name: 'saecaus_3',
     type: 'textarea',
     text: {
-      zh: 'SAE情况 其它 (填写)'
+      zh: 'SAE情况 其它 (填写)',
+      en: 'Other (Consequence of SAE)'
     }
   }, {
     name: 'saestdtc',
     type: 'date',
     text: {
-      zh: 'SAE发生时间'
+      zh: 'SAE发生时间',
+      en: 'Time of onset:'
     }
   }, {
     name: 'saenoticedtc',
     type: 'date',
     text: {
-      zh: '研究者获知SAE时间'
+      zh: '研究者获知SAE时间',
+      en: 'Time for clinical investigator be informed:'
     }
   }, {
     name: 'saeact',
     type: 'select',
     optionsGetter: 'getSaeActConfig',
     text: {
-      zh: '对受试器械采取的措施'
+      zh: '对受试器械采取的措施',
+      en: 'Actions'
     }
   }, {
     name: 'saeres_1',
     type: 'select',
     optionsGetter: 'getSaeResConfig',
     text: {
-      zh: 'SAE转归'
+      zh: 'SAE转归',
+      en: 'Outcome of SAE'
     }
   }, {
     name: 'saeres_2',
     type: 'checkbox',
     text: {
-      zh: 'SAE转归(后遗症)'
+      zh: 'SAE转归(后遗症)',
+      en: 'Sequela'
     }
   }, {
     name: 'saerel',
     type: 'select',
     optionsGetter: 'getSaeRelConfig',
     text: {
-      zh: 'SAE与受试器械的关系'
+      zh: 'SAE与受试器械的关系',
+      en: 'Related to investigational device/procedure'
     }
   }, {
     name: 'saerpt_1',
     type: 'select',
     optionsGetter: 'getSaeReportConfig',
     text: {
-      zh: 'SAE报道情况(国内)'
+      zh: 'SAE报道情况(国内)',
+      en: 'SAE has been reported (In China)'
     }
   }, {
     name: 'saerpt_2',
     type: 'select',
     optionsGetter: 'getSaeReportConfig',
     text: {
-      zh: 'SAE报道情况(国外)'
+      zh: 'SAE报道情况(国外)',
+      en: 'SAE has been reported (In other countries)'
     }
   }, {
     name: 'saedesc',
     type: 'textarea',
     text: {
-      zh: 'SAE发生及处理的详细情况'
+      zh: 'SAE发生及处理的详细情况',
+      en: 'Detailed information and treatment of SAE:'
     }
   }]
 };

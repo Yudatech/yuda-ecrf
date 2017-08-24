@@ -2,35 +2,40 @@ const getOptionsLang = require('../configHelpers').getOptionsLang;
 
 const config = {
   title: {
-    zh: '人口学资料'
+    zh: '人口学资料',
+    en: 'Demographic data'
   },
   formConfigs: [{
     name: 'sex',
     type: 'select',
     optionsGetter: 'getSexConfig',
     text: {
-      zh: '性别'
+      zh: '性别',
+      en: 'Gender'
     }
   }, {
     name: 'birth',
     type: 'numberfield',
     step: '1',
     text: {
-      zh: '出生年份'
+      zh: '出生年份',
+      en: 'Year of Birth'
     }
   }, {
     name: 'weight',
     type: 'numberfield',
     step: 'any',
     text: {
-      zh: '体重(KG)'
+      zh: '体重(KG)',
+      en: 'Body Weight'
     }
   }, {
     name: 'height',
     type: 'numberfield',
     step: '1',
     text: {
-      zh: '身高(CM)'
+      zh: '身高(CM)',
+      en: 'Height'
     }
   }]
 };

@@ -1,17 +1,20 @@
 const aeLevels = [{
   value: 0,
   text: {
-    zh: '轻度'
+    zh: '轻度',
+    en: 'Mild'
   }
 }, {
   value: 1,
   text: {
-    zh: '中度'
+    zh: '中度',
+    en: 'Moderate'
   }
 }, {
   value: 2,
   text: {
-    zh: '严重'
+    zh: '严重',
+    en: 'Severe'
   }
 }];
 

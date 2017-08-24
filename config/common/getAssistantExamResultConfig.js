@@ -3,17 +3,20 @@
 const labResultEvaluationConfig = [{
   value: 0,
   text: {
-    zh: '正常'
+    zh: '正常',
+    en: 'Nornal'
   }
 }, {
   value: 1,
   text: {
-    zh: '异常，无临床意义'
+    zh: '异常，无临床意义',
+    en: 'Abnormal without clinical significancy'
   }
 }, {
   value: 2,
   text: {
-    zh: '异常，有临床意义'
+    zh: '异常，有临床意义',
+    en: 'Abnormal with clinical significancy'
   }
 }];
 

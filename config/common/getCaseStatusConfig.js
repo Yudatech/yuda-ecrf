@@ -1,27 +1,32 @@
 const status = [{
   value: 'open',
   text: {
-    zh: '进行中'
+    zh: '进行中',
+    en: 'Open'
   }
 }, {
   value: 'committed',
   text: {
-    zh: '待审核'
+    zh: '待审核',
+    en: 'Committed'
   }
 }, {
   value: 'audited',
   text: {
-    zh: '已审核'
+    zh: '已审核',
+    en: 'Audited'
   }
 }, {
   value: 'locked',
   text: {
-    zh: '已完成'
+    zh: '已完成',
+    en: 'Locked'
   }
 }, {
   value: 'quit',
   text: {
-    zh: '中途退出'
+    zh: '中途退出',
+    en: 'Quit'
   }
 }];
 

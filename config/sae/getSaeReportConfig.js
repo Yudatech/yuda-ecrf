@@ -1,17 +1,20 @@
 const saeReports = [{
   value: 0,
   text: {
-    zh: '有'
+    zh: '有',
+    en: 'Yes'
   }
 }, {
   value: 1,
   text: {
-    zh: '无'
+    zh: '无',
+    en: 'No'
   }
 }, {
   value: 2,
   text: {
-    zh: '不详'
+    zh: '不详',
+    en: 'Unknow'
   }
 }];
 

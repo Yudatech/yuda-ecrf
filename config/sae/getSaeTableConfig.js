@@ -5,27 +5,32 @@ const config = {
   headers: [{
     name: 'saetpe',
     text: {
-      zh: '报告类型'
+      zh: '报告类型',
+      en: 'Type of report'
     }
   }, {
     name: 'saedtc',
     text: {
-      zh: '报告时间'
+      zh: '报告时间',
+      en: 'Time of report'
     }
   }, {
     name: 'saecaus_1',
     text: {
-      zh: '报告时间'
+      zh: 'SAE是否预期',
+      en: 'Anticipated SAE?'
     }
   }, {
     name: 'saestdtc',
     text: {
-      zh: 'SAE发生时间'
+      zh: 'SAE发生时间',
+      en: 'Time of onset: '
     }
   }, {
     name: 'operations',
     text: {
       zh: '操作'
+      en: 'Operations'
     }
   }]
 };

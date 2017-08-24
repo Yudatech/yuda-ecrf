@@ -3,22 +3,26 @@
 const clinicalStages = [{
   value: 0,
   text: {
-    zh: 'I'
+    zh: 'I',
+    en: 'I'
   }
 }, {
   value: 1,
   text: {
-    zh: 'II'
+    zh: 'II',
+    en: 'II'
   }
 }, {
   value: 2,
   text: {
-    zh: 'III'
+    zh: 'III',
+    en: 'III'
   }
 }, {
   value: 3,
   text: {
-    zh: 'IV'
+    zh: 'IV',
+    en: 'IV'
   }
 }];
 
