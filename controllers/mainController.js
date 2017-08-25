@@ -10,6 +10,7 @@ const getCaseStatusConfig = require('../config/common/getCaseStatusConfig');
 const getButtonConfig = require('../config/common/getButtonConfig');
 
 exports.homePage = async (req, res) => {
+  const caseStatus = req.query.casestatus;
   const role = req.user.role;
   let cases;
   if (role === 'cra') {
@@ -26,7 +27,9 @@ exports.homePage = async (req, res) => {
     });
   }
   const caseStatusConfig = getCaseStatusConfig();
-  const casesFormated = cases.map((item) => {
+  const casesFormated = cases.filter((item) => {
+    return caseStatus === undefined || item.status === caseStatus;
+  }).map((item) => {
     return {
       _id: item._id,
       subjabbr: item.subjabbr,
