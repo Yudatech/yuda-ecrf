@@ -16,14 +16,26 @@ const config = {
   }, {
     name: 'committed',
     text: {
-      zh: '已提交',
+      zh: '待审核',
       en: 'Committed'
     }
   }, {
     name: 'ongoing',
     text: {
-      zh: '待完成',
+      zh: '进行中',
       en: 'Ongoing'
+    }
+  }, {
+    name: 'audited',
+    text: {
+      zh: '已审核',
+      en: 'Audited'
+    }
+  }, {
+    name: 'locked',
+    text: {
+      zh: '已完成',
+      en: 'Locked'
     }
   }, {
     name: 'all',
@@ -53,7 +65,7 @@ const config = {
     name: 'quit',
     text: {
       zh: '中途退出',
-      en: 'discontinue'
+      en: 'Discontinue'
     }
   }, {
     name: 'lock',

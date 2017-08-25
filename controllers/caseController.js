@@ -63,6 +63,25 @@ exports.createCase = async (req, res) => {
   res.redirect(`/overview/${req.body._id}`);
 };
 
+async function doRemoveCase(caseId) {
+  await Case.remove({_id: caseId});
+  await Screening.remove({case: caseId});
+  await ScreeningChecklist.remove({case: caseId});
+  await ReviewChecklist.remove({case: caseId});
+  await Discontinuation.remove({case: caseId});
+  await Cm.remove({case: caseId});
+  await Sae.remove({case: caseId});
+  await Ae.remove({case: caseId});
+  await Surgery.remove({case: caseId});
+  await Visit.remove({case: caseId});
+}
+
+exports.removeCase = async (req, res) => {
+  const caseId = req.params.caseId;
+  await doRemoveCase(caseId);
+  res.redirect('back');
+};
+
 exports.caseForm = async (req, res) => {
   const userAbbr = req.user.userabbr;
   const userCases = await Case.find({
@@ -156,7 +175,11 @@ exports.showLockCaseForm = async (req, res) => {
   const CaseNav = helpers.appendCaseIdToCaseNav(caseId);
   const caseItem = await Case.findById(caseId);
   res.locals.case = caseItem;
-  if (req.user.role !== 'admin') {
+  if (caseItem.status === 'quit' || caseItem.status === 'locked') {
+    req.flash('error', `Case ${caseId} is already finished, you can not lock it.`);
+    res.redirect('back');
+  }
+  else if (req.user.role !== 'admin') {
     req.flash('error', `You do not have permission to lock a case.`);
     res.redirect('back');
   }
@@ -175,7 +198,11 @@ exports.lockCase = async (req, res) => {
   const caseId = req.params.caseId;
   const caseItem = await Case.findById(caseId);
   res.locals.case = caseItem;
-  if (req.user.role !== 'admin') {
+  if (caseItem.status === 'quit' || caseItem.status === 'locked') {
+    req.flash('error', `Case ${caseId} is already finished, you can not lock it.`);
+    res.redirect('back');
+  }
+  else if (req.user.role !== 'admin') {
     req.flash('error', `You do not have permission to lock a case.`);
     res.redirect('back');
   }
@@ -210,11 +237,11 @@ exports.commitCase = async (req, res) => {
     req.flash('error', `Case ${caseId} status is not open anymore, you can not commit it.`);
     res.redirect('back');
   }
-  else if (req.user.role !== 'admin' && req.user.role !== 'cra') {
+  else if (req.user.role !== 'cra') {
     req.flash('error', `You do not have permission to commit a case.`);
     res.redirect('back');
   }
-  else if (req.user.role === 'cra' && caseItem.user._id.toString() !== req.user._id.toString()) {
+  else if (caseItem.user._id.toString() !== req.user._id.toString()) {
     req.flash('error', `You do not have permission to commit a case.`);
     res.redirect('back');
   }
@@ -252,11 +279,11 @@ exports.showCaseCommitForm = async (req, res) => {
     req.flash('error', `Case ${caseId} status is not open anymore, you can not commit it.`);
     res.redirect('back');
   }
-  else if (req.user.role !== 'admin' && req.user.role !== 'cra') {
+  else if (req.user.role !== 'cra') {
     req.flash('error', `You do not have permission to commit a case.`);
     res.redirect('back');
   }
-  else if (req.user.role === 'cra' && caseItem.user._id.toString() !== req.user._id.toString()) {
+  else if (caseItem.user._id.toString() !== req.user._id.toString()) {
     req.flash('error', `You do not have permission to commit a case.`);
     res.redirect('back');
   }

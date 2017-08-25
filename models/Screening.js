@@ -102,8 +102,10 @@ const screeningSchema = new Schema({
   vitalsign_5: Number,
   // 肿瘤可触及
   vitalsign_6: Boolean,
-  // 血压 (mmHg)
-  vitalsign_7: Number,
+  // 血压-高压 (mmHg)
+  vitalsign_7_high: Number,
+  // 血压-低压 (mmHg)
+  vitalsign_7_low: Number,
   // 肝脏可触及
   vitalsign_8: Boolean,
   // 其他相关情况
