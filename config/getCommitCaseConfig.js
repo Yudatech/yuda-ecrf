@@ -17,7 +17,7 @@ const config = {
   },
   configs: [{
     name: 'screening',
-    total: 102,
+    total: 103,
     text: {
       zh: '首诊',
       en: 'Visit 1 (screening)'
@@ -73,7 +73,7 @@ const config = {
     }
   }, {
     name: 'sae',
-    total: 17,
+    total: 24,
     text: {
       zh: '严重不良事件',
       en: 'REPORT: Severe Adverse Event (SAE)'
