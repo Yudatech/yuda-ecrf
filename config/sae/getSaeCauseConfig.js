@@ -1,47 +1,47 @@
 const saeCauses = [{
-  value: 0,
+  value: 'saecaus_1',
   text: {
     zh: '死亡',
     en: 'Death'
   }
 }, {
-  value: 1,
+  value: 'saecaus_3',
   text: {
     zh: '导致住院',
     en: 'In-patient'
   }
 }, {
-  value: 2,
+  value: 'saecaus_4',
   text: {
     zh: '延长住院时间',
     en: 'Prolonged hospitalization'
   }
 }, {
-  value: 3,
+  value: 'saecaus_5',
   text: {
     zh: '伤残',
     en: 'Disability'
   }
 }, {
-  value: 4,
+  value: 'saecaus_6',
   text: {
     zh: '功能障碍',
     en: 'Disfunction'
   }
 }, {
-  value: 5,
+  value: 'saecaus_7',
   text: {
     zh: '导致先天畸形',
     en: 'Congenital abnomality'
   }
 }, {
-  value: 6,
+  value: 'saecaus_8',
   text: {
     zh: '危及生命',
     en: 'Life-threatning'
   }
 }, {
-  value: 7,
+  value: 'saecaus_9',
   text: {
     zh: '其他',
     en: 'Others'

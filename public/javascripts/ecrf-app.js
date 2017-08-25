@@ -23,3 +23,7 @@ window.handleCheckboxClick = function(el) {
   console.log($(realId));
   $(realId).val(value);
 }
+
+window.onbeforeunload = function(event) {
+  console.log(event);
+}

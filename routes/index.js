@@ -289,6 +289,7 @@ router.get('/cmlist/:caseId',
 router.get('/cm/:caseId',
   catchErrors(authController.checkCaseStatus),
   catchErrors(authController.checkCasePermission),
+  catchErrors(questionController.checkQuestionedFields),
   catchErrors(cmController.cmForm)
 );
 router.post('/cm/:caseId',
@@ -322,6 +323,7 @@ router.get('/aelist/:caseId',
 router.get('/ae/:caseId',
   catchErrors(authController.checkCaseStatus),
   catchErrors(authController.checkCasePermission),
+  catchErrors(questionController.checkQuestionedFields),
   catchErrors(aeController.aeForm)
 );
 router.post('/ae/:caseId',
@@ -355,6 +357,7 @@ router.get('/saelist/:caseId',
 router.get('/sae/:caseId',
   catchErrors(authController.checkCaseStatus),
   catchErrors(authController.checkCasePermission),
+  catchErrors(questionController.checkQuestionedFields),
   catchErrors(saeController.saeForm)
 );
 router.post('/sae/:caseId',
@@ -388,6 +391,7 @@ router.get('/visitlist/:caseId',
 router.get('/visit/:caseId',
   catchErrors(authController.checkCaseStatus),
   catchErrors(authController.checkCasePermission),
+  catchErrors(questionController.checkQuestionedFields),
   catchErrors(visitController.visitForm)
 );
 router.post('/visit/:caseId',

@@ -25,15 +25,29 @@ const saeSchema = new Schema({
   saeterm: String,
   // SAE是否预期
   saeanti: Boolean,
-  // SAE情况
-  saecaus_1: Number,
+  // SAE情况 - 死亡
+  saecaus_1: Boolean,
   // SAE情况 死亡时间
   saecaus_2: {
     type: Date,
     default: Date.now
   },
+  // SAE情况 - 导致住院
+  saecaus_3: Boolean,
+  // SAE情况 - 延长住院时间
+  saecaus_4: Boolean,
+  // SAE情况 - 伤残
+  saecaus_5: Boolean,
+  // SAE情况 - 功能障碍
+  saecaus_6: Boolean,
+  // SAE情况 - 导致先天畸形
+  saecaus_7: Boolean,
+  // SAE情况 - 危及生命
+  saecaus_8: Boolean,
+  // SAE情况 - 其他
+  saecaus_9: Boolean,
   // SAE情况 其它 (填写)
-  saecaus_3: String,
+  saecaus_10: String,
   // SAE发生时间
   saestdtc: {
     type: Date,

@@ -43,10 +43,9 @@ const config = {
     }
   }, {
     name: 'saecaus_1',
-    type: 'select',
-    optionsGetter: 'getSaeCauseConfig',
+    type: 'checkbox',
     text: {
-      zh: 'SAE情况',
+      zh: 'SAE情况 - 死亡',
       en: 'Consequence of SAE'
     }
   }, {
@@ -58,9 +57,58 @@ const config = {
     }
   }, {
     name: 'saecaus_3',
+    type: 'checkbox',
+    text: {
+      zh: 'SAE情况 - 导致住院',
+      en: ''
+    }
+  }, {
+    name: 'saecaus_4',
+    type: 'checkbox',
+    text: {
+      zh: 'SAE情况 - 延长住院时间',
+      en: ''
+    }
+  }, {
+    name: 'saecaus_5',
+    type: 'checkbox',
+    text: {
+      zh: 'SAE情况 - 伤残',
+      en: ''
+    }
+  }, {
+    name: 'saecaus_6',
+    type: 'checkbox',
+    text: {
+      zh: 'SAE情况 - 功能障碍',
+      en: ''
+    }
+  }, {
+    name: 'saecaus_7',
+    type: 'checkbox',
+    text: {
+      zh: 'SAE情况 - 导致先天畸形',
+      en: ''
+    }
+  }, {
+    name: 'saecaus_8',
+    type: 'checkbox',
+    text: {
+      zh: 'SAE情况 - 危及生命',
+      en: ''
+    }
+  }, {
+    name: 'saecaus_9',
+    type: 'checkbox',
+    text: {
+      zh: 'SAE情况 - 其他',
+      en: ''
+    }
+  }, {
+    name: 'saecaus_10',
     type: 'textarea',
     text: {
-      zh: '其它SAE情况',
+      zh: '其它SAE情况(填写)',
       en: 'Other (Consequence of SAE)'
     }
   }, {

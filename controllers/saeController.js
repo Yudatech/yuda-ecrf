@@ -8,10 +8,6 @@ const helpers = require('./helpers');
 const decorationHelper = require('./decorationHelper');
 const getSaeConfig = require('../config/sae/getSaeConfig');
 const getSaeTableConfig = require('../config/sae/getSaeTableConfig');
-const getSaeActConfig = require('../config/sae/getSaeActConfig');
-const getSaeReportConfig = require('../config/sae/getSaeReportConfig');
-const getSaeRelConfig = require('../config/sae/getSaeRelConfig');
-const getSaeResConfig = require('../config/sae/getSaeResConfig');
 const getSaeTypesConfig = require('../config/sae/getSaeTypesConfig');
 const getSaeCauseConfig = require('../config/sae/getSaeCauseConfig');
 const getButtonConfig = require('../config/common/getButtonConfig');
@@ -47,7 +43,7 @@ exports.saeTable = async (req, res) => {
       saetpe: getSaeTypeText(item.saetpe),
       saedtc: moment(item.saedtc).format('ll'),
       saestdtc: moment(item.saestdtc).format('ll'),
-      saecaus_1: getSaeCauseText(item.saecaus_1)
+      saeanti: getSaeCauseText(item.saeanti)
     };
   });
   res.render('sae/saeTable', {
