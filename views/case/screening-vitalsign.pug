@@ -55,9 +55,15 @@ block case-content
 
         .row
           .col-sm-10
-            +_formTemplate(config.formConfigs.vitalsign_7)
+            +_formTemplate(config.formConfigs.vitalsign_7_high)
           .col-sm-2
-            +_questionBtn(config.formConfigs.vitalsign_7, questionFields)
+            +_questionBtn(config.formConfigs.vitalsign_7_high, questionFields)
+
+        .row
+          .col-sm-10
+            +_formTemplate(config.formConfigs.vitalsign_7_low)
+          .col-sm-2
+            +_questionBtn(config.formConfigs.vitalsign_7_low, questionFields)
 
         .row
           .col-sm-10

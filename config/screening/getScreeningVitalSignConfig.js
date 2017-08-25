@@ -50,11 +50,19 @@ const config = {
       en: 'Tumour palpable'
     }
   }, {
-    name: 'vitalsign_7',
+    name: 'vitalsign_7_high',
     type: 'numberfield',
     step: 'any',
     text: {
-      zh: '血压 (mmHg)',
+      zh: '血压-高压 (mmHg)',
+      en: 'Blood pressure'
+    }
+  }, {
+    name: 'vitalsign_7_low',
+    type: 'numberfield',
+    step: 'any',
+    text: {
+      zh: '血压-低压 (mmHg)',
       en: 'Blood pressure'
     }
   }, {
