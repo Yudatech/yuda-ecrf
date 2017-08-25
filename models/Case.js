@@ -82,7 +82,7 @@ caseSchema.method('audit', function(auditorId, cb) {
   }
 });
 
-caseSchema.method('lock', function(caseId, adminId, cb) {
+caseSchema.method('lock', function(adminId, cb) {
   const lockBy = this.toObject().lockBy;
   if (lockBy !== undefined) {
     cb('Case already locked!');

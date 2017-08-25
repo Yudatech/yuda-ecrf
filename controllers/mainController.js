@@ -32,6 +32,7 @@ exports.homePage = async (req, res) => {
       subjabbr: item.subjabbr,
       createDate: moment(item.createDate).format('ll'),
       username: item.user.username,
+      statusValue: item.status,
       status: caseStatusConfig.find((statusConfig) => statusConfig.value === item.status).text
     };
   });

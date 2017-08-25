@@ -156,11 +156,7 @@ exports.showLockCaseForm = async (req, res) => {
   const CaseNav = helpers.appendCaseIdToCaseNav(caseId);
   const caseItem = await Case.findById(caseId);
   res.locals.case = caseItem;
-  if (caseItem.status !== 'audited') {
-    req.flash('error', `Case ${caseId} status is not audited anymore, you can not lock it.`);
-    res.redirect('back');
-  }
-  else if (req.user.role !== 'admin') {
+  if (req.user.role !== 'admin') {
     req.flash('error', `You do not have permission to lock a case.`);
     res.redirect('back');
   }
@@ -179,11 +175,7 @@ exports.lockCase = async (req, res) => {
   const caseId = req.params.caseId;
   const caseItem = await Case.findById(caseId);
   res.locals.case = caseItem;
-  if (caseItem.status !== 'audited') {
-    req.flash('error', `Case ${caseId} status is not audited anymore, you can not lock it.`);
-    res.redirect('back');
-  }
-  else if (req.user.role !== 'admin') {
+  if (req.user.role !== 'admin') {
     req.flash('error', `You do not have permission to lock a case.`);
     res.redirect('back');
   }
