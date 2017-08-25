@@ -156,7 +156,11 @@ exports.showLockCaseForm = async (req, res) => {
   const CaseNav = helpers.appendCaseIdToCaseNav(caseId);
   const caseItem = await Case.findById(caseId);
   res.locals.case = caseItem;
-  if (req.user.role !== 'admin') {
+  if (caseItem.status === 'quit' || caseItem.status === 'locked') {
+    req.flash('error', `Case ${caseId} is already finished, you can not lock it.`);
+    res.redirect('back');
+  }
+  else if (req.user.role !== 'admin') {
     req.flash('error', `You do not have permission to lock a case.`);
     res.redirect('back');
   }
@@ -175,7 +179,11 @@ exports.lockCase = async (req, res) => {
   const caseId = req.params.caseId;
   const caseItem = await Case.findById(caseId);
   res.locals.case = caseItem;
-  if (req.user.role !== 'admin') {
+  if (caseItem.status === 'quit' || caseItem.status === 'locked') {
+    req.flash('error', `Case ${caseId} is already finished, you can not lock it.`);
+    res.redirect('back');
+  }
+  else if (req.user.role !== 'admin') {
     req.flash('error', `You do not have permission to lock a case.`);
     res.redirect('back');
   }
@@ -210,11 +218,11 @@ exports.commitCase = async (req, res) => {
     req.flash('error', `Case ${caseId} status is not open anymore, you can not commit it.`);
     res.redirect('back');
   }
-  else if (req.user.role !== 'admin' && req.user.role !== 'cra') {
+  else if (req.user.role !== 'cra') {
     req.flash('error', `You do not have permission to commit a case.`);
     res.redirect('back');
   }
-  else if (req.user.role === 'cra' && caseItem.user._id.toString() !== req.user._id.toString()) {
+  else if (caseItem.user._id.toString() !== req.user._id.toString()) {
     req.flash('error', `You do not have permission to commit a case.`);
     res.redirect('back');
   }
@@ -252,11 +260,11 @@ exports.showCaseCommitForm = async (req, res) => {
     req.flash('error', `Case ${caseId} status is not open anymore, you can not commit it.`);
     res.redirect('back');
   }
-  else if (req.user.role !== 'admin' && req.user.role !== 'cra') {
+  else if (req.user.role !== 'cra') {
     req.flash('error', `You do not have permission to commit a case.`);
     res.redirect('back');
   }
-  else if (req.user.role === 'cra' && caseItem.user._id.toString() !== req.user._id.toString()) {
+  else if (caseItem.user._id.toString() !== req.user._id.toString()) {
     req.flash('error', `You do not have permission to commit a case.`);
     res.redirect('back');
   }

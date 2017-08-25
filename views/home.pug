@@ -19,8 +19,11 @@ block content
             h3 #{homeConfig.cases.title}
             .table-filter
               .btn-group
-                a.btn.btn-default(href="/" role="button") #{buttonConfig.buttons.committed.text}
                 a.btn.btn-default(href="/" role="button") #{buttonConfig.buttons.ongoing.text}
+                a.btn.btn-default(href="/" role="button") #{buttonConfig.buttons.committed.text}
+                a.btn.btn-default(href="/" role="button") #{buttonConfig.buttons.audited.text}
+                a.btn.btn-default(href="/" role="button") #{buttonConfig.buttons.locked.text}
+                a.btn.btn-default(href="/" role="button") #{buttonConfig.buttons.quit.text}
                 a.btn.btn-default.active(href="/" role="button") #{buttonConfig.buttons.all.text}
 
           table.table.table-striped
@@ -40,8 +43,9 @@ block content
                           .btn-group
                             a.btn.btn-default(role="button" href=`/overview/${caseItem._id}`)
                               span.glyphicon.glyphicon-pencil
-                            a.btn.btn-default(role="button" href=`/remove/case/${caseItem._id}`)
-                              span.glyphicon.glyphicon-trash
+                            if user.role === 'admin'
+                              a.btn.btn-default(role="button" href=`/remove/case/${caseItem._id}`)
+                                span.glyphicon.glyphicon-trash
           .panel-footer
 
       .col-sm-5.yuda-dashboard-panel
