@@ -13,6 +13,7 @@
     "no-console": "off",
     "max-len": "off",
     "brace-style": ["warn", "stroustrup"],
-    "require-jsdoc": "off"
+    "require-jsdoc": "off",
+    "prefer-rest-params": "off"
   }
 }

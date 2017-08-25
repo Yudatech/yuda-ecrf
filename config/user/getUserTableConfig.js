@@ -2,7 +2,7 @@ const getOptionsLang = require('../configHelpers').getOptionsLang;
 
 const config = {
   title: {
-    zh: '用户列表'
+    zh: '用户列表',
     en: 'User list'
   },
   headers: [{

@@ -43,7 +43,7 @@ const origLog = logger.log;
 logger.log = function(level, msg) {
   if (msg instanceof Error) {
     const args = Array.prototype.slice.call(arguments);
-    args[1] = msg.stack
+    args[1] = msg.stack;
     origLog.apply(logger, args);
   }
   else {
