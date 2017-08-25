@@ -3,6 +3,7 @@ moment.locale('zh-cn');
 
 const mongoose = require('mongoose');
 const Discontinuation = mongoose.model('Discontinuation');
+const Case = mongoose.model('Case');
 
 const helpers = require('./helpers');
 const getDiscontinuationConfig = require('../config/getDiscontinuationConfig');
@@ -73,5 +74,7 @@ exports.discontinuationForm = async (req, res) => {
 exports.updateDiscontinuation = async (req, res) => {
   const caseId = req.params.caseId;
   await createOrUpdateDiscontinuation(caseId, req.body);
+  const caseItem = await Case.findByIdAndUpdate(caseId, {status: 'quit'}, {new: true});
+  res.locals.case = caseItem;
   res.redirect(`/discontinuation/${caseId}`);
 };
