@@ -68,7 +68,7 @@ const config = {
     type: 'numberfield',
     step: 'any',
     text: {
-      zh: '肿瘤大小-长度(cm)' 
+      zh: '肿瘤大小-长度(cm)'
     }
   }, {
     name: 'surgery_6',
@@ -164,7 +164,7 @@ const config = {
     name: 'surgery_18',
     type: 'textarea',
     text: {
-      zh: '请注明'
+      zh: '请注明',
       en: 'Note reasons'
     }
   }, {

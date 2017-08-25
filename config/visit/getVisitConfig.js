@@ -183,7 +183,7 @@ const config = {
     name: 'param_18',
     type: 'checkbox',
     text: {
-      zh: '合并药物使用（若使用药物，请完整填写《合并用药情况表》）'，
+      zh: '合并药物使用（若使用药物，请完整填写《合并用药情况表》）',
       en: 'Cocomitant medication (Complete Cocomitant Medication Report, please.'
     }
   }, {

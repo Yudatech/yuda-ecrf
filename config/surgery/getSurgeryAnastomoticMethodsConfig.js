@@ -1,7 +1,7 @@
 const anastomoticMethods = [{
   value: 0,
   text: {
-    zh: '端端吻合'，
+    zh: '端端吻合',
     en: 'End-to-end'
   }
 }, {
