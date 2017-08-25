@@ -111,14 +111,6 @@ module.exports = [
   },
   {
     title: {
-      zh: '中途退出试验',
-      en: 'Withdrawal from the study'
-    },
-    name: 'discontinuation',
-    link: '/discontinuation'
-  },
-  {
-    title: {
       zh: '手术',
       en: 'Operation'
     },
@@ -157,5 +149,13 @@ module.exports = [
     },
     name: 'sae',
     link: '/saelist'
+  },
+  {
+    title: {
+      zh: '中途退出试验',
+      en: 'Withdrawal from the study'
+    },
+    name: 'discontinuation',
+    link: '/discontinuation'
   }
 ];
