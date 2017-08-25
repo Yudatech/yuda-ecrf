@@ -59,6 +59,11 @@ router.post('/case',
   catchErrors(caseController.saveAcceptDoc),
   catchErrors(caseController.createCase)
 );
+
+router.get('/remove/case/:caseId',
+  catchErrors(caseController.removeCase)
+);
+
 router.get('/commit/:caseId',
   catchErrors(authController.checkCaseStatus),
   catchErrors(authController.checkCasePermission),

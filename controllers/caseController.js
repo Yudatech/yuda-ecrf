@@ -63,6 +63,25 @@ exports.createCase = async (req, res) => {
   res.redirect(`/overview/${req.body._id}`);
 };
 
+async function doRemoveCase(caseId) {
+  await Case.remove({_id: caseId});
+  await Screening.remove({case: caseId});
+  await ScreeningChecklist.remove({case: caseId});
+  await ReviewChecklist.remove({case: caseId});
+  await Discontinuation.remove({case: caseId});
+  await Cm.remove({case: caseId});
+  await Sae.remove({case: caseId});
+  await Ae.remove({case: caseId});
+  await Surgery.remove({case: caseId});
+  await Visit.remove({case: caseId});
+}
+
+exports.removeCase = async (req, res) => {
+  const caseId = req.params.caseId;
+  await doRemoveCase(caseId);
+  res.redirect('back');
+};
+
 exports.caseForm = async (req, res) => {
   const userAbbr = req.user.userabbr;
   const userCases = await Case.find({
