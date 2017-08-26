@@ -2,19 +2,19 @@ const discontinuationTypes = [{
   value: 0,
   text: {
     zh: '手术前退出',
-    en: ''
+    en: 'Withdrawal before the operation'
   }
 }, {
   value: 1,
   text: {
     zh: '手术中退出',
-    en: ''
+    en: 'Withdrawal during the operation'
   }
 }, {
   value: 2,
   text: {
     zh: '手术后退出',
-    en: ''
+    en: 'Withdrawal after the operation'
   }
 }];
 

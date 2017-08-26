@@ -2,13 +2,13 @@ const aeSources = [{
   value: 'surgery',
   text: {
     zh: '手术中',
-    en: ''
+    en: 'Operation'
   }
 }];
 
 const template = {
   zh: '术后第__DAYNUM__天第__NUM__次访视',
-  en: ''
+  en: '__DAYNUM__ days the __NUM__ visit after Operation'
 };
 
 module.exports = function(lang, visits) {

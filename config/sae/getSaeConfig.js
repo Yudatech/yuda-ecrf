@@ -59,50 +59,50 @@ const config = {
     name: 'saecaus_3',
     type: 'checkbox',
     text: {
-      zh: 'SAE情况 - 导致住院',
-      en: ''
+      zh: '导致住院',
+      en: 'In-patient'
     }
   }, {
     name: 'saecaus_4',
     type: 'checkbox',
     text: {
-      zh: 'SAE情况 - 延长住院时间',
-      en: ''
+      zh: '延长住院时间',
+      en: 'Prolonged hospitalization'
     }
   }, {
     name: 'saecaus_5',
     type: 'checkbox',
     text: {
-      zh: 'SAE情况 - 伤残',
-      en: ''
+      zh: '伤残',
+      en: 'Disability'
     }
   }, {
     name: 'saecaus_6',
     type: 'checkbox',
     text: {
-      zh: 'SAE情况 - 功能障碍',
-      en: ''
+      zh: '功能障碍',
+      en: 'Disfunction'
     }
   }, {
     name: 'saecaus_7',
     type: 'checkbox',
     text: {
-      zh: 'SAE情况 - 导致先天畸形',
-      en: ''
+      zh: '导致先天畸形',
+      en: 'Congenital abnomality'
     }
   }, {
     name: 'saecaus_8',
     type: 'checkbox',
     text: {
-      zh: 'SAE情况 - 危及生命',
-      en: ''
+      zh: '危及生命',
+      en: 'Life-threatning'
     }
   }, {
     name: 'saecaus_9',
     type: 'checkbox',
     text: {
-      zh: 'SAE情况 - 其他',
-      en: ''
+      zh: '其他',
+      en: 'Others'
     }
   }, {
     name: 'saecaus_10',

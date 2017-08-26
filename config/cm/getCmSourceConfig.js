@@ -2,19 +2,19 @@ const cmSources = [{
   value: 0,
   text: {
     zh: '首诊',
-    en: ''
+    en: 'Visit 1 (Screening)'
   }
 }, {
   value: 1,
   text: {
     zh: '手术中',
-    en: ''
+    en: 'Operation'
   }
 }, {
   value: 2,
   text: {
     zh: '手术后',
-    en: ''
+    en: 'Postoperation'
   }
 }];
 

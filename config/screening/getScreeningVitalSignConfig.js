@@ -55,7 +55,7 @@ const config = {
     step: 'any',
     text: {
       zh: '血压-高压 (mmHg)',
-      en: 'Blood pressure'
+      en: 'Systolic pressure (mmHg)'
     }
   }, {
     name: 'vitalsign_7_low',
@@ -63,7 +63,7 @@ const config = {
     step: 'any',
     text: {
       zh: '血压-低压 (mmHg)',
-      en: 'Blood pressure'
+      en: 'Diastolic pressure'
     }
   }, {
     name: 'vitalsign_8',
