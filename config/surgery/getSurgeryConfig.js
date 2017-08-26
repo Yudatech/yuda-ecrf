@@ -140,20 +140,6 @@ const config = {
       en: 'Adverse events (Complete Adverse Events and Device Deficiency (AE) Report)'
     }
   }, {
-    name: 'surgery_15',
-    type: 'checkbox',
-    text: {
-      zh: '术中发现肠管直径异常或肠管壁厚度异常，例如憩室炎，慢性的肠梗阻',
-      en: 'Detection of extreme variants of intestinal wall thickness during operation, for instance diverticulitis, chronic obstruction.'
-    }
-  }, {
-    name: 'surgery_16',
-    type: 'checkbox',
-    text: {
-      zh: '术中发现癌扩散',
-      en: 'Detection of metastasis during operation.'
-    }
-  }, {
     name: 'surgery_17',
     type: 'checkbox',
     text: {

@@ -32,7 +32,11 @@ const discontinuationSchema = new Schema({
   // 其他原因
   discontinuersn_6: Boolean,
   // 其他原因，请注明
-  discontinuersn_7: String
+  discontinuersn_7: String,
+  // 术中发现肠管直径异常或肠管壁厚度异常，例如憩室炎，慢性的肠梗阻
+  discontinuersn_8: Boolean,
+  // 术中发现癌扩散
+  discontinuersn_9: Boolean
 });
 
 discontinuationSchema.plugin(mongodbErrorHandler);

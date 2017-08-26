@@ -49,10 +49,6 @@ const surgerySchema = new Schema({
   surgery_13: Number,
   // 不良事件
   surgery_14: Boolean,
-  // 术中发现肠管直径异常或肠管壁厚度异常，例如憩室炎，慢性的肠梗阻
-  surgery_15: Boolean,
-  // 术中发现癌扩散
-  surgery_16: Boolean,
   // 其他
   surgery_17: Boolean,
   // 其他，请注明原因
