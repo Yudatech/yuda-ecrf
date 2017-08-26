@@ -113,14 +113,14 @@ const config = {
     }
   }, {
     name: 'saestdtc',
-    type: 'date',
+    type: 'datetime',
     text: {
       zh: 'SAE发生时间',
       en: 'Time of onset:'
     }
   }, {
     name: 'saenoticedtc',
-    type: 'date',
+    type: 'datetime',
     text: {
       zh: '研究者获知SAE时间',
       en: 'Time for clinical investigator be informed:'

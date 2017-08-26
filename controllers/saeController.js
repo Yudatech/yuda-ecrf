@@ -83,10 +83,24 @@ exports.saeForm = async (req, res) => {
       config.formConfigs[key].value = moment(sae.saecaus_2).format('MM/DD/YYYY');
     }
     else if (key === 'saestdtc') {
-      config.formConfigs[key].value = moment(sae.saestdtc).format('MM/DD/YYYY');
+      config.formConfigs[key].date = {
+        name: 'saestdtc_date',
+        value: moment(sae.saestdtc).format('MM/DD/YYYY')
+      };
+      config.formConfigs[key].time = {
+        name: 'saestdtc_time',
+        value: moment(sae.saestdtc).format('HH:mm')
+      };
     }
     else if (key === 'saenoticedtc') {
-      config.formConfigs[key].value = moment(sae.saenoticedtc).format('MM/DD/YYYY');
+      config.formConfigs[key].date = {
+        name: 'saenoticedtc_date',
+        value: moment(sae.saenoticedtc).format('MM/DD/YYYY')
+      };
+      config.formConfigs[key].time = {
+        name: 'saenoticedtc_time',
+        value: moment(sae.saenoticedtc).format('HH:mm')
+      };
     }
     else {
       config.formConfigs[key].value = sae[key];
@@ -113,6 +127,8 @@ exports.saeForm = async (req, res) => {
 exports.createSae = async (req, res) => {
   const caseId = req.params.caseId;
   req.body.case = caseId;
+  req.body.saestdtc = `${req.body.saestdtc_date} ${req.body.saestdtc_time}`;
+  req.body.saenoticedtc = `${req.body.saenoticedtc_date} ${req.body.saenoticedtc_time}`;
   await (new Sae(req.body)).save();
   res.redirect(`/saelist/${caseId}`);
 };
@@ -121,6 +137,8 @@ exports.updateSae = async (req, res) => {
   const caseId = req.params.caseId;
   req.body.case = caseId;
   const saeId = req.params.saeId;
+  req.body.saestdtc = `${req.body.saestdtc_date} ${req.body.saestdtc_time}`;
+  req.body.saenoticedtc = `${req.body.saenoticedtc_date} ${req.body.saenoticedtc_time}`;
   await Sae.findByIdAndUpdate(saeId, req.body);
   res.redirect(`/saelist/${caseId}`);
 };

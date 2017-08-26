@@ -214,6 +214,26 @@ exports.appendValueToFormConfig = function(fieldConfig, fieldValue) {
       value: moment(fieldValue).format('HH:mm')
     };
   }
+  else if (fieldConfig.name === 'saestdtc') {
+    fieldConfig.date = {
+      name: 'saestdtc_date',
+      value: moment(fieldValue).format('MM/DD/YYYY')
+    };
+    fieldConfig.time = {
+      name: 'saestdtc_time',
+      value: moment(fieldValue).format('HH:mm')
+    };
+  }
+  else if (fieldConfig.name === 'saenoticedtc') {
+    fieldConfig.date = {
+      name: 'saenoticedtc_date',
+      value: moment(fieldValue).format('MM/DD/YYYY')
+    };
+    fieldConfig.time = {
+      name: 'saenoticedtc_time',
+      value: moment(fieldValue).format('HH:mm')
+    };
+  }
   else {
     fieldConfig.value = fieldValue;
   }

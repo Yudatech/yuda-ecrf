@@ -145,6 +145,8 @@ exports.updateAe = async (req, res) => {
   const caseId = req.params.caseId;
   req.body.case = caseId;
   const aeId = req.params.aeId;
+  req.body.aestdtc = `${req.body.aestdtc_date} ${req.body.aestdtc_time}`;
+  req.body.aeeddtc = `${req.body.aeeddtc_date} ${req.body.aeeddtc_time}`;
   await Ae.findByIdAndUpdate(aeId, req.body);
   res.redirect(`/aelist/${caseId}`);
 };
