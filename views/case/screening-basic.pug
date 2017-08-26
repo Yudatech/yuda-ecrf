@@ -32,5 +32,10 @@ block case-content
             +_formTemplate(config.formConfigs.height)
           .col-sm-2
             +_questionBtn(config.formConfigs.height, questionFields)
+
+        .row.hidden(id="screen-basic-error")
+          .col-sm-12
+            .alert.alert-danger(role="alert")
+              span #{config.errors.exclusion.text}
             
         input.btn.btn-default.yuda-input-btn(type="submit" value=buttonConfig.buttons.save.text)

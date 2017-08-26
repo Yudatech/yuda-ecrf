@@ -45,7 +45,7 @@ const config = {
     name: 'discontinuersn_4',
     type: 'textarea',
     text: {
-      zh: '请注明原因'，
+      zh: '请注明原因',
       en: 'Please sepcify:'
     }
   }, {

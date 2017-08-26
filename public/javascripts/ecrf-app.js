@@ -1,6 +1,8 @@
 import '../sass/style.scss';
 import acceptDocPreview from './modules/acceptDocPreview';
 
+import initScreeningBasicHandlers from './modules/initScreeningBasicHandlers';
+
 $('.input-group.date').datepicker({}).on('changeDate', function(e){
   const targetId = e.target.id;
   const realId = `#${targetId}Real`;
@@ -26,4 +28,12 @@ window.handleCheckboxClick = function(el) {
 
 window.onbeforeunload = function(event) {
   console.log(event);
+}
+
+window.onload = function() {
+  const pathname = window.location.pathname;
+  console.log(pathname);
+  if (pathname.startsWith('/screening-basic')) {
+    initScreeningBasicHandlers();
+  }
 }

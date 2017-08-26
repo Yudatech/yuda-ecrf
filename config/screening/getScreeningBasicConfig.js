@@ -37,6 +37,12 @@ const config = {
       zh: '身高(CM)',
       en: 'Height'
     }
+  }],
+  errors: [{
+    name: 'exclusion',
+    text: {
+      zh: '该患者不符合入组标准'
+    }
   }]
 };
 
@@ -47,6 +53,7 @@ module.exports = function(lang) {
 
   const result = {};
   result.formConfigs = getOptionsLang(config.formConfigs);
+  result.errors = getOptionsLang(config.errors);
   result.title = config.title[lang];
 
   return result;

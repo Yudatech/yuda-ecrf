@@ -1,5 +1,5 @@
 mixin _numberfieldTemplate(name, text, value, step)
-  .form-group
+  .form-group(id=`${name}-container`)
     label.col-sm-4.control-label #{text}
     .col-sm-8
-      input.form-control(type="number" step=step name=name value=value)
+      input.form-control(id=name type="number" step=step name=name value=value)
