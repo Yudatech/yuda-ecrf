@@ -6,6 +6,14 @@ const config = {
     en: 'Add Concomitant Medication'
   },
   formConfigs: [{
+    name: 'source',
+    type: 'select',
+    optionsGetter: 'getCmSourceConfig',
+    text: {
+      zh: '来源',
+      en: 'Source'
+    }
+  }, {
     name: 'drug',
     type: 'textfield',
     text: {

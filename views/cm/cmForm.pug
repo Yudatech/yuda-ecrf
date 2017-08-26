@@ -11,6 +11,12 @@ block case-content
 
         .row
           .col-sm-10
+            +_formTemplate(config.formConfigs.source)
+          .col-sm-2
+            +_questionBtn(config.formConfigs.source, questionFields)
+
+        .row
+          .col-sm-10
             +_formTemplate(config.formConfigs.drug)
           .col-sm-2
             +_questionBtn(config.formConfigs.drug, questionFields)
