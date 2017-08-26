@@ -5,6 +5,7 @@ include mixins/_caseNav
 block content
   .inner.row
     .case-nav.col-sm-3
+      span #{locals.caseStatusText[locals.case.status].text}
       +_caseNav(caseNav)
       
       if locals.case

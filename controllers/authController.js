@@ -4,6 +4,8 @@ const mongoose = require('mongoose');
 const Case = mongoose.model('Case');
 const Question = mongoose.model('Question');
 
+const getCaseStatusConfig = require('../config/common/getCaseStatusConfig');
+
 exports.login = passport.authenticate('local', {
   failureRedirect: '/login',
   failureFlash: 'Failed Login!',
@@ -58,6 +60,7 @@ exports.checkCaseStatus = async (req, res, next) => {
   const method = req.method.toLowerCase();
   if (method === 'get') {
     res.locals.case = caseItem;
+    res.locals.caseStatusText = getCaseStatusConfig();
     next();
   }
   else if (method === 'post') {

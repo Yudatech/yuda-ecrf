@@ -35,10 +35,12 @@ module.exports = function(lang) {
     lang = 'zh';
   }
 
-  return status.map((item) => {
-    return {
+  const result = {};
+  status.forEach((item) => {
+    result[item.value] = {
       value: item.value,
       text: item.text[lang]
     };
   });
+  return result;
 };

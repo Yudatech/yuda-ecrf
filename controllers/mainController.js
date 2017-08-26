@@ -36,7 +36,7 @@ exports.homePage = async (req, res) => {
       createDate: moment(item.createDate).format('ll'),
       username: item.user.username,
       statusValue: item.status,
-      status: caseStatusConfig.find((statusConfig) => statusConfig.value === item.status).text
+      status: caseStatusConfig[item.status].text
     };
   });
 
