@@ -3,6 +3,7 @@ moment.locale('zh-cn');
 
 const mongoose = require('mongoose');
 const Sae = mongoose.model('Sae');
+const Ae = mongoose.model('Ae');
 
 const helpers = require('./helpers');
 const decorationHelper = require('./decorationHelper');
@@ -25,12 +26,6 @@ function getSaeTypeText(value) {
   }).text;
 }
 
-function getSaeCauseText(value) {
-  return getSaeCauseConfig().find((item) => {
-    return item.value === value;
-  }).text;
-}
-
 const tableName = 'sae';
 
 exports.saeTable = async (req, res) => {
@@ -43,7 +38,7 @@ exports.saeTable = async (req, res) => {
       saetpe: getSaeTypeText(item.saetpe),
       saedtc: moment(item.saedtc).format('ll'),
       saestdtc: moment(item.saestdtc).format('ll'),
-      saeanti: getSaeCauseText(item.saeanti)
+      saeanti: item.saeanti
     };
   });
   res.render('sae/saeTable', {
@@ -59,6 +54,7 @@ exports.saeForm = async (req, res) => {
   const caseId = req.params.caseId;
   const saeId = req.params.saeId;
   const CaseNav = helpers.appendCaseIdToCaseNav(caseId);
+  const saeSourceOptions = await helpers.getSaeSourceOptions(caseId);
   let sae;
 
   if (saeId !== undefined) {
@@ -101,6 +97,10 @@ exports.saeForm = async (req, res) => {
         name: 'saenoticedtc_time',
         value: moment(sae.saenoticedtc).format('HH:mm')
       };
+    }
+    else if (key === 'saeorigion') {
+      config.formConfigs[key].options = saeSourceOptions;
+      config.formConfigs[key].value = sae[key];
     }
     else {
       config.formConfigs[key].value = sae[key];

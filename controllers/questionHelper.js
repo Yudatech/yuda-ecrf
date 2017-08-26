@@ -33,6 +33,8 @@ const getAeConfig = require('../config/ae/getAeConfig');
 const getSurgeryConfig = require('../config/surgery/getSurgeryConfig');
 const getVisitConfig = require('../config/visit/getVisitConfig');
 
+const decorationHelper = require('./decorationHelper');
+
 exports.getConfigForQuestion = function(table, field) {
   if (table === 'screening') {
     let formConfigs;
@@ -190,7 +192,7 @@ exports.updateValueForQuestion = async function(table, caseId, secondaryId, fiel
   }
 };
 
-exports.appendValueToFormConfig = function(fieldConfig, fieldValue) {
+exports.appendValueAndOptionsToFormConfig = function(fieldConfig, fieldValue, aeSourceConfig, saeSourceConfig) {
   if (fieldConfig.type === 'date') {
     fieldConfig.value = moment(fieldValue).format('MM/DD/YYYY');
   }
@@ -237,5 +239,18 @@ exports.appendValueToFormConfig = function(fieldConfig, fieldValue) {
   else {
     fieldConfig.value = fieldValue;
   }
+
+  if (fieldConfig.type === 'select') {
+    fieldConfig.options = decorationHelper[fieldConfig.optionsGetter]();
+  }
+  else if (fieldConfig.type === 'customselect') {
+    if (fieldConfig.name === 'saeorigion') {
+      fieldConfig.options = saeSourceConfig;
+    }
+    else if (fieldConfig.name === 'aeorigion') {
+      fieldConfig.options = aeSourceConfig;
+    }
+  }
+
   return fieldConfig;
 };

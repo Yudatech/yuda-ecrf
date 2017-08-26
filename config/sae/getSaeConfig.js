@@ -7,7 +7,7 @@ const config = {
   },
   formConfigs: [{
     name: 'saeorigion',
-    type: 'textfield',
+    type: 'customselect',
     text: {
       zh: '来源',
       en: 'Source'

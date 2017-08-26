@@ -18,11 +18,7 @@ async function getVisitListByCaseId(caseId) {
   return visitList;
 }
 
-async function getDaysAfterSurgery(caseId, visitdtc){
-  const surgery = Surgery.findOne({
-    case: caseId
-  });
-  const surgerydtc = surgery.surgerydtc;
+function getDaysAfterSurgery(surgerydtc, visitdtc) {
   const surgerydtcValue = moment(surgerydtc).valueOf();
   const visitdtcValue = moment(visitdtc).valueOf();
   return (visitdtcValue - surgerydtcValue) / 24 / 60 / 60 / 1000;
@@ -32,9 +28,15 @@ const tableName = 'visit';
 
 exports.visitTable = async (req, res) => {
   const CaseNav = helpers.appendCaseIdToCaseNav(req.params.caseId);
+
+  const surgery = await Surgery.findOne({
+    case: req.params.caseId
+  });
+  const surgerydtc = surgery.surgerydtc;
+
   const visitList = await getVisitListByCaseId(req.params.caseId);
   const visitListFormated = visitList.map((item) => {
-    const daysaftersurgery = getDaysAfterSurgery(req.params.caseId, item.visitdtc);
+    const daysaftersurgery = getDaysAfterSurgery(surgerydtc, item.visitdtc);
     return {
       _id: item._id,
       case: item.case,

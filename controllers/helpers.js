@@ -1,5 +1,14 @@
 const CaseNav = require('../config/CaseNav');
 
+const moment = require('moment');
+
+const mongoose = require('mongoose');
+const Ae = mongoose.model('Ae');
+const Surgery = mongoose.model('Surgery');
+const Visit = mongoose.model('Visit');
+
+const getAeSourceConfig = require('../config/ae/getAeSourceConfig');
+
 exports.appendCaseIdToCaseNav = function(caseId, lang) {
   const navs = JSON.parse(JSON.stringify(CaseNav));
   if (lang === undefined) {
@@ -25,4 +34,40 @@ exports.getQuestionLink = function(table, caseId, formConfig, secondaryId) {
   else {
     return `/new/question?table=${table}&caseId=${caseId}&field=${formConfig.name}&secondaryId=${secondaryId}`;
   }
+};
+
+exports.getSaeSourceOptions = async function(caseId) {
+  const aeList = await Ae.find({
+    case: caseId
+  });
+  const saeSourceOptions = aeList.map((item) => {
+    return {
+      value: item._id.toString(),
+      text: item.event
+    };
+  });
+  return saeSourceOptions;
+};
+
+exports.getAeSourceConfig = async function(caseId) {
+  const surgeryItem = await Surgery.findOne({
+    case: caseId
+  });
+  const visits = [];
+  const visitItems = await Visit.find({
+    case: caseId
+  });
+  if (surgeryItem && visitItems.length > 0) {
+    const surgerydtc = surgeryItem.surgerydtc;
+    const surgerydtcValue = moment(surgerydtc).valueOf();
+    visitItems.forEach((item) => {
+      const visitdtcValue = moment(item.visitdtc).valueOf();
+      visits.push({
+        _id: item._id,
+        visitnum: item.visitnum,
+        days: (visitdtcValue - surgerydtcValue) / 24 / 60 / 60 / 1000
+      });
+    });
+  }
+  return getAeSourceConfig('zh', visits);
 };

@@ -3,6 +3,8 @@ moment.locale('zh-cn');
 
 const mongoose = require('mongoose');
 const Ae = mongoose.model('Ae');
+const Surgery = mongoose.model('Surgery');
+const Visit = mongoose.model('Visit');
 
 const helpers = require('./helpers');
 const decorationHelper = require('./decorationHelper');
@@ -11,6 +13,7 @@ const getAeTableConfig = require('../config/ae/getAeTableConfig');
 const getAeLevelConfig = require('../config/ae/getAeLevelConfig');
 const getAeRelConfig = require('../config/ae/getAeRelConfig');
 const getAeResConfig = require('../config/ae/getAeResConfig');
+const getAeSourceConfig = require('../config/ae/getAeSourceConfig');
 const getButtonConfig = require('../config/common/getButtonConfig');
 
 async function getAeListByCaseId(caseId) {
@@ -68,6 +71,7 @@ exports.aeForm = async (req, res) => {
   const caseId = req.params.caseId;
   const aeId = req.params.aeId;
   const CaseNav = helpers.appendCaseIdToCaseNav(caseId);
+  const aeSourceConfig = await helpers.getAeSourceConfig(caseId);
   let ae;
 
   if (aeId !== undefined) {
@@ -109,6 +113,10 @@ exports.aeForm = async (req, res) => {
         name: 'aeeddtc_time',
         value: moment(ae.aeeddtc).format('HH:mm')
       };
+    }
+    else if (key === 'aeorigion') {
+      config.formConfigs[key].options = aeSourceConfig;
+      config.formConfigs[key].value = ae[key];
     }
     else {
       config.formConfigs[key].value = ae[key];

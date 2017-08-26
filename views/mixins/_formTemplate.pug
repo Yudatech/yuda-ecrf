@@ -19,7 +19,7 @@ mixin _formTemplate(formConfig, disabled)
   else if formConfig.type === 'numberfield'
     +_numberfieldTemplate(formConfig.name, formConfig.text, formConfig.value, formConfig.step)
 
-  else if formConfig.type === 'select'
+  else if formConfig.type === 'select' || formConfig.type === 'customselect'
     +_selectTemplate(formConfig.name, formConfig.text, formConfig.value, formConfig.options)
 
   else if formConfig.type === 'date'

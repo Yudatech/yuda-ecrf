@@ -13,7 +13,10 @@ const saeSchema = new Schema({
    * SAE
    */
   // 来源
-  saeorigion: String,
+  saeorigion: {
+    type: mongoose.Schema.ObjectId,
+    ref: 'Ae'
+  },
   // 报告类型
   saetpe: Number,
   // 报告时间
@@ -73,6 +76,15 @@ const saeSchema = new Schema({
   // SAE发生及处理的详细情况
   saedesc: String
 });
+
+function autopopulate(next) {
+  this.populate('saeorigion');
+  next();
+}
+
+saeSchema.pre('find', autopopulate);
+saeSchema.pre('findOne', autopopulate);
+saeSchema.pre('findById', autopopulate);
 
 saeSchema.plugin(mongodbErrorHandler);
 

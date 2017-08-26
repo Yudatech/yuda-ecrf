@@ -11,7 +11,7 @@ const getQuestionConfig = require('../config/getQuestionConfig');
 const getQuestionStatusConfig = require('../config/getQuestionStatusConfig');
 
 const questionHelper = require('./questionHelper');
-const decorationHelper = require('./decorationHelper');
+const helpers = require('./helpers');
 
 exports.startQuestion = async (req, res) => {
   const caseId = req.query.caseId;
@@ -40,6 +40,7 @@ exports.startQuestion = async (req, res) => {
 
 exports.showQuestionPage = async (req, res) => {
   const questionId = req.params.questionId;
+
   const question = await Question.findById(questionId);
   const commentItems = await Comment.find({
     question: questionId
@@ -56,19 +57,19 @@ exports.showQuestionPage = async (req, res) => {
   const field = question.fieldname;
   const caseId = question.case._id;
 
+  const saeSourceConfig = await helpers.getSaeSourceOptions(caseId);
+  const aeSourceConfig = await helpers.getAeSourceConfig(caseId);
+
   const config = questionHelper.getConfigForQuestion(table, field);
   let fieldConfig = config.formConfigs[field];
-  if (fieldConfig.type === 'select') {
-    fieldConfig.options = decorationHelper[fieldConfig.optionsGetter]();
-  }
   const values = await questionHelper.getValueForQuestion(table, caseId, question.secondaryid);
   const fieldValue = values[field];
 
   config.formConfigs = Object.keys(config.formConfigs).map((key) => {
-    return questionHelper.appendValueToFormConfig(config.formConfigs[key], values[key]);
+    return questionHelper.appendValueAndOptionsToFormConfig(config.formConfigs[key], values[key], aeSourceConfig, saeSourceConfig);
   });
 
-  fieldConfig = questionHelper.appendValueToFormConfig(fieldConfig, fieldValue);
+  fieldConfig = questionHelper.appendValueAndOptionsToFormConfig(fieldConfig, fieldValue, aeSourceConfig, saeSourceConfig);
 
   const questionConfig = getQuestionConfig();
   questionConfig.questionConfigs.question_status.options = getQuestionStatusConfig();
