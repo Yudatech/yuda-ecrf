@@ -11,11 +11,9 @@ block case-content
 
         .row
           .col-sm-10
-            .form-group
-              .col-sm-offset-4.col-sm-8
-                +_formTemplate(config.formConfigs.discontinue)
+            +_formTemplate(config.formConfigs.discontinuetype)
           .col-sm-2
-            +_questionBtn(config.formConfigs.discontinue, questionFields)
+            +_questionBtn(config.formConfigs.discontinuetype, questionFields)
 
         .row
           .col-sm-10
@@ -73,7 +71,7 @@ block case-content
           .col-sm-10
             .form-group
               .col-sm-offset-4.col-sm-8
-                +_formTemplate(config.formConfigs.discontinuersn_8)
+                +_formTemplate(config.formConfigs.discontinuersn_9)
           .col-sm-2
             +_questionBtn(config.formConfigs.discontinuersn_8, questionFields)
 
@@ -81,7 +79,7 @@ block case-content
           .col-sm-10
             .form-group
               .col-sm-offset-4.col-sm-8
-                +_formTemplate(config.formConfigs.discontinuersn_6)
+                +_formTemplate(config.formConfigs.discontinuersn_9)
           .col-sm-2
             +_questionBtn(config.formConfigs.discontinuersn_6, questionFields)
 

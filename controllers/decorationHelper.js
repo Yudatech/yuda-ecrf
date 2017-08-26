@@ -26,6 +26,7 @@ const getVisitParam14Config = require('../config/visit/getVisitParam14Config');
 const getVisitResConfig = require('../config/visit/getVisitResConfig');
 const getVisitTypesConfig = require('../config/visit/getVisitTypesConfig');
 const getCmSourceConfig = require('../config/cm/getCmSourceConfig');
+const getDiscontinuationTypeConfig = require('../config/getDiscontinuationTypeConfig');
 
 module.exports = {
   'getSexConfig': getSexConfig,
@@ -55,5 +56,6 @@ module.exports = {
   'getVisitParam14Config': getVisitParam14Config,
   'getVisitResConfig': getVisitResConfig,
   'getVisitTypesConfig': getVisitTypesConfig,
-  'getCmSourceConfig': getCmSourceConfig
+  'getCmSourceConfig': getCmSourceConfig,
+  'getDiscontinuationTypeConfig': getDiscontinuationTypeConfig
 };

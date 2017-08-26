@@ -6,8 +6,9 @@ const config = {
     en: ''
   },
   formConfigs: [{
-    name: 'discontinue',
-    type: 'checkbox',
+    name: 'discontinuetype',
+    type: 'select',
+    optionsGetter: 'getDiscontinuationTypeConfig',
     text: {
       zh: '受试者手术前退出试验'
     }

@@ -6,6 +6,7 @@ const Discontinuation = mongoose.model('Discontinuation');
 const Case = mongoose.model('Case');
 
 const helpers = require('./helpers');
+const decorationHelper = require('./decorationHelper');
 const getDiscontinuationConfig = require('../config/getDiscontinuationConfig');
 const getButtonConfig = require('../config/common/getButtonConfig');
 
@@ -51,6 +52,9 @@ exports.discontinuationForm = async (req, res) => {
   const discontinuationItem = await getDiscontinuationItemByCaseId(req.params.caseId);
   const config = getDiscontinuationConfig();
   Object.keys(config.formConfigs).forEach((key) => {
+    if (config.formConfigs[key].type === 'select') {
+      config.formConfigs[key].options = decorationHelper[config.formConfigs[key].optionsGetter]();
+    }
     if (key === 'discontinuedt') {
       config.formConfigs[key].value = moment(discontinuationItem.discontinuedt).format('MM/DD/YYYY');
     }
