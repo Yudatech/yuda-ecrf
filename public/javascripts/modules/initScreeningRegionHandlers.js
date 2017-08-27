@@ -4,6 +4,12 @@ function initScreeningRegionHandlers() {
   region_4El.change(function(){
     setRegion5Visibility();
   });
+
+  $('#screening-region-form').validator({
+    delay: 100,
+    disable: false
+  });
+  $('#screening-region-form').validator('validate');
 }
 
 function setRegion5Visibility() {

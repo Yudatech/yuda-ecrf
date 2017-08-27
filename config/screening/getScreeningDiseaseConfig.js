@@ -64,6 +64,7 @@ const config = {
   }, {
     name: 'disease_9',
     type: 'textarea',
+    required: true,
     text: {
       zh: '请注明',
       en: 'please specify:'

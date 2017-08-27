@@ -5,7 +5,7 @@ include ../mixins/_questionBtn
 
 block case-content
   .case-content
-    form.form-horizontal(action=`/sae/${caseId}/${saeId || ''}` method="POST")
+    form.form-horizontal(id="sae-form" action=`/sae/${caseId}/${saeId || ''}` method="POST")
       fieldset
         legend #{config.title}
 

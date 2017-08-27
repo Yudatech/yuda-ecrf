@@ -4,6 +4,12 @@ function initScreeningExclusionHandlers() {
   exclusion_16El.change(function(){
     setExclusion17Visibility();
   });
+
+  $('#screening-exclusion-form').validator({
+    delay: 100,
+    disable: false
+  });
+  $('#screening-exclusion-form').validator('validate');
 }
 
 function setExclusion17Visibility() {

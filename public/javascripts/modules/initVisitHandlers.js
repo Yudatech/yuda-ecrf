@@ -4,6 +4,12 @@ function initVisitHandlers() {
   param_16El.change(function(){
     setParam17Visibility();
   });
+
+  $('#visit-form').validator({
+    delay: 100,
+    disable: false
+  });
+  $('#visit-form').validator('validate');
 }
 
 function setParam17Visibility() {

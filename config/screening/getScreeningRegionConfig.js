@@ -36,6 +36,7 @@ const config = {
   }, {
     name: 'region_5',
     type: 'textarea',
+    required: true,
     text: {
       zh: '请注明',
       en: 'Please specify:'

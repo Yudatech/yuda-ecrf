@@ -120,6 +120,7 @@ const config = {
   }, {
     name: 'exclusion_17',
     type: 'textarea',
+    required: true,
     text: {
       zh: '请注明',
       en: 'Reasons:'

@@ -4,6 +4,12 @@ function initSurgeryHandlers() {
   surgery_17El.change(function(){
     setSurgery18Visibility();
   });
+
+  $('#surgery-form').validator({
+    delay: 100,
+    disable: false
+  });
+  $('#surgery-form').validator('validate');
 }
 
 function setSurgery18Visibility() {

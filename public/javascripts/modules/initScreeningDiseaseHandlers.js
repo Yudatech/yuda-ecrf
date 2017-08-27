@@ -4,6 +4,12 @@ function initScreeningDiseaseHandlers() {
   disease_8El.change(function(){
     setDisease9Visibility();
   });
+
+  $('#screening-disease-form').validator({
+    delay: 100,
+    disable: false
+  });
+  $('#screening-disease-form').validator('validate');
 }
 
 function setDisease9Visibility() {

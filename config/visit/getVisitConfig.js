@@ -175,6 +175,7 @@ const config = {
   }, {
     name: 'param_17',
     type: 'textarea',
+    required: true,
     text: {
       zh: '请说明',
       en: 'Please specify.'

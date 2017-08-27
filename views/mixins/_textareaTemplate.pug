@@ -4,4 +4,4 @@ mixin _textareaTemplate(config)
   .form-group(id=`${name}-container` class=(hidden === true ? 'hidden' : ''))
     label.col-sm-4.control-label #{config.text}
     .col-sm-8
-      textarea.form-control(id=name rows="5" name=name) #{config.value}
+      textarea.form-control(id=name rows="5" name=name required=config.required) #{config.value}

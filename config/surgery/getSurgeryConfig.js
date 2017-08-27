@@ -149,6 +149,7 @@ const config = {
   }, {
     name: 'surgery_18',
     type: 'textarea',
+    required: true,
     text: {
       zh: '请注明',
       en: 'Note reasons'
