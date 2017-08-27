@@ -69,6 +69,12 @@ const config = {
       zh: '请注明',
       en: 'please specify:'
     }
+  }],
+  errors: [{
+    name: 'error_1',
+    text: {
+      zh: '请确认该患者符合入组／排除标准'
+    }
   }]
 };
 
@@ -80,6 +86,7 @@ module.exports = function(lang) {
   const result = {};
   result.formConfigs = getOptionsLang(config.formConfigs);
   result.title = config.title[lang];
+  result.errors = getOptionsLang(config.errors);
 
   return result;
 };

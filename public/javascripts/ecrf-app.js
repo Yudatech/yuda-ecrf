@@ -9,6 +9,9 @@ import initScreeningRegionHandlers from './modules/initScreeningRegionHandlers';
 import initSurgeryHandlers from './modules/initSurgeryHandlers';
 import initVisitHandlers from './modules/initVisitHandlers';
 import initSaeHandlers from './modules/initSaeHandlers';
+import initScreeningChecklistHandlers from './modules/initScreeningChecklistHandlers';
+import initScreeningConmedHandlers from './modules/initScreeningConmedHandlers';
+import initScreeningVitalsignHandlers from './modules/initScreeningVitalsignHandlers';
 
 $('.input-group.date').datepicker({}).on('changeDate', function(e){
   const targetId = e.target.id;
@@ -62,5 +65,14 @@ window.onload = function() {
   }
   else if (pathname.startsWith('/sae/')) {
     initSaeHandlers();
+  }
+  else if (pathname.startsWith('/screeningchecklist')) {
+    initScreeningChecklistHandlers();
+  }
+  else if (pathname.startsWith('/screening-conmed')) {
+    initScreeningConmedHandlers();
+  }
+  else if (pathname.startsWith('/screening-vitalsign')) {
+    initScreeningVitalsignHandlers();
   }
 }
