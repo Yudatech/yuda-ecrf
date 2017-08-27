@@ -1,8 +1,12 @@
-mixin _datetimeTemplate(text, date_name, date_value, time_name, time_value, disabled)
+mixin _datetimeTemplate(config, disabled)
+  - const date_name = config.date.name
+  - const date_value = config.date.value
+  - const time_name = config.time.name
+  - const time_value = config.time.value
   - const dateIdReal = date_name + 'Real'
   - const timeIdReal = time_name + 'Real'
-  .form-group
-    label.col-sm-4.control-label #{text}
+  .form-group(id=`${config.name}-container`)
+    label.col-sm-4.control-label #{config.text}
     .col-sm-4
       div.input-group.date(data-provide="datepicker" id=date_name)
         input.form-control(value=date_value)

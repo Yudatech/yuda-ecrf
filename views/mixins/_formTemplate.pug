@@ -8,22 +8,22 @@ include _datetimeTemplate
 
 mixin _formTemplate(formConfig, disabled)
   if formConfig.type === 'checkbox'
-    +_checkboxTemplate(formConfig.name, formConfig.text, formConfig.value, disabled)
+    +_checkboxTemplate(formConfig, disabled)
 
   else if formConfig.type === 'textfield'
-    +_textfieldTemplate(formConfig.name, formConfig.text, formConfig.value)
+    +_textfieldTemplate(formConfig)
 
   else if formConfig.type === 'textarea'
-    +_textareaTemplate(formConfig.name, formConfig.text, formConfig.value, formConfig.hidden)
+    +_textareaTemplate(formConfig)
 
   else if formConfig.type === 'numberfield'
-    +_numberfieldTemplate(formConfig.name, formConfig.text, formConfig.value, formConfig.step)
+    +_numberfieldTemplate(formConfig)
 
   else if formConfig.type === 'select' || formConfig.type === 'customselect'
-    +_selectTemplate(formConfig.name, formConfig.text, formConfig.value, formConfig.options)
+    +_selectTemplate(formConfig)
 
   else if formConfig.type === 'date'
-    +_dateTemplate(formConfig.name, formConfig.text, formConfig.value, disabled)
+    +_dateTemplate(formConfig, disabled)
 
   else if formConfig.type === 'datetime'
-    +_datetimeTemplate(formConfig.text, formConfig.date.name, formConfig.date.value, formConfig.time.name, formConfig.time.value, disabled)
+    +_datetimeTemplate(formConfig, disabled)

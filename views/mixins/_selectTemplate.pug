@@ -1,7 +1,8 @@
-mixin _selectTemplate(name, text, value, options)
-  .form-group
-    label.col-sm-4.control-label #{text}
+mixin _selectTemplate(config, options)
+  - const value = config.value
+  .form-group(id=`${config.name}-container`)
+    label.col-sm-4.control-label #{config.text}
     .col-sm-8
-      select.form-control(name=name)
-        each optionItem in options
+      select.form-control(name=config.name)
+        each optionItem in config.options
           option(value=optionItem.value selected=(value === optionItem.value)) #{optionItem.text}

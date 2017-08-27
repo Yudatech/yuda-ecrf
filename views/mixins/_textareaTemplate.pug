@@ -1,5 +1,7 @@
-mixin _textareaTemplate(name, text, value, hidden)
+mixin _textareaTemplate(config)
+  - const name = config.name
+  - const hidden = config.hidden
   .form-group(id=`${name}-container` class=(hidden === true ? 'hidden' : ''))
-    label.col-sm-4.control-label #{text}
+    label.col-sm-4.control-label #{config.text}
     .col-sm-8
-      textarea.form-control(id=name rows="5" name=name) #{value}
+      textarea.form-control(id=name rows="5" name=name) #{config.value}
