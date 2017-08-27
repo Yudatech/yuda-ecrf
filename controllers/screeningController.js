@@ -223,6 +223,15 @@ exports.caseVitalSignForm = async (req, res) => {
     if (config.formConfigs[key].type === 'checkbox' && config.formConfigs[key].value === undefined) {
       config.formConfigs[key].value = false;
     }
+
+    if (key === 'vitalsign_9') {
+      const extraDataKeys = ['disease_6', 'disease_7', 'conmed_1', 'conmed_2', 'conmed_4'];
+      const extraObj = {};
+      extraDataKeys.forEach((item) => {
+        extraObj[item] = screeningItem[item] === true;
+      });
+      config.formConfigs[key].extra = JSON.stringify(extraObj);
+    }
   });
   res.render('case/screening-vitalsign', {
     caseNav: CaseNav,

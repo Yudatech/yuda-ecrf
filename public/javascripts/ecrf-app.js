@@ -13,7 +13,9 @@ import initScreeningChecklistHandlers from './modules/initScreeningChecklistHand
 import initScreeningConmedHandlers from './modules/initScreeningConmedHandlers';
 import initScreeningVitalsignHandlers from './modules/initScreeningVitalsignHandlers';
 
-$('.input-group.date').datepicker({}).on('changeDate', function(e){
+$('.input-group.date').datepicker({
+  endDate: new Date()
+}).on('changeDate', function(e){
   const targetId = e.target.id;
   const realId = `#${targetId}Real`;
   $(realId).val(e.format('mm/dd/yyyy'))
