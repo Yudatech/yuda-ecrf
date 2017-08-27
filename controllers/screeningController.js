@@ -252,6 +252,12 @@ exports.caseLabForm = async (req, res) => {
     if (config.formConfigs[key].type === 'checkbox' && config.formConfigs[key].value === undefined) {
       config.formConfigs[key].value = false;
     }
+
+    // 对于某些参数，根据性别的不同需要有不同的上下限
+    const sexIndex = screeningItem.sex === 1 ? 'female' : 'male';
+    if (key === 'lab_1' || key === 'lab_5') {
+      config.formConfigs[key].validation = config.formConfigs[key].validation[sexIndex];
+    }
   });
   res.render('case/screening-lab', {
     caseNav: CaseNav,

@@ -9,6 +9,16 @@ const config = {
     name: 'lab_1',
     type: 'numberfield',
     step: 'any',
+    validation: {
+      male: {
+        max: 5.5,
+        min: 4
+      },
+      female: {
+        max: 5,
+        min: 3.5
+      }
+    },
     text: {
       zh: '红细胞 (RBC)',
       en: 'RBC'
@@ -43,6 +53,16 @@ const config = {
     name: 'lab_5',
     type: 'numberfield',
     step: 'any',
+    validation: {
+      male: {
+        max: 160,
+        min: 120
+      },
+      female: {
+        max: 150,
+        min: 110
+      }
+    },
     text: {
       zh: '血红蛋白 (Hb)',
       en: 'Hb'
