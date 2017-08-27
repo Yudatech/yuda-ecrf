@@ -153,6 +153,7 @@ block case-content
           .col-sm-2
             +_questionBtn(config.formConfigs.param_16, questionFields)
 
+        - config.formConfigs.param_17.hidden = !config.formConfigs.param_16.value === true
         .row
           .col-sm-10
             +_formTemplate(config.formConfigs.param_17)

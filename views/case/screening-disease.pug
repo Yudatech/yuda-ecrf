@@ -73,6 +73,7 @@ block case-content
           .col-sm-2
             +_questionBtn(config.formConfigs.disease_8, questionFields)
 
+        - config.formConfigs.disease_9.hidden = !config.formConfigs.disease_8.value === true
         .row
           .col-sm-10
             +_formTemplate(config.formConfigs.disease_9)

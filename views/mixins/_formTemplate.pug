@@ -14,7 +14,7 @@ mixin _formTemplate(formConfig, disabled)
     +_textfieldTemplate(formConfig.name, formConfig.text, formConfig.value)
 
   else if formConfig.type === 'textarea'
-    +_textareaTemplate(formConfig.name, formConfig.text, formConfig.value)
+    +_textareaTemplate(formConfig.name, formConfig.text, formConfig.value, formConfig.hidden)
 
   else if formConfig.type === 'numberfield'
     +_numberfieldTemplate(formConfig.name, formConfig.text, formConfig.value, formConfig.step)

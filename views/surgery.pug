@@ -130,6 +130,7 @@ block case-content
           .col-sm-2
             +_questionBtn(config.formConfigs.surgery_17, questionFields)
 
+        - config.formConfigs.surgery_18.hidden = !config.formConfigs.surgery_17.value === true
         .row
           .col-sm-10
             +_formTemplate(config.formConfigs.surgery_18)
