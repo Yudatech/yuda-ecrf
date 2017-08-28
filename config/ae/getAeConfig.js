@@ -82,7 +82,7 @@ const config = {
     name: 'aesae',
     type: 'checkbox',
     text: {
-      zh: 'SAE（请完整填写《严重不良事件（SAE）报告表》',
+      zh: 'SAE（请完整填写《严重不良事件（SAE）报告》表)',
       en: 'SAE (Complete Severe Adverse Event (SAE) report, please.)' 
     }
   }, {
@@ -96,7 +96,7 @@ const config = {
     name: 'aediscon',
     type: 'checkbox',
     text: {
-      zh: '因该事件退出试验（请完整填写《中途退出试验》表',
+      zh: '因该事件退出试验（请完整填写《中途退出试验》表)',
       en: 'Withdrawal from the study (Complete Withdrawal from the Study report, please.)'
     }
   }]
