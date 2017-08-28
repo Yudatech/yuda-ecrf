@@ -12,7 +12,7 @@ const discontinuationSchema = new Schema({
   /**
    * DISCONTINUATION
    */
-  // 受试者手术前退出试验
+  // 退出阶段
   discontinuetype: Number,
   // 退出时间
   discontinuedt: {
