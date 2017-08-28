@@ -39,7 +39,7 @@ const config = {
     name: 'dosemtd_2',
     type: 'textfield',
     text: {
-      zh: '给药途径 其他，请注明',
+      zh: '其他，请注明',
       en: 'Other, please specify:'
     }
   }, {
