@@ -39,6 +39,17 @@ const config = {
       zh: '预防性抗凝血药 (若使用抗凝血药，请完整填写《合并用药情况表》)',
       en: 'Prophylactic Anti-Thrombotic (Complet Concomitant Medication Report, please.)'
     }
+  }],
+  errors: [{
+    name: 'error_1',
+    text: {
+      zh: '依据研究方案，受试者在术前应进行肠道清洁'
+    }
+  }, {
+    name: 'error_2',
+    text: {
+      zh: '必须填写合并用药表'
+    }
   }]
 };
 
@@ -50,6 +61,7 @@ module.exports = function(lang) {
   const result = {};
   result.formConfigs = getOptionsLang(config.formConfigs);
   result.title = config.title[lang];
+  result.errors = getOptionsLang(config.errors);
 
   return result;
 };

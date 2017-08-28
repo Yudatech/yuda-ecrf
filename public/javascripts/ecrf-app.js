@@ -12,6 +12,7 @@ import initSaeHandlers from './modules/initSaeHandlers';
 import initScreeningChecklistHandlers from './modules/initScreeningChecklistHandlers';
 import initScreeningConmedHandlers from './modules/initScreeningConmedHandlers';
 import initScreeningVitalsignHandlers from './modules/initScreeningVitalsignHandlers';
+import initReviewChecklistHandlers from './modules/initReviewChecklistHandlers';
 
 $('.input-group.date').datepicker({
   endDate: new Date()
@@ -76,5 +77,8 @@ window.onload = function() {
   }
   else if (pathname.startsWith('/screening-vitalsign')) {
     initScreeningVitalsignHandlers();
+  }
+  else if (pathname.startsWith('/reviewchecklist/')) {
+    initReviewChecklistHandlers();
   }
 }
