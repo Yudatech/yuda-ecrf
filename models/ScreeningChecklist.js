@@ -12,6 +12,10 @@ const screeningChecklistSchema = new Schema({
   /**
    * SCREENING_CHECKLIST
    */
+  screeningcheckdate: {
+    type: Date,
+    default: Date.now
+  },
   // 根据标准入选/排除，在病例报告表中登记
   screeningcheck_1: Boolean,
   // 向患者口头告知本试验研究信息，演示C-REX LapAid和C-REX DMH/DMHC

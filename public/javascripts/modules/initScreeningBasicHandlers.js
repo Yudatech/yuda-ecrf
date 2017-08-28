@@ -11,6 +11,11 @@ function initScreeningBasicHandlers() {
   });
 
   setErrorElementVisibility();
+
+  const extra = $('#screeningdate').data('extra');
+  console.log(extra);
+  $('.input-group.date').datepicker('setEndDate', new Date());
+  $('.input-group.date').datepicker('setStartDate', extra.start);
 }
 
 function setErrorElementVisibility() {

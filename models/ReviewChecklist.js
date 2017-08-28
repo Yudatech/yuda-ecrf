@@ -12,6 +12,10 @@ const reviewChecklistSchema = new Schema({
   /**
    * REVIEW_CHECKLIST
    */
+  reviewcheckdate: {
+    type: Date,
+    default: Date.now
+  },
   // 受试者住院
   reviewcheck_1: Boolean,
   // 肠道清洁

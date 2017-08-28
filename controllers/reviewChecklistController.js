@@ -1,3 +1,5 @@
+const moment = require('moment');
+
 const mongoose = require('mongoose');
 const ReviewChecklist = mongoose.model('ReviewChecklist');
 
@@ -51,6 +53,9 @@ exports.reviewChecklistForm = async (req, res) => {
     config.formConfigs[key].questionLink = helpers.getQuestionLink(tableName, req.params.caseId, config.formConfigs[key]);
     if (config.formConfigs[key].type === 'checkbox' && config.formConfigs[key].value === undefined) {
       config.formConfigs[key].value = false;
+    }
+    else if (config.formConfigs[key].type === 'date') {
+      config.formConfigs[key].value = moment(reviewChecklistItem[key]).format('MM/DD/YYYY');
     }
   });
   res.render('review-checklist', {

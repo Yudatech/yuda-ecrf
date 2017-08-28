@@ -6,6 +6,12 @@ const config = {
     en: 'Demographic data'
   },
   formConfigs: [{
+    name: 'screeningdate',
+    type: 'date',
+    text: {
+      zh: '首诊日期'
+    }
+  }, {
     name: 'sex',
     type: 'select',
     optionsGetter: 'getSexConfig',

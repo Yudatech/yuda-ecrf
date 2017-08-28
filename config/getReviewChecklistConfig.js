@@ -6,6 +6,12 @@ const config = {
     en: 'Visit 2 (Enrollment)'
   },
   formConfigs: [{
+    name: 'reviewcheckdate',
+    type: 'date',
+    text: {
+      zh: '复诊日期'
+    }
+  }, {
     name: 'reviewcheck_1',
     type: 'checkbox',
     text: {

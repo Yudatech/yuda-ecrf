@@ -6,6 +6,12 @@ const config = {
     en: 'Checklist for Visit 1'
   },
   formConfigs: [{
+    name: 'screeningcheckdate',
+    type: 'date',
+    text: {
+      zh: ''
+    }
+  }, {
     name: 'screeningcheck_1',
     type: 'checkbox',
     required: true,

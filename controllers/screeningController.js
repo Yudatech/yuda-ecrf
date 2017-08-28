@@ -82,6 +82,7 @@ const tableName = 'screening';
 
 exports.caseBasicForm = async (req, res) => {
   const CaseNav = helpers.appendCaseIdToCaseNav(req.params.caseId);
+  const caseItem = await Case.findById(req.params.caseId);
   const screeningItem = await getScreeningItemByCaseId(req.params.caseId);
   const config = getScreeningBasicConfig();
   Object.keys(config.formConfigs).forEach((key) => {
@@ -90,6 +91,14 @@ exports.caseBasicForm = async (req, res) => {
     }
     config.formConfigs[key].value = screeningItem[key];
     config.formConfigs[key].questionLink = helpers.getQuestionLink(tableName, req.params.caseId, config.formConfigs[key]);
+
+    if (key === 'screeningdate') {
+      config.formConfigs[key].value = moment(screeningItem[key]).format('MM/DD/YYYY');
+      const startDateStr = moment(caseItem.subjAcceptDate).format('MM/DD/YYYY');
+      config.formConfigs[key].extra = JSON.stringify({
+        start: startDateStr
+      });
+    }
   });
   res.render('case/screening-basic', {
     caseNav: CaseNav,
