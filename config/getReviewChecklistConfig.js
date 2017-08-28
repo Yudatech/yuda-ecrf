@@ -9,7 +9,7 @@ const config = {
     name: 'reviewcheckdate',
     type: 'date',
     text: {
-      zh: '复诊日期'，
+      zh: '复诊日期',
       en: 'Visit 2 Date'
     }
   }, {
