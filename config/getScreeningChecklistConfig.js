@@ -80,7 +80,7 @@ const config = {
     type: 'checkbox',
     required: true,
     text: {
-      zh: '诊断方法、结果记录在病',
+      zh: '诊断方法、结果记录在病例报告中。',
       en: 'Methods of diagnosis. The result is registered in the CRF.'
     }
   }]
