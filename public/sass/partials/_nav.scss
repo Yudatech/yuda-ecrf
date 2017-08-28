@@ -1,6 +1,7 @@
 .yuda-nav-stack {
   list-style-type: none;
   padding: 0;
+  margin-bottom: 0;
 
   li {
     margin-bottom: 5px;
@@ -9,6 +10,7 @@
       border-radius: 10px;
       a {
         color: $white;
+        display: block
       }
     }
 
@@ -17,16 +19,27 @@
       border-radius: 10px;
       a {
         text-decoration: none;
+        display: block
       }
     }
   }
 }
 
 .level-2 {
-  padding-left: 30px;
+  a{
+    padding-left: 30px;
+  }
 }
 
 .level-1 {
-  padding: 0 10px;
-  font-weight: bold;
+  a{
+    padding: 0 10px;
+    font-weight: bold;
+  }
+
+}
+
+.commit-btn{
+  background: #05a59a;
+  color: #f8f8f8;
 }

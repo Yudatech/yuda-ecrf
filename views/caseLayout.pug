@@ -5,19 +5,24 @@ include mixins/_caseNav
 block content
   .inner.row
     .case-nav.col-sm-3
-      span #{locals.caseStatusText[locals.case.status].text}
-      +_caseNav(caseNav)
-      
-      if locals.case
-        .btn-group(role="group")
-          if user.role === 'cra' && locals.case.status === 'open'
-            a.btn.btn-success(role="button" href=`/commit/${locals.case._id}`) #{buttonConfig.buttons.commit.text}
-          if (user.role === 'supervisor' || user.role === 'monitor') && locals.case.status === 'committed'
-            a.btn.btn-success(role="button" href=`/audit/${locals.case._id}`) #{buttonConfig.buttons.audit.text}
-          if (user.role === 'cra' && locals.case.status === 'open') || (user.role === 'admin' && (locals.case.status === 'open' || locals.case.status === 'committed' || locals.case.status === 'audited'))
-            a.btn.btn-danger(role="button" href=`/discontinuation/${locals.case._id}`) #{buttonConfig.buttons.quit.text}
-          if user.role === 'admin' && locals.case.status !== 'locked' && locals.case.status !== 'quit'
-            a.btn.btn-primary(role="button" href=`/lock/${locals.case._id}`) #{buttonConfig.buttons.lock.text}
+      .inner.panel.panel-default
+        div.panel-heading
+          h4.text-align-center #{locals.caseStatusText[locals.case.status].text}
+
+        div.panel-body
+          +_caseNav(caseNav)
+
+        div.panel-footer.text-align-right
+          if locals.case
+            .btn-group(role="group")
+              if user.role === 'cra' && locals.case.status === 'open'
+                a.btn.commit-btn(role="button" href=`/commit/${locals.case._id}`) #{buttonConfig.buttons.commit.text}
+              if (user.role === 'supervisor' || user.role === 'monitor') && locals.case.status === 'committed'
+                a.btn.commit-btn(role="button" href=`/audit/${locals.case._id}`) #{buttonConfig.buttons.audit.text}
+              if (user.role === 'cra' && locals.case.status === 'open') || (user.role === 'admin' && (locals.case.status === 'open' || locals.case.status === 'committed' || locals.case.status === 'audited'))
+                a.btn.btn-danger(role="button" href=`/discontinuation/${locals.case._id}`) #{buttonConfig.buttons.quit.text}
+              if user.role === 'admin' && locals.case.status !== 'locked' && locals.case.status !== 'quit'
+                a.btn.btn-primary(role="button" href=`/lock/${locals.case._id}`) #{buttonConfig.buttons.lock.text}
 
     .case-container.col-sm-9
       .inner.panel.panel-default
