@@ -13,6 +13,7 @@ import initScreeningChecklistHandlers from './modules/initScreeningChecklistHand
 import initScreeningConmedHandlers from './modules/initScreeningConmedHandlers';
 import initScreeningVitalsignHandlers from './modules/initScreeningVitalsignHandlers';
 import initReviewChecklistHandlers from './modules/initReviewChecklistHandlers';
+import initCMHandlers from './modules/initCMHandlers';
 
 $('.input-group.date').datepicker({
   endDate: new Date()
@@ -80,5 +81,8 @@ window.onload = function() {
   }
   else if (pathname.startsWith('/reviewchecklist/')) {
     initReviewChecklistHandlers();
+  }
+  else if (pathname.startsWith('/cm/')) {
+    initCMHandlers();
   }
 }
