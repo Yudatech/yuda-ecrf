@@ -24,8 +24,8 @@ const config = {
     name: 'dosing',
     type: 'textfield',
     text: {
-      zh: '剂量',
-      en: 'Dose'
+      zh: '剂量和用药间隔',
+      en: 'Dose and dosing interval'
     }
   }, {
     name: 'dosemtd_1',
