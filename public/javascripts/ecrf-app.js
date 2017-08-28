@@ -14,6 +14,7 @@ import initScreeningConmedHandlers from './modules/initScreeningConmedHandlers';
 import initScreeningVitalsignHandlers from './modules/initScreeningVitalsignHandlers';
 import initReviewChecklistHandlers from './modules/initReviewChecklistHandlers';
 import initCMHandlers from './modules/initCMHandlers';
+import initDiscontinuationHandlers from './modules/initDiscontinuationHandlers';
 
 $('.input-group.date').datepicker({
   endDate: new Date()
@@ -84,5 +85,8 @@ window.onload = function() {
   }
   else if (pathname.startsWith('/cm/')) {
     initCMHandlers();
+  }
+  else if (pathname.startsWith('/discontinuation/')) {
+    initDiscontinuationHandlers();
   }
 }

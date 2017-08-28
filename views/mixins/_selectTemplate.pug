@@ -3,6 +3,6 @@ mixin _selectTemplate(config, options)
   .form-group(id=`${config.name}-container`)
     label.col-sm-4.control-label #{config.text}
     .col-sm-8
-      select.form-control(name=config.name)
+      select.form-control(id=config.name name=config.name)
         each optionItem in config.options
           option(value=optionItem.value selected=(value === optionItem.value)) #{optionItem.text}
