@@ -1,7 +1,7 @@
 const config = {
   title: {
-    zh: '不良事件',
-    en: 'AE'
+    zh: '不良事件报告表',
+    en: 'REPORT: Adverse Event (AE)/ Device Deficiency'
   },
   headers: [{
     name: 'event',

@@ -1,6 +1,7 @@
 const config = {
   title: {
-    zh: '严重不良事件'
+    zh: '严重不良事件报告表',
+    en: 'REPORT: Severe Adverse Event (SAE)'
   },
   headers: [{
     name: 'saetpe',

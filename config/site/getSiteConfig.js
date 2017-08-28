@@ -9,7 +9,7 @@ const config = {
     name: 'sitename',
     text: {
       zh: '临床中心名称',
-      en: 'Investigation center'
+      en: 'Investigation center：'
     }
   }, {
     name: 'sitetel',

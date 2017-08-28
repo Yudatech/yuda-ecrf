@@ -9,7 +9,8 @@ const config = {
     name: 'reviewcheckdate',
     type: 'date',
     text: {
-      zh: '复诊日期'
+      zh: '复诊日期'，
+      en: 'Visit 2 Date'
     }
   }, {
     name: 'reviewcheck_1',
@@ -30,25 +31,27 @@ const config = {
     type: 'checkbox',
     text: {
       zh: '预防性抗生素 (若使用抗生素，请完整填写《合并用药情况表》)',
-      en: 'Prophylactic Antibiotics (Complet Concomitant Medication Report, please.)'
+      en: 'Prophylactic Antibiotics (Complete Concomitant Medication Report, please.)'
     }
   }, {
     name: 'reviewcheck_4',
     type: 'checkbox',
     text: {
       zh: '预防性抗凝血药 (若使用抗凝血药，请完整填写《合并用药情况表》)',
-      en: 'Prophylactic Anti-Thrombotic (Complet Concomitant Medication Report, please.)'
+      en: 'Prophylactic Anti-Thrombotic (Complete Concomitant Medication Report, please.)'
     }
   }],
   errors: [{
     name: 'error_1',
     text: {
-      zh: '依据研究方案，受试者在术前应进行肠道清洁'
+      zh: '依据研究方案，受试者在术前应进行肠道清洁',
+      en: 'Provide prescription for pre-operative bowel cleansing, please.'
     }
   }, {
     name: 'error_2',
     text: {
-      zh: '必须填写合并用药表'
+      zh: '必须填写合并用药表',
+      en: 'Complete Concomitant Medication Report, Please.'
     }
   }]
 };
