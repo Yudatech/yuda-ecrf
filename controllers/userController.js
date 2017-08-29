@@ -21,7 +21,7 @@ exports.registerForm = async (req, res) => {
   let user;
   if (req.params.id !== undefined) {
     const userId = req.params.id;
-    user = User.findById(userId);
+    user = await User.findById(userId);
   }
   else {
     user = {};
