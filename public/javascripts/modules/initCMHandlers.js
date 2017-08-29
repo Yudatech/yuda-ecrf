@@ -7,8 +7,8 @@ function initCMHandlers() {
   });
   $('#cmstdtc').datepicker('setEndDate', new Date());
 
-  $('#cmstdtc>input').attr('data-customvalidator', true);
-  $('#cmeddtc>input').attr('data-customvalidator', true);
+  // $('#cmstdtc>input').attr('data-customvalidator', true);
+  // $('#cmeddtc>input').attr('data-customvalidator', true);
 
 
   $('#cm-form').validator({

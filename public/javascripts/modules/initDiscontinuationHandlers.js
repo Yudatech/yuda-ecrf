@@ -4,8 +4,10 @@ function initDiscontinuationHandlers() {
   // 退出阶段
   $('#discontinuetype').change(function(){
     setFormFieldsVisibility();
+    setDateRange();
   });
   setFormFieldsVisibility();
+  setDateRange();
 
   // 临床研究者认为受试者应被排除或受试者自己认为应被排除
   $('#discontinuersn_3').change(function(){
@@ -24,6 +26,24 @@ function initDiscontinuationHandlers() {
     disable: false
   });
   $('#discontinuation-form').validator('validate');
+}
+
+function setDateRange() {
+  const discontinuetypeValue = $('#discontinuetype').val();
+  const surgerydate = $('#discontinuedt').data('extra').surgerydate
+  if (discontinuetypeValue === '0') {
+    $('#discontinuedt').datepicker('setEndDate', surgerydate);
+  }
+  else if (discontinuetypeValue === '1') {
+    $('#discontinuedt').datepicker('setStartDate', surgerydate);
+    $('#discontinuedt').datepicker('setEndDate', surgerydate);
+  }
+  else if (discontinuetypeValue === '2') {
+    $('#discontinuedt').datepicker('setStartDate', surgerydate);
+  }
+  else {
+    $('#discontinuedt').datepicker('setStartDate', new Date());
+  }
 }
 
 function setDiscontinueRsn4Visibility() {

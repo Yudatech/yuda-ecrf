@@ -4,6 +4,7 @@ moment.locale('zh-cn');
 const mongoose = require('mongoose');
 const Discontinuation = mongoose.model('Discontinuation');
 const Case = mongoose.model('Case');
+const Surgery = mongoose.model('Surgery');
 
 const helpers = require('./helpers');
 const decorationHelper = require('./decorationHelper');
@@ -50,6 +51,9 @@ const tableName = 'discontinuation';
 exports.discontinuationForm = async (req, res) => {
   const CaseNav = helpers.appendCaseIdToCaseNav(req.params.caseId);
   const discontinuationItem = await getDiscontinuationItemByCaseId(req.params.caseId);
+  const surgeryItem = await Surgery.findOne({
+    case: req.params.caseId
+  });
   const config = getDiscontinuationConfig();
   Object.keys(config.formConfigs).forEach((key) => {
     if (config.formConfigs[key].type === 'select') {
@@ -57,6 +61,7 @@ exports.discontinuationForm = async (req, res) => {
     }
     if (key === 'discontinuedt') {
       config.formConfigs[key].value = moment(discontinuationItem.discontinuedt).format('MM/DD/YYYY');
+      config.formConfigs[key].extra = JSON.stringify({surgerydate: moment(surgeryItem.surgerydtc).format('MM/DD/YYYY')});
     }
     else {
       config.formConfigs[key].value = discontinuationItem[key];
