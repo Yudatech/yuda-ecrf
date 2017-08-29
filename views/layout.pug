@@ -22,13 +22,15 @@ html
           
           #navbar-collapse-1.collapse.navbar-collapse
             ul.nav.navbar-nav
-              li
-                a.yuda-menu-btn.active(href="/sites") 中心管理
-              li
-                a.yuda-menu-btn(href="/users") 用户管理
               if user
-                li
-                  a.yuda-menu-btn(href="/case") 新建病例
+                if user.role === 'admin'
+                  li
+                    a.yuda-menu-btn(href="/sites" class=(currentPath.startsWith('/site') ? 'active' : '')) 中心管理
+                  li
+                    a.yuda-menu-btn(href="/users" class=(currentPath.startsWith('/user') ? 'active' : '')) 用户管理
+                if user.role === 'cra'
+                  li
+                    a.yuda-menu-btn(href="/case" class=(currentPath === '/case' ? 'active' : '')) 新建病例
                 li
                   a.yuda-menu-btn(href="/logout") 退出系统
               else
