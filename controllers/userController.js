@@ -118,7 +118,7 @@ exports.setUserLang = async (req, res) => {
   const userId = req.user._id;
   const lang = req.params.lang;
   await User.findByIdAndUpdate(userId, {
-    lang
+    language: lang
   });
   req.logout();
   res.redirect('/login');

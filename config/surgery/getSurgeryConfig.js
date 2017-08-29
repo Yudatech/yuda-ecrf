@@ -170,7 +170,7 @@ module.exports = function(lang) {
   }
 
   const result = {};
-  result.formConfigs = getOptionsLang(config.formConfigs);
+  result.formConfigs = getOptionsLang(config.formConfigs, lang);
   result.title = {
     device: config.title.device[lang],
     surgery: config.title.surgery[lang]

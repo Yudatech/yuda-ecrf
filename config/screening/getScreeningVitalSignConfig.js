@@ -94,9 +94,9 @@ module.exports = function(lang) {
   }
 
   const result = {};
-  result.formConfigs = getOptionsLang(config.formConfigs);
+  result.formConfigs = getOptionsLang(config.formConfigs, lang);
   result.title = config.title[lang];
-  result.errors = getOptionsLang(config.errors);
+  result.errors = getOptionsLang(config.errors, lang);
 
   return result;
 };

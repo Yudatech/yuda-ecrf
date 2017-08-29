@@ -82,7 +82,7 @@ module.exports = function(lang) {
   }
 
   const result = {};
-  result.buttons = getOptionsLang(config.buttons);
+  result.buttons = getOptionsLang(config.buttons, lang);
 
   return result;
 };

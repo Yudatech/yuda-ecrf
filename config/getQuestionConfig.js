@@ -35,8 +35,8 @@ module.exports = function(lang) {
   }
 
   const result = {};
-  result.questionConfigs = getOptionsLang(config.questionConfigs);
-  result.commentConfigs = getOptionsLang(config.commentConfigs);
+  result.questionConfigs = getOptionsLang(config.questionConfigs, lang);
+  result.commentConfigs = getOptionsLang(config.commentConfigs, lang);
   result.title = {
     question: config.title.question[lang],
     comment: config.title.comment[lang]

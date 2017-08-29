@@ -33,9 +33,9 @@ module.exports = function(lang) {
   }
 
   const result = {};
-  result.labels = getOptionsLang(config.labels);
+  result.labels = getOptionsLang(config.labels, lang);
   result.title = config.title[lang];
-  result.buttons = getOptionsLang(config.buttons);
+  result.buttons = getOptionsLang(config.buttons, lang);
 
   return result;
 };

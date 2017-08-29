@@ -70,7 +70,7 @@ module.exports = function(lang) {
     };
   });
   result.title = config.title[lang];
-  result.buttons = getOptionsLang(config.buttons);
+  result.buttons = getOptionsLang(config.buttons, lang);
 
   return result;
 };

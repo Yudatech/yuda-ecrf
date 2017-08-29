@@ -323,7 +323,7 @@ module.exports = function(lang) {
   }
 
   const result = {};
-  result.formConfigs = getOptionsLang(config.formConfigs);
+  result.formConfigs = getOptionsLang(config.formConfigs, lang);
   Object.keys(result.formConfigs).forEach((key) => {
     const item = result.formConfigs[key];
     if (item.unit !== undefined) {
