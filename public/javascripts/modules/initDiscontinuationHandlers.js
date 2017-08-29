@@ -1,8 +1,39 @@
+import setFieldVisibility from './helpers/setFieldVisibility';
+
 function initDiscontinuationHandlers() {
+  // 退出阶段
   $('#discontinuetype').change(function(){
     setFormFieldsVisibility();
   });
   setFormFieldsVisibility();
+
+  // 临床研究者认为受试者应被排除或受试者自己认为应被排除
+  $('#discontinuersn_3').change(function(){
+    setDiscontinueRsn4Visibility();
+  });
+  setDiscontinueRsn4Visibility();
+
+  // 其他原因
+  $('#discontinuersn_6').change(function(){
+    setDiscontinueRsn7Visibility();
+  });
+  setDiscontinueRsn7Visibility();
+
+  $('#discontinuation-form').validator({
+    delay: 100,
+    disable: false
+  });
+  $('#discontinuation-form').validator('validate');
+}
+
+function setDiscontinueRsn4Visibility() {
+  const checked = $('#discontinuersn_3').is(':checked');
+  setFieldVisibility('discontinuersn_4', checked);
+}
+
+function setDiscontinueRsn7Visibility() {
+  const checked = $('#discontinuersn_6').is(':checked');
+  setFieldVisibility('discontinuersn_7', checked);
 }
 
 function setFormFieldsVisibility() {
