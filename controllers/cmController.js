@@ -45,7 +45,7 @@ exports.cmTable = async (req, res) => {
   });
   res.render('cm/cmTable', {
     caseNav: CaseNav,
-    cmTableConfig: getCmTableConfig(),
+    config: getCmTableConfig(),
     buttonConfig: getButtonConfig(),
     cmList: cmListFormated,
     caseId: req.params.caseId

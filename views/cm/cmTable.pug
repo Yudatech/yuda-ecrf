@@ -2,17 +2,17 @@ extends ../caseLayout
 
 block case-content
   .case-content
-    h2 #{cmTableConfig.title}
+    h2 #{config.title}
 
     table.table.table-striped
       thead
         tr
-          each cmTableHeader in cmTableConfig.headers
+          each cmTableHeader in config.headers
             th #{cmTableHeader.text}
       tbody
         each cm in cmList
           tr
-            each cmTableHeader in cmTableConfig.headers
+            each cmTableHeader in config.headers
               if cmTableHeader.name !== 'operations'
                 td #{cm[cmTableHeader.name]}
               else

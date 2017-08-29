@@ -60,7 +60,7 @@ exports.aeTable = async (req, res) => {
   });
   res.render('ae/aeTable', {
     caseNav: CaseNav,
-    aeTableConfig: getAeTableConfig(),
+    config: getAeTableConfig(),
     buttonConfig: getButtonConfig(),
     aeList: aeListFormated,
     caseId: req.params.caseId

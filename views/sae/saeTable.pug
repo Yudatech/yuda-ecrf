@@ -2,17 +2,17 @@ extends ../caseLayout
 
 block case-content
   .case-content
-    h2 #{saeTableConfig.title}
+    h2 #{config.title}
 
     table.table.table-striped
       thead
         tr
-          each saeTableHeader in saeTableConfig.headers
+          each saeTableHeader in config.headers
             th #{saeTableHeader.text}
       tbody
         each sae in saeList
           tr
-            each saeTableHeader in saeTableConfig.headers
+            each saeTableHeader in config.headers
               if saeTableHeader.name !== 'operations'
                 td #{sae[saeTableHeader.name]}
               else

@@ -2,17 +2,17 @@ extends ../caseLayout
 
 block case-content
   .case-content
-    h2 #{visitTableConfig.title}
+    h2 #{config.title}
 
     table.table.table-striped
       thead
         tr
-          each visitTableHeader in visitTableConfig.headers
+          each visitTableHeader in config.headers
             th #{visitTableHeader.text}
       tbody
         each visit in visitList
           tr
-            each visitTableHeader in visitTableConfig.headers
+            each visitTableHeader in config.headers
               if visitTableHeader.name !== 'operations'
                 td #{visit[visitTableHeader.name]}
               else

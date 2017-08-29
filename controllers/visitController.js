@@ -48,7 +48,7 @@ exports.visitTable = async (req, res) => {
   });
   res.render('visit/visitTable', {
     caseNav: CaseNav,
-    visitTableConfig: getVisitTableConfig(),
+    config: getVisitTableConfig(),
     buttonConfig: getButtonConfig(),
     visitList: visitListFormated,
     caseId: req.params.caseId

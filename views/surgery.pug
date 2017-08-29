@@ -7,7 +7,7 @@ block case-content
   .case-content
     form.form-horizontal(id="surgery-form" action=`/surgery/${caseId}` method="POST")
       fieldset
-        legend #{config.title.device}
+        legend #{config.groups.device.text}
 
         .row
           .col-sm-10
@@ -28,7 +28,7 @@ block case-content
             +_questionBtn(config.formConfigs.device_2, questionFields)
 
       fieldset
-        legend #{config.title.surgery}
+        legend #{config.groups.surgery.text}
 
         .row
           .col-sm-10

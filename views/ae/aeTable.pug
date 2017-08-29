@@ -2,17 +2,17 @@ extends ../caseLayout
 
 block case-content
   .case-content
-    h2 #{aeTableConfig.title}
+    h2 #{config.title}
 
     table.table.table-striped
       thead
         tr
-          each aeTableHeader in aeTableConfig.headers
+          each aeTableHeader in config.headers
             th #{aeTableHeader.text}
       tbody
         each ae in aeList
           tr
-            each aeTableHeader in aeTableConfig.headers
+            each aeTableHeader in config.headers
               if aeTableHeader.name !== 'operations'
                 td #{ae[aeTableHeader.name]}
               else

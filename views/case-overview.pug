@@ -5,36 +5,35 @@ include mixins/_questionBtn
 
 block case-content
   .case-content
-    h2 #{config.title}
     form.form-horizontal
       fieldset
-        legend #{caseOverviewConfig.title}
+        legend #{config.title}
         div.row
           div.col-sm-10
             .form-group
-              label.col-sm-4.control-label #{caseOverviewConfig.labels._id.text}
+              label.col-sm-4.control-label #{config.labels._id.text}
               .col-sm-8
-                input.form-control(type="text" readonly value=config._id)
+                input.form-control(type="text" readonly value=caseOverviewConfig._id)
         div.row
           div.col-sm-10
             .form-group
-              label.col-sm-4.control-label #{caseOverviewConfig.labels.subjname.text}
+              label.col-sm-4.control-label #{config.labels.subjname.text}
               .col-sm-8
-                input.form-control(type="text" readonly value=config.subjname)
+                input.form-control(type="text" readonly value=caseOverviewConfig.subjname)
 
         div.row
           div.col-sm-10
             .form-group
-              label.col-sm-4.control-label #{caseOverviewConfig.labels.subjabbr.text}
+              label.col-sm-4.control-label #{config.labels.subjabbr.text}
               .col-sm-8
-                input.form-control(type="text" readonly value=config.subjabbr)
+                input.form-control(type="text" readonly value=caseOverviewConfig.subjabbr)
         div.row
           div.col-sm-10
             .form-group
-              label.col-sm-4.control-label #{caseOverviewConfig.labels.subjAcceptDate.text}
+              label.col-sm-4.control-label #{config.labels.subjAcceptDate.text}
               .col-sm-8
-                input.form-control(type="text" readonly value=config.subjAcceptDate)
+                input.form-control(type="text" readonly value=caseOverviewConfig.subjAcceptDate)
       br
       fieldset
-        legend #{caseOverviewConfig.labels.attachedDoc.text}
-        img(src=`/uploads/${config.attachedDoc}`)
+        legend #{config.labels.attachedDoc.text}
+        img(src=`/uploads/${caseOverviewConfig.attachedDoc}`)

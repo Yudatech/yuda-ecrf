@@ -43,7 +43,7 @@ exports.saeTable = async (req, res) => {
   });
   res.render('sae/saeTable', {
     caseNav: CaseNav,
-    saeTableConfig: getSaeTableConfig(),
+    config: getSaeTableConfig(),
     buttonConfig: getButtonConfig(),
     saeList: saeListFormated,
     caseId: req.params.caseId

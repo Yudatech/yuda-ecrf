@@ -2,15 +2,22 @@ const getOptionsLang = require('../configHelpers').getOptionsLang;
 
 const config = {
   title: {
-    device: {
+    zh: '手术',
+    en: 'Operation'
+  },
+  groups: [{
+    name: 'device',
+    text: {
       zh: '器械',
       en: 'Device'
-    },
-    surgery: {
+    }
+  }, {
+    name: 'surgery',
+    text: {
       zh: '手术',
       en: 'Operation'
     }
-  },
+  }],
   formConfigs: [{
     name: 'surgerydtc',
     type: 'date',
@@ -171,10 +178,8 @@ module.exports = function(lang) {
 
   const result = {};
   result.formConfigs = getOptionsLang(config.formConfigs, lang);
-  result.title = {
-    device: config.title.device[lang],
-    surgery: config.title.surgery[lang]
-  };
+  result.title = config.title[lang];
+  result.groups = getOptionsLang(config.groups, lang);
 
   return result;
 };
