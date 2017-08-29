@@ -7,5 +7,5 @@ mixin _checkboxTemplate(config, disabled)
     label
       if disabled !== true
         input(id=realId type="hidden" name=name value=hiddenValue)
-      input(id=name type="checkbox" checked=value required=config.required onclick='handleCheckboxClick(this)')
+      input(id=name type="checkbox" checked=value required=config.required onclick='handleCheckboxClick(this)' data-customvalidator)
       span #{config.text}

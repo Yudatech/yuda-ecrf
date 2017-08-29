@@ -5,6 +5,7 @@ const getButtonConfig = require('../config/common/getButtonConfig');
 const getCommitCaseConfig = require('../config/getCommitCaseConfig');
 const getCaseFormConfig = require('../config/getCaseFormConfig');
 const getCaseSecondAuthConfig = require('../config/getCaseSecondAuthConfig');
+const commitHelpers = require('./commitHelpers');
 
 const helpers = require('./helpers');
 
@@ -289,102 +290,19 @@ exports.showCaseCommitForm = async (req, res) => {
   }
   const CaseNav = helpers.appendCaseIdToCaseNav(caseId);
   const commitCaseConfig = getCommitCaseConfig();
-  const configs = [];
-  await Promise.all(commitCaseConfig.configs.map(async (item) => {
-    item = await getCommitConfigMessage(caseId, item);
-    configs.push(item);
-  }));
-  let finished = configs.find((config) => {
-    return config.finished === false;
+  const result = [];
+  result.push(await commitHelpers.validateScreeningForm(caseId, req.user.language));
+
+  const showForm = result.find((item) => {
+    return item.pass === false;
   }) === undefined;
 
   res.render('commit-case', {
     caseNav: CaseNav,
     caseId,
-    configs,
-    finished,
+    config: commitCaseConfig,
     buttonConfig: getButtonConfig(),
-    commitCaseConfig: getCommitCaseConfig()
+    result: result,
+    showForm
   });
 };
-
-async function getCommitConfigMessage(caseId, config) {
-  const commitCaseConfig = getCommitCaseConfig();
-  const table = config.name;
-
-  let items = [];
-  if (table === 'screening') {
-    items.push(await Screening.findOne({
-      case: caseId
-    }));
-  }
-  else if (table === 'screeningchecklist') {
-    items.push(await ScreeningChecklist.findOne({
-      case: caseId
-    }));
-  }
-  else if (table === 'reviewchecklist') {
-    items.push(await ReviewChecklist.findOne({
-      case: caseId
-    }));
-  }
-  else if (table === 'discontinuation') {
-    items.push(await Discontinuation.findOne({
-      case: caseId
-    }));
-  }
-  else if (table === 'cm') {
-    items = await Cm.find({
-      case: caseId
-    });
-  }
-  else if (table === 'sae') {
-    items = await Sae.find({
-      case: caseId
-    });
-  }
-  else if (table === 'ae') {
-    items = await Ae.find({
-      case: caseId
-    });
-  }
-  else if (table === 'surgery') {
-    items = await Surgery.find({
-      case: caseId
-    });
-  }
-  else if (table === 'visit') {
-    items = await Visit.find({
-      case: caseId
-    });
-  }
-
-  const total = config.total;
-  if (items.length === 0 || items[0] === null) {
-    config.message = commitCaseConfig.empty;
-    config.finished = false;
-  }
-  else {
-    let num = 0;
-    items.forEach((item) => {
-      const obj = item.toObject();
-      let finished = 0;
-      Object.keys(obj).forEach((key) => {
-        if (key.charAt(0) !== '_' && obj[key] !== null) {
-          finished++;
-        }
-      });
-      num = num + (total - finished);
-    });
-    if (num === 0) {
-      config.message = commitCaseConfig.finished;
-      config.finished = true;
-    }
-    else {
-      config.message = commitCaseConfig.ongoing.replace('__NUM__', num);
-      config.finished = false;
-    }
-  }
-
-  return config;
-}

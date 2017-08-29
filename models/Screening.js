@@ -33,37 +33,85 @@ const screeningSchema = new Schema({
   // 签署知情同意书
   inclusion_4: Boolean,
   // 当前病情需要紧急救护
-  exclusion_1: Boolean,
+  exclusion_1: {
+    type: Boolean,
+    default: false
+  },
   // 当前外科情况为肠梗阻或肠穿孔，局部或全身感染、腹膜炎、小肠局部缺血或者严重癌转移
-  exclusion_2: Boolean,
+  exclusion_2: {
+    type: Boolean,
+    default: false
+  },
   // 肛管狭窄或存在其他可致肛管梗阻的情况
-  exclusion_3: Boolean,
+  exclusion_3: {
+    type: Boolean,
+    default: false
+  },
   // 既往有较大腹部手术病史，既往腹部或盆腔的放射治疗
-  exclusion_4: Boolean,
+  exclusion_4: {
+    type: Boolean,
+    default: false
+  },
   // ASA III - VI 
-  exclusion_5: Boolean,
+  exclusion_5: {
+    type: Boolean,
+    default: false
+  },
   // 白蛋白低于35 g/l
-  exclusion_6: Boolean,
+  exclusion_6: {
+    type: Boolean,
+    default: false
+  },
   // 炎性肠病(溃疡性结肠炎或克罗恩病)
-  exclusion_7: Boolean,
+  exclusion_7: {
+    type: Boolean,
+    default: false
+  },
   // 病情需要两处或以上肠吻合
-  exclusion_8: Boolean,
+  exclusion_8: {
+    type: Boolean,
+    default: false
+  },
   // 术前一个月内使用过皮质激素、免疫抑制剂
-  exclusion_9: Boolean,
+  exclusion_9: {
+    type: Boolean,
+    default: false
+  },
   // 全身麻醉禁忌症
-  exclusion_10: Boolean,
+  exclusion_10: {
+    type: Boolean,
+    default: false
+  },
   // 术前或术中发现肠管直径异常或肠壁厚度异常
-  exclusion_11: Boolean,
+  exclusion_11: {
+    type: Boolean,
+    default: false
+  },
   // 因认知能力所限，不能理解与试验研究相关的资料，不能了解试验研究的目的和设计，或患者不同意参加本试验
-  exclusion_12: Boolean,
+  exclusion_12: {
+    type: Boolean,
+    default: false
+  },
   // BMI > 35
-  exclusion_13: Boolean,
+  exclusion_13: {
+    type: Boolean,
+    default: false
+  },
   // 术前六个月内发生过心肌梗死或其他严重心脏疾病
-  exclusion_14: Boolean,
+  exclusion_14: {
+    type: Boolean,
+    default: false
+  },
   // 严重凝血方面疾病
-  exclusion_15: Boolean,
+  exclusion_15: {
+    type: Boolean,
+    default: false
+  },
   // 其他外科医生认为不适宜参加本试验研究的情况 
-  exclusion_16: Boolean,
+  exclusion_16: {
+    type: Boolean,
+    default: false
+  },
   // 其他外科医生认为不适宜参加本试验研究的情况 说明
   exclusion_17: String,
   // 饮酒

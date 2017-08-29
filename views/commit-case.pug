@@ -2,17 +2,31 @@ extends caseLayout
 
 block case-content
   .case-content
-    form.form-horizontal(action=`/commit/${caseId}` method="POST")
-      .form-group
-        label.col-sm-2.control-label #{commitCaseConfig.password}
-        .col-sm-10
-          input.form-control(type="password" name="password" required)
+    if showForm
+      form.form-horizontal(action=`/commit/${caseId}` method="POST")
+        .form-group
+          label.col-sm-2.control-label #{config.password}
+          .col-sm-10
+            input.form-control(type="password" name="password" required)
 
-      input.btn.btn-default.yuda-input-btn(type="submit" value=buttonConfig.buttons.commit.text)
+        input.btn.btn-default.yuda-input-btn(type="submit" value=buttonConfig.buttons.commit.text)
 
-    each item in configs
-      .row
-        .col-sm-4
-          span #{item.text}
-        .col-sm-8
-          span #{item.message}
+    ul
+      each item in result
+        li.row
+          .col-sm-8
+            span #{item.message}
+              if item.children
+                ul
+                  each child in item.children
+                    li.row
+                      .col-sm-8
+                        span #{child.message}
+                      .col-sm-4
+                        if child.pass === false && child.link !== ''
+                          a.btn.btn-default(role="button" href=child.link)
+                            span.glyphicon.glyphicon-link
+          .col-sm-4
+            if item.pass === false && item.link !== ''
+              a.btn.btn-default(role="button" href=item.link)
+                span.glyphicon.glyphicon-link
