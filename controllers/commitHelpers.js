@@ -2,7 +2,6 @@ const mongoose = require('mongoose');
 const Screening = mongoose.model('Screening');
 const ScreeningChecklist = mongoose.model('ScreeningChecklist');
 const ReviewChecklist = mongoose.model('ReviewChecklist');
-const Discontinuation = mongoose.model('Discontinuation');
 const Cm = mongoose.model('Cm');
 const Sae = mongoose.model('Sae');
 const Ae = mongoose.model('Ae');
@@ -58,6 +57,25 @@ function doReviewChecklistCustomValidation(caseId, key, obj, ruleConfig, validat
   }
 }
 
+function doSurgeryCustomValidation(caseId, key, obj, ruleConfig, validateResult, aeList) {
+  if (obj[key] !== true) {
+    return true;
+  }
+  else {
+    if (aeList.length === 0 || aeList.find((item) => item.aeorigion === 'surgery') === undefined) {
+      if (validateResult.children === undefined) {
+        validateResult.children = [];
+      }
+      validateResult.children.push({
+        pass: false,
+        message: ruleConfig.message,
+        link: `/aelist/${caseId}`
+      });
+      return false;
+    }
+  }
+}
+
 function doCommitValidation(caseId, key, obj, rules, extra, validateResult) {
   const failed = rules.find((ruleConfig) => {
     let result = true;
@@ -76,6 +94,9 @@ function doCommitValidation(caseId, key, obj, rules, extra, validateResult) {
     else if (ruleName === 'custom') {
       if (key === 'reviewcheck_3' || key === 'reviewcheck_4') {
         result = doReviewChecklistCustomValidation(caseId, key, obj, ruleConfig, validateResult, extra.cmList);
+      }
+      else if (key === 'surgery_14') {
+        result = doSurgeryCustomValidation(caseId, key, obj, ruleConfig, validateResult, extra.aeList);
       }
     }
     return result === false;
@@ -230,4 +251,31 @@ exports.validateReviewChecklistForm = async function(caseId, lang) {
     doCommitValidationForWholeTable(caseId, reviewChecklistValidateResult, commitCaseConfig, formConfigs, reviewChecklistItem, extra);
   }
   return reviewChecklistValidateResult;
+};
+
+exports.validateSurgeryForm = async function(caseId, lang) {
+  const commitCaseConfig = getCommitCaseConfig(lang);
+  const surgeryItem = await Surgery.findOne({
+    case: caseId
+  });
+  const surgeryValidateResult = initValidateResult(getCommitCaseConfigItem(commitCaseConfig.records, 'surgery'));
+
+  if (surgeryItem === null) {
+    surgeryValidateResult.pass = false;
+    surgeryValidateResult.link = `${surgeryValidateResult.linkBase}/${caseId}`;
+    surgeryValidateResult.message = `${surgeryValidateResult.text} ${commitCaseConfig.empty}`;
+  }
+  else {
+    const caseItem = await Case.findById(caseId);
+    const aeList = await Ae.find({
+      case: caseId
+    });
+    const extra = {
+      subjAcceptDate: caseItem.subjAcceptDate.valueOf(),
+      aeList
+    };
+    const formConfigs = getReviewChecklistConfig(lang).formConfigs;
+    doCommitValidationForWholeTable(caseId, surgeryValidateResult, commitCaseConfig, formConfigs, surgeryItem, extra);
+  }
+  return surgeryValidateResult;
 };

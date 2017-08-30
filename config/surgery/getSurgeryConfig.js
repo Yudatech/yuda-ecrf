@@ -21,6 +21,11 @@ const config = {
   formConfigs: [{
     name: 'surgerydtc',
     type: 'date',
+    commit: [{
+      rule: 'date',
+      start: 'subjAcceptDate',
+      end: 'now'
+    }],
     text: {
       zh: '手术日期',
       en: 'Date'
@@ -142,6 +147,13 @@ const config = {
   }, {
     name: 'surgery_14',
     type: 'checkbox',
+    commit: [{
+      rule: 'custom',
+      message: {
+        zh: '发生不良事件，请完整填写《不良事件及器械缺陷报告表》',
+        en: 'Complete Adverse Events and Device Deficiency (AE) Report'
+      }
+    }],
     text: {
       zh: '不良事件(若发生不良事件，请完整填写《不良事件及器械缺陷报告表》)',
       en: 'Adverse events (Complete Adverse Events and Device Deficiency (AE) Report)'
