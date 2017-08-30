@@ -2,4 +2,4 @@ mixin _textfieldTemplate(config)
   .form-group(id=`${config.name}-container`)
     label.col-sm-4.control-label #{config.text}
     .col-sm-8
-      input.form-control(type="text" name=config.name value=config.value)
+      input.form-control(type="text" name=config.name value=config.value data-customrequired=config.required)

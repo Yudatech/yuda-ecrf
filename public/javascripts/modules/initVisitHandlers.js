@@ -1,3 +1,5 @@
+import requireValidator from './validators/requireValidator';
+
 function initVisitHandlers() {
   const param_16El = $('#param_16');
   
@@ -7,7 +9,10 @@ function initVisitHandlers() {
 
   $('#visit-form').validator({
     delay: 100,
-    disable: false
+    disable: false,
+    custom: {
+      customrequire: requireValidator
+    }
   });
   $('#visit-form').validator('validate');
 }

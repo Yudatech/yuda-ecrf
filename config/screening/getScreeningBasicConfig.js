@@ -8,6 +8,11 @@ const config = {
   formConfigs: [{
     name: 'screeningdate',
     type: 'date',
+    commit: [{
+      rule: 'date',
+      start: 'subjAcceptDate',
+      end: 'now'
+    }],
     text: {
       zh: '首诊日期'
     }

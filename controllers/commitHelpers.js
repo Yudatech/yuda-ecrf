@@ -8,81 +8,151 @@ const Sae = mongoose.model('Sae');
 const Ae = mongoose.model('Ae');
 const Surgery = mongoose.model('Surgery');
 const Visit = mongoose.model('Visit');
+const Case = mongoose.model('Case');
 
 const getCommitCaseConfig = require('../config/getCommitCaseConfig');
 
-const result = {
-  name: '',
-  pass: true,
-  resultText: '',
-  link: ''
-};
+const getScreeningBasicConfig = require('../config/screening/getScreeningBasicConfig');
+const getScreeningAssistantConfig = require('../config/screening/getScreeningAssistantConfig');
+const getScreeningConMedConfig = require('../config/screening/getScreeningConMedConfig');
+const getScreeningDignoseConfig = require('../config/screening/getScreeningDignoseConfig');
+const getScreeningDiseaseConfig = require('../config/screening/getScreeningDiseaseConfig');
+const getScreeningExclusionConfig = require('../config/screening/getScreeningExclusionConfig');
+const getScreeningInclusionConfig = require('../config/screening/getScreeningInclusionConfig');
+const getScreeningLabConfig = require('../config/screening/getScreeningLabConfig');
+const getScreeningMethodConfig = require('../config/screening/getScreeningMethodConfig');
+const getScreeningRegionConfig = require('../config/screening/getScreeningRegionConfig');
+const getScreeningVitalSignConfig = require('../config/screening/getScreeningVitalSignConfig');
+
+const getScreeningChecklistConfig = require('../config/getScreeningChecklistConfig');
+
+function doMustTrueCheck(value) {
+  return value === true;
+}
+
+function doMustFalseCheck(value) {
+  return value === false;
+}
+
+function doDateCheck(value, start, end) {
+  return value >= start && value < end;
+}
+
+function doCommitValidation(key, obj, rules, extra) {
+  const failed = rules.find((ruleConfig) => {
+    let result = true;
+    const ruleName = ruleConfig.rule;
+    if (ruleName === 'must_true') {
+      result = doMustTrueCheck(obj[key]);
+    }
+    else if (ruleName === 'must_false') {
+      result = doMustFalseCheck(obj[key]);
+    }
+    else if (ruleName === 'date') {
+      const start = ruleConfig.start === 'now' ? new Date().valueOf() : extra[ruleConfig.start];
+      const end = ruleConfig.end === 'now' ? new Date().valueOf() : extra[ruleConfig.end];
+      result = doDateCheck(obj[key].valueOf(), start, end);
+    }
+    return result === false;
+  });
+  return failed === undefined;
+}
+
+function doCommitValidationForWholeTable(caseId, validateResult, commitCaseConfig, formConfigs, model, extra) {
+  Object.keys(formConfigs).forEach((key) => {
+    const config = formConfigs[key];
+    if (config.commit !== undefined) {
+      const result = doCommitValidation(key, model, config.commit, extra);
+      if (result === false) {
+        validateResult.pass = false;
+        validateResult.invalidFields.push(key);
+      }
+    }
+  });
+  if (validateResult.pass === false) {
+    validateResult.link = `${validateResult.linkBase}/${caseId}`;
+    validateResult.message = `${validateResult.text} ${commitCaseConfig.ongoing}`;
+  }
+  else {
+    validateResult.message = `${validateResult.text} ${commitCaseConfig.finish}`;
+  }
+}
+
+function initValidateResult(config) {
+  const result = {
+    name: '',
+    pass: true,
+    resultText: '',
+    link: ''
+  };
+  return Object.assign({invalidFields: []}, result, config);
+}
+
+function getCommitCaseConfigItem(configs, name) {
+  return configs.find((item) => {
+    return item.name === name;
+  });
+}
 
 exports.validateScreeningForm = async function(caseId, lang) {
   const commitCaseConfig = getCommitCaseConfig(lang);
-  const screeningItem = Screening.findOne({
+  const screeningItem = await Screening.findOne({
     case: caseId
   });
-  const screeningValidateResult = Object.assign({invalidFields: []}, result, commitCaseConfig.records[0]);
+  const caseItem = await Case.findById(caseId);
+  const screeningValidateResult = initValidateResult(getCommitCaseConfigItem(commitCaseConfig.records, 'screening'));
 
   // 未填表，直接返回
-  if (screeningItem === undefined) {
+  if (screeningItem === null) {
     screeningValidateResult.pass = false;
     screeningValidateResult.link = `${screeningValidateResult.linkBase}/${caseId}`;
     screeningValidateResult.message = `${screeningValidateResult.text} ${commitCaseConfig.empty}`;
   }
   else {
-    screeningValidateResult.children = commitCaseConfig.records[0].children.map((item) => {
-      return Object.assign({invalidFields: []}, result, item);
+    const extra = {
+      subjAcceptDate: caseItem.subjAcceptDate.valueOf()
+    };
+    screeningValidateResult.children = screeningValidateResult.children.map((item) => {
+      return initValidateResult(item);
     });
 
-    const inclusionMustTrueFields = ['inclusion_1', 'inclusion_2', 'inclusion_3', 'inclusion_4'];
-    const exclusionMustFalseFields = [
-      'exclusion_1',
-      'exclusion_2',
-      'exclusion_3',
-      'exclusion_4',
-      'exclusion_5',
-      'exclusion_6',
-      'exclusion_7',
-      'exclusion_8',
-      'exclusion_9',
-      'exclusion_10',
-      'exclusion_11',
-      'exclusion_12',
-      'exclusion_13',
-      'exclusion_14',
-      'exclusion_15',
-      'exclusion_16'
-    ];
+    screeningValidateResult.children.forEach((childResult) => {
+      let formConfigs;
+      if (childResult.name === 'screening-basic') {
+        formConfigs = getScreeningBasicConfig(lang).formConfigs;
+      }
+      else if (childResult.name === 'screening-inclusion') {
+        formConfigs = getScreeningInclusionConfig(lang).formConfigs;        
+      }
+      else if (childResult.name === 'screening-exclusion') {
+        formConfigs = getScreeningExclusionConfig(lang).formConfigs;
+      }
+      else if (childResult.name === 'screening-method') {
+        formConfigs = getScreeningMethodConfig(lang).formConfigs;
+      }
+      else if (childResult.name === 'screening-region') {
+        formConfigs = getScreeningRegionConfig(lang).formConfigs;
+      }
+      else if (childResult.name === 'screening-lab') {
+        formConfigs = getScreeningLabConfig(lang).formConfigs;
+      }
+      else if (childResult.name === 'screening-assistant') {
+        formConfigs = getScreeningAssistantConfig(lang).formConfigs;
+      }
+      else if (childResult.name === 'screening-disease') {
+        formConfigs = getScreeningDiseaseConfig(lang).formConfigs;
+      }
+      else if (childResult.name === 'screening-dignose') {
+        formConfigs = getScreeningDignoseConfig(lang).formConfigs;
+      }
+      else if (childResult.name === 'screening-conmed') {
+        formConfigs = getScreeningConMedConfig(lang).formConfigs;
+      }
+      else if (childResult.name === 'screening-vitalsign') {
+        formConfigs = getScreeningVitalSignConfig(lang).formConfigs;
+      }
 
-    const inclusionResultConfig = screeningValidateResult.children.find((item) => item.name === 'screening-inclusion');
-    inclusionMustTrueFields.forEach((fieldName) => {
-      if (screeningItem[fieldName] !== true) {
-        inclusionResultConfig.pass = false;
-        screeningValidateResult.pass = false;
-        inclusionResultConfig.invalidFields.push(fieldName);
-        inclusionResultConfig.link = `${inclusionResultConfig.linkBase}/${caseId}`;
-      }
-    });
-
-    const exclusionResultConfig = screeningValidateResult.children.find((item) => item.name === 'screening-exclusion');
-    exclusionMustFalseFields.forEach((fieldName) => {
-      if (screeningItem[fieldName] !== false && screeningItem[fieldName] !== undefined) {
-        exclusionResultConfig.pass = false;
-        screeningValidateResult.pass = false;
-        exclusionResultConfig.invalidFields.push(fieldName);
-        exclusionResultConfig.link = `${exclusionResultConfig.linkBase}/${caseId}`;
-      }
-    });
-
-    screeningValidateResult.children.forEach((item) => {
-      if (item.pass === true) {
-        item.message = `${item.text} ${commitCaseConfig.finish}`;
-      }
-      else {
-        item.message = `${item.text} ${commitCaseConfig.ongoing}`;
-      }
+      doCommitValidationForWholeTable(caseId, childResult, commitCaseConfig, formConfigs, screeningItem, extra);
     });
 
     screeningValidateResult.message = screeningValidateResult.text;
@@ -93,4 +163,19 @@ exports.validateScreeningForm = async function(caseId, lang) {
 
 exports.validateScreeningChecklistForm = async function(caseId, lang) {
   const commitCaseConfig = getCommitCaseConfig(lang);
+  const screeningChecklistItem = await ScreeningChecklist.findOne({
+    case: caseId
+  });
+  const screeningChecklistValidateResult = initValidateResult(getCommitCaseConfigItem(commitCaseConfig.records, 'screeningchecklist'));
+
+  if (screeningChecklistItem === null) {
+    screeningChecklistValidateResult.pass = false;
+    screeningChecklistValidateResult.link = `${screeningChecklistValidateResult.linkBase}/${caseId}`;
+    screeningChecklistValidateResult.message = `${screeningChecklistValidateResult.text} ${commitCaseConfig.empty}`;
+  }
+  else {
+    const formConfigs = getScreeningChecklistConfig(lang).formConfigs;
+    doCommitValidationForWholeTable(caseId, screeningChecklistValidateResult, commitCaseConfig, formConfigs, screeningChecklistItem);
+  }
+  return screeningChecklistValidateResult;
 };

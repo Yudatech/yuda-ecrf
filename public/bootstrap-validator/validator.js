@@ -183,8 +183,7 @@
 
     $.each(this.validators, $.proxy(function (key, validator) {
       var error = null
-      if ((getValue($el) || $el.attr('required')) &&
-          ($el.attr('data-' + key) !== undefined || key == 'native') &&
+      if (($el.attr('data-' + key) !== undefined) &&
           (error = validator.call(this, $el))) {
          error = getErrorMessage(key) || error
         !~errors.indexOf(error) && errors.push(error)
@@ -284,6 +283,7 @@
   }
 
   Validator.prototype.onSubmit = function (e) {
+    if (this.options.disable === false) return;
     this.validate()
     if (this.isIncomplete() || this.hasErrors()) e.preventDefault()
   }

@@ -1,4 +1,5 @@
 import setFieldVisibility from './helpers/setFieldVisibility';
+import requireValidator from './validators/requireValidator';
 
 function initScreeningRegionHandlers() {
   const region_4El = $('#region_4');
@@ -10,7 +11,10 @@ function initScreeningRegionHandlers() {
 
   $('#screening-region-form').validator({
     delay: 100,
-    disable: false
+    disable: false,
+    custom: {
+      customrequire: requireValidator
+    }
   });
   $('#screening-region-form').validator('validate');
 }

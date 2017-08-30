@@ -1,3 +1,5 @@
+import requireValidator from './validators/requireValidator';
+
 function initSurgeryHandlers() {
   const surgery_17El = $('#surgery_17');
   
@@ -7,7 +9,10 @@ function initSurgeryHandlers() {
 
   $('#surgery-form').validator({
     delay: 100,
-    disable: false
+    disable: false,
+    custom: {
+      customrequire: requireValidator
+    }
   });
   $('#surgery-form').validator('validate');
 }

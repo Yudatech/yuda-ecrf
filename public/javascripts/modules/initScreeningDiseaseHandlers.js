@@ -1,5 +1,6 @@
 import setWarningStyle from './helpers/setWarningStyle';
 import setFieldVisibility from './helpers/setFieldVisibility';
+import requireValidator from './validators/requireValidator';
 
 function initScreeningDiseaseHandlers() {
   // 其他疾病 checkbox
@@ -23,7 +24,10 @@ function initScreeningDiseaseHandlers() {
 
   $('#screening-disease-form').validator({
     delay: 100,
-    disable: false
+    disable: false,
+    custom: {
+      customrequire: requireValidator
+    }
   });
   $('#screening-disease-form').validator('validate');
 }

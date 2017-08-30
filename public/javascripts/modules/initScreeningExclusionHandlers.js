@@ -1,4 +1,7 @@
 import setFieldVisibility from './helpers/setFieldVisibility';
+import setErrorStyle from './helpers/setErrorStyle';
+import requireFalseValueValidator from './validators/requireFalseValueValidator';
+import requireValidator from './validators/requireValidator';
 
 function initScreeningExclusionHandlers() {
   const exclusion_16El = $('#exclusion_16');
@@ -9,7 +12,11 @@ function initScreeningExclusionHandlers() {
 
   $('#screening-exclusion-form').validator({
     delay: 100,
-    disable: false
+    disable: false,
+    custom: {
+      customrequirefalse: requireFalseValueValidator,
+      customrequired: requireValidator
+    }
   });
   $('#screening-exclusion-form').validator('validate');
 }
@@ -17,6 +24,7 @@ function initScreeningExclusionHandlers() {
 function setExclusion17Visibility() {
   const checked = $('#exclusion_16').is(':checked');
   setFieldVisibility('exclusion_17', checked);
+  $('#screening-exclusion-form').validator('update');
 }
 
 export default initScreeningExclusionHandlers;

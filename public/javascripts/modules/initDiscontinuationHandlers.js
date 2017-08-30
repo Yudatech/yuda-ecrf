@@ -1,4 +1,5 @@
 import setFieldVisibility from './helpers/setFieldVisibility';
+import requireValidator from './validators/requireValidator';
 
 function initDiscontinuationHandlers() {
   // 退出阶段
@@ -23,7 +24,10 @@ function initDiscontinuationHandlers() {
 
   $('#discontinuation-form').validator({
     delay: 100,
-    disable: false
+    disable: false,
+    custom: {
+      customrequire: requireValidator
+    }
   });
   $('#discontinuation-form').validator('validate');
 }
@@ -63,7 +67,6 @@ function setFormFieldsVisibility() {
   const ids_1 = ['discontinuedt', 'discontinuersn_6', 'discontinuersn_7', 'discontinuersn_8', 'discontinuersn_9'];
   const ids_2 = ['discontinuedt', 'discontinuersn_2', 'discontinuersn_4', 'discontinuersn_6', 'discontinuersn_7'];
 
-  console.log(typeof discontinuetypeValue);
   if (discontinuetypeValue === '0') {
     showRelevantFields(ids_0, allIds);
   }
