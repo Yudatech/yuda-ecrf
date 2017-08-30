@@ -7,11 +7,17 @@ const cmSources = [{
 }, {
   value: 1,
   text: {
+    zh: '复诊',
+    en: 'Visit 2'
+  }
+}, {
+  value: 2,
+  text: {
     zh: '手术中',
     en: 'Operation'
   }
 }, {
-  value: 2,
+  value: 3,
   text: {
     zh: '手术后',
     en: 'Postoperation'
