@@ -6,5 +6,6 @@
     "username":"admin",
     "userabbr":"admin",
     "role":"admin",
+    "language": "zh",
     "tel":"123"
 }]
