@@ -73,13 +73,7 @@ exports.discontinuationForm = async (req, res) => {
     }
 
     // hide everything except discontinuetype select box
-    if (key === 'discontinuetype') {
-      config.formConfigs[key].options.unshift({
-        value: '',
-        text: ''
-      });
-    }
-    else {
+    if (key !== 'discontinuetype') {
       config.formConfigs[key].hidden = true;
     }
   });

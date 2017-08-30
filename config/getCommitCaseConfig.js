@@ -22,6 +22,7 @@ const config = {
       zh: '首诊',
       en: 'Visit 1 (screening)'
     },
+    linkBase: '/screening-basic',
     children: [{
       name: 'screening-basic',
       text: {
