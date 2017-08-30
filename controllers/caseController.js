@@ -294,6 +294,7 @@ exports.showCaseCommitForm = async (req, res) => {
   result.push(await commitHelpers.validateScreeningForm(caseId, req.user.language));
   result.push(await commitHelpers.validateScreeningChecklistForm(caseId, req.user.language));
   result.push(await commitHelpers.validateReviewChecklistForm(caseId, req.user.language));
+  result.push(await commitHelpers.validateSurgeryForm(caseId, req.user.language));
 
   const showForm = result.find((item) => {
     return item.pass === false;
