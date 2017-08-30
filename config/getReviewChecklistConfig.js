@@ -8,6 +8,11 @@ const config = {
   formConfigs: [{
     name: 'reviewcheckdate',
     type: 'date',
+    commit: [{
+      rule: 'date',
+      start: 'subjAcceptDate',
+      end: 'now'
+    }],
     text: {
       zh: '复诊日期',
       en: 'Visit 2 Date'
@@ -29,6 +34,13 @@ const config = {
   }, {
     name: 'reviewcheck_3',
     type: 'checkbox',
+    commit: [{
+      rule: 'custom',
+      message: {
+        zh: '已使用抗生素，请完整填写《合并用药情况表》',
+        en: 'Complete Concomitant Medication Report, please.'
+      }
+    }],
     text: {
       zh: '预防性抗生素 (若使用抗生素，请完整填写《合并用药情况表》)',
       en: 'Prophylactic Antibiotics (Complete Concomitant Medication Report, please.)'
@@ -36,6 +48,13 @@ const config = {
   }, {
     name: 'reviewcheck_4',
     type: 'checkbox',
+    commit: [{
+      rule: 'custom',
+      message: {
+        zh: '已使用抗凝血药，请完整填写《合并用药情况表》',
+        en: 'Complete Concomitant Medication Report, please.'
+      }
+    }],
     text: {
       zh: '预防性抗凝血药 (若使用抗凝血药，请完整填写《合并用药情况表》)',
       en: 'Prophylactic Anti-Thrombotic (Complete Concomitant Medication Report, please.)'

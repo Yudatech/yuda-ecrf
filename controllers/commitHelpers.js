@@ -25,6 +25,7 @@ const getScreeningRegionConfig = require('../config/screening/getScreeningRegion
 const getScreeningVitalSignConfig = require('../config/screening/getScreeningVitalSignConfig');
 
 const getScreeningChecklistConfig = require('../config/getScreeningChecklistConfig');
+const getReviewChecklistConfig = require('../config/getReviewChecklistConfig');
 
 function doMustTrueCheck(value) {
   return value === true;
@@ -38,7 +39,26 @@ function doDateCheck(value, start, end) {
   return value >= start && value < end;
 }
 
-function doCommitValidation(key, obj, rules, extra) {
+function doReviewChecklistCustomValidation(caseId, key, obj, ruleConfig, validateResult, cmList) {
+  if (obj[key] !== true) {
+    return true;
+  }
+  else {
+    if (cmList.length === 0 || cmList.find((item) => item.source === 1) === undefined) {
+      if (validateResult.children === undefined) {
+        validateResult.children = [];
+      }
+      validateResult.children.push({
+        pass: false,
+        message: ruleConfig.message,
+        link: `/cmlist/${caseId}`
+      });
+      return false;
+    }
+  }
+}
+
+function doCommitValidation(caseId, key, obj, rules, extra, validateResult) {
   const failed = rules.find((ruleConfig) => {
     let result = true;
     const ruleName = ruleConfig.rule;
@@ -53,6 +73,11 @@ function doCommitValidation(key, obj, rules, extra) {
       const end = ruleConfig.end === 'now' ? new Date().valueOf() : extra[ruleConfig.end];
       result = doDateCheck(obj[key].valueOf(), start, end);
     }
+    else if (ruleName === 'custom') {
+      if (key === 'reviewcheck_3' || key === 'reviewcheck_4') {
+        result = doReviewChecklistCustomValidation(caseId, key, obj, ruleConfig, validateResult, extra.cmList);
+      }
+    }
     return result === false;
   });
   return failed === undefined;
@@ -62,7 +87,7 @@ function doCommitValidationForWholeTable(caseId, validateResult, commitCaseConfi
   Object.keys(formConfigs).forEach((key) => {
     const config = formConfigs[key];
     if (config.commit !== undefined) {
-      const result = doCommitValidation(key, model, config.commit, extra);
+      const result = doCommitValidation(caseId, key, model, config.commit, extra, validateResult);
       if (result === false) {
         validateResult.pass = false;
         validateResult.invalidFields.push(key);
@@ -99,7 +124,6 @@ exports.validateScreeningForm = async function(caseId, lang) {
   const screeningItem = await Screening.findOne({
     case: caseId
   });
-  const caseItem = await Case.findById(caseId);
   const screeningValidateResult = initValidateResult(getCommitCaseConfigItem(commitCaseConfig.records, 'screening'));
 
   // 未填表，直接返回
@@ -109,6 +133,7 @@ exports.validateScreeningForm = async function(caseId, lang) {
     screeningValidateResult.message = `${screeningValidateResult.text} ${commitCaseConfig.empty}`;
   }
   else {
+    const caseItem = await Case.findById(caseId);
     const extra = {
       subjAcceptDate: caseItem.subjAcceptDate.valueOf()
     };
@@ -178,4 +203,31 @@ exports.validateScreeningChecklistForm = async function(caseId, lang) {
     doCommitValidationForWholeTable(caseId, screeningChecklistValidateResult, commitCaseConfig, formConfigs, screeningChecklistItem);
   }
   return screeningChecklistValidateResult;
+};
+
+exports.validateReviewChecklistForm = async function(caseId, lang) {
+  const commitCaseConfig = getCommitCaseConfig(lang);
+  const reviewChecklistItem = await ReviewChecklist.findOne({
+    case: caseId
+  });
+  const reviewChecklistValidateResult = initValidateResult(getCommitCaseConfigItem(commitCaseConfig.records, 'reviewchecklist'));
+
+  if (reviewChecklistItem === null) {
+    reviewChecklistValidateResult.pass = false;
+    reviewChecklistValidateResult.link = `${reviewChecklistValidateResult.linkBase}/${caseId}`;
+    reviewChecklistValidateResult.message = `${reviewChecklistValidateResult.text} ${commitCaseConfig.empty}`;
+  }
+  else {
+    const caseItem = await Case.findById(caseId);
+    const cmList = await Cm.find({
+      case: caseId
+    });
+    const extra = {
+      subjAcceptDate: caseItem.subjAcceptDate.valueOf(),
+      cmList
+    };
+    const formConfigs = getReviewChecklistConfig(lang).formConfigs;
+    doCommitValidationForWholeTable(caseId, reviewChecklistValidateResult, commitCaseConfig, formConfigs, reviewChecklistItem, extra);
+  }
+  return reviewChecklistValidateResult;
 };

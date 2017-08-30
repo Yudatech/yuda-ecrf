@@ -118,14 +118,6 @@ const config = {
     },
     linkBase: '/reviewchecklist'
   }, {
-    name: 'discontinuation',
-    total: 9,
-    text: {
-      zh: '中途退出试验',
-      en: 'Withdrawal from the study'
-    },
-    linkBase: '/discontinuation'
-  }, {
     name: 'surgery',
     total: 22,
     text: {
