@@ -110,11 +110,13 @@ exports.updateQuestion = async (req, res) => {
   });
 
   const newComment = req.body.new_comment;
-  await (new Comment({
-    question: questionId,
-    user: req.user._id,
-    text: newComment
-  })).save();
+  if (newComment) {
+    await (new Comment({
+      question: questionId,
+      user: req.user._id,
+      text: newComment
+    })).save();
+  }
 
   const source = req.body.source;
   if (source === 'create') {
