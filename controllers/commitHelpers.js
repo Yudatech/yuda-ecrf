@@ -38,6 +38,13 @@ function doDateCheck(value, start, end) {
   return value >= start && value < end;
 }
 
+function doOnlyOnceCheck(fieldName, ruleConfig, listToCheck) {
+  const matches = listToCheck.filter((item) => {
+    return item[fieldName] === ruleConfig.value;
+  });
+  return matches.length === 1;
+}
+
 function doReviewChecklistCustomValidation(caseId, key, obj, ruleConfig, validateResult, cmList) {
   if (obj[key] !== true) {
     return true;
@@ -76,6 +83,40 @@ function doSurgeryCustomValidation(caseId, key, obj, ruleConfig, validateResult,
   }
 }
 
+function doVisitCustomValidation(caseId, key, obj, ruleConfig, validateResult, aeList, cmList) {
+  if (obj[key] !== true) {
+    return true;
+  }
+  else {
+    if (key === 'param_22') {
+      if (aeList.length === 0 || aeList.find((item) => item.aeorigion === obj._id.toString()) === undefined) {
+        if (validateResult.children === undefined) {
+          validateResult.children = [];
+        }
+        validateResult.children.push({
+          pass: false,
+          message: ruleConfig.message,
+          link: `/aelist/${caseId}`
+        });
+        return false;
+      }
+    }
+    else if (key === 'param_18') {
+      if (cmList.length === 0 || cmList.find((item) => item.source === obj._id.toString()) === undefined) {
+        if (validateResult.children === undefined) {
+          validateResult.children = [];
+        }
+        validateResult.children.push({
+          pass: false,
+          message: ruleConfig.message,
+          link: `/cmlist/${caseId}`
+        });
+        return false;
+      }
+    }
+  }
+}
+
 function doCommitValidation(caseId, key, obj, rules, extra, validateResult) {
   const failed = rules.find((ruleConfig) => {
     let result = true;
@@ -98,6 +139,12 @@ function doCommitValidation(caseId, key, obj, rules, extra, validateResult) {
       else if (key === 'surgery_14') {
         result = doSurgeryCustomValidation(caseId, key, obj, ruleConfig, validateResult, extra.aeList);
       }
+      else if (key === 'param_18' || key === 'param_22') {
+        result = doVisitCustomValidation(caseId, key, obj, ruleConfig, validateResult, extra.aeList, extra.cmList);
+      }
+    }
+    else if (ruleName === 'only_once') {
+      result = doOnlyOnceCheck(key, ruleConfig, extra[key]);
     }
     return result === false;
   });
@@ -117,6 +164,9 @@ function doCommitValidationForWholeTable(caseId, validateResult, commitCaseConfi
   });
   if (validateResult.pass === false) {
     validateResult.link = `${validateResult.linkBase}/${caseId}`;
+    if (extra.idToAppend !== undefined) {
+      validateResult.link = validateResult.link + '/' + extra.idToAppend;
+    }
     validateResult.message = `${validateResult.text} ${commitCaseConfig.ongoing}`;
   }
   else {
@@ -276,6 +326,49 @@ exports.validateSurgeryForm = async function(caseId, lang) {
     };
     const formConfigs = getReviewChecklistConfig(lang).formConfigs;
     doCommitValidationForWholeTable(caseId, surgeryValidateResult, commitCaseConfig, formConfigs, surgeryItem, extra);
+  }
+  return surgeryValidateResult;
+};
+
+exports.validateVisitForm = async function(caseId, lang) {
+  const commitCaseConfig = getCommitCaseConfig(lang);
+  const visitList = await Visit.find({
+    case: caseId
+  });
+  const visitValidateResult = initValidateResult(getCommitCaseConfigItem(commitCaseConfig.records, 'visit'));
+
+  if (visitList.length === 0) {
+    visitValidateResult.pass = false;
+    visitValidateResult.link = `/visitlist/${caseId}`;
+    visitValidateResult.message = `${visitValidateResult.text} ${commitCaseConfig.empty}`;
+  }
+  else {
+    const surgeryItem = await Surgery.findById(caseId);
+    const aeList = await Ae.find({
+      case: caseId
+    });
+    const cmList = await Cm.find({
+      case: caseId
+    });
+    const extra = {
+      surgerydtc: surgeryItem.surgerydtc.valueOf(),
+      aeList,
+      cmList,
+      'param_19': visitList,
+      appendMessage: true
+    };
+    const formConfigs = getReviewChecklistConfig(lang).formConfigs;
+    visitValidateResult.children = [];
+    visitList.forEach((visitItem) => {
+      const visitItemValidateResult = {
+        pass: true,
+        linkBase: `/visit`,
+        text: visitValidateResult.text,
+        idToAppend: visitItem._id.toString()
+      };
+      visitValidateResult.children.push(visitItemValidateResult);
+      doCommitValidationForWholeTable(caseId, visitItemValidateResult, commitCaseConfig, formConfigs, visitItem, extra);
+    });
   }
   return surgeryValidateResult;
 };

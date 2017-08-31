@@ -16,6 +16,11 @@ const config = {
   }, {
     name: 'visitdtc',
     type: 'date',
+    commit: [{
+      rule: 'date',
+      start: 'surgerydtc',
+      end: 'now'
+    }],
     text: {
       zh: '访视日期',
       en: 'Visit date'
@@ -183,6 +188,13 @@ const config = {
   }, {
     name: 'param_18',
     type: 'checkbox',
+    commit: [{
+      rule: 'custom',
+      message: {
+        zh: '使用药物，请完整填写《合并用药情况表》',
+        en: 'Complete Cocomitant Medication Report, please.'
+      }
+    }],
     text: {
       zh: '合并药物使用（若使用药物，请完整填写《合并用药情况表》）',
       en: 'Cocomitant medication (Complete Cocomitant Medication Report, please.'
@@ -190,6 +202,10 @@ const config = {
   }, {
     name: 'param_19',
     type: 'checkbox',
+    commit: [{
+      rule: 'only_once',
+      value: true
+    }],
     text: {
       zh: '短期植入吻合环排出',
       en: 'Evacuation of the short-term implant'
@@ -211,6 +227,13 @@ const config = {
   }, {
     name: 'param_22',
     type: 'checkbox',
+    commit: [{
+      rule: 'custom',
+      message: {
+        zh: '发生不良事件，请完整填写《不良事件及器械缺陷报告表》',
+        en: 'Complete Adverse Events and Device Deficiency (AE) Report'
+      }
+    }],
     text: {
       zh: '不良事件',
       en: 'Adverse events'

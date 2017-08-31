@@ -26,6 +26,15 @@ block case-content
                         if child.pass === false && child.link !== ''
                           a.btn.btn-default(role="button" href=child.link)
                             span.glyphicon.glyphicon-link
+                      if child.children
+                        each bottomItem in child.children
+                          li.row
+                            .col-sm-8
+                              span #{bottomItem.message}
+                            .col-sm-4
+                              if bottomItem.pass === false && bottomItem.link !== ''
+                                a.btn.btn-default(role="button" href=bottomItem.link)
+                                  span.glyphicon.glyphicon-link
           .col-sm-4
             if item.pass === false && item.link !== ''
               a.btn.btn-default(role="button" href=item.link)
