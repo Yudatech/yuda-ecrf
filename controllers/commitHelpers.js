@@ -25,6 +25,11 @@ const getScreeningVitalSignConfig = require('../config/screening/getScreeningVit
 
 const getScreeningChecklistConfig = require('../config/getScreeningChecklistConfig');
 const getReviewChecklistConfig = require('../config/getReviewChecklistConfig');
+const getSurgeryConfig = require('../config/surgery/getSurgeryConfig');
+const getVisitConfig = require('../config/visit/getVisitConfig');
+const getCmConfig = require('../config/cm/getCmConfig');
+const getAeConfig = require('../config/ae/getAeConfig');
+const getSaeConfig = require('../config/sae/getSaeConfig');
 
 function doMustTrueCheck(value) {
   return value === true;
@@ -35,7 +40,16 @@ function doMustFalseCheck(value) {
 }
 
 function doDateCheck(value, start, end) {
-  return value >= start && value < end;
+  if (start === null || end === null || value === null) {
+    return false;
+  }
+  else {
+    return value >= start && value < end;
+  }
+}
+
+function doSaeCustomDateCheck(value, ) {
+
 }
 
 function doOnlyOnceCheck(fieldName, ruleConfig, listToCheck) {
@@ -43,6 +57,15 @@ function doOnlyOnceCheck(fieldName, ruleConfig, listToCheck) {
     return item[fieldName] === ruleConfig.value;
   });
   return matches.length === 1;
+}
+
+function doConditionalRequireCheck(value, requiredValue, currentValue) {
+  if (requiredValue === currentValue) {
+    return value !== undefined;
+  }
+  else {
+    return true;
+  }
 }
 
 function doReviewChecklistCustomValidation(caseId, key, obj, ruleConfig, validateResult, cmList) {
@@ -117,6 +140,25 @@ function doVisitCustomValidation(caseId, key, obj, ruleConfig, validateResult, a
   }
 }
 
+function doAeCustomValidation(caseId, key, obj, ruleConfig, validateResult, saeList, idToAppend) {
+  if (obj[key] !== 2) {
+    return true;
+  }
+  else {
+    if (saeList.length === 0 || saeList.find((item) => item.saeorigion.toString() === obj._id.toString()) === undefined) {
+      if (validateResult.children === undefined) {
+        validateResult.children = [];
+      }
+      validateResult.children.push({
+        pass: false,
+        message: ruleConfig.message,
+        link: `/saelist/${caseId}`
+      });
+      return false;
+    }
+  }
+}
+
 function doCommitValidation(caseId, key, obj, rules, extra, validateResult) {
   const failed = rules.find((ruleConfig) => {
     let result = true;
@@ -128,9 +170,16 @@ function doCommitValidation(caseId, key, obj, rules, extra, validateResult) {
       result = doMustFalseCheck(obj[key]);
     }
     else if (ruleName === 'date') {
-      const start = ruleConfig.start === 'now' ? new Date().valueOf() : extra[ruleConfig.start];
+      let start;
+      if (ruleConfig.start === undefined) {
+        start = -1;
+      }
+      else {
+        start = ruleConfig.start === 'now' ? new Date().valueOf() : extra[ruleConfig.start];
+      }
       const end = ruleConfig.end === 'now' ? new Date().valueOf() : extra[ruleConfig.end];
-      result = doDateCheck(obj[key].valueOf(), start, end);
+      const date = obj[key] === undefined ? null : obj[key].valueOf();
+      result = doDateCheck(date, start, end);
     }
     else if (ruleName === 'custom') {
       if (key === 'reviewcheck_3' || key === 'reviewcheck_4') {
@@ -142,9 +191,30 @@ function doCommitValidation(caseId, key, obj, rules, extra, validateResult) {
       else if (key === 'param_18' || key === 'param_22') {
         result = doVisitCustomValidation(caseId, key, obj, ruleConfig, validateResult, extra.aeList, extra.cmList);
       }
+      else if (key === 'aeserv') {
+        result = doAeCustomValidation(caseId, key, obj, ruleConfig, validateResult, extra.saeList, extra.idToAppend);
+      }
     }
     else if (ruleName === 'only_once') {
       result = doOnlyOnceCheck(key, ruleConfig, extra[key]);
+    }
+    else if (ruleName === 'conditional_require') {
+      result = doConditionalRequireCheck(obj[key], ruleConfig.value, extra[ruleConfig.field]);
+    }
+    else if (ruleName === 'custom_date') {
+      if (key === 'saedtc') {
+        const date = obj[key] === undefined ? null : obj[key].valueOf();
+        let end;
+        const now = new Date().valueOf();
+        if (obj.saestdtc === undefined) {
+          end = now;
+        }
+        else {
+          const saestdtc = obj.saestdtc.valueOf() + 24 * 60 * 60 * 1000;
+          end = saestdtc > now ? now : saestdtc;
+        }
+        result = doDateCheck(date, null, end);
+      }
     }
     return result === false;
   });
@@ -218,7 +288,7 @@ exports.validateScreeningForm = async function(caseId, lang) {
         formConfigs = getScreeningBasicConfig(lang).formConfigs;
       }
       else if (childResult.name === 'screening-inclusion') {
-        formConfigs = getScreeningInclusionConfig(lang).formConfigs;        
+        formConfigs = getScreeningInclusionConfig(lang).formConfigs;
       }
       else if (childResult.name === 'screening-exclusion') {
         formConfigs = getScreeningExclusionConfig(lang).formConfigs;
@@ -324,7 +394,7 @@ exports.validateSurgeryForm = async function(caseId, lang) {
       subjAcceptDate: caseItem.subjAcceptDate.valueOf(),
       aeList
     };
-    const formConfigs = getReviewChecklistConfig(lang).formConfigs;
+    const formConfigs = getSurgeryConfig(lang).formConfigs;
     doCommitValidationForWholeTable(caseId, surgeryValidateResult, commitCaseConfig, formConfigs, surgeryItem, extra);
   }
   return surgeryValidateResult;
@@ -343,7 +413,10 @@ exports.validateVisitForm = async function(caseId, lang) {
     visitValidateResult.message = `${visitValidateResult.text} ${commitCaseConfig.empty}`;
   }
   else {
-    const surgeryItem = await Surgery.findById(caseId);
+    visitValidateResult.message = `${visitValidateResult.text} ${commitCaseConfig.ongoing}`;
+    const surgeryItem = await Surgery.findOne({
+      case: caseId
+    });
     const aeList = await Ae.find({
       case: caseId
     });
@@ -351,24 +424,133 @@ exports.validateVisitForm = async function(caseId, lang) {
       case: caseId
     });
     const extra = {
-      surgerydtc: surgeryItem.surgerydtc.valueOf(),
+      'surgerydtc': surgeryItem.surgerydtc === undefined ? null : surgeryItem.surgerydtc.valueOf(),
       aeList,
       cmList,
-      'param_19': visitList,
-      appendMessage: true
+      'param_19': visitList
     };
-    const formConfigs = getReviewChecklistConfig(lang).formConfigs;
+    const formConfigs = getVisitConfig(lang).formConfigs;
     visitValidateResult.children = [];
     visitList.forEach((visitItem) => {
       const visitItemValidateResult = {
         pass: true,
         linkBase: `/visit`,
-        text: visitValidateResult.text,
-        idToAppend: visitItem._id.toString()
+        invalidFields: [],
+        text: visitValidateResult.text
       };
+      extra.idToAppend = visitItem._id.toString();
       visitValidateResult.children.push(visitItemValidateResult);
       doCommitValidationForWholeTable(caseId, visitItemValidateResult, commitCaseConfig, formConfigs, visitItem, extra);
     });
   }
-  return surgeryValidateResult;
+  return visitValidateResult;
+};
+
+exports.validateCmForm = async function(caseId, lang) {
+  const commitCaseConfig = getCommitCaseConfig(lang);
+  const cmList = await Cm.find({
+    case: caseId
+  });
+  const cmValidateResult = initValidateResult(getCommitCaseConfigItem(commitCaseConfig.records, 'cm'));
+
+  if (cmList.length === 0) {
+    cmValidateResult.pass = false;
+    cmValidateResult.link = `/cmlist/${caseId}`;
+    cmValidateResult.message = `${cmValidateResult.text} ${commitCaseConfig.empty}`;
+  }
+  else {
+    cmValidateResult.message = `${cmValidateResult.text} ${commitCaseConfig.ongoing}`;
+    const formConfigs = getCmConfig(lang).formConfigs;
+    cmValidateResult.children = [];
+    cmList.forEach((cmItem) => {
+      const extra = {
+        cmstdtc: cmItem.cmstdtc === undefined ? null : cmItem.cmstdtc.valueOf(),
+        cmeddtc: cmItem.cmeddtc === undefined ? null : cmItem.cmeddtc.valueOf(),
+        idToAppend: cmItem._id.toString()
+      };
+      const cmItemValidateResult = {
+        pass: true,
+        linkBase: `/cm`,
+        invalidFields: [],
+        text: cmValidateResult.text
+      };
+      cmValidateResult.children.push(cmItemValidateResult);
+      doCommitValidationForWholeTable(caseId, cmItemValidateResult, commitCaseConfig, formConfigs, cmItem, extra);
+    });
+  }
+  return cmValidateResult;
+};
+
+exports.validateAeForm = async function(caseId, lang) {
+  const commitCaseConfig = getCommitCaseConfig(lang);
+  const aeList = await Ae.find({
+    case: caseId
+  });
+  const aeValidateResult = initValidateResult(getCommitCaseConfigItem(commitCaseConfig.records, 'ae'));
+
+  if (aeList.length === 0) {
+    aeValidateResult.pass = false;
+    aeValidateResult.link = `/cmlist/${caseId}`;
+    aeValidateResult.message = `${aeValidateResult.text} ${commitCaseConfig.empty}`;
+  }
+  else {
+    const saeList = await Sae.find({
+      case: caseId
+    });
+    aeValidateResult.message = `${aeValidateResult.text} ${commitCaseConfig.ongoing}`;
+    const formConfigs = getAeConfig(lang).formConfigs;
+    aeValidateResult.children = [];
+    aeList.forEach((aeItem) => {
+      const extra = {
+        aestdtc: aeItem.aestdtc === undefined ? null : aeItem.aestdtc.valueOf(),
+        aeeddtc: aeItem.aeeddtc === undefined ? null : aeItem.aeeddtc.valueOf(),
+        saeList: saeList,
+        idToAppend: aeItem._id.toString()
+      };
+      const aeItemValidateResult = {
+        pass: true,
+        linkBase: `/ae`,
+        invalidFields: [],
+        text: aeValidateResult.text
+      };
+      aeValidateResult.children.push(aeItemValidateResult);
+      doCommitValidationForWholeTable(caseId, aeItemValidateResult, commitCaseConfig, formConfigs, aeItem, extra);
+    });
+  }
+  return aeValidateResult;
+};
+
+exports.validateSaeForm = async function(caseId, lang) {
+  const commitCaseConfig = getCommitCaseConfig(lang);
+  const saeList = await Sae.find({
+    case: caseId
+  });
+  const saeValidateResult = initValidateResult(getCommitCaseConfigItem(commitCaseConfig.records, 'sae'));
+
+  if (saeList.length === 0) {
+    saeValidateResult.pass = false;
+    saeValidateResult.link = `/saelist/${caseId}`;
+    saeValidateResult.message = `${saeValidateResult.text} ${commitCaseConfig.empty}`;
+  }
+  else {
+    saeValidateResult.message = `${saeValidateResult.text} ${commitCaseConfig.ongoing}`;
+    const formConfigs = getSaeConfig(lang).formConfigs;
+    saeValidateResult.children = [];
+    saeList.forEach((saeItem) => {
+      const extra = {
+        saestdtc: saeItem.saestdtc === undefined ? null : saeItem.saestdtc.valueOf(),
+        saecaus_1: saeItem.saecaus_1,
+        idToAppend: saeItem._id.toString()
+      };
+      const saeItemValidateResult = {
+        pass: true,
+        linkBase: `/sae`,
+        invalidFields: [],
+        text: saeValidateResult.text
+      };
+      saeValidateResult.children.push(saeItemValidateResult);
+      doCommitValidationForWholeTable(caseId, saeItemValidateResult, commitCaseConfig, formConfigs, saeItem, extra);
+    });
+  }
+  return saeValidateResult;
 };

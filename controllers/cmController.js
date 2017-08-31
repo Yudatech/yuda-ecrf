@@ -36,6 +36,9 @@ exports.cmTable = async (req, res) => {
     if (item.dosemtd_1 === 4) {
       cm.dosemtd = item.dosemtd_2;
     }
+    else if (item.dosemtd_1 === null) {
+      cm.dosemtd = '';
+    }
     else {
       cm.dosemtd = getDoseMethodsConfig().find((method) => {
         return method.value === item.dosemtd_1;

@@ -22,6 +22,10 @@ const config = {
   }, {
     name: 'aestdtc',
     type: 'datetime',
+    commit: [{
+      rule: 'date',
+      end: 'aeeddtc'
+    }],
     text: {
       zh: '发生时间',
       en: 'Date of onset'
@@ -29,6 +33,11 @@ const config = {
   }, {
     name: 'aeeddtc',
     type: 'datetime',
+    commit: [{
+      rule: 'date',
+      start: 'aestdtc',
+      end: 'now'
+    }],
     text: {
       zh: '结束时间',
       en: 'Date of stop'
@@ -36,6 +45,13 @@ const config = {
   }, {
     name: 'aeserv',
     type: 'select',
+    commit: [{
+      rule: 'custom',
+      message: {
+        zh: '请完整填写《严重不良事件（SAE）报告》表',
+        en: 'Complete Severe Adverse Event (SAE) report, please.'
+      }
+    }],
     optionsGetter: 'getAeLevelConfig',
     text: {
       zh: '严重程度',
@@ -83,7 +99,7 @@ const config = {
     type: 'checkbox',
     text: {
       zh: 'SAE（请完整填写《严重不良事件（SAE）报告》表)',
-      en: 'SAE (Complete Severe Adverse Event (SAE) report, please.)' 
+      en: 'SAE (Complete Severe Adverse Event (SAE) report, please.)'
     }
   }, {
     name: 'aedevicedft',

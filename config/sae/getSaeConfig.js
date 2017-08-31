@@ -23,6 +23,9 @@ const config = {
   }, {
     name: 'saedtc',
     type: 'date',
+    commit: [{
+      rule: 'custom_date'
+    }],
     text: {
       zh: '报告时间',
       en: 'Time of report'
@@ -51,6 +54,11 @@ const config = {
   }, {
     name: 'saecaus_2',
     type: 'date',
+    commit: [{
+      rule: 'conditional_require',
+      field: 'saecaus_1',
+      value: true
+    }],
     text: {
       zh: '死亡时间',
       en: 'Death time'
@@ -114,6 +122,10 @@ const config = {
   }, {
     name: 'saestdtc',
     type: 'datetime',
+    commit: [{
+      rule: 'date',
+      end: 'now'
+    }],
     text: {
       zh: 'SAE发生时间',
       en: 'Time of onset:'
@@ -121,6 +133,11 @@ const config = {
   }, {
     name: 'saenoticedtc',
     type: 'datetime',
+    commit: [{
+      rule: 'date',
+      start: 'saestdtc',
+      end: 'now'
+    }],
     text: {
       zh: '研究者获知SAE时间',
       en: 'Time for clinical investigator be informed:'

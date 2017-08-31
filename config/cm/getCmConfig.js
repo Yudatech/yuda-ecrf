@@ -45,6 +45,10 @@ const config = {
   }, {
     name: 'cmstdtc',
     type: 'date',
+    commit: [{
+      rule: 'date',
+      end: 'cmedtc'
+    }],
     text: {
       zh: '开始日期',
       en: 'Date of start'
@@ -52,6 +56,11 @@ const config = {
   }, {
     name: 'cmeddtc',
     type: 'date',
+    commit: [{
+      rule: 'date',
+      start: 'cmstdtc',
+      end: 'now'
+    }],
     text: {
       zh: '结束日期',
       en: 'Date of end'
