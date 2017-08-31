@@ -123,7 +123,7 @@ exports.aeForm = async (req, res) => {
     }
 
     if (aeId !== undefined) {
-      config.formConfigs[key].questionLink = helpers.getQuestionLink(tableName, req.params.caseId, config.formConfigs[key], aeId);
+      config.formConfigs[key].questionLink = helpers.getQuestionLink(tableName, 'ae', req.params.caseId, config.formConfigs[key], aeId);
     }
 
     if (config.formConfigs[key].type === 'checkbox' && config.formConfigs[key].value === undefined) {

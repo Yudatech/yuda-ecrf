@@ -90,7 +90,7 @@ exports.caseBasicForm = async (req, res) => {
       config.formConfigs[key].options = decorationHelper[config.formConfigs[key].optionsGetter]();
     }
     config.formConfigs[key].value = screeningItem[key];
-    config.formConfigs[key].questionLink = helpers.getQuestionLink(tableName, req.params.caseId, config.formConfigs[key]);
+    config.formConfigs[key].questionLink = helpers.getQuestionLink(tableName, 'screening-basic', req.params.caseId, config.formConfigs[key]);
 
     if (key === 'screeningdate') {
       config.formConfigs[key].value = moment(screeningItem[key]).format('MM/DD/YYYY');
@@ -121,7 +121,7 @@ exports.caseInclusionForm = async (req, res) => {
   const config = getScreeningInclusionConfig();
   Object.keys(config.formConfigs).forEach((key) => {
     config.formConfigs[key].value = screeningItem[key];
-    config.formConfigs[key].questionLink = helpers.getQuestionLink(tableName, req.params.caseId, config.formConfigs[key]);
+    config.formConfigs[key].questionLink = helpers.getQuestionLink(tableName, 'screening-inclusion', req.params.caseId, config.formConfigs[key]);
     if (config.formConfigs[key].type === 'checkbox' && config.formConfigs[key].value === undefined) {
       config.formConfigs[key].value = false;
     }
@@ -147,7 +147,7 @@ exports.caseExclusionForm = async (req, res) => {
   const config = getScreeningExclusionConfig();
   Object.keys(config.formConfigs).forEach((key) => {
     config.formConfigs[key].value = screeningItem[key];
-    config.formConfigs[key].questionLink = helpers.getQuestionLink(tableName, req.params.caseId, config.formConfigs[key]);
+    config.formConfigs[key].questionLink = helpers.getQuestionLink(tableName, 'screening-exclusion', req.params.caseId, config.formConfigs[key]);
     if (config.formConfigs[key].type === 'checkbox' && config.formConfigs[key].value === undefined) {
       config.formConfigs[key].value = false;
     }
@@ -173,7 +173,7 @@ exports.caseDiseaseForm = async (req, res) => {
   const config = getScreeningDiseaseConfig();
   Object.keys(config.formConfigs).forEach((key) => {
     config.formConfigs[key].value = screeningItem[key];
-    config.formConfigs[key].questionLink = helpers.getQuestionLink(tableName, req.params.caseId, config.formConfigs[key]);
+    config.formConfigs[key].questionLink = helpers.getQuestionLink(tableName, 'screening-disease', req.params.caseId, config.formConfigs[key]);
     if (config.formConfigs[key].type === 'checkbox' && config.formConfigs[key].value === undefined) {
       config.formConfigs[key].value = false;
     }
@@ -199,7 +199,7 @@ exports.caseConMedForm = async (req, res) => {
   const config = getScreeningConMedConfig();
   Object.keys(config.formConfigs).forEach((key) => {
     config.formConfigs[key].value = screeningItem[key];
-    config.formConfigs[key].questionLink = helpers.getQuestionLink(tableName, req.params.caseId, config.formConfigs[key]);
+    config.formConfigs[key].questionLink = helpers.getQuestionLink(tableName, 'screening-conmed', req.params.caseId, config.formConfigs[key]);
     if (config.formConfigs[key].type === 'checkbox' && config.formConfigs[key].value === undefined) {
       config.formConfigs[key].value = false;
     }
@@ -228,7 +228,7 @@ exports.caseVitalSignForm = async (req, res) => {
       config.formConfigs[key].options = decorationHelper[config.formConfigs[key].optionsGetter]();
     }
     config.formConfigs[key].value = screeningItem[key];
-    config.formConfigs[key].questionLink = helpers.getQuestionLink(tableName, req.params.caseId, config.formConfigs[key]);
+    config.formConfigs[key].questionLink = helpers.getQuestionLink(tableName, 'screening-vitalsign', req.params.caseId, config.formConfigs[key]);
     if (config.formConfigs[key].type === 'checkbox' && config.formConfigs[key].value === undefined) {
       config.formConfigs[key].value = false;
     }
@@ -266,7 +266,7 @@ exports.caseLabForm = async (req, res) => {
       config.formConfigs[key].options = decorationHelper[config.formConfigs[key].optionsGetter]();
     }
     config.formConfigs[key].value = screeningItem[key];
-    config.formConfigs[key].questionLink = helpers.getQuestionLink(tableName, req.params.caseId, config.formConfigs[key]);
+    config.formConfigs[key].questionLink = helpers.getQuestionLink(tableName, 'screening-lab', req.params.caseId, config.formConfigs[key]);
     if (config.formConfigs[key].type === 'checkbox' && config.formConfigs[key].value === undefined) {
       config.formConfigs[key].value = false;
     }
@@ -301,7 +301,7 @@ exports.caseAssistantForm = async (req, res) => {
       config.formConfigs[key].options = decorationHelper[config.formConfigs[key].optionsGetter]();
     }
     config.formConfigs[key].value = screeningItem[key];
-    config.formConfigs[key].questionLink = helpers.getQuestionLink(tableName, req.params.caseId, config.formConfigs[key]);
+    config.formConfigs[key].questionLink = helpers.getQuestionLink(tableName, 'screening-assistant', req.params.caseId, config.formConfigs[key]);
     if (config.formConfigs[key].type === 'checkbox' && config.formConfigs[key].value === undefined) {
       config.formConfigs[key].value = false;
     }
@@ -327,7 +327,7 @@ exports.caseMethodForm = async (req, res) => {
   const config = getScreeningMethodConfig();
   Object.keys(config.formConfigs).forEach((key) => {
     config.formConfigs[key].value = screeningItem[key];
-    config.formConfigs[key].questionLink = helpers.getQuestionLink(tableName, req.params.caseId, config.formConfigs[key]);
+    config.formConfigs[key].questionLink = helpers.getQuestionLink(tableName, 'screening-method', req.params.caseId, config.formConfigs[key]);
     if (config.formConfigs[key].type === 'checkbox' && config.formConfigs[key].value === undefined) {
       config.formConfigs[key].value = false;
     }
@@ -353,7 +353,7 @@ exports.caseRegionForm = async (req, res) => {
   const config = getScreeningRegionConfig();
   Object.keys(config.formConfigs).forEach((key) => {
     config.formConfigs[key].value = screeningItem[key];
-    config.formConfigs[key].questionLink = helpers.getQuestionLink(tableName, req.params.caseId, config.formConfigs[key]);
+    config.formConfigs[key].questionLink = helpers.getQuestionLink(tableName, 'screening-region', req.params.caseId, config.formConfigs[key]);
     if (config.formConfigs[key].type === 'checkbox' && config.formConfigs[key].value === undefined) {
       config.formConfigs[key].value = false;
     }
@@ -382,7 +382,7 @@ exports.caseDignoseForm = async (req, res) => {
       config.formConfigs[key].options = decorationHelper[config.formConfigs[key].optionsGetter]();
     }
     config.formConfigs[key].value = screeningItem[key];
-    config.formConfigs[key].questionLink = helpers.getQuestionLink(tableName, req.params.caseId, config.formConfigs[key]);
+    config.formConfigs[key].questionLink = helpers.getQuestionLink(tableName, 'screening-dignose', req.params.caseId, config.formConfigs[key]);
     if (config.formConfigs[key].type === 'checkbox' && config.formConfigs[key].value === undefined) {
       config.formConfigs[key].value = false;
     }

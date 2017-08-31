@@ -4,24 +4,14 @@ include mixins/_formTemplate
 
 block content
   .inner
-    form.form-horizontal
-      fieldset(disabled=true)
+    form.form-horizontal(action=`/question/${questionId}` method="POST")
+      fieldset
         legend #{config.title}
 
         each configItem in config.formConfigs
           .row
             .col-sm-12
-              +_formTemplate(configItem, true)
-
-    form.form-horizontal(action=`/question/${questionId}` method="POST")
-      fieldset(disabled=(questionConfig.questionConfigs.question_status === 2))
-        legend #{questionConfig.title.question}
-
-        input(type="hidden" name="source" value=source)
-
-        .row
-          .col-sm-12
-            +_formTemplate(fieldConfig)
+              +_formTemplate(configItem, configItem.name !== fieldConfig.name)
 
         .row
           .col-sm-12
@@ -31,9 +21,31 @@ block content
           .col-sm-12
             +_formTemplate(questionConfig.commentConfigs.new_comment)
 
-        - const backLink = source === 'create' ? '/' : `/${backInfo.table}/${backInfo.caseId}/${backInfo.secondaryId ? backInfo.secondaryId : ''}`
+        - const backLink = source === 'create' ? '/' : `/${backInfo.linkBase}/${backInfo.caseId}/${backInfo.secondaryId ? backInfo.secondaryId : ''}`
         a.btn.btn-default(role="button" href=backLink) #{buttonConfig.buttons.back.text}
         input(type="submit" value=buttonConfig.buttons.commit.text)
+
+    //- form.form-horizontal(action=`/question/${questionId}` method="POST")
+    //-   fieldset(disabled=(questionConfig.questionConfigs.question_status === 2))
+    //-     legend #{questionConfig.title.question}
+
+    //-     input(type="hidden" name="source" value=source)
+
+    //-     .row
+    //-       .col-sm-12
+    //-         +_formTemplate(fieldConfig)
+
+    //-     .row
+    //-       .col-sm-12
+    //-         +_formTemplate(questionConfig.questionConfigs.question_status)
+
+    //-     .row
+    //-       .col-sm-12
+    //-         +_formTemplate(questionConfig.commentConfigs.new_comment)
+
+    //-     - const backLink = source === 'create' ? '/' : `/${backInfo.linkBase}/${backInfo.caseId}/${backInfo.secondaryId ? backInfo.secondaryId : ''}`
+    //-     a.btn.btn-default(role="button" href=backLink) #{buttonConfig.buttons.back.text}
+    //-     input(type="submit" value=buttonConfig.buttons.commit.text)
     ul
       each comment in comments
         li #{`${comment.user.username}(${comment.createDate}): ${comment.text}`}

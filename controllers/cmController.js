@@ -87,7 +87,7 @@ exports.cmForm = async (req, res) => {
     }
 
     if (cmId !== undefined) {
-      config.formConfigs[key].questionLink = helpers.getQuestionLink(tableName, req.params.caseId, config.formConfigs[key], cmId);
+      config.formConfigs[key].questionLink = helpers.getQuestionLink(tableName, 'cm', req.params.caseId, config.formConfigs[key], cmId);
     }
 
     if (config.formConfigs[key].type === 'checkbox' && config.formConfigs[key].value === undefined) {

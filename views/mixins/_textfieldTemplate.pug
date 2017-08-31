@@ -1,5 +1,5 @@
-mixin _textfieldTemplate(config)
+mixin _textfieldTemplate(config, disabled)
   .form-group(id=`${config.name}-container`)
     label.col-sm-4.control-label #{config.text}
     .col-sm-8
-      input.form-control(type="text" name=config.name value=config.value data-customrequired=config.required)
+      input.form-control(disabled=disabled type="text" name=config.name value=config.value data-customrequired=config.required)

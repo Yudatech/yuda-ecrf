@@ -1,8 +1,8 @@
-mixin _numberfieldTemplate(config)
+mixin _numberfieldTemplate(config, disabled)
   - const validation = config.validation
   - const max = validation ? validation.max : undefined
   - const min = validation ? validation.min : undefined
   .form-group(id=`${config.name}-container`)
     label.col-sm-4.control-label #{config.text}
     .col-sm-8
-      input.form-control(id=config.name type="number" min=min max=max step=config.step name=config.name value=config.value data-customrequired=config.required)
+      input.form-control(disabled=disabled id=config.name type="number" min=min max=max step=config.step name=config.name value=config.value data-customrequired=config.required)

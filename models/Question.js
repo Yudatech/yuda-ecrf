@@ -27,7 +27,8 @@ const questionSchema = new Schema({
     ref: 'User',
     required: 'You must supply an owner userid'
   },
-  status: Number
+  status: Number,
+  linkBase: String
 }, {
   timestamps: true
 });

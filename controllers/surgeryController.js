@@ -60,7 +60,7 @@ exports.surgeryForm = async (req, res) => {
     else {
       config.formConfigs[key].value = surgeryItem[key];
     }
-    config.formConfigs[key].questionLink = helpers.getQuestionLink(tableName, req.params.caseId, config.formConfigs[key]);
+    config.formConfigs[key].questionLink = helpers.getQuestionLink(tableName, 'surgery', req.params.caseId, config.formConfigs[key]);
 
     if (config.formConfigs[key].type === 'checkbox' && config.formConfigs[key].value === undefined) {
       config.formConfigs[key].value = false;

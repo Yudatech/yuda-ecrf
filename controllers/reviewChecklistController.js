@@ -50,7 +50,7 @@ exports.reviewChecklistForm = async (req, res) => {
   const config = getReviewChecklistConfig();
   Object.keys(config.formConfigs).forEach((key) => {
     config.formConfigs[key].value = reviewChecklistItem[key];
-    config.formConfigs[key].questionLink = helpers.getQuestionLink(tableName, req.params.caseId, config.formConfigs[key]);
+    config.formConfigs[key].questionLink = helpers.getQuestionLink(tableName, 'reviewchecklist', req.params.caseId, config.formConfigs[key]);
     if (config.formConfigs[key].type === 'checkbox' && config.formConfigs[key].value === undefined) {
       config.formConfigs[key].value = false;
     }

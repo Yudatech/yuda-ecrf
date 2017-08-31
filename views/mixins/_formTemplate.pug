@@ -11,16 +11,16 @@ mixin _formTemplate(formConfig, disabled)
     +_checkboxTemplate(formConfig, disabled)
 
   else if formConfig.type === 'textfield'
-    +_textfieldTemplate(formConfig)
+    +_textfieldTemplate(formConfig, disabled)
 
   else if formConfig.type === 'textarea'
-    +_textareaTemplate(formConfig)
+    +_textareaTemplate(formConfig, disabled)
 
   else if formConfig.type === 'numberfield'
-    +_numberfieldTemplate(formConfig)
+    +_numberfieldTemplate(formConfig, disabled)
 
   else if formConfig.type === 'select' || formConfig.type === 'customselect'
-    +_selectTemplate(formConfig)
+    +_selectTemplate(formConfig, disabled)
 
   else if formConfig.type === 'date'
     +_dateTemplate(formConfig, disabled)

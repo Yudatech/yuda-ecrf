@@ -15,6 +15,7 @@ const helpers = require('./helpers');
 
 exports.startQuestion = async (req, res) => {
   const caseId = req.query.caseId;
+  const linkBase = req.query.linkBase;
   const table = req.query.table;
   const field = req.query.field;
   const secondaryId = req.query.secondaryId;
@@ -24,6 +25,7 @@ exports.startQuestion = async (req, res) => {
   const questionObj = {
     case: caseId,
     modelname: table,
+    linkBase,
     fieldname: field,
     orig: req.user._id,
     owner: caseItem.user._id,
@@ -56,6 +58,7 @@ exports.showQuestionPage = async (req, res) => {
 
   const table = question.modelname;
   const field = question.fieldname;
+  const linkBase = question.linkBase;
   const caseId = question.case._id;
 
   const saeSourceConfig = await helpers.getSaeSourceOptions(caseId);
@@ -92,6 +95,7 @@ exports.showQuestionPage = async (req, res) => {
     backInfo: {
       table,
       caseId,
+      linkBase,
       secondaryId: question.secondaryid
     }
   });
@@ -102,6 +106,7 @@ exports.updateQuestion = async (req, res) => {
   const questionItem = await Question.findById(questionId);
   const table = questionItem.modelname;
   const field = questionItem.fieldname;
+  const linkBase = questionItem.linkBase;
   const caseId = questionItem.case._id;
   const secondaryId = questionItem.secondaryid;
   await questionHelper.updateValueForQuestion(table, caseId, secondaryId, field, req.body[field]);
@@ -120,7 +125,7 @@ exports.updateQuestion = async (req, res) => {
 
   const source = req.body.source;
   if (source === 'create') {
-    res.redirect(`/${table}/${caseId}/${secondaryId ? secondaryId : ''}`);
+    res.redirect(`/${linkBase}/${caseId}/${secondaryId ? secondaryId : ''}`);
   }
   else {
     res.redirect('/');

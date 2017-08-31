@@ -27,12 +27,12 @@ exports.appendCaseIdToCaseNav = function(caseId, lang) {
   return navs;
 };
 
-exports.getQuestionLink = function(table, caseId, formConfig, secondaryId) {
+exports.getQuestionLink = function(table, linkBase, caseId, formConfig, secondaryId) {
   if (secondaryId === undefined) {
-    return `/new/question?table=${table}&caseId=${caseId}&field=${formConfig.name}`;
+    return `/new/question?table=${table}&caseId=${caseId}&field=${formConfig.name}&linkBase=${linkBase}`;
   }
   else {
-    return `/new/question?table=${table}&caseId=${caseId}&field=${formConfig.name}&secondaryId=${secondaryId}`;
+    return `/new/question?table=${table}&caseId=${caseId}&field=${formConfig.name}&secondaryId=${secondaryId}&linkBase=${linkBase}`;
   }
 };
 

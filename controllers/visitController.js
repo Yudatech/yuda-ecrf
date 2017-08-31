@@ -83,7 +83,7 @@ exports.visitForm = async (req, res) => {
       config.formConfigs[key].value = visit[key];
     }
     if (visitId !== undefined) {
-      config.formConfigs[key].questionLink = helpers.getQuestionLink(tableName, req.params.caseId, config.formConfigs[key], visitId);
+      config.formConfigs[key].questionLink = helpers.getQuestionLink(tableName, 'visit', req.params.caseId, config.formConfigs[key], visitId);
     }
 
     if (config.formConfigs[key].type === 'checkbox' && config.formConfigs[key].value === undefined) {
