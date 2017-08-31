@@ -73,6 +73,12 @@ const config = {
       zh: '锁定',
       en: 'Lock'
     }
+  }, {
+    name: 'back',
+    text: {
+      zh: '后退',
+      en: 'Back'
+    }
   }]
 };
 

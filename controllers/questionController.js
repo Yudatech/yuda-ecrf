@@ -35,11 +35,12 @@ exports.startQuestion = async (req, res) => {
 
   const question = await (new Question(questionObj)).save();
 
-  res.redirect(`/question/${question._id}`);
+  res.redirect(`/question/${question._id}/?source=create`);
 };
 
 exports.showQuestionPage = async (req, res) => {
   const questionId = req.params.questionId;
+  const source = req.query.source;
 
   const question = await Question.findById(questionId);
   const commentItems = await Comment.find({
@@ -86,21 +87,14 @@ exports.showQuestionPage = async (req, res) => {
     questionConfig,
     fieldConfig,
     buttonConfig: getButtonConfig(),
-    comments
+    comments,
+    source,
+    backInfo: {
+      table,
+      caseId,
+      secondaryId: question.secondaryid
+    }
   });
-};
-
-exports.addNewComment = async (req, res) => {
-  const questionId = req.params.questionId;
-  const newComment = req.body.new_comment;
-
-  await (new Comment({
-    question: questionId,
-    user: req.user._id,
-    text: newComment
-  })).save();
-
-  res.redirect(`/question/${questionId}`);
 };
 
 exports.updateQuestion = async (req, res) => {
@@ -114,7 +108,21 @@ exports.updateQuestion = async (req, res) => {
   await Question.findByIdAndUpdate(questionId, {
     status: req.body.question_status
   });
-  res.redirect(`/question/${questionId}`);
+
+  const newComment = req.body.new_comment;
+  await (new Comment({
+    question: questionId,
+    user: req.user._id,
+    text: newComment
+  })).save();
+
+  const source = req.body.source;
+  if (source === 'create') {
+    res.redirect(`/${table}/${caseId}/${secondaryId ? secondaryId : ''}`);
+  }
+  else {
+    res.redirect('/');
+  }
 };
 
 exports.checkQuestionedFields = async (req, res, next) => {

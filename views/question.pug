@@ -17,6 +17,8 @@ block content
       fieldset(disabled=(questionConfig.questionConfigs.question_status === 2))
         legend #{questionConfig.title.question}
 
+        input(type="hidden" name="source" value=source)
+
         .row
           .col-sm-12
             +_formTemplate(fieldConfig)
@@ -25,17 +27,13 @@ block content
           .col-sm-12
             +_formTemplate(questionConfig.questionConfigs.question_status)
 
-        input(type="submit" value=buttonConfig.buttons.commit.text)
-    
-    h4 #{questionConfig.title.comment}
-    form.form-horizontal(action=`/comment/${questionId}` method="POST")
-      fieldset(disabled=(questionConfig.questionConfigs.question_status === 2))
         .row
           .col-sm-12
             +_formTemplate(questionConfig.commentConfigs.new_comment)
 
-        input(type="submit" value=buttonConfig.buttons.publish.text)
-
+        - const backLink = source === 'create' ? '/' : `/${backInfo.table}/${backInfo.caseId}/${backInfo.secondaryId ? backInfo.secondaryId : ''}`
+        a.btn.btn-default(role="button" href=backLink) #{buttonConfig.buttons.back.text}
+        input(type="submit" value=buttonConfig.buttons.commit.text)
     ul
       each comment in comments
         li #{`${comment.user.username}(${comment.createDate}): ${comment.text}`}
