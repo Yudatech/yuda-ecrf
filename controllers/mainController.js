@@ -8,6 +8,7 @@ moment.locale('zh-cn');
 const getHomeConfig = require('../config/getHomeConfig');
 const getCaseStatusConfig = require('../config/common/getCaseStatusConfig');
 const getButtonConfig = require('../config/common/getButtonConfig');
+const getQuestionStatusConfig = require('../config/getQuestionStatusConfig');
 
 exports.homePage = async (req, res) => {
   const caseStatus = req.query.casestatus;
@@ -54,6 +55,7 @@ exports.homePage = async (req, res) => {
       });
     }
   }
+  const questionStatusConfig = getQuestionStatusConfig(req.user.language);
   const questionsFormated = questions.map((item)=> {
     const createDate = moment(item.createdAt).millisecond(0).second(0).hour(0).minute(0).valueOf();
     const nowDate = moment().millisecond(0).second(0).hour(0).minute(0).valueOf();
@@ -62,7 +64,10 @@ exports.homePage = async (req, res) => {
       _id: item.case._id,
       questionId: item._id,
       orig: item.orig.username,
-      numOfDays
+      numOfDays,
+      status: questionStatusConfig.find((config) => {
+        return config.value === item.status;
+      }).text
     };
   });
 

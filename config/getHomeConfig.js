@@ -103,6 +103,12 @@ const config = {
         en: 'Initiator'
       }
     }, {
+      name: 'status',
+      text: {
+        zh: '状态',
+        en: 'Status'
+      }
+    }, {
       name: 'operations',
       text: {
         zh: '操作',
