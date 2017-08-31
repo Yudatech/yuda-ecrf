@@ -40,11 +40,22 @@ exports.homePage = async (req, res) => {
     };
   });
 
-  const questions = await Question.find({
-    owner: req.user._id
-  });
+  let questions;
+  if (role === 'cra') {
+    questions = await Question.find({
+      owner: req.user._id
+    });
+  }
+  else {
+    questions = await Question.find();
+    if (role !== 'admin') {
+      questions = questions.filter((item) => {
+        return item.owner.site._id.toString() === req.user.site._id.toString();
+      });
+    }
+  }
   const questionsFormated = questions.map((item)=> {
-    const createDate = moment(item.createDate).millisecond(0).second(0).hour(0).minute(0).valueOf();
+    const createDate = moment(item.createdAt).millisecond(0).second(0).hour(0).minute(0).valueOf();
     const nowDate = moment().millisecond(0).second(0).hour(0).minute(0).valueOf();
     const numOfDays = (nowDate - createDate) / 1000 / 60 / 60 / 24;
     return {
