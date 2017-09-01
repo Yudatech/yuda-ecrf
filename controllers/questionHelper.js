@@ -35,80 +35,80 @@ const getVisitConfig = require('../config/visit/getVisitConfig');
 
 const decorationHelper = require('./decorationHelper');
 
-exports.getConfigForQuestion = function(table, field) {
+exports.getConfigForQuestion = function(table, field, lang) {
   if (table === 'screening') {
     let formConfigs;
 
-    formConfigs = getScreeningBasicConfig(req.user.language).formConfigs;
+    formConfigs = getScreeningBasicConfig(lang).formConfigs;
     if (formConfigs[field]) {
-      return getScreeningBasicConfig(req.user.language);
+      return getScreeningBasicConfig(lang);
     }
-    formConfigs = getScreeningAssistantConfig(req.user.language).formConfigs;
+    formConfigs = getScreeningAssistantConfig(lang).formConfigs;
     if (formConfigs[field]) {
-      return getScreeningAssistantConfig(req.user.language);
+      return getScreeningAssistantConfig(lang);
     }
-    formConfigs = getScreeningConMedConfig(req.user.language).formConfigs;
+    formConfigs = getScreeningConMedConfig(lang).formConfigs;
     if (formConfigs[field]) {
-      return getScreeningConMedConfig(req.user.language);
+      return getScreeningConMedConfig(lang);
     }
-    formConfigs = getScreeningDignoseConfig(req.user.language).formConfigs;
+    formConfigs = getScreeningDignoseConfig(lang).formConfigs;
     if (formConfigs[field]) {
-      return getScreeningDignoseConfig(req.user.language);
+      return getScreeningDignoseConfig(lang);
     }
-    formConfigs = getScreeningDiseaseConfig(req.user.language).formConfigs;
+    formConfigs = getScreeningDiseaseConfig(lang).formConfigs;
     if (formConfigs[field]) {
-      return getScreeningDiseaseConfig(req.user.language);
+      return getScreeningDiseaseConfig(lang);
     }
-    formConfigs = getScreeningExclusionConfig(req.user.language).formConfigs;
+    formConfigs = getScreeningExclusionConfig(lang).formConfigs;
     if (formConfigs[field]) {
-      return getScreeningExclusionConfig(req.user.language);
+      return getScreeningExclusionConfig(lang);
     }
-    formConfigs = getScreeningInclusionConfig(req.user.language).formConfigs;
+    formConfigs = getScreeningInclusionConfig(lang).formConfigs;
     if (formConfigs[field]) {
-      return getScreeningInclusionConfig(req.user.language);
+      return getScreeningInclusionConfig(lang);
     }
-    formConfigs = getScreeningLabConfig(req.user.language).formConfigs;
+    formConfigs = getScreeningLabConfig(lang).formConfigs;
     if (formConfigs[field]) {
-      return getScreeningLabConfig(req.user.language);
+      return getScreeningLabConfig(lang);
     }
-    formConfigs = getScreeningMethodConfig(req.user.language).formConfigs;
+    formConfigs = getScreeningMethodConfig(lang).formConfigs;
     if (formConfigs[field]) {
-      return getScreeningMethodConfig(req.user.language);
+      return getScreeningMethodConfig(lang);
     }
-    formConfigs = getScreeningRegionConfig(req.user.language).formConfigs;
+    formConfigs = getScreeningRegionConfig(lang).formConfigs;
     if (formConfigs[field]) {
-      return getScreeningRegionConfig(req.user.language);
+      return getScreeningRegionConfig(lang);
     }
     formConfigs = getScreeningVitalSignConfig().formConfigs;
     if (formConfigs[field]) {
-      return getScreeningVitalSignConfig(req.user.language);
+      return getScreeningVitalSignConfig(lang);
     }
   }
   else if (table === 'screeningchecklist') {
-    return getScreeningChecklistConfig(req.user.language);
+    return getScreeningChecklistConfig(lang);
   }
   else if (table === 'reviewchecklist') {
-    return getReviewChecklistConfig(req.user.language);
+    return getReviewChecklistConfig(lang);
   }
   else if (table === 'discontinuation') {
-    return getDiscontinuationConfig(req.user.language);
+    return getDiscontinuationConfig(lang);
   }
   else if (table === 'cm') {
-    return getCmConfig(req.user.language);
+    return getCmConfig(lang);
   }
   else if (table === 'sae') {
-    return getSaeConfig(req.user.language);
+    return getSaeConfig(lang);
   }
   else if (table === 'ae') {
-    return getAeConfig(req.user.language);
+    return getAeConfig(lang);
   }
   else if (table === 'surgery') {
-    const surgeryConfig = getSurgeryConfig(req.user.language);
+    const surgeryConfig = getSurgeryConfig(lang);
     surgeryConfig.title = surgeryConfig.title.surgery;
     return surgeryConfig;
   }
   else if (table === 'visit') {
-    return getVisitConfig(req.user.language);
+    return getVisitConfig(lang);
   }
 };
 
