@@ -40,7 +40,7 @@ exports.cmTable = async (req, res) => {
       cm.dosemtd = '';
     }
     else {
-      cm.dosemtd = getDoseMethodsConfig().find((method) => {
+      cm.dosemtd = getDoseMethodsConfig(req.user.language).find((method) => {
         return method.value === item.dosemtd_1;
       }).text;
     }
@@ -48,8 +48,8 @@ exports.cmTable = async (req, res) => {
   });
   res.render('cm/cmTable', {
     caseNav: CaseNav,
-    config: getCmTableConfig(),
-    buttonConfig: getButtonConfig(),
+    config: getCmTableConfig(req.user.language),
+    buttonConfig: getButtonConfig(req.user.language),
     cmList: cmListFormated,
     caseId: req.params.caseId
   });
@@ -71,7 +71,7 @@ exports.cmForm = async (req, res) => {
     };
   }
 
-  const config = getCmConfig();
+  const config = getCmConfig(req.user.language);
   Object.keys(config.formConfigs).forEach((key) => {
     if (config.formConfigs[key].type === 'select') {
       config.formConfigs[key].options = decorationHelper[config.formConfigs[key].optionsGetter]();
@@ -98,7 +98,7 @@ exports.cmForm = async (req, res) => {
   res.render('cm/cmForm', {
     caseNav: CaseNav,
     config,
-    buttonConfig: getButtonConfig(),
+    buttonConfig: getButtonConfig(req.user.language),
     caseId: caseId,
     cmId: cm._id
   });

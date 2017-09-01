@@ -38,7 +38,7 @@ exports.caseOverviewForm = async (req, res) => {
   res.render('case-overview', {
     caseNav: CaseNav,
     caseOverviewConfig: config,
-    buttonConfig: getButtonConfig(),
+    buttonConfig: getButtonConfig(req.user.language),
     config: getCaseOverviewConfig(req.user.language)
   });
 };
@@ -84,7 +84,7 @@ exports.caseBasicForm = async (req, res) => {
   const CaseNav = helpers.appendCaseIdToCaseNav(req.params.caseId);
   const caseItem = await Case.findById(req.params.caseId);
   const screeningItem = await getScreeningItemByCaseId(req.params.caseId);
-  const config = getScreeningBasicConfig();
+  const config = getScreeningBasicConfig(req.user.language);
   Object.keys(config.formConfigs).forEach((key) => {
     if (config.formConfigs[key].type === 'select') {
       config.formConfigs[key].options = decorationHelper[config.formConfigs[key].optionsGetter]();
@@ -103,7 +103,7 @@ exports.caseBasicForm = async (req, res) => {
   res.render('case/screening-basic', {
     caseNav: CaseNav,
     config,
-    buttonConfig: getButtonConfig(),
+    buttonConfig: getButtonConfig(req.user.language),
     caseId: req.params.caseId
   });
 };
@@ -118,7 +118,7 @@ exports.caseInclusionForm = async (req, res) => {
   const caseId = req.params.caseId;
   const CaseNav = helpers.appendCaseIdToCaseNav(caseId);
   const screeningItem = await getScreeningItemByCaseId(caseId);
-  const config = getScreeningInclusionConfig();
+  const config = getScreeningInclusionConfig(req.user.language);
   Object.keys(config.formConfigs).forEach((key) => {
     config.formConfigs[key].value = screeningItem[key];
     config.formConfigs[key].questionLink = helpers.getQuestionLink(tableName, 'screening-inclusion', req.params.caseId, config.formConfigs[key]);
@@ -128,7 +128,7 @@ exports.caseInclusionForm = async (req, res) => {
   });
   res.render('case/screening-inclusion', {
     caseNav: CaseNav,
-    buttonConfig: getButtonConfig(),
+    buttonConfig: getButtonConfig(req.user.language),
     config,
     caseId: req.params.caseId
   });
@@ -144,7 +144,7 @@ exports.caseExclusionForm = async (req, res) => {
   const caseId = req.params.caseId;
   const CaseNav = helpers.appendCaseIdToCaseNav(caseId);
   const screeningItem = await getScreeningItemByCaseId(caseId);
-  const config = getScreeningExclusionConfig();
+  const config = getScreeningExclusionConfig(req.user.language);
   Object.keys(config.formConfigs).forEach((key) => {
     config.formConfigs[key].value = screeningItem[key];
     config.formConfigs[key].questionLink = helpers.getQuestionLink(tableName, 'screening-exclusion', req.params.caseId, config.formConfigs[key]);
@@ -154,7 +154,7 @@ exports.caseExclusionForm = async (req, res) => {
   });
   res.render('case/screening-exclusion', {
     caseNav: CaseNav,
-    buttonConfig: getButtonConfig(),
+    buttonConfig: getButtonConfig(req.user.language),
     config,
     caseId: req.params.caseId
   });
@@ -170,7 +170,7 @@ exports.caseDiseaseForm = async (req, res) => {
   const caseId = req.params.caseId;
   const CaseNav = helpers.appendCaseIdToCaseNav(caseId);
   const screeningItem = await getScreeningItemByCaseId(caseId);
-  const config = getScreeningDiseaseConfig();
+  const config = getScreeningDiseaseConfig(req.user.language);
   Object.keys(config.formConfigs).forEach((key) => {
     config.formConfigs[key].value = screeningItem[key];
     config.formConfigs[key].questionLink = helpers.getQuestionLink(tableName, 'screening-disease', req.params.caseId, config.formConfigs[key]);
@@ -180,7 +180,7 @@ exports.caseDiseaseForm = async (req, res) => {
   });
   res.render('case/screening-disease', {
     caseNav: CaseNav,
-    buttonConfig: getButtonConfig(),
+    buttonConfig: getButtonConfig(req.user.language),
     config,
     caseId: req.params.caseId
   });
@@ -196,7 +196,7 @@ exports.caseConMedForm = async (req, res) => {
   const caseId = req.params.caseId;
   const CaseNav = helpers.appendCaseIdToCaseNav(caseId);
   const screeningItem = await getScreeningItemByCaseId(caseId);
-  const config = getScreeningConMedConfig();
+  const config = getScreeningConMedConfig(req.user.language);
   Object.keys(config.formConfigs).forEach((key) => {
     config.formConfigs[key].value = screeningItem[key];
     config.formConfigs[key].questionLink = helpers.getQuestionLink(tableName, 'screening-conmed', req.params.caseId, config.formConfigs[key]);
@@ -206,7 +206,7 @@ exports.caseConMedForm = async (req, res) => {
   });
   res.render('case/screening-conmed', {
     caseNav: CaseNav,
-    buttonConfig: getButtonConfig(),
+    buttonConfig: getButtonConfig(req.user.language),
     config,
     caseId: req.params.caseId
   });
@@ -222,7 +222,7 @@ exports.caseVitalSignForm = async (req, res) => {
   const caseId = req.params.caseId;
   const CaseNav = helpers.appendCaseIdToCaseNav(caseId);
   const screeningItem = await getScreeningItemByCaseId(caseId);
-  const config = getScreeningVitalSignConfig();
+  const config = getScreeningVitalSignConfig(req.user.language);
   Object.keys(config.formConfigs).forEach((key) => {
     if (config.formConfigs[key].type === 'select') {
       config.formConfigs[key].options = decorationHelper[config.formConfigs[key].optionsGetter]();
@@ -244,7 +244,7 @@ exports.caseVitalSignForm = async (req, res) => {
   });
   res.render('case/screening-vitalsign', {
     caseNav: CaseNav,
-    buttonConfig: getButtonConfig(),
+    buttonConfig: getButtonConfig(req.user.language),
     config,
     caseId: req.params.caseId
   });
@@ -260,7 +260,7 @@ exports.caseLabForm = async (req, res) => {
   const caseId = req.params.caseId;
   const CaseNav = helpers.appendCaseIdToCaseNav(caseId);
   const screeningItem = await getScreeningItemByCaseId(caseId);
-  const config = getScreeningLabConfig();
+  const config = getScreeningLabConfig(req.user.language);
   Object.keys(config.formConfigs).forEach((key) => {
     if (config.formConfigs[key].type === 'select') {
       config.formConfigs[key].options = decorationHelper[config.formConfigs[key].optionsGetter]();
@@ -279,7 +279,7 @@ exports.caseLabForm = async (req, res) => {
   });
   res.render('case/screening-lab', {
     caseNav: CaseNav,
-    buttonConfig: getButtonConfig(),
+    buttonConfig: getButtonConfig(req.user.language),
     config,
     caseId: req.params.caseId
   });
@@ -295,7 +295,7 @@ exports.caseAssistantForm = async (req, res) => {
   const caseId = req.params.caseId;
   const CaseNav = helpers.appendCaseIdToCaseNav(caseId);
   const screeningItem = await getScreeningItemByCaseId(caseId);
-  const config = getScreeningAssistantConfig();
+  const config = getScreeningAssistantConfig(req.user.language);
   Object.keys(config.formConfigs).forEach((key) => {
     if (config.formConfigs[key].type === 'select') {
       config.formConfigs[key].options = decorationHelper[config.formConfigs[key].optionsGetter]();
@@ -308,7 +308,7 @@ exports.caseAssistantForm = async (req, res) => {
   });
   res.render('case/screening-assistant', {
     caseNav: CaseNav,
-    buttonConfig: getButtonConfig(),
+    buttonConfig: getButtonConfig(req.user.language),
     config,
     caseId: req.params.caseId
   });
@@ -324,7 +324,7 @@ exports.caseMethodForm = async (req, res) => {
   const caseId = req.params.caseId;
   const CaseNav = helpers.appendCaseIdToCaseNav(caseId);
   const screeningItem = await getScreeningItemByCaseId(caseId);
-  const config = getScreeningMethodConfig();
+  const config = getScreeningMethodConfig(req.user.language);
   Object.keys(config.formConfigs).forEach((key) => {
     config.formConfigs[key].value = screeningItem[key];
     config.formConfigs[key].questionLink = helpers.getQuestionLink(tableName, 'screening-method', req.params.caseId, config.formConfigs[key]);
@@ -334,7 +334,7 @@ exports.caseMethodForm = async (req, res) => {
   });
   res.render('case/screening-method', {
     caseNav: CaseNav,
-    buttonConfig: getButtonConfig(),
+    buttonConfig: getButtonConfig(req.user.language),
     config,
     caseId: req.params.caseId
   });
@@ -350,7 +350,7 @@ exports.caseRegionForm = async (req, res) => {
   const caseId = req.params.caseId;
   const CaseNav = helpers.appendCaseIdToCaseNav(caseId);
   const screeningItem = await getScreeningItemByCaseId(caseId);
-  const config = getScreeningRegionConfig();
+  const config = getScreeningRegionConfig(req.user.language);
   Object.keys(config.formConfigs).forEach((key) => {
     config.formConfigs[key].value = screeningItem[key];
     config.formConfigs[key].questionLink = helpers.getQuestionLink(tableName, 'screening-region', req.params.caseId, config.formConfigs[key]);
@@ -360,7 +360,7 @@ exports.caseRegionForm = async (req, res) => {
   });
   res.render('case/screening-region', {
     caseNav: CaseNav,
-    buttonConfig: getButtonConfig(),
+    buttonConfig: getButtonConfig(req.user.language),
     config,
     caseId: req.params.caseId
   });
@@ -376,7 +376,7 @@ exports.caseDignoseForm = async (req, res) => {
   const caseId = req.params.caseId;
   const CaseNav = helpers.appendCaseIdToCaseNav(caseId);
   const screeningItem = await getScreeningItemByCaseId(caseId);
-  const config = getScreeningDignoseConfig();
+  const config = getScreeningDignoseConfig(req.user.language);
   Object.keys(config.formConfigs).forEach((key) => {
     if (config.formConfigs[key].type === 'select') {
       config.formConfigs[key].options = decorationHelper[config.formConfigs[key].optionsGetter]();
@@ -389,7 +389,7 @@ exports.caseDignoseForm = async (req, res) => {
   });
   res.render('case/screening-dignose', {
     caseNav: CaseNav,
-    buttonConfig: getButtonConfig(),
+    buttonConfig: getButtonConfig(req.user.language),
     config,
     caseId: req.params.caseId
   });

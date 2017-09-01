@@ -47,7 +47,7 @@ const tableName = 'screeningchecklist';
 exports.screeningChecklistForm = async (req, res) => {
   const CaseNav = helpers.appendCaseIdToCaseNav(req.params.caseId);
   const screeningChecklistItem = await getScreeningChecklistItemByCaseId(req.params.caseId);
-  const config = getScreeningChecklistConfig();
+  const config = getScreeningChecklistConfig(req.user.language);
   Object.keys(config.formConfigs).forEach((key) => {
     config.formConfigs[key].value = screeningChecklistItem[key];
     config.formConfigs[key].questionLink = helpers.getQuestionLink(tableName, 'screeningchecklist', req.params.caseId, config.formConfigs[key]);
@@ -61,7 +61,7 @@ exports.screeningChecklistForm = async (req, res) => {
   res.render('screening-checklist', {
     caseNav: CaseNav,
     config,
-    buttonConfig: getButtonConfig(),
+    buttonConfig: getButtonConfig(req.user.language),
     caseId: req.params.caseId
   });
 };

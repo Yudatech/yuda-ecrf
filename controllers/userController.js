@@ -12,7 +12,7 @@ const getButtonConfig = require('../config/common/getButtonConfig');
 
 exports.loginForm = (req, res) => {
   res.render('login', {
-    loginConfig: getLoginConfig()
+    loginConfig: getLoginConfig(req.user.language)
   });
 };
 
@@ -28,10 +28,10 @@ exports.registerForm = async (req, res) => {
   }
   res.render('user/register', {
     sites,
-    registerConfig: getRegisterConfig(),
-    roleConfig: getRoleConfig(),
-    languageConfig: getLanguageConfig(),
-    buttonConfig: getButtonConfig(),
+    registerConfig: getRegisterConfig(req.user.language),
+    roleConfig: getRoleConfig(req.user.language),
+    languageConfig: getLanguageConfig(req.user.language),
+    buttonConfig: getButtonConfig(req.user.language),
     userInfo: user
   });
 };
@@ -54,10 +54,10 @@ exports.validateRegister = async (req, res, next) => {
     const sites = await Site.find();
     res.render('user/register', {
       sites,
-      registerConfig: getRegisterConfig(),
-      roleConfig: getRoleConfig(),
-      languageConfig: getLanguageConfig(),
-      buttonConfig: getButtonConfig(),
+      registerConfig: getRegisterConfig(req.user.language),
+      roleConfig: getRoleConfig(req.user.language),
+      languageConfig: getLanguageConfig(req.user.language),
+      buttonConfig: getButtonConfig(req.user.language),
       userInfo: req.body
     });
     return; // stop the fn from running
@@ -85,10 +85,10 @@ exports.register = async (req, res) => {
     req.flash('error', e.toString());
     res.render('user/register', {
       sites,
-      registerConfig: getRegisterConfig(),
-      roleConfig: getRoleConfig(),
-      languageConfig: getLanguageConfig(),
-      buttonConfig: getButtonConfig(),
+      registerConfig: getRegisterConfig(req.user.language),
+      roleConfig: getRoleConfig(req.user.language),
+      languageConfig: getLanguageConfig(req.user.language),
+      buttonConfig: getButtonConfig(req.user.language),
       userInfo: req.body
   });
   }
@@ -97,7 +97,7 @@ exports.register = async (req, res) => {
 exports.usersTable = async (req, res) => {
   const users = await User.find();
   res.render('user/usersTable', {
-    userTableConfig: getUserTableConfig(),
+    userTableConfig: getUserTableConfig(req.user.language),
     users
   });
 };

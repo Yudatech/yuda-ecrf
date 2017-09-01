@@ -49,7 +49,7 @@ const tableName = 'surgery';
 exports.surgeryForm = async (req, res) => {
   const CaseNav = helpers.appendCaseIdToCaseNav(req.params.caseId);
   const surgeryItem = await getSurgeryItemByCaseId(req.params.caseId);
-  const config = getSurgeryConfig();
+  const config = getSurgeryConfig(req.user.language);
   Object.keys(config.formConfigs).forEach((key) => {
     if (config.formConfigs[key].type === 'select') {
       config.formConfigs[key].options = decorationHelper[config.formConfigs[key].optionsGetter]();
@@ -69,7 +69,7 @@ exports.surgeryForm = async (req, res) => {
   res.render('surgery', {
     caseNav: CaseNav,
     config,
-    buttonConfig: getButtonConfig(),
+    buttonConfig: getButtonConfig(req.user.language),
     caseId: req.params.caseId
   });
 };

@@ -27,7 +27,7 @@ exports.homePage = async (req, res) => {
       site: req.user.site._id
     });
   }
-  const caseStatusConfig = getCaseStatusConfig();
+  const caseStatusConfig = getCaseStatusConfig(req.user.language);
   const casesFormated = cases.filter((item) => {
     return caseStatus === undefined || item.status === caseStatus;
   }).map((item) => {
@@ -72,9 +72,9 @@ exports.homePage = async (req, res) => {
   });
 
   res.render('home', {
-    homeConfig: getHomeConfig(),
+    homeConfig: getHomeConfig(req.user.language),
     cases: casesFormated,
     questions: questionsFormated,
-    buttonConfig: getButtonConfig()
+    buttonConfig: getButtonConfig(req.user.language)
   });
 };

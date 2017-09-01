@@ -21,7 +21,7 @@ async function getSaeListByCaseId(caseId) {
 }
 
 function getSaeTypeText(value) {
-  return getSaeTypesConfig().find((item) => {
+  return getSaeTypesConfig(req.user.language).find((item) => {
     return item.value === value;
   }).text;
 }
@@ -43,8 +43,8 @@ exports.saeTable = async (req, res) => {
   });
   res.render('sae/saeTable', {
     caseNav: CaseNav,
-    config: getSaeTableConfig(),
-    buttonConfig: getButtonConfig(),
+    config: getSaeTableConfig(req.user.language),
+    buttonConfig: getButtonConfig(req.user.language),
     saeList: saeListFormated,
     caseId: req.params.caseId
   });
@@ -67,7 +67,7 @@ exports.saeForm = async (req, res) => {
     };
   }
 
-  const config = getSaeConfig();
+  const config = getSaeConfig(req.user.language);
   Object.keys(config.formConfigs).forEach((key) => {
     if (config.formConfigs[key].type === 'select') {
       config.formConfigs[key].options = decorationHelper[config.formConfigs[key].optionsGetter]();
@@ -118,7 +118,7 @@ exports.saeForm = async (req, res) => {
   res.render('sae/saeForm', {
     caseNav: CaseNav,
     config,
-    buttonConfig: getButtonConfig(),
+    buttonConfig: getButtonConfig(req.user.language),
     caseId: caseId,
     saeId: saeId
   });

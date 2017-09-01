@@ -60,8 +60,8 @@ exports.aeTable = async (req, res) => {
   });
   res.render('ae/aeTable', {
     caseNav: CaseNav,
-    config: getAeTableConfig(),
-    buttonConfig: getButtonConfig(),
+    config: getAeTableConfig(req.user.language),
+    buttonConfig: getButtonConfig(req.user.language),
     aeList: aeListFormated,
     caseId: req.params.caseId
   });
@@ -134,7 +134,7 @@ exports.aeForm = async (req, res) => {
   res.render('ae/aeForm', {
     caseNav: CaseNav,
     config,
-    buttonConfig: getButtonConfig(),
+    buttonConfig: getButtonConfig(req.user.language),
     caseId: caseId,
     aeId: aeId
   });

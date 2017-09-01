@@ -48,8 +48,8 @@ exports.visitTable = async (req, res) => {
   });
   res.render('visit/visitTable', {
     caseNav: CaseNav,
-    config: getVisitTableConfig(),
-    buttonConfig: getButtonConfig(),
+    config: getVisitTableConfig(req.user.language),
+    buttonConfig: getButtonConfig(req.user.language),
     visitList: visitListFormated,
     caseId: req.params.caseId
   });
@@ -71,7 +71,7 @@ exports.visitForm = async (req, res) => {
     };
   }
 
-  const config = getVisitConfig();
+  const config = getVisitConfig(req.user.language);
   Object.keys(config.formConfigs).forEach((key) => {
     if (config.formConfigs[key].type === 'select') {
       config.formConfigs[key].options = decorationHelper[config.formConfigs[key].optionsGetter]();
@@ -94,7 +94,7 @@ exports.visitForm = async (req, res) => {
   res.render('visit/visitForm', {
     caseNav: CaseNav,
     config,
-    buttonConfig: getButtonConfig(),
+    buttonConfig: getButtonConfig(req.user.language),
     caseId: caseId,
     visitId: visit._id
   });

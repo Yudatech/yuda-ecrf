@@ -39,76 +39,76 @@ exports.getConfigForQuestion = function(table, field) {
   if (table === 'screening') {
     let formConfigs;
 
-    formConfigs = getScreeningBasicConfig().formConfigs;
+    formConfigs = getScreeningBasicConfig(req.user.language).formConfigs;
     if (formConfigs[field]) {
-      return getScreeningBasicConfig();
+      return getScreeningBasicConfig(req.user.language);
     }
-    formConfigs = getScreeningAssistantConfig().formConfigs;
+    formConfigs = getScreeningAssistantConfig(req.user.language).formConfigs;
     if (formConfigs[field]) {
-      return getScreeningAssistantConfig();
+      return getScreeningAssistantConfig(req.user.language);
     }
-    formConfigs = getScreeningConMedConfig().formConfigs;
+    formConfigs = getScreeningConMedConfig(req.user.language).formConfigs;
     if (formConfigs[field]) {
-      return getScreeningConMedConfig();
+      return getScreeningConMedConfig(req.user.language);
     }
-    formConfigs = getScreeningDignoseConfig().formConfigs;
+    formConfigs = getScreeningDignoseConfig(req.user.language).formConfigs;
     if (formConfigs[field]) {
-      return getScreeningDignoseConfig();
+      return getScreeningDignoseConfig(req.user.language);
     }
-    formConfigs = getScreeningDiseaseConfig().formConfigs;
+    formConfigs = getScreeningDiseaseConfig(req.user.language).formConfigs;
     if (formConfigs[field]) {
-      return getScreeningDiseaseConfig();
+      return getScreeningDiseaseConfig(req.user.language);
     }
-    formConfigs = getScreeningExclusionConfig().formConfigs;
+    formConfigs = getScreeningExclusionConfig(req.user.language).formConfigs;
     if (formConfigs[field]) {
-      return getScreeningExclusionConfig();
+      return getScreeningExclusionConfig(req.user.language);
     }
-    formConfigs = getScreeningInclusionConfig().formConfigs;
+    formConfigs = getScreeningInclusionConfig(req.user.language).formConfigs;
     if (formConfigs[field]) {
-      return getScreeningInclusionConfig();
+      return getScreeningInclusionConfig(req.user.language);
     }
-    formConfigs = getScreeningLabConfig().formConfigs;
+    formConfigs = getScreeningLabConfig(req.user.language).formConfigs;
     if (formConfigs[field]) {
-      return getScreeningLabConfig();
+      return getScreeningLabConfig(req.user.language);
     }
-    formConfigs = getScreeningMethodConfig().formConfigs;
+    formConfigs = getScreeningMethodConfig(req.user.language).formConfigs;
     if (formConfigs[field]) {
-      return getScreeningMethodConfig();
+      return getScreeningMethodConfig(req.user.language);
     }
-    formConfigs = getScreeningRegionConfig().formConfigs;
+    formConfigs = getScreeningRegionConfig(req.user.language).formConfigs;
     if (formConfigs[field]) {
-      return getScreeningRegionConfig();
+      return getScreeningRegionConfig(req.user.language);
     }
     formConfigs = getScreeningVitalSignConfig().formConfigs;
     if (formConfigs[field]) {
-      return getScreeningVitalSignConfig();
+      return getScreeningVitalSignConfig(req.user.language);
     }
   }
   else if (table === 'screeningchecklist') {
-    return getScreeningChecklistConfig();
+    return getScreeningChecklistConfig(req.user.language);
   }
   else if (table === 'reviewchecklist') {
-    return getReviewChecklistConfig();
+    return getReviewChecklistConfig(req.user.language);
   }
   else if (table === 'discontinuation') {
-    return getDiscontinuationConfig();
+    return getDiscontinuationConfig(req.user.language);
   }
   else if (table === 'cm') {
-    return getCmConfig();
+    return getCmConfig(req.user.language);
   }
   else if (table === 'sae') {
-    return getSaeConfig();
+    return getSaeConfig(req.user.language);
   }
   else if (table === 'ae') {
-    return getAeConfig();
+    return getAeConfig(req.user.language);
   }
   else if (table === 'surgery') {
-    const surgeryConfig = getSurgeryConfig();
+    const surgeryConfig = getSurgeryConfig(req.user.language);
     surgeryConfig.title = surgeryConfig.title.surgery;
     return surgeryConfig;
   }
   else if (table === 'visit') {
-    return getVisitConfig();
+    return getVisitConfig(req.user.language);
   }
 };
 

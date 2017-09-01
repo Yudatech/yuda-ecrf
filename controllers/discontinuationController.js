@@ -54,7 +54,7 @@ exports.discontinuationForm = async (req, res) => {
   const surgeryItem = await Surgery.findOne({
     case: req.params.caseId
   });
-  const config = getDiscontinuationConfig();
+  const config = getDiscontinuationConfig(req.user.language);
   Object.keys(config.formConfigs).forEach((key) => {
     if (config.formConfigs[key].type === 'select') {
       config.formConfigs[key].options = decorationHelper[config.formConfigs[key].optionsGetter]();
@@ -107,7 +107,7 @@ exports.discontinuationForm = async (req, res) => {
   res.render('discontinuation', {
     caseNav: CaseNav,
     config,
-    buttonConfig: getButtonConfig(),
+    buttonConfig: getButtonConfig(req.user.language),
     caseId: req.params.caseId
   });
 };

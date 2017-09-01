@@ -99,8 +99,8 @@ exports.caseForm = async (req, res) => {
   const newId = `${userAbbr}${'0'.repeat(num - max.length)}${max}`;
   res.render('case/caseForm', {
     _id: newId,
-    caseFormConfig: getCaseFormConfig(),
-    buttonConfig: getButtonConfig()
+    caseFormConfig: getCaseFormConfig(req.user.language),
+    buttonConfig: getButtonConfig(req.user.language)
   });
 };
 
@@ -124,9 +124,9 @@ exports.showAuditCaseForm = async (req, res) => {
   else {
     res.render('case-second-auth', {
       caseNav: CaseNav,
-      buttonConfig: getButtonConfig(),
+      buttonConfig: getButtonConfig(req.user.language),
       purpose: 'audit',
-      caseSecondAuthConfig: getCaseSecondAuthConfig(),
+      caseSecondAuthConfig: getCaseSecondAuthConfig(req.user.language),
       caseId: req.params.caseId
     });
   }
@@ -187,9 +187,9 @@ exports.showLockCaseForm = async (req, res) => {
   else {
     res.render('case-second-auth', {
       caseNav: CaseNav,
-      buttonConfig: getButtonConfig(),
+      buttonConfig: getButtonConfig(req.user.language),
       purpose: 'lock',
-      caseSecondAuthConfig: getCaseSecondAuthConfig(),
+      caseSecondAuthConfig: getCaseSecondAuthConfig(req.user.language),
       caseId: req.params.caseId
     });
   }

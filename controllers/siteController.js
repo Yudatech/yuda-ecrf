@@ -14,14 +14,14 @@ exports.siteForm = async (req, res) => {
   else {
     site = {};
   }
-  const config = getSiteConfig();
+  const config = getSiteConfig(req.user.language);
   Object.keys(config.formConfigs).forEach((key) => {
     config.formConfigs[key].value = site[key];
   });
 
   res.render('site/site', {
     siteConfig: config,
-    buttonConfig: getButtonConfig(),
+    buttonConfig: getButtonConfig(req.user.language),
     siteId: site._id
   });
 };
@@ -30,7 +30,7 @@ exports.sitesTable = async (req, res) => {
   const sites = await Site.find();
   res.render('site/siteTable', {
     sites,
-    siteTableConfig: getSiteTableConfig()
+    siteTableConfig: getSiteTableConfig(req.user.language)
   });
 };
 

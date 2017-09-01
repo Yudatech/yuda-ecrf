@@ -47,7 +47,7 @@ const tableName = 'reviewchecklist';
 exports.reviewChecklistForm = async (req, res) => {
   const CaseNav = helpers.appendCaseIdToCaseNav(req.params.caseId);
   const reviewChecklistItem = await getReviewChecklistItemByCaseId(req.params.caseId);
-  const config = getReviewChecklistConfig();
+  const config = getReviewChecklistConfig(req.user.language);
   Object.keys(config.formConfigs).forEach((key) => {
     config.formConfigs[key].value = reviewChecklistItem[key];
     config.formConfigs[key].questionLink = helpers.getQuestionLink(tableName, 'reviewchecklist', req.params.caseId, config.formConfigs[key]);
@@ -61,7 +61,7 @@ exports.reviewChecklistForm = async (req, res) => {
   res.render('review-checklist', {
     caseNav: CaseNav,
     config,
-    buttonConfig: getButtonConfig(),
+    buttonConfig: getButtonConfig(req.user.language),
     caseId: req.params.caseId
   });
 };

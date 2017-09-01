@@ -60,7 +60,7 @@ exports.checkCaseStatus = async (req, res, next) => {
   const method = req.method.toLowerCase();
   if (method === 'get') {
     res.locals.case = caseItem;
-    res.locals.caseStatusText = getCaseStatusConfig();
+    res.locals.caseStatusText = getCaseStatusConfig(req.user.language);
     next();
   }
   else if (method === 'post') {

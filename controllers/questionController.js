@@ -75,8 +75,8 @@ exports.showQuestionPage = async (req, res) => {
 
   fieldConfig = questionHelper.appendValueAndOptionsToFormConfig(fieldConfig, fieldValue, aeSourceConfig, saeSourceConfig);
 
-  const questionConfig = getQuestionConfig();
-  questionConfig.questionConfigs.question_status.options = getQuestionStatusConfig();
+  const questionConfig = getQuestionConfig(req.user.language);
+  questionConfig.questionConfigs.question_status.options = getQuestionStatusConfig(req.user.language);
   questionConfig.questionConfigs.question_status.value = question.status;
   if (req.user.role === 'cra') {
     questionConfig.questionConfigs.question_status.options = questionConfig.questionConfigs.question_status.options.filter((option) => {
@@ -89,7 +89,7 @@ exports.showQuestionPage = async (req, res) => {
     config,
     questionConfig,
     fieldConfig,
-    buttonConfig: getButtonConfig(),
+    buttonConfig: getButtonConfig(req.user.language),
     comments,
     source,
     backInfo: {
