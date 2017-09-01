@@ -71,5 +71,8 @@ block content
                           .row
                             a.btn.btn-default(role="button" href=`/question/${questionItem.questionId}/?source=update`)
                               span.glyphicon.glyphicon-pencil
+                            if user.role === 'admin'
+                              a.btn.btn-default(role="button" href=`/remove/question/${questionItem.questionId}`)
+                                span.glyphicon.glyphicon-trash
 
           .panel-footer

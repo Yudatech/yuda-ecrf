@@ -454,4 +454,6 @@ router.post('/question/:questionId',
   catchErrors(questionController.updateQuestion)
 );
 
+router.get('/remove/question/:questionId', catchErrors(questionController.removeQuestion));
+
 module.exports = router;

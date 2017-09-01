@@ -143,3 +143,12 @@ exports.checkQuestionedFields = async (req, res, next) => {
   res.locals.questionFields = fields;
   next();
 };
+
+exports.removeQuestion = async (req, res, next) => {
+  const questionId = req.params.questionId;
+  await Question.findByIdAndRemove(questionId);
+  await Comment.remove({
+    question: questionId
+  });
+  res.redirect('/');
+};
