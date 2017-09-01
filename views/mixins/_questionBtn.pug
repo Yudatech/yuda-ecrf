@@ -1,4 +1,4 @@
 mixin _questionBtn(config, questionFields)
   if locals.user.role !== 'cra' && !questionFields.includes(config.name)
-    a.btn.btn-default(href=config.questionLink id=`${config.name}-question-btn` class=(config.hidden === true ? 'hidden' : ''))
+    a.btn.btn-default.query-btn(href=config.questionLink id=`${config.name}-question-btn` class=(config.hidden === true ? 'hidden' : ''))
       span.glyphicon.glyphicon-question-sign

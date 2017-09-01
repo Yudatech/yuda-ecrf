@@ -10,7 +10,7 @@ module.exports = [
   {
     title: {
       zh: '首诊(筛选)',
-      en: 'Visit 1(Screening)'
+      en: 'Screening'
     },
     name: 'screening',
     link: '/screening-basic',
@@ -87,8 +87,8 @@ module.exports = [
     }, {
       name: 'screening-dignose',
       title: {
-        zh: '临床，病理诊断及分期',
-        en: 'Clinical diagnosis, pathological diagnosis and staging'
+        zh: '临床诊断',
+        en: 'Diagnosis'
       },
       link: '/screening-dignose'
     }]
@@ -96,7 +96,7 @@ module.exports = [
   {
     title: {
       zh: '首诊清单',
-      en: 'Checklist for Visit 1'
+      en: 'Screening Checklist'
     },
     name: 'screeningchecklist',
     link: '/screeningchecklist'
@@ -104,7 +104,7 @@ module.exports = [
   {
     title: {
       zh: '复诊(入组)',
-      en: 'Visit 2 (Enrollment)'
+      en: 'Enrollment'
     },
     name: 'reviewchecklist',
     link: '/reviewchecklist'
@@ -129,7 +129,7 @@ module.exports = [
   {
     title: {
       zh: '合并用药情况',
-      en: 'Concomitant Medication Report'
+      en: 'Concomitant Medication'
     },
     name: 'cm',
     link: '/cmlist'
@@ -137,7 +137,7 @@ module.exports = [
   {
     title: {
       zh: '不良事件',
-      en: 'REPORT: Adverse Event (AE)/ Device Deficiency'
+      en: 'Adverse Event'
     },
     name: 'ae',
     link: '/aelist'
@@ -145,7 +145,7 @@ module.exports = [
   {
     title: {
       zh: '严重不良事件',
-      en: 'Severe Adverse Event (SAE)'
+      en: 'Severe Adverse Event'
     },
     name: 'sae',
     link: '/saelist'
@@ -153,7 +153,7 @@ module.exports = [
   {
     title: {
       zh: '中途退出试验',
-      en: 'Withdrawal from the study'
+      en: 'Discontinue'
     },
     name: 'discontinuation',
     link: '/discontinuation'

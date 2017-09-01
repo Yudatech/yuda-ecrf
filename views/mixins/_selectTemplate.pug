@@ -1,9 +1,8 @@
 mixin _selectTemplate(config, disabled)
   - const value = config.value
   .form-group(id=`${config.name}-container`)
-    label.col-sm-4.control-label #{config.text}
-    .col-sm-8
-      select.form-control(disabled=disabled id=config.name name=config.name data-customrequired=config.required)
-        option(value='')
-        each optionItem in config.options
-          option(value=optionItem.value selected=(value === optionItem.value)) #{optionItem.text}
+    label.control-label #{config.text}
+    select.form-control(disabled=disabled id=config.name name=config.name data-customrequired=config.required)
+      option(value='')
+      each optionItem in config.options
+        option(value=optionItem.value selected=(value === optionItem.value)) #{optionItem.text}

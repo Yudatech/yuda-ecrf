@@ -6,18 +6,19 @@ mixin _datetimeTemplate(config, disabled)
   - const dateIdReal = date_name + 'Real'
   - const timeIdReal = time_name + 'Real'
   .form-group(id=`${config.name}-container`)
-    label.col-sm-4.control-label #{config.text}
-    .col-sm-4
-      div.input-group.date(data-provide="datepicker" id=date_name)
-        input.form-control(disabled=disabled value=date_value data-customrequired=config.required)
-        span.input-group-addon
-          i.glyphicon.glyphicon-th
-      if disabled !== true
-        input(id=dateIdReal type="hidden" name=date_name value=date_value)
-    .col-sm-4
-      div.input-group.bootstrap-timepicker.timepicker
-        input.form-control.input-small(disabled=disabled id=time_name type="text" value=time_value data-customrequired=config.required)
-        span.input-group-addon
-          i.glyphicon.glyphicon-time
-      if disabled !== true
-        input(id=timeIdReal type="hidden" name=time_name value=time_value)
+    label.control-label #{config.text}
+    div
+      .col-sm-4.padding-left-0
+        div.input-group.date(data-provide="datepicker" id=date_name)
+          input.form-control(disabled=disabled value=date_value data-customrequired=config.required)
+          span.input-group-addon
+            i.glyphicon.glyphicon-th
+        if disabled !== true
+          input(id=dateIdReal type="hidden" name=date_name value=date_value)
+      .col-sm-4
+        div.input-group.bootstrap-timepicker.timepicker
+          input.form-control.input-small(disabled=disabled id=time_name type="text" value=time_value data-customrequired=config.required)
+          span.input-group-addon
+            i.glyphicon.glyphicon-time
+        if disabled !== true
+          input(id=timeIdReal type="hidden" name=time_name value=time_value)

@@ -14,7 +14,8 @@ const config = {
       end: 'now'
     }],
     text: {
-      zh: '首诊日期'
+      zh: '首诊日期',
+      en: "Screening Date"
     }
   }, {
     name: 'sex',

@@ -9,7 +9,8 @@ const config = {
     name: 'screeningcheckdate',
     type: 'date',
     text: {
-      zh: ''
+      zh: '日期',
+      en: 'Date'
     }
   }, {
     name: 'screeningcheck_1',

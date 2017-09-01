@@ -13,6 +13,19 @@ body {
   overflow: hidden;
 }
 
+fieldset {
+  padding-left: 2em !important;
+  padding-right: 2em !important;
+}
+
+.query-btn {
+  margin-top: 27px;
+}
+
+.checkbox-placeholder {
+  height: 20px;
+}
+
 .inner {
   width: 100%;
   height: 100%;
@@ -133,7 +146,6 @@ body {
   text-align: center;
 }
 
-
 .yuda-panel {
   height: 100%;
   margin-bottom: 0;
@@ -148,15 +160,15 @@ body {
   padding-left: 0;
 }
 
-.query-mark{
+.query-mark {
   border: 2px solid $red;
 }
 
-.d-flex{
-  display: -webkit-box!important;
-  display: -webkit-flex!important;
-  display: -ms-flexbox!important;
-  display: flex!important;
+.d-flex {
+  display: -webkit-box !important;
+  display: -webkit-flex !important;
+  display: -ms-flexbox !important;
+  display: flex !important;
 }
 
 .justify-content-between {
@@ -167,43 +179,43 @@ body {
 }
 
 .w-100 {
-  width: 100%!important;
+  width: 100% !important;
 }
 
 .h-100 {
-  height: 100%!important;
+  height: 100% !important;
 }
 
-.h-sm-100{
-  @media (min-width: 576px){
-    height: 100%!important;
+.h-sm-100 {
+  @media (min-width: 576px) {
+    height: 100% !important;
   }
 }
 
-.yuda-query-hist-panel{
+.yuda-query-hist-panel {
   padding-left: 0;
   overflow: auto;
 
-  @media (max-width: 576px){
+  @media (max-width: 576px) {
     margin-top: 20px;
   }
 
-  .hist-item{
+  .hist-item {
     padding: 0;
     margin-bottom: 10px;
 
-    .hist-heading{
+    .hist-heading {
       padding-left: 15px;
       background: #e8e8e8;
       border-bottom: 1px solid #ddd;
     }
 
-    .hist-body{
+    .hist-body {
       padding-left: 15px;
       padding-right: 15px;
     }
 
-    .hist-footer{
+    .hist-footer {
       padding-right: 15px;
       text-align: right;
       padding-bottom: 5px;
