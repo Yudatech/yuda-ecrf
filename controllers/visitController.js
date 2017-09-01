@@ -27,7 +27,7 @@ function getDaysAfterSurgery(surgerydtc, visitdtc) {
 const tableName = 'visit';
 
 exports.visitTable = async (req, res) => {
-  const CaseNav = helpers.appendCaseIdToCaseNav(req.params.caseId);
+  const CaseNav = helpers.appendCaseIdToCaseNav(req.params.caseId, req.user.language);
 
   const surgery = await Surgery.findOne({
     case: req.params.caseId
@@ -58,7 +58,7 @@ exports.visitTable = async (req, res) => {
 exports.visitForm = async (req, res) => {
   const caseId = req.params.caseId;
   const visitId = req.params.visitId;
-  const CaseNav = helpers.appendCaseIdToCaseNav(caseId);
+  const CaseNav = helpers.appendCaseIdToCaseNav(caseId, req.user.language);
   let visit;
 
   if (visitId !== undefined) {

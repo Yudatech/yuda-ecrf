@@ -25,7 +25,7 @@ const Screening = mongoose.model('Screening');
 
 exports.caseOverviewForm = async (req, res) => {
   const caseId = req.params.caseId;
-  const CaseNav = helpers.appendCaseIdToCaseNav(caseId);
+  const CaseNav = helpers.appendCaseIdToCaseNav(caseId, req.user.language);
   const caseItem = await Case.findById(caseId);
   const caseObj = caseItem.toObject();
   const config = {
@@ -81,7 +81,7 @@ async function getScreeningItemByCaseId(caseId) {
 const tableName = 'screening';
 
 exports.caseBasicForm = async (req, res) => {
-  const CaseNav = helpers.appendCaseIdToCaseNav(req.params.caseId);
+  const CaseNav = helpers.appendCaseIdToCaseNav(req.params.caseId, req.user.language);
   const caseItem = await Case.findById(req.params.caseId);
   const screeningItem = await getScreeningItemByCaseId(req.params.caseId);
   const config = getScreeningBasicConfig();
@@ -116,7 +116,7 @@ exports.updateCaseBasic = async (req, res) => {
 
 exports.caseInclusionForm = async (req, res) => {
   const caseId = req.params.caseId;
-  const CaseNav = helpers.appendCaseIdToCaseNav(caseId);
+  const CaseNav = helpers.appendCaseIdToCaseNav(caseId, req.user.language);
   const screeningItem = await getScreeningItemByCaseId(caseId);
   const config = getScreeningInclusionConfig();
   Object.keys(config.formConfigs).forEach((key) => {
@@ -142,7 +142,7 @@ exports.updateCaseInclusion = async (req, res) => {
 
 exports.caseExclusionForm = async (req, res) => {
   const caseId = req.params.caseId;
-  const CaseNav = helpers.appendCaseIdToCaseNav(caseId);
+  const CaseNav = helpers.appendCaseIdToCaseNav(caseId, req.user.language);
   const screeningItem = await getScreeningItemByCaseId(caseId);
   const config = getScreeningExclusionConfig();
   Object.keys(config.formConfigs).forEach((key) => {
@@ -168,7 +168,7 @@ exports.updateCaseExclusion = async (req, res) => {
 
 exports.caseDiseaseForm = async (req, res) => {
   const caseId = req.params.caseId;
-  const CaseNav = helpers.appendCaseIdToCaseNav(caseId);
+  const CaseNav = helpers.appendCaseIdToCaseNav(caseId, req.user.language);
   const screeningItem = await getScreeningItemByCaseId(caseId);
   const config = getScreeningDiseaseConfig();
   Object.keys(config.formConfigs).forEach((key) => {
@@ -194,7 +194,7 @@ exports.updateCaseDisease = async (req, res) => {
 
 exports.caseConMedForm = async (req, res) => {
   const caseId = req.params.caseId;
-  const CaseNav = helpers.appendCaseIdToCaseNav(caseId);
+  const CaseNav = helpers.appendCaseIdToCaseNav(caseId, req.user.language);
   const screeningItem = await getScreeningItemByCaseId(caseId);
   const config = getScreeningConMedConfig();
   Object.keys(config.formConfigs).forEach((key) => {
@@ -220,7 +220,7 @@ exports.updateCaseConMed = async (req, res) => {
 
 exports.caseVitalSignForm = async (req, res) => {
   const caseId = req.params.caseId;
-  const CaseNav = helpers.appendCaseIdToCaseNav(caseId);
+  const CaseNav = helpers.appendCaseIdToCaseNav(caseId, req.user.language);
   const screeningItem = await getScreeningItemByCaseId(caseId);
   const config = getScreeningVitalSignConfig();
   Object.keys(config.formConfigs).forEach((key) => {
@@ -258,7 +258,7 @@ exports.updateCaseVitalSign = async (req, res) => {
 
 exports.caseLabForm = async (req, res) => {
   const caseId = req.params.caseId;
-  const CaseNav = helpers.appendCaseIdToCaseNav(caseId);
+  const CaseNav = helpers.appendCaseIdToCaseNav(caseId, req.user.language);
   const screeningItem = await getScreeningItemByCaseId(caseId);
   const config = getScreeningLabConfig();
   Object.keys(config.formConfigs).forEach((key) => {
@@ -293,7 +293,7 @@ exports.updateCaseLab = async (req, res) => {
 
 exports.caseAssistantForm = async (req, res) => {
   const caseId = req.params.caseId;
-  const CaseNav = helpers.appendCaseIdToCaseNav(caseId);
+  const CaseNav = helpers.appendCaseIdToCaseNav(caseId, req.user.language);
   const screeningItem = await getScreeningItemByCaseId(caseId);
   const config = getScreeningAssistantConfig();
   Object.keys(config.formConfigs).forEach((key) => {
@@ -322,7 +322,7 @@ exports.updateCaseAssistant = async (req, res) => {
 
 exports.caseMethodForm = async (req, res) => {
   const caseId = req.params.caseId;
-  const CaseNav = helpers.appendCaseIdToCaseNav(caseId);
+  const CaseNav = helpers.appendCaseIdToCaseNav(caseId, req.user.language);
   const screeningItem = await getScreeningItemByCaseId(caseId);
   const config = getScreeningMethodConfig();
   Object.keys(config.formConfigs).forEach((key) => {
@@ -348,7 +348,7 @@ exports.updateCaseMethod = async (req, res) => {
 
 exports.caseRegionForm = async (req, res) => {
   const caseId = req.params.caseId;
-  const CaseNav = helpers.appendCaseIdToCaseNav(caseId);
+  const CaseNav = helpers.appendCaseIdToCaseNav(caseId, req.user.language);
   const screeningItem = await getScreeningItemByCaseId(caseId);
   const config = getScreeningRegionConfig();
   Object.keys(config.formConfigs).forEach((key) => {
@@ -374,7 +374,7 @@ exports.updateCaseRegion = async (req, res) => {
 
 exports.caseDignoseForm = async (req, res) => {
   const caseId = req.params.caseId;
-  const CaseNav = helpers.appendCaseIdToCaseNav(caseId);
+  const CaseNav = helpers.appendCaseIdToCaseNav(caseId, req.user.language);
   const screeningItem = await getScreeningItemByCaseId(caseId);
   const config = getScreeningDignoseConfig();
   Object.keys(config.formConfigs).forEach((key) => {

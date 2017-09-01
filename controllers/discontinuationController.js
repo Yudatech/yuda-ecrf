@@ -49,7 +49,7 @@ async function getDiscontinuationItemByCaseId(caseId) {
 const tableName = 'discontinuation';
 
 exports.discontinuationForm = async (req, res) => {
-  const CaseNav = helpers.appendCaseIdToCaseNav(req.params.caseId);
+  const CaseNav = helpers.appendCaseIdToCaseNav(req.params.caseId, req.user.language);
   const discontinuationItem = await getDiscontinuationItemByCaseId(req.params.caseId);
   const surgeryItem = await Surgery.findOne({
     case: req.params.caseId

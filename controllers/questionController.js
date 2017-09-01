@@ -62,7 +62,7 @@ exports.showQuestionPage = async (req, res) => {
   const caseId = question.case._id;
 
   const saeSourceConfig = await helpers.getSaeSourceOptions(caseId);
-  const aeSourceConfig = await helpers.getAeSourceConfig(caseId);
+  const aeSourceConfig = await helpers.getAeSourceConfig(caseId, req.user.language);
 
   const config = questionHelper.getConfigForQuestion(table, field);
   let fieldConfig = config.formConfigs[field];

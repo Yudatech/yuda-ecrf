@@ -21,7 +21,7 @@ async function getCmListByCaseId(caseId) {
 const tableName = 'cm';
 
 exports.cmTable = async (req, res) => {
-  const CaseNav = helpers.appendCaseIdToCaseNav(req.params.caseId);
+  const CaseNav = helpers.appendCaseIdToCaseNav(req.params.caseId, req.user.language);
   const cmList = await getCmListByCaseId(req.params.caseId);
   const cmListFormated = cmList.map((item) => {
     const cm = {
@@ -58,7 +58,7 @@ exports.cmTable = async (req, res) => {
 exports.cmForm = async (req, res) => {
   const caseId = req.params.caseId;
   const cmId = req.params.cmId;
-  const CaseNav = helpers.appendCaseIdToCaseNav(caseId);
+  const CaseNav = helpers.appendCaseIdToCaseNav(caseId, req.user.language);
   let cm;
 
   if (cmId !== undefined) {

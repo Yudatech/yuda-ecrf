@@ -106,7 +106,7 @@ exports.caseForm = async (req, res) => {
 
 exports.showAuditCaseForm = async (req, res) => {
   const caseId = req.params.caseId;
-  const CaseNav = helpers.appendCaseIdToCaseNav(caseId);
+  const CaseNav = helpers.appendCaseIdToCaseNav(caseId, req.user.language);
   const caseItem = await Case.findById(caseId);
   res.locals.case = caseItem;
   if (caseItem.status !== 'committed') {
@@ -173,7 +173,7 @@ exports.auditCase = async (req, res) => {
 
 exports.showLockCaseForm = async (req, res) => {
   const caseId = req.params.caseId;
-  const CaseNav = helpers.appendCaseIdToCaseNav(caseId);
+  const CaseNav = helpers.appendCaseIdToCaseNav(caseId, req.user.language);
   const caseItem = await Case.findById(caseId);
   res.locals.case = caseItem;
   if (caseItem.status === 'quit' || caseItem.status === 'locked') {
@@ -288,7 +288,7 @@ exports.showCaseCommitForm = async (req, res) => {
     req.flash('error', `You do not have permission to commit a case.`);
     res.redirect('back');
   }
-  const CaseNav = helpers.appendCaseIdToCaseNav(caseId);
+  const CaseNav = helpers.appendCaseIdToCaseNav(caseId, req.user.language);
   const commitCaseConfig = getCommitCaseConfig();
   const result = [];
   result.push(await commitHelpers.validateScreeningForm(caseId, req.user.language));

@@ -47,7 +47,7 @@ async function getSurgeryItemByCaseId(caseId) {
 const tableName = 'surgery';
 
 exports.surgeryForm = async (req, res) => {
-  const CaseNav = helpers.appendCaseIdToCaseNav(req.params.caseId);
+  const CaseNav = helpers.appendCaseIdToCaseNav(req.params.caseId, req.user.language);
   const surgeryItem = await getSurgeryItemByCaseId(req.params.caseId);
   const config = getSurgeryConfig();
   Object.keys(config.formConfigs).forEach((key) => {
