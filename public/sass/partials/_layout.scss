@@ -188,4 +188,26 @@ body {
     margin-top: 20px;
   }
 
+  .hist-item{
+    padding: 0;
+    margin-bottom: 10px;
+
+    .hist-heading{
+      padding-left: 15px;
+      background: #e8e8e8;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .hist-body{
+      padding-left: 15px;
+      padding-right: 15px;
+    }
+
+    .hist-footer{
+      padding-right: 15px;
+      text-align: right;
+      padding-bottom: 5px;
+    }
+
+  }
 }

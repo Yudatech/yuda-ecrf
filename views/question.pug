@@ -58,8 +58,9 @@ block content
       .col-sm-4.h-100.yuda-query-hist-panel
         div.list-group
           each comment in comments
-            a.list-group-item.list-group-item-action.flex-column.align-items-start
-              .d-flex.w-100.justify-content-between
+            a.list-group-item.list-group-item-action.flex-column.align-items-start.hist-item
+              .d-flex.w-100.justify-content-between.hist-heading
                 h4.mb-1 #{`${comment.user.username}`}
+              p.mb-1.hist-body #{`${comment.text}`}
+              .hist-footer
                 small #{`${comment.createDate}`}
-              p.mb-1 #{`${comment.text}`}
