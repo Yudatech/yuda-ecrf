@@ -74,10 +74,10 @@ const config = {
       en: 'Lock'
     }
   }, {
-    name: 'back',
+    name: 'cancel',
     text: {
-      zh: '后退',
-      en: 'Back'
+      zh: '取消',
+      en: 'Cancel'
     }
   }]
 };

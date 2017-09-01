@@ -17,6 +17,7 @@ body {
   width: 100%;
   height: 100%;
   margin: 0 auto;
+  overflow: auto;
 
   @media all and (max-width: 900px) {
     padding: 2rem;
@@ -82,12 +83,12 @@ body {
   }
 
   br {
-    line-height:30px;
+    line-height: 30px;
   }
 
-  .login-btn{
+  .login-btn {
     width: 100%;
-    margin-top:20px;
+    margin-top: 20px;
     background: $green;
     color: $white;
   }
@@ -101,7 +102,14 @@ body {
   padding-right: 15px;
 }
 
-.yuda-input-btn-2{
+.yuda-input-btn {
+  float: right;
+  //  margin: 20px;
+  background: $green;
+  color: $white;
+}
+
+.yuda-input-btn-2 {
   position: absolute;
   top: 100px;
   right: 32px;
@@ -109,18 +117,75 @@ body {
   color: $white;
 }
 
-.float-right{
+.float-right {
   float: right;
 }
 
-.float-left{
+.float-left {
   float: left;
 }
 
-.text-align-right{
+.text-align-right {
   text-align: right;
 }
 
-.text-align-center{
+.text-align-center {
   text-align: center;
+}
+
+
+.yuda-panel {
+  height: 100%;
+  margin-bottom: 0;
+
+  .yuda-panel-body {
+    height: calc(100% - 310px);
+    overflow: auto;
+  }
+}
+
+.padding-left-0 {
+  padding-left: 0;
+}
+
+.query-mark{
+  border: 2px solid $red;
+}
+
+.d-flex{
+  display: -webkit-box!important;
+  display: -webkit-flex!important;
+  display: -ms-flexbox!important;
+  display: flex!important;
+}
+
+.justify-content-between {
+  -webkit-box-pack: justify !important;
+  -webkit-justify-content: space-between !important;
+  -ms-flex-pack: justify !important;
+  justify-content: space-between !important;
+}
+
+.w-100 {
+  width: 100%!important;
+}
+
+.h-100 {
+  height: 100%!important;
+}
+
+.h-sm-100{
+  @media (min-width: 576px){
+    height: 100%!important;
+  }
+}
+
+.yuda-query-hist-panel{
+  padding-left: 0;
+  overflow: auto;
+
+  @media (max-width: 576px){
+    margin-top: 20px;
+  }
+
 }

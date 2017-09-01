@@ -3,49 +3,61 @@ extends layout
 include mixins/_formTemplate
 
 block content
-  .inner
-    form.form-horizontal(action=`/question/${questionId}` method="POST")
-      fieldset
-        legend #{config.title}
+  .inner.container
+    .row.h-100
+      .col-sm-8.h-sm-100.padding-left-0
+        form.form-horizontal.h-sm-100(action=`/question/${questionId}` method="POST")
+          .panel.panel-default.yuda-panel
+            .panel-heading
+              h3 质疑
+            .panel-body.yuda-panel-body
+              fieldset
+                legend #{config.title}
 
-        each configItem in config.formConfigs
-          .row
-            .col-sm-12
-              +_formTemplate(configItem, configItem.name !== fieldConfig.name)
+                each configItem in config.formConfigs
+                  .row
+                    .col-sm-12(class={"query-mark": configItem.name === fieldConfig.name})
+                      +_formTemplate(configItem, configItem.name != fieldConfig.name)
 
-        .row
-          .col-sm-12
-            +_formTemplate(questionConfig.questionConfigs.question_status)
+                - const backLink = source === 'create' ? '/' : `/${backInfo.linkBase}/${backInfo.caseId}/${backInfo.secondaryId ? backInfo.secondaryId : ''}`
+            .panel-footer
+              .row
+                .col-sm-12
+                  +_formTemplate(questionConfig.questionConfigs.question_status)
 
-        .row
-          .col-sm-12
-            +_formTemplate(questionConfig.commentConfigs.new_comment)
+              .row
+                .col-sm-12
+                  +_formTemplate(questionConfig.commentConfigs.new_comment)
+              a.btn.btn-default(role="button" href=backLink) #{buttonConfig.buttons.cancel.text}
+              input.btn.btn-default.yuda-input-btn(type="submit" value=buttonConfig.buttons.commit.text)
 
-        - const backLink = source === 'create' ? '/' : `/${backInfo.linkBase}/${backInfo.caseId}/${backInfo.secondaryId ? backInfo.secondaryId : ''}`
-        a.btn.btn-default(role="button" href=backLink) #{buttonConfig.buttons.back.text}
-        input(type="submit" value=buttonConfig.buttons.commit.text)
 
-    //- form.form-horizontal(action=`/question/${questionId}` method="POST")
-    //-   fieldset(disabled=(questionConfig.questionConfigs.question_status === 2))
-    //-     legend #{questionConfig.title.question}
+      //- form.form-horizontal(action=`/question/${questionId}` method="POST")
+      //-   fieldset(disabled=(questionConfig.questionConfigs.question_status === 2))
+      //-     legend #{questionConfig.title.question}
 
-    //-     input(type="hidden" name="source" value=source)
+      //-     input(type="hidden" name="source" value=source)
 
-    //-     .row
-    //-       .col-sm-12
-    //-         +_formTemplate(fieldConfig)
+      //-     .row
+      //-       .col-sm-12
+      //-         +_formTemplate(fieldConfig)
 
-    //-     .row
-    //-       .col-sm-12
-    //-         +_formTemplate(questionConfig.questionConfigs.question_status)
+      //-     .row
+      //-       .col-sm-12
+      //-         +_formTemplate(questionConfig.questionConfigs.question_status)
 
-    //-     .row
-    //-       .col-sm-12
-    //-         +_formTemplate(questionConfig.commentConfigs.new_comment)
+      //-     .row
+      //-       .col-sm-12
+      //-         +_formTemplate(questionConfig.commentConfigs.new_comment)
 
-    //-     - const backLink = source === 'create' ? '/' : `/${backInfo.linkBase}/${backInfo.caseId}/${backInfo.secondaryId ? backInfo.secondaryId : ''}`
-    //-     a.btn.btn-default(role="button" href=backLink) #{buttonConfig.buttons.back.text}
-    //-     input(type="submit" value=buttonConfig.buttons.commit.text)
-    ul
-      each comment in comments
-        li #{`${comment.user.username}(${comment.createDate}): ${comment.text}`}
+      //-     - const backLink = source === 'create' ? '/' : `/${backInfo.linkBase}/${backInfo.caseId}/${backInfo.secondaryId ? backInfo.secondaryId : ''}`
+      //-     a.btn.btn-default(role="button" href=backLink) #{buttonConfig.buttons.back.text}
+      //-     input(type="submit" value=buttonConfig.buttons.commit.text)
+      .col-sm-4.h-100.yuda-query-hist-panel
+        div.list-group
+          each comment in comments
+            a.list-group-item.list-group-item-action.flex-column.align-items-start
+              .d-flex.w-100.justify-content-between
+                h4.mb-1 #{`${comment.user.username}`}
+                small #{`${comment.createDate}`}
+              p.mb-1 #{`${comment.text}`}
