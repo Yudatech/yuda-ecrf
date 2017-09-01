@@ -87,7 +87,7 @@ exports.caseBasicForm = async (req, res) => {
   const config = getScreeningBasicConfig(req.user.language);
   Object.keys(config.formConfigs).forEach((key) => {
     if (config.formConfigs[key].type === 'select') {
-      config.formConfigs[key].options = decorationHelper[config.formConfigs[key].optionsGetter]();
+      config.formConfigs[key].options = decorationHelper[config.formConfigs[key].optionsGetter](req.user.language);
     }
     config.formConfigs[key].value = screeningItem[key];
     config.formConfigs[key].questionLink = helpers.getQuestionLink(tableName, 'screening-basic', req.params.caseId, config.formConfigs[key]);
@@ -225,7 +225,7 @@ exports.caseVitalSignForm = async (req, res) => {
   const config = getScreeningVitalSignConfig(req.user.language);
   Object.keys(config.formConfigs).forEach((key) => {
     if (config.formConfigs[key].type === 'select') {
-      config.formConfigs[key].options = decorationHelper[config.formConfigs[key].optionsGetter]();
+      config.formConfigs[key].options = decorationHelper[config.formConfigs[key].optionsGetter](req.user.language);
     }
     config.formConfigs[key].value = screeningItem[key];
     config.formConfigs[key].questionLink = helpers.getQuestionLink(tableName, 'screening-vitalsign', req.params.caseId, config.formConfigs[key]);
@@ -263,7 +263,7 @@ exports.caseLabForm = async (req, res) => {
   const config = getScreeningLabConfig(req.user.language);
   Object.keys(config.formConfigs).forEach((key) => {
     if (config.formConfigs[key].type === 'select') {
-      config.formConfigs[key].options = decorationHelper[config.formConfigs[key].optionsGetter]();
+      config.formConfigs[key].options = decorationHelper[config.formConfigs[key].optionsGetter](req.user.language);
     }
     config.formConfigs[key].value = screeningItem[key];
     config.formConfigs[key].questionLink = helpers.getQuestionLink(tableName, 'screening-lab', req.params.caseId, config.formConfigs[key]);
@@ -298,7 +298,7 @@ exports.caseAssistantForm = async (req, res) => {
   const config = getScreeningAssistantConfig(req.user.language);
   Object.keys(config.formConfigs).forEach((key) => {
     if (config.formConfigs[key].type === 'select') {
-      config.formConfigs[key].options = decorationHelper[config.formConfigs[key].optionsGetter]();
+      config.formConfigs[key].options = decorationHelper[config.formConfigs[key].optionsGetter](req.user.language);
     }
     config.formConfigs[key].value = screeningItem[key];
     config.formConfigs[key].questionLink = helpers.getQuestionLink(tableName, 'screening-assistant', req.params.caseId, config.formConfigs[key]);
@@ -379,7 +379,7 @@ exports.caseDignoseForm = async (req, res) => {
   const config = getScreeningDignoseConfig(req.user.language);
   Object.keys(config.formConfigs).forEach((key) => {
     if (config.formConfigs[key].type === 'select') {
-      config.formConfigs[key].options = decorationHelper[config.formConfigs[key].optionsGetter]();
+      config.formConfigs[key].options = decorationHelper[config.formConfigs[key].optionsGetter](req.user.language);
     }
     config.formConfigs[key].value = screeningItem[key];
     config.formConfigs[key].questionLink = helpers.getQuestionLink(tableName, 'screening-dignose', req.params.caseId, config.formConfigs[key]);

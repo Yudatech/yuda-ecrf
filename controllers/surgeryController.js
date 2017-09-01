@@ -52,7 +52,7 @@ exports.surgeryForm = async (req, res) => {
   const config = getSurgeryConfig(req.user.language);
   Object.keys(config.formConfigs).forEach((key) => {
     if (config.formConfigs[key].type === 'select') {
-      config.formConfigs[key].options = decorationHelper[config.formConfigs[key].optionsGetter]();
+      config.formConfigs[key].options = decorationHelper[config.formConfigs[key].optionsGetter](req.user.language);
     }
     if (key === 'surgerydtc') {
       config.formConfigs[key].value = moment(surgeryItem.surgerydtc).format('MM/DD/YYYY');

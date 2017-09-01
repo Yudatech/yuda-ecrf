@@ -74,7 +74,7 @@ exports.cmForm = async (req, res) => {
   const config = getCmConfig(req.user.language);
   Object.keys(config.formConfigs).forEach((key) => {
     if (config.formConfigs[key].type === 'select') {
-      config.formConfigs[key].options = decorationHelper[config.formConfigs[key].optionsGetter]();
+      config.formConfigs[key].options = decorationHelper[config.formConfigs[key].optionsGetter](req.user.language);
     }
     if (key === 'cmstdtc') {
       config.formConfigs[key].value = moment(cm.cmstdtc).format('MM/DD/YYYY');
