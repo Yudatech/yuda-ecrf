@@ -49,7 +49,7 @@ exports.getSaeSourceOptions = async function(caseId) {
   return saeSourceOptions;
 };
 
-exports.getAeSourceConfig = async function(caseId) {
+exports.getAeSourceConfig = async function(caseId, lang) {
   const surgeryItem = await Surgery.findOne({
     case: caseId
   });
@@ -69,5 +69,5 @@ exports.getAeSourceConfig = async function(caseId) {
       });
     });
   }
-  return getAeSourceConfig('zh', visits);
+  return getAeSourceConfig(lang, visits);
 };

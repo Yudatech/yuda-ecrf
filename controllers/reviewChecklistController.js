@@ -45,7 +45,7 @@ async function getReviewChecklistItemByCaseId(caseId) {
 const tableName = 'reviewchecklist';
 
 exports.reviewChecklistForm = async (req, res) => {
-  const CaseNav = helpers.appendCaseIdToCaseNav(req.params.caseId);
+  const CaseNav = helpers.appendCaseIdToCaseNav(req.params.caseId, req.user.language);
   const reviewChecklistItem = await getReviewChecklistItemByCaseId(req.params.caseId);
   const config = getReviewChecklistConfig(req.user.language);
   Object.keys(config.formConfigs).forEach((key) => {

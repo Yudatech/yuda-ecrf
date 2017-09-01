@@ -45,7 +45,7 @@ async function getScreeningChecklistItemByCaseId(caseId) {
 const tableName = 'screeningchecklist';
 
 exports.screeningChecklistForm = async (req, res) => {
-  const CaseNav = helpers.appendCaseIdToCaseNav(req.params.caseId);
+  const CaseNav = helpers.appendCaseIdToCaseNav(req.params.caseId, req.user.language);
   const screeningChecklistItem = await getScreeningChecklistItemByCaseId(req.params.caseId);
   const config = getScreeningChecklistConfig(req.user.language);
   Object.keys(config.formConfigs).forEach((key) => {

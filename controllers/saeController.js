@@ -29,7 +29,7 @@ function getSaeTypeText(value) {
 const tableName = 'sae';
 
 exports.saeTable = async (req, res) => {
-  const CaseNav = helpers.appendCaseIdToCaseNav(req.params.caseId);
+  const CaseNav = helpers.appendCaseIdToCaseNav(req.params.caseId, req.user.language);
   const saeList = await getSaeListByCaseId(req.params.caseId);
   const saeListFormated = saeList.map((item) => {
     return {
@@ -53,7 +53,7 @@ exports.saeTable = async (req, res) => {
 exports.saeForm = async (req, res) => {
   const caseId = req.params.caseId;
   const saeId = req.params.saeId;
-  const CaseNav = helpers.appendCaseIdToCaseNav(caseId);
+  const CaseNav = helpers.appendCaseIdToCaseNav(caseId, req.user.language);
   const saeSourceOptions = await helpers.getSaeSourceOptions(caseId);
   let sae;
 

@@ -44,7 +44,7 @@ function getAeResText(aeres) {
 const tableName = 'ae';
 
 exports.aeTable = async (req, res) => {
-  const CaseNav = helpers.appendCaseIdToCaseNav(req.params.caseId);
+  const CaseNav = helpers.appendCaseIdToCaseNav(req.params.caseId, req.user.language);
   const aeList = await getAeListByCaseId(req.params.caseId);
   const aeListFormated = aeList.map((item) => {
     return {
@@ -70,8 +70,8 @@ exports.aeTable = async (req, res) => {
 exports.aeForm = async (req, res) => {
   const caseId = req.params.caseId;
   const aeId = req.params.aeId;
-  const CaseNav = helpers.appendCaseIdToCaseNav(caseId);
-  const aeSourceConfig = await helpers.getAeSourceConfig(caseId);
+  const CaseNav = helpers.appendCaseIdToCaseNav(caseId, req.user.language);
+  const aeSourceConfig = await helpers.getAeSourceConfig(caseId, req.user.language);
   let ae;
 
   if (aeId !== undefined) {
