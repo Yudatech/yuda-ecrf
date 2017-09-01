@@ -12,7 +12,7 @@ const getButtonConfig = require('../config/common/getButtonConfig');
 
 exports.loginForm = (req, res) => {
   res.render('login', {
-    loginConfig: getLoginConfig(req.user.language)
+    loginConfig: getLoginConfig('en')
   });
 };
 
