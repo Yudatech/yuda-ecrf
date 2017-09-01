@@ -14,6 +14,8 @@ block content
               fieldset
                 legend #{config.title}
 
+                input(type="hidden" name="source" value=source)
+
                 each configItem in config.formConfigs
                   .row
                     .col-sm-12(class={"query-mark": configItem.name === fieldConfig.name})
