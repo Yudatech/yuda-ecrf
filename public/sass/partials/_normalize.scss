@@ -351,8 +351,11 @@ legend {
   color: inherit; /* 2 */
   display: table; /* 1 */
   max-width: 100%; /* 1 */
-  padding: 0; /* 3 */
+  //padding: 0; /* 3 */
   white-space: normal; /* 1 */
+  background: #e8e8e8;
+  border: 1px solid #888;
+  padding: 0 20px;
 }
 
 /**

@@ -5,6 +5,79 @@ const config = {
     zh: '添加访视',
     en: 'Add postoperative visit'
   },
+  subtitles: [{
+    name: 'subtitle_1',
+    text: {
+      zh: '访视信息',
+      en: 'Visit Information'
+    }
+  }, {
+    name: 'subtitle_2',
+    text: {
+      zh: '腹部检查',
+      en: 'Abdominal Examination'
+    }
+  }, {
+    name: 'subtitle_3',
+    text: {
+      zh: '血常规检查(必要时)',
+      en: 'Blood Tests (if necessary)'
+    }
+  }, {
+    name: 'subtitle_4',
+    text: {
+      zh: '体温',
+      en: 'Temperature'
+    }
+  }, {
+    name: 'subtitle_5',
+    text: {
+      zh: '肠鸣音(根据医生检查)',
+      en: 'Bowel sounds according to the surgeon'
+    }
+  }, {
+    name: 'subtitle_6',
+    text: {
+      zh: '肠功能恢复情况(根据受试者感受)',
+      en: 'Bowel function according to the participant'
+    }
+  }, {
+    name: 'subtitle_7',
+    text: {
+      zh: '进食',
+      en: 'Eating'
+    }
+  }, {
+    name: 'subtitle_8',
+    text: {
+      zh: '恢复',
+      en: 'Recovery'
+    }
+  }, {
+    name: 'subtitle_9',
+    text: {
+      zh: '其他检查（必要时）',
+      en: 'Other examinations (if necessary)'
+    }
+  }, {
+    name: 'subtitle_10',
+    text: {
+      zh: '合并用药',
+      en: 'Concomitant Medication'
+    }
+  }, {
+    name: 'subtitle_11',
+    text: {
+      zh: '排出',
+      en: 'Implant'
+    }
+  }, {
+    name: 'subtitle_12',
+    text: {
+      zh: '不良事件',
+      en: 'Adverse Events'
+    }
+  }],
   formConfigs: [{
     name: 'visitnum',
     type: 'numberfield',
@@ -83,8 +156,8 @@ const config = {
     name: 'param_4',
     type: 'checkbox',
     text: {
-      zh: '血常规检查(必要时)',
-      en: 'Blood Tests (if necessary)'
+      zh: '是',
+      en: 'Yes'
     }
   }, {
     name: 'param_5',
@@ -115,15 +188,15 @@ const config = {
     type: 'select',
     optionsGetter: 'getVisitParam8Config',
     text: {
-      zh: '肠鸣音(根据医生检查)',
-      en: 'Bowel sounds according to the surgeon'
+      zh: '肠鸣音',
+      en: 'Bowel sounds'
     }
   }, {
     name: 'param_9',
     type: 'checkbox',
     text: {
-      zh: '肠鸣音(根据受试者感受)',
-      en: 'Bowel function according to the participant'
+      zh: '肠鸣音',
+      en: 'Bowel function'
     }
   }, {
     name: 'param_10',
@@ -143,8 +216,8 @@ const config = {
     name: 'param_12',
     type: 'checkbox',
     text: {
-      zh: '进食',
-      en: 'Eating'
+      zh: '是',
+      en: 'Yes'
     }
   }, {
     name: 'param_13',
@@ -174,8 +247,8 @@ const config = {
     name: 'param_16',
     type: 'checkbox',
     text: {
-      zh: '其他检查',
-      en: 'Other examinations(if necessary)'
+      zh: '有',
+      en: 'Yes'
     }
   }, {
     name: 'param_17',
@@ -196,8 +269,8 @@ const config = {
       }
     }],
     text: {
-      zh: '合并药物使用（若使用药物，请完整填写《合并用药情况表》）',
-      en: 'Cocomitant medication (Complete Cocomitant Medication Report, please.'
+      zh: '是（若使用药物，请完整填写《合并用药情况表》）',
+      en: 'Yes (Complete Cocomitant Medication Report, please.'
     }
   }, {
     name: 'param_19',
@@ -235,8 +308,8 @@ const config = {
       }
     }],
     text: {
-      zh: '不良事件',
-      en: 'Adverse events'
+      zh: '是（发生不良事件，请完整填写《不良事件及器械缺陷报告表》）',
+      en: 'Yes（Complete Adverse Events and Device Deficiency (AE) Report）'
     }
   }]
 };
@@ -247,6 +320,7 @@ module.exports = function(lang) {
   }
 
   const result = {};
+  result.subtitles = getOptionsLang(config.subtitles, lang);
   result.formConfigs = getOptionsLang(config.formConfigs, lang);
   result.title = config.title[lang];
 
