@@ -8,9 +8,10 @@ block content
           h2 #{homeConfig.summary.title}
         .panel-body
           each summaryTitleItem in homeConfig.summary.titles
-            .col-sm-2.well.kpi-title
-              h4 #{summaryTitleItem.text}
-              span 100%
+            if kpis[summaryTitleItem.name] !== null
+              .col-sm-2.well.kpi-title
+                h4 #{summaryTitleItem.text}
+                span #{kpis[summaryTitleItem.name]}
     .row
       .col-sm-7.yuda-dashboard-panel
         .panel.panel-default

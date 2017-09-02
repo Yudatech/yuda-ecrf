@@ -10,8 +10,59 @@ const getCaseStatusConfig = require('../config/common/getCaseStatusConfig');
 const getButtonConfig = require('../config/common/getButtonConfig');
 const getQuestionStatusConfig = require('../config/getQuestionStatusConfig');
 
+function getCaseListByStatus(caseList, status) {
+  return caseList.filter((item) => item.status === status);
+}
+
+function getNotFinishedQuestions(questionList) {
+  return questionList.filter((item) => item.status !== 2);
+}
+
+async function calculateKpis(user) {
+  const kpis = {
+    comitted: null,
+    ongoing: null,
+    questions: null,
+    contribution: null,
+    discontinuationRate: null
+  };
+  let caseList = [];
+  let questionList = [];
+  const role = user.role;
+  if (role === 'cra') {
+    caseList = await Case.find({
+      user: user._id
+    });
+    questionList = await Question.find({
+      owner: user._id
+    });
+  }
+  else if (role === 'admin') {
+    caseList = await Case.find();
+    questionList = await Question.find();
+  }
+  else {
+    caseList = await Case.find({
+      site: user.site._id
+    });
+    questionList = await Question.find();
+    questionList = questionList.filter((item) => {
+      return item.orig.site._id.toString() === user.site._id.toString();
+    });
+  }
+
+  kpis.comitted = getCaseListByStatus(caseList, 'committed').length;
+  kpis.ongoing = getCaseListByStatus(caseList, 'open').length;
+  kpis.contribution = (kpis.comitted / 100) + '%';
+  kpis.discontinuationRate = kpis.comitted === 0 ? 0 : (getCaseListByStatus(caseList, 'quit').length / kpis.comitted) + '%';
+  kpis.questions = getNotFinishedQuestions(questionList).length;
+
+  return kpis;
+}
+
 exports.homePage = async (req, res) => {
   const caseStatus = req.query.casestatus;
+  const kpis = await calculateKpis(req.user);
   const role = req.user.role;
   let cases;
   if (role === 'cra') {
@@ -75,6 +126,7 @@ exports.homePage = async (req, res) => {
     homeConfig: getHomeConfig(req.user.language),
     cases: casesFormated,
     questions: questionsFormated,
-    buttonConfig: getButtonConfig(req.user.language)
+    buttonConfig: getButtonConfig(req.user.language),
+    kpis
   });
 };
