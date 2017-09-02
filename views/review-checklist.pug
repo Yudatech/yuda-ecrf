@@ -11,6 +11,12 @@ block case-content
 
         .row
           .col-sm-10
+            +_formTemplate(config.formConfigs.reviewcheckdate)
+          .col-sm-2
+            +_questionBtn(config.formConfigs.reviewcheck_1, questionFields)
+
+        .row
+          .col-sm-10
             +_formTemplate(config.formConfigs.reviewcheck_1)
           .col-sm-2
             +_questionBtn(config.formConfigs.reviewcheck_1, questionFields)
@@ -43,4 +49,4 @@ block case-content
             .alert.alert-danger(role="alert")
               span #{config.errors.error_2.text}
 
-        input.btn.btn-default.yuda-input-btn(type="submit" value=buttonConfig.buttons.save.text)
+      input.btn.btn-default.yuda-input-btn(type="submit" value=buttonConfig.buttons.save.text)
