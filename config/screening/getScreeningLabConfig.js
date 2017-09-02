@@ -5,6 +5,32 @@ const config = {
     zh: '实验室检查',
     en: 'Laboratorial tests'
   },
+  
+  subtitle_1:{
+    zh: '血常规',
+    en: ''
+  },
+
+  subtitle_2:{
+    zh: '肝功能',
+    en: ''
+  },
+
+  subtitle_3:{
+    zh: '肾功能',
+    en: ''
+  },
+
+  subtitle_4:{
+    zh: '血糖',
+    en: ''
+  },
+
+  subtitle_5:{
+    zh: '凝血指标',
+    en: ''
+  },
+
   formConfigs: [{
     name: 'lab_1',
     type: 'numberfield',
