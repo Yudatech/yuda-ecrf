@@ -454,9 +454,7 @@ exports.validateCmForm = async function(caseId, lang) {
   const cmValidateResult = initValidateResult(getCommitCaseConfigItem(commitCaseConfig.records, 'cm'));
 
   if (cmList.length === 0) {
-    cmValidateResult.pass = false;
-    cmValidateResult.link = `/cmlist/${caseId}`;
-    cmValidateResult.message = `${cmValidateResult.text} ${commitCaseConfig.empty}`;
+    cmValidateResult.pass = null;
   }
   else {
     cmValidateResult.message = `${cmValidateResult.text} ${commitCaseConfig.ongoing}`;
@@ -489,9 +487,7 @@ exports.validateAeForm = async function(caseId, lang) {
   const aeValidateResult = initValidateResult(getCommitCaseConfigItem(commitCaseConfig.records, 'ae'));
 
   if (aeList.length === 0) {
-    aeValidateResult.pass = false;
-    aeValidateResult.link = `/cmlist/${caseId}`;
-    aeValidateResult.message = `${aeValidateResult.text} ${commitCaseConfig.empty}`;
+    aeValidateResult.pass = null;
   }
   else {
     const saeList = await Sae.find({
@@ -528,9 +524,7 @@ exports.validateSaeForm = async function(caseId, lang) {
   const saeValidateResult = initValidateResult(getCommitCaseConfigItem(commitCaseConfig.records, 'sae'));
 
   if (saeList.length === 0) {
-    saeValidateResult.pass = false;
-    saeValidateResult.link = `/saelist/${caseId}`;
-    saeValidateResult.message = `${saeValidateResult.text} ${commitCaseConfig.empty}`;
+    saeValidateResult.pass = null;
   }
   else {
     saeValidateResult.message = `${saeValidateResult.text} ${commitCaseConfig.ongoing}`;

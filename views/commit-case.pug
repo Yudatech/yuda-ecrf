@@ -13,29 +13,30 @@ block case-content
 
     ul
       each item in result
-        li.row
-          .col-sm-8
-            span #{item.message}
-              if item.children
-                ul
-                  each child in item.children
-                    li.row
-                      .col-sm-8
-                        span #{child.message}
-                      .col-sm-4
-                        if child.pass === false && child.link !== ''
-                          a.btn.btn-default(role="button" href=child.link)
-                            span.glyphicon.glyphicon-link
-                      if child.children
-                        each bottomItem in child.children
-                          li.row
-                            .col-sm-8
-                              span #{bottomItem.message}
-                            .col-sm-4
-                              if bottomItem.pass === false && bottomItem.link !== ''
-                                a.btn.btn-default(role="button" href=bottomItem.link)
-                                  span.glyphicon.glyphicon-link
-          .col-sm-4
-            if item.pass === false && item.link !== ''
-              a.btn.btn-default(role="button" href=item.link)
-                span.glyphicon.glyphicon-link
+        if item.pass !== null
+          li.row
+            .col-sm-8
+              span #{item.message}
+                if item.children
+                  ul
+                    each child in item.children
+                      li.row
+                        .col-sm-8
+                          span #{child.message}
+                        .col-sm-4
+                          if child.pass === false && child.link !== ''
+                            a.btn.btn-default(role="button" href=child.link)
+                              span.glyphicon.glyphicon-link
+                        if child.children
+                          each bottomItem in child.children
+                            li.row
+                              .col-sm-8
+                                span #{bottomItem.message}
+                              .col-sm-4
+                                if bottomItem.pass === false && bottomItem.link !== ''
+                                  a.btn.btn-default(role="button" href=bottomItem.link)
+                                    span.glyphicon.glyphicon-link
+            .col-sm-4
+              if item.pass === false && item.link !== ''
+                a.btn.btn-default(role="button" href=item.link)
+                  span.glyphicon.glyphicon-link
