@@ -13,8 +13,8 @@ body {
   overflow: hidden;
 }
 
-.case-content{
-  .row{
+.case-content {
+  .row {
     border-bottom: 1px solid #e8e8e8;
   }
 }
@@ -25,6 +25,10 @@ body {
 
 .checkbox-placeholder {
   height: 20px;
+}
+
+.yuda-input-unit {
+  white-space: pre;
 }
 
 .inner {

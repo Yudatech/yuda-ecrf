@@ -98,7 +98,7 @@ const config = {
       zh: '血红蛋白 (Hb)',
       en: 'Hb'
     },
-    unit: 'g/L'
+    unit: '   g/L   '
   }, {
     name: 'lab_6',
     type: 'select',
@@ -149,7 +149,7 @@ const config = {
       zh: '单核细胞百分比',
       en: 'MON%'
     },
-    unit: '%'
+    unit: '   %    '
   }, {
     name: 'lab_12',
     type: 'select',
@@ -166,7 +166,7 @@ const config = {
       zh: '淋巴细胞百分比',
       en: 'LYM%'
     },
-    unit: '%'
+    unit: '   %    '
   }, {
     name: 'lab_14',
     type: 'select',
@@ -183,7 +183,7 @@ const config = {
       zh: '丙氨酸氨基转移酶 (ALT)',
       en: 'ALT'
     },
-    unit: 'U/L'
+    unit: '   U/L  '
   }, {
     name: 'lab_16',
     type: 'select',
@@ -200,7 +200,7 @@ const config = {
       zh: '天门冬氨酸氨基转移酶 (AST)',
       en: 'AST'
     },
-    unit: 'U/L'
+    unit: '   U/L  '
   }, {
     name: 'lab_18',
     type: 'select',
@@ -217,7 +217,7 @@ const config = {
       zh: '白蛋白 (ALB)',
       en: 'Albumin (ALB)'
     },
-    unit: 'g/L'
+    unit: '   g/L   '
   }, {
     name: 'lab_20',
     type: 'select',
@@ -285,7 +285,7 @@ const config = {
       zh: '凝血酶原时间 (PT)',
       en: 'PT'
     },
-    unit: 'S'
+    unit: '    S     '
   }, {
     name: 'lab_28',
     type: 'select',
@@ -302,7 +302,7 @@ const config = {
       zh: '活化部分凝血活酶时间 (APTT)',
       en: 'APTT'
     },
-    unit: 'S'
+    unit: '    S     '
   }, {
     name: 'lab_30',
     type: 'select',
@@ -319,7 +319,7 @@ const config = {
       zh: '凝血酶时间 (TT)',
       en: 'TT'
     },
-    unit: 'S'
+    unit: '    S     '
   }, {
     name: 'lab_32',
     type: 'select',
@@ -336,7 +336,7 @@ const config = {
       zh: '纤维蛋白原 (FIB)',
       en: 'FIB'
     },
-    unit: 'g/L'
+    unit: '   g/L   '
   }, {
     name: 'lab_34',
     type: 'select',

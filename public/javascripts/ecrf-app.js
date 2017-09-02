@@ -15,6 +15,7 @@ import initScreeningVitalsignHandlers from './modules/initScreeningVitalsignHand
 import initReviewChecklistHandlers from './modules/initReviewChecklistHandlers';
 import initCMHandlers from './modules/initCMHandlers';
 import initDiscontinuationHandlers from './modules/initDiscontinuationHandlers';
+import initScreeningLabHandlers from './modules/initScreeningLabHandlers';
 
 $('.input-group.date').datepicker({
   endDate: new Date()
@@ -88,5 +89,8 @@ window.onload = function() {
   }
   else if (pathname.startsWith('/discontinuation/')) {
     initDiscontinuationHandlers();
+  }
+  else if (pathname.startsWith('/screening-lab')) {
+    initScreeningLabHandlers();
   }
 }
