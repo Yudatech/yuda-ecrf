@@ -356,12 +356,6 @@ module.exports = function(lang) {
   const result = {};
   result.subtitles = getOptionsLang(config.subtitles, lang);
   result.formConfigs = getOptionsLang(config.formConfigs, lang);
-  Object.keys(result.formConfigs).forEach((key) => {
-    const item = result.formConfigs[key];
-    if (item.unit !== undefined) {
-      item.text = `${item.text}-${item.unit}`;
-    }
-  });
   result.title = config.title[lang];
 
   return result;
