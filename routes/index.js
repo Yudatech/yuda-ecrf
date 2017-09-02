@@ -75,6 +75,8 @@ router.post('/commit/:caseId',
 );
 
 router.get('/audit/:caseId',
+  catchErrors(authController.checkCaseStatus),
+  catchErrors(authController.checkCasePermission),
   catchErrors(caseController.showAuditCaseForm)
 );
 
@@ -83,11 +85,13 @@ router.post('/audit/:caseId',
 );
 
 router.get('/lock/:caseId',
-catchErrors(caseController.showLockCaseForm)
+  catchErrors(authController.checkCaseStatus),
+  catchErrors(authController.checkCasePermission),
+  catchErrors(caseController.showLockCaseForm)
 );
 
 router.post('/lock/:caseId',
-catchErrors(caseController.lockCase)
+  catchErrors(caseController.lockCase)
 );
 
 router.get('/overview/:caseId',

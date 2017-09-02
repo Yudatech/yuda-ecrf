@@ -126,7 +126,7 @@ exports.showAuditCaseForm = async (req, res) => {
       caseNav: CaseNav,
       buttonConfig: getButtonConfig(req.user.language),
       purpose: 'audit',
-      caseSecondAuthConfig: getCaseSecondAuthConfig(req.user.language),
+      config: getCaseSecondAuthConfig(req.user.language),
       caseId: req.params.caseId
     });
   }
@@ -189,7 +189,7 @@ exports.showLockCaseForm = async (req, res) => {
       caseNav: CaseNav,
       buttonConfig: getButtonConfig(req.user.language),
       purpose: 'lock',
-      caseSecondAuthConfig: getCaseSecondAuthConfig(req.user.language),
+      config: getCaseSecondAuthConfig(req.user.language),
       caseId: req.params.caseId
     });
   }

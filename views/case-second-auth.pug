@@ -4,7 +4,7 @@ block case-content
   .case-content
     form(action=`/${purpose}/${caseId}` method="POST")
       .form-group
-        label.col-sm-2.control-label #{caseSecondAuthConfig.formConfigs.password.text}
+        label.col-sm-2.control-label #{config.formConfigs.password.text}
         .col-sm-10
           input.form-control(type="password" name="password" required)
 
