@@ -5,7 +5,7 @@ const config = {
     zh: '实验室检查',
     en: 'Laboratorial tests'
   },
-  
+
   subtitle_1:{
     zh: '血常规',
     en: ''
@@ -55,7 +55,7 @@ const config = {
     type: 'select',
     optionsGetter: 'getLabResultEvaluationConfig',
     text: {
-      zh: '红细胞 (RBC)临床评估',
+      zh: '临床评估',
       en: 'RBC Evaluation'
     }
   }, {
@@ -72,7 +72,7 @@ const config = {
     type: 'select',
     optionsGetter: 'getLabResultEvaluationConfig',
     text: {
-      zh: '白细胞 (WBC)临床评估',
+      zh: '临床评估',
       en: 'WBC Evaluation'
     }
   }, {
@@ -99,7 +99,7 @@ const config = {
     type: 'select',
     optionsGetter: 'getLabResultEvaluationConfig',
     text: {
-      zh: '血红蛋白 (Hb)临床评估',
+      zh: '临床评估',
       en: 'Hb Evaluation'
     }
   }, {
@@ -116,7 +116,7 @@ const config = {
     type: 'select',
     optionsGetter: 'getLabResultEvaluationConfig',
     text: {
-      zh: '中性粒细胞绝对计数 (ANC)临床评估',
+      zh: '临床评估',
       en: 'NEUT Evaluation'
     }
   }, {
@@ -133,7 +133,7 @@ const config = {
     type: 'select',
     optionsGetter: 'getLabResultEvaluationConfig',
     text: {
-      zh: '血小板 (PLT)临床评估',
+      zh: '临床评估',
       en: 'PLT Evaluation'
     }
   }, {
@@ -150,7 +150,7 @@ const config = {
     type: 'select',
     optionsGetter: 'getLabResultEvaluationConfig',
     text: {
-      zh: '单核细胞百分比临床评估',
+      zh: '临床评估',
       en: 'MON% Evaluation'
     }
   }, {
@@ -167,7 +167,7 @@ const config = {
     type: 'select',
     optionsGetter: 'getLabResultEvaluationConfig',
     text: {
-      zh: '淋巴细胞百分比临床评估',
+      zh: '临床评估',
       en: 'LYM% Evaluation'
     }
   }, {
@@ -184,7 +184,7 @@ const config = {
     type: 'select',
     optionsGetter: 'getLabResultEvaluationConfig',
     text: {
-      zh: '丙氨酸氨基转移酶 (ALT)临床评估',
+      zh: '临床评估',
       en: 'ALT Evaluation'
     }
   }, {
@@ -201,7 +201,7 @@ const config = {
     type: 'select',
     optionsGetter: 'getLabResultEvaluationConfig',
     text: {
-      zh: '天门冬氨酸氨基转移酶 (AST)临床评估',
+      zh: '临床评估',
       en: 'AST Evaluation'
     }
   }, {
@@ -218,7 +218,7 @@ const config = {
     type: 'select',
     optionsGetter: 'getLabResultEvaluationConfig',
     text: {
-      zh: '白蛋白 (ALB)临床评估',
+      zh: '临床评估',
       en: 'Albumin (ALB) Evaluation'
     }
   }, {
@@ -235,7 +235,7 @@ const config = {
     type: 'select',
     optionsGetter: 'getLabResultEvaluationConfig',
     text: {
-      zh: '血尿素氮 (BUN)临床评估',
+      zh: '临床评估',
       en: 'BUN Evaluation'
     }
   }, {
@@ -252,7 +252,7 @@ const config = {
     type: 'select',
     optionsGetter: 'getLabResultEvaluationConfig',
     text: {
-      zh: '肌酐 (Cr)临床评估',
+      zh: '临床评估',
       en: 'Cr Evaluation'
     }
   }, {
@@ -269,7 +269,7 @@ const config = {
     type: 'select',
     optionsGetter: 'getLabResultEvaluationConfig',
     text: {
-      zh: '血糖 (Glu)临床评估',
+      zh: '临床评估',
       en: 'Glucose (Glu) Evaluation'
     }
   }, {
@@ -286,7 +286,7 @@ const config = {
     type: 'select',
     optionsGetter: 'getLabResultEvaluationConfig',
     text: {
-      zh: '凝血酶原时间 (PT)临床评估',
+      zh: '临床评估',
       en: 'PT Evaluation'
     }
   }, {
@@ -303,7 +303,7 @@ const config = {
     type: 'select',
     optionsGetter: 'getLabResultEvaluationConfig',
     text: {
-      zh: '活化部分凝血活酶时间 (APTT)临床评估',
+      zh: '临床评估',
       en: 'APTT Evaluation'
     }
   }, {
@@ -320,7 +320,7 @@ const config = {
     type: 'select',
     optionsGetter: 'getLabResultEvaluationConfig',
     text: {
-      zh: '凝血酶时间 (TT)临床评估',
+      zh: '临床评估',
       en: 'TT Evaluation'
     }
   }, {
@@ -337,7 +337,7 @@ const config = {
     type: 'select',
     optionsGetter: 'getLabResultEvaluationConfig',
     text: {
-      zh: '纤维蛋白原 (FIB)临床评估',
+      zh: '临床评估',
       en: 'FIB Evaluation'
     }
   }]
