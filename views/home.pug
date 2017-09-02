@@ -45,7 +45,7 @@ block content
                             a.btn.btn-default(role="button" href=`/overview/${caseItem._id}`)
                               span.glyphicon.glyphicon-pencil
                             if user.role === 'admin'
-                              a.btn.btn-default(role="button" href=`/remove/case/${caseItem._id}`)
+                              a.btn.btn-default(role="button" data-toggle="modal" data-target="#deleteConfirmModal" data-removetype="case" data-removeid=caseItem._id)
                                 span.glyphicon.glyphicon-trash
           .panel-footer
 
@@ -73,7 +73,21 @@ block content
                             a.btn.btn-default(role="button" href=`/question/${questionItem.questionId}/?source=update`)
                               span.glyphicon.glyphicon-pencil
                             if user.role === 'admin'
-                              a.btn.btn-default(role="button" href=`/remove/question/${questionItem.questionId}`)
+                              a.btn.btn-default(role="button" data-toggle="modal" data-target="#deleteConfirmModal" data-removetype="question" data-removeid=questionItem.questionId)
                                 span.glyphicon.glyphicon-trash
 
           .panel-footer
+
+    .modal.fade(id='deleteConfirmModal' tabindex="-1" role="dialog")
+      .modal-dialog(role="document")
+        .modal-content
+          .modal-header
+            button.close(type="button" data-dismiss="modal" aria-label="Close")
+              span(aria-hidden="true") &times;
+
+          .modal-body
+            h4 #{homeConfig.removeConfirm.message.text}
+
+          .modal-footer
+            button.btn.btn-default(type="button" data-dismiss="modal") #{buttonConfig.buttons.close.text}
+            a.btn.btn-primary(id="deleteConfirmModalConfirmBtn" role="button") #{buttonConfig.buttons.remove.text}

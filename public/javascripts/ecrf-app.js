@@ -16,6 +16,7 @@ import initReviewChecklistHandlers from './modules/initReviewChecklistHandlers';
 import initCMHandlers from './modules/initCMHandlers';
 import initDiscontinuationHandlers from './modules/initDiscontinuationHandlers';
 import initScreeningLabHandlers from './modules/initScreeningLabHandlers';
+import initHomeHandlers from './modules/initHomeHandlers';
 
 $('.input-group.date').datepicker({
   endDate: new Date()
@@ -48,7 +49,10 @@ window.onbeforeunload = function(event) {
 window.onload = function() {
   const pathname = window.location.pathname;
   console.log(pathname);
-  if (pathname.startsWith('/screening-basic')) {
+  if (pathname === '/') {
+    initHomeHandlers();
+  }
+  else if (pathname.startsWith('/screening-basic')) {
     initScreeningBasicHandlers();
   }
   else if (pathname.startsWith('/screening-exclusion')) {
