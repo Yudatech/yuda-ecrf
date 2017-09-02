@@ -5,32 +5,37 @@ const config = {
     zh: '实验室检查',
     en: 'Laboratorial tests'
   },
-
-  subtitle_1:{
-    zh: '血常规',
-    en: ''
-  },
-
-  subtitle_2:{
-    zh: '肝功能',
-    en: ''
-  },
-
-  subtitle_3:{
-    zh: '肾功能',
-    en: ''
-  },
-
-  subtitle_4:{
-    zh: '血糖',
-    en: ''
-  },
-
-  subtitle_5:{
-    zh: '凝血指标',
-    en: ''
-  },
-
+  subtitles: [{
+    name: 'subtitle_1',
+    text: {
+      zh: '血常规',
+      en: ''
+    }
+  }, {
+    name: 'subtitle_2',
+    text: {
+      zh: '肝功能',
+      en: ''
+    }
+  }, {
+    name: 'subtitle_3',
+    text: {
+      zh: '肾功能',
+      en: ''
+    }
+  }, {
+    name: 'subtitle_4',
+    text: {
+      zh: '血糖',
+      en: ''
+    }
+  }, {
+    name: 'subtitle_5',
+    text: {
+      zh: '凝血指标',
+      en: ''
+    }
+  }],
   formConfigs: [{
     name: 'lab_1',
     type: 'numberfield',
@@ -349,6 +354,7 @@ module.exports = function(lang) {
   }
 
   const result = {};
+  result.subtitles = getOptionsLang(config.subtitles, lang);
   result.formConfigs = getOptionsLang(config.formConfigs, lang);
   Object.keys(result.formConfigs).forEach((key) => {
     const item = result.formConfigs[key];
