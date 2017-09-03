@@ -39,7 +39,7 @@ const config = {
     total: 103,
     text: {
       zh: '首诊',
-      en: 'Visit 1 (screening)'
+      en: 'Screening (Visit 1)'
     },
     linkBase: '/screening-basic',
     children: [{
@@ -116,7 +116,7 @@ const config = {
       name: 'screening-dignose',
       text: {
         zh: '临床，病理诊断及分期',
-        en: 'Clinical diagnosis, pathological diagnosis and staging'
+        en: 'Diagnosis'
       },
       linkBase: '/screening-dignose'
     }]
@@ -125,7 +125,7 @@ const config = {
     total: 9,
     text: {
       zh: '首诊清单',
-      en: 'sChecklist for Visit 1'
+      en: 'Screening Checklist'
     },
     linkBase: '/screeningchecklist'
   }, {
@@ -133,7 +133,7 @@ const config = {
     total: 4,
     text: {
       zh: '复诊',
-      en: 'Visit 2 (Enrollment)'
+      en: 'Enrollment (Visit 2)'
     },
     linkBase: '/reviewchecklist'
   }, {
@@ -149,7 +149,7 @@ const config = {
     total: 28,
     text: {
       zh: '访视',
-      en: 'Postoperative visit'
+      en: 'Postoperative Visit'
     },
     linkBase: '/visit'
   }, {
@@ -157,7 +157,7 @@ const config = {
     total: 7,
     text: {
       zh: '合并用药情况',
-      en: 'Concomitant Medication Report'
+      en: 'Concomitant Medication (CM)'
     },
     linkBase: '/cm'
   }, {
@@ -165,7 +165,7 @@ const config = {
     total: 13,
     text: {
       zh: '不良事件',
-      en: 'REPORT: Adverse Event (AE)/ Device Deficiency'
+      en: 'Adverse Event (AE)'
     },
     linkBase: '/ae'
   }, {
@@ -173,7 +173,7 @@ const config = {
     total: 24,
     text: {
       zh: '严重不良事件',
-      en: 'REPORT: Severe Adverse Event (SAE)'
+      en: 'Severe Adverse Event (SAE)'
     },
     linkBase: '/sae'
   }]

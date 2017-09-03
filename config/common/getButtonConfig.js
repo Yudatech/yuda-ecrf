@@ -35,7 +35,7 @@ const config = {
     name: 'locked',
     text: {
       zh: '已完成',
-      en: 'Locked'
+      en: 'Completed'
     }
   }, {
     name: 'all',

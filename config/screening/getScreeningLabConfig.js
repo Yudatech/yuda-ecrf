@@ -9,31 +9,31 @@ const config = {
     name: 'subtitle_1',
     text: {
       zh: '血常规',
-      en: ''
+      en: 'Blood tests'
     }
   }, {
     name: 'subtitle_2',
     text: {
       zh: '肝功能',
-      en: ''
+      en: 'Liver function tests'
     }
   }, {
     name: 'subtitle_3',
     text: {
       zh: '肾功能',
-      en: ''
+      en: 'Kidney function tests'
     }
   }, {
     name: 'subtitle_4',
     text: {
-      zh: '血糖',
-      en: ''
+      zh: 'Glucose (Glu)',
+      en: 'Coagulation tests'
     }
   }, {
     name: 'subtitle_5',
     text: {
       zh: '凝血指标',
-      en: ''
+      en: 'Coagulation tests'
     }
   }],
   formConfigs: [{
@@ -61,7 +61,7 @@ const config = {
     optionsGetter: 'getLabResultEvaluationConfig',
     text: {
       zh: '临床评估',
-      en: 'RBC Evaluation'
+      en: 'Evaluation'
     }
   }, {
     name: 'lab_3',
@@ -78,7 +78,7 @@ const config = {
     optionsGetter: 'getLabResultEvaluationConfig',
     text: {
       zh: '临床评估',
-      en: 'WBC Evaluation'
+      en: 'Evaluation'
     }
   }, {
     name: 'lab_5',
@@ -105,7 +105,7 @@ const config = {
     optionsGetter: 'getLabResultEvaluationConfig',
     text: {
       zh: '临床评估',
-      en: 'Hb Evaluation'
+      en: 'Evaluation'
     }
   }, {
     name: 'lab_7',
@@ -122,7 +122,7 @@ const config = {
     optionsGetter: 'getLabResultEvaluationConfig',
     text: {
       zh: '临床评估',
-      en: 'NEUT Evaluation'
+      en: 'Evaluation'
     }
   }, {
     name: 'lab_9',
@@ -139,7 +139,7 @@ const config = {
     optionsGetter: 'getLabResultEvaluationConfig',
     text: {
       zh: '临床评估',
-      en: 'PLT Evaluation'
+      en: 'Evaluation'
     }
   }, {
     name: 'lab_11',
@@ -156,7 +156,7 @@ const config = {
     optionsGetter: 'getLabResultEvaluationConfig',
     text: {
       zh: '临床评估',
-      en: 'MON% Evaluation'
+      en: 'Evaluation'
     }
   }, {
     name: 'lab_13',
@@ -173,7 +173,7 @@ const config = {
     optionsGetter: 'getLabResultEvaluationConfig',
     text: {
       zh: '临床评估',
-      en: 'LYM% Evaluation'
+      en: 'Evaluation'
     }
   }, {
     name: 'lab_15',
@@ -190,7 +190,7 @@ const config = {
     optionsGetter: 'getLabResultEvaluationConfig',
     text: {
       zh: '临床评估',
-      en: 'ALT Evaluation'
+      en: 'Evaluation'
     }
   }, {
     name: 'lab_17',
@@ -207,7 +207,7 @@ const config = {
     optionsGetter: 'getLabResultEvaluationConfig',
     text: {
       zh: '临床评估',
-      en: 'AST Evaluation'
+      en: 'Evaluation'
     }
   }, {
     name: 'lab_19',
@@ -224,7 +224,7 @@ const config = {
     optionsGetter: 'getLabResultEvaluationConfig',
     text: {
       zh: '临床评估',
-      en: 'Albumin (ALB) Evaluation'
+      en: 'Evaluation'
     }
   }, {
     name: 'lab_21',
@@ -241,7 +241,7 @@ const config = {
     optionsGetter: 'getLabResultEvaluationConfig',
     text: {
       zh: '临床评估',
-      en: 'BUN Evaluation'
+      en: 'Evaluation'
     }
   }, {
     name: 'lab_23',
@@ -258,7 +258,7 @@ const config = {
     optionsGetter: 'getLabResultEvaluationConfig',
     text: {
       zh: '临床评估',
-      en: 'Cr Evaluation'
+      en: 'Evaluation'
     }
   }, {
     name: 'lab_25',
@@ -275,7 +275,7 @@ const config = {
     optionsGetter: 'getLabResultEvaluationConfig',
     text: {
       zh: '临床评估',
-      en: 'Glucose (Glu) Evaluation'
+      en: 'Evaluation'
     }
   }, {
     name: 'lab_27',
@@ -292,7 +292,7 @@ const config = {
     optionsGetter: 'getLabResultEvaluationConfig',
     text: {
       zh: '临床评估',
-      en: 'PT Evaluation'
+      en: 'Evaluation'
     }
   }, {
     name: 'lab_29',
@@ -309,7 +309,7 @@ const config = {
     optionsGetter: 'getLabResultEvaluationConfig',
     text: {
       zh: '临床评估',
-      en: 'APTT Evaluation'
+      en: 'Evaluation'
     }
   }, {
     name: 'lab_31',
@@ -326,7 +326,7 @@ const config = {
     optionsGetter: 'getLabResultEvaluationConfig',
     text: {
       zh: '临床评估',
-      en: 'TT Evaluation'
+      en: 'Evaluation'
     }
   }, {
     name: 'lab_33',
@@ -343,7 +343,7 @@ const config = {
     optionsGetter: 'getLabResultEvaluationConfig',
     text: {
       zh: '临床评估',
-      en: 'FIB Evaluation'
+      en: 'Evaluation'
     }
   }]
 };

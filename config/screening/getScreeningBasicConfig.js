@@ -53,7 +53,8 @@ const config = {
   errors: [{
     name: 'exclusion',
     text: {
-      zh: '该患者不符合入组标准'
+      zh: '该患者不符合入组标准',
+      en: 'The patient does not fulfil the inclusion criteria'
     }
   }]
 };

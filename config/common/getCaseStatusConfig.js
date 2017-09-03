@@ -2,7 +2,7 @@ const status = [{
   value: 'open',
   text: {
     zh: '进行中',
-    en: 'Open'
+    en: 'Ongoing'
   }
 }, {
   value: 'committed',
@@ -20,13 +20,13 @@ const status = [{
   value: 'locked',
   text: {
     zh: '已完成',
-    en: 'Locked'
+    en: 'Completed'
   }
 }, {
   value: 'quit',
   text: {
     zh: '中途退出',
-    en: 'Quit'
+    en: 'Discontinued'
   }
 }];
 
