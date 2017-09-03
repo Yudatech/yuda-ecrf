@@ -20,7 +20,7 @@ function getNotFinishedQuestions(questionList) {
 
 async function calculateKpis(user) {
   const kpis = {
-    comitted: null,
+    finished: null,
     ongoing: null,
     questions: null,
     contribution: null,
@@ -51,10 +51,10 @@ async function calculateKpis(user) {
     });
   }
 
-  kpis.comitted = getCaseListByStatus(caseList, 'committed').length;
-  kpis.ongoing = getCaseListByStatus(caseList, 'open').length;
-  kpis.contribution = (kpis.comitted / 100) + '%';
-  kpis.discontinuationRate = kpis.comitted === 0 ? 0 : (getCaseListByStatus(caseList, 'quit').length / kpis.comitted) + '%';
+  kpis.finished = getCaseListByStatus(caseList, 'locked').length;
+  kpis.ongoing = getCaseListByStatus(caseList, 'open').length + getCaseListByStatus(caseList, 'committed').length + getCaseListByStatus(caseList, 'audited').length;
+  kpis.contribution = (kpis.finished / 100) + '%';
+  kpis.discontinuationRate = kpis.finished === 0 ? 0 : (getCaseListByStatus(caseList, 'quit').length / kpis.finished) + '%';
   kpis.questions = getNotFinishedQuestions(questionList).length;
 
   return kpis;

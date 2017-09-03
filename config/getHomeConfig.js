@@ -5,10 +5,10 @@ const config = {
       en: 'Summary'
     },
     titles: [{
-      name: 'comitted',
+      name: 'finished',
       text: {
-        zh: '已提交病例',
-        en: 'Comitted'
+        zh: '已完成病例',
+        en: 'Completed'
       }
     }, {
       name: 'ongoing',
