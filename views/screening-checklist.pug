@@ -6,7 +6,7 @@ include mixins/_questionBtn
 block case-content
   .case-content
     form.form-horizontal(id="screeningchecklist-form" action=`/screeningchecklist/${caseId}` method="POST")
-      fieldset
+      fieldset(disabled=!(locals.case.status === 'open' || locals.user.role === 'cra'))
         legend #{config.title}
 
         .row
