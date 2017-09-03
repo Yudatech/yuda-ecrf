@@ -477,7 +477,6 @@ exports.validateCmForm = async function(caseId, lang) {
     });
   }
 
-  console.log(cmValidateResult)
   return cmValidateResult;
 };
 
