@@ -47,7 +47,7 @@ async function calculateKpis(user) {
     });
     questionList = await Question.find();
     questionList = questionList.filter((item) => {
-      return item.orig.site._id.toString() === user.site._id.toString();
+      return item.owner.site._id.toString() === user.site._id.toString();
     });
   }
 
