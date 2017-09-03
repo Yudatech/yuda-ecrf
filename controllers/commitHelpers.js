@@ -476,6 +476,8 @@ exports.validateCmForm = async function(caseId, lang) {
       doCommitValidationForWholeTable(caseId, cmItemValidateResult, commitCaseConfig, formConfigs, cmItem, extra);
     });
   }
+
+  console.log(cmValidateResult)
   return cmValidateResult;
 };
 

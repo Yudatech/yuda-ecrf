@@ -165,7 +165,7 @@ const config = {
     step: 'any',
     text: {
       zh: '血红蛋白 (Hb)',
-      en: 'Hgb:'
+      en: 'Hgb'
     }
   }, {
     name: 'param_6',
@@ -173,7 +173,7 @@ const config = {
     step: 'any',
     text: {
       zh: '白细胞 (WBC)',
-      en: 'WBC:'
+      en: 'WBC'
     }
   }, {
     name: 'param_7',
@@ -203,14 +203,14 @@ const config = {
     type: 'checkbox',
     text: {
       zh: '排气',
-      en: 'Passage of gas: '
+      en: 'Passage of gas'
     }
   }, {
     name: 'param_11',
     type: 'checkbox',
     text: {
       zh: '排便',
-      en: 'Passage of feces:'
+      en: 'Passage of feces'
     }
   }, {
     name: 'param_12',
@@ -225,7 +225,7 @@ const config = {
     optionsGetter: 'getVisitFoodTypesConfig',
     text: {
       zh: '食物类型',
-      en: 'Type of food:'
+      en: 'Type of food'
     }
   }, {
     name: 'param_14',
@@ -241,7 +241,7 @@ const config = {
     optionsGetter: 'getVisitParam14Config',
     text: {
       zh: '拔除腹部引流',
-      en: 'Abdominal drainages:'
+      en: 'Abdominal drainages'
     }
   }, {
     name: 'param_16',

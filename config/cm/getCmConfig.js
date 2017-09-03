@@ -47,7 +47,7 @@ const config = {
     type: 'date',
     commit: [{
       rule: 'date',
-      end: 'cmedtc'
+      end: 'cmeddtc'
     }],
     text: {
       zh: '开始日期',
