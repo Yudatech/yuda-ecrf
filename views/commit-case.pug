@@ -9,30 +9,33 @@ block case-content
           if item.pass !== null
             li.row.commit-list-item
               .col-sm-8
-                span #{item.message}
-                  if item.children
-                    ul.commit-list
-                      each child in item.children
-                        li.row.commit-list-item
-                          .col-sm-8
-                            span #{child.message}
-                          .col-sm-4
-                            if child.pass === false && child.link !== ''
-                              a.btn.btn-default(role="button" href=child.link)
-                                span.glyphicon.glyphicon-link
-                          if child.children
-                            each bottomItem in child.children
-                              li.row.commit-list-item
-                                .col-sm-8
-                                  span #{bottomItem.message}
-                                .col-sm-4
-                                  if bottomItem.pass === false && bottomItem.link !== ''
-                                    a.btn.btn-default(role="button" href=bottomItem.link)
-                                      span.glyphicon.glyphicon-link
+                a
+                  span #{item.message}
               .col-sm-4
                 if item.pass === false && item.link !== ''
                   a.btn.btn-default(role="button" href=item.link)
                     span.glyphicon.glyphicon-link
+
+          if item.children
+            each child in item.children
+              li.row.commit-list-item.level-2
+                .col-sm-8
+                  a
+                    span #{child.message}
+                .col-sm-4
+                  if child.pass === false && child.link !== ''
+                    a.btn.btn-default(role="button" href=child.link)
+                      span.glyphicon.glyphicon-link
+              if child.children
+                each bottomItem in child.children
+                  li.row.commit-list-item.level-2
+                    .col-sm-8
+                      a
+                       span #{bottomItem.message}
+                    .col-sm-4
+                      if bottomItem.pass === false && bottomItem.link !== ''
+                        a.btn.btn-default(role="button" href=bottomItem.link)
+                          span.glyphicon.glyphicon-link
 
     if showForm
       fieldset
