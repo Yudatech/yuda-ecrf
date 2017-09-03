@@ -1,4 +1,23 @@
+const getOptionsLang = require('./configHelpers').getOptionsLang;
+
 const config = {
+  title:{
+    zh: '提交',
+    en: 'Commit'
+  },
+  subtitles: [{
+    name: 'subtitle_1',
+    text: {
+      zh: '提交检验结果',
+      en: 'Commitment Checksum'
+    }
+  }, {
+    name: 'subtitle_2',
+    text: {
+      zh: '签字提交',
+      en: 'Commit with Signature'
+    }
+  }],
   empty: {
     zh: '未填写',
     en: 'Empty'
@@ -179,6 +198,8 @@ module.exports = function(lang) {
   result.finish = config.finish[lang];
   result.ongoing = config.ongoing[lang];
   result.password = config.password[lang];
+  result.subtitles = getOptionsLang(config.subtitles, lang);
+  result.title = config.title[lang];
 
   return result;
 };

@@ -21,7 +21,7 @@ block content
                     .col-sm-12(class={"query-mark": configItem.name === fieldConfig.name})
                       +_formTemplate(configItem, configItem.name != fieldConfig.name)
 
-            .panel-footer
+            .panel-footer.yuda-panel-footer
               .row
                 .col-sm-12
                   +_formTemplate(questionConfig.questionConfigs.question_status)

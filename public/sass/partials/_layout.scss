@@ -156,9 +156,22 @@ body {
   margin-bottom: 0;
 
   .yuda-panel-body {
-    height: calc(100% - 310px);
+    height: calc(100% - 366px);
     overflow: auto;
   }
+
+  .yuda-panel-footer{
+    padding: 5px 30px 15px 30px;
+  }
+}
+
+.commit-list{
+  list-style-type: none;
+}
+
+.commit-list-item{
+  list-style-type: none;
+  line-height: 40px;
 }
 
 .padding-left-0 {

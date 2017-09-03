@@ -8,13 +8,13 @@ const config = {
       name: 'comitted',
       text: {
         zh: '已提交病例',
-        en: 'Comitted cases'
+        en: 'Comitted'
       }
     }, {
       name: 'ongoing',
       text: {
         zh: '待完成病例',
-        en: 'ongoing cases'
+        en: 'Ongoing'
       }
     }, {
       name: 'questions',
@@ -32,7 +32,7 @@ const config = {
       name: 'discontinuationRate',
       text: {
         zh: '中途退出率',
-        en: 'Discontinuation Rate'
+        en: 'Discontinuation'
       }
     }]
   },

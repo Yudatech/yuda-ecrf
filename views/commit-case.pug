@@ -2,41 +2,45 @@ extends caseLayout
 
 block case-content
   .case-content
+    fieldset
+      legend #{config.subtitles.subtitle_1.text}
+      ul.commit-list
+        each item in result
+          if item.pass !== null
+            li.row.commit-list-item
+              .col-sm-8
+                span #{item.message}
+                  if item.children
+                    ul.commit-list
+                      each child in item.children
+                        li.row.commit-list-item
+                          .col-sm-8
+                            span #{child.message}
+                          .col-sm-4
+                            if child.pass === false && child.link !== ''
+                              a.btn.btn-default(role="button" href=child.link)
+                                span.glyphicon.glyphicon-link
+                          if child.children
+                            each bottomItem in child.children
+                              li.row.commit-list-item
+                                .col-sm-8
+                                  span #{bottomItem.message}
+                                .col-sm-4
+                                  if bottomItem.pass === false && bottomItem.link !== ''
+                                    a.btn.btn-default(role="button" href=bottomItem.link)
+                                      span.glyphicon.glyphicon-link
+              .col-sm-4
+                if item.pass === false && item.link !== ''
+                  a.btn.btn-default(role="button" href=item.link)
+                    span.glyphicon.glyphicon-link
+
     if showForm
-      form.form-horizontal(action=`/commit/${caseId}` method="POST")
-        .form-group
-          label.col-sm-2.control-label #{config.password}
-          .col-sm-10
-            input.form-control(type="password" name="password" required)
+      fieldset
+        legend #{config.subtitles.subtitle_2.text}
+        form.form-horizontal(action=`/commit/${caseId}` method="POST")
+          .form-group
+            label.col-sm-2.control-label #{config.password}
+            .col-sm-10
+              input.form-control(type="password" name="password" required)
 
-        input.btn.btn-default.yuda-input-btn(type="submit" value=buttonConfig.buttons.commit.text)
-
-    ul
-      each item in result
-        if item.pass !== null
-          li.row
-            .col-sm-8
-              span #{item.message}
-                if item.children
-                  ul
-                    each child in item.children
-                      li.row
-                        .col-sm-8
-                          span #{child.message}
-                        .col-sm-4
-                          if child.pass === false && child.link !== ''
-                            a.btn.btn-default(role="button" href=child.link)
-                              span.glyphicon.glyphicon-link
-                        if child.children
-                          each bottomItem in child.children
-                            li.row
-                              .col-sm-8
-                                span #{bottomItem.message}
-                              .col-sm-4
-                                if bottomItem.pass === false && bottomItem.link !== ''
-                                  a.btn.btn-default(role="button" href=bottomItem.link)
-                                    span.glyphicon.glyphicon-link
-            .col-sm-4
-              if item.pass === false && item.link !== ''
-                a.btn.btn-default(role="button" href=item.link)
-                  span.glyphicon.glyphicon-link
+          input.btn.btn-default.yuda-input-btn(type="submit" value=buttonConfig.buttons.commit.text)

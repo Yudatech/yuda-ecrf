@@ -15,11 +15,12 @@
   box-shadow: 0 3px 10px rgba(0,0,0,0.15);
   margin-bottom: 2rem;
   padding: 2rem;
-  position: relative;
+  position: absolute;
+  width: 100%;
   z-index: 1;
   border-radius: 3px;
   display: flex;
-  animation: slideIn forwards .1s ease-in-out 2;
+  animation: slideIn .1s ease-in-out 2 forwards;
   animation-timing-function: cubic-bezier(0.01, 1.68, 0.58, 1);
   & + .flash {
     animation-delay: 0.55s;
@@ -63,3 +64,5 @@
     margin: 0;
   }
 }
+
+
