@@ -5,16 +5,16 @@ const config = {
       en: 'Summary'
     },
     titles: [{
-      name: 'comitted',
+      name: 'finished',
       text: {
-        zh: '已提交病例',
-        en: 'Comitted cases'
+        zh: '已完成病例',
+        en: 'Finished cases'
       }
     }, {
       name: 'ongoing',
       text: {
         zh: '待完成病例',
-        en: 'ongoing cases'
+        en: 'Ongoing cases'
       }
     }, {
       name: 'questions',
