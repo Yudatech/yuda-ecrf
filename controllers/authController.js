@@ -64,7 +64,7 @@ exports.checkCaseStatus = async (req, res, next) => {
     next();
   }
   else if (method === 'post') {
-    if (caseItem.status !== 'open') {
+    if (caseItem.status !== 'open' && req.user.role !== 'admin') {
       req.flash('error', `Case ${caseId} status is not open anymore, you can not modify it.`);
       res.redirect('back');
     }
