@@ -113,11 +113,11 @@ exports.showAuditCaseForm = async (req, res) => {
     req.flash('error', `Case ${caseId} status is not committed anymore, you can not audit it.`);
     res.redirect('back');
   }
-  else if (req.user.role !== 'supervisor' && req.user.role !== 'monitor') {
+  else if (req.user.role !== 'supervisor' || req.user.role !== 'monitor') {
     req.flash('error', `You do not have permission to audit a case.`);
     res.redirect('back');
   }
-  else if (req.user.site._id !== caseItem.site._id) {
+  else if (req.user.site._id.toString() !== caseItem.site._id.toString()) {
     req.flash('error', `You do not have permission audit this case.`);
     res.redirect('back');
   }
