@@ -14,8 +14,8 @@ const config = {
   }, {
     name: 'subtitle_2',
     text: {
-      zh: '签字提交',
-      en: 'Commit with Signature'
+      zh: '电子签名',
+      en: 'Digital Signature'
     }
   }],
   empty: {
