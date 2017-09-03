@@ -25,6 +25,9 @@ const multer = require('multer');
 const jimp = require('jimp');
 const uuid = require('uuid');
 
+const logger = require('../logger');
+const loggerHelper = require('../loggerHelper');
+
 const multerOptions = {
   storage: multer.memoryStorage(),
   fileFilter(req, file, next) {
@@ -53,6 +56,9 @@ exports.saveAcceptDoc = async (req, res, next) => {
   // now we resize
   const photo = await jimp.read(req.file.buffer);
   await photo.write(`./public/uploads/${req.body.attachedDoc}`);
+  logger.info(loggerHelper.createLogMessage(req.user, 'upload', 'accept document'), {
+    filename: req.body.attachedDoc
+  });
   // once we have written the photo to our filesystem, keep going!
   next();
 };
@@ -61,6 +67,7 @@ exports.createCase = async (req, res) => {
   req.body.user = req.user._id;
   req.body.site = req.user.site._id;
   await (new Case(req.body)).save();
+  logger.info(loggerHelper.createLogMessage(req.user, 'create', 'case'), req.body);
   res.redirect(`/overview/${req.body._id}`);
 };
 
@@ -80,6 +87,7 @@ async function doRemoveCase(caseId) {
 exports.removeCase = async (req, res) => {
   const caseId = req.params.caseId;
   await doRemoveCase(caseId);
+  logger.info(loggerHelper.createLogMessage(req.user, 'remove', 'case', caseId));
   res.redirect('back');
 };
 
@@ -97,6 +105,7 @@ exports.caseForm = async (req, res) => {
   max = '' + max;
   const num = 4;
   const newId = `${userAbbr}${'0'.repeat(num - max.length)}${max}`;
+  logger.info(loggerHelper.createLogMessage(req.user, 'show', 'case', newId));
   res.render('case/caseForm', {
     _id: newId,
     caseFormConfig: getCaseFormConfig(req.user.language),
@@ -111,17 +120,21 @@ exports.showAuditCaseForm = async (req, res) => {
   res.locals.case = caseItem;
   if (caseItem.status !== 'committed') {
     req.flash('error', `Case ${caseId} status is not committed anymore, you can not audit it.`);
+    logger.warn(loggerHelper.createLogMessage(req.user, 'failed to audit', 'a not committed case', caseId));
     res.redirect('back');
   }
   else if (req.user.role !== 'supervisor' && req.user.role !== 'monitor') {
     req.flash('error', `You do not have permission to audit a case.`);
+    logger.warn(loggerHelper.createLogMessage(req.user, 'do not have permission to audit', 'a case'));
     res.redirect('back');
   }
   else if (req.user.site._id !== caseItem.site._id) {
     req.flash('error', `You do not have permission audit this case.`);
+    logger.warn(loggerHelper.createLogMessage(req.user, 'do not have permission to audit', 'a case'));
     res.redirect('back');
   }
   else {
+    logger.info(loggerHelper.createLogMessage(req.user, 'show', 'audit case form', caseId));
     res.render('case-second-auth', {
       caseNav: CaseNav,
       buttonConfig: getButtonConfig(req.user.language),
@@ -138,14 +151,17 @@ exports.auditCase = async (req, res) => {
   res.locals.case = caseItem;
   if (caseItem.status !== 'committed') {
     req.flash('error', `Case ${caseId} status is not committed anymore, you can not audit it.`);
+    logger.warn(loggerHelper.createLogMessage(req.user, 'failed to audit', 'a not committed case', caseId));
     res.redirect('back');
   }
   else if (req.user.role !== 'supervisor' && req.user.role !== 'monitor') {
     req.flash('error', `You do not have permission to audit a case.`);
+    logger.warn(loggerHelper.createLogMessage(req.user, 'do not have permission to audit', 'a case'));
     res.redirect('back');
   }
   else if (req.user.site._id !== caseItem.site._id) {
     req.flash('error', `You do not have permission audit this case.`);
+    logger.warn(loggerHelper.createLogMessage(req.user, 'do not have permission to audit', 'a case'));
     res.redirect('back');
   }
   else {
@@ -153,16 +169,19 @@ exports.auditCase = async (req, res) => {
     req.user.authenticate(password, function(err, model) {
       if (model === false) {
         req.flash('error', 'Wrong password.');
+        logger.warn(loggerHelper.createLogMessage(req.user, 'input wrong', 'password when audit', caseId));
         res.redirect('back');
       }
       else {
         caseItem.audit(req.user._id, function(err, caseNew) {
           if (err) {
             req.flash('error', err.toString());
+            logger.warn(err);
             res.redirect('back');
           }
           else {
             res.locals.case = caseNew;
+            logger.info(loggerHelper.createLogMessage(req.user, 'audit', 'case', caseId));
             res.redirect(`/overview/${caseId}`);
           }
         });
@@ -178,13 +197,16 @@ exports.showLockCaseForm = async (req, res) => {
   res.locals.case = caseItem;
   if (caseItem.status === 'quit' || caseItem.status === 'locked') {
     req.flash('error', `Case ${caseId} is already finished, you can not lock it.`);
+    logger.warn(loggerHelper.createLogMessage(req.user, 'failed to lock', 'already finished case', caseId));
     res.redirect('back');
   }
   else if (req.user.role !== 'admin') {
     req.flash('error', `You do not have permission to lock a case.`);
+    logger.warn(loggerHelper.createLogMessage(req.user, 'do not have permission to lock', 'a case'));
     res.redirect('back');
   }
   else {
+    logger.info(loggerHelper.createLogMessage(req.user, 'show', 'lock case form', caseId));
     res.render('case-second-auth', {
       caseNav: CaseNav,
       buttonConfig: getButtonConfig(req.user.language),
@@ -201,10 +223,12 @@ exports.lockCase = async (req, res) => {
   res.locals.case = caseItem;
   if (caseItem.status === 'quit' || caseItem.status === 'locked') {
     req.flash('error', `Case ${caseId} is already finished, you can not lock it.`);
+    logger.warn(loggerHelper.createLogMessage(req.user, 'failed to lock', 'already finished case', caseId));
     res.redirect('back');
   }
   else if (req.user.role !== 'admin') {
     req.flash('error', `You do not have permission to lock a case.`);
+    logger.warn(loggerHelper.createLogMessage(req.user, 'do not have permission to lock', 'a case'));
     res.redirect('back');
   }
   else {
@@ -212,16 +236,19 @@ exports.lockCase = async (req, res) => {
     req.user.authenticate(password, function(err, model) {
       if (model === false) {
         req.flash('error', 'Wrong password.');
+        logger.warn(loggerHelper.createLogMessage(req.user, 'input wrong', 'password when lock', caseId));
         res.redirect('back');
       }
       else {
         caseItem.lock(req.user._id, function(err, caseNew) {
           if (err) {
             req.flash('error', err.toString());
+            logger.warn(err);
             res.redirect('back');
           }
           else {
             res.locals.case = caseNew;
+            logger.info(loggerHelper.createLogMessage(req.user, 'lock', 'case', caseId));
             res.redirect(`/overview/${caseId}`);
           }
         });
@@ -236,14 +263,17 @@ exports.commitCase = async (req, res) => {
   res.locals.case = caseItem;
   if (caseItem.status !== 'open') {
     req.flash('error', `Case ${caseId} status is not open anymore, you can not commit it.`);
+    logger.warn(loggerHelper.createLogMessage(req.user, 'failed to commit', 'a not open case', caseId));
     res.redirect('back');
   }
   else if (req.user.role !== 'cra') {
     req.flash('error', `You do not have permission to commit a case.`);
+    logger.warn(loggerHelper.createLogMessage(req.user, 'do not have permission to commit', 'a case'));
     res.redirect('back');
   }
   else if (caseItem.user._id.toString() !== req.user._id.toString()) {
     req.flash('error', `You do not have permission to commit a case.`);
+    logger.warn(loggerHelper.createLogMessage(req.user, 'do not have permission to commit', 'a case'));
     res.redirect('back');
   }
   else {
@@ -251,6 +281,7 @@ exports.commitCase = async (req, res) => {
     req.user.authenticate(password, function(err, model) {
       if (model === false) {
         req.flash('error', 'Wrong password.');
+        logger.warn(loggerHelper.createLogMessage(req.user, 'input wrong', 'password when commit', caseId));
         res.redirect('back');
       }
       else {
@@ -260,10 +291,12 @@ exports.commitCase = async (req, res) => {
         Case.findByIdAndUpdate(caseId, obj, {new: true}, function(err, caseNew) {
           if (err) {
             req.flash('error', err.toString());
+            logger.warn(err);
             res.redirect('back');
           }
           else {
             res.locals.case = caseNew;
+            logger.info(loggerHelper.createLogMessage(req.user, 'commit', 'case', caseId));
             res.redirect(`/overview/${caseId}`);
           }
         });
@@ -303,6 +336,8 @@ exports.showCaseCommitForm = async (req, res) => {
   const showForm = result.find((item) => {
     return item.pass === false;
   }) === undefined;
+
+  logger.info(loggerHelper.createLogMessage(req.user, 'tried to commit', 'case', caseId));
 
   res.render('commit-case', {
     caseNav: CaseNav,
