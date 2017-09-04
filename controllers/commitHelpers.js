@@ -48,10 +48,6 @@ function doDateCheck(value, start, end) {
   }
 }
 
-function doSaeCustomDateCheck(value, ) {
-
-}
-
 function doOnlyOnceCheck(fieldName, ruleConfig, listToCheck) {
   const matches = listToCheck.filter((item) => {
     return item[fieldName] === ruleConfig.value;
