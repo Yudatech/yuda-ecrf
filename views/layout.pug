@@ -25,17 +25,17 @@ html
               if user
                 if user.role === 'admin'
                   li
-                    a.yuda-menu-btn(href="/sites" class=(currentPath.startsWith('/site') ? 'active' : '')) 中心管理
+                    a.yuda-menu-btn(href="/sites" class=(currentPath.startsWith('/site') ? 'active' : '')) Sites
                   li
-                    a.yuda-menu-btn(href="/users" class=(currentPath.startsWith('/user') ? 'active' : '')) 用户管理
+                    a.yuda-menu-btn(href="/users" class=(currentPath.startsWith('/user') ? 'active' : '')) Users
                 if user.role === 'cra'
                   li
-                    a.yuda-menu-btn(href="/case" class=(currentPath === '/case' ? 'active' : '')) 新建病例
+                    a.yuda-menu-btn(href="/case" class=(currentPath === '/case' ? 'active' : '')) New Patient
                 li
-                  a.yuda-menu-btn(href="/logout") 退出系统
+                  a.yuda-menu-btn(href="/logout") Logout
               else
                 li
-                  a.yuda-menu-btn(href="/login") 登录系统
+                  a.yuda-menu-btn(href="/login") Login
 
             if user
               ul.nav.navbar-nav.navbar-right
