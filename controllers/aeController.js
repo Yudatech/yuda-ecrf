@@ -23,20 +23,20 @@ async function getAeListByCaseId(caseId) {
   return aeList;
 }
 
-function getAeLevelText(aeserv) {
-  return getAeLevelConfig().find((item) => {
+function getAeLevelText(aeserv, lang) {
+  return getAeLevelConfig(lang).find((item) => {
     return item.value === aeserv;
   }).text;
 }
 
-function getAeRelText(aerel) {
-  return getAeRelConfig().find((item) => {
+function getAeRelText(aerel, lang) {
+  return getAeRelConfig(lang).find((item) => {
     return item.value === aerel;
   }).text;
 }
 
-function getAeResText(aeres) {
-  return getAeResConfig().find((item) => {
+function getAeResText(aeres, lang) {
+  return getAeResConfig(lang).find((item) => {
     return item.value === aeres;
   }).text;
 }
@@ -51,11 +51,11 @@ exports.aeTable = async (req, res) => {
       _id: item._id,
       case: item.case,
       event: item.event,
-      aeserv: getAeLevelText(item.aeserv),
+      aeserv: getAeLevelText(item.aeserv, req.user.language),
       aestdtc: moment(item.aestdtc).format('ll'),
       aeeddtc: moment(item.aeeddtc).format('ll'),
-      aerel: getAeRelText(item.aerel),
-      aeres_1: getAeResText(item.aeres_1)
+      aerel: getAeRelText(item.aerel, req.user.language),
+      aeres_1: getAeResText(item.aeres_1, req.user.language)
     };
   });
   logger.info(loggerHelper.createLogMessage(req.user, 'show', 'ae table', req.params.caseId));

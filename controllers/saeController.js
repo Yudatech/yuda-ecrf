@@ -21,8 +21,8 @@ async function getSaeListByCaseId(caseId) {
   return saeList;
 }
 
-function getSaeTypeText(value) {
-  return getSaeTypesConfig(req.user.language).find((item) => {
+function getSaeTypeText(value, lang) {
+  return getSaeTypesConfig(lang).find((item) => {
     return item.value === value;
   }).text;
 }
@@ -36,7 +36,7 @@ exports.saeTable = async (req, res) => {
     return {
       _id: item._id,
       case: item.case,
-      saetpe: getSaeTypeText(item.saetpe),
+      saetpe: getSaeTypeText(item.saetpe, req.user.language),
       saedtc: moment(item.saedtc).format('ll'),
       saestdtc: moment(item.saestdtc).format('ll'),
       saeanti: item.saeanti

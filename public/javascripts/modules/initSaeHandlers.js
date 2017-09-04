@@ -4,13 +4,13 @@ function initSaeHandlers() {
   const saecaus_9El = $('#saecaus_9');
   
   saecaus_9El.change(function(){
-    setSurgery18Visibility();
+    setSaecaus10Visibility();
   });
 }
 
-function setSurgery18Visibility() {
+function setSaecaus10Visibility() {
   const checked = $('#saecaus_9').is(':checked');
-  setFieldVisibility('saecaus_9', checked);
+  setFieldVisibility('saecaus_10', checked);
 }
 
 export default initSaeHandlers;
