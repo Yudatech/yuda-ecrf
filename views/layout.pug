@@ -25,17 +25,17 @@ html
               if user
                 if user.role === 'admin'
                   li
-                    a.yuda-menu-btn(href="/sites" class=(currentPath.startsWith('/site') ? 'active' : '')) Sites
+                    a.yuda-menu-btn(href="/sites" class=(currentPath.startsWith('/site') ? 'active' : '')) #{buttonConfig.buttons.sitemanage.text}
                   li
-                    a.yuda-menu-btn(href="/users" class=(currentPath.startsWith('/user') ? 'active' : '')) Users
+                    a.yuda-menu-btn(href="/users" class=(currentPath.startsWith('/user') ? 'active' : '')) #{buttonConfig.buttons.usermanage.text}
                 if user.role === 'cra'
                   li
-                    a.yuda-menu-btn(href="/case" class=(currentPath === '/case' ? 'active' : '')) New Patient
+                    a.yuda-menu-btn(href="/case" class=(currentPath === '/case' ? 'active' : '')) #{buttonConfig.buttons.newpatient.text}
                 li
-                  a.yuda-menu-btn(href="/logout") Logout
+                  a.yuda-menu-btn(href="/logout") #{buttonConfig.buttons.logout.text}
               else
                 li
-                  a.yuda-menu-btn(href="/login") Login
+                  a.yuda-menu-btn(href="/login") #{buttonConfig.buttons.login.text}
 
             if user
               ul.nav.navbar-nav.navbar-right

@@ -91,6 +91,36 @@ const config = {
       zh: '删除',
       en: 'Remove'
     }
+  }, {
+    name: 'sitemanage',
+    text: {
+      zh: '中心管理',
+      en: 'Site'
+    }
+  }, {
+    name: 'usermanage',
+    text: {
+      zh: '用户管理',
+      en: 'User'
+    }
+  }, {
+    name: 'newpatient',
+    text: {
+      zh: '新建病例',
+      en: 'New Patient'
+    }
+  }, {
+    name: 'logout',
+    text: {
+      zh: '退出登录',
+      en: 'Logout'
+    }
+  }, {
+    name: 'login',
+    text: {
+      zh: '登录',
+      en: 'Login'
+    }
   }]
 };
 
