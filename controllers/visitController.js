@@ -11,6 +11,9 @@ const getVisitConfig = require('../config/visit/getVisitConfig');
 const getVisitTableConfig = require('../config/visit/getVisitTableConfig');
 const getButtonConfig = require('../config/common/getButtonConfig');
 
+const logger = require('../logger');
+const loggerHelper = require('../loggerHelper');
+
 async function getVisitListByCaseId(caseId) {
   const visitList = await Visit.find({
     case: caseId
@@ -46,6 +49,7 @@ exports.visitTable = async (req, res) => {
       visitid: `${daysaftersurgery}.${item.visitnum}`
     };
   });
+  logger.info(loggerHelper.createLogMessage(req.user, 'show', 'visit table', req.params.caseId));
   res.render('visit/visitTable', {
     caseNav: CaseNav,
     config: getVisitTableConfig(req.user.language),
@@ -91,6 +95,7 @@ exports.visitForm = async (req, res) => {
     }
   });
 
+  logger.info(loggerHelper.createLogMessage(req.user, 'show', 'visit', req.params.caseId));
   res.render('visit/visitForm', {
     caseNav: CaseNav,
     config,
@@ -104,6 +109,7 @@ exports.createVisit = async (req, res) => {
   const caseId = req.params.caseId;
   req.body.case = caseId;
   await (new Visit(req.body)).save();
+  logger.info(loggerHelper.createLogMessage(req.user, 'create', 'visit', req.params.caseId), req.body);
   res.redirect(`/visitlist/${caseId}`);
 };
 
@@ -112,6 +118,7 @@ exports.updateVisit = async (req, res) => {
   req.body.case = caseId;
   const visitId = req.params.visitId;
   await Visit.findByIdAndUpdate(visitId, req.body);
+  logger.info(loggerHelper.createLogMessage(req.user, 'update', 'visit', req.params.caseId), req.body);
   res.redirect(`/visitlist/${caseId}`);
 };
 
@@ -119,5 +126,6 @@ exports.removeVisit = async (req, res) => {
   const caseId = req.params.caseId;
   const id = req.params.visitId;
   await Visit.findByIdAndRemove(id);
+  logger.info(loggerHelper.createLogMessage(req.user, 'remove', 'visit', req.params.caseId), {id});
   res.redirect(`/visitlist/${caseId}`);
 };

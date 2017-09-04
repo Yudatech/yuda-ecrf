@@ -3,15 +3,16 @@ moment.locale('zh-cn');
 
 const mongoose = require('mongoose');
 const Sae = mongoose.model('Sae');
-const Ae = mongoose.model('Ae');
 
 const helpers = require('./helpers');
 const decorationHelper = require('./decorationHelper');
 const getSaeConfig = require('../config/sae/getSaeConfig');
 const getSaeTableConfig = require('../config/sae/getSaeTableConfig');
 const getSaeTypesConfig = require('../config/sae/getSaeTypesConfig');
-const getSaeCauseConfig = require('../config/sae/getSaeCauseConfig');
 const getButtonConfig = require('../config/common/getButtonConfig');
+
+const logger = require('../logger');
+const loggerHelper = require('../loggerHelper');
 
 async function getSaeListByCaseId(caseId) {
   const saeList = await Sae.find({
@@ -41,6 +42,7 @@ exports.saeTable = async (req, res) => {
       saeanti: item.saeanti
     };
   });
+  logger.info(loggerHelper.createLogMessage(req.user, 'show', 'sae table', req.params.caseId));
   res.render('sae/saeTable', {
     caseNav: CaseNav,
     config: getSaeTableConfig(req.user.language),
@@ -115,6 +117,7 @@ exports.saeForm = async (req, res) => {
     }
   });
 
+  logger.info(loggerHelper.createLogMessage(req.user, 'show', 'sae', req.params.caseId));
   res.render('sae/saeForm', {
     caseNav: CaseNav,
     config,
@@ -130,6 +133,7 @@ exports.createSae = async (req, res) => {
   req.body.saestdtc = `${req.body.saestdtc_date} ${req.body.saestdtc_time}`;
   req.body.saenoticedtc = `${req.body.saenoticedtc_date} ${req.body.saenoticedtc_time}`;
   await (new Sae(req.body)).save();
+  logger.info(loggerHelper.createLogMessage(req.user, 'create', 'sae', req.params.caseId), req.body);
   res.redirect(`/saelist/${caseId}`);
 };
 
@@ -140,6 +144,7 @@ exports.updateSae = async (req, res) => {
   req.body.saestdtc = `${req.body.saestdtc_date} ${req.body.saestdtc_time}`;
   req.body.saenoticedtc = `${req.body.saenoticedtc_date} ${req.body.saenoticedtc_time}`;
   await Sae.findByIdAndUpdate(saeId, req.body);
+  logger.info(loggerHelper.createLogMessage(req.user, 'update', 'sae', req.params.caseId), req.body);
   res.redirect(`/saelist/${caseId}`);
 };
 
@@ -147,5 +152,6 @@ exports.removeSae = async (req, res) => {
   const caseId = req.params.caseId;
   const id = req.params.saeId;
   await Sae.findByIdAndRemove(id);
+  logger.info(loggerHelper.createLogMessage(req.user, 'remove', 'sae', req.params.caseId), {id});
   res.redirect(`/saelist/${caseId}`);
 };

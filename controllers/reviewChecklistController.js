@@ -7,6 +7,9 @@ const helpers = require('./helpers');
 const getReviewChecklistConfig = require('../config/getReviewChecklistConfig');
 const getButtonConfig = require('../config/common/getButtonConfig');
 
+const logger = require('../logger');
+const loggerHelper = require('../loggerHelper');
+
 async function createReviewChecklist(caseId, obj) {
   obj.case = caseId;
   await (new ReviewChecklist(obj)).save();
@@ -58,6 +61,7 @@ exports.reviewChecklistForm = async (req, res) => {
       config.formConfigs[key].value = moment(reviewChecklistItem[key]).format('MM/DD/YYYY');
     }
   });
+  logger.info(loggerHelper.createLogMessage(req.user, 'show', 'reviewchecklist', req.params.caseId));
   res.render('review-checklist', {
     caseNav: CaseNav,
     config,
@@ -69,5 +73,6 @@ exports.reviewChecklistForm = async (req, res) => {
 exports.updateReviewChecklist = async (req, res) => {
   const caseId = req.params.caseId;
   await createOrUpdateReviewChecklist(caseId, req.body);
+  logger.info(loggerHelper.createLogMessage(req.user, 'update', 'reviewchecklist', caseId), req.body);
   res.redirect(`/reviewchecklist/${caseId}`);
 };

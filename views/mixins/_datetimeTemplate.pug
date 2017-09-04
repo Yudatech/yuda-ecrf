@@ -5,6 +5,8 @@ mixin _datetimeTemplate(config, disabled)
   - const time_value = config.time.value
   - const dateIdReal = date_name + 'Real'
   - const timeIdReal = time_name + 'Real'
+  - const formDisabled = !(locals.case.status === 'open' || locals.user.role === 'admin')
+  - disabled = disabled || formDisabled
   .form-group(id=`${config.name}-container`)
     label.control-label #{config.text}
     div

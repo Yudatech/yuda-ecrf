@@ -7,6 +7,9 @@ const helpers = require('./helpers');
 const getScreeningChecklistConfig = require('../config/getScreeningChecklistConfig');
 const getButtonConfig = require('../config/common/getButtonConfig');
 
+const logger = require('../logger');
+const loggerHelper = require('../loggerHelper');
+
 async function createScreeningChecklist(caseId, obj) {
   obj.case = caseId;
   await (new ScreeningChecklist(obj)).save();
@@ -58,6 +61,7 @@ exports.screeningChecklistForm = async (req, res) => {
       config.formConfigs[key].value = moment(screeningChecklistItem[key]).format('MM/DD/YYYY');
     }
   });
+  logger.info(loggerHelper.createLogMessage(req.user, 'show', 'screeningchecklist', req.params.caseId));
   res.render('screening-checklist', {
     caseNav: CaseNav,
     config,
@@ -69,5 +73,6 @@ exports.screeningChecklistForm = async (req, res) => {
 exports.updateScreeningChecklist = async (req, res) => {
   const caseId = req.params.caseId;
   await createOrUpdateScreeningChecklist(caseId, req.body);
+  logger.info(loggerHelper.createLogMessage(req.user, 'update', 'screeningchecklist', req.params.caseId), req.body);
   res.redirect(`/screeningchecklist/${caseId}`);
 };

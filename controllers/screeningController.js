@@ -23,6 +23,9 @@ const mongoose = require('mongoose');
 const Case = mongoose.model('Case');
 const Screening = mongoose.model('Screening');
 
+const logger = require('../logger');
+const loggerHelper = require('../loggerHelper');
+
 exports.caseOverviewForm = async (req, res) => {
   const caseId = req.params.caseId;
   const CaseNav = helpers.appendCaseIdToCaseNav(caseId, req.user.language);
@@ -35,6 +38,7 @@ exports.caseOverviewForm = async (req, res) => {
     subjAcceptDate: moment(caseObj.subjAcceptDate).format('ll'),
     attachedDoc: caseObj.attachedDoc
   };
+  logger.info(loggerHelper.createLogMessage(req.user, 'show', 'case overview', caseId));
   res.render('case-overview', {
     caseNav: CaseNav,
     caseOverviewConfig: config,
@@ -100,6 +104,7 @@ exports.caseBasicForm = async (req, res) => {
       });
     }
   });
+  logger.info(loggerHelper.createLogMessage(req.user, 'show', 'screening-basic', req.params.caseId));
   res.render('case/screening-basic', {
     caseNav: CaseNav,
     config,
@@ -111,6 +116,7 @@ exports.caseBasicForm = async (req, res) => {
 exports.updateCaseBasic = async (req, res) => {
   const caseId = req.params.caseId;
   await createOrUpdateScreening(caseId, req.body);
+  logger.info(loggerHelper.createLogMessage(req.user, 'update', 'screening-basic', req.params.caseId), req.body);
   res.redirect(`/screening-basic/${caseId}`);
 };
 
@@ -126,6 +132,7 @@ exports.caseInclusionForm = async (req, res) => {
       config.formConfigs[key].value = false;
     }
   });
+  logger.info(loggerHelper.createLogMessage(req.user, 'show', 'screening-inclusion', caseId));
   res.render('case/screening-inclusion', {
     caseNav: CaseNav,
     buttonConfig: getButtonConfig(req.user.language),
@@ -137,6 +144,7 @@ exports.caseInclusionForm = async (req, res) => {
 exports.updateCaseInclusion = async (req, res) => {
   const caseId = req.params.caseId;
   await createOrUpdateScreening(caseId, req.body);
+  logger.info(loggerHelper.createLogMessage(req.user, 'update', 'screening-inclusion', req.params.caseId), req.body);
   res.redirect(`/screening-inclusion/${caseId}`);
 };
 
@@ -152,6 +160,7 @@ exports.caseExclusionForm = async (req, res) => {
       config.formConfigs[key].value = false;
     }
   });
+  logger.info(loggerHelper.createLogMessage(req.user, 'show', 'screening-exclusion', caseId));
   res.render('case/screening-exclusion', {
     caseNav: CaseNav,
     buttonConfig: getButtonConfig(req.user.language),
@@ -163,6 +172,7 @@ exports.caseExclusionForm = async (req, res) => {
 exports.updateCaseExclusion = async (req, res) => {
   const caseId = req.params.caseId;
   await createOrUpdateScreening(caseId, req.body);
+  logger.info(loggerHelper.createLogMessage(req.user, 'update', 'screening-exclusion', caseId), req.body);
   res.redirect(`/screening-exclusion/${caseId}`);
 };
 
@@ -178,6 +188,7 @@ exports.caseDiseaseForm = async (req, res) => {
       config.formConfigs[key].value = false;
     }
   });
+  logger.info(loggerHelper.createLogMessage(req.user, 'show', 'screening-disease', caseId));
   res.render('case/screening-disease', {
     caseNav: CaseNav,
     buttonConfig: getButtonConfig(req.user.language),
@@ -189,6 +200,7 @@ exports.caseDiseaseForm = async (req, res) => {
 exports.updateCaseDisease = async (req, res) => {
   const caseId = req.params.caseId;
   await createOrUpdateScreening(caseId, req.body);
+  logger.info(loggerHelper.createLogMessage(req.user, 'update', 'screening-disease', caseId), req.body);
   res.redirect(`/screening-disease/${caseId}`);
 };
 
@@ -204,6 +216,7 @@ exports.caseConMedForm = async (req, res) => {
       config.formConfigs[key].value = false;
     }
   });
+  logger.info(loggerHelper.createLogMessage(req.user, 'show', 'screening-conmed', caseId));
   res.render('case/screening-conmed', {
     caseNav: CaseNav,
     buttonConfig: getButtonConfig(req.user.language),
@@ -215,6 +228,7 @@ exports.caseConMedForm = async (req, res) => {
 exports.updateCaseConMed = async (req, res) => {
   const caseId = req.params.caseId;
   await createOrUpdateScreening(caseId, req.body);
+  logger.info(loggerHelper.createLogMessage(req.user, 'update', 'screening-conmed', caseId), req.body);
   res.redirect(`/screening-conmed/${caseId}`);
 };
 
@@ -242,6 +256,7 @@ exports.caseVitalSignForm = async (req, res) => {
       config.formConfigs[key].extra = JSON.stringify(extraObj);
     }
   });
+  logger.info(loggerHelper.createLogMessage(req.user, 'show', 'screening-vitalsign', caseId));
   res.render('case/screening-vitalsign', {
     caseNav: CaseNav,
     buttonConfig: getButtonConfig(req.user.language),
@@ -253,6 +268,7 @@ exports.caseVitalSignForm = async (req, res) => {
 exports.updateCaseVitalSign = async (req, res) => {
   const caseId = req.params.caseId;
   await createOrUpdateScreening(caseId, req.body);
+  logger.info(loggerHelper.createLogMessage(req.user, 'update', 'screening-vitalsign', caseId), req.body);
   res.redirect(`/screening-vitalsign/${caseId}`);
 };
 
@@ -277,6 +293,7 @@ exports.caseLabForm = async (req, res) => {
       config.formConfigs[key].validation = config.formConfigs[key].validation[sexIndex];
     }
   });
+  logger.info(loggerHelper.createLogMessage(req.user, 'show', 'screening-lab', caseId));
   res.render('case/screening-lab', {
     caseNav: CaseNav,
     buttonConfig: getButtonConfig(req.user.language),
@@ -288,6 +305,7 @@ exports.caseLabForm = async (req, res) => {
 exports.updateCaseLab = async (req, res) => {
   const caseId = req.params.caseId;
   await createOrUpdateScreening(caseId, req.body);
+  logger.info(loggerHelper.createLogMessage(req.user, 'update', 'screening-lab', caseId), req.body);
   res.redirect(`/screening-lab/${caseId}`);
 };
 
@@ -306,6 +324,7 @@ exports.caseAssistantForm = async (req, res) => {
       config.formConfigs[key].value = false;
     }
   });
+  logger.info(loggerHelper.createLogMessage(req.user, 'show', 'screening-assistant', caseId));
   res.render('case/screening-assistant', {
     caseNav: CaseNav,
     buttonConfig: getButtonConfig(req.user.language),
@@ -317,6 +336,7 @@ exports.caseAssistantForm = async (req, res) => {
 exports.updateCaseAssistant = async (req, res) => {
   const caseId = req.params.caseId;
   await createOrUpdateScreening(caseId, req.body);
+  logger.info(loggerHelper.createLogMessage(req.user, 'update', 'screening-assistant', caseId), req.body);
   res.redirect(`/screening-assistant/${caseId}`);
 };
 
@@ -332,6 +352,7 @@ exports.caseMethodForm = async (req, res) => {
       config.formConfigs[key].value = false;
     }
   });
+  logger.info(loggerHelper.createLogMessage(req.user, 'show', 'screening-method', caseId));
   res.render('case/screening-method', {
     caseNav: CaseNav,
     buttonConfig: getButtonConfig(req.user.language),
@@ -343,6 +364,7 @@ exports.caseMethodForm = async (req, res) => {
 exports.updateCaseMethod = async (req, res) => {
   const caseId = req.params.caseId;
   await createOrUpdateScreening(caseId, req.body);
+  logger.info(loggerHelper.createLogMessage(req.user, 'update', 'screening-method', caseId), req.body);
   res.redirect(`/screening-method/${caseId}`);
 };
 
@@ -358,6 +380,7 @@ exports.caseRegionForm = async (req, res) => {
       config.formConfigs[key].value = false;
     }
   });
+  logger.info(loggerHelper.createLogMessage(req.user, 'show', 'screening-region', caseId));
   res.render('case/screening-region', {
     caseNav: CaseNav,
     buttonConfig: getButtonConfig(req.user.language),
@@ -369,6 +392,7 @@ exports.caseRegionForm = async (req, res) => {
 exports.updateCaseRegion = async (req, res) => {
   const caseId = req.params.caseId;
   await createOrUpdateScreening(caseId, req.body);
+  logger.info(loggerHelper.createLogMessage(req.user, 'update', 'screening-region', caseId), req.body);
   res.redirect(`/screening-region/${caseId}`);
 };
 
@@ -387,6 +411,7 @@ exports.caseDignoseForm = async (req, res) => {
       config.formConfigs[key].value = false;
     }
   });
+  logger.info(loggerHelper.createLogMessage(req.user, 'show', 'screening-dignose', caseId));
   res.render('case/screening-dignose', {
     caseNav: CaseNav,
     buttonConfig: getButtonConfig(req.user.language),
@@ -398,5 +423,6 @@ exports.caseDignoseForm = async (req, res) => {
 exports.updateCaseDignose = async (req, res) => {
   const caseId = req.params.caseId;
   await createOrUpdateScreening(caseId, req.body);
+  logger.info(loggerHelper.createLogMessage(req.user, 'update', 'screening-exclusion', caseId), req.body);
   res.redirect(`/screening-dignose/${caseId}`);
 };

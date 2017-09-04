@@ -79,6 +79,18 @@ const config = {
       zh: '取消',
       en: 'Cancel'
     }
+  }, {
+    name: 'close',
+    text: {
+      zh: '关闭',
+      en: 'Close'
+    }
+  }, {
+    name: 'remove',
+    text: {
+      zh: '删除',
+      en: 'Remove'
+    }
   }]
 };
 
