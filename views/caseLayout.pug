@@ -3,6 +3,16 @@ extends layout
 include mixins/_caseNav
 
 block content
+  .modal.fade(id="confirm-leave-dialog" tabindex="-1" aria-labelledby="custom-title")
+    .modal-dialog(role="document")
+      .modal-content.panel-danger
+        .modal-header.panel-heading
+          button.close(type="button" data-dismiss="modal" aria-label="Close")
+            span(aria-hidden="true") &times;
+          h3.modal-title #{buttonConfig.buttons.formmodified.text}
+        .modal-footer.panel-footer
+          button.custom-proceed.btn.btn-primary(type="button" data-dismiss="modal")
+          button.custom-stay.btn.btn-default(type="button" data-dismiss="modal")
   .inner.row
     .case-nav.col-sm-3
       .inner.panel.panel-default

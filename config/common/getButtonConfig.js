@@ -121,6 +121,12 @@ const config = {
       zh: '登录',
       en: 'Login'
     }
+  }, {
+    name: 'formmodified',
+    text: {
+      zh: '表单已被修改',
+      en: 'Form has been changed'
+    }
   }]
 };
 

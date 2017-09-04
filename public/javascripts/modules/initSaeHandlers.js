@@ -1,5 +1,7 @@
 import setFieldVisibility from './helpers/setFieldVisibility';
 
+let serializedForm;
+
 function initSaeHandlers() {
   const saecaus_9El = $('#saecaus_9');
   
