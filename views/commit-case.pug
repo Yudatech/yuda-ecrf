@@ -11,6 +11,8 @@ block case-content
               .col-sm-8
                 a
                   span #{item.message}
+                  if item.resultText !== undefined
+                    span #{item.resultText}
               .col-sm-4
                 if item.pass === false && item.link !== ''
                   a.btn.btn-default(role="button" href=item.link)
@@ -22,6 +24,8 @@ block case-content
                 .col-sm-8
                   a
                     span #{child.message}
+                    if child.resultText !== undefined
+                      span #{child.resultText}
                 .col-sm-4
                   if child.pass === false && child.link !== ''
                     a.btn.btn-default(role="button" href=child.link)
@@ -31,7 +35,9 @@ block case-content
                   li.row.commit-list-item.level-2
                     .col-sm-8
                       a
-                       span #{bottomItem.message}
+                        span #{bottomItem.message}
+                        if bottomItem.resultText !== undefined
+                          span #{bottomItem.resultText}
                     .col-sm-4
                       if bottomItem.pass === false && bottomItem.link !== ''
                         a.btn.btn-default(role="button" href=bottomItem.link)

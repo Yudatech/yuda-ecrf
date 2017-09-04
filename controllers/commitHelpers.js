@@ -233,10 +233,12 @@ function doCommitValidationForWholeTable(caseId, validateResult, commitCaseConfi
     if (extra.idToAppend !== undefined) {
       validateResult.link = validateResult.link + '/' + extra.idToAppend;
     }
-    validateResult.message = `${validateResult.text} ${commitCaseConfig.ongoing}`;
+    validateResult.message = validateResult.text;
+    validateResult.resultText = commitCaseConfig.ongoing;
   }
   else {
-    validateResult.message = `${validateResult.text} ${commitCaseConfig.finish}`;
+    validateResult.message = validateResult.text;
+    validateResult.resultText = commitCaseConfig.finish;
   }
 }
 
@@ -267,7 +269,8 @@ exports.validateScreeningForm = async function(caseId, lang) {
   if (screeningItem === null) {
     screeningValidateResult.pass = false;
     screeningValidateResult.link = `${screeningValidateResult.linkBase}/${caseId}`;
-    screeningValidateResult.message = `${screeningValidateResult.text} ${commitCaseConfig.empty}`;
+    screeningValidateResult.message = screeningValidateResult.text;
+    screeningValidateResult.resultText = commitCaseConfig.empty;
   }
   else {
     const caseItem = await Case.findById(caseId);
@@ -333,7 +336,8 @@ exports.validateScreeningChecklistForm = async function(caseId, lang) {
   if (screeningChecklistItem === null) {
     screeningChecklistValidateResult.pass = false;
     screeningChecklistValidateResult.link = `${screeningChecklistValidateResult.linkBase}/${caseId}`;
-    screeningChecklistValidateResult.message = `${screeningChecklistValidateResult.text} ${commitCaseConfig.empty}`;
+    screeningChecklistValidateResult.message = screeningChecklistValidateResult.text;
+    screeningChecklistValidateResult.resultText = commitCaseConfig.empty;
   }
   else {
     const formConfigs = getScreeningChecklistConfig(lang).formConfigs;
@@ -352,7 +356,8 @@ exports.validateReviewChecklistForm = async function(caseId, lang) {
   if (reviewChecklistItem === null) {
     reviewChecklistValidateResult.pass = false;
     reviewChecklistValidateResult.link = `${reviewChecklistValidateResult.linkBase}/${caseId}`;
-    reviewChecklistValidateResult.message = `${reviewChecklistValidateResult.text} ${commitCaseConfig.empty}`;
+    reviewChecklistValidateResult.message = reviewChecklistValidateResult.text;
+    reviewChecklistValidateResult.resultText = commitCaseConfig.empty;
   }
   else {
     const caseItem = await Case.findById(caseId);
@@ -379,7 +384,8 @@ exports.validateSurgeryForm = async function(caseId, lang) {
   if (surgeryItem === null) {
     surgeryValidateResult.pass = false;
     surgeryValidateResult.link = `${surgeryValidateResult.linkBase}/${caseId}`;
-    surgeryValidateResult.message = `${surgeryValidateResult.text} ${commitCaseConfig.empty}`;
+    surgeryValidateResult.message = surgeryValidateResult.text;
+    surgeryValidateResult.resultText = commitCaseConfig.empty;
   }
   else {
     const caseItem = await Case.findById(caseId);
@@ -406,7 +412,8 @@ exports.validateVisitForm = async function(caseId, lang) {
   if (visitList.length === 0) {
     visitValidateResult.pass = false;
     visitValidateResult.link = `/visitlist/${caseId}`;
-    visitValidateResult.message = `${visitValidateResult.text} ${commitCaseConfig.empty}`;
+    visitValidateResult.message = visitValidateResult.text;
+    visitValidateResult.resultText = commitCaseConfig.empty;
   }
   else {
     visitValidateResult.message = `${visitValidateResult.text} ${commitCaseConfig.ongoing}`;
