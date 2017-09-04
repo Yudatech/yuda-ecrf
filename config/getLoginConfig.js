@@ -2,19 +2,19 @@ const getOptionsLang = require('./configHelpers').getOptionsLang;
 
 const config = {
   title: {
-    zh: '用户登录',
-    en: 'login'
+    zh: '欢迎登录CREX eCRF系统',
+    en: 'Welcome to CREX eCRF system'
   },
   labels: [{
     name: 'userabbr',
     text: {
-      zh: '姓名缩写',
-      en: 'User abbreviation'
+      zh: '用户名',
+      en: 'Username'
     }
   }, {
     name: 'password',
     text: {
-      zh: '登录密码',
+      zh: '密码',
       en: 'Password'
     }
   }],
