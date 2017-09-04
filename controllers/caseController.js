@@ -20,6 +20,8 @@ const Sae = mongoose.model('Sae');
 const Ae = mongoose.model('Ae');
 const Surgery = mongoose.model('Surgery');
 const Visit = mongoose.model('Visit');
+const Question = mongoose.model('Question');
+const Comment = mongoose.model('Comment');
 
 const multer = require('multer');
 const jimp = require('jimp');
@@ -82,6 +84,7 @@ async function doRemoveCase(caseId) {
   await Ae.remove({case: caseId});
   await Surgery.remove({case: caseId});
   await Visit.remove({case: caseId});
+  await Question.remove({case: caseId});
 }
 
 exports.removeCase = async (req, res) => {

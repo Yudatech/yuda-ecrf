@@ -12,7 +12,8 @@ const getButtonConfig = require('../config/common/getButtonConfig');
 
 exports.loginForm = (req, res) => {
   res.render('login', {
-    loginConfig: getLoginConfig('en')
+    loginConfig: getLoginConfig('en'),
+    buttonConfig: getButtonConfig('en')
   });
 };
 
