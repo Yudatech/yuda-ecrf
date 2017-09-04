@@ -3,12 +3,14 @@ moment.locale('zh-cn');
 
 const mongoose = require('mongoose');
 const Question = mongoose.model('Question');
-const Comment = mongoose.model('Comment');
 const Case = mongoose.model('Case');
+const History = mongoose.model('History');
 
 const getButtonConfig = require('../config/common/getButtonConfig');
 const getQuestionConfig = require('../config/getQuestionConfig');
 const getQuestionStatusConfig = require('../config/getQuestionStatusConfig');
+const getTrueFalseConfig = require('../config/common/getTrueFalseConfig');
+const decorationHelper = require('./decorationHelper');
 
 const questionHelper = require('./questionHelper');
 const helpers = require('./helpers');
@@ -45,16 +47,6 @@ exports.showQuestionPage = async (req, res) => {
   const source = req.query.source;
 
   const question = await Question.findById(questionId);
-  const commentItems = await Comment.find({
-    question: questionId
-  }).sort({
-    createDate: 'asc'
-  });
-  const comments = commentItems.map((item) => {
-    const obj = item.toObject();
-    obj.createDate = moment(obj.createDate).format('LLL');
-    return obj;
-  });
 
   const table = question.modelname;
   const field = question.fieldname;
@@ -84,13 +76,55 @@ exports.showQuestionPage = async (req, res) => {
     });
   }
 
+  const historyItems = await History.find({
+    question: questionId
+  }).sort({
+    createDate: 'asc'
+  });
+  const historyList = historyItems.map((item) => {
+    const itemObj = item.toObject();
+    const obj = {};
+    obj.username = itemObj.user.username;
+    obj.status = getQuestionStatusConfig(req.user.language).find((questionStatusConfig) => questionStatusConfig.value === itemObj.status).text;
+    const fieldType = fieldConfig.type;
+    if (fieldType === 'select') {
+      obj.value = decorationHelper[fieldConfig.optionsGetter]().find((option) => option.value === itemObj.content.value).text;
+    }
+    else if (fieldType === 'date') {
+      obj.value = moment(itemObj.content.value).format('LL');
+    }
+    else if (fieldType === 'datetime') {
+      obj.value = moment(itemObj.content.value).format('LLL');
+    }
+    else if (fieldType === 'checkbox') {
+      itemObj.content.value = itemObj.content.value === 'true' ? true : false;
+      obj.value = getTrueFalseConfig(req.user.language).find((option) => option.value === itemObj.content.value).text;
+    }
+    else {
+      obj.value = itemObj.content.value;
+    }
+
+    obj.createDate = moment(itemObj.createDate).format('LLL');
+    obj.comment = itemObj.comment;
+    return obj;
+  });
+
+  const firstHistory = {
+    createDate: moment(question.createAt).format('LLL'),
+    username: question.orig.username,
+    comment: null,
+    value: null,
+    status: getQuestionStatusConfig(req.user.language)[0].text
+  };
+  historyList.unshift(firstHistory);
+
   res.render('question', {
     questionId: question._id,
     config,
     questionConfig,
     fieldConfig,
     buttonConfig: getButtonConfig(req.user.language),
-    comments,
+    historyList,
     source,
     backInfo: {
       table,
@@ -114,14 +148,17 @@ exports.updateQuestion = async (req, res) => {
     status: req.body.question_status
   });
 
-  const newComment = req.body.new_comment;
-  if (newComment) {
-    await (new Comment({
-      question: questionId,
-      user: req.user._id,
-      text: newComment
-    })).save();
-  }
+  const historyConfig = {
+    question: questionId,
+    case: caseId,
+    user: req.user._id,
+    content: {
+      value: req.body[field]
+    },
+    comment: req.body.new_comment,
+    status: req.body.question_status
+  };
+  await (new History(historyConfig)).save();
 
   const source = req.body.source;
   if (source === 'create') {
@@ -147,7 +184,7 @@ exports.checkQuestionedFields = async (req, res, next) => {
 exports.removeQuestion = async (req, res, next) => {
   const questionId = req.params.questionId;
   await Question.findByIdAndRemove(questionId);
-  await Comment.remove({
+  await History.remove({
     question: questionId
   });
   res.redirect('/');

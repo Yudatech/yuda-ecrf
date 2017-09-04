@@ -33,7 +33,7 @@ require('./models/Ae');
 require('./models/Sae');
 require('./models/Visit');
 require('./models/Question');
-require('./models/Comment');
+require('./models/History');
 
 // Start our app!
 const app = require('./app');

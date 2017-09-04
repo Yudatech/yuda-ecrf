@@ -3,8 +3,13 @@ const Schema = mongoose.Schema;
 mongoose.Promise = global.Promise;
 const mongodbErrorHandler = require('mongoose-mongodb-errors');
 
-const commentSchema = new Schema({
+const historySchema = new Schema({
   // case id
+  case: {
+    type: String,
+    ref: 'Case',
+    required: 'You must supply a caseid'
+  },
   question: {
     type: mongoose.Schema.ObjectId,
     ref: 'Question',
@@ -15,10 +20,12 @@ const commentSchema = new Schema({
     ref: 'User',
     required: 'You must supply an orig userid'
   },
-  text: {
+  content: mongoose.Schema.Types.Mixed,
+  comment: {
     type: String,
     required: true
   },
+  status: Number,
   // 创建日期
   createDate: {
     type: Date,
@@ -28,13 +35,15 @@ const commentSchema = new Schema({
 
 function autopopulate(next) {
   this.populate('user');
+  this.populate('case');
+  this.populate('question');
   next();
 }
 
-commentSchema.pre('find', autopopulate);
-commentSchema.pre('findOne', autopopulate);
-commentSchema.pre('findById', autopopulate);
+historySchema.pre('find', autopopulate);
+historySchema.pre('findOne', autopopulate);
+historySchema.pre('findById', autopopulate);
 
-commentSchema.plugin(mongodbErrorHandler);
+historySchema.plugin(mongodbErrorHandler);
 
-module.exports = mongoose.model('Comment', commentSchema);
+module.exports = mongoose.model('History', historySchema);
