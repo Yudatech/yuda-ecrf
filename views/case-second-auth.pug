@@ -2,12 +2,12 @@ extends caseLayout
 
 block case-content
   .case-content
-    fieldset
-      legend #{config.subtitle}
-      form.form-horizontal(action=`/${purpose}/${caseId}` method="POST")
-        .form-group
-          label.col-sm-2.control-label #{config.formConfigs.password.text}
-          .col-sm-10
-            input.form-control(type="password" name="password" required)
+    form.form-horizontal(action=`/${purpose}/${caseId}` method="POST")
+      fieldset
+        legend #{config.subtitle}
+          .form-group
+            label.col-sm-2.control-label #{config.formConfigs.password.text}
+            .col-sm-10
+              input.form-control(type="password" name="password" required)
 
-    input.btn.btn-default.yuda-input-btn(type="submit" value=buttonConfig.buttons.commit.text)
+      input.btn.btn-default.yuda-input-btn(type="submit" value=buttonConfig.buttons.commit.text)
