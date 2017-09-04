@@ -3,8 +3,6 @@ moment.locale('zh-cn');
 
 const mongoose = require('mongoose');
 const Ae = mongoose.model('Ae');
-const Surgery = mongoose.model('Surgery');
-const Visit = mongoose.model('Visit');
 
 const helpers = require('./helpers');
 const decorationHelper = require('./decorationHelper');
@@ -13,8 +11,10 @@ const getAeTableConfig = require('../config/ae/getAeTableConfig');
 const getAeLevelConfig = require('../config/ae/getAeLevelConfig');
 const getAeRelConfig = require('../config/ae/getAeRelConfig');
 const getAeResConfig = require('../config/ae/getAeResConfig');
-const getAeSourceConfig = require('../config/ae/getAeSourceConfig');
 const getButtonConfig = require('../config/common/getButtonConfig');
+
+const logger = require('../logger');
+const loggerHelper = require('../loggerHelper');
 
 async function getAeListByCaseId(caseId) {
   const aeList = await Ae.find({
@@ -58,6 +58,7 @@ exports.aeTable = async (req, res) => {
       aeres_1: getAeResText(item.aeres_1)
     };
   });
+  logger.info(loggerHelper.createLogMessage(req.user, 'show', 'ae table', req.params.caseId));
   res.render('ae/aeTable', {
     caseNav: CaseNav,
     config: getAeTableConfig(req.user.language),
@@ -130,7 +131,7 @@ exports.aeForm = async (req, res) => {
       config.formConfigs[key].value = false;
     }
   });
-
+  logger.info(loggerHelper.createLogMessage(req.user, 'show', 'ae', caseId));
   res.render('ae/aeForm', {
     caseNav: CaseNav,
     config,
@@ -146,6 +147,7 @@ exports.createAe = async (req, res) => {
   req.body.aestdtc = `${req.body.aestdtc_date} ${req.body.aestdtc_time}`;
   req.body.aeeddtc = `${req.body.aeeddtc_date} ${req.body.aeeddtc_time}`;
   await (new Ae(req.body)).save();
+  logger.info(loggerHelper.createLogMessage(req.user, 'create', 'ae', caseId), req.body);
   res.redirect(`/aelist/${caseId}`);
 };
 
@@ -156,6 +158,7 @@ exports.updateAe = async (req, res) => {
   req.body.aestdtc = `${req.body.aestdtc_date} ${req.body.aestdtc_time}`;
   req.body.aeeddtc = `${req.body.aeeddtc_date} ${req.body.aeeddtc_time}`;
   await Ae.findByIdAndUpdate(aeId, req.body);
+  logger.info(loggerHelper.createLogMessage(req.user, 'update', 'ae', caseId), req.body);
   res.redirect(`/aelist/${caseId}`);
 };
 
@@ -163,5 +166,6 @@ exports.removeAe = async (req, res) => {
   const caseId = req.params.caseId;
   const id = req.params.aeId;
   await Ae.findByIdAndRemove(id);
+  logger.info(loggerHelper.createLogMessage(req.user, 'remove', 'ae', caseId), {id});
   res.redirect(`/aelist/${caseId}`);
 };

@@ -11,6 +11,9 @@ const getCmTableConfig = require('../config/cm/getCmTableConfig');
 const getDoseMethodsConfig = require('../config/cm/getDoseMethodsConfig');
 const getButtonConfig = require('../config/common/getButtonConfig');
 
+const logger = require('../logger');
+const loggerHelper = require('../loggerHelper');
+
 async function getCmListByCaseId(caseId) {
   const cmList = await Cm.find({
     case: caseId
@@ -46,6 +49,7 @@ exports.cmTable = async (req, res) => {
     }
     return cm;
   });
+  logger.info(loggerHelper.createLogMessage(req.user, 'show', 'cm table', req.params.caseId));
   res.render('cm/cmTable', {
     caseNav: CaseNav,
     config: getCmTableConfig(req.user.language),
@@ -94,7 +98,7 @@ exports.cmForm = async (req, res) => {
       config.formConfigs[key].value = false;
     }
   });
-
+  logger.info(loggerHelper.createLogMessage(req.user, 'show', 'cm', caseId));
   res.render('cm/cmForm', {
     caseNav: CaseNav,
     config,
@@ -108,6 +112,7 @@ exports.createCm = async (req, res) => {
   const caseId = req.params.caseId;
   req.body.case = caseId;
   await (new Cm(req.body)).save();
+  logger.info(loggerHelper.createLogMessage(req.user, 'create', 'cm', caseId), req.body);
   res.redirect(`/cmlist/${caseId}`);
 };
 
@@ -116,6 +121,7 @@ exports.updateCm = async (req, res) => {
   req.body.case = caseId;
   const cmId = req.params.cmId;
   await Cm.findByIdAndUpdate(cmId, req.body);
+  logger.info(loggerHelper.createLogMessage(req.user, 'update', 'cm', caseId), req.body);
   res.redirect(`/cmlist/${caseId}`);
 };
 
@@ -123,5 +129,6 @@ exports.removeCm = async (req, res) => {
   const caseId = req.params.caseId;
   const id = req.params.cmId;
   await Cm.findByIdAndRemove(id);
+  logger.info(loggerHelper.createLogMessage(req.user, 'remove', 'cm', caseId), {id});
   res.redirect(`/cmlist/${caseId}`);
 };

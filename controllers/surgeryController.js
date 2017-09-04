@@ -9,6 +9,9 @@ const decorationHelper = require('./decorationHelper');
 const getSurgeryConfig = require('../config/surgery/getSurgeryConfig');
 const getButtonConfig = require('../config/common/getButtonConfig');
 
+const logger = require('../logger');
+const loggerHelper = require('../loggerHelper');
+
 async function createSurgery(caseId, obj) {
   obj.case = caseId;
   await (new Surgery(obj)).save();
@@ -66,6 +69,7 @@ exports.surgeryForm = async (req, res) => {
       config.formConfigs[key].value = false;
     }
   });
+  logger.info(loggerHelper.createLogMessage(req.user, 'show', 'surgery', req.params.caseId));
   res.render('surgery', {
     caseNav: CaseNav,
     config,
@@ -77,5 +81,6 @@ exports.surgeryForm = async (req, res) => {
 exports.updateSurgery = async (req, res) => {
   const caseId = req.params.caseId;
   await createOrUpdateSurgery(caseId, req.body);
+  logger.info(loggerHelper.createLogMessage(req.user, 'update', 'surgery', caseId), req.body);
   res.redirect(`/surgery/${caseId}`);
 };
