@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const Case = mongoose.model('Case');
 const Question = mongoose.model('Question');
+const User = mongoose.model('User');
 
 const moment = require('moment');
 moment.locale('zh-cn');
@@ -9,6 +10,7 @@ const getHomeConfig = require('../config/getHomeConfig');
 const getCaseStatusConfig = require('../config/common/getCaseStatusConfig');
 const getButtonConfig = require('../config/common/getButtonConfig');
 const getQuestionStatusConfig = require('../config/getQuestionStatusConfig');
+const getUtilConfig = require('../config/common/getUtilConfig');
 
 function getCaseListByStatus(caseList, status) {
   return caseList.filter((item) => item.status === status);
@@ -65,6 +67,7 @@ exports.homePage = async (req, res) => {
   const kpis = await calculateKpis(req.user);
   const role = req.user.role;
   let cases;
+  let userList = [];
   if (role === 'cra') {
     cases = await Case.find({
       user: req.user._id
@@ -72,12 +75,25 @@ exports.homePage = async (req, res) => {
   }
   else if (role === 'admin') {
     cases = await Case.find();
+    userList = await User.find({
+      role: 'cra'
+    });
   }
   else {
     cases = await Case.find({
       site: req.user.site._id
     });
+    userList = await User.find({
+      site: req.user.site._id,
+      role: 'cra'
+    });
   }
+  const users = userList.map((user) => {
+    return {
+      _id: user._id.toString(),
+      username: user.username
+    };
+  });
   const caseStatusConfig = getCaseStatusConfig(req.user.language);
   const casesFormated = cases.filter((item) => {
     return caseStatus === undefined || item.status === caseStatus;
@@ -114,6 +130,10 @@ exports.homePage = async (req, res) => {
     return {
       _id: item.case._id,
       questionId: item._id,
+      owner: item.owner._id.toString(),
+      statusValue: questionStatusConfig.find((config) => {
+        return config.value === item.status;
+      }).value,
       orig: item.orig.username,
       numOfDays,
       status: questionStatusConfig.find((config) => {
@@ -122,11 +142,24 @@ exports.homePage = async (req, res) => {
     };
   });
 
+  const utilConfig = getUtilConfig(req.user.language);
+  users.unshift({
+    _id: 'all',
+    username: utilConfig.utils.all.text
+  });
+  questionStatusConfig.unshift({
+    value: 'all',
+    text: utilConfig.utils.all.text
+  });
+
   res.render('home', {
     homeConfig: getHomeConfig(req.user.language),
     cases: casesFormated,
     questions: questionsFormated,
     buttonConfig: getButtonConfig(req.user.language),
-    kpis
+    kpis,
+    users,
+    questionStatusConfig,
+    utilConfig: getUtilConfig(req.user.language)
   });
 };

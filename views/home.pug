@@ -54,8 +54,22 @@ block content
           .panel-heading
             h3 #{homeConfig.questions.title}
 
+          if user.role !== 'cra'
+            .row
+              .form-group
+                label.control-label #{utilConfig.utils.user.text}
+                  select.form-control(id="userFilterSelect" onchange="handleFilterChange(this)")
+                    each userItem in users
+                      option(value=userItem._id) #{userItem.username}
+          
+          .row
+            .form-group
+              label.control-label #{utilConfig.utils.status.text}
+                select.form-control(id="questionStatusFilterSelect" onchange="handleFilterChange(this)")
+                    each questionStatusItem in questionStatusConfig
+                      option(value=questionStatusItem.value) #{questionStatusItem.text}
 
-          table.table.table-striped
+          table.table.table-striped(id="question-table")
               thead
                 tr
                   each questionsHeader in homeConfig.questions.headers
@@ -63,7 +77,7 @@ block content
 
               tbody
                 each questionItem in questions
-                  tr
+                  tr(id=`questionrecord-${questionItem.owner}-${questionItem.statusValue}`)
                     each questionsHeader in homeConfig.questions.headers
                       if questionsHeader.name !== 'operations'
                         td #{questionItem[questionsHeader.name]}
