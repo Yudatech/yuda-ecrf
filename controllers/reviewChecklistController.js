@@ -72,6 +72,15 @@ exports.reviewChecklistForm = async (req, res) => {
 
 exports.updateReviewChecklist = async (req, res) => {
   const caseId = req.params.caseId;
+  const config = getReviewChecklistConfig(req.user.language);
+  Object.keys(config.formConfigs).forEach((key) => {
+    const type = config.formConfigs[key].type;
+    if (type === 'textarea' || type === 'textfield' || type === 'numberfield') {
+      if (req.body[key] !== undefined) {
+        req.body[key] = req.sanitizeBody(key).escape();
+      }
+    }
+  });
   await createOrUpdateReviewChecklist(caseId, req.body);
   logger.info(loggerHelper.createLogMessage(req.user, 'update', 'reviewchecklist', caseId), req.body);
   res.redirect(`/reviewchecklist/${caseId}`);

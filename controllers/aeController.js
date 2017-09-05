@@ -143,6 +143,15 @@ exports.aeForm = async (req, res) => {
 
 exports.createAe = async (req, res) => {
   const caseId = req.params.caseId;
+  const config = getAeConfig(req.user.language);
+  Object.keys(config.formConfigs).forEach((key) => {
+    const type = config.formConfigs[key].type;
+    if (type === 'textarea' || type === 'textfield' || type === 'numberfield') {
+      if (req.body[key] !== undefined) {
+        req.body[key] = req.sanitizeBody(key).escape();
+      }
+    }
+  });
   req.body.case = caseId;
   req.body.aestdtc = `${req.body.aestdtc_date} ${req.body.aestdtc_time}`;
   req.body.aeeddtc = `${req.body.aeeddtc_date} ${req.body.aeeddtc_time}`;
@@ -153,6 +162,15 @@ exports.createAe = async (req, res) => {
 
 exports.updateAe = async (req, res) => {
   const caseId = req.params.caseId;
+  const config = getAeConfig(req.user.language);
+  Object.keys(config.formConfigs).forEach((key) => {
+    const type = config.formConfigs[key].type;
+    if (type === 'textarea' || type === 'textfield' || type === 'numberfield') {
+      if (req.body[key] !== undefined) {
+        req.body[key] = req.sanitizeBody(key).escape();
+      }
+    }
+  });
   req.body.case = caseId;
   const aeId = req.params.aeId;
   req.body.aestdtc = `${req.body.aestdtc_date} ${req.body.aestdtc_time}`;

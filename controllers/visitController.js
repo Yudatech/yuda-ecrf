@@ -107,6 +107,15 @@ exports.visitForm = async (req, res) => {
 
 exports.createVisit = async (req, res) => {
   const caseId = req.params.caseId;
+  const config = getVisitConfig(req.user.language);
+  Object.keys(config.formConfigs).forEach((key) => {
+    const type = config.formConfigs[key].type;
+    if (type === 'textarea' || type === 'textfield' || type === 'numberfield') {
+      if (req.body[key] !== undefined) {
+        req.body[key] = req.sanitizeBody(key).escape();
+      }
+    }
+  });
   req.body.case = caseId;
   await (new Visit(req.body)).save();
   logger.info(loggerHelper.createLogMessage(req.user, 'create', 'visit', req.params.caseId), req.body);
@@ -115,6 +124,15 @@ exports.createVisit = async (req, res) => {
 
 exports.updateVisit = async (req, res) => {
   const caseId = req.params.caseId;
+  const config = getVisitConfig(req.user.language);
+  Object.keys(config.formConfigs).forEach((key) => {
+    const type = config.formConfigs[key].type;
+    if (type === 'textarea' || type === 'textfield' || type === 'numberfield') {
+      if (req.body[key] !== undefined) {
+        req.body[key] = req.sanitizeBody(key).escape();
+      }
+    }
+  });
   req.body.case = caseId;
   const visitId = req.params.visitId;
   await Visit.findByIdAndUpdate(visitId, req.body);

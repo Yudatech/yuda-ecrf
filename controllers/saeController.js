@@ -129,6 +129,15 @@ exports.saeForm = async (req, res) => {
 
 exports.createSae = async (req, res) => {
   const caseId = req.params.caseId;
+  const config = getSaeConfig(req.user.language);
+  Object.keys(config.formConfigs).forEach((key) => {
+    const type = config.formConfigs[key].type;
+    if (type === 'textarea' || type === 'textfield' || type === 'numberfield') {
+      if (req.body[key] !== undefined) {
+        req.body[key] = req.sanitizeBody(key).escape();
+      }
+    }
+  });
   req.body.case = caseId;
   req.body.saestdtc = `${req.body.saestdtc_date} ${req.body.saestdtc_time}`;
   req.body.saenoticedtc = `${req.body.saenoticedtc_date} ${req.body.saenoticedtc_time}`;

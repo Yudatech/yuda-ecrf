@@ -115,6 +115,15 @@ exports.caseBasicForm = async (req, res) => {
 
 exports.updateCaseBasic = async (req, res) => {
   const caseId = req.params.caseId;
+  const config = getScreeningBasicConfig(req.user.language);
+  Object.keys(config.formConfigs).forEach((key) => {
+    const type = config.formConfigs[key].type;
+    if (type === 'textarea' || type === 'textfield' || type === 'numberfield') {
+      if (req.body[key] !== undefined) {
+        req.body[key] = req.sanitizeBody(key).escape();
+      }
+    }
+  });
   await createOrUpdateScreening(caseId, req.body);
   logger.info(loggerHelper.createLogMessage(req.user, 'update', 'screening-basic', req.params.caseId), req.body);
   res.redirect(`/screening-basic/${caseId}`);
@@ -143,6 +152,15 @@ exports.caseInclusionForm = async (req, res) => {
 
 exports.updateCaseInclusion = async (req, res) => {
   const caseId = req.params.caseId;
+  const config = getScreeningInclusionConfig(req.user.language);
+  Object.keys(config.formConfigs).forEach((key) => {
+    const type = config.formConfigs[key].type;
+    if (type === 'textarea' || type === 'textfield' || type === 'numberfield') {
+      if (req.body[key] !== undefined) {
+        req.body[key] = req.sanitizeBody(key).escape();
+      }
+    }
+  });
   await createOrUpdateScreening(caseId, req.body);
   logger.info(loggerHelper.createLogMessage(req.user, 'update', 'screening-inclusion', req.params.caseId), req.body);
   res.redirect(`/screening-inclusion/${caseId}`);
@@ -171,6 +189,15 @@ exports.caseExclusionForm = async (req, res) => {
 
 exports.updateCaseExclusion = async (req, res) => {
   const caseId = req.params.caseId;
+  const config = getScreeningExclusionConfig(req.user.language);
+  Object.keys(config.formConfigs).forEach((key) => {
+    const type = config.formConfigs[key].type;
+    if (type === 'textarea' || type === 'textfield' || type === 'numberfield') {
+      if (req.body[key] !== undefined) {
+        req.body[key] = req.sanitizeBody(key).escape();
+      }
+    }
+  });
   await createOrUpdateScreening(caseId, req.body);
   logger.info(loggerHelper.createLogMessage(req.user, 'update', 'screening-exclusion', caseId), req.body);
   res.redirect(`/screening-exclusion/${caseId}`);
@@ -199,6 +226,15 @@ exports.caseDiseaseForm = async (req, res) => {
 
 exports.updateCaseDisease = async (req, res) => {
   const caseId = req.params.caseId;
+  const config = getScreeningDiseaseConfig(req.user.language);
+  Object.keys(config.formConfigs).forEach((key) => {
+    const type = config.formConfigs[key].type;
+    if (type === 'textarea' || type === 'textfield' || type === 'numberfield') {
+      if (req.body[key] !== undefined) {
+        req.body[key] = req.sanitizeBody(key).escape();
+      }
+    }
+  });
   await createOrUpdateScreening(caseId, req.body);
   logger.info(loggerHelper.createLogMessage(req.user, 'update', 'screening-disease', caseId), req.body);
   res.redirect(`/screening-disease/${caseId}`);
@@ -227,6 +263,15 @@ exports.caseConMedForm = async (req, res) => {
 
 exports.updateCaseConMed = async (req, res) => {
   const caseId = req.params.caseId;
+  const config = getScreeningConMedConfig(req.user.language);
+  Object.keys(config.formConfigs).forEach((key) => {
+    const type = config.formConfigs[key].type;
+    if (type === 'textarea' || type === 'textfield' || type === 'numberfield') {
+      if (req.body[key] !== undefined) {
+        req.body[key] = req.sanitizeBody(key).escape();
+      }
+    }
+  });
   await createOrUpdateScreening(caseId, req.body);
   logger.info(loggerHelper.createLogMessage(req.user, 'update', 'screening-conmed', caseId), req.body);
   res.redirect(`/screening-conmed/${caseId}`);
@@ -267,6 +312,15 @@ exports.caseVitalSignForm = async (req, res) => {
 
 exports.updateCaseVitalSign = async (req, res) => {
   const caseId = req.params.caseId;
+  const config = getScreeningVitalSignConfig(req.user.language);
+  Object.keys(config.formConfigs).forEach((key) => {
+    const type = config.formConfigs[key].type;
+    if (type === 'textarea' || type === 'textfield' || type === 'numberfield') {
+      if (req.body[key] !== undefined) {
+        req.body[key] = req.sanitizeBody(key).escape();
+      }
+    }
+  });
   await createOrUpdateScreening(caseId, req.body);
   logger.info(loggerHelper.createLogMessage(req.user, 'update', 'screening-vitalsign', caseId), req.body);
   res.redirect(`/screening-vitalsign/${caseId}`);
@@ -304,6 +358,15 @@ exports.caseLabForm = async (req, res) => {
 
 exports.updateCaseLab = async (req, res) => {
   const caseId = req.params.caseId;
+  const config = getScreeningLabConfig(req.user.language);
+  Object.keys(config.formConfigs).forEach((key) => {
+    const type = config.formConfigs[key].type;
+    if (type === 'textarea' || type === 'textfield' || type === 'numberfield') {
+      if (req.body[key] !== undefined) {
+        req.body[key] = req.sanitizeBody(key).escape();
+      }
+    }
+  });
   await createOrUpdateScreening(caseId, req.body);
   logger.info(loggerHelper.createLogMessage(req.user, 'update', 'screening-lab', caseId), req.body);
   res.redirect(`/screening-lab/${caseId}`);
@@ -335,6 +398,15 @@ exports.caseAssistantForm = async (req, res) => {
 
 exports.updateCaseAssistant = async (req, res) => {
   const caseId = req.params.caseId;
+  const config = getScreeningAssistantConfig(req.user.language);
+  Object.keys(config.formConfigs).forEach((key) => {
+    const type = config.formConfigs[key].type;
+    if (type === 'textarea' || type === 'textfield' || type === 'numberfield') {
+      if (req.body[key] !== undefined) {
+        req.body[key] = req.sanitizeBody(key).escape();
+      }
+    }
+  });
   await createOrUpdateScreening(caseId, req.body);
   logger.info(loggerHelper.createLogMessage(req.user, 'update', 'screening-assistant', caseId), req.body);
   res.redirect(`/screening-assistant/${caseId}`);
@@ -363,6 +435,15 @@ exports.caseMethodForm = async (req, res) => {
 
 exports.updateCaseMethod = async (req, res) => {
   const caseId = req.params.caseId;
+  const config = getScreeningMethodConfig(req.user.language);
+  Object.keys(config.formConfigs).forEach((key) => {
+    const type = config.formConfigs[key].type;
+    if (type === 'textarea' || type === 'textfield' || type === 'numberfield') {
+      if (req.body[key] !== undefined) {
+        req.body[key] = req.sanitizeBody(key).escape();
+      }
+    }
+  });
   await createOrUpdateScreening(caseId, req.body);
   logger.info(loggerHelper.createLogMessage(req.user, 'update', 'screening-method', caseId), req.body);
   res.redirect(`/screening-method/${caseId}`);
@@ -391,6 +472,15 @@ exports.caseRegionForm = async (req, res) => {
 
 exports.updateCaseRegion = async (req, res) => {
   const caseId = req.params.caseId;
+  const config = getScreeningRegionConfig(req.user.language);
+  Object.keys(config.formConfigs).forEach((key) => {
+    const type = config.formConfigs[key].type;
+    if (type === 'textarea' || type === 'textfield' || type === 'numberfield') {
+      if (req.body[key] !== undefined) {
+        req.body[key] = req.sanitizeBody(key).escape();
+      }
+    }
+  });
   await createOrUpdateScreening(caseId, req.body);
   logger.info(loggerHelper.createLogMessage(req.user, 'update', 'screening-region', caseId), req.body);
   res.redirect(`/screening-region/${caseId}`);
@@ -422,6 +512,15 @@ exports.caseDignoseForm = async (req, res) => {
 
 exports.updateCaseDignose = async (req, res) => {
   const caseId = req.params.caseId;
+  const config = getScreeningDignoseConfig(req.user.language);
+  Object.keys(config.formConfigs).forEach((key) => {
+    const type = config.formConfigs[key].type;
+    if (type === 'textarea' || type === 'textfield' || type === 'numberfield') {
+      if (req.body[key] !== undefined) {
+        req.body[key] = req.sanitizeBody(key).escape();
+      }
+    }
+  });
   await createOrUpdateScreening(caseId, req.body);
   logger.info(loggerHelper.createLogMessage(req.user, 'update', 'screening-exclusion', caseId), req.body);
   res.redirect(`/screening-dignose/${caseId}`);

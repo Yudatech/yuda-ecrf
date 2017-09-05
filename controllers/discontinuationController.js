@@ -114,6 +114,15 @@ exports.discontinuationForm = async (req, res) => {
 
 exports.updateDiscontinuation = async (req, res) => {
   const caseId = req.params.caseId;
+  const config = getDiscontinuationConfig(req.user.language);
+  Object.keys(config.formConfigs).forEach((key) => {
+    const type = config.formConfigs[key].type;
+    if (type === 'textarea' || type === 'textfield' || type === 'numberfield') {
+      if (req.body[key] !== undefined) {
+        req.body[key] = req.sanitizeBody(key).escape();
+      }
+    }
+  });
   await createOrUpdateDiscontinuation(caseId, req.body);
   const caseItem = await Case.findByIdAndUpdate(caseId, {status: 'quit'}, {new: true});
   res.locals.case = caseItem;

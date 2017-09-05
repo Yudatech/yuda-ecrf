@@ -72,6 +72,15 @@ exports.screeningChecklistForm = async (req, res) => {
 
 exports.updateScreeningChecklist = async (req, res) => {
   const caseId = req.params.caseId;
+  const config = getScreeningChecklistConfig(req.user.language);
+  Object.keys(config.formConfigs).forEach((key) => {
+    const type = config.formConfigs[key].type;
+    if (type === 'textarea' || type === 'textfield' || type === 'numberfield') {
+      if (req.body[key] !== undefined) {
+        req.body[key] = req.sanitizeBody(key).escape();
+      }
+    }
+  });
   await createOrUpdateScreeningChecklist(caseId, req.body);
   logger.info(loggerHelper.createLogMessage(req.user, 'update', 'screeningchecklist', req.params.caseId), req.body);
   res.redirect(`/screeningchecklist/${caseId}`);

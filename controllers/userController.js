@@ -39,6 +39,7 @@ exports.registerForm = async (req, res) => {
 
 exports.validateRegister = async (req, res, next) => {
   req.sanitizeBody('username');
+  req.sanitizeBody('userabbr');
   req.checkBody('username', 'You must supply a name!').notEmpty();
   req.checkBody('email', 'That Email is not valid!').isEmail();
   req.sanitizeBody('email').normalizeEmail({

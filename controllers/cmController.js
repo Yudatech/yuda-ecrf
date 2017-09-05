@@ -115,6 +115,15 @@ exports.cmForm = async (req, res) => {
 
 exports.createCm = async (req, res) => {
   const caseId = req.params.caseId;
+  const config = getCmConfig(req.user.language);
+  Object.keys(config.formConfigs).forEach((key) => {
+    const type = config.formConfigs[key].type;
+    if (type === 'textarea' || type === 'textfield' || type === 'numberfield') {
+      if (req.body[key] !== undefined) {
+        req.body[key] = req.sanitizeBody(key).escape();
+      }
+    }
+  });
   req.body.case = caseId;
   await (new Cm(req.body)).save();
   logger.info(loggerHelper.createLogMessage(req.user, 'create', 'cm', caseId), req.body);
@@ -123,6 +132,15 @@ exports.createCm = async (req, res) => {
 
 exports.updateCm = async (req, res) => {
   const caseId = req.params.caseId;
+  const config = getCmConfig(req.user.language);
+  Object.keys(config.formConfigs).forEach((key) => {
+    const type = config.formConfigs[key].type;
+    if (type === 'textarea' || type === 'textfield' || type === 'numberfield') {
+      if (req.body[key] !== undefined) {
+        req.body[key] = req.sanitizeBody(key).escape();
+      }
+    }
+  });
   req.body.case = caseId;
   const cmId = req.params.cmId;
   await Cm.findByIdAndUpdate(cmId, req.body);

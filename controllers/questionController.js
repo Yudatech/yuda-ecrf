@@ -143,6 +143,9 @@ exports.updateQuestion = async (req, res) => {
   const linkBase = questionItem.linkBase;
   const caseId = questionItem.case._id;
   const secondaryId = questionItem.secondaryid;
+  if (typeof req.body[field] === 'string') {
+    req.body[field] = req.sanitizeBody(field).escape();
+  }
   await questionHelper.updateValueForQuestion(table, caseId, secondaryId, field, req.body[field]);
   await Question.findByIdAndUpdate(questionId, {
     status: req.body.question_status
@@ -155,7 +158,7 @@ exports.updateQuestion = async (req, res) => {
     content: {
       value: req.body[field]
     },
-    comment: req.body.new_comment,
+    comment: req.sanitizeBody('new_comment').escape(),
     status: req.body.question_status
   };
   await (new History(historyConfig)).save();
