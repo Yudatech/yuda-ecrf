@@ -63,6 +63,7 @@ exports.cmForm = async (req, res) => {
   const caseId = req.params.caseId;
   const cmId = req.params.cmId;
   const CaseNav = helpers.appendCaseIdToCaseNav(caseId, req.user.language);
+  const cmSourceConfig = await helpers.getCmSourceConfig(caseId, req.user.language);
   let cm;
 
   if (cmId !== undefined) {
@@ -85,6 +86,10 @@ exports.cmForm = async (req, res) => {
     }
     else if (key === 'cmeddtc') {
       config.formConfigs[key].value = moment(cm.cmeddtc).format('MM/DD/YYYY');
+    }
+    else if (key === 'source') {
+      config.formConfigs[key].options = cmSourceConfig;
+      config.formConfigs[key].value = cm[key];
     }
     else {
       config.formConfigs[key].value = cm[key];

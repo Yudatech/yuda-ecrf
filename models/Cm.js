@@ -13,7 +13,7 @@ const cmSchema = new Schema({
    * CM
    */
   // 来源
-  source: Number,
+  source: String,
   // 药物名称 (通用名)
   drug: String,
   // 剂量

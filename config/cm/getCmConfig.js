@@ -7,8 +7,7 @@ const config = {
   },
   formConfigs: [{
     name: 'source',
-    type: 'select',
-    optionsGetter: 'getCmSourceConfig',
+    type: 'customselect',
     text: {
       zh: '来源',
       en: 'Source'
