@@ -44,7 +44,7 @@ function doDateCheck(value, start, end) {
     return false;
   }
   else {
-    return value >= start && value < end;
+    return value >= start && value <= end;
   }
 }
 

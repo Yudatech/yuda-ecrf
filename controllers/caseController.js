@@ -65,6 +65,15 @@ exports.saveAcceptDoc = async (req, res, next) => {
   next();
 };
 
+exports.updateAcceptDoc = async (req, res) => {
+  const caseId = req.params.caseId;
+  await Case.findByIdAndUpdate(caseId, {
+    attachedDoc: req.body.attachedDoc
+  });
+  logger.info(loggerHelper.createLogMessage(req.user, 'create', 'case'), req.body);
+  res.redirect(`/overview/${caseId}`);
+};
+
 exports.createCase = async (req, res) => {
   req.body.user = req.user._id;
   req.body.site = req.user.site._id;

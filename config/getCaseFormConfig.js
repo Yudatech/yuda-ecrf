@@ -13,18 +13,21 @@ const config = {
     }
   }, {
     name: 'subjname',
+    required: true,
     text: {
       zh: '受试者姓名',
       en: 'Subject Name'
     }
   }, {
     name: 'subjabbr',
+    required: true,
     text: {
       zh: '受试者姓名缩写',
       en: 'Subject abbreviation'
     }
   }, {
     name: 'subjAcceptDate',
+    required: true,
     text: {
       zh: '知情同意书签署日期',
       en: 'Informed Consent filling date'

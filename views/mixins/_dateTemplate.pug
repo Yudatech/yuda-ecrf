@@ -11,4 +11,4 @@ mixin _dateTemplate(config, disabled)
       span.input-group-addon
         i.glyphicon.glyphicon-th
     if disabled !== true
-      input(id=idReal type="hidden" name=name value=value)
+      input(id=idReal type="hidden" name=name value=value data-customrequired=config.required)
