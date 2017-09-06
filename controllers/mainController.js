@@ -127,14 +127,28 @@ exports.homePage = async (req, res) => {
     const createDate = moment(item.createdAt).millisecond(0).second(0).hour(0).minute(0).valueOf();
     const nowDate = moment().millisecond(0).second(0).hour(0).minute(0).valueOf();
     const numOfDays = (nowDate - createDate) / 1000 / 60 / 60 / 24;
+    let owner;
+    let orig;
+    if (item.status === 0) {
+      owner = item.owner._id.toString();
+      orig = item.owner.username;
+    }
+    else if (item.status === 1) {
+      owner = item.orig._id.toString();
+      orig = item.orig.username;
+    }
+    else if (item.status === 2) {
+      owner = '0';
+      orig = '';
+    }
     return {
       _id: item.case._id,
       questionId: item._id,
-      owner: item.owner._id.toString(),
+      owner,
       statusValue: questionStatusConfig.find((config) => {
         return config.value === item.status;
       }).value,
-      orig: item.orig.username,
+      orig,
       numOfDays,
       status: questionStatusConfig.find((config) => {
         return config.value === item.status;
