@@ -5,7 +5,6 @@ mixin _dateTemplate(config, disabled)
   - const formDisabled = !(locals.case.status === 'open' || locals.user.role === 'admin')
   - disabled = disabled || formDisabled
   .form-group(id=`${name}-container` class=(config.hidden === true ? 'hidden' : ''))
-    pre= h.dump(config)
     label.control-label #{config.text}
     div.input-group.date(data-provide="datepicker" id=name data-extra=config.extra)
       input.form-control(disabled=disabled value=value data-customvalidator data-customrequired=config.required)
