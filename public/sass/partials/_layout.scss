@@ -18,8 +18,8 @@ body {
     border-bottom: 1px solid #e8e8e8;
   }
 
-  .form-group{
-    margin-bottom: 0!important;
+  .form-group {
+    margin-bottom: 0 !important;
   }
 }
 
@@ -66,14 +66,14 @@ body {
   }
 }
 
-.yuda-header-filter{
+.yuda-header-filter {
   float: right;
   margin-right: 20px;
   margin-top: 10px;
   margin-bottom: 0;
 
-  .form-group{
-    margin: 0!important;
+  .form-group {
+    margin: 0 !important;
   }
 }
 
@@ -175,16 +175,16 @@ body {
     overflow: auto;
   }
 
-  .yuda-panel-footer{
+  .yuda-panel-footer {
     padding: 5px 30px 15px 30px;
   }
 }
 
-.commit-list{
+.commit-list {
   list-style-type: none;
 }
 
-.commit-list-item{
+.commit-list-item {
   list-style-type: none;
   line-height: 40px;
 }
@@ -236,16 +236,34 @@ body {
   .hist-item {
     padding: 0;
     margin-bottom: 10px;
-
+    .hist-status {
+      margin: 10px;
+    }
     .hist-heading {
       padding-left: 15px;
       background: #e8e8e8;
       border-bottom: 1px solid #ddd;
+
+      h4 {
+        margin: 0;
+        padding: 10px;
+      }
     }
 
     .hist-body {
-      padding-left: 15px;
-      padding-right: 15px;
+      .hist-value-section {
+        margin: 0 !important;
+
+        .hist-value-title {
+          background: #f2f2f2;
+          border-bottom: 1px solid $grey;
+          border-right: 1px solid $grey;
+        }
+
+        .hist-value-body {
+          border-bottom: 1px solid $grey;
+        }
+      }
     }
 
     .hist-footer {

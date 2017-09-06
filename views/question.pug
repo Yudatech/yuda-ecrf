@@ -34,11 +34,19 @@ block content
               input.btn.btn-default.yuda-input-btn(type="submit" value=buttonConfig.buttons.commit.text)
 
       .col-sm-4.h-100.yuda-query-hist-panel
-        ul
+        ul.list-group
           each historyItem in historyList
-            li #{historyItem.username}
-              ul
-                li #{historyItem.status}
-                li #{historyItem.value}
-                li #{historyItem.comment}
-                li #{historyItem.createDate}
+            li.list-group-item.hist-item
+               span.badge.float-right.hist-status #{historyItem.status}
+               .hist-heading
+                 h4 #{historyItem.username}
+
+               .hist-body
+                 .hist-value-section.row
+                  span.hist-value-title.col-sm-4 New Value:
+                  span.hist-value-body.col-sm-8 #{historyItem.value}
+                 .hist-value-section.row
+                   span.hist-value-title.col-sm-4 Comment:
+                   span.hist-value-body.col-sm-8 #{historyItem.comment}
+               .hist-footer
+                  small #{historyItem.createDate}
