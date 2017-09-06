@@ -2,7 +2,7 @@ extends ../layout
 
 block content
   .inner.pading-right-15
-    form.form-horizontal(action="/case" method="POST" enctype="multipart/form-data").panel.panel-default
+    form.form-horizontal(id="case-form" action="/case" method="POST" enctype="multipart/form-data").panel.panel-default
       .panel-heading
         h3 #{caseFormConfig.title}
       .panel-body
@@ -27,10 +27,10 @@ block content
                 label.col-sm-4.control-label #{caseFormConfig.labels.subjAcceptDate.text}
                 .col-sm-8
                   #subjAcceptDate.input-group.date(data-provide="datepicker")
-                    input.form-control
+                    input.form-control(required)
                     span.input-group-addon
                       i.glyphicon.glyphicon-th
-                  input#subjAcceptDateReal(type="hidden" name="subjAcceptDate")
+                  input#subjAcceptDateReal(type="hidden" name="subjAcceptDate" required)
 
               .form-group
                 label.col-sm-4.control-label #{caseFormConfig.labels.attachedDoc.text}

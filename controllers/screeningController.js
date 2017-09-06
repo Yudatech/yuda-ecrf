@@ -15,6 +15,7 @@ const getScreeningDignoseConfig = require('../config/screening/getScreeningDigno
 const getButtonConfig = require('../config/common/getButtonConfig');
 
 const getCaseOverviewConfig = require('../config/getCaseOverviewConfig');
+const getCaseFormConfig = require('../config/getCaseFormConfig');
 
 const helpers = require('./helpers');
 const decorationHelper = require('./decorationHelper');
@@ -41,9 +42,11 @@ exports.caseOverviewForm = async (req, res) => {
   logger.info(loggerHelper.createLogMessage(req.user, 'show', 'case overview', caseId));
   res.render('case-overview', {
     caseNav: CaseNav,
+    caseId,
     caseOverviewConfig: config,
     buttonConfig: getButtonConfig(req.user.language),
-    config: getCaseOverviewConfig(req.user.language)
+    config: getCaseOverviewConfig(req.user.language),
+    caseFormConfig: getCaseFormConfig(req.user.language)
   });
 };
 

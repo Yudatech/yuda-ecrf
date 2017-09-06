@@ -5,7 +5,7 @@ include mixins/_questionBtn
 
 block case-content
   .case-content
-    form.form-horizontal
+    form.form-horizontal(id="case-overview-form" action=`/upload/acceptdoc/${caseId}` method="POST" enctype="multipart/form-data")
       fieldset
         legend #{config.title}
         div.row
@@ -33,7 +33,22 @@ block case-content
               label.col-sm-4.control-label #{config.labels.subjAcceptDate.text}
               .col-sm-8
                 input.form-control(type="text" readonly value=caseOverviewConfig.subjAcceptDate)
+
+        if !caseOverviewConfig.attachedDoc
+          .row
+            .col-sm-10
+              .form-group
+                label.col-sm-4.control-label #{caseFormConfig.labels.attachedDoc.text}
+                .col-sm-8
+                  input(type="file" name="attachedDoc" id="attachedDoc" accept="image/gif, image/png, image/jpeg" onchange="acceptDocPreview(this)")
+
+      if !caseOverviewConfig.attachedDoc
+        input.btn.btn-default.yuda-input-btn-2(type="submit" value=buttonConfig.buttons.save.text)
+
       br
       fieldset
         legend #{config.labels.attachedDoc.text}
-        img(src=`/uploads/${caseOverviewConfig.attachedDoc}`)
+        if caseOverviewConfig.attachedDoc
+          img(src=`/uploads/${caseOverviewConfig.attachedDoc}`)
+        else
+          img(id='accept-doc-preview')
