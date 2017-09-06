@@ -24,21 +24,24 @@ async function getAeListByCaseId(caseId) {
 }
 
 function getAeLevelText(aeserv, lang) {
-  return getAeLevelConfig(lang).find((item) => {
+  const match = getAeLevelConfig(lang).find((item) => {
     return item.value === aeserv;
-  }).text;
+  });
+  return match === undefined ? '' : match.text;
 }
 
 function getAeRelText(aerel, lang) {
-  return getAeRelConfig(lang).find((item) => {
+  const match = getAeRelConfig(lang).find((item) => {
     return item.value === aerel;
-  }).text;
+  });
+  return match === undefined ? '' : match.text;
 }
 
 function getAeResText(aeres, lang) {
-  return getAeResConfig(lang).find((item) => {
+  const match = getAeResConfig(lang).find((item) => {
     return item.value === aeres;
-  }).text;
+  });
+  return match === undefined ? '' : match.text;
 }
 
 const tableName = 'ae';
