@@ -51,23 +51,23 @@ block content
 
       .col-sm-5.yuda-dashboard-panel
         .panel.panel-default
-          .panel-heading
-            h3 #{homeConfig.questions.title}
-
           if user.role !== 'cra'
-            .row
+            .yuda-header-filter
               .form-group
                 label.control-label #{utilConfig.utils.user.text}
                   select.form-control(id="userFilterSelect" onchange="handleFilterChange(this)")
                     each userItem in users
                       option(value=userItem._id) #{userItem.username}
-          
-          .row
+
+          .yuda-header-filter
             .form-group
               label.control-label #{utilConfig.utils.status.text}
                 select.form-control(id="questionStatusFilterSelect" onchange="handleFilterChange(this)")
-                    each questionStatusItem in questionStatusConfig
-                      option(value=questionStatusItem.value) #{questionStatusItem.text}
+                  each questionStatusItem in questionStatusConfig
+                    option(value=questionStatusItem.value) #{questionStatusItem.text}
+
+          .panel-heading
+            h3 #{homeConfig.questions.title}
 
           table.table.table-striped(id="question-table")
               thead

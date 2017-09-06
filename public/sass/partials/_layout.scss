@@ -66,6 +66,17 @@ body {
   }
 }
 
+.yuda-header-filter{
+  float: right;
+  margin-right: 20px;
+  margin-top: 10px;
+  margin-bottom: 0;
+
+  .form-group{
+    margin: 0!important;
+  }
+}
+
 .yuda-nav {
   background: $black;
   border: none;
