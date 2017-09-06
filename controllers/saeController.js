@@ -22,9 +22,10 @@ async function getSaeListByCaseId(caseId) {
 }
 
 function getSaeTypeText(value, lang) {
-  return getSaeTypesConfig(lang).find((item) => {
+  const match = getSaeTypesConfig(lang).find((item) => {
     return item.value === value;
-  }).text;
+  });
+  return match === undefined ? '' : match.text;
 }
 
 const tableName = 'sae';
