@@ -235,10 +235,12 @@ function doCommitValidationForWholeTable(caseId, validateResult, commitCaseConfi
     }
     validateResult.message = validateResult.text;
     validateResult.resultText = commitCaseConfig.ongoing;
+    validateResult.resultType = 'ongoing';
   }
   else {
     validateResult.message = validateResult.text;
     validateResult.resultText = commitCaseConfig.finish;
+    validateResult.resultType = 'finish';
   }
 }
 
@@ -271,6 +273,7 @@ exports.validateScreeningForm = async function(caseId, lang) {
     screeningValidateResult.link = `${screeningValidateResult.linkBase}/${caseId}`;
     screeningValidateResult.message = screeningValidateResult.text;
     screeningValidateResult.resultText = commitCaseConfig.empty;
+    screeningValidateResult.resultType = 'empty';
   }
   else {
     const caseItem = await Case.findById(caseId);
@@ -338,6 +341,7 @@ exports.validateScreeningChecklistForm = async function(caseId, lang) {
     screeningChecklistValidateResult.link = `${screeningChecklistValidateResult.linkBase}/${caseId}`;
     screeningChecklistValidateResult.message = screeningChecklistValidateResult.text;
     screeningChecklistValidateResult.resultText = commitCaseConfig.empty;
+    screeningChecklistValidateResult.resultType = 'empty';
   }
   else {
     const formConfigs = getScreeningChecklistConfig(lang).formConfigs;
@@ -358,6 +362,7 @@ exports.validateReviewChecklistForm = async function(caseId, lang) {
     reviewChecklistValidateResult.link = `${reviewChecklistValidateResult.linkBase}/${caseId}`;
     reviewChecklistValidateResult.message = reviewChecklistValidateResult.text;
     reviewChecklistValidateResult.resultText = commitCaseConfig.empty;
+    reviewChecklistValidateResult.resultType = 'empty';
   }
   else {
     const caseItem = await Case.findById(caseId);
@@ -386,6 +391,7 @@ exports.validateSurgeryForm = async function(caseId, lang) {
     surgeryValidateResult.link = `${surgeryValidateResult.linkBase}/${caseId}`;
     surgeryValidateResult.message = surgeryValidateResult.text;
     surgeryValidateResult.resultText = commitCaseConfig.empty;
+    surgeryValidateResult.resultType = 'empty';
   }
   else {
     const caseItem = await Case.findById(caseId);
@@ -414,6 +420,7 @@ exports.validateVisitForm = async function(caseId, lang) {
     visitValidateResult.link = `/visitlist/${caseId}`;
     visitValidateResult.message = visitValidateResult.text;
     visitValidateResult.resultText = commitCaseConfig.empty;
+    visitValidateResult.resultType = 'empty';
   }
   else {
     visitValidateResult.message = `${visitValidateResult.text} ${commitCaseConfig.ongoing}`;
