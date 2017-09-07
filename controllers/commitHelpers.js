@@ -467,7 +467,9 @@ exports.validateCmForm = async function(caseId, lang) {
     cmValidateResult.pass = null;
   }
   else {
-    cmValidateResult.message = `${cmValidateResult.text} ${commitCaseConfig.ongoing}`;
+    cmValidateResult.message = `${cmValidateResult.text}`;
+    cmValidateResult.resultText = commitCaseConfig.finish;
+    cmValidateResult.resultType = 'finish';
     const formConfigs = getCmConfig(lang).formConfigs;
     cmValidateResult.children = [];
     cmList.forEach((cmItem) => {
@@ -485,6 +487,12 @@ exports.validateCmForm = async function(caseId, lang) {
       cmValidateResult.children.push(cmItemValidateResult);
       doCommitValidationForWholeTable(caseId, cmItemValidateResult, commitCaseConfig, formConfigs, cmItem, extra);
     });
+
+    const falseItem = cmValidateResult.children.find((item) => item.pass === false);
+    if (falseItem) {
+      cmValidateResult.resultText = commitCaseConfig.ongoing;
+      cmValidateResult.resultType = 'ongoing';
+    }
   }
 
   return cmValidateResult;
@@ -504,7 +512,9 @@ exports.validateAeForm = async function(caseId, lang) {
     const saeList = await Sae.find({
       case: caseId
     });
-    aeValidateResult.message = `${aeValidateResult.text} ${commitCaseConfig.ongoing}`;
+    aeValidateResult.message = `${aeValidateResult.text}`;
+    aeValidateResult.resultText = commitCaseConfig.finish;
+    aeValidateResult.resultType = 'finish';
     const formConfigs = getAeConfig(lang).formConfigs;
     aeValidateResult.children = [];
     aeList.forEach((aeItem) => {
@@ -523,6 +533,12 @@ exports.validateAeForm = async function(caseId, lang) {
       aeValidateResult.children.push(aeItemValidateResult);
       doCommitValidationForWholeTable(caseId, aeItemValidateResult, commitCaseConfig, formConfigs, aeItem, extra);
     });
+
+    const falseItem = aeValidateResult.children.find((item) => item.pass === false);
+    if (falseItem) {
+      aeValidateResult.resultText = commitCaseConfig.ongoing;
+      aeValidateResult.resultType = 'ongoing';
+    }
   }
   return aeValidateResult;
 };
@@ -538,7 +554,9 @@ exports.validateSaeForm = async function(caseId, lang) {
     saeValidateResult.pass = null;
   }
   else {
-    saeValidateResult.message = `${saeValidateResult.text} ${commitCaseConfig.ongoing}`;
+    saeValidateResult.message = `${saeValidateResult.text}`;
+    saeValidateResult.resultText = commitCaseConfig.finish;
+    saeValidateResult.resultType = 'finish';
     const formConfigs = getSaeConfig(lang).formConfigs;
     saeValidateResult.children = [];
     saeList.forEach((saeItem) => {
@@ -556,6 +574,11 @@ exports.validateSaeForm = async function(caseId, lang) {
       saeValidateResult.children.push(saeItemValidateResult);
       doCommitValidationForWholeTable(caseId, saeItemValidateResult, commitCaseConfig, formConfigs, saeItem, extra);
     });
+    const falseItem = saeValidateResult.children.find((item) => item.pass === false);
+    if (falseItem) {
+      saeValidateResult.resultText = commitCaseConfig.ongoing;
+      saeValidateResult.resultType = 'ongoing';
+    }
   }
   return saeValidateResult;
 };
