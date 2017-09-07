@@ -67,7 +67,6 @@ exports.homePage = async (req, res) => {
   const kpis = await calculateKpis(req.user);
   const role = req.user.role;
   let cases;
-  let userList = [];
   if (role === 'cra') {
     cases = await Case.find({
       user: req.user._id
@@ -75,25 +74,12 @@ exports.homePage = async (req, res) => {
   }
   else if (role === 'admin') {
     cases = await Case.find();
-    userList = await User.find({
-      role: 'cra'
-    });
   }
   else {
     cases = await Case.find({
       site: req.user.site._id
     });
-    userList = await User.find({
-      site: req.user.site._id,
-      role: 'cra'
-    });
   }
-  const users = userList.map((user) => {
-    return {
-      _id: user._id.toString(),
-      username: user.username
-    };
-  });
   const caseStatusConfig = getCaseStatusConfig(req.user.language);
   const casesFormated = cases.filter((item) => {
     return caseStatus === undefined || item.status === caseStatus;
@@ -123,6 +109,7 @@ exports.homePage = async (req, res) => {
     }
   }
   const questionStatusConfig = getQuestionStatusConfig(req.user.language);
+  const users = [];
   const questionsFormated = questions.map((item)=> {
     const createDate = moment(item.createdAt).millisecond(0).second(0).hour(0).minute(0).valueOf();
     const nowDate = moment().millisecond(0).second(0).hour(0).minute(0).valueOf();
@@ -132,10 +119,18 @@ exports.homePage = async (req, res) => {
     if (item.status === 0) {
       owner = item.owner._id.toString();
       orig = item.owner.username;
+      users.push({
+        _id: item.owner._id.toString(),
+        username: item.owner.username
+      });
     }
     else if (item.status === 1) {
       owner = item.orig._id.toString();
       orig = item.orig.username;
+      users.push({
+        _id: item.orig._id.toString(),
+        username: item.orig.username
+      });
     }
     else if (item.status === 2) {
       owner = '0';
