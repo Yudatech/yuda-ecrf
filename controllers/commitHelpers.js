@@ -209,7 +209,7 @@ function doCommitValidation(caseId, key, obj, rules, extra, validateResult) {
           const saestdtc = obj.saestdtc.valueOf() + 24 * 60 * 60 * 1000;
           end = saestdtc > now ? now : saestdtc;
         }
-        result = doDateCheck(date, null, end);
+        result = doDateCheck(date, 0, end);
       }
     }
     return result === false;
