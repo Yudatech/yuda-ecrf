@@ -230,7 +230,7 @@ function doCommitValidationForWholeTable(caseId, validateResult, commitCaseConfi
   });
   if (validateResult.pass === false) {
     validateResult.link = `${validateResult.linkBase}/${caseId}`;
-    if (extra.idToAppend !== undefined) {
+    if (extra && extra.idToAppend !== undefined) {
       validateResult.link = validateResult.link + '/' + extra.idToAppend;
     }
     validateResult.message = validateResult.text;
