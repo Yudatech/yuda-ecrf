@@ -18,6 +18,13 @@ function initScreeningExclusionHandlers() {
       customrequired: requireValidator
     }
   });
+  $('#screening-exclusion-form').validator().on('invalid.bs.validator', function(){
+    $('#screen-exclusion-error-1').removeClass('hidden');
+  });
+  
+  $('#screening-exclusion-form').validator().on('valid.bs.validator', function(){
+    $('#screen-exclusion-error-1').addClass('hidden');
+  });
   $('#screening-exclusion-form').validator('validate');
 }
 

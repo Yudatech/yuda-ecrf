@@ -189,6 +189,13 @@ const config = {
       zh: '请注明',
       en: 'Reasons:'
     }
+  }],
+  errors: [{
+    name: 'error_1',
+    text: {
+      zh: '病人须不满足所有排除标准',
+      en: ''
+    }
   }]
 };
 
@@ -198,8 +205,9 @@ module.exports = function(lang) {
   }
 
   const result = {};
-  result.formConfigs  = getOptionsLang(config.formConfigs, lang);
+  result.formConfigs = getOptionsLang(config.formConfigs, lang);
   result.title = config.title[lang];
+  result.errors = getOptionsLang(config.errors, lang);
 
   return result;
 };
