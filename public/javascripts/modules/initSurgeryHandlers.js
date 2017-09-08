@@ -1,10 +1,15 @@
 import requireValidator from './validators/requireValidator';
+import setFieldVisibility from './helpers/setFieldVisibility';
 
 function initSurgeryHandlers() {
   const surgery_17El = $('#surgery_17');
   
   surgery_17El.change(function(){
     setSurgery18Visibility();
+  });
+
+  $('#surgery_19').change(function(){
+    setSurgery15161718Visibility();
   });
 
   $('#surgery-form').validator({
@@ -18,18 +23,26 @@ function initSurgeryHandlers() {
 }
 
 function setSurgery18Visibility() {
-  const surgery_17El = $('#surgery_17');
-  const surgery_18ContainerEl = $('#surgery_18-container');
-  const surgery_18QuestionBtnEl = $('#surgery_18-question-btn');
   const checked = $('#surgery_17').is(':checked');
-  if (checked) {
-    surgery_18ContainerEl.removeClass('hidden');
-    surgery_18QuestionBtnEl.removeClass('hidden');
+  setFieldVisibility('surgery_18', checked);
+  if (checked === false) {
+    $('#surgery_18').val('');
+  }
+}
+
+function setSurgery15161718Visibility() {
+  const checked = $('#surgery_19').is(':checked');
+  setFieldVisibility('surgery_15', checked);
+  setFieldVisibility('surgery_16', checked);
+  if (checked === false) {
+    $('#surgery_17').attr('checked', false);
+    setFieldVisibility('surgery_17', checked);
+    setFieldVisibility('surgery_18', checked);
+    $('#surgery_18').val('');
   }
   else {
-    surgery_18ContainerEl.addClass('hidden');
-    surgery_18QuestionBtnEl.addClass('hidden');
-    $('#surgery_18').val('');
+    setFieldVisibility('surgery_17', checked);
+    setSurgery18Visibility();
   }
 }
 
