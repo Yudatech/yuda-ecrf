@@ -111,6 +111,13 @@ const config = {
       zh: '诊断方法、结果记录在病例报告中。',
       en: 'Methods of diagnosis. The result is registered in the CRF.'
     }
+  }],
+  errors: [{
+    name: 'error_1',
+    text: {
+      zh: '须符满足以上所有条件',
+      en: ''
+    }
   }]
 };
 
@@ -122,6 +129,7 @@ module.exports = function(lang) {
   const result = {};
   result.formConfigs = getOptionsLang(config.formConfigs, lang);
   result.title = config.title[lang];
+  result.errors = getOptionsLang(config.errors, lang);
 
   return result;
 };
