@@ -11,6 +11,8 @@ const Case = mongoose.model('Case');
 
 const getCommitCaseConfig = require('../config/getCommitCaseConfig');
 
+const helpers = require('./helpers');
+
 const getScreeningBasicConfig = require('../config/screening/getScreeningBasicConfig');
 const getScreeningAssistantConfig = require('../config/screening/getScreeningAssistantConfig');
 const getScreeningConMedConfig = require('../config/screening/getScreeningConMedConfig');
@@ -420,6 +422,7 @@ exports.validateVisitForm = async function(caseId, lang) {
   const visitList = await Visit.find({
     case: caseId
   });
+  const visitNameList = await helpers.getVisitNameList(caseId, lang);
   const visitValidateResult = initValidateResult(getCommitCaseConfigItem(commitCaseConfig.records, 'visit'));
 
   if (visitList.length === 0) {
@@ -449,11 +452,12 @@ exports.validateVisitForm = async function(caseId, lang) {
     const formConfigs = getVisitConfig(lang).formConfigs;
     visitValidateResult.children = [];
     visitList.forEach((visitItem) => {
+      const visitNameItem = visitNameList.find((item) => item.value === visitItem._id.toString());
       const visitItemValidateResult = {
         pass: true,
         linkBase: `/visit`,
         invalidFields: [],
-        text: visitValidateResult.text
+        text: visitNameItem.text
       };
       extra.idToAppend = visitItem._id.toString();
       visitValidateResult.children.push(visitItemValidateResult);
@@ -489,7 +493,7 @@ exports.validateCmForm = async function(caseId, lang) {
         pass: true,
         linkBase: `/cm`,
         invalidFields: [],
-        text: cmValidateResult.text
+        text: cmItem.drug
       };
       cmValidateResult.children.push(cmItemValidateResult);
       doCommitValidationForWholeTable(caseId, cmItemValidateResult, commitCaseConfig, formConfigs, cmItem, extra);
@@ -535,7 +539,7 @@ exports.validateAeForm = async function(caseId, lang) {
         pass: true,
         linkBase: `/ae`,
         invalidFields: [],
-        text: aeValidateResult.text
+        text: aeItem.event
       };
       aeValidateResult.children.push(aeItemValidateResult);
       doCommitValidationForWholeTable(caseId, aeItemValidateResult, commitCaseConfig, formConfigs, aeItem, extra);
@@ -553,6 +557,9 @@ exports.validateAeForm = async function(caseId, lang) {
 exports.validateSaeForm = async function(caseId, lang) {
   const commitCaseConfig = getCommitCaseConfig(lang);
   const saeList = await Sae.find({
+    case: caseId
+  });
+  const aeList = await Ae.find({
     case: caseId
   });
   const saeValidateResult = initValidateResult(getCommitCaseConfigItem(commitCaseConfig.records, 'sae'));
@@ -573,11 +580,14 @@ exports.validateSaeForm = async function(caseId, lang) {
         saecaus_9: saeItem.saecause_9,
         idToAppend: saeItem._id.toString()
       };
+      const aeItem = aeList.find((item) => {
+        return item._id.toString() === saeItem.saeorigion;
+      });
       const saeItemValidateResult = {
         pass: true,
         linkBase: `/sae`,
         invalidFields: [],
-        text: saeValidateResult.text
+        text: aeItem.event
       };
       saeValidateResult.children.push(saeItemValidateResult);
       doCommitValidationForWholeTable(caseId, saeItemValidateResult, commitCaseConfig, formConfigs, saeItem, extra);

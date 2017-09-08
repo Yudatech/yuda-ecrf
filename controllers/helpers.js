@@ -95,3 +95,28 @@ exports.getCmSourceConfig = async function(caseId, lang) {
   }
   return getCmSourceConfig(lang, visits);
 };
+
+exports.getVisitNameList = async function(caseId, lang) {
+  const surgeryItem = await Surgery.findOne({
+    case: caseId
+  });
+  const visits = [];
+  const visitItems = await Visit.find({
+    case: caseId
+  });
+  if (surgeryItem && visitItems.length > 0) {
+    const surgerydtc = surgeryItem.surgerydtc;
+    const surgerydtcValue = moment(surgerydtc).valueOf();
+    visitItems.forEach((item) => {
+      const visitdtcValue = moment(item.visitdtc).valueOf();
+      visits.push({
+        _id: item._id,
+        visitnum: item.visitnum,
+        days: (visitdtcValue - surgerydtcValue) / 24 / 60 / 60 / 1000
+      });
+    });
+  }
+  const aeSourceConfig = getAeSourceConfig(lang, visits);
+  aeSourceConfig.shift();
+  return aeSourceConfig;
+};
