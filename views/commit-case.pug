@@ -18,6 +18,11 @@ block case-content
                   a.btn.btn-default(role="button" href=item.link)
                     span.glyphicon.glyphicon-link
 
+            if item.errors
+              each error in item.errors
+                li
+                  span #{error}
+
           if item.children
             each child in item.children
               li.row.commit-list-item.level-2

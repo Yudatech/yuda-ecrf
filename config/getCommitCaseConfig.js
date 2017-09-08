@@ -1,7 +1,7 @@
 const getOptionsLang = require('./configHelpers').getOptionsLang;
 
 const config = {
-  title:{
+  title: {
     zh: '提交',
     en: 'Commit'
   },
@@ -176,6 +176,13 @@ const config = {
       en: 'Severe Adverse Event (SAE)'
     },
     linkBase: '/sae'
+  }],
+  errorMessages: [{
+    name: 'error_1',
+    text: {
+      zh: '请确认有且仅有一条短期植入吻合环排出记录',
+      en: 'Please confirm there is only one evacuation of the short-term implant record.'
+    }
   }]
 };
 
@@ -200,6 +207,7 @@ module.exports = function(lang) {
   result.password = config.password[lang];
   result.subtitles = getOptionsLang(config.subtitles, lang);
   result.title = config.title[lang];
+  result.errorMessages = getOptionsLang(config.errorMessages, lang);
 
   return result;
 };

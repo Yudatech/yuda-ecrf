@@ -433,7 +433,9 @@ exports.validateVisitForm = async function(caseId, lang) {
     visitValidateResult.resultType = 'empty';
   }
   else {
-    visitValidateResult.message = `${visitValidateResult.text} ${commitCaseConfig.ongoing}`;
+    visitValidateResult.message = `${visitValidateResult.text}`;
+    visitValidateResult.resultText = commitCaseConfig.finish;
+    visitValidateResult.resultType = 'finish';
     const surgeryItem = await Surgery.findOne({
       case: caseId
     });
@@ -463,6 +465,20 @@ exports.validateVisitForm = async function(caseId, lang) {
       visitValidateResult.children.push(visitItemValidateResult);
       doCommitValidationForWholeTable(caseId, visitItemValidateResult, commitCaseConfig, formConfigs, visitItem, extra);
     });
+
+    const falseItem = visitValidateResult.children.find((item) => item.pass === false);
+    if (falseItem) {
+      visitValidateResult.resultText = commitCaseConfig.ongoing;
+      visitValidateResult.resultType = 'ongoing';
+
+      const visitParam19TrueItems = visitList.filter((visitItem) => visitItem.param_19 === true);
+      if (visitParam19TrueItems.length !== 1) {
+        if (visitValidateResult.errors === undefined) {
+          visitValidateResult.errors = [];
+        }
+        visitValidateResult.errors.push(commitCaseConfig.errorMessages.error_1.text);
+      }
+    }
   }
   return visitValidateResult;
 };
