@@ -49,6 +49,17 @@ exports.visitTable = async (req, res) => {
       visitid: `${daysaftersurgery}.${item.visitnum}`
     };
   });
+  visitListFormated.sort(function(a, b){
+    if (a.visitid < b.visitid) {
+      return -1;
+    }
+    else if (a.visitid > b.visitid) {
+      return 1;
+    }
+    else {
+      return 0;
+    }
+  });
   logger.info(loggerHelper.createLogMessage(req.user, 'show', 'visit table', req.params.caseId));
   res.render('visit/visitTable', {
     caseNav: CaseNav,
