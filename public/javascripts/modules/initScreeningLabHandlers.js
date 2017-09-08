@@ -1,3 +1,6 @@
+const minValidator = require('./validators/minValidator');
+const maxValidator = require('./validators/maxValidator');
+
 function initScreeningLabHandlers() {
   const units = $('.yuda-input-unit');
   units.each(function (index) {
@@ -12,6 +15,17 @@ function initScreeningLabHandlers() {
     }
 
   });
+
+  $('#screening-lab-form').validator({
+    delay: 100,
+    disable: false,
+    custom: {
+      minvalidation: minValidator,
+      maxvalidation: maxValidator
+    }
+  });
+
+  $('#screening-lab-form').validator('validate');
 }
 
 export default initScreeningLabHandlers;

@@ -213,6 +213,9 @@ const config = {
     name: 'lab_19',
     type: 'numberfield',
     step: 'any',
+    validation: {
+      min: 35
+    },
     text: {
       zh: '白蛋白 (ALB)',
       en: 'Albumin (ALB)'

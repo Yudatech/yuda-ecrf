@@ -5,8 +5,8 @@ mixin _numberfieldTemplate(config, disabled)
   .form-group(id=`${config.name}-container`)
     label.control-label #{config.text}
     if config.unit === undefined
-      input.form-control(disabled=disabled id=config.name type="number" min=min max=max step=config.step name=config.name value=config.value data-customrequired=config.required data-customrange=config.requireCustomRange)
+      input.form-control(disabled=disabled id=config.name type="number" data-minvalidation=min data-maxvalidation=max step=config.step name=config.name value=config.value data-customrequired=config.required data-customrange=config.requireCustomRange)
     else
       .input-group
-        input.form-control(disabled=disabled id=config.name type="number" min=min max=max step=config.step name=config.name value=config.value data-customrequired=config.required data-customrange=config.requireCustomRange)
+        input.form-control(disabled=disabled id=config.name type="number" data-minvalidation=min data-maxvalidation=max step=config.step name=config.name value=config.value data-customrequired=config.required data-customrange=config.requireCustomRange)
         span.input-group-addon.yuda-input-unit #{config.unit}
