@@ -117,16 +117,16 @@ const config = {
     type: 'numberfield',
     step: 'any',
     text: {
-      zh: '术中吻合口完整性压力(mbar)',
-      en: 'Integrity pressure (mbar) (optional)'
+      zh: '术中吻合口完整性压力-若使用DMHC(mbar)',
+      en: 'Integrity pressure (mbar) (in case DMHC is applied)'
     }
   }, {
     name: 'surgery_11',
     type: 'numberfield',
     step: 'any',
     text: {
-      zh: '肛门外监测导管长度-若使用DMC(cm)',
-      en: 'Length of catheters (cm) (in case DMC is applied)'
+      zh: '肛门外监测导管长度-若使用DMHC(cm)',
+      en: 'Length of catheters (cm) (in case DMHC is applied)'
     }
   }, {
     name: 'surgery_12',

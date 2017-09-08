@@ -12,7 +12,7 @@ block case-content
                 a
                   span #{item.message}
                   if item.resultText !== undefined
-                    span #{item.resultText}
+                    span.badge.float-right #{item.resultText}
               .col-sm-4
                 if item.pass === false && item.link !== ''
                   a.btn.btn-default(role="button" href=item.link)
@@ -25,7 +25,7 @@ block case-content
                   a
                     span #{child.message}
                     if child.resultText !== undefined
-                      span #{child.resultText}
+                      span.badge.float-right #{child.resultText}
                 .col-sm-4
                   if child.pass === false && child.link !== ''
                     a.btn.btn-default(role="button" href=child.link)

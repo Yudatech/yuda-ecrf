@@ -97,8 +97,8 @@ const config = {
       rule: 'must_true'
     }],
     text: {
-      zh: '向受试者下医嘱行术前肠道清洁',
-      en: 'Prescription for pre-operative bowel cleansing is provided.'
+      zh: '将向受试者下医嘱行术前肠道清洁',
+      en: 'Prescription for pre-operative bowel cleansing shall be provided.'
     }
   }, {
     name: 'screeningcheck_9',
