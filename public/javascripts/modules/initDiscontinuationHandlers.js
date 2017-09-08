@@ -65,7 +65,7 @@ function setFormFieldsVisibility() {
   const allIds = ['discontinuedt', 'discontinuersn_1', 'discontinuersn_2', 'discontinuersn_3', 'discontinuersn_4', 'discontinuersn_5', 'discontinuersn_6', 'discontinuersn_7', 'discontinuersn_8', 'discontinuersn_9'];
   const ids_0 = ['discontinuedt', 'discontinuersn_1', 'discontinuersn_3', 'discontinuersn_4', 'discontinuersn_5', 'discontinuersn_6', 'discontinuersn_7'];
   const ids_1 = ['discontinuedt', 'discontinuersn_6', 'discontinuersn_7', 'discontinuersn_8', 'discontinuersn_9'];
-  const ids_2 = ['discontinuedt', 'discontinuersn_2', 'discontinuersn_4', 'discontinuersn_6', 'discontinuersn_7'];
+  const ids_2 = ['discontinuedt', 'discontinuersn_2', 'discontinuersn_6', 'discontinuersn_7'];
 
   if (discontinuetypeValue === '0') {
     showRelevantFields(ids_0, allIds);
