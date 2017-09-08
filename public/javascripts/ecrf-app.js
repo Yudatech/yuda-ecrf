@@ -49,7 +49,6 @@ window.onbeforeunload = function(event) {
 
 window.onload = function() {
   const pathname = window.location.pathname;
-  console.log(pathname);
 
   // If there is a form, add dirty form plugin
   if ($('form').length > 0) {

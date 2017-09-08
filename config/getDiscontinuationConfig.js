@@ -10,8 +10,8 @@ const config = {
     type: 'select',
     optionsGetter: 'getDiscontinuationTypeConfig',
     text: {
-      zh: '受试者手术前退出试验',
-      en: 'Withdrawal before the operation'
+      zh: '退出阶段',
+      en: 'Withdrawal time'
     }
   }, {
     name: 'discontinuedt',
