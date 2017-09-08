@@ -49,6 +49,13 @@ const config = {
       zh: '签署知情同意书',
       en: 'Sign the informed consent form.'
     }
+  }],
+  errors: [{
+    name: 'error_1',
+    text: {
+      zh: '病人须符合所有入选标准',
+      en: ''
+    }
   }]
 };
 
@@ -60,6 +67,7 @@ module.exports = function(lang) {
   const result = {};
   result.formConfigs = getOptionsLang(config.formConfigs, lang);
   result.title = config.title[lang];
+  result.errors = getOptionsLang(config.errors, lang);
 
   return result;
 };

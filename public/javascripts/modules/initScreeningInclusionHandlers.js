@@ -8,6 +8,14 @@ function initScreeningInclusionHandlers() {
       customrequiretrue: requireTrueValueValidator
     }
   });
+  
+  $('#screening-inclusion-form').validator().on('invalid.bs.validator', function(){
+    $('#screen-inclusion-error-1').removeClass('hidden');
+  });
+  
+  $('#screening-inclusion-form').validator().on('valid.bs.validator', function(){
+    $('#screen-inclusion-error-1').addClass('hidden');
+  });
   $('#screening-inclusion-form').validator('validate');
 }
 
