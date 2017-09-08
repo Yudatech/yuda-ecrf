@@ -25,7 +25,11 @@ function initScreeningBasicHandlers() {
         const currentYear = new Date().getFullYear();
         const age = currentYear - value;
         if (age <= 18 || age >=80) {
+          $('#screen-basic-error-1').removeClass('hidden');
           return 'invalid input';
+        }
+        else {
+          $('#screen-basic-error-1').addClass('hidden');
         }
       }
     }
