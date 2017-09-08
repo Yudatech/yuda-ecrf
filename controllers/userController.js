@@ -100,6 +100,7 @@ exports.usersTable = async (req, res) => {
   const users = await User.find();
   res.render('user/usersTable', {
     userTableConfig: getUserTableConfig(req.user.language),
+    buttonConfig: getButtonConfig(req.user.language),
     users
   });
 };

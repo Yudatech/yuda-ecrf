@@ -30,7 +30,8 @@ exports.sitesTable = async (req, res) => {
   const sites = await Site.find();
   res.render('site/siteTable', {
     sites,
-    siteTableConfig: getSiteTableConfig(req.user.language)
+    siteTableConfig: getSiteTableConfig(req.user.language),
+    buttonConfig: getButtonConfig(req.user.language),
   });
 };
 
