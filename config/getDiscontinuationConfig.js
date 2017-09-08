@@ -8,6 +8,7 @@ const config = {
   formConfigs: [{
     name: 'discontinuetype',
     type: 'select',
+    required: true,
     optionsGetter: 'getDiscontinuationTypeConfig',
     text: {
       zh: '退出阶段',
