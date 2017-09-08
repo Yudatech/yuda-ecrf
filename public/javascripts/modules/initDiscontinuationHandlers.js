@@ -69,12 +69,16 @@ function setFormFieldsVisibility() {
 
   if (discontinuetypeValue === '0') {
     showRelevantFields(ids_0, allIds);
+    setDiscontinueRsn4Visibility();
+    setDiscontinueRsn7Visibility();
   }
   else if (discontinuetypeValue === '1') {
     showRelevantFields(ids_1, allIds);
+    setDiscontinueRsn7Visibility();
   }
   else if (discontinuetypeValue === '2') {
     showRelevantFields(ids_2, allIds);
+    setDiscontinueRsn7Visibility();
   }
   else {
     showRelevantFields([], allIds);
