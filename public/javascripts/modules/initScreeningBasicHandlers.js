@@ -15,6 +15,22 @@ function initScreeningBasicHandlers() {
   const extra = $('#screeningdate').data('extra');
   $('.input-group.date').datepicker('setEndDate', new Date());
   $('.input-group.date').datepicker('setStartDate', extra.start);
+
+  $('#screening-basic-form').validator({
+    delay: 100,
+    disable: false,
+    custom: {
+      customrange: function($el) {
+        const value = $el.val();
+        const currentYear = new Date().getFullYear();
+        const age = currentYear - value;
+        if (age <= 18 || age >=80) {
+          return 'invalid input';
+        }
+      }
+    }
+  });
+  $('#screening-basic-form').validator('validate');
 }
 
 function setErrorElementVisibility() {

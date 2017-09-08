@@ -15,7 +15,7 @@ const config = {
     }],
     text: {
       zh: '首诊日期',
-      en: "Screening Date"
+      en: 'Screening Date'
     }
   }, {
     name: 'sex',
@@ -29,6 +29,7 @@ const config = {
     name: 'birth',
     type: 'numberfield',
     step: '1',
+    requireCustomRange: true,
     text: {
       zh: '出生年份',
       en: 'Year of Birth'
