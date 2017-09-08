@@ -75,9 +75,6 @@ exports.saeForm = async (req, res) => {
     if (config.formConfigs[key].type === 'select') {
       config.formConfigs[key].options = decorationHelper[config.formConfigs[key].optionsGetter](req.user.language);
     }
-    if (key === 'saedtc') {
-      config.formConfigs[key].value = moment(sae.saedtc).format('MM/DD/YYYY');
-    }
     else if (key === 'saecaus_2') {
       config.formConfigs[key].value = moment(sae.saecaus_2).format('MM/DD/YYYY');
     }
@@ -99,6 +96,16 @@ exports.saeForm = async (req, res) => {
       config.formConfigs[key].time = {
         name: 'saenoticedtc_time',
         value: moment(sae.saenoticedtc).format('HH:mm')
+      };
+    }
+    else if (key === 'saedtc') {
+      config.formConfigs[key].date = {
+        name: 'saedtc_date',
+        value: moment(sae.saedtc).format('MM/DD/YYYY')
+      };
+      config.formConfigs[key].time = {
+        name: 'saedtc_time',
+        value: moment(sae.saedtc).format('HH:mm')
       };
     }
     else if (key === 'saeorigion') {
@@ -142,6 +149,7 @@ exports.createSae = async (req, res) => {
   req.body.case = caseId;
   req.body.saestdtc = `${req.body.saestdtc_date} ${req.body.saestdtc_time}`;
   req.body.saenoticedtc = `${req.body.saenoticedtc_date} ${req.body.saenoticedtc_time}`;
+  req.body.saedtc = `${req.body.saedtc_date} ${req.body.saedtc_time}`;
   await (new Sae(req.body)).save();
   logger.info(loggerHelper.createLogMessage(req.user, 'create', 'sae', req.params.caseId), req.body);
   res.redirect(`/saelist/${caseId}`);
@@ -153,6 +161,7 @@ exports.updateSae = async (req, res) => {
   const saeId = req.params.saeId;
   req.body.saestdtc = `${req.body.saestdtc_date} ${req.body.saestdtc_time}`;
   req.body.saenoticedtc = `${req.body.saenoticedtc_date} ${req.body.saenoticedtc_time}`;
+  req.body.saedtc = `${req.body.saedtc_date} ${req.body.saedtc_time}`;
   await Sae.findByIdAndUpdate(saeId, req.body);
   logger.info(loggerHelper.createLogMessage(req.user, 'update', 'sae', req.params.caseId), req.body);
   res.redirect(`/saelist/${caseId}`);

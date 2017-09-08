@@ -236,6 +236,16 @@ exports.appendValueAndOptionsToFormConfig = function(fieldConfig, fieldValue, ae
       value: moment(fieldValue).format('HH:mm')
     };
   }
+  else if (fieldConfig.name === 'saedtc') {
+    fieldConfig.date = {
+      name: 'saedtc_date',
+      value: moment(fieldValue).format('MM/DD/YYYY')
+    };
+    fieldConfig.time = {
+      name: 'saedtc_time',
+      value: moment(fieldValue).format('HH:mm')
+    };
+  }
   else {
     fieldConfig.value = fieldValue;
   }

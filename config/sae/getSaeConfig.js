@@ -22,7 +22,7 @@ const config = {
     }
   }, {
     name: 'saedtc',
-    type: 'date',
+    type: 'datetime',
     commit: [{
       rule: 'custom_date'
     }],
