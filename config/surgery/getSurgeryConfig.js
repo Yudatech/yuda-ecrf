@@ -158,42 +158,6 @@ const config = {
       zh: '不良事件(若发生不良事件，请完整填写《不良事件及器械缺陷报告表》)',
       en: 'Adverse events (Complete Adverse Events and Device Deficiency (AE) Report)'
     }
-  }, {
-    name: 'surgery_15',
-    type: 'checkbox',
-    text: {
-      zh: '术中发现肠管直径异常或肠管壁厚度异常，例如憩室炎，慢性的肠梗阻',
-      en: ''
-    }
-  }, {
-    name: 'surgery_16',
-    type: 'checkbox',
-    text: {
-      zh: '术中发现癌扩散',
-      en: ''
-    }
-  }, {
-    name: 'surgery_17',
-    type: 'checkbox',
-    text: {
-      zh: '其他',
-      en: 'Other'
-    }
-  }, {
-    name: 'surgery_18',
-    type: 'textarea',
-    required: true,
-    text: {
-      zh: '请注明',
-      en: 'Note reasons'
-    }
-  }, {
-    name: 'surgery_19',
-    type: 'checkbox',
-    text: {
-      zh: '从试验中排除',
-      en: 'Excluded from the study'
-    }
   }]
 };
 

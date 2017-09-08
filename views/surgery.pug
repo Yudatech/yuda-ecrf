@@ -119,43 +119,5 @@ block case-content
           .col-sm-2
             +_questionBtn(config.formConfigs.surgery_14, questionFields)
 
-        .row
-          .col-sm-10
-            .form-group
-              +_formTemplate(config.formConfigs.surgery_19)
-          .col-sm-2
-            +_questionBtn(config.formConfigs.surgery_19, questionFields)
-
-        - config.formConfigs.surgery_15.hidden = !(config.formConfigs.surgery_19.value === true)
-        .row
-          .col-sm-10
-            .form-group
-              +_formTemplate(config.formConfigs.surgery_15)
-          .col-sm-2
-            +_questionBtn(config.formConfigs.surgery_15, questionFields)
-
-        - config.formConfigs.surgery_16.hidden = !(config.formConfigs.surgery_19.value === true)
-        .row
-          .col-sm-10
-            .form-group
-              +_formTemplate(config.formConfigs.surgery_16)
-          .col-sm-2
-            +_questionBtn(config.formConfigs.surgery_16, questionFields)
-
-        - config.formConfigs.surgery_17.hidden = !(config.formConfigs.surgery_19.value === true)
-        .row
-          .col-sm-10
-            .form-group
-              +_formTemplate(config.formConfigs.surgery_17)
-          .col-sm-2
-            +_questionBtn(config.formConfigs.surgery_17, questionFields)
-
-        - config.formConfigs.surgery_18.hidden = !(config.formConfigs.surgery_17.value === true) || !(config.formConfigs.surgery_19.value === true)
-        .row
-          .col-sm-10
-            +_formTemplate(config.formConfigs.surgery_18)
-          .col-sm-2
-            +_questionBtn(config.formConfigs.surgery_18, questionFields)
-
       if formDisabled === false
         input.btn.btn-default.yuda-input-btn(type="submit" value=buttonConfig.buttons.save.text)
