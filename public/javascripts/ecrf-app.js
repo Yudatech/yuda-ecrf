@@ -18,6 +18,7 @@ import initDiscontinuationHandlers from './modules/initDiscontinuationHandlers';
 import initScreeningLabHandlers from './modules/initScreeningLabHandlers';
 import initHomeHandlers from './modules/initHomeHandlers';
 import initCaseFormHandlers from './modules/initCaseFormHandlers';
+import initScreeningDignoseHandlers from './modules/initScreeningDignoseHandlers';
 
 $('.input-group.date').datepicker({
   endDate: new Date()
@@ -78,6 +79,9 @@ window.onload = function() {
   }
   else if (pathname.startsWith('/screening-disease')) {
     initScreeningDiseaseHandlers();
+  }
+  else if (pathname.startsWith('/screening-dignose')) {
+    initScreeningDignoseHandlers();
   }
   else if (pathname.startsWith('/screening-region')) {
     initScreeningRegionHandlers();

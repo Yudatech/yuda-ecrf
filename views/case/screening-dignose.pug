@@ -35,6 +35,7 @@ block case-content
           .col-sm-2
             +_questionBtn(config.formConfigs.dignose_4, questionFields)
 
+        - config.formConfigs.dignose_5.hidden = !(config.formConfigs.dignose_4.value === true)
         .row
           .col-sm-10
             +_formTemplate(config.formConfigs.dignose_5)
