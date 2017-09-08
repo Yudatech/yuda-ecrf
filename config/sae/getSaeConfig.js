@@ -8,6 +8,10 @@ const config = {
   formConfigs: [{
     name: 'saeorigion',
     type: 'customselect',
+    required: true,
+    commit: [{
+      rule: 'required'
+    }],
     text: {
       zh: '来源',
       en: 'Source'
@@ -16,6 +20,10 @@ const config = {
     name: 'saetpe',
     type: 'select',
     optionsGetter: 'getSaeTypesConfig',
+    required: true,
+    commit: [{
+      rule: 'required'
+    }],
     text: {
       zh: '报告类型',
       en: 'Type of report'
@@ -26,6 +34,7 @@ const config = {
     commit: [{
       rule: 'custom_date'
     }],
+    required: true,
     text: {
       zh: '报告时间',
       en: 'Time of report'
@@ -33,6 +42,10 @@ const config = {
   }, {
     name: 'saeterm',
     type: 'textfield',
+    required: true,
+    commit: [{
+      rule: 'required'
+    }],
     text: {
       zh: 'SAE的医学术语(诊断)',
       en: 'Medical terminology of SAE (diagnosis)'
@@ -59,6 +72,7 @@ const config = {
       field: 'saecaus_1',
       value: true
     }],
+    required: true,
     text: {
       zh: '死亡时间',
       en: 'Death time'
@@ -115,6 +129,12 @@ const config = {
   }, {
     name: 'saecaus_10',
     type: 'textarea',
+    required: true,
+    commit: [{
+      rule: 'conditional_require',
+      field: 'saecaus_9',
+      value: true
+    }],
     text: {
       zh: '其它SAE情况(填写)',
       en: 'Other (Consequence of SAE)'
@@ -126,6 +146,7 @@ const config = {
       rule: 'date',
       end: 'now'
     }],
+    required: true,
     text: {
       zh: 'SAE发生时间',
       en: 'Time of onset:'
@@ -138,6 +159,7 @@ const config = {
       start: 'saestdtc',
       end: 'now'
     }],
+    required: true,
     text: {
       zh: '研究者获知SAE时间',
       en: 'Time for clinical investigator be informed:'
@@ -146,6 +168,10 @@ const config = {
     name: 'saeact',
     type: 'select',
     optionsGetter: 'getSaeActConfig',
+    required: true,
+    commit: [{
+      rule: 'required'
+    }],
     text: {
       zh: '对受试器械采取的措施',
       en: 'Actions'
@@ -154,6 +180,10 @@ const config = {
     name: 'saeres_1',
     type: 'select',
     optionsGetter: 'getSaeResConfig',
+    required: true,
+    commit: [{
+      rule: 'required'
+    }],
     text: {
       zh: 'SAE转归',
       en: 'Outcome of SAE'
@@ -161,6 +191,11 @@ const config = {
   }, {
     name: 'saeres_2',
     type: 'checkbox',
+    commit: [{
+      rule: 'conditional_require',
+      field: 'saeres_1',
+      value: 0
+    }],
     text: {
       zh: '有后遗症',
       en: 'Sequela'
@@ -169,6 +204,10 @@ const config = {
     name: 'saerel',
     type: 'select',
     optionsGetter: 'getSaeRelConfig',
+    required: true,
+    commit: [{
+      rule: 'required'
+    }],
     text: {
       zh: 'SAE与受试器械的关系',
       en: 'Related to investigational device/procedure'
@@ -177,6 +216,10 @@ const config = {
     name: 'saerpt_1',
     type: 'select',
     optionsGetter: 'getSaeReportConfig',
+    required: true,
+    commit: [{
+      rule: 'required'
+    }],
     text: {
       zh: 'SAE报道情况(国内)',
       en: 'SAE has been reported (In China)'
@@ -185,6 +228,10 @@ const config = {
     name: 'saerpt_2',
     type: 'select',
     optionsGetter: 'getSaeReportConfig',
+    required: true,
+    commit: [{
+      rule: 'required'
+    }],
     text: {
       zh: 'SAE报道情况(国外)',
       en: 'SAE has been reported (In other countries)'
@@ -192,6 +239,10 @@ const config = {
   }, {
     name: 'saedesc',
     type: 'textarea',
+    required: true,
+    commit: [{
+      rule: 'required'
+    }],
     text: {
       zh: 'SAE发生及处理的详细情况',
       en: 'Detailed information and treatment of SAE:'

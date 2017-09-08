@@ -26,7 +26,7 @@ function initDiscontinuationHandlers() {
     delay: 100,
     disable: false,
     custom: {
-      customrequire: requireValidator
+      customrequired: requireValidator
     }
   });
   $('#discontinuation-form').validator('validate');

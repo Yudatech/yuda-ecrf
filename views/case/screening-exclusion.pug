@@ -122,7 +122,7 @@ block case-content
           .col-sm-2
             +_questionBtn(config.formConfigs.exclusion_16, questionFields)
 
-        - config.formConfigs.exclusion_17.hidden = !config.formConfigs.exclusion_16.value === true
+        - config.formConfigs.exclusion_17.hidden = !(config.formConfigs.exclusion_16.value === true)
         .row
           .col-sm-10
             +_formTemplate(config.formConfigs.exclusion_17)

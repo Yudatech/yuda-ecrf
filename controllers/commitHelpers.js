@@ -39,6 +39,10 @@ function doMustFalseCheck(value) {
   return value === false;
 }
 
+function doRequiredCheck(value) {
+  return value !== undefined && value !== null && value !== '';
+}
+
 function doDateCheck(value, start, end) {
   if (start === null || end === null || value === null) {
     return false;
@@ -164,6 +168,9 @@ function doCommitValidation(caseId, key, obj, rules, extra, validateResult) {
     }
     else if (ruleName === 'must_false') {
       result = doMustFalseCheck(obj[key]);
+    }
+    else if (ruleName === 'required') {
+      result = doRequiredCheck(obj[key]);
     }
     else if (ruleName === 'date') {
       let start;
@@ -563,6 +570,7 @@ exports.validateSaeForm = async function(caseId, lang) {
       const extra = {
         saestdtc: saeItem.saestdtc === undefined ? null : saeItem.saestdtc.valueOf(),
         saecaus_1: saeItem.saecaus_1,
+        saecaus_9: saeItem.saecause_9,
         idToAppend: saeItem._id.toString()
       };
       const saeItemValidateResult = {

@@ -11,7 +11,7 @@ function initSurgeryHandlers() {
     delay: 100,
     disable: false,
     custom: {
-      customrequire: requireValidator
+      customrequired: requireValidator
     }
   });
   $('#surgery-form').validator('validate');

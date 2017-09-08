@@ -5,7 +5,7 @@ function initCaseFormHandlers(){
     delay: 100,
     disable: true,
     custom: {
-      customrequire: requireValidator
+      customrequired: requireValidator
     }
   });
   $('#cm-form').validator('validate');

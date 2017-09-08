@@ -48,6 +48,7 @@ block case-content
           .col-sm-2
             +_questionBtn(config.formConfigs.saecaus_1, questionFields)
 
+        - config.formConfigs.saecaus_2.hidden = !(config.formConfigs.saecaus_1.value === true)
         .row
           .col-sm-10
             +_formTemplate(config.formConfigs.saecaus_2)
@@ -103,7 +104,7 @@ block case-content
           .col-sm-2
             +_questionBtn(config.formConfigs.saecaus_9, questionFields)
 
-        - config.formConfigs.saecaus_10.hidden = !config.formConfigs.saecaus_9.value === true
+        - config.formConfigs.saecaus_10.hidden = !(config.formConfigs.saecaus_9.value === true)
         .row
           .col-sm-10
             +_formTemplate(config.formConfigs.saecaus_10)
@@ -134,6 +135,7 @@ block case-content
           .col-sm-2
             +_questionBtn(config.formConfigs.saeres_1, questionFields)
 
+        - config.formConfigs.saeres_2.hidden = !(config.formConfigs.saeres_1.value === 0)
         .row
           .col-sm-10
             .form-group

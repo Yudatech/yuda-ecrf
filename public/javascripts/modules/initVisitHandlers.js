@@ -11,7 +11,7 @@ function initVisitHandlers() {
     delay: 100,
     disable: false,
     custom: {
-      customrequire: requireValidator
+      customrequired: requireValidator
     }
   });
   $('#visit-form').validator('validate');

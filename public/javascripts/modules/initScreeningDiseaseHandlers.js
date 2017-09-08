@@ -26,7 +26,7 @@ function initScreeningDiseaseHandlers() {
     delay: 100,
     disable: false,
     custom: {
-      customrequire: requireValidator
+      customrequired: requireValidator
     }
   });
   $('#screening-disease-form').validator('validate');

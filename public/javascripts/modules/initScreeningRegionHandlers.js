@@ -13,7 +13,7 @@ function initScreeningRegionHandlers() {
     delay: 100,
     disable: false,
     custom: {
-      customrequire: requireValidator
+      customrequired: requireValidator
     }
   });
   $('#screening-region-form').validator('validate');
