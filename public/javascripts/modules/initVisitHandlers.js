@@ -1,6 +1,12 @@
 import requireValidator from './validators/requireValidator';
+import setFieldVisibility from './helpers/setFieldVisibility';
 
 function initVisitHandlers() {
+  $('#visittype').change(function(){
+    setFormFieldsVisibility();
+  });
+  setFormFieldsVisibility();
+
   const param_16El = $('#param_16');
   
   param_16El.change(function(){
@@ -18,19 +24,61 @@ function initVisitHandlers() {
 }
 
 function setParam17Visibility() {
-  const param_16El = $('#param_16');
-  const param_17ContainerEl = $('#param_17-container');
-  const param_17QuestionBtnEl = $('#param_17-question-btn');
   const checked = $('#param_16').is(':checked');
-  if (checked) {
-    param_17ContainerEl.removeClass('hidden');
-    param_17QuestionBtnEl.removeClass('hidden');
-  }
-  else {
-    param_17ContainerEl.addClass('hidden');
-    param_17QuestionBtnEl.addClass('hidden');
+  setFieldVisibility('param_17', checked);
+  if (checked === false) {
     $('#param_17').val('');
   }
+}
+
+function setFormFieldsVisibility() {
+  const visittypeValue = $('#visittype').val();
+  const allIds = ['visitnum', 'visitdtc', 'visitreason', 'visittreat', 'visitres', 'param_1', 'param_2', 'param_3', 'param_4', 'param_5', 'param_6', 'param_7', 'param_8', 'param_9', 'param_10', 'param_11', 'param_12', 'param_13', 'param_14', 'param_15', 'param_16', 'param_17', 'param_18', 'param_19', 'param_20', 'param_21', 'param_22'];
+  const ids_0 = ['visitnum', 'visitdtc', 'param_1', 'param_2', 'param_3', 'param_4', 'param_5', 'param_6', 'param_7', 'param_8', 'param_9', 'param_10', 'param_11', 'param_12', 'param_13', 'param_14', 'param_15', 'param_16', 'param_17', 'param_18', 'param_19', 'param_20', 'param_21', 'param_22'];
+  const ids_1 = ['visitnum', 'visitdtc', 'visitreason', 'visittreat', 'visitres', 'param_7', 'param_9', 'param_10', 'param_11', 'param_12', 'param_13', 'param_18', 'param_19', 'param_20', 'param_21', 'param_22'];
+  const ids_2 = ['visitnum', 'visitdtc', 'visitreason', 'visittreat', 'visitres', 'param_1', 'param_2', 'param_3', 'param_4', 'param_5', 'param_6', 'param_7', 'param_8', 'param_9', 'param_10', 'param_11', 'param_12', 'param_13', 'param_14', 'param_15', 'param_16', 'param_17', 'param_18', 'param_19', 'param_20', 'param_21', 'param_22'];
+
+  if (visittypeValue === '0') {
+    showRelevantFields(ids_0, allIds);
+    setParam17Visibility();
+    showFieldsets([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]);
+  }
+  else if (visittypeValue === '1') {
+    showRelevantFields(ids_1, allIds);
+    showFieldsets([0, 3, 5, 6, 9, 10, 11]);
+  }
+  else if (visittypeValue === '2') {
+    showRelevantFields(ids_2, allIds);
+    setParam17Visibility();
+    showFieldsets([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]);
+  }
+  else {
+    showRelevantFields([], allIds);
+    showFieldsets([0]);
+  }
+}
+
+function showRelevantFields(idsToShow, allIds) {
+  allIds.forEach((id) => {
+    if (idsToShow.includes(id)) {
+      setFieldVisibility(id, true);
+    }
+    else {
+      setFieldVisibility(id, false);
+    }
+  });
+}
+
+function showFieldsets(visibleIndexList) {
+  const fieldsets = $('#visit-form>fieldset');
+  fieldsets.each(function(index, fieldset){
+    if (visibleIndexList.includes(index)) {
+      $(fieldset).removeClass('hidden');
+    }
+    else {
+      $(fieldset).addClass('hidden');
+    }
+  });
 }
 
 export default initVisitHandlers;
