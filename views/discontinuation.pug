@@ -89,4 +89,11 @@ block case-content
           .col-sm-2
             +_questionBtn(config.formConfigs.discontinuersn_7, questionFields)
 
+        if caseStatus === 'open'
+          .row
+            .form-group
+              label.col-sm-2.control-label #{secondAuthConfig.formConfigs.password.text}
+              .col-sm-10
+                input.form-control(type="password" name="password" required)
+
       input.btn.btn-default.yuda-input-btn(type="submit" value=buttonConfig.buttons.save.text)

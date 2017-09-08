@@ -10,6 +10,7 @@ const helpers = require('./helpers');
 const decorationHelper = require('./decorationHelper');
 const getDiscontinuationConfig = require('../config/getDiscontinuationConfig');
 const getButtonConfig = require('../config/common/getButtonConfig');
+const getCaseSecondAuthConfig = require('../config/getCaseSecondAuthConfig');
 
 async function createDiscontinuation(caseId, obj) {
   obj.case = caseId;
@@ -54,6 +55,7 @@ exports.discontinuationForm = async (req, res) => {
   const surgeryItem = await Surgery.findOne({
     case: req.params.caseId
   });
+  const caseItem = await Case.findById(req.params.caseId);
   const config = getDiscontinuationConfig(req.user.language);
   Object.keys(config.formConfigs).forEach((key) => {
     if (config.formConfigs[key].type === 'select') {
@@ -109,23 +111,34 @@ exports.discontinuationForm = async (req, res) => {
     caseNav: CaseNav,
     config,
     buttonConfig: getButtonConfig(req.user.language),
-    caseId: req.params.caseId
+    caseId: req.params.caseId,
+    secondAuthConfig: getCaseSecondAuthConfig(req.user.language),
+    caseStatus: caseItem.status
   });
 };
 
 exports.updateDiscontinuation = async (req, res) => {
-  const caseId = req.params.caseId;
-  const config = getDiscontinuationConfig(req.user.language);
-  Object.keys(config.formConfigs).forEach((key) => {
-    const type = config.formConfigs[key].type;
-    if (type === 'textarea' || type === 'textfield' || type === 'numberfield') {
-      if (req.body[key] !== undefined) {
-        req.body[key] = req.sanitizeBody(key).escape();
-      }
+  req.user.authenticate(req.body.password, async function(err, model) {
+    if (model === false) {
+      req.flash('error', 'Wrong password.');
+      res.redirect('back');
+    }
+    else {
+      delete req.body.password;
+      const caseId = req.params.caseId;
+      const config = getDiscontinuationConfig(req.user.language);
+      Object.keys(config.formConfigs).forEach((key) => {
+        const type = config.formConfigs[key].type;
+        if (type === 'textarea' || type === 'textfield' || type === 'numberfield') {
+          if (req.body[key] !== undefined) {
+            req.body[key] = req.sanitizeBody(key).escape();
+          }
+        }
+      });
+      await createOrUpdateDiscontinuation(caseId, req.body);
+      const caseItem = await Case.findByIdAndUpdate(caseId, {status: 'quit'}, {new: true});
+      res.locals.case = caseItem;
+      res.redirect(`/discontinuation/${caseId}`);
     }
   });
-  await createOrUpdateDiscontinuation(caseId, req.body);
-  const caseItem = await Case.findByIdAndUpdate(caseId, {status: 'quit'}, {new: true});
-  res.locals.case = caseItem;
-  res.redirect(`/discontinuation/${caseId}`);
 };
