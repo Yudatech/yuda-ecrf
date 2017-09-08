@@ -196,19 +196,19 @@ block case-content
           .col-sm-2
             +_questionBtn(config.formConfigs.param_19, questionFields)
 
+        - config.formConfigs.param_20.hidden = !(config.formConfigs.param_19.value === true)
         .row
           .col-sm-10
             .form-group
-              
-                +_formTemplate(config.formConfigs.param_20)
+              +_formTemplate(config.formConfigs.param_20)
           .col-sm-2
             +_questionBtn(config.formConfigs.param_20, questionFields)
 
+        - config.formConfigs.param_21.hidden = !(config.formConfigs.param_19.value === true)
         .row
           .col-sm-10
             .form-group
-              
-                +_formTemplate(config.formConfigs.param_21)
+              +_formTemplate(config.formConfigs.param_21)
           .col-sm-2
             +_questionBtn(config.formConfigs.param_21, questionFields)
 

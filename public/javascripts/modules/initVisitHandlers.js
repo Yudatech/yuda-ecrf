@@ -13,6 +13,10 @@ function initVisitHandlers() {
     setParam17Visibility();
   });
 
+  $('#param_19').change(function(){
+    setParam2021Visibility();
+  });
+
   $('#visit-form').validator({
     delay: 100,
     disable: false,
@@ -31,6 +35,12 @@ function setParam17Visibility() {
   }
 }
 
+function setParam2021Visibility() {
+  const checked = $('#param_19').is(':checked');
+  setFieldVisibility('param_20', checked);
+  setFieldVisibility('param_21', checked);
+}
+
 function setFormFieldsVisibility() {
   const visittypeValue = $('#visittype').val();
   const allIds = ['visitnum', 'visitdtc', 'visitreason', 'visittreat', 'visitres', 'param_1', 'param_2', 'param_3', 'param_4', 'param_5', 'param_6', 'param_7', 'param_8', 'param_9', 'param_10', 'param_11', 'param_12', 'param_13', 'param_14', 'param_15', 'param_16', 'param_17', 'param_18', 'param_19', 'param_20', 'param_21', 'param_22'];
@@ -41,15 +51,18 @@ function setFormFieldsVisibility() {
   if (visittypeValue === '0') {
     showRelevantFields(ids_0, allIds);
     setParam17Visibility();
+    setParam2021Visibility();
     showFieldsets([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]);
   }
   else if (visittypeValue === '1') {
     showRelevantFields(ids_1, allIds);
+    setParam2021Visibility();
     showFieldsets([0, 3, 5, 6, 9, 10, 11]);
   }
   else if (visittypeValue === '2') {
     showRelevantFields(ids_2, allIds);
     setParam17Visibility();
+    setParam2021Visibility();
     showFieldsets([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]);
   }
   else {
