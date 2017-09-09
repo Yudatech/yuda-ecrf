@@ -1,5 +1,6 @@
 import requireValidator from './validators/requireValidator';
 import setFieldVisibility from './helpers/setFieldVisibility';
+import setWarningStyle from './helpers/setWarningStyle';
 
 function initVisitHandlers() {
   $('#visittype').change(function(){
@@ -17,6 +18,21 @@ function initVisitHandlers() {
     setParam2021Visibility();
   });
 
+  $('#param_18').change(function(){
+    setErrorElementVisibility();
+    setWarningStyle('param_18');
+  });
+  setWarningStyle('param_18');
+  setErrorElementVisibility();
+
+  $('#param_22').change(function(){
+    setErrorElementVisibility();
+    setWarningStyle('param_22');
+  });
+  setWarningStyle('param_22');
+
+  setErrorElementVisibility();
+
   $('#visit-form').validator({
     delay: 100,
     disable: false,
@@ -25,6 +41,26 @@ function initVisitHandlers() {
     }
   });
   $('#visit-form').validator('validate');
+}
+
+function setErrorElementVisibility() {
+  const errorEl1 = $('#visit-error-1');
+  const errorEl2 = $('#visit-error-2');
+  const param_18Value = $('#param_18').is(':checked');
+  const param_22Value = $('#param_22').is(':checked');
+  if (param_18Value) {
+    errorEl1.removeClass('hidden');
+  }
+  else {
+    errorEl1.addClass('hidden');
+  }
+
+  if (param_22Value) {
+    errorEl2.removeClass('hidden');
+  }
+  else {
+    errorEl2.addClass('hidden');
+  }
 }
 
 function setParam17Visibility() {

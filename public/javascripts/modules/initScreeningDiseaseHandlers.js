@@ -30,6 +30,7 @@ function initScreeningDiseaseHandlers() {
     }
   });
   $('#screening-disease-form').validator('validate');
+  setErrorElementVisibility();
 }
 
 function setDisease9Visibility() {

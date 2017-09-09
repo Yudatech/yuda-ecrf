@@ -44,7 +44,14 @@ const config = {
   errors: [{
     name: 'error_1',
     text: {
-      zh: '请确认该患者符合入组／排除标准'
+      zh: '请确认该患者符合入组／排除标准',
+      en: ''
+    }
+  }, {
+    name: 'error_2',
+    text: {
+      zh: '请完整填写《合并用药情况表》',
+      en: ''
     }
   }]
 };

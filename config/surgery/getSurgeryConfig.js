@@ -158,6 +158,13 @@ const config = {
       zh: '不良事件(若发生不良事件，请完整填写《不良事件及器械缺陷报告表》)',
       en: 'Adverse events (Complete Adverse Events and Device Deficiency (AE) Report)'
     }
+  }],
+  errors: [{
+    name: 'error_1',
+    text: {
+      zh: '请完整填写《不良事件及器械缺陷报告表》',
+      en: ''
+    }
   }]
 };
 
@@ -170,6 +177,7 @@ module.exports = function(lang) {
   result.formConfigs = getOptionsLang(config.formConfigs, lang);
   result.title = config.title[lang];
   result.groups = getOptionsLang(config.groups, lang);
+  result.errors = getOptionsLang(config.errors, lang);
 
   return result;
 };

@@ -222,5 +222,15 @@ block case-content
           .col-sm-2
             +_questionBtn(config.formConfigs.param_22, questionFields)
 
+      .row.hidden(id="visit-error-1")
+        .col-sm-12
+          .alert.alert-warning(role="alert")
+            span #{config.errors.error_1.text}
+
+      .row.hidden(id="visit-error-2")
+        .col-sm-12
+          .alert.alert-warning(role="alert")
+            span #{config.errors.error_2.text}
+
       if formDisabled === false
         input.btn.btn-default.yuda-input-btn(type="submit" value=buttonConfig.buttons.save.text)

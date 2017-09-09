@@ -69,8 +69,14 @@ const config = {
   }, {
     name: 'error_2',
     text: {
-      zh: '必须填写合并用药表',
-      en: 'Complete Concomitant Medication Report, Please.'
+      zh: '若使用抗生素，请完整填写《合并用药情况表》',
+      en: ''
+    }
+  }, {
+    name: 'error_3',
+    text: {
+      zh: '若使用抗凝血药，请完整填写《合并用药情况表》',
+      en: ''
     }
   }]
 };
