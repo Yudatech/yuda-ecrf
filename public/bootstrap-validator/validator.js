@@ -241,7 +241,9 @@
 
     $block.data('bs.validator.originalContent') === undefined && $block.data('bs.validator.originalContent', $block.html())
     $block.empty().append(errors)
-    $group.addClass('has-error has-danger')
+    if (!$group.hasClass('has-warning')){
+      $group.addClass('has-error has-danger')
+    }
 
     $group.hasClass('has-feedback')
       && $feedback.removeClass(this.options.feedback.success)
