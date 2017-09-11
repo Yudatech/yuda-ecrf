@@ -14,7 +14,15 @@ function initScreeningInclusionHandlers() {
   });
   
   $('#screening-inclusion-form').validator().on('valid.bs.validator', function(){
-    $('#screen-inclusion-error-1').addClass('hidden');
+    const uncheckedList = [];
+    $('#screening-inclusion-form').find(':checkbox').each(function(index, el){
+      if ($(el).is(':checked') === false) {
+        uncheckedList.push(el);
+      }
+    });
+    if (uncheckedList.length === 0) {
+      $('#screen-inclusion-error-1').addClass('hidden');
+    }
   });
   $('#screening-inclusion-form').validator('validate');
 }
