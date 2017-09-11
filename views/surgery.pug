@@ -29,8 +29,7 @@ block case-content
             +_questionBtn(config.formConfigs.device_2, questionFields)
 
       fieldset(disabled=formDisabled)
-        legend #{config.groups.surgery.text}
-
+        legend #{config.subtitles.subtitle_1.text}
         .row
           .col-sm-10
             .form-group
@@ -51,7 +50,9 @@ block case-content
               +_formTemplate(config.formConfigs.surgery_3)
           .col-sm-2
             +_questionBtn(config.formConfigs.surgery_3, questionFields)
-        
+
+      fieldset(disabled=formDisabled)
+        legend #{config.groups.surgery.text}
         .row
           .col-sm-10
             +_formTemplate(config.formConfigs.surgery_4)

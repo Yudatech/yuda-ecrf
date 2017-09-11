@@ -5,6 +5,17 @@ const config = {
     zh: '手术',
     en: 'Operation'
   },
+
+  subtitles:[
+    {
+      name: 'subtitle_1',
+      text: {
+        zh: '肠切除部位',
+        en: 'Intestinal Resection'
+      }
+    }
+  ],
+
   groups: [{
     name: 'device',
     text: {
@@ -177,6 +188,7 @@ module.exports = function(lang) {
   result.formConfigs = getOptionsLang(config.formConfigs, lang);
   result.title = config.title[lang];
   result.groups = getOptionsLang(config.groups, lang);
+  result.subtitles = getOptionsLang(config.subtitles, lang);
   result.errors = getOptionsLang(config.errors, lang);
 
   return result;

@@ -16,7 +16,7 @@ block content
   .inner.row
     .case-nav.col-sm-3
       .inner.panel.panel-default
-        div.panel-heading
+        div.panel-heading.yuda-case-status(class=locals.case.status)
           h4.text-align-center #{locals.caseStatusText[locals.case.status].text}
 
         div.panel-body

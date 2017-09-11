@@ -42,9 +42,6 @@ block case-content
                 .col-sm-8
                   input(type="file" name="attachedDoc" id="attachedDoc" accept="image/gif, image/png, image/jpeg" onchange="acceptDocPreview(this)")
 
-      if !caseOverviewConfig.attachedDoc
-        input.btn.btn-default.yuda-input-btn-2(type="submit" value=buttonConfig.buttons.save.text)
-
       br
       fieldset
         legend #{config.labels.attachedDoc.text}
@@ -52,3 +49,6 @@ block case-content
           img(src=`/uploads/${caseOverviewConfig.attachedDoc}`)
         else
           img(id='accept-doc-preview')
+
+      if !caseOverviewConfig.attachedDoc
+        input.btn.btn-default.yuda-input-btn(type="submit" value=buttonConfig.buttons.save.text)

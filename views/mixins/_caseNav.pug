@@ -3,7 +3,7 @@ mixin _caseNav(caseNav)
     each naviMenuItem in caseNav
       if naviMenuItem.name === 'discontinuation'
         if locals.case.status === 'quit'
-          li.level-1(class=(currentPath.startsWith(`/${naviMenuItem.name}/`) ? 'active' : ''))
+          li.level-1.discontinued(class=(currentPath.startsWith(`/${naviMenuItem.name}/`) ? 'active' : ''))
             - const naviItemLink = `${naviMenuItem.link}/${naviMenuItem.caseId}`;
             a(href=naviItemLink) #{naviMenuItem.title}
 
