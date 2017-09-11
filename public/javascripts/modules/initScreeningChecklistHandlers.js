@@ -14,7 +14,15 @@ function initScreeningChecklistHandlers() {
   });
   
   $('#screeningchecklist-form').validator().on('valid.bs.validator', function(){
-    $('#screen-checklist-error-1').addClass('hidden');
+    const unchedkedList = [];
+    $('#screeningchecklist-form').find(':checkbox').each(function(index, el){
+      if ($(el).is(':checked') === false) {
+        unchedkedList.push(el);
+      }
+    });
+    if (unchedkedList.length === 0) {
+      $('#screen-checklist-error-1').addClass('hidden');
+    }
   });
   $('#screeningchecklist-form').validator('validate');
 }
