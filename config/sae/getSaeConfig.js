@@ -5,6 +5,38 @@ const config = {
     zh: '添加严重不良事件',
     en: 'Add SAE'
   },
+
+  subtitles: [
+    {
+      name: 'subtitle_1',
+      text: {
+        zh: '基本信息',
+        en: 'SAE Information'
+      }
+    },
+    {
+      name: 'subtitle_2',
+      text: {
+        zh: 'SAE 情况',
+        en: 'SAE Description'
+      }
+    },
+    {
+      name: 'subtitle_3',
+      text: {
+        zh: 'SAE 详情',
+        en: 'SAE Details'
+      }
+    },
+    {
+      name: 'subtitle_4',
+      text: {
+        zh: '其他',
+        en: 'Others'
+      },
+    }
+  ],
+
   formConfigs: [{
     name: 'saeorigion',
     type: 'customselect',
@@ -61,8 +93,8 @@ const config = {
     name: 'saecaus_1',
     type: 'checkbox',
     text: {
-      zh: 'SAE情况 - 死亡',
-      en: 'Consequence of SAE'
+      zh: '死亡',
+      en: 'Death'
     }
   }, {
     name: 'saecaus_2',
@@ -250,13 +282,14 @@ const config = {
   }]
 };
 
-module.exports = function(lang) {
+module.exports = function (lang) {
   if (lang === undefined) {
     lang = 'zh';
   }
 
   const result = {};
   result.formConfigs = getOptionsLang(config.formConfigs, lang);
+  result.subtitles = getOptionsLang(config.subtitles, lang);
   result.title = config.title[lang];
 
   return result;
