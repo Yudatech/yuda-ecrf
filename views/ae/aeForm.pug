@@ -8,7 +8,7 @@ block case-content
     form.form-horizontal(id="ae-form" action=`/ae/${caseId}/${aeId || ''}` method="POST")
       - const formDisabled = !(locals.case.status === 'open' || locals.user.role === 'admin')
       fieldset(disabled=formDisabled)
-        legend #{config.title}
+        legend #{config.subtitles.subtitle_1.text}
 
         .row
           .col-sm-10
@@ -34,6 +34,8 @@ block case-content
           .col-sm-2
             +_questionBtn(config.formConfigs.aeeddtc, questionFields)
 
+      fieldset(disabled=formDisabled)
+        legend #{config.subtitles.subtitle_2.text}
         .row
           .col-sm-10
             +_formTemplate(config.formConfigs.aeserv)
@@ -56,6 +58,8 @@ block case-content
           .col-sm-2
             +_questionBtn(config.formConfigs.aerpt, questionFields)
 
+      fieldset(disabled=formDisabled)
+        legend #{config.subtitles.subtitle_3.text}
         .row
           .col-sm-10
             +_formTemplate(config.formConfigs.aerel)
@@ -76,10 +80,11 @@ block case-content
           .col-sm-2
             +_questionBtn(config.formConfigs.aeres_2, questionFields)
 
+      fieldset(disabled=formDisabled)
+        legend #{config.subtitles.subtitle_1.text}
         .row
           .col-sm-10
             .form-group
-
                 +_formTemplate(config.formConfigs.aesae)
           .col-sm-2
             +_questionBtn(config.formConfigs.aesae, questionFields)
@@ -100,5 +105,5 @@ block case-content
           .col-sm-2
             +_questionBtn(config.formConfigs.aediscon, questionFields)
 
-        if formDisabled === false
-          input.btn.btn.btn-default.yuda-input-btn(type="submit" value=buttonConfig.buttons.save.text)
+      if formDisabled === false
+        input.btn.btn.btn-default.yuda-input-btn(type="submit" value=buttonConfig.buttons.save.text)

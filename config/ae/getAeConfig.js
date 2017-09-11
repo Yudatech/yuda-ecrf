@@ -5,6 +5,37 @@ const config = {
     zh: '添加不良事件',
     en: 'add Adverse Event (AE)/ Device Deficiency '
   },
+
+  subtitles: [
+    {
+      name: 'subtitle_1',
+      text: {
+        zh: '基本信息',
+        en: 'AE Information'
+      }
+    },
+    {
+      name: 'subtitle_2',
+      text: {
+        zh: 'AE 情况',
+        en: 'AE Description'
+      }
+    },
+    {
+      name: 'subtitle_3',
+      text: {
+        zh: 'AE 详情',
+        en: 'AE Details'
+      }
+    },
+    {
+      name: 'subtitle_4',
+      text: {
+        zh: '其他',
+        en: 'Others'
+      },
+    }
+  ],
   formConfigs: [{
     name: 'aeorigion',
     type: 'customselect',
@@ -125,6 +156,7 @@ module.exports = function(lang) {
 
   const result = {};
   result.formConfigs = getOptionsLang(config.formConfigs, lang);
+  result.subtitles = getOptionsLang(config.subtitles, lang);
   result.title = config.title[lang];
 
   return result;
