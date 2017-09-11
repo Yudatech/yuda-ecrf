@@ -1,0 +1,74 @@
+extends layout
+
+block content
+  .inner.container
+    .row
+      .col-sm-7.yuda-dashboard-panel
+        .panel.panel-default
+          .panel-heading
+
+            h3 #{searchConfig.cases.title}
+
+          table.table.table-striped(id="search-case-table")
+            thead
+              tr
+                each casesHeader in searchConfig.cases.headers
+                  th #{casesHeader.text}
+            tbody
+              each caseItem in cases
+                tr
+                  each casesHeader in searchConfig.cases.headers
+                    if casesHeader.name !== 'operations'
+                      td #{caseItem[casesHeader.name]}
+                    else
+                      td
+                        .row
+                          .btn-group
+                            a.btn.btn-default(role="button" href=`/overview/${caseItem._id}`)
+                              span.glyphicon.glyphicon-pencil
+                            if user.role === 'admin'
+                              a.btn.btn-default(role="button" data-toggle="modal" data-target="#deleteConfirmModal" data-removetype="case" data-removeid=caseItem._id)
+                                span.glyphicon.glyphicon-trash
+          .panel-footer
+
+      .col-sm-5.yuda-dashboard-panel
+        .panel.panel-default
+          .panel-heading
+            h3 #{searchConfig.questions.title}
+
+          table.table.table-striped(id="search-question-table")
+              thead
+                tr
+                  each questionsHeader in searchConfig.questions.headers
+                    th #{questionsHeader.text}
+
+              tbody
+                each questionItem in questions
+                  tr(id=`questionrecord-${questionItem.execId}-${questionItem.statusValue}`)
+                    each questionsHeader in searchConfig.questions.headers
+                      if questionsHeader.name !== 'operations'
+                        td #{questionItem[questionsHeader.name]}
+                      else
+                        td
+                          .row
+                            a.btn.btn-default(role="button" href=`/question/${questionItem.questionId}/?source=update`)
+                              span.glyphicon.glyphicon-pencil
+                            if user.role === 'admin'
+                              a.btn.btn-default(role="button" data-toggle="modal" data-target="#deleteConfirmModal" data-removetype="question" data-removeid=questionItem.questionId)
+                                span.glyphicon.glyphicon-trash
+
+          .panel-footer
+
+    .modal.fade(id='deleteConfirmModal' tabindex="-1" role="dialog")
+      .modal-dialog(role="document")
+        .modal-content
+          .modal-header
+            button.close(type="button" data-dismiss="modal" aria-label="Close")
+              span(aria-hidden="true") &times;
+
+          .modal-body
+            h4 #{searchConfig.removeConfirm.message.text}
+
+          .modal-footer
+            button.btn.btn-default(type="button" data-dismiss="modal") #{buttonConfig.buttons.close.text}
+            a.btn.btn-primary(id="deleteConfirmModalConfirmBtn" role="button") #{buttonConfig.buttons.remove.text}

@@ -5,6 +5,8 @@ html
     link(rel='stylesheet', href='/bootstrap/css/bootstrap.min.css')
     link(rel='stylesheet', href='/datepicker/css/bootstrap-datepicker3.min.css')
     link(rel='stylesheet', href='/timepicker/css/bootstrap-timepicker.min.css')
+    link(rel='stylesheet', href='/datatable/css/jquery.dataTables.min.css')
+    link(rel='stylesheet', href='/datatable/css/dataTables.bootstrap.min.css')
     link(rel='stylesheet', href='/dist/style.css')
     link(rel="shortcut icon" type="image/png" href="/images/icons/doughnut.png")
     meta(name="viewport" content="width=device-width, initial-scale=1")
@@ -31,6 +33,8 @@ html
                 if user.role === 'cra'
                   li
                     a.yuda-menu-btn(href="/case" class=(currentPath === '/case' ? 'active' : '')) #{buttonConfig.buttons.newpatient.text}
+                li
+                  a.yuda-menu-btn(href="/search" class=(currentPath.startsWith('/search') ? 'active' : '')) #{buttonConfig.buttons.search.text}
                 li
                   a.yuda-menu-btn(href="/logout") #{buttonConfig.buttons.logout.text}
               else
@@ -71,6 +75,8 @@ html
       script(src="/bootstrap/js/bootstrap.min.js")
       script(src="/datepicker/js/bootstrap-datepicker.min.js")
       script(src="/timepicker/js/bootstrap-timepicker.min.js")
+      script(src="/datatable/js/jquery.dataTables.min.js")
+      script(src="/datatable/js/dataTables.bootstrap.min.js")
       script(src="/dirtyforms/jquery.dirtyforms.js")
       script(src="/dirtyforms/jquery.dirtyforms.dialogs.bootstrap.min.js")
       script(src="/bootstrap-validator/validator.js")
