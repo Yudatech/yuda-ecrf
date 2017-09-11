@@ -150,12 +150,12 @@ const config = {
     commit: [{
       rule: 'custom',
       message: {
-        zh: '发生不良事件，请完整填写《不良事件及器械缺陷报告表》',
+        zh: '请完整填写《不良事件及器械缺陷报告表》',
         en: 'Complete Adverse Events and Device Deficiency (AE) Report'
       }
     }],
     text: {
-      zh: '不良事件(若发生不良事件，请完整填写《不良事件及器械缺陷报告表》)',
+      zh: '不良事件(请完整填写《不良事件及器械缺陷报告表》)',
       en: 'Adverse events (Complete Adverse Events and Device Deficiency (AE) Report)'
     }
   }],
