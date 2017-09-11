@@ -33,6 +33,9 @@ function initScreeningLabHandlers() {
               $(`#${containerId}`).removeClass('has-warning');
             }
           }
+          else {
+            $(`#${containerId}`).removeClass('has-warning');
+          }
         }
       },
       maxvalidation: function($el) {
@@ -48,12 +51,30 @@ function initScreeningLabHandlers() {
               $(`#${containerId}`).removeClass('has-warning');
             }
           }
+          else {
+            $(`#${containerId}`).removeClass('has-warning');
+          }
         }
       }
     }
   });
-
+  $('#screening-lab-form').validator().on('validate.bs.validator', function(){
+    setErrorElementVisibility();
+  });
   $('#screening-lab-form').validator('validate');
+}
+
+function setErrorElementVisibility() {
+  const error1El = $('#screen-lab-error-1');
+
+  const lab_19Value = $('#lab_19').val();
+
+  if (lab_19Value === '' || (parseFloat(lab_19Value) < 35)) {
+    error1El.removeClass('hidden');
+  }
+  else {
+    error1El.addClass('hidden');
+  }
 }
 
 export default initScreeningLabHandlers;

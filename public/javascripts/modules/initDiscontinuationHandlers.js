@@ -83,7 +83,7 @@ function updateCheckboxValidationCondition(checkboxIdList) {
       $(`#${id}`).attr('data-customrequiretrue', true);
     });
   }
-  $('#discontinuation-form').find(':checkbox').each(function(el){
+  $('#discontinuation-form').find(':checkbox').each(function(index, el){
     if (!checkboxIdList.includes($(el).attr('id'))) {
       $(el).removeAttr('data-customrequiretrue');
     }

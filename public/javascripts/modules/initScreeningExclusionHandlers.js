@@ -19,11 +19,27 @@ function initScreeningExclusionHandlers() {
     }
   });
   $('#screening-exclusion-form').validator().on('invalid.bs.validator', function(){
-    $('#screen-exclusion-error-1').removeClass('hidden');
+    const checkedList = [];
+    $('#screening-exclusion-form').find(':checkbox').each(function(index, el){
+      if ($(el).is(':checked') === true) {
+        checkedList.push(el);
+      }
+    });
+    if (checkedList.length > 0) {
+      $('#screen-exclusion-error-1').removeClass('hidden');
+    }
   });
   
   $('#screening-exclusion-form').validator().on('valid.bs.validator', function(){
-    $('#screen-exclusion-error-1').addClass('hidden');
+    const checkedList = [];
+    $('#screening-exclusion-form').find(':checkbox').each(function(index, el){
+      if ($(el).is(':checked') === true) {
+        checkedList.push(el);
+      }
+    });
+    if (checkedList.length === 0) {
+      $('#screen-exclusion-error-1').addClass('hidden');
+    }
   });
   $('#screening-exclusion-form').validator('validate');
 }
