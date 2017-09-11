@@ -127,6 +127,12 @@ const config = {
       zh: '表单已被修改',
       en: 'Form has been changed'
     }
+  }, {
+    name: 'search',
+    text: {
+      zh: '搜索',
+      en: 'Search'
+    }
   }]
 };
 

@@ -21,6 +21,11 @@ const screeningController = require('../controllers/screeningController');
 
 router.get('/', authController.isLoggedIn, mainController.homePage);
 
+router.get('/search',
+  authController.isLoggedIn,
+  catchErrors(mainController.searchPage)
+);
+
 /**
  * Router for user
  */

@@ -19,6 +19,7 @@ import initScreeningLabHandlers from './modules/initScreeningLabHandlers';
 import initHomeHandlers from './modules/initHomeHandlers';
 import initCaseFormHandlers from './modules/initCaseFormHandlers';
 import initScreeningDignoseHandlers from './modules/initScreeningDignoseHandlers';
+import initSearchHandlers from './modules/initSearchHandlers';
 
 $('.input-group.date').datepicker({
   endDate: new Date()
@@ -64,6 +65,9 @@ window.onload = function() {
 
   if (pathname === '/') {
     initHomeHandlers();
+  }
+  else if (pathname === '/search') {
+    initSearchHandlers();
   }
   else if (pathname === '/case') {
     initCaseFormHandlers();

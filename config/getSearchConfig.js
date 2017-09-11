@@ -1,43 +1,6 @@
 const getOptionsLang = require('./configHelpers').getOptionsLang;
 
 const config = {
-  summary: {
-    title: {
-      zh: '指表数据一览',
-      en: 'Summary'
-    },
-    titles: [{
-      name: 'finished',
-      text: {
-        zh: '已完成病例',
-        en: 'Completed'
-      }
-    }, {
-      name: 'ongoing',
-      text: {
-        zh: '待完成病例',
-        en: 'Ongoing'
-      }
-    }, {
-      name: 'questions',
-      text: {
-        zh: '待回复质疑',
-        en: 'Queries'
-      }
-    }, {
-      name: 'contribution',
-      text: {
-        zh: '贡献度',
-        en: 'Contribution'
-      }
-    }, {
-      name: 'discontinuationRate',
-      text: {
-        zh: '中途退出率',
-        en: 'Discontinuation'
-      }
-    }]
-  },
   cases: {
     title: {
       zh: '病例',
@@ -83,7 +46,7 @@ const config = {
   },
   questions: {
     title: {
-      zh: '待回复质疑',
+      zh: '质疑',
       en: 'Queries'
     },
     headers: [{
@@ -139,14 +102,6 @@ module.exports = function(lang) {
   }
 
   const result = {};
-  result.summary = {
-    titles: config.summary.titles.map((item) => {
-      return {
-        name: item.name,
-        text: item.text[lang]
-      };
-    })
-  };
   result.cases = {
     title: config.cases.title[lang],
     headers: config.cases.headers.map((item) => {

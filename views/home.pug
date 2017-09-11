@@ -77,7 +77,7 @@ block content
 
               tbody
                 each questionItem in questions
-                  tr(id=`questionrecord-${questionItem.owner}-${questionItem.statusValue}`)
+                  tr(id=`questionrecord-${questionItem.execId}-${questionItem.statusValue}`)
                     each questionsHeader in homeConfig.questions.headers
                       if questionsHeader.name !== 'operations'
                         td #{questionItem[questionsHeader.name]}
