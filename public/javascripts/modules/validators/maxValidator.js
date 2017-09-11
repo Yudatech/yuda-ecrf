@@ -1,5 +1,5 @@
 function maxValidator($el) {
-  if ($el.val() > $el.data('maxvalidation')) {
+  if ($el.val() === '' || (parseFloat($el.val()) > $el.data('maxvalidation'))) {
     return 'invalid input';
   }
 }

@@ -348,6 +348,13 @@ const config = {
       zh: '临床评估',
       en: 'Evaluation'
     }
+  }],
+  errors: [{
+    name: 'error_1',
+    text: {
+      zh: '该结果不符合入组标准，请确认是否纳入该受试者',
+      en: ''
+    }
   }]
 };
 
@@ -360,6 +367,7 @@ module.exports = function(lang) {
   result.subtitles = getOptionsLang(config.subtitles, lang);
   result.formConfigs = getOptionsLang(config.formConfigs, lang);
   result.title = config.title[lang];
+  result.errors = getOptionsLang(config.errors, lang);
 
   return result;
 };
