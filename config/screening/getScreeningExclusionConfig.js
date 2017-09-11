@@ -194,7 +194,7 @@ const config = {
     name: 'error_1',
     text: {
       zh: '病人须不满足所有排除标准',
-      en: ''
+      en: 'Patient should fulfill NONE of the exclusion criteria above'
     }
   }]
 };
