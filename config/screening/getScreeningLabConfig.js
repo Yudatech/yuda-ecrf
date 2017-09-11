@@ -352,8 +352,8 @@ const config = {
   errors: [{
     name: 'error_1',
     text: {
-      zh: '该结果不符合入组标准，请确认是否纳入该受试者',
-      en: ''
+      zh: '白蛋白(ALB)<35 该结果不符合入组标准，请确认是否纳入该受试者',
+      en: 'ALB<35. The result does not meet the inclusion criteria, please confirm whether the patient shall be included.'
     }
   }]
 };

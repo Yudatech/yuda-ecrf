@@ -61,7 +61,7 @@ const config = {
     name: 'error_1',
     text: {
       zh: '病人年龄需在18至80岁之间',
-      en: ''
+      en: 'Male or female age ≥ 18 years and ≤ 80 years'
     }
   }]
 };
