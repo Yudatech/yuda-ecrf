@@ -116,7 +116,7 @@ const config = {
     name: 'error_1',
     text: {
       zh: '须符满足以上所有条件',
-      en: ''
+      en: 'Should fulfill all conditions above.'
     }
   }]
 };
