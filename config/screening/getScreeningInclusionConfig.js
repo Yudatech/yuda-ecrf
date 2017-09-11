@@ -54,7 +54,7 @@ const config = {
     name: 'error_1',
     text: {
       zh: '病人须符合所有入选标准',
-      en: ''
+      en: 'Patient should fulfill ALL inclusion criteria above.'
     }
   }]
 };
