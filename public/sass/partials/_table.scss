@@ -33,3 +33,15 @@
 .yuda-dashboard-table tr{
   border-left: 5px solid red;
 }
+
+table.dataTable thead .sorting:after{
+  opacity: 0!important;
+}
+
+table.dataTable thead .sorting_asc:after{
+  opacity: 0!important;
+}
+
+table.dataTable thead .sorting_desc:after{
+  opacity: 0!important;
+}
