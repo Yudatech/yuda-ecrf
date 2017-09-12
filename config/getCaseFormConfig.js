@@ -38,7 +38,11 @@ const config = {
       zh: '知情同意书签字页上传',
       en: 'Upload Informed Consent signature page'
     }
-  }]
+  }],
+  infoDescription:{
+    zh: '此处内容填写完毕，点击保存后不可更改，请确认填写内容无误。',
+    en: 'The information on this page can not be modified after clicking "save" bottom, please confirm that the information is correct.'
+  }
 };
 
 module.exports = function(lang) {
@@ -49,6 +53,7 @@ module.exports = function(lang) {
   const result = {};
   result.labels = getOptionsLang(config.labels, lang);
   result.title = config.title[lang];
+  result.infoDescription = config.infoDescription[lang];
 
   return result;
 };

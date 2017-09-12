@@ -5,41 +5,42 @@ block content
     form.form-horizontal(id="case-form" action="/case" method="POST" enctype="multipart/form-data").panel.panel-default
       .panel-heading
         h3 #{caseFormConfig.title}
+          small.header-info #{caseFormConfig.infoDescription}
       .panel-body
         .row
           .col-sm-6
-              .form-group
-                label.col-sm-4.control-label #{caseFormConfig.labels._id.text}
-                .col-sm-8
-                  input.form-control(type="text" name="_id" required readonly value=_id)
+            .form-group
+              label.col-sm-4.control-label #{caseFormConfig.labels._id.text}
+              .col-sm-8
+                input.form-control(type="text" name="_id" required readonly value=_id)
 
-              .form-group
-                label.col-sm-4.control-label #{caseFormConfig.labels.subjname.text}
-                .col-sm-8
-                  input.form-control(type="text" name="subjname" required)
+            .form-group
+              label.col-sm-4.control-label #{caseFormConfig.labels.subjname.text}
+              .col-sm-8
+                input.form-control(type="text" name="subjname" required)
 
-              .form-group
-                label.col-sm-4.control-label #{caseFormConfig.labels.subjabbr.text}
-                .col-sm-8
-                  input.form-control(type="text" name="subjabbr" required)
+            .form-group
+              label.col-sm-4.control-label #{caseFormConfig.labels.subjabbr.text}
+              .col-sm-8
+                input.form-control(type="text" name="subjabbr" required)
 
-              .form-group
-                label.col-sm-4.control-label #{caseFormConfig.labels.subjAcceptDate.text}
-                .col-sm-8
-                  #subjAcceptDate.input-group.date(data-provide="datepicker")
-                    input.form-control(required)
-                    span.input-group-addon
-                      i.glyphicon.glyphicon-th
-                  input#subjAcceptDateReal(type="hidden" name="subjAcceptDate" required)
+            .form-group
+              label.col-sm-4.control-label #{caseFormConfig.labels.subjAcceptDate.text}
+              .col-sm-8
+                #subjAcceptDate.input-group.date(data-provide="datepicker")
+                  input.form-control(required)
+                  span.input-group-addon
+                    i.glyphicon.glyphicon-th
+                input#subjAcceptDateReal(type="hidden" name="subjAcceptDate" required)
 
-              .form-group
-                label.col-sm-4.control-label #{caseFormConfig.labels.attachedDoc.text}
-                .col-sm-8
-                  input(type="file" name="attachedDoc" id="attachedDoc" accept="image/gif, image/png, image/jpeg" onchange="acceptDocPreview(this)")
+            .form-group
+              label.col-sm-4.control-label #{caseFormConfig.labels.attachedDoc.text}
+              .col-sm-8
+                input(type="file" name="attachedDoc" id="attachedDoc" accept="image/gif, image/png, image/jpeg" onchange="acceptDocPreview(this)")
 
-
+            input.btn.btn-default.yuda-input-btn(type="submit" value=buttonConfig.buttons.save.text)
 
           .col-sm-6
             img#accept-doc-preview
 
-        input.btn.btn-default.yuda-input-btn-2(type="submit" value=buttonConfig.buttons.save.text)
+
