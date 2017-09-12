@@ -7,7 +7,7 @@ const config = {
   },
   auditTitle: {
     zh: '审核信息',
-    en: ''
+    en: 'Auditing Information'
   },
   labels: [{
     name: '_id',
@@ -44,19 +44,19 @@ const config = {
     name: 'role',
     text: {
       zh: '签字人',
-      en: ''
+      en: 'Auditor'
     }
   }, {
     name: 'name',
     text: {
       zh: '签字人姓名',
-      en: ''
+      en: 'Name'
     }
   }, {
     name: 'date',
     text: {
       zh: '签字时间',
-      en: ''
+      en: 'Date'
     }
   }]
 };
