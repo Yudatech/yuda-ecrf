@@ -3,7 +3,7 @@ mixin _checkboxTemplate(config, disabled)
   - const value = config.value
   - const realId = name + 'Real'
   - const hiddenValue = value === true ? 'true' : 'false'
-  label.checkbox-placeholder(class=(config.hidden === true ? 'hidden' : ''))
+  label.checkbox-placeholder
   .checkbox(id=`${config.name}-container` class=(config.hidden === true ? 'hidden' : ''))
     label
       if disabled !== true

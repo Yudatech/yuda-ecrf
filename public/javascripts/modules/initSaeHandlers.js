@@ -1,8 +1,6 @@
 import setFieldVisibility from './helpers/setFieldVisibility';
 import requireValidator from './validators/requireValidator';
 
-let serializedForm;
-
 function initSaeHandlers() {
   const saecaus_9El = $('#saecaus_9');
   

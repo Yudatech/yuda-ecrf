@@ -146,6 +146,13 @@ const config = {
       zh: '因该事件退出试验（请完整填写《中途退出试验》表)',
       en: 'Withdrawal from the study (Complete Withdrawal from the Study report, please.)'
     }
+  }],
+  errors: [{
+    name: 'error_1',
+    text: {
+      zh: '依据研究方案，SAE必须报告',
+      en: ''
+    }
   }]
 };
 
@@ -157,6 +164,7 @@ module.exports = function(lang) {
   const result = {};
   result.formConfigs = getOptionsLang(config.formConfigs, lang);
   result.subtitles = getOptionsLang(config.subtitles, lang);
+  result.errors = getOptionsLang(config.errors, lang);
   result.title = config.title[lang];
 
   return result;

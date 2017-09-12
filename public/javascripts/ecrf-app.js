@@ -20,6 +20,7 @@ import initHomeHandlers from './modules/initHomeHandlers';
 import initCaseFormHandlers from './modules/initCaseFormHandlers';
 import initScreeningDignoseHandlers from './modules/initScreeningDignoseHandlers';
 import initSearchHandlers from './modules/initSearchHandlers';
+import initAeHandlers from './modules/initAeHandlers';
 
 $('.input-group.date').datepicker({
   endDate: new Date()
@@ -98,6 +99,9 @@ window.onload = function() {
   }
   else if (pathname.startsWith('/sae/')) {
     initSaeHandlers();
+  }
+  else if (pathname.startsWith('/ae/')) {
+    initAeHandlers();
   }
   else if (pathname.startsWith('/screeningchecklist')) {
     initScreeningChecklistHandlers();

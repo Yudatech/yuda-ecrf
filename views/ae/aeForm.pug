@@ -45,16 +45,14 @@ block case-content
         .row
           .col-sm-10
             .form-group
-
-                +_formTemplate(config.formConfigs.aeact)
+              +_formTemplate(config.formConfigs.aeact)
           .col-sm-2
             +_questionBtn(config.formConfigs.aeact, questionFields)
 
         .row
           .col-sm-10
             .form-group
-
-                +_formTemplate(config.formConfigs.aerpt)
+              +_formTemplate(config.formConfigs.aerpt)
           .col-sm-2
             +_questionBtn(config.formConfigs.aerpt, questionFields)
 
@@ -72,11 +70,11 @@ block case-content
           .col-sm-2
             +_questionBtn(config.formConfigs.aeres_1, questionFields)
 
+        - config.formConfigs.aeres_2.hidden = !(config.formConfigs.aeres_1.value === 0)
         .row
           .col-sm-10
             .form-group
-
-                +_formTemplate(config.formConfigs.aeres_2)
+              +_formTemplate(config.formConfigs.aeres_2)
           .col-sm-2
             +_questionBtn(config.formConfigs.aeres_2, questionFields)
 
@@ -92,18 +90,21 @@ block case-content
         .row
           .col-sm-10
             .form-group
-
-                +_formTemplate(config.formConfigs.aedevicedft)
+              +_formTemplate(config.formConfigs.aedevicedft)
           .col-sm-2
             +_questionBtn(config.formConfigs.aedevicedft, questionFields)
 
         .row
           .col-sm-10
             .form-group
-
-                +_formTemplate(config.formConfigs.aediscon)
+              +_formTemplate(config.formConfigs.aediscon)
           .col-sm-2
             +_questionBtn(config.formConfigs.aediscon, questionFields)
+
+      .row.hidden(id="ae-error-1")
+        .col-sm-12
+          .alert.alert-warning(role="alert")
+            span #{config.errors.error_1.text}
 
       if formDisabled === false
         input.btn.btn.btn-default.yuda-input-btn(type="submit" value=buttonConfig.buttons.save.text)
