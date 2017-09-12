@@ -299,7 +299,8 @@ exports.commitCase = async (req, res) => {
       }
       else {
         const obj = {
-          status: 'committed'
+          status: 'committed',
+          commitDate: new Date()
         };
         Case.findByIdAndUpdate(caseId, obj, {new: true}, function(err, caseNew) {
           if (err) {

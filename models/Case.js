@@ -45,16 +45,29 @@ const caseSchema = new Schema({
     type: Date,
     default: Date.now
   },
+  commitDate: {
+    type: Date
+  },
   attachedDoc: String,
   auditBy: [
     {
-      type: mongoose.Schema.ObjectId,
-      ref: 'User'
+      user: {
+        type: mongoose.Schema.ObjectId,
+        ref: 'User'
+      },
+      auditDate: {
+        type: Date
+      }
     }
   ],
   lockBy: {
-    type: mongoose.Schema.ObjectId,
-    ref: 'User'
+    user: {
+      type: mongoose.Schema.ObjectId,
+      ref: 'User'
+    },
+    lockDate: {
+      type: Date
+    }
   },
   status: {
     type: String,
@@ -68,12 +81,15 @@ const caseSchema = new Schema({
 
 caseSchema.method('audit', function(auditorId, cb) {
   const auditBy = this.toObject().auditBy;
-  const match = auditBy.find((item) => item.toString() === auditorId.toString());
+  const match = auditBy.find((item) => item.user.toString() === auditorId.toString());
   if (match !== undefined) {
     cb('You can not audit a case twice!');
   }
   else {
-    auditBy.push(auditorId);
+    auditBy.push({
+      user: auditorId,
+      date: new Date()
+    });
     this.auditBy = auditBy;
     if (auditBy.length === 2) {
       this.status = 'audited';
@@ -88,7 +104,10 @@ caseSchema.method('lock', function(adminId, cb) {
     cb('Case already locked!');
   }
   else {
-    this.lockBy = adminId;
+    this.lockBy = {
+      user: adminId,
+      lockDate: new Date()
+    };
     this.status = 'locked';
     this.save(cb);
   }

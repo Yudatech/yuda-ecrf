@@ -5,6 +5,10 @@ const config = {
     zh: '病例概况',
     en: 'Case overview'
   },
+  auditTitle: {
+    zh: '审核信息',
+    en: ''
+  },
   labels: [{
     name: '_id',
     text: {
@@ -35,6 +39,25 @@ const config = {
       zh: '知情同意书签字页预览',
       en: 'Informed Consent signature page preview'
     }
+  }],
+  auditMessage: [{
+    name: 'role',
+    text: {
+      zh: '签字人',
+      en: ''
+    }
+  }, {
+    name: 'name',
+    text: {
+      zh: '签字人姓名',
+      en: ''
+    }
+  }, {
+    name: 'date',
+    text: {
+      zh: '签字时间',
+      en: ''
+    }
   }]
 };
 
@@ -45,7 +68,9 @@ module.exports = function(lang) {
 
   const result = {};
   result.labels = getOptionsLang(config.labels, lang);
+  result.auditMessage = getOptionsLang(config.auditMessage, lang);
   result.title = config.title[lang];
+  result.auditTitle = config.auditTitle[lang];
 
   return result;
 };

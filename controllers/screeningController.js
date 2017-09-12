@@ -13,6 +13,7 @@ const getScreeningMethodConfig = require('../config/screening/getScreeningMethod
 const getScreeningRegionConfig = require('../config/screening/getScreeningRegionConfig');
 const getScreeningDignoseConfig = require('../config/screening/getScreeningDignoseConfig');
 const getButtonConfig = require('../config/common/getButtonConfig');
+const getReviewUserConfig = require('../config/common/getReviewUserConfig');
 
 const getCaseOverviewConfig = require('../config/getCaseOverviewConfig');
 const getCaseFormConfig = require('../config/getCaseFormConfig');
@@ -22,6 +23,7 @@ const decorationHelper = require('./decorationHelper');
 
 const mongoose = require('mongoose');
 const Case = mongoose.model('Case');
+const User = mongoose.model('User');
 const Screening = mongoose.model('Screening');
 
 const logger = require('../logger');
@@ -39,10 +41,35 @@ exports.caseOverviewForm = async (req, res) => {
     subjAcceptDate: moment(caseObj.subjAcceptDate).format('ll'),
     attachedDoc: caseObj.attachedDoc
   };
+  const auditInfo = [];
+  const auditUserConfig = getReviewUserConfig(req.user.language);
+  if (caseItem.auditBy && caseItem.auditBy.length) {
+    if (caseItem.auditBy[0]) {
+      const userInfo = await User.findById(caseItem.auditBy[0].user);
+      const userRole = auditUserConfig.find((item) => item.value === userInfo.role).text;
+      const auditDate = moment(caseItem.auditBy[0].auditDate).format('ll');
+      auditInfo.push({
+        role: userRole,
+        name: userInfo.username,
+        auditDate: auditDate
+      });
+    }
+    else if (caseItem.auditBy[1]) {
+      const userInfo = await User.findById(caseItem.auditBy[1].user);
+      const userRole = auditUserConfig.find((item) => item.value === userInfo.role).text;
+      const auditDate = moment(caseItem.auditBy[1].auditDate).format('ll');
+      auditInfo.push({
+        role: userRole,
+        name: userInfo.username,
+        auditDate: auditDate
+      });
+    }
+  }
   logger.info(loggerHelper.createLogMessage(req.user, 'show', 'case overview', caseId));
   res.render('case-overview', {
     caseNav: CaseNav,
     caseId,
+    auditInfo,
     caseOverviewConfig: config,
     buttonConfig: getButtonConfig(req.user.language),
     config: getCaseOverviewConfig(req.user.language),
