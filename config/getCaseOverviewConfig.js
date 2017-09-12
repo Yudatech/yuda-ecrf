@@ -58,7 +58,11 @@ const config = {
       zh: '签字时间',
       en: 'Date'
     }
-  }]
+  }],
+  attachmentDesc:{
+    zh: '知情同意书签字页上传后不得修改，请确认上传文件无误。',
+    en: 'The signature page of ICF can not be modified after uploading, please confirm that the document is correctly uploaded.'
+  }
 };
 
 module.exports = function(lang) {
@@ -71,6 +75,7 @@ module.exports = function(lang) {
   result.auditMessage = getOptionsLang(config.auditMessage, lang);
   result.title = config.title[lang];
   result.auditTitle = config.auditTitle[lang];
+  result.attachmentDesc = config.attachmentDesc[lang];
 
   return result;
 };
