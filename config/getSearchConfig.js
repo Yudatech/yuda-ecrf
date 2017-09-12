@@ -71,7 +71,7 @@ const config = {
       name: 'exec',
       text: {
         zh: '执行人',
-        en: ''
+        en: 'Assignee'
       }
     }, {
       name: 'status',
@@ -97,14 +97,14 @@ const config = {
   formConfigs: [{
     name: 'searchinput',
     text: {
-      zh: '搜索条件',
-      en: ''
+      zh: '输入病例号或病人姓名缩写进行搜索',
+      en: 'Input Patient Number or Name Abbreviation'
     }
   }, {
     name: 'cra',
     text: {
       zh: '建档人',
-      en: ''
+      en: 'Created By'
     }
   }, {
     name: 'site',
