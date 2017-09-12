@@ -132,7 +132,9 @@ exports.searchPage = async (req, res) => {
       createDate: moment(item.createDate).format('ll'),
       username: item.user.username,
       statusValue: item.status,
-      status: caseStatusConfig[item.status].text
+      status: caseStatusConfig[item.status].text,
+      siteId: item.user.site._id.toString(),
+      craId: item.user._id.toString()
     };
   });
 

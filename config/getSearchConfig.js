@@ -93,6 +93,50 @@ const config = {
       zh: '确认删除',
       en: 'Confirm to remove'
     }
+  }],
+  formConfigs: [{
+    name: 'searchinput',
+    text: {
+      zh: '搜索条件',
+      en: ''
+    }
+  }, {
+    name: 'cra',
+    text: {
+      zh: '建档人',
+      en: ''
+    }
+  }, {
+    name: 'site',
+    text: {
+      zh: '中心',
+      en: 'Site'
+    }
+  }, {
+    name: 'status',
+    text: {
+      zh: '病例状态',
+      en: 'Case Status'
+    }
+  }],
+  searchResult: [{
+    name: 'foundcase_0',
+    text: {
+      zh: '搜索到 ',
+      en: 'Found'
+    }
+  }, {
+    name: 'foundcase_1',
+    text: {
+      zh: ' 条病例，',
+      en: 'cases, '
+    }
+  }, {
+    name: 'foundquestion',
+    text: {
+      zh: ' 条对应的质疑',
+      en: 'queries.'
+    }
   }]
 };
 
@@ -121,6 +165,8 @@ module.exports = function(lang) {
     })
   };
   result.removeConfirm = getOptionsLang(config.removeConfirm, lang);
+  result.formConfigs = getOptionsLang(config.formConfigs, lang);
+  result.searchResult = getOptionsLang(config.searchResult, lang);
 
   return result;
 };

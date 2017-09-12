@@ -3,6 +3,46 @@ extends layout
 block content
   .inner.container
     .row
+      .panel.panel-default
+        .row
+          .form-group(id=`${searchConfig.formConfigs.searchinput.name}-container`)
+            label.control-label #{searchConfig.formConfigs.searchinput.text}
+            input.form-control(type="text" id=searchConfig.formConfigs.searchinput.name)
+        .row
+          .col-sm-4
+            .form-group(id=`${searchConfig.formConfigs.cra.name}-container`)
+              label.control-label #{searchConfig.formConfigs.cra.text}
+              select.form-control(id=searchConfig.formConfigs.cra.name)
+                option(value='') -
+                each craItem in craList
+                  option(value=craItem.id) #{craItem.text}
+
+          .col-sm-4
+            .form-group(id=`${searchConfig.formConfigs.site.name}-container`)
+              label.control-label #{searchConfig.formConfigs.site.text}
+              select.form-control(id=searchConfig.formConfigs.site.name)
+                option(value='') -
+                each siteItem in siteList
+                  option(value=siteItem.id) #{siteItem.text}
+
+          .col-sm-4
+            .form-group(id=`${searchConfig.formConfigs.status.name}-container`)
+              label.control-label #{searchConfig.formConfigs.status.text}
+              select.form-control(id=searchConfig.formConfigs.status.name)
+                option(value='') -
+                each caseStatusItem in caseStatusList
+                  option(value=caseStatusItem.value) #{caseStatusItem.text}
+
+        .row
+          button.btn.btn-primary(type="button" onclick="searchBtnClickHandler()") #{buttonConfig.buttons.search.text}
+    .row
+      span #{searchConfig.searchResult.foundcase_0.text}
+      span(id='found-case-number')
+      span #{searchConfig.searchResult.foundcase_1.text}
+      span(id='found-question-number')
+      span #{searchConfig.searchResult.foundquestion.text}
+
+    .row
       .col-sm-7.yuda-dashboard-panel
         .panel.panel-default
           .panel-heading
@@ -14,6 +54,11 @@ block content
               tr
                 each casesHeader in searchConfig.cases.headers
                   th #{casesHeader.text}
+                
+                th siteId
+                th searchinput
+                th craId
+                th statusValue
             tbody
               each caseItem in cases
                 tr
@@ -29,6 +74,11 @@ block content
                             if user.role === 'admin'
                               a.btn.btn-default(role="button" data-toggle="modal" data-target="#deleteConfirmModal" data-removetype="case" data-removeid=caseItem._id)
                                 span.glyphicon.glyphicon-trash
+                  td #{caseItem.siteId}
+                  td #{`${caseItem._id}${caseItem.subjabbr}`}
+                  td #{caseItem.craId}
+                  td #{caseItem.statusValue}
+
           .panel-footer
 
       .col-sm-5.yuda-dashboard-panel
