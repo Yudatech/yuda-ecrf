@@ -151,7 +151,7 @@ const config = {
     name: 'error_1',
     text: {
       zh: '依据研究方案，SAE必须报告',
-      en: ''
+      en: 'According to Study Protocol, SAE must be reported separately in SAE section.'
     }
   }]
 };
