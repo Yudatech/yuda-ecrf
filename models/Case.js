@@ -88,7 +88,7 @@ caseSchema.method('audit', function(auditorId, cb) {
   else {
     auditBy.push({
       user: auditorId,
-      date: new Date()
+      auditDate: new Date()
     });
     this.auditBy = auditBy;
     if (auditBy.length === 2) {

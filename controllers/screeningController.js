@@ -54,7 +54,7 @@ exports.caseOverviewForm = async (req, res) => {
         auditDate: auditDate
       });
     }
-    else if (caseItem.auditBy[1]) {
+    if (caseItem.auditBy[1]) {
       const userInfo = await User.findById(caseItem.auditBy[1].user);
       const userRole = auditUserConfig.find((item) => item.value === userInfo.role).text;
       const auditDate = moment(caseItem.auditBy[1].auditDate).format('ll');
