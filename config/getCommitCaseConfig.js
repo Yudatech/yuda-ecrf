@@ -35,6 +35,13 @@ const config = {
     en: 'Password'
   },
   records: [{
+    name: 'overview',
+    text: {
+      zh: '病例概况',
+      en: 'Case overview'
+    },
+    linkBase: '/overview'
+  }, {
     name: 'screening',
     total: 103,
     text: {
@@ -182,6 +189,12 @@ const config = {
     text: {
       zh: '请确认有且仅有一条短期植入吻合环排出记录',
       en: 'Please confirm there is only one evacuation of the short-term implant record.'
+    }
+  }, {
+    name: 'error_2',
+    text: {
+      zh: '知情同意书签字页未上传',
+      en: 'Please confirm Uploaded Informed Consent signature page.'
     }
   }]
 };

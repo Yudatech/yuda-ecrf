@@ -338,6 +338,7 @@ exports.showCaseCommitForm = async (req, res) => {
   const CaseNav = helpers.appendCaseIdToCaseNav(caseId, req.user.language);
   const commitCaseConfig = getCommitCaseConfig();
   const result = [];
+  result.push(await commitHelpers.validateCaseOverview(caseId, req.user.language));
   result.push(await commitHelpers.validateScreeningForm(caseId, req.user.language));
   result.push(await commitHelpers.validateScreeningChecklistForm(caseId, req.user.language));
   result.push(await commitHelpers.validateReviewChecklistForm(caseId, req.user.language));

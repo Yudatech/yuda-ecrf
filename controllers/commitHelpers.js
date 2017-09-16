@@ -269,6 +269,29 @@ function getCommitCaseConfigItem(configs, name) {
   });
 }
 
+exports.validateCaseOverview = async function(caseId, lang) {
+  const commitCaseConfig = getCommitCaseConfig(lang);
+  const caseItem = await Case.findById(caseId);
+  const caseOverviewValidateResult = initValidateResult(getCommitCaseConfigItem(commitCaseConfig.records, 'overview'));
+
+  if (!caseItem.attachedDoc) {
+    caseOverviewValidateResult.pass = false;
+    caseOverviewValidateResult.link = `${caseOverviewValidateResult.linkBase}/${caseId}`;
+    caseOverviewValidateResult.message = caseOverviewValidateResult.text;
+    caseOverviewValidateResult.resultText = commitCaseConfig.ongoing;
+    caseOverviewValidateResult.resultType = 'ongoig';
+    caseOverviewValidateResult.errors = [commitCaseConfig.errorMessages.error_2.text];
+  }
+  else {
+    caseOverviewValidateResult.pass = false;
+    caseOverviewValidateResult.message = caseOverviewValidateResult.text;
+    caseOverviewValidateResult.resultText = commitCaseConfig.finish;
+    caseOverviewValidateResult.resultType = 'finish';
+  }
+
+  return caseOverviewValidateResult;
+};
+
 exports.validateScreeningForm = async function(caseId, lang) {
   const commitCaseConfig = getCommitCaseConfig(lang);
   const screeningItem = await Screening.findOne({
