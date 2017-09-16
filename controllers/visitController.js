@@ -35,7 +35,7 @@ exports.visitTable = async (req, res) => {
   const surgery = await Surgery.findOne({
     case: req.params.caseId
   });
-  const surgerydtc = surgery.surgerydtc;
+  const surgerydtc = (surgery && surgery.surgerydtc) ? surgery.surgerydtc : new Date();
 
   const visitList = await getVisitListByCaseId(req.params.caseId);
   const visitListFormated = visitList.map((item) => {
