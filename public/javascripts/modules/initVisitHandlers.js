@@ -33,6 +33,22 @@ function initVisitHandlers() {
 
   setErrorElementVisibility();
 
+  // “短期植入环”排出方式为单选,自然排出 或者人工排出
+  $('#param_20').change(function(){
+    if ($('#param_20').is(':checked') && $('#param_21').is(':checked')) {
+      $('#param_21').prop('checked', false);
+      $('#param_21Real').val(false);
+    }
+  });
+  $('#param_21').change(function(){
+    if ($('#param_20').is(':checked') && $('#param_21').is(':checked')) {
+      $('#param_20').prop('checked', false);
+      $('#param_20Real').val(false);
+    }
+  });
+
+
+
   $('#visit-form').validator({
     delay: 100,
     disable: false,
