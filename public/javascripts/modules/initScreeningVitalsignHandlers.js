@@ -7,15 +7,15 @@ function initScreeningVitalsignHandlers() {
   });
   $('#screening-vitalsign-form').validator('validate');
 
-  // 抗生素
+  // 神清
   $('#vitalsign_1').change(function(){
     setErrorElementVisibility();
-    setWarningStyle('vitalsign_1');
+    setWarningStyle('vitalsign_1', true);
     setVitalsign9Required();
   });
-  setWarningStyle('vitalsign_1');
+  setWarningStyle('vitalsign_1', true);
 
-  // 抗凝血剂
+  // 心脏杂音
   $('#vitalsign_2').change(function(){
     setErrorElementVisibility();
     setWarningStyle('vitalsign_2');
@@ -24,6 +24,7 @@ function initScreeningVitalsignHandlers() {
   setWarningStyle('vitalsign_2');
 
   setVitalsign9Required();
+  setErrorElementVisibility();
 }
 
 function setVitalsign9Required() {
@@ -46,7 +47,7 @@ function setErrorElementVisibility() {
   const errorEl = $('#screen-vitalsign-error');
   const vitalsign_1Value = $('#vitalsign_1').is(':checked');
   const vitalsign_2Value = $('#vitalsign_2').is(':checked');
-  if (vitalsign_1Value || vitalsign_2Value) {
+  if (!vitalsign_1Value || vitalsign_2Value) {
     errorEl.removeClass('hidden');
   }
   else {
