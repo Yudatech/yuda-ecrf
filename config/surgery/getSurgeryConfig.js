@@ -6,7 +6,7 @@ const config = {
     en: 'Operation'
   },
 
-  subtitles:[
+  subtitles: [
     {
       name: 'subtitle_1',
       text: {

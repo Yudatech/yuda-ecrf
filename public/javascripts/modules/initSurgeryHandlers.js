@@ -10,6 +10,8 @@ function initSurgeryHandlers() {
   setWarningStyle('surgery_14');
   setErrorElementVisibility();
 
+  setSurgeryDateRange();
+
   $('#surgery-form').validator({
     delay: 100,
     disable: false,
@@ -30,6 +32,12 @@ function setErrorElementVisibility() {
   else {
     error1El.addClass('hidden');
   }
+}
+
+function setSurgeryDateRange() {
+  const subjAcceptDate = $('#surgerydtc').data('extra').subjAcceptDate
+  $('#surgerydtc').datepicker('setStartDate', subjAcceptDate);
+  $('#surgerydtc').datepicker('setEndDate', new Date());
 }
 
 export default initSurgeryHandlers;

@@ -3,6 +3,7 @@ moment.locale('zh-cn');
 
 const mongoose = require('mongoose');
 const Surgery = mongoose.model('Surgery');
+const Case = mongoose.model('Case');
 
 const helpers = require('./helpers');
 const decorationHelper = require('./decorationHelper');
@@ -53,12 +54,15 @@ exports.surgeryForm = async (req, res) => {
   const CaseNav = helpers.appendCaseIdToCaseNav(req.params.caseId, req.user.language);
   const surgeryItem = await getSurgeryItemByCaseId(req.params.caseId);
   const config = getSurgeryConfig(req.user.language);
+  const caseItem = await Case.findById(req.params.caseId);
   Object.keys(config.formConfigs).forEach((key) => {
     if (config.formConfigs[key].type === 'select') {
       config.formConfigs[key].options = decorationHelper[config.formConfigs[key].optionsGetter](req.user.language);
     }
     if (key === 'surgerydtc') {
       config.formConfigs[key].value = moment(surgeryItem.surgerydtc).format('MM/DD/YYYY');
+      const subjAcceptDate = moment(caseItem.subjAcceptDate).format('MM/DD/YYYY');
+      config.formConfigs[key].extra = JSON.stringify({subjAcceptDate: subjAcceptDate});
     }
     else {
       config.formConfigs[key].value = surgeryItem[key];
