@@ -82,10 +82,10 @@ exports.cmForm = async (req, res) => {
       config.formConfigs[key].options = decorationHelper[config.formConfigs[key].optionsGetter](req.user.language);
     }
     if (key === 'cmstdtc') {
-      config.formConfigs[key].value = moment(cm.cmstdtc).format('MM/DD/YYYY');
+      config.formConfigs[key].value = cm.cmstdtc ? moment(cm.cmstdtc).format('MM/DD/YYYY') : '';
     }
     else if (key === 'cmeddtc') {
-      config.formConfigs[key].value = moment(cm.cmeddtc).format('MM/DD/YYYY');
+      config.formConfigs[key].value = cm.cmeddtc ? moment(cm.cmeddtc).format('MM/DD/YYYY') : '';
     }
     else if (key === 'source') {
       config.formConfigs[key].options = cmSourceConfig;
@@ -125,6 +125,12 @@ exports.createCm = async (req, res) => {
     }
   });
   req.body.case = caseId;
+  if (req.body.cmstdtc === '') {
+    delete req.body.cmstdtc;
+  }
+  if (req.body.cmeddtc === '') {
+    delete req.body.cmeddtc;
+  }
   await (new Cm(req.body)).save();
   logger.info(loggerHelper.createLogMessage(req.user, 'create', 'cm', caseId), req.body);
   res.redirect(`/cmlist/${caseId}`);
@@ -142,6 +148,12 @@ exports.updateCm = async (req, res) => {
     }
   });
   req.body.case = caseId;
+  if (req.body.cmstdtc === '') {
+    delete req.body.cmstdtc;
+  }
+  if (req.body.cmeddtc === '') {
+    delete req.body.cmeddtc;
+  }
   const cmId = req.params.cmId;
   await Cm.findByIdAndUpdate(cmId, req.body);
   logger.info(loggerHelper.createLogMessage(req.user, 'update', 'cm', caseId), req.body);

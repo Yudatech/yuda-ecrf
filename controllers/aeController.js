@@ -81,10 +81,6 @@ exports.aeForm = async (req, res) => {
   if (aeId !== undefined) {
     const aeItem = await Ae.findById(aeId);
     ae = aeItem.toObject();
-    ae.aestdtc_date = moment(aeItem.aestdtc).format('MM/DD/YYYY');
-    ae.aestdtc_time = moment(aeItem.aestdtc).format('HH:mm');
-    ae.aeeddtc_date = moment(aeItem.aeeddtc).format('MM/DD/YYYY');
-    ae.aeeddtc_time = moment(aeItem.aeeddtc).format('HH:mm');
   }
   else {
     ae = {
@@ -101,21 +97,21 @@ exports.aeForm = async (req, res) => {
     if (key === 'aestdtc') {
       config.formConfigs[key].date = {
         name: 'aestdtc_date',
-        value: moment(ae.aestdtc).format('MM/DD/YYYY')
+        value: ae.aestdtc ? moment(ae.aestdtc).format('MM/DD/YYYY') : ''
       };
       config.formConfigs[key].time = {
         name: 'aestdtc_time',
-        value: moment(ae.aestdtc).format('HH:mm')
+        value: ae.aestdtc ? moment(ae.aestdtc).format('HH:mm') : ''
       };
     }
     else if (key === 'aeeddtc') {
       config.formConfigs[key].date = {
         name: 'aeeddtc_date',
-        value: moment(ae.aeeddtc).format('MM/DD/YYYY')
+        value: ae.aeeddtc ? moment(ae.aeeddtc).format('MM/DD/YYYY') : ''
       };
       config.formConfigs[key].time = {
         name: 'aeeddtc_time',
-        value: moment(ae.aeeddtc).format('HH:mm')
+        value: ae.aeeddtc ? moment(ae.aeeddtc).format('HH:mm') : ''
       };
     }
     else if (key === 'aeorigion') {
@@ -156,8 +152,12 @@ exports.createAe = async (req, res) => {
     }
   });
   req.body.case = caseId;
-  req.body.aestdtc = `${req.body.aestdtc_date} ${req.body.aestdtc_time}`;
-  req.body.aeeddtc = `${req.body.aeeddtc_date} ${req.body.aeeddtc_time}`;
+  if (req.body.aestdtc_date !== '' && req.body.aestdtc_time !== '') {
+    req.body.aestdtc = `${req.body.aestdtc_date} ${req.body.aestdtc_time}`;
+  }
+  if (req.body.aeeddtc_date !== '' && req.body.aeeddtc_time !== '') {
+    req.body.aeeddtc = `${req.body.aeeddtc_date} ${req.body.aeeddtc_time}`;
+  }
   await (new Ae(req.body)).save();
   logger.info(loggerHelper.createLogMessage(req.user, 'create', 'ae', caseId), req.body);
   res.redirect(`/aelist/${caseId}`);

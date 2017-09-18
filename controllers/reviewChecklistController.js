@@ -58,7 +58,7 @@ exports.reviewChecklistForm = async (req, res) => {
       config.formConfigs[key].value = false;
     }
     else if (config.formConfigs[key].type === 'date') {
-      config.formConfigs[key].value = moment(reviewChecklistItem[key]).format('MM/DD/YYYY');
+      config.formConfigs[key].value = reviewChecklistItem[key] ? moment(reviewChecklistItem[key]).format('MM/DD/YYYY') : '';
     }
   });
   logger.info(loggerHelper.createLogMessage(req.user, 'show', 'reviewchecklist', req.params.caseId));
@@ -81,6 +81,9 @@ exports.updateReviewChecklist = async (req, res) => {
       }
     }
   });
+  if (req.body.reviewcheckdate === '') {
+    delete req.body.reviewcheckdate;
+  }
   await createOrUpdateReviewChecklist(caseId, req.body);
   logger.info(loggerHelper.createLogMessage(req.user, 'update', 'reviewchecklist', caseId), req.body);
   res.redirect(`/reviewchecklist/${caseId}`);

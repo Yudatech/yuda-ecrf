@@ -24,13 +24,11 @@ const cmSchema = new Schema({
   dosemtd_2: String,
   // 开始日期
   cmstdtc: {
-    type: Date,
-    default: Date.now
+    type: Date
   },
   // 结束日期
   cmeddtc: {
-    type: Date,
-    default: Date.now
+    type: Date
   },
   // 用药原因/目的
   cmrsn: String

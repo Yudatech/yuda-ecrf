@@ -14,8 +14,7 @@ const surgerySchema = new Schema({
    */
   // 手术日期
   surgerydtc: {
-    type: Date,
-    default: Date.now
+    type: Date
   },
   // C-REX LapAid型号
   device_1: Number,

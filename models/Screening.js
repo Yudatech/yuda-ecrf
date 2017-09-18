@@ -13,8 +13,7 @@ const screeningSchema = new Schema({
    * SCREENING
    */
   screeningdate: {
-    type: Date,
-    default: Date.now
+    type: Date
   },
   // 性别
   sex: Number,

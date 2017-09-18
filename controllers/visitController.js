@@ -92,7 +92,7 @@ exports.visitForm = async (req, res) => {
       config.formConfigs[key].options = decorationHelper[config.formConfigs[key].optionsGetter](req.user.language);
     }
     if (key === 'visitdtc') {
-      config.formConfigs[key].value = moment(visit.visitdtc).format('MM/DD/YYYY');
+      config.formConfigs[key].value = visit.visitdtc ? moment(visit.visitdtc).format('MM/DD/YYYY') : '';
     }
     else {
       config.formConfigs[key].value = visit[key];
@@ -128,6 +128,9 @@ exports.createVisit = async (req, res) => {
     }
   });
   req.body.case = caseId;
+  if (req.body.visitdtc === '') {
+    delete req.body.visitdtc;
+  }
   await (new Visit(req.body)).save();
   logger.info(loggerHelper.createLogMessage(req.user, 'create', 'visit', req.params.caseId), req.body);
   res.redirect(`/visitlist/${caseId}`);
@@ -145,6 +148,9 @@ exports.updateVisit = async (req, res) => {
     }
   });
   req.body.case = caseId;
+  if (req.body.visitdtc === '') {
+    delete req.body.visitdtc;
+  }
   const visitId = req.params.visitId;
   await Visit.findByIdAndUpdate(visitId, req.body);
   logger.info(loggerHelper.createLogMessage(req.user, 'update', 'visit', req.params.caseId), req.body);

@@ -58,7 +58,7 @@ exports.screeningChecklistForm = async (req, res) => {
       config.formConfigs[key].value = false;
     }
     else if (config.formConfigs[key].type === 'date') {
-      config.formConfigs[key].value = moment(screeningChecklistItem[key]).format('MM/DD/YYYY');
+      config.formConfigs[key].value = screeningChecklistItem[key] ? moment(screeningChecklistItem[key]).format('MM/DD/YYYY') : '';
     }
   });
   logger.info(loggerHelper.createLogMessage(req.user, 'show', 'screeningchecklist', req.params.caseId));
@@ -81,6 +81,9 @@ exports.updateScreeningChecklist = async (req, res) => {
       }
     }
   });
+  if (req.body.screeningcheckdate === '') {
+    delete req.body.screeningcheckdate;
+  }
   await createOrUpdateScreeningChecklist(caseId, req.body);
   logger.info(loggerHelper.createLogMessage(req.user, 'update', 'screeningchecklist', req.params.caseId), req.body);
   res.redirect(`/screeningchecklist/${caseId}`);

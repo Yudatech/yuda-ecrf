@@ -16,8 +16,7 @@ const discontinuationSchema = new Schema({
   discontinuetype: Number,
   // 退出时间
   discontinuedt: {
-    type: Date,
-    default: Date.now
+    type: Date
   },
   // 进行试验相关手术前，受试者希望退出试验
   discontinuersn_1: Boolean,

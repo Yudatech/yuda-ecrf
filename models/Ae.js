@@ -18,13 +18,11 @@ const aeSchema = new Schema({
   event: String,
   // 发生时间
   aestdtc: {
-    type: Date,
-    default: Date.now
+    type: Date
   },
   // 结束时间
   aeeddtc: {
-    type: Date,
-    default: Date.now
+    type: Date
   },
   // 严重程度
   aeserv: Number,

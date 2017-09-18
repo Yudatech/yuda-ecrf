@@ -60,7 +60,7 @@ exports.surgeryForm = async (req, res) => {
       config.formConfigs[key].options = decorationHelper[config.formConfigs[key].optionsGetter](req.user.language);
     }
     if (key === 'surgerydtc') {
-      config.formConfigs[key].value = moment(surgeryItem.surgerydtc).format('MM/DD/YYYY');
+      config.formConfigs[key].value = surgeryItem.surgerydtc ? moment(surgeryItem.surgerydtc).format('MM/DD/YYYY') : '';
       const subjAcceptDate = moment(caseItem.subjAcceptDate).format('MM/DD/YYYY');
       config.formConfigs[key].extra = JSON.stringify({subjAcceptDate: subjAcceptDate});
     }
@@ -93,6 +93,9 @@ exports.updateSurgery = async (req, res) => {
       }
     }
   });
+  if (req.body.surgerydtc === '') {
+    delete req.body.surgerydtc;
+  }
   await createOrUpdateSurgery(caseId, req.body);
   logger.info(loggerHelper.createLogMessage(req.user, 'update', 'surgery', caseId), req.body);
   res.redirect(`/surgery/${caseId}`);

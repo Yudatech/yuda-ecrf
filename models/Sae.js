@@ -18,8 +18,7 @@ const saeSchema = new Schema({
   saetpe: Number,
   // 报告时间
   saedtc: {
-    type: Date,
-    default: Date.now
+    type: Date
   },
   // SAE的医学术语(诊断)
   saeterm: String,
@@ -29,8 +28,7 @@ const saeSchema = new Schema({
   saecaus_1: Boolean,
   // SAE情况 死亡时间
   saecaus_2: {
-    type: Date,
-    default: Date.now
+    type: Date
   },
   // SAE情况 - 导致住院
   saecaus_3: Boolean,
@@ -50,13 +48,11 @@ const saeSchema = new Schema({
   saecaus_10: String,
   // SAE发生时间
   saestdtc: {
-    type: Date,
-    default: Date.now
+    type: Date
   },
   // 研究者获知SAE时间
   saenoticedtc: {
-    type: Date,
-    default: Date.now
+    type: Date
   },
   // 对受试器械采取的措施
   saeact: Number,

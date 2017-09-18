@@ -13,8 +13,7 @@ const screeningChecklistSchema = new Schema({
    * SCREENING_CHECKLIST
    */
   screeningcheckdate: {
-    type: Date,
-    default: Date.now
+    type: Date
   },
   // 根据标准入选/排除，在病例报告表中登记
   screeningcheck_1: Boolean,

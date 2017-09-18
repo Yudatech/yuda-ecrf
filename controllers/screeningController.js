@@ -127,7 +127,7 @@ exports.caseBasicForm = async (req, res) => {
     config.formConfigs[key].questionLink = helpers.getQuestionLink(tableName, 'screening-basic', req.params.caseId, config.formConfigs[key]);
 
     if (key === 'screeningdate') {
-      config.formConfigs[key].value = moment(screeningItem[key]).format('MM/DD/YYYY');
+      config.formConfigs[key].value = screeningItem[key] ? moment(screeningItem[key]).format('MM/DD/YYYY') : '';
       const startDateStr = moment(caseItem.subjAcceptDate).format('MM/DD/YYYY');
       config.formConfigs[key].extra = JSON.stringify({
         start: startDateStr
@@ -154,6 +154,9 @@ exports.updateCaseBasic = async (req, res) => {
       }
     }
   });
+  if (req.body.screeningdate === '') {
+    delete req.body.screeningdate;
+  }
   await createOrUpdateScreening(caseId, req.body);
   logger.info(loggerHelper.createLogMessage(req.user, 'update', 'screening-basic', req.params.caseId), req.body);
   res.redirect(`/screening-basic/${caseId}`);

@@ -86,31 +86,31 @@ exports.saeForm = async (req, res) => {
     else if (key === 'saestdtc') {
       config.formConfigs[key].date = {
         name: 'saestdtc_date',
-        value: moment(sae.saestdtc).format('MM/DD/YYYY')
+        value: sae.saestdtc ? moment(sae.saestdtc).format('MM/DD/YYYY') : ''
       };
       config.formConfigs[key].time = {
         name: 'saestdtc_time',
-        value: moment(sae.saestdtc).format('HH:mm')
+        value: sae.saestdtc ? moment(sae.saestdtc).format('HH:mm') : ''
       };
     }
     else if (key === 'saenoticedtc') {
       config.formConfigs[key].date = {
         name: 'saenoticedtc_date',
-        value: moment(sae.saenoticedtc).format('MM/DD/YYYY')
+        value: sae.saenoticedtc ? moment(sae.saenoticedtc).format('MM/DD/YYYY') : ''
       };
       config.formConfigs[key].time = {
         name: 'saenoticedtc_time',
-        value: moment(sae.saenoticedtc).format('HH:mm')
+        value: sae.saenoticedtc ? moment(sae.saenoticedtc).format('HH:mm') : ''
       };
     }
     else if (key === 'saedtc') {
       config.formConfigs[key].date = {
         name: 'saedtc_date',
-        value: moment(sae.saedtc).format('MM/DD/YYYY')
+        value: sae.saedtc ? moment(sae.saedtc).format('MM/DD/YYYY') : ''
       };
       config.formConfigs[key].time = {
         name: 'saedtc_time',
-        value: moment(sae.saedtc).format('HH:mm')
+        value: sae.saedtc ? moment(sae.saedtc).format('HH:mm') : ''
       };
     }
     else if (key === 'saeorigion') {
@@ -152,9 +152,18 @@ exports.createSae = async (req, res) => {
     }
   });
   req.body.case = caseId;
-  req.body.saestdtc = `${req.body.saestdtc_date} ${req.body.saestdtc_time}`;
-  req.body.saenoticedtc = `${req.body.saenoticedtc_date} ${req.body.saenoticedtc_time}`;
-  req.body.saedtc = `${req.body.saedtc_date} ${req.body.saedtc_time}`;
+  if (req.body.saestdtc_date && req.body.saestdtc_time) {
+    req.body.saestdtc = `${req.body.saestdtc_date} ${req.body.saestdtc_time}`;
+  }
+  if (req.body.saenoticedtc_date && req.body.saenoticedtc_time) {
+    req.body.saenoticedtc = `${req.body.saenoticedtc_date} ${req.body.saenoticedtc_time}`;
+  }
+  if (req.body.saedtc_date && req.body.saedtc_time) {
+    req.body.saedtc = `${req.body.saedtc_date} ${req.body.saedtc_time}`;
+  }
+  if (req.body.saecaus_2 === '') {
+    delete req.body.saecaus_2;
+  }
   await (new Sae(req.body)).save();
   logger.info(loggerHelper.createLogMessage(req.user, 'create', 'sae', req.params.caseId), req.body);
   res.redirect(`/saelist/${caseId}`);
@@ -164,9 +173,18 @@ exports.updateSae = async (req, res) => {
   const caseId = req.params.caseId;
   req.body.case = caseId;
   const saeId = req.params.saeId;
-  req.body.saestdtc = `${req.body.saestdtc_date} ${req.body.saestdtc_time}`;
-  req.body.saenoticedtc = `${req.body.saenoticedtc_date} ${req.body.saenoticedtc_time}`;
-  req.body.saedtc = `${req.body.saedtc_date} ${req.body.saedtc_time}`;
+  if (req.body.saestdtc_date && req.body.saestdtc_time) {
+    req.body.saestdtc = `${req.body.saestdtc_date} ${req.body.saestdtc_time}`;
+  }
+  if (req.body.saenoticedtc_date && req.body.saenoticedtc_time) {
+    req.body.saenoticedtc = `${req.body.saenoticedtc_date} ${req.body.saenoticedtc_time}`;
+  }
+  if (req.body.saedtc_date && req.body.saedtc_time) {
+    req.body.saedtc = `${req.body.saedtc_date} ${req.body.saedtc_time}`;
+  }
+  if (req.body.saecaus_2 === '') {
+    delete req.body.saecaus_2;
+  }
   await Sae.findByIdAndUpdate(saeId, req.body);
   logger.info(loggerHelper.createLogMessage(req.user, 'update', 'sae', req.params.caseId), req.body);
   res.redirect(`/saelist/${caseId}`);
