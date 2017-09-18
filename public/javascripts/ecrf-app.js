@@ -21,6 +21,8 @@ import initCaseFormHandlers from './modules/initCaseFormHandlers';
 import initScreeningDignoseHandlers from './modules/initScreeningDignoseHandlers';
 import initSearchHandlers from './modules/initSearchHandlers';
 import initAeHandlers from './modules/initAeHandlers';
+import initSitesHandlers from './modules/initSitesHandlers';
+import initUsersHandlers from './modules/initUsersHandlers';
 
 $('.input-group.date').datepicker({
   endDate: new Date()
@@ -123,5 +125,11 @@ window.onload = function() {
   }
   else if (pathname.startsWith('/screening-lab')) {
     initScreeningLabHandlers();
+  }
+  else if (pathname.startsWith('/sites')) {
+    initSitesHandlers();
+  }
+  else if (pathname.startsWith('/users')) {
+    initUsersHandlers();
   }
 }

@@ -42,6 +42,13 @@ const config = {
       zh: '新建临床中心',
       en: 'Create a new site'
     }
+  }],
+  removeConfirm: [{
+    name: 'message',
+    text: {
+      zh: '确认删除',
+      en: 'Confirm to remove'
+    }
   }]
 };
 
@@ -59,6 +66,7 @@ module.exports = function(lang) {
   });
   result.title = config.title[lang];
   result.buttons = getOptionsLang(config.buttons, lang);
+  result.removeConfirm = getOptionsLang(config.removeConfirm, lang);
 
   return result;
 };
