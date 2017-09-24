@@ -46,13 +46,13 @@ const config = {
     headers: [{
       name: '_id',
       text: {
-        zh: '病人号',
+        zh: '受试者识别号',
         en: 'Subject ID'
       }
     }, {
       name: 'subjabbr',
       text: {
-        zh: '病人姓名缩写',
+        zh: '缩写',
         en: 'Subject abbreviation'
       }
     }, {
@@ -89,7 +89,7 @@ const config = {
     headers: [{
       name: '_id',
       text: {
-        zh: '病人号',
+        zh: '受试者识别号',
         en: 'Subject ID'
       }
     }, {

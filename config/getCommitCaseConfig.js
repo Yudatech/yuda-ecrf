@@ -8,7 +8,7 @@ const config = {
   subtitles: [{
     name: 'subtitle_1',
     text: {
-      zh: '提交检验结果',
+      zh: '提交受试者数据',
       en: 'Commitment Checksum'
     }
   }, {

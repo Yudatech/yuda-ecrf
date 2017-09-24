@@ -1,14 +1,14 @@
 const role = [{
   value: 'cra',
   text: {
-    zh: 'CRA',
-    en: 'CRA'
+    zh: 'Investigator',
+    en: 'Investigator'
   }
 }, {
   value: 'supervisor',
   text: {
-    zh: 'Supervisor',
-    en: 'Supervisor'
+    zh: 'Principal Investigator',
+    en: 'Principal Investigator'
   }
 }, {
   value: 'monitor',
