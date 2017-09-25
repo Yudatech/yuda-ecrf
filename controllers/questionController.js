@@ -151,17 +151,19 @@ exports.updateQuestion = async (req, res) => {
     status: req.body.question_status
   });
 
-  const historyConfig = {
-    question: questionId,
-    case: caseId,
-    user: req.user._id,
-    content: {
-      value: req.body[field]
-    },
-    comment: req.sanitizeBody('new_comment').escape(),
-    status: req.body.question_status
-  };
-  await (new History(historyConfig)).save();
+  if (req.body.new_comment !== '') {
+    const historyConfig = {
+      question: questionId,
+      case: caseId,
+      user: req.user._id,
+      content: {
+        value: req.body[field]
+      },
+      comment: req.sanitizeBody('new_comment').escape(),
+      status: req.body.question_status
+    };
+    await (new History(historyConfig)).save();
+  }
 
   const source = req.body.source;
   if (source === 'create') {
