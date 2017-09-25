@@ -1,3 +1,6 @@
+import requireValidator from './validators/requireValidator';
+import setFieldVisibility from './helpers/setFieldVisibility';
+
 function initCMHandlers() {
   $('#cmstdtc').datepicker().on('changeDate', function(e){
     setEndDateRange(e);
@@ -7,14 +10,16 @@ function initCMHandlers() {
   });
   $('#cmstdtc').datepicker('setEndDate', new Date());
 
-  // $('#cmstdtc>input').attr('data-customvalidator', true);
-  // $('#cmeddtc>input').attr('data-customvalidator', true);
+  $('#dosemtd_1').change(function(){
+    setDosemtd2Visibility();
+  });
 
 
   $('#cm-form').validator({
     delay: 100,
     disable: false,
     custom: {
+      customrequired: requireValidator,
       customvalidator: function($el){
         const elementId = $el.parent().attr('id');
         const realStartElementId = '#cmstdtcReal';
@@ -30,6 +35,16 @@ function initCMHandlers() {
     }
   });
   $('#cm-form').validator('validate');
+}
+
+function setDosemtd2Visibility() {
+  const value = $('#dosemtd_1').val();
+  if (value === '4') {
+    setFieldVisibility('dosemtd_2', true);
+  }
+  else {
+    setFieldVisibility('dosemtd_2', false);
+  }
 }
 
 function setStartDateRange(e) {

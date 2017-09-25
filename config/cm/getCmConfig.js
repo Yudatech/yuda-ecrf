@@ -37,6 +37,7 @@ const config = {
   }, {
     name: 'dosemtd_2',
     type: 'textfield',
+    required: true,
     text: {
       zh: '其他，请注明',
       en: 'Other, please specify:'

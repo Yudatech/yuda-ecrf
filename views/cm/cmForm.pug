@@ -34,6 +34,7 @@ block case-content
           .col-sm-2
             +_questionBtn(config.formConfigs.dosemtd_1, questionFields)
 
+        - config.formConfigs.dosemtd_2.hidden = (config.formConfigs.dosemtd_1.value !== '4')
         .row
           .col-sm-10
             +_formTemplate(config.formConfigs.dosemtd_2)
