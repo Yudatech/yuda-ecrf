@@ -80,11 +80,17 @@ exports.checkCaseStatus = async (req, res, next) => {
 exports.checkQuestionStatus = async (req, res, next) => {
   const questionId = req.params.questionId;
   const questionItem = await Question.findById(questionId);
-  if (questionItem.status === 2) {
+  const method = req.method.toLowerCase();
+  if (method === 'post' && questionItem.status === 2) {
     req.flash('error', `Question is completed, you can not modify it.`);
     res.redirect('back');
   }
   else {
+    if (method === 'get') {
+      const caseId = questionItem.case;
+      const caseItem = await Case.findById(caseId);
+      res.locals.case = caseItem;
+    }
     next();
   }
 };

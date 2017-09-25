@@ -552,6 +552,7 @@ router.get('/remove/site/:id',
  */
 router.get('/new/question',
   authController.isLoggedIn,
+  catchErrors(authController.checkQuestionStatus),
   catchErrors(questionController.startQuestion)
 );
 router.post('/comment/:questionId',
@@ -563,6 +564,7 @@ router.post('/comment/:questionId',
 router.get('/question/:questionId',
   authController.isLoggedIn,
   catchErrors(authController.checkQuestionPermission),
+  catchErrors(authController.checkQuestionStatus),
   catchErrors(questionController.showQuestionPage)
 );
 router.post('/question/:questionId',
