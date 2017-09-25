@@ -16,6 +16,7 @@ block case-content
           .col-sm-2
             +_questionBtn(config.formConfigs.assistant_1, questionFields)
 
+        - config.formConfigs.assistant_2.hidden = !(config.formConfigs.assistant_1.value === '1' || config.formConfigs.assistant_1.value === '2')
         .row
           .col-sm-10
             +_formTemplate(config.formConfigs.assistant_2)
@@ -28,6 +29,7 @@ block case-content
           .col-sm-2
             +_questionBtn(config.formConfigs.assistant_3, questionFields)
 
+        - config.formConfigs.assistant_4.hidden = !(config.formConfigs.assistant_3.value === '1' || config.formConfigs.assistant_3.value === '2')
         .row
           .col-sm-10
             +_formTemplate(config.formConfigs.assistant_4)
@@ -40,6 +42,7 @@ block case-content
           .col-sm-2
             +_questionBtn(config.formConfigs.assistant_5, questionFields)
 
+        - config.formConfigs.assistant_6.hidden = !(config.formConfigs.assistant_5.value === '1' || config.formConfigs.assistant_5.value === '2')
         .row
           .col-sm-10
             +_formTemplate(config.formConfigs.assistant_6)

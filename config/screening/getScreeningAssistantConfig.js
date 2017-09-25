@@ -16,6 +16,7 @@ const config = {
   }, {
     name: 'assistant_2',
     type: 'textarea',
+    required: true,
     text: {
       zh: '异常情况',
       en: 'Exceptional situation'
@@ -31,6 +32,7 @@ const config = {
   }, {
     name: 'assistant_4',
     type: 'textarea',
+    required: true,
     text: {
       zh: '异常情况',
       en: 'Exceptional situation'
@@ -46,6 +48,7 @@ const config = {
   }, {
     name: 'assistant_6',
     type: 'textarea',
+    required: true,
     text: {
       zh: '异常情况',
       en: 'Exceptional situation'

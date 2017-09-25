@@ -6,6 +6,7 @@ import initScreeningExclusionHandlers from './modules/initScreeningExclusionHand
 import initScreeningInclusionHandlers from './modules/initScreeningInclusionHandlers';
 import initScreeningDiseaseHandlers from './modules/initScreeningDiseaseHandlers';
 import initScreeningRegionHandlers from './modules/initScreeningRegionHandlers';
+import initScreeningAssistantHandlers from './modules/initScreeningAssistantHandlers';
 import initSurgeryHandlers from './modules/initSurgeryHandlers';
 import initVisitHandlers from './modules/initVisitHandlers';
 import initSaeHandlers from './modules/initSaeHandlers';
@@ -54,6 +55,7 @@ window.onbeforeunload = function(event) {
 
 window.onload = function() {
   const pathname = window.location.pathname;
+  console.log(pathname);
 
   // If there is a form, add dirty form plugin
   if ($('form').length > 0) {
@@ -92,6 +94,9 @@ window.onload = function() {
   }
   else if (pathname.startsWith('/screening-region')) {
     initScreeningRegionHandlers();
+  }
+  else if (pathname.startsWith('/screening-assistant')) {
+    initScreeningAssistantHandlers();
   }
   else if (pathname.startsWith('/surgery')) {
     initSurgeryHandlers();
