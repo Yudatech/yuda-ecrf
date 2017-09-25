@@ -97,7 +97,13 @@ exports.register = async (req, res) => {
 };
 
 exports.usersTable = async (req, res) => {
-  const users = await User.find();
+  const roleConfig = getRoleConfig(req.user.language);
+  const userList = await User.find();
+  const users = userList.map((user) => {
+    const userObj = user.toObject();
+    userObj.role = roleConfig.find((item) => item.value === userObj.role).text;
+    return userObj;
+  });
   res.render('user/usersTable', {
     userTableConfig: getUserTableConfig(req.user.language),
     buttonConfig: getButtonConfig(req.user.language),
