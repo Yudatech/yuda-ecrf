@@ -6,7 +6,7 @@ include ../mixins/_questionBtn
 block case-content
   .case-content
     form.form-horizontal(id="screening-region-form" action=`/screening-region/${caseId}` method="POST")
-      - const formDisabled = !(locals.case.status === 'open' || locals.user.role === 'admin')
+      - const formDisabled = !((locals.case.status === 'open' && locals.user.role === 'cra') || locals.user.role === 'admin')
       fieldset(disabled=formDisabled)
         legend #{config.title}
 
