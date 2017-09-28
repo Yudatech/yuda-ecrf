@@ -2,6 +2,7 @@ const moment = require('moment');
 
 const mongoose = require('mongoose');
 const ReviewChecklist = mongoose.model('ReviewChecklist');
+const Screening = mongoose.model('Screening');
 
 const helpers = require('./helpers');
 const getReviewChecklistConfig = require('../config/getReviewChecklistConfig');
@@ -50,6 +51,7 @@ const tableName = 'reviewchecklist';
 exports.reviewChecklistForm = async (req, res) => {
   const CaseNav = helpers.appendCaseIdToCaseNav(req.params.caseId, req.user.language);
   const reviewChecklistItem = await getReviewChecklistItemByCaseId(req.params.caseId);
+  const screeningItem = await Screening.findOne({case: req.params.caseId});
   const config = getReviewChecklistConfig(req.user.language);
   Object.keys(config.formConfigs).forEach((key) => {
     config.formConfigs[key].value = reviewChecklistItem[key];
@@ -59,6 +61,10 @@ exports.reviewChecklistForm = async (req, res) => {
     }
     else if (config.formConfigs[key].type === 'date') {
       config.formConfigs[key].value = reviewChecklistItem[key] ? moment(reviewChecklistItem[key]).format('MM/DD/YYYY') : '';
+      if (key === 'reviewcheckdate') {
+        const screeningcheckDate = screeningItem ? moment(screeningItem.screeningdate).format('MM/DD/YYYY') : '';
+        config.formConfigs[key].extra = JSON.stringify({screeningdate: screeningcheckDate});
+      }
     }
   });
   logger.info(loggerHelper.createLogMessage(req.user, 'show', 'reviewchecklist', req.params.caseId));

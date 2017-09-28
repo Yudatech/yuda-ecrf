@@ -1,6 +1,9 @@
 import setWarningStyle from './helpers/setWarningStyle';
 
 function initReviewChecklistHandlers() {
+  // 复诊日期不能早于首诊日期
+  setReviewcheckDateRange();
+
   // 其他疾病 checkbox
   $('#reviewcheck_2').change(function(){
     setErrorElementVisibility();
@@ -23,6 +26,13 @@ function initReviewChecklistHandlers() {
   setWarningStyle('reviewcheck_4');
 
   setErrorElementVisibility();
+}
+
+function setReviewcheckDateRange() {
+  const screeningcheckDate = $('#reviewcheckdate').data('extra').screeningdate;
+  if (screeningcheckDate !== '') {
+    $('#reviewcheckdate').datepicker('setStartDate', screeningcheckDate);
+  }
 }
 
 function setErrorElementVisibility() {
