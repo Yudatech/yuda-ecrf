@@ -75,7 +75,7 @@ function doReviewChecklistCustomValidation(caseId, key, obj, ruleConfig, validat
     return true;
   }
   else {
-    if (cmList.length === 0 || cmList.find((item) => item.source === 1) === undefined) {
+    if (cmList.length === 0 || cmList.find((item) => item.source === 'visit2') === undefined) {
       if (validateResult.children === undefined) {
         validateResult.children = [];
       }
