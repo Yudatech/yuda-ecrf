@@ -11,6 +11,10 @@ const decorationHelper = require('./decorationHelper');
 const getDiscontinuationConfig = require('../config/getDiscontinuationConfig');
 const getButtonConfig = require('../config/common/getButtonConfig');
 const getCaseSecondAuthConfig = require('../config/getCaseSecondAuthConfig');
+const getDiscontinuationCheckConfig = require('../config/getDiscontinuationCheckConfig');
+const getCaseStatusConfig = require('../config/common/getCaseStatusConfig');
+
+const commitHelpers = require('./commitHelpers');
 
 async function createDiscontinuation(caseId, obj) {
   obj.case = caseId;
@@ -139,9 +143,46 @@ exports.updateDiscontinuation = async (req, res) => {
         delete req.body.discontinuedt;
       }
       await createOrUpdateDiscontinuation(caseId, req.body);
-      const caseItem = await Case.findByIdAndUpdate(caseId, {status: 'quit'}, {new: true});
-      res.locals.case = caseItem;
-      res.redirect(`/discontinuation/${caseId}`);
+
+      const result = [];
+      const discontinuetype = req.body.discontinuetype;
+      if (discontinuetype === '0') {
+        result.push(await commitHelpers.validateScreeningForm(caseId, req.user.language));
+      }
+      else if (discontinuetype === '1') {
+        result.push(await commitHelpers.validateScreeningForm(caseId, req.user.language));
+        result.push(await commitHelpers.validateReviewChecklistForm(caseId, req.user.language));
+        result.push(await commitHelpers.validateSurgeryForm(caseId, req.user.language));
+      }
+      else if (discontinuetype === '2') {
+        result.push(await commitHelpers.validateScreeningForm(caseId, req.user.language));
+        result.push(await commitHelpers.validateReviewChecklistForm(caseId, req.user.language));
+        result.push(await commitHelpers.validateSurgeryForm(caseId, req.user.language));
+        result.push(await commitHelpers.validateSurgeryForm(caseId, req.user.language));
+      }
+
+      const discontinuationCompleted = result.find((item) => {
+        return item.pass === false;
+      }) === undefined;
+
+      if (discontinuationCompleted) {
+        const caseItem = await Case.findByIdAndUpdate(caseId, {status: 'quit'}, {new: true});
+        res.locals.case = caseItem;
+        res.redirect(`/discontinuation/${caseId}`);
+      }
+      else {
+        const CaseNav = helpers.appendCaseIdToCaseNav(caseId, req.user.language);
+        const discontinuationCheckConfig = getDiscontinuationCheckConfig();
+        res.locals.case = await Case.findById(caseId);
+        res.locals.caseStatusText = getCaseStatusConfig(req.user.language);
+        res.render('discontinuation-check', {
+          caseNav: CaseNav,
+          caseId,
+          config: discontinuationCheckConfig,
+          buttonConfig: getButtonConfig(req.user.language),
+          result: result
+        });
+      }      
     }
   });
 };

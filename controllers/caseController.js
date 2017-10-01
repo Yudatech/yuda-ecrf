@@ -358,7 +358,7 @@ exports.showCaseCommitForm = async (req, res) => {
     caseNav: CaseNav,
     caseId,
     config: commitCaseConfig,
-    buttonConfig: getButtonConfig(),
+    buttonConfig: getButtonConfig(req.user.language),
     result: result,
     showForm
   });
