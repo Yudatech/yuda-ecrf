@@ -1,3 +1,5 @@
+const getOptionsLang = require('../configHelpers').getOptionsLang;
+
 const config = {
   title: {
     zh: '访视',
@@ -33,6 +35,13 @@ const config = {
       zh: '操作',
       en: 'Operations'
     }
+  }],
+  removeConfirm: [{
+    name: 'message',
+    text: {
+      zh: '确认删除访视',
+      en: 'Confirm to remove visit'
+    }
   }]
 };
 
@@ -49,6 +58,7 @@ module.exports = function(lang) {
     };
   });
   result.title = config.title[lang];
+  result.removeConfirm = getOptionsLang(config.removeConfirm, lang);
 
   return result;
 };
