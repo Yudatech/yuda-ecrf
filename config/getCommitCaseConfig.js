@@ -9,7 +9,7 @@ const config = {
     name: 'subtitle_1',
     text: {
       zh: '提交受试者数据',
-      en: 'Commitment Checksum'
+      en: 'Commit data of participant'
     }
   }, {
     name: 'subtitle_2',
