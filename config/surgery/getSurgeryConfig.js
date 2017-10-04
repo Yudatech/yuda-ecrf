@@ -91,14 +91,16 @@ const config = {
     type: 'numberfield',
     step: 'any',
     text: {
-      zh: '肿瘤大小-长度(cm)'
+      zh: '肿瘤大小-长度(cm)',
+      en: 'Size of tumor-length(cm)'
     }
   }, {
     name: 'surgery_6',
     type: 'numberfield',
     step: 'any',
     text: {
-      zh: '肿瘤大小-宽度(cm)'
+      zh: '肿瘤大小-宽度(cm)',
+      en: 'Size of tumor-width(cm)'
     }
   }, {
     name: 'surgery_7',
