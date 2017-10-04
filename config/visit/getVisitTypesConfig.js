@@ -6,7 +6,7 @@ const param14 = [{
   value: 0,
   text: {
     zh: '病房',
-    en: 'Patient'
+    en: 'In Patient'
   }
 }, {
   value: 1,
