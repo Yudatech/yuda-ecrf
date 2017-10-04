@@ -174,7 +174,7 @@ const config = {
     name: 'error_1',
     text: {
       zh: '请完整填写《不良事件及器械缺陷报告表》',
-      en: ''
+      en: 'Complete Adverse Events and Device Deficiency (AE) Report, please'
     }
   }]
 };
