@@ -41,7 +41,7 @@ const config = {
     type: 'customselect',
     text: {
       zh: '来源',
-      en: 'source'
+      en: 'Source'
     }
   }, {
     name: 'event',

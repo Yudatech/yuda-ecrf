@@ -95,8 +95,8 @@ const config = {
       }
     },
     text: {
-      zh: '血红蛋白 (Hb)',
-      en: 'Hb'
+      zh: '血红蛋白 (Hgb)',
+      en: 'Hgb'
     },
     unit: '   g/L   '
   }, {

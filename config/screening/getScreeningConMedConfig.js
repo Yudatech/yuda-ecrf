@@ -45,13 +45,13 @@ const config = {
     name: 'error_1',
     text: {
       zh: '请确认该患者符合入组／排除标准',
-      en: ''
+      en: 'Please make sure that the patient meets the inclusion/exclusion criteria'
     }
   }, {
     name: 'error_2',
     text: {
       zh: '请完整填写《合并用药情况表》',
-      en: ''
+      en: 'Complete Concomitant Medication Report, please'
     }
   }]
 };

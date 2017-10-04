@@ -39,7 +39,7 @@ const config = {
     name: 'subtitle_6',
     text: {
       zh: '肠功能恢复情况(根据受试者感受)',
-      en: 'Bowel function according to the participant'
+      en: 'Bowel sounds according to the participant'
     }
   }, {
     name: 'subtitle_7',
@@ -164,9 +164,10 @@ const config = {
     type: 'numberfield',
     step: 'any',
     text: {
-      zh: '血红蛋白 (Hb)',
+      zh: '血红蛋白 (Hgb)',
       en: 'Hgb'
-    }
+    },
+    unit: '   g/L   '
   }, {
     name: 'param_6',
     type: 'numberfield',
@@ -174,7 +175,8 @@ const config = {
     text: {
       zh: '白细胞 (WBC)',
       en: 'WBC'
-    }
+    },
+    unit: '×10^9/L'
   }, {
     name: 'param_7',
     type: 'numberfield',
@@ -196,7 +198,7 @@ const config = {
     type: 'checkbox',
     text: {
       zh: '肠鸣音',
-      en: 'Bowel function'
+      en: 'Bowel sounds'
     }
   }, {
     name: 'param_10',
@@ -265,12 +267,12 @@ const config = {
       rule: 'custom',
       message: {
         zh: '使用药物，请完整填写《合并用药情况表》',
-        en: 'Complete Cocomitant Medication Report, please.'
+        en: 'Complete Concomitant Medication (CM) Report, please.'
       }
     }],
     text: {
       zh: '是（若使用药物，请完整填写《合并用药情况表》）',
-      en: 'Yes (Complete Cocomitant Medication Report, please.'
+      en: 'Yes (Complete Concomitant Medication (CM) Report , please.)'
     }
   }, {
     name: 'param_19',
@@ -316,13 +318,13 @@ const config = {
     name: 'error_1',
     text: {
       zh: '请完整填写《合并用药情况表》',
-      en: ''
+      en: 'Complete Concomitant Medication (CM) Report, please.'
     }
   }, {
     name: 'error_2',
     text: {
       zh: '请完整填写《不良事件及器械缺陷报告表》',
-      en: ''
+      en: 'Complete Adverse Events and Device Deficiency (AE) Report, please'
     }
   }]
 };

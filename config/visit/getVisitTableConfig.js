@@ -19,7 +19,7 @@ const config = {
     name: 'daysaftersurgery',
     text: {
       zh: '术后天数',
-      en: '(Nomber of date after the surgery'
+      en: 'Number of day after surgery'
     }
   }, {
     name: 'visitnum',

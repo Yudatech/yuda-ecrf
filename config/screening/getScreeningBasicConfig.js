@@ -40,7 +40,7 @@ const config = {
     step: 'any',
     text: {
       zh: '体重(KG)',
-      en: 'Body Weight'
+      en: 'Body Weight (kg)'
     }
   }, {
     name: 'height',
@@ -48,7 +48,7 @@ const config = {
     step: '1',
     text: {
       zh: '身高(CM)',
-      en: 'Height'
+      en: 'Height (cm)'
     }
   }],
   errors: [{
