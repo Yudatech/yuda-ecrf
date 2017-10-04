@@ -10,6 +10,7 @@ const getSaeConfig = require('../config/sae/getSaeConfig');
 const getSaeTableConfig = require('../config/sae/getSaeTableConfig');
 const getSaeTypesConfig = require('../config/sae/getSaeTypesConfig');
 const getButtonConfig = require('../config/common/getButtonConfig');
+const getTrueFalseConfig = require('../config/common/getTrueFalseConfig');
 
 const logger = require('../logger');
 const loggerHelper = require('../loggerHelper');
@@ -33,6 +34,7 @@ const tableName = 'sae';
 exports.saeTable = async (req, res) => {
   const CaseNav = helpers.appendCaseIdToCaseNav(req.params.caseId, req.user.language);
   const saeList = await getSaeListByCaseId(req.params.caseId);
+  const trueFalseConfig = getTrueFalseConfig(req.user.language);
   const saeListFormated = saeList.map((item) => {
     return {
       _id: item._id,
@@ -40,7 +42,7 @@ exports.saeTable = async (req, res) => {
       saetpe: getSaeTypeText(item.saetpe, req.user.language),
       saedtc: moment(item.saedtc).format('ll'),
       saestdtc: moment(item.saestdtc).format('ll'),
-      saeanti: item.saeanti
+      saeanti: trueFalseConfig.find((config) => config.value === item.saeanti).text
     };
   });
   logger.info(loggerHelper.createLogMessage(req.user, 'show', 'sae table', req.params.caseId));
