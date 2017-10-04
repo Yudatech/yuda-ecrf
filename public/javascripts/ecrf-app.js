@@ -27,6 +27,7 @@ import initUsersHandlers from './modules/initUsersHandlers';
 import initVisitTableHandlers from './modules/initVisitTableHandlers';
 import initCMTableHandlers from './modules/initCMTableHandlers';
 import initAeTableHandlers from './modules/initAeTableHandlers';
+import initSaeTableHandlers from './modules/initSaeTableHandlers';
 
 $('.input-group.date').datepicker({
   endDate: new Date()
@@ -112,6 +113,9 @@ window.onload = function() {
   }
   else if (pathname.startsWith('/sae/')) {
     initSaeHandlers();
+  }
+  else if (pathname.startsWith('/saelist/')) {
+    initSaeTableHandlers();
   }
   else if (pathname.startsWith('/ae/')) {
     initAeHandlers();
