@@ -17,7 +17,7 @@ const config = {
     type: 'checkbox',
     text: {
       zh: '心脏杂音',
-      en: 'Heart murmur:'
+      en: 'Heart murmur'
     }
   }, {
     name: 'vitalsign_3',
@@ -40,7 +40,7 @@ const config = {
     step: '1',
     text: {
       zh: '脉搏 (次/分)',
-      en: 'Pulse'
+      en: 'Pulse (beats/min)'
     }
   }, {
     name: 'vitalsign_6',
@@ -63,7 +63,7 @@ const config = {
     step: 'any',
     text: {
       zh: '血压-低压 (mmHg)',
-      en: 'Diastolic pressure'
+      en: 'Diastolic pressure (mmHg)'
     }
   }, {
     name: 'vitalsign_8',
