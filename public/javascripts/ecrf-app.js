@@ -24,6 +24,10 @@ import initSearchHandlers from './modules/initSearchHandlers';
 import initAeHandlers from './modules/initAeHandlers';
 import initSitesHandlers from './modules/initSitesHandlers';
 import initUsersHandlers from './modules/initUsersHandlers';
+import initVisitTableHandlers from './modules/initVisitTableHandlers';
+import initCMTableHandlers from './modules/initCMTableHandlers';
+import initAeTableHandlers from './modules/initAeTableHandlers';
+import initSaeTableHandlers from './modules/initSaeTableHandlers';
 
 $('.input-group.date').datepicker({
   endDate: new Date()
@@ -104,11 +108,20 @@ window.onload = function() {
   else if (pathname.startsWith('/visit/')) {
     initVisitHandlers();
   }
+  else if (pathname.startsWith('/visitlist/')) {
+    initVisitTableHandlers();
+  }
   else if (pathname.startsWith('/sae/')) {
     initSaeHandlers();
   }
+  else if (pathname.startsWith('/saelist/')) {
+    initSaeTableHandlers();
+  }
   else if (pathname.startsWith('/ae/')) {
     initAeHandlers();
+  }
+  else if (pathname.startsWith('/aelist/')) {
+    initAeTableHandlers();
   }
   else if (pathname.startsWith('/screeningchecklist')) {
     initScreeningChecklistHandlers();
@@ -124,6 +137,9 @@ window.onload = function() {
   }
   else if (pathname.startsWith('/cm/')) {
     initCMHandlers();
+  }
+  else if (pathname.startsWith('/cmlist/')) {
+    initCMTableHandlers();
   }
   else if (pathname.startsWith('/discontinuation/')) {
     initDiscontinuationHandlers();

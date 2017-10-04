@@ -58,7 +58,7 @@ async function calculateKpis(user) {
   kpis.finished = getCaseListByStatus(caseList, 'locked').length;
   kpis.ongoing = getCaseListByStatus(caseList, 'open').length + getCaseListByStatus(caseList, 'committed').length + getCaseListByStatus(caseList, 'audited').length;
   kpis.contribution = kpis.finished + '%';
-  kpis.discontinuationRate = kpis.finished === 0 ? 0 : (getCaseListByStatus(caseList, 'quit').length * 100 / kpis.finished) + '%';
+  kpis.discontinuationRate = kpis.finished === 0 ? 0 : (getCaseListByStatus(caseList, 'quit').length * 100 / (kpis.finished + getCaseListByStatus(caseList, 'quit').length)) + '%';
   kpis.questions = getNotFinishedQuestions(questionList).length;
 
   return kpis;
