@@ -26,6 +26,7 @@ import initSitesHandlers from './modules/initSitesHandlers';
 import initUsersHandlers from './modules/initUsersHandlers';
 import initVisitTableHandlers from './modules/initVisitTableHandlers';
 import initCMTableHandlers from './modules/initCMTableHandlers';
+import initAeTableHandlers from './modules/initAeTableHandlers';
 
 $('.input-group.date').datepicker({
   endDate: new Date()
@@ -114,6 +115,9 @@ window.onload = function() {
   }
   else if (pathname.startsWith('/ae/')) {
     initAeHandlers();
+  }
+  else if (pathname.startsWith('/aelist/')) {
+    initAeTableHandlers();
   }
   else if (pathname.startsWith('/screeningchecklist')) {
     initScreeningChecklistHandlers();

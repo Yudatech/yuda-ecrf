@@ -1,3 +1,5 @@
+const getOptionsLang = require('../configHelpers').getOptionsLang;
+
 const config = {
   title: {
     zh: '不良事件报告表',
@@ -45,6 +47,13 @@ const config = {
       zh: '操作',
       en: 'Operations'
     }
+  }],
+  removeConfirm: [{
+    name: 'message',
+    text: {
+      zh: '确认删除不良事件',
+      en: 'Confirm to remove Adverse Event Report'
+    }
   }]
 };
 
@@ -61,6 +70,7 @@ module.exports = function(lang) {
     };
   });
   result.title = config.title[lang];
+  result.removeConfirm = getOptionsLang(config.removeConfirm, lang);
 
   return result;
 };

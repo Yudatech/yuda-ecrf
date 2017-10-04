@@ -18,7 +18,21 @@ block case-content
                   .btn-group
                     a.btn.btn-default(role="button" href=`/ae/${caseId}/${ae._id}`)
                       span.glyphicon.glyphicon-pencil
-                    a.btn.btn-default(role="button" href=`/remove/ae/${caseId}/${ae._id}`)
+                    a.btn.btn-default(role="button" data-toggle="modal" data-target="#deleteAeConfirmModal" data-caseid=caseId data-aeid=ae._id)
                       span.glyphicon.glyphicon-trash
 
     a.btn.btn-default.yuda-input-btn(href=`/ae/${caseId}` role="button") #{buttonConfig.buttons.add.text}
+
+    .modal.fade(id='deleteAeConfirmModal' tabindex="-1" role="dialog")
+      .modal-dialog(role="document")
+        .modal-content
+          .modal-header
+            button.close(type="button" data-dismiss="modal" aria-label="Close")
+              span(aria-hidden="true") &times;
+
+          .modal-body
+            h4 #{config.removeConfirm.message.text}
+
+          .modal-footer
+            button.btn.btn-default(type="button" data-dismiss="modal") #{buttonConfig.buttons.close.text}
+            a.btn.btn-primary(id="deleteAeConfirmModalConfirmBtn" role="button") #{buttonConfig.buttons.remove.text}
