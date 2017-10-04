@@ -83,7 +83,8 @@ const config = {
   errors: [{
     name: 'error_1',
     text: {
-      zh: '请确认该患者符合入组／排除标准'
+      zh: '请确认该患者符合入组／排除标准',
+      en: 'Please make sure that the patient meets the inclusion/exclusion criteria'
     }
   }]
 };
