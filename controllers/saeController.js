@@ -77,7 +77,7 @@ exports.saeForm = async (req, res) => {
     if (config.formConfigs[key].type === 'select') {
       config.formConfigs[key].options = decorationHelper[config.formConfigs[key].optionsGetter](req.user.language);
     }
-    else if (key === 'saecaus_2') {
+    if (key === 'saecaus_2') {
       if (sae.saecaus_2) {
         config.formConfigs[key].value = moment(sae.saecaus_2).format('MM/DD/YYYY');
       }
