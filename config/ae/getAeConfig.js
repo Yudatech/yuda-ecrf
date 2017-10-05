@@ -105,6 +105,10 @@ const config = {
   }, {
     name: 'aerel',
     type: 'select',
+    required: true,
+    commit: [{
+      rule: 'required'
+    }],
     optionsGetter: 'getAeRelConfig',
     text: {
       zh: '与试验器械和/或试验操作的关系',

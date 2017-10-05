@@ -13,6 +13,15 @@ function initSaeHandlers() {
     setErrorElementVisibility();
   });
   setErrorElementVisibility();
+
+  $('#ae-form').validator({
+    delay: 100,
+    disable: false,
+    custom: {
+      customrequired: requireValidator
+    }
+  });
+  $('#ae-form').validator('validate');
 }
 
 function setAeres2Visibility() {
