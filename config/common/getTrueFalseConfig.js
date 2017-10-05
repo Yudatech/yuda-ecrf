@@ -2,13 +2,13 @@ const config = [{
   value: true,
   text: {
     zh: '是',
-    en: 'True'
+    en: 'Yes'
   }
 }, {
   value: false,
   text: {
     zh: '否',
-    en: 'False'
+    en: 'No'
   }
 }];
 
