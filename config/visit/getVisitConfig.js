@@ -81,6 +81,7 @@ const config = {
   formConfigs: [{
     name: 'visitnum',
     type: 'numberfield',
+    required: true,
     step: '1',
     text: {
       zh: '当天第n次访视',

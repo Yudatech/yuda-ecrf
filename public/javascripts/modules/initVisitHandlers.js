@@ -33,6 +33,11 @@ function initVisitHandlers() {
 
   setErrorElementVisibility();
 
+  $('#visitnum').change(function(){
+    setSubmitBtnStatus();
+  });
+  setSubmitBtnStatus();
+
   // “短期植入环”排出方式为单选,自然排出 或者人工排出
   $('#param_20').change(function(){
     if ($('#param_20').is(':checked') && $('#param_21').is(':checked')) {
@@ -46,8 +51,6 @@ function initVisitHandlers() {
       $('#param_20Real').val(false);
     }
   });
-
-
 
   $('#visit-form').validator({
     delay: 100,
@@ -71,6 +74,16 @@ function initVisitHandlers() {
     }
 
   });
+}
+
+function setSubmitBtnStatus(){
+  const value = $('#visitnum').val();
+  if (value === '') {
+    $('#visit-submit-btn').addClass('disabled');
+  }
+  else {
+    $('#visit-submit-btn').removeClass('disabled');
+  }
 }
 
 function setErrorElementVisibility() {
