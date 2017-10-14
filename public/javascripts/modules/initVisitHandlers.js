@@ -80,9 +80,11 @@ function setSubmitBtnStatus(){
   const value = $('#visitnum').val();
   if (value === '') {
     $('#visit-submit-btn').addClass('disabled');
+    $('#visit-submit-btn').attr('disabled', true);
   }
   else {
     $('#visit-submit-btn').removeClass('disabled');
+    $('#visit-submit-btn').attr('disabled', false);
   }
 }
 
