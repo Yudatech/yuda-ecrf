@@ -112,7 +112,7 @@ exports.getVisitNameList = async function(caseId, lang) {
       visits.push({
         _id: item._id,
         visitnum: item.visitnum,
-        days: (visitdtcValue - surgerydtcValue) / 24 / 60 / 60 / 1000
+        days: Math.floor((visitdtcValue - surgerydtcValue) / 24 / 60 / 60 / 1000)
       });
     });
   }
