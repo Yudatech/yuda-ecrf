@@ -283,7 +283,7 @@ exports.validateCaseOverview = async function(caseId, lang) {
     caseOverviewValidateResult.errors = [commitCaseConfig.errorMessages.error_2.text];
   }
   else {
-    caseOverviewValidateResult.pass = false;
+    caseOverviewValidateResult.pass = true;
     caseOverviewValidateResult.message = caseOverviewValidateResult.text;
     caseOverviewValidateResult.resultText = commitCaseConfig.finish;
     caseOverviewValidateResult.resultType = 'finish';
