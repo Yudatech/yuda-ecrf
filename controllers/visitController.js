@@ -24,7 +24,7 @@ async function getVisitListByCaseId(caseId) {
 function getDaysAfterSurgery(surgerydtc, visitdtc) {
   const surgerydtcValue = moment(surgerydtc).valueOf();
   const visitdtcValue = moment(visitdtc).valueOf();
-  return (visitdtcValue - surgerydtcValue) / 24 / 60 / 60 / 1000;
+  return Math.floor((visitdtcValue - surgerydtcValue) / 24 / 60 / 60 / 1000);
 }
 
 const tableName = 'visit';
