@@ -578,4 +578,9 @@ router.get('/remove/question/:questionId',
   catchErrors(questionController.removeQuestion)
 );
 
+router.get('/export',
+  authController.isLoggedIn,
+  catchErrors(caseController.exportCases)
+);
+
 module.exports = router;

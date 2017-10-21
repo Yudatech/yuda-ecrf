@@ -46,8 +46,8 @@ block content
       .col-sm-7.yuda-dashboard-panel
         .panel.panel-default
           .panel-heading
-
             h3 #{searchConfig.cases.title}
+            button.btn.yuda-input-btn(type="button" onclick="exportBtnClickHandler()") #{buttonConfig.buttons.export.text}
 
           table.table.table-striped(id="search-case-table")
             thead

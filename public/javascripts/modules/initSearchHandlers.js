@@ -21,6 +21,39 @@ function initSearchHandlers() {
     ]
   });
 
+  window.exportBtnClickHandler = function(){
+    const searchInputValue = $('#searchinput').val();
+    const craValue = $('#cra').val();
+    const siteValue = $('#site').val();
+    const caseStatusValue = $('#status').val() === 'all' ? '' : $('#status').val();
+    let url = '/export';
+    const conditionArray = [];
+    if (searchInputValue !== '') {
+      conditionArray.push('input='+searchInputValue);
+    }
+    if (craValue !== '') {
+      conditionArray.push('cra='+craValue);
+    }
+    if (siteValue !== '') {
+      conditionArray.push('site='+siteValue);
+    }
+    if (caseStatusValue !== '') {
+      conditionArray.push('status='+caseStatusValue);
+    }
+    if (conditionArray.length > 0) {
+      url += '?'+conditionArray.join('&');
+    }
+    var element = document.createElement('a');
+    element.setAttribute('href', url);
+  
+    element.style.display = 'none';
+    document.body.appendChild(element);
+  
+    element.click();
+  
+    document.body.removeChild(element);
+  }
+
   window.searchBtnClickHandler = function(){
     const searchInputValue = $('#searchinput').val();
     const craValue = $('#cra').val();

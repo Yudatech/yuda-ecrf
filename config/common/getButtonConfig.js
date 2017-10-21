@@ -133,6 +133,12 @@ const config = {
       zh: '搜索',
       en: 'Search'
     }
+  }, {
+    name: 'export',
+    text: {
+      zh: '导出',
+      en: 'Export'
+    }
   }]
 };
 

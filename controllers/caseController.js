@@ -1,16 +1,22 @@
 const moment = require('moment');
 moment.locale('zh-cn');
 
+const Excel = require('exceljs');
+const getExportConfig = require('../config/getExportConfig');
+
 const getButtonConfig = require('../config/common/getButtonConfig');
 const getCommitCaseConfig = require('../config/getCommitCaseConfig');
 const getCaseFormConfig = require('../config/getCaseFormConfig');
+const getCaseStatusConfig = require('../config/common/getCaseStatusConfig');
 const getCaseSecondAuthConfig = require('../config/getCaseSecondAuthConfig');
 const commitHelpers = require('./commitHelpers');
 
 const helpers = require('./helpers');
+const exportHelpers = require('./exportHelpers');
 
 const mongoose = require('mongoose');
 const Case = mongoose.model('Case');
+const User = mongoose.model('User');
 const Screening = mongoose.model('Screening');
 const ScreeningChecklist = mongoose.model('ScreeningChecklist');
 const ReviewChecklist = mongoose.model('ReviewChecklist');
@@ -361,5 +367,119 @@ exports.showCaseCommitForm = async (req, res) => {
     buttonConfig: getButtonConfig(req.user.language),
     result: result,
     showForm
+  });
+};
+
+exports.exportCases = async (req, res) => {
+  if (req.user.role !== 'admin') {
+    req.flash('error', `You do not have permission to export.`);
+    res.redirect('back');
+  }
+  const exportConfig = getExportConfig(req.user.language);
+  const caseStatusConfig = getCaseStatusConfig(req.user.language);
+  const tables = exportConfig.titles;
+  const commonConfig = exportConfig.common;
+  const query = req.query;
+  const input = query.input;
+  const cra = query.cra;
+  const site = query.site;
+  const status = query.status;
+  const cases = await Case.find().sort({
+    _id: 'asc'
+  });
+  const users = await User.find();
+  const screeningList = await Screening.find().sort({
+    case: 'asc'
+  });
+  const screeningChecklistList = await ScreeningChecklist.find().sort({
+    case: 'asc'
+  });
+  const reviewChecklistList = await ReviewChecklist.find().sort({
+    case: 'asc'
+  });
+  const discontinuationList = await Discontinuation.find().sort({
+    case: 'asc'
+  });
+  const cmList = await Cm.find().sort({
+    case: 'asc'
+  });
+  const surgeryList = await Surgery.find().sort({
+    case: 'asc'
+  });
+  const visitList = await Visit.find().sort({
+    case: 'asc'
+  });
+  const aeList = await Ae.find().sort({
+    case: 'asc'
+  });
+  const saeList = await Sae.find().sort({
+    case: 'asc'
+  });
+  const commonData = exportHelpers.getExportCommonData(commonConfig, cases, users, caseStatusConfig);
+  const resultItems = {};
+  tables.forEach((tableItem) => {
+    resultItems[tableItem.name] = exportHelpers.getConfigForQuestion(tableItem.name, req.user.language);
+  });
+
+  // create xlsx file
+  const fileName = './public/exports/crex_ecrf_export_' + moment().format('YYYY_MM_DD') + '.xlsx';
+  const workbook = new Excel.Workbook();
+  tables.forEach((tableItem) => {
+    const tableName = tableItem.name;
+    const worksheet = workbook.addWorksheet(tableItem.text);
+    const commonColumnDefs = [];
+    const commonColumns = commonConfig.map((item) => {
+      commonColumnDefs.push({
+        name: item.name,
+        type: 'textfield'
+      });
+      return {
+        header: item.text,
+        key: item.name
+      };
+    });
+    const dataColumnDefs = [];
+    const dataColumns = Object.keys(resultItems[tableName]).map((key) => {
+      const config = resultItems[tableName][key];
+      dataColumnDefs.push(config);
+      return {
+        header: config.text,
+        key: config.name
+      };
+    });
+    worksheet.columns = [...commonColumns, ...dataColumns];
+    let data;
+    if (tableName === 'screening') {
+      data = screeningList;
+    }
+    else if (tableName === 'screeningchecklist') {
+      data = screeningChecklistList;
+    }
+    else if (tableName === 'reviewchecklist') {
+      data = reviewChecklistList;
+    }
+    else if (tableName === 'discontinuation') {
+      data = discontinuationList;
+    }
+    else if (tableName === 'surgery') {
+      data = surgeryList;
+    }
+    else if (tableName === 'visit') {
+      data = visitList;
+    }
+    else if (tableName === 'cm') {
+      data = cmList;
+    }
+    else if (tableName === 'ae') {
+      data = aeList;
+    }
+    else if (tableName === 'sae') {
+      data = saeList;
+    }
+    exportHelpers.addDataToWorksheet(worksheet, commonColumnDefs, dataColumnDefs, commonData, data);
+  });
+
+  workbook.xlsx.writeFile(fileName).then(function() {
+    res.download(fileName);
   });
 };
