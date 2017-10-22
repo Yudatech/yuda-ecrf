@@ -384,9 +384,23 @@ exports.exportCases = async (req, res) => {
   const cra = query.cra;
   const site = query.site;
   const status = query.status;
-  const cases = await Case.find().sort({
+  let cases = await Case.find().sort({
     _id: 'asc'
   });
+  if (cra) {
+    cases = cases.filter((item) => item.user._id.toString() === cra);
+  }
+  if (site) {
+    cases = cases.filter((item) => item.user.site._id.toString() === site);
+  }
+  if (status) {
+    cases = cases.filter((item) => item.status === status);
+  }
+  if (input) {
+    cases = cases.filter((item) => {
+      return item.subjname.indexOf(input) > -1 || item.id.indexOf(input) > -1;
+    });
+  }
   const users = await User.find();
   const screeningList = await Screening.find().sort({
     case: 'asc'
