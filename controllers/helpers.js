@@ -50,6 +50,17 @@ exports.getSaeSourceOptions = async function(caseId) {
   return saeSourceOptions;
 };
 
+exports.getSaeSourceOptionsSync = function(caseId, allAe) {
+  const aeList = allAe.filter((item) => item.case === caseId);
+  const saeSourceOptions = aeList.map((item) => {
+    return {
+      value: item._id.toString(),
+      text: item.event
+    };
+  });
+  return saeSourceOptions;
+}
+
 exports.getAeSourceConfig = async function(caseId, lang) {
   const surgeryItem = await Surgery.findOne({
     case: caseId
@@ -72,6 +83,25 @@ exports.getAeSourceConfig = async function(caseId, lang) {
   }
   return getAeSourceConfig(lang, visits);
 };
+
+exports.getAeSourceConfigSync = function(caseId, lang, surgeryList, visitList) {
+  const surgeryItem = surgeryList.find((item) => item.case === caseId);
+  const visitItems = visitList.filter((item) => item.case === caseId);
+  const visits = [];
+  if (surgeryItem && visitItems.length > 0) {
+    const surgerydtc = surgeryItem.surgerydtc;
+    const surgerydtcValue = moment(surgerydtc).valueOf();
+    visitItems.forEach((item) => {
+      const visitdtcValue = moment(item.visitdtc).valueOf();
+      visits.push({
+        _id: item._id,
+        visitnum: item.visitnum,
+        days: (visitdtcValue - surgerydtcValue) / 24 / 60 / 60 / 1000
+      });
+    });
+  }
+  return getAeSourceConfig(lang, visits);
+}
 
 exports.getCmSourceConfig = async function(caseId, lang) {
   const surgeryItem = await Surgery.findOne({

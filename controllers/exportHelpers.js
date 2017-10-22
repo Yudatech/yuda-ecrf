@@ -35,6 +35,9 @@ const getVisitConfig = require('../config/visit/getVisitConfig');
 
 const decorationHelper = require('./decorationHelper');
 
+const dateFormat = 'YYYY-MM-DD';
+const datetimeFormat = 'YYYY-MM-DD HH:mm';
+
 exports.getConfigForQuestion = function(table, lang) {
   let formConfigs;
   if (table === 'screening') {
@@ -108,7 +111,7 @@ exports.getExportCommonData = function(config, caseList, userList, caseStatusCon
         item.value = caseStatusConfig[caseItem.status].text;
       }
       else if (item.name === 'createDate') {
-        item.value = moment(caseItem.createDate).format('YYYY-MM-DD');
+        item.value = moment(caseItem.createDate).format(dateFormat);
       }
       else if (item.name === 'siteName') {
         item.value = caseItem.user.site.sitename;
@@ -128,7 +131,7 @@ exports.getExportCommonData = function(config, caseList, userList, caseStatusCon
   });
 };
 
-exports.addDataToWorksheet = function(worksheet, commonColumnDefs, dataColumnDefs, commonData, data){
+exports.addDataToWorksheet = function(worksheet, commonColumnDefs, dataColumnDefs, commonData, data, aeSourceConfigList, saeSourceConfigList) {
   const caseIdArray = commonData.map((item) => {
     const caseIdObj = item.caseId; 
     return caseIdObj.value;
@@ -145,13 +148,45 @@ exports.addDataToWorksheet = function(worksheet, commonColumnDefs, dataColumnDef
     });
     dataColumnDefs.forEach((dataColumn) => {
       let value = record[dataColumn.name];
-      const type = record[dataColumn.type];
+      const type = dataColumn.type;
       if (value === undefined) {
         if (type === 'checkbox') {
           value = false;
         }
         else {
           value = '';
+        }
+      }
+      else {
+        if (type === 'select' && dataColumn.optionsGetter) {
+          const options = decorationHelper[dataColumn.optionsGetter]();
+          const match = options.find((option) => {
+            return option.value === value;
+          });
+          if (match) {
+            value = match.text;
+          }
+        }
+        else if (type === 'date') {
+          value = moment(value).format(dateFormat);
+        }
+        else if (type === 'datetime') {
+          value = moment(value).format(datetimeFormat);
+        }
+
+        if (dataColumn.name === 'aeorigion') {
+          const aeSourceConfig = aeSourceConfigList[caseId];
+          const matchAeSource = aeSourceConfig.find((aeSource) => aeSource.value === value);
+          if (matchAeSource) {
+            value = matchAeSource.text;
+          }
+        }
+        else if (dataColumn.name === 'saeorigion') {
+          const saeSourceConfig = saeSourceConfigList[caseId];
+          const matchSaeSource = saeSourceConfig.find((saeSource) => saeSource.value === value);
+          if (matchSaeSource) {
+            value = matchSaeSource.text;
+          }
         }
       }
       dataToAdd[dataColumn.name] = value;

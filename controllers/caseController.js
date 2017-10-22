@@ -416,6 +416,15 @@ exports.exportCases = async (req, res) => {
     case: 'asc'
   });
   const commonData = exportHelpers.getExportCommonData(commonConfig, cases, users, caseStatusConfig);
+
+  const aeSourceConfigList = {};
+  const saeSourceConfigList = {};
+  cases.forEach((caseItem) => {
+    const caseId = caseItem._id;
+    aeSourceConfigList[caseId] = helpers.getAeSourceConfigSync(caseId, req.user.language, surgeryList, visitList);
+    saeSourceConfigList[caseId] = helpers.getSaeSourceOptionsSync(caseId, aeList);
+  });
+
   const resultItems = {};
   tables.forEach((tableItem) => {
     resultItems[tableItem.name] = exportHelpers.getConfigForQuestion(tableItem.name, req.user.language);
@@ -476,7 +485,7 @@ exports.exportCases = async (req, res) => {
     else if (tableName === 'sae') {
       data = saeList;
     }
-    exportHelpers.addDataToWorksheet(worksheet, commonColumnDefs, dataColumnDefs, commonData, data);
+    exportHelpers.addDataToWorksheet(worksheet, commonColumnDefs, dataColumnDefs, commonData, data, aeSourceConfigList, saeSourceConfigList);
   });
 
   workbook.xlsx.writeFile(fileName).then(function() {
