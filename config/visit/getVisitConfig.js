@@ -39,7 +39,7 @@ const config = {
     name: 'subtitle_6',
     text: {
       zh: '肠功能恢复情况(根据受试者感受)',
-      en: 'Bowel sounds according to the participant'
+      en: 'Bowel function according to participant'
     }
   }, {
     name: 'subtitle_7',

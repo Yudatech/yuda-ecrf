@@ -141,7 +141,7 @@ const screeningSchema = new Schema({
   conmed_4: Boolean,
   // 其他药物
   conmed_5: Boolean,
-  // 神清
+  // 神志清楚
   vitalsign_1: Boolean,
   // 心脏杂音
   vitalsign_2: Boolean,

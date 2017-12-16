@@ -7,7 +7,7 @@ function initScreeningVitalsignHandlers() {
   });
   $('#screening-vitalsign-form').validator('validate');
 
-  // 神清
+  // 神志清楚
   $('#vitalsign_1').change(function(){
     setErrorElementVisibility();
     setWarningStyle('vitalsign_1', true);

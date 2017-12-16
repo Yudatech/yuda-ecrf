@@ -9,7 +9,7 @@ const config = {
     name: 'dignose_1',
     type: 'textfield',
     text: {
-      zh: '病理诊断',
+      zh: '病理诊断 (术后大体标本病理结果)',
       en: 'Pathological diagnosis'
     }
   }, {

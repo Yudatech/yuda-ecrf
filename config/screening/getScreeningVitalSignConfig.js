@@ -9,7 +9,7 @@ const config = {
     name: 'vitalsign_1',
     type: 'checkbox',
     text: {
-      zh: '神清',
+      zh: '神志清楚',
       en: 'Mentally vital'
     }
   }, {

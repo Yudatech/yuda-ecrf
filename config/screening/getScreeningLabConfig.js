@@ -26,8 +26,8 @@ const config = {
   }, {
     name: 'subtitle_4',
     text: {
-      zh: 'Glucose (Glu)',
-      en: 'Coagulation tests'
+      zh: '血糖',
+      en: 'Glucose (Glu)'
     }
   }, {
     name: 'subtitle_5',
