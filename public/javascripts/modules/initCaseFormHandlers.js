@@ -8,7 +8,7 @@ function initCaseFormHandlers(){
       customrequired: requireValidator
     }
   });
-  $('#cm-form').validator('validate');
+  $('#case-form').validator('validate');
 }
 
 export default initCaseFormHandlers;

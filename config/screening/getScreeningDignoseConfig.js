@@ -8,6 +8,10 @@ const config = {
   formConfigs: [{
     name: 'dignose_1',
     type: 'textfield',
+    required: true,
+    commit: [{
+      rule: 'required'
+    }],
     text: {
       zh: '病理诊断 (术后大体标本病理结果)',
       en: 'Pathological diagnosis'
