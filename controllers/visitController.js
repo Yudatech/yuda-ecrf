@@ -49,7 +49,7 @@ exports.visitTable = async (req, res) => {
       visitid: `${daysaftersurgery}.${item.visitnum}`
     };
   });
-  visitListFormated.sort(function(a, b){
+  visitListFormated.sort(function(a, b) {
     if (a.visitid < b.visitid) {
       return -1;
     }
@@ -86,6 +86,11 @@ exports.visitForm = async (req, res) => {
     };
   }
 
+  const surgery = await Surgery.findOne({
+    case: req.params.caseId
+  });
+  const surgerydtc = (surgery && surgery.surgerydtc) ? surgery.surgerydtc : null;
+
   const config = getVisitConfig(req.user.language);
   Object.keys(config.formConfigs).forEach((key) => {
     if (config.formConfigs[key].type === 'select') {
@@ -93,6 +98,10 @@ exports.visitForm = async (req, res) => {
     }
     if (key === 'visitdtc') {
       config.formConfigs[key].value = visit.visitdtc ? moment(visit.visitdtc).format('MM/DD/YYYY') : '';
+      const startDateStr = surgerydtc === null ? null : moment(surgerydtc).format('MM/DD/YYYY');
+      config.formConfigs[key].extra = JSON.stringify({
+        start: startDateStr
+      });
     }
     else {
       config.formConfigs[key].value = visit[key];

@@ -52,6 +52,12 @@ function initVisitHandlers() {
     }
   });
 
+  const extra = $('#visitdtc').data('extra');
+  $('.input-group.date').datepicker('setEndDate', new Date());
+  if(extra.start){
+    $('.input-group.date').datepicker('setStartDate', extra.start);
+  }
+
   $('#visit-form').validator({
     delay: 100,
     disable: false,
