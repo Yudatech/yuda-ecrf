@@ -377,7 +377,13 @@ exports.validateScreeningChecklistForm = async function(caseId, lang) {
   }
   else {
     const formConfigs = getScreeningChecklistConfig(lang).formConfigs;
-    doCommitValidationForWholeTable(caseId, screeningChecklistValidateResult, commitCaseConfig, formConfigs, screeningChecklistItem);
+    const screeningItem = await Screening.findOne({
+      case: caseId
+    });
+    const extra = {
+      screeningdate: screeningItem.screeningdate.valueOf()
+    };
+    doCommitValidationForWholeTable(caseId, screeningChecklistValidateResult, commitCaseConfig, formConfigs, screeningChecklistItem, extra);
   }
   return screeningChecklistValidateResult;
 };

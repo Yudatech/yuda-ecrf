@@ -2,6 +2,7 @@ const moment = require('moment');
 
 const mongoose = require('mongoose');
 const ScreeningChecklist = mongoose.model('ScreeningChecklist');
+const Screening = mongoose.model('Screening');
 
 const helpers = require('./helpers');
 const getScreeningChecklistConfig = require('../config/getScreeningChecklistConfig');
@@ -51,6 +52,9 @@ exports.screeningChecklistForm = async (req, res) => {
   const CaseNav = helpers.appendCaseIdToCaseNav(req.params.caseId, req.user.language);
   const screeningChecklistItem = await getScreeningChecklistItemByCaseId(req.params.caseId);
   const config = getScreeningChecklistConfig(req.user.language);
+  const screeningItem = await Screening.findOne({
+    case: req.params.caseId
+  });
   Object.keys(config.formConfigs).forEach((key) => {
     config.formConfigs[key].value = screeningChecklistItem[key];
     config.formConfigs[key].questionLink = helpers.getQuestionLink(tableName, 'screeningchecklist', req.params.caseId, config.formConfigs[key]);
@@ -59,6 +63,9 @@ exports.screeningChecklistForm = async (req, res) => {
     }
     else if (config.formConfigs[key].type === 'date') {
       config.formConfigs[key].value = screeningChecklistItem[key] ? moment(screeningChecklistItem[key]).format('MM/DD/YYYY') : '';
+      const screeningdate = (screeningItem && screeningItem.screeningdate) ? screeningItem.screeningdate : null;
+      const startDateStr = screeningdate === null ? null : moment(screeningdate).format('MM/DD/YYYY');
+      config.formConfigs[key].extra = JSON.stringify({start: startDateStr});
     }
   });
   logger.info(loggerHelper.createLogMessage(req.user, 'show', 'screeningchecklist', req.params.caseId));

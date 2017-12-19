@@ -1,6 +1,12 @@
 import requireTrueValueValidator from './validators/requireTrueValueValidator';
 
 function initScreeningChecklistHandlers() {
+  const startDate = $('#screeningcheckdate').data('extra').start;
+  if(startDate){
+    $('#screeningcheckdate').datepicker('setStartDate', startDate);
+  }
+  $('#screeningcheckdate').datepicker('setEndDate', new Date());
+
   $('#screeningchecklist-form').validator({
     delay: 100,
     disable: false,

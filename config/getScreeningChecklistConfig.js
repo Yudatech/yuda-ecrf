@@ -8,6 +8,11 @@ const config = {
   formConfigs: [{
     name: 'screeningcheckdate',
     type: 'date',
+    commit: [{
+      rule: 'date',
+      start: 'screeningdate',
+      end: 'now'
+    }],
     text: {
       zh: '日期',
       en: 'Date'
