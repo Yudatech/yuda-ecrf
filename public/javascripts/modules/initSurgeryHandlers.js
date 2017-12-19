@@ -35,8 +35,10 @@ function setErrorElementVisibility() {
 }
 
 function setSurgeryDateRange() {
-  const subjAcceptDate = $('#surgerydtc').data('extra').subjAcceptDate
-  $('#surgerydtc').datepicker('setStartDate', subjAcceptDate);
+  const startDate = $('#surgerydtc').data('extra').start;
+  if(startDate){
+    $('#surgerydtc').datepicker('setStartDate', startDate);
+  }
   $('#surgerydtc').datepicker('setEndDate', new Date());
 }
 

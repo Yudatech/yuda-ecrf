@@ -426,12 +426,14 @@ exports.validateSurgeryForm = async function(caseId, lang) {
     surgeryValidateResult.resultType = 'empty';
   }
   else {
-    const caseItem = await Case.findById(caseId);
+    const reviewItem = await ReviewChecklist.findOne({
+      case: caseId
+    });
     const aeList = await Ae.find({
       case: caseId
     });
     const extra = {
-      subjAcceptDate: caseItem.subjAcceptDate.valueOf(),
+      reviewcheckdate: reviewItem.reviewcheckdate.valueOf(),
       aeList
     };
     const formConfigs = getSurgeryConfig(lang).formConfigs;

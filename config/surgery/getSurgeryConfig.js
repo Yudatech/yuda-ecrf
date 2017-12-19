@@ -34,7 +34,7 @@ const config = {
     type: 'date',
     commit: [{
       rule: 'date',
-      start: 'subjAcceptDate',
+      start: 'reviewcheckdate',
       end: 'now'
     }],
     text: {
