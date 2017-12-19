@@ -62,7 +62,9 @@ window.onload = function() {
       dialog: {
         dialogID: 'confirm-leave-dialog', 
         proceedButtonClass: 'custom-proceed', 
-        stayButtonClass: 'custom-stay' 
+        proceedButtonText: '放弃修改',
+        stayButtonClass: 'custom-stay',
+        stayButtonText: '取消'
       }
     });
   }
