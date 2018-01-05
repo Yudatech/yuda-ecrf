@@ -27,7 +27,7 @@ const config = {
     name: 'subtitle_4',
     text: {
       zh: '血糖',
-      en: 'Glucose (Glu)'
+      en: 'Glucose tests'
     }
   }, {
     name: 'subtitle_5',
@@ -235,7 +235,7 @@ const config = {
     step: 'any',
     text: {
       zh: '血尿素氮 (BUN)',
-      en: 'BUN'
+      en: 'Blood urea nitrogen'
     },
     unit: 'mmol/L'
   }, {
@@ -252,7 +252,7 @@ const config = {
     step: 'any',
     text: {
       zh: '肌酐 (Cr)',
-      en: 'Cr'
+      en: 'Creatinine'
     },
     unit: 'μmol/L'
   }, {
