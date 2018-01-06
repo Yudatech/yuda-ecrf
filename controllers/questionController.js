@@ -176,6 +176,9 @@ exports.updateQuestion = async (req, res) => {
 
 exports.checkQuestionedFields = async (req, res, next) => {
   const caseId = req.params.caseId;
+  if (req.query.deletequestion) {
+    await Question.findByIdAndRemove(req.query.deletequestion);
+  }
   const questions = await Question.find({
     case: caseId
   });
