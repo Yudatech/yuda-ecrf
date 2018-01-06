@@ -96,7 +96,7 @@ function getUsername(auditBy, userList, role) {
   return user ? user.username : '';
 }
 
-exports.getExportCommonData = function(config, caseList, userList, caseStatusConfig){
+exports.getExportCommonData = function(config, caseList, userList, caseStatusConfig) {
   return caseList.map((caseItem) => {
     const configItem = JSON.parse(JSON.stringify(config));
     const result = {};
@@ -120,10 +120,10 @@ exports.getExportCommonData = function(config, caseList, userList, caseStatusCon
         item.value = caseItem.user.username;
       }
       else if (item.name === 'monitorName') {
-        item.value = getUsername(item.auditBy, userList, 'monitor');
+        item.value = getUsername(caseItem.auditBy, userList, 'monitor');
       }
       else if (item.name === 'supervisorName') {
-        item.value = getUsername(item.auditBy, userList, 'supervisor');
+        item.value = getUsername(caseItem.auditBy, userList, 'supervisor');
       }
       result[item.name] = item;
     });
