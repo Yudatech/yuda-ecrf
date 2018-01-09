@@ -59,10 +59,11 @@ exports.showQuestionPage = async (req, res) => {
   const config = questionHelper.getConfigForQuestion(table, field, req.user.language);
   let fieldConfig = config.formConfigs[field];
   const values = await questionHelper.getValueForQuestion(table, caseId, question.secondaryid);
-  const fieldValue = values[field];
+  const fieldValue = values ? values[field] : null;
 
   config.formConfigs = Object.keys(config.formConfigs).map((key) => {
-    return questionHelper.appendValueAndOptionsToFormConfig(config.formConfigs[key], values[key], aeSourceConfig, saeSourceConfig);
+    const value = values ? values[key] : null;
+    return questionHelper.appendValueAndOptionsToFormConfig(config.formConfigs[key], value, aeSourceConfig, saeSourceConfig);
   });
 
   fieldConfig = questionHelper.appendValueAndOptionsToFormConfig(fieldConfig, fieldValue, aeSourceConfig, saeSourceConfig);

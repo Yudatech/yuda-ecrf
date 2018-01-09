@@ -8,6 +8,8 @@ public/uploads
 
 public/dist
 
+public/exports
+
 log/*.log
 
 # misc
