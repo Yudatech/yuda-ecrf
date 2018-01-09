@@ -192,7 +192,7 @@ exports.updateValueForQuestion = async function(table, caseId, secondaryId, fiel
   }
 };
 
-exports.appendValueAndOptionsToFormConfig = function(fieldConfig, fieldValue, aeSourceConfig, saeSourceConfig) {
+exports.appendValueAndOptionsToFormConfig = function(fieldConfig, fieldValue, aeSourceConfig, saeSourceConfig, cmSourceConfig) {
   if (fieldConfig.type === 'date') {
     fieldConfig.value = moment(fieldValue).format('MM/DD/YYYY');
   }
@@ -259,6 +259,9 @@ exports.appendValueAndOptionsToFormConfig = function(fieldConfig, fieldValue, ae
     }
     else if (fieldConfig.name === 'aeorigion') {
       fieldConfig.options = aeSourceConfig;
+    }
+    else if (fieldConfig.name === 'source') {
+      fieldConfig.options = cmSourceConfig;
     }
   }
 

@@ -55,6 +55,7 @@ exports.showQuestionPage = async (req, res) => {
 
   const saeSourceConfig = await helpers.getSaeSourceOptions(caseId);
   const aeSourceConfig = await helpers.getAeSourceConfig(caseId, req.user.language);
+  const cmSourceConfig = await helpers.getCmSourceConfig(caseId, req.user.language);
 
   const config = questionHelper.getConfigForQuestion(table, field, req.user.language);
   let fieldConfig = config.formConfigs[field];
@@ -63,10 +64,10 @@ exports.showQuestionPage = async (req, res) => {
 
   config.formConfigs = Object.keys(config.formConfigs).map((key) => {
     const value = values ? values[key] : null;
-    return questionHelper.appendValueAndOptionsToFormConfig(config.formConfigs[key], value, aeSourceConfig, saeSourceConfig);
+    return questionHelper.appendValueAndOptionsToFormConfig(config.formConfigs[key], value, aeSourceConfig, saeSourceConfig, cmSourceConfig);
   });
 
-  fieldConfig = questionHelper.appendValueAndOptionsToFormConfig(fieldConfig, fieldValue, aeSourceConfig, saeSourceConfig);
+  fieldConfig = questionHelper.appendValueAndOptionsToFormConfig(fieldConfig, fieldValue, aeSourceConfig, saeSourceConfig, cmSourceConfig);
 
   const questionConfig = getQuestionConfig(req.user.language);
   questionConfig.questionConfigs.question_status.options = getQuestionStatusConfig(req.user.language);
