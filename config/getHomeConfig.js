@@ -49,13 +49,13 @@ const config = {
         zh: '受试者识别号',
         en: 'Subject ID'
       }
-    }, {
+    },/* {
       name: 'subjabbr',
       text: {
         zh: '缩写',
         en: 'Subject abbreviation'
       }
-    }, {
+    }, */{
       name: 'createDate',
       text: {
         zh: '建档日期',

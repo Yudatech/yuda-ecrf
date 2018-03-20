@@ -12,13 +12,13 @@ const config = {
         zh: '受试者识别编号',
         en: 'Subject ID'
       }
-    }, {
+    }, /*{
       name: 'subjabbr',
       text: {
         zh: '缩写',
         en: 'Subject abbreviation'
       }
-    }, {
+    }, */{
       name: 'createDate',
       text: {
         zh: '建档日期',
@@ -97,8 +97,8 @@ const config = {
   formConfigs: [{
     name: 'searchinput',
     text: {
-      zh: '输入病例号或病人姓名缩写进行搜索',
-      en: 'Input Patient Number or Name Abbreviation'
+      zh: '输入病例号进行搜索',
+      en: 'Input Patient Number'
     }
   }, {
     name: 'cra',

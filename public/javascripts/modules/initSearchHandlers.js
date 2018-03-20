@@ -4,11 +4,11 @@ function initSearchHandlers() {
     "paging": false,
     "info": false,
     "columnDefs": [
-      { "orderable": false, "targets": 5 },
+      { "orderable": false, "targets": 4 },
+      { "visible": false, "targets": 5 },
       { "visible": false, "targets": 6 },
       { "visible": false, "targets": 7 },
-      { "visible": false, "targets": 8 },
-      { "visible": false, "targets": 9 }
+      { "visible": false, "targets": 8 }
     ]
   });
 
@@ -61,10 +61,10 @@ function initSearchHandlers() {
     const caseStatusValue = $('#status').val() === 'all' ? '' : $('#status').val();
     const table = $('#search-case-table').DataTable();
     const questionTable = $('#search-question-table').DataTable();
-    table.column(7).search(searchInputValue, false, true);
-    table.column(6).search(siteValue, false, true);
-    table.column(8).search(craValue, false, true);
-    table.column(9).search(caseStatusValue, false, true);
+    table.column(6).search(searchInputValue, false, true);
+    table.column(5).search(siteValue, false, true);
+    table.column(7).search(craValue, false, true);
+    table.column(8).search(caseStatusValue, false, true);
     table.draw();
     const filterForQuestions = [];
     table.rows({filter: 'applied'}).data().each(function(record){
