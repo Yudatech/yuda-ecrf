@@ -50,10 +50,12 @@ exports.visitTable = async (req, res) => {
     };
   });
   visitListFormated.sort(function(a, b) {
-    if (a.visitid < b.visitid) {
+    let vA = parseFloat(a.visitid);
+    let vB = parseFloat(b.visitid);
+    if (vA < vB) {
       return -1;
     }
-    else if (a.visitid > b.visitid) {
+    else if (vA > vB) {
       return 1;
     }
     else {
