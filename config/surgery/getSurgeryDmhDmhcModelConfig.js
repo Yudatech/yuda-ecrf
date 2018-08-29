@@ -27,6 +27,15 @@ const dmhDmhcModels = [{
 },{
   value: 8,
   text: 'A32230 C-REX DMH'
+},{
+  value: 9,
+  text: 'A26235 C-REX Dual male 26'
+},{
+  value: 10,
+  text: 'A29235 C-REX Dual male 29'
+},{
+  value: 11,
+  text: 'A32235 C-REX Dual male 32'
 }];
 
 module.exports = function() {
