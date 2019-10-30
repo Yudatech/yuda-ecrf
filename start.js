@@ -1,4 +1,7 @@
 const mongoose = require('mongoose');
+const http = require('http');
+const https = require('https');
+const fs = require('fs');
 
 // Make sure we are running node 7.6+
 const [major, minor] = process.versions.node.split('.').map(parseFloat);
@@ -8,7 +11,7 @@ if (major < 7 || (major === 7 && minor <= 5)) {
 }
 
 // import environmental variables from our variables.env file
-require('dotenv').config({path: 'variables.env'});
+require('dotenv').config({ path: 'variables.env' });
 
 // Connect to our Database and handle an bad connections
 mongoose.connect(process.env.DATABASE);
@@ -37,7 +40,21 @@ require('./models/History');
 
 // Start our app!
 const app = require('./app');
-app.set('port', process.env.PORT || 7777);
-const server = app.listen(app.get('port'), () => {
-  console.log(`Express running → PORT ${server.address().port}`);
+// app.set('port', process.env.PORT || 7777);
+// const server = app.listen(app.get('port'), () => {
+//   console.log(`Express running → PORT ${server.address().port}`);
+// });
+
+const serverHttp = http.createServer(app).listen(process.env.PORT || 7777, () => {
+  console.log(`Express running → PORT ${serverHttp.address().port}`);
+});
+
+// start https server
+let sslOptions = {
+  key: fs.readFileSync('yuda-ecrf.key'),
+  cert: fs.readFileSync('yuda-ecrf.cert')
+};
+
+let serverHttps = https.createServer(sslOptions, app).listen(process.env.HTTPS_PORT || 443, () => {
+  console.log(`Express running → PORT ${serverHttps.address().port}`);
 });
