@@ -92,7 +92,7 @@ exports.register = async (req, res) => {
       languageConfig: getLanguageConfig(req.user.language),
       buttonConfig: getButtonConfig(req.user.language),
       userInfo: req.body
-  });
+    });
   }
 };
 
@@ -113,7 +113,13 @@ exports.usersTable = async (req, res) => {
 
 exports.updateUser = async (req, res) => {
   const userId = req.params.id;
-  await User.findByIdAndUpdate(userId, req.body);
+  const userInstance = await User.findByIdAndUpdate(userId, req.body);
+  if (req.body.password) {
+    const setPassword = promisify(userInstance.setPassword, userInstance);
+    const user = await setPassword(req.body.password);
+    const saveUser = promisify(user.save, user);
+    await saveUser();
+  }
   res.redirect('/users');
 };
 

@@ -16,8 +16,7 @@ block content
             label.col-sm-2.control-label #{registerConfig.labels.userabbr.text}
             .col-sm-10
               input.form-control(type="text" name="userabbr" required value=userInfo.userabbr)
-          if userInfo._id === undefined
-            .form-group
+          .form-group
               label.col-sm-2.control-label #{registerConfig.labels.password.text}
               .col-sm-10
                 input.form-control(type="password" name="password")
