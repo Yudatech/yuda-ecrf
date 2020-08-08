@@ -4,6 +4,7 @@ moment.locale('zh-cn');
 const mongoose = require('mongoose');
 const Visit = mongoose.model('Visit');
 const Surgery = mongoose.model('Surgery');
+const Case = mongoose.model('Case');
 
 const helpers = require('./helpers');
 const decorationHelper = require('./decorationHelper');
@@ -49,7 +50,7 @@ exports.visitTable = async (req, res) => {
       visitid: `${daysaftersurgery}.${item.visitnum}`
     };
   });
-  visitListFormated.sort(function(a, b) {
+  visitListFormated.sort(function (a, b) {
     let vA = parseFloat(a.visitid);
     let vB = parseFloat(b.visitid);
     if (vA < vB) {
@@ -143,7 +144,11 @@ exports.createVisit = async (req, res) => {
     delete req.body.visitdtc;
   }
   await (new Visit(req.body)).save();
-  logger.info(loggerHelper.createLogMessage(req.user, 'create', 'visit', req.params.caseId), req.body);
+  const caseItem = await Case.findById(caseId);
+  const logData = {
+    update: req.body
+  };
+  logger.info(loggerHelper.createLogMessage(req.user, 'create', 'visit', req.params.caseId, caseItem.status), logData);
   res.redirect(`/visitlist/${caseId}`);
 };
 
@@ -163,8 +168,16 @@ exports.updateVisit = async (req, res) => {
     delete req.body.visitdtc;
   }
   const visitId = req.params.visitId;
+  const caseItem = await Case.findById(caseId);
+  const originalModel = await Visit.findById(visitId);
+  const originalValue = originalModel.toObject();
+  originalValue._id = originalValue._id.toString();
+  const logData = {
+    original: originalValue,
+    update: req.body
+  };
   await Visit.findByIdAndUpdate(visitId, req.body);
-  logger.info(loggerHelper.createLogMessage(req.user, 'update', 'visit', req.params.caseId), req.body);
+  logger.info(loggerHelper.createLogMessage(req.user, 'update', 'visit', req.params.caseId, caseItem.status), logData);
   res.redirect(`/visitlist/${caseId}`);
 };
 
@@ -172,6 +185,7 @@ exports.removeVisit = async (req, res) => {
   const caseId = req.params.caseId;
   const id = req.params.visitId;
   await Visit.findByIdAndRemove(id);
-  logger.info(loggerHelper.createLogMessage(req.user, 'remove', 'visit', req.params.caseId), {id});
+  const caseItem = await Case.findById(caseId);
+  logger.info(loggerHelper.createLogMessage(req.user, 'remove', 'visit', req.params.caseId, caseItem.status), { id });
   res.redirect(`/visitlist/${caseId}`);
 };

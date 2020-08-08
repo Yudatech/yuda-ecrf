@@ -3,6 +3,7 @@ moment.locale('zh-cn');
 
 const mongoose = require('mongoose');
 const Cm = mongoose.model('Cm');
+const Case = mongoose.model('Case');
 
 const helpers = require('./helpers');
 const decorationHelper = require('./decorationHelper');
@@ -132,7 +133,11 @@ exports.createCm = async (req, res) => {
     delete req.body.cmeddtc;
   }
   await (new Cm(req.body)).save();
-  logger.info(loggerHelper.createLogMessage(req.user, 'create', 'cm', caseId), req.body);
+  const caseItem = await Case.findById(caseId);
+  const logData = {
+    update: req.body
+  };
+  logger.info(loggerHelper.createLogMessage(req.user, 'create', 'cm', caseId, caseItem.status), logData);
   res.redirect(`/cmlist/${caseId}`);
 };
 
@@ -155,8 +160,16 @@ exports.updateCm = async (req, res) => {
     delete req.body.cmeddtc;
   }
   const cmId = req.params.cmId;
+  const caseItem = await Case.findById(caseId);
+  const originalModel = await Cm.findById(cmId);
+  const originalValue = originalModel.toObject();
+  originalValue._id = originalValue._id.toString();
+  const logData = {
+    original: originalValue,
+    update: req.body
+  };
   await Cm.findByIdAndUpdate(cmId, req.body);
-  logger.info(loggerHelper.createLogMessage(req.user, 'update', 'cm', caseId), req.body);
+  logger.info(loggerHelper.createLogMessage(req.user, 'update', 'cm', caseId, caseItem.status), logData);
   res.redirect(`/cmlist/${caseId}`);
 };
 
@@ -164,6 +177,7 @@ exports.removeCm = async (req, res) => {
   const caseId = req.params.caseId;
   const id = req.params.cmId;
   await Cm.findByIdAndRemove(id);
-  logger.info(loggerHelper.createLogMessage(req.user, 'remove', 'cm', caseId), {id});
+  const caseItem = await Case.findById(caseId);
+  logger.info(loggerHelper.createLogMessage(req.user, 'remove', 'cm', caseId, caseItem.status), { id });
   res.redirect(`/cmlist/${caseId}`);
 };

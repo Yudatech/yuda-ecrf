@@ -1,6 +1,7 @@
-exports.createLogMessage = function(user, action, name, caseId) {
+exports.createLogMessage = function (user, action, name, caseId, caseStatus) {
   const caseStr = caseId ? ` for case [${caseId}]` : '';
-  return `User [${user.userabbr}] requested to [${action}] [${name}]${caseStr}.`;
+  const caseStatusStr = caseStatus ? ` with status [${caseStatus}]` : '';
+  return `User [${user.userabbr}] requested to [${action}] [${name}]${caseStr}${caseStatusStr}.`;
 };
 
 

@@ -3,6 +3,7 @@ moment.locale('zh-cn');
 
 const mongoose = require('mongoose');
 const Ae = mongoose.model('Ae');
+const Case = mongoose.model('Case');
 
 const helpers = require('./helpers');
 const decorationHelper = require('./decorationHelper');
@@ -159,7 +160,11 @@ exports.createAe = async (req, res) => {
     req.body.aeeddtc = `${req.body.aeeddtc_date} ${req.body.aeeddtc_time}`;
   }
   await (new Ae(req.body)).save();
-  logger.info(loggerHelper.createLogMessage(req.user, 'create', 'ae', caseId), req.body);
+  const caseItem = await Case.findById(caseId);
+  const logData = {
+    update: req.body
+  };
+  logger.info(loggerHelper.createLogMessage(req.user, 'create', 'ae', caseId, caseItem.status), logData);
   res.redirect(`/aelist/${caseId}`);
 };
 
@@ -178,8 +183,16 @@ exports.updateAe = async (req, res) => {
   const aeId = req.params.aeId;
   req.body.aestdtc = `${req.body.aestdtc_date} ${req.body.aestdtc_time}`;
   req.body.aeeddtc = `${req.body.aeeddtc_date} ${req.body.aeeddtc_time}`;
+  const caseItem = await Case.findById(caseId);
+  const originalModel = await Ae.findById(aeId);
+  const originalValue = originalModel.toObject();
+  originalValue._id = originalValue._id.toString();
+  const logData = {
+    original: originalValue,
+    update: req.body
+  };
   await Ae.findByIdAndUpdate(aeId, req.body);
-  logger.info(loggerHelper.createLogMessage(req.user, 'update', 'ae', caseId), req.body);
+  logger.info(loggerHelper.createLogMessage(req.user, 'update', 'ae', caseId, caseItem.status), logData);
   res.redirect(`/aelist/${caseId}`);
 };
 
@@ -187,6 +200,7 @@ exports.removeAe = async (req, res) => {
   const caseId = req.params.caseId;
   const id = req.params.aeId;
   await Ae.findByIdAndRemove(id);
-  logger.info(loggerHelper.createLogMessage(req.user, 'remove', 'ae', caseId), {id});
+  const caseItem = await Case.findById(caseId);
+  logger.info(loggerHelper.createLogMessage(req.user, 'remove', 'ae', caseId, caseItem.status), { id });
   res.redirect(`/aelist/${caseId}`);
 };

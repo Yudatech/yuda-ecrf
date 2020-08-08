@@ -28,7 +28,6 @@ const logger = new (winston.Logger)({
     new winston.transports.DailyRotateFile({
       filename: `./${process.env.EVENT_LOG}.log`,
       maxsize: 107374182400,
-      maxFiles: 10,
       datePattern: 'yyyy-MM-dd.',
       prepend: true
     })
@@ -40,7 +39,7 @@ winston.addColors(customColors);
 // Extend logger object to properly log 'Error' types
 const origLog = logger.log;
 
-logger.log = function(level, msg) {
+logger.log = function (level, msg) {
   if (msg instanceof Error) {
     const args = Array.prototype.slice.call(arguments);
     args[1] = msg.stack;

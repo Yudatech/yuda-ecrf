@@ -69,7 +69,7 @@ exports.surgeryForm = async (req, res) => {
     if (key === 'surgerydtc') {
       config.formConfigs[key].value = surgeryItem.surgerydtc ? moment(surgeryItem.surgerydtc).format('MM/DD/YYYY') : '';
       const startDateStr = reviewcheckdate === null ? null : moment(reviewcheckdate).format('MM/DD/YYYY');
-      config.formConfigs[key].extra = JSON.stringify({start: startDateStr});
+      config.formConfigs[key].extra = JSON.stringify({ start: startDateStr });
     }
     else {
       config.formConfigs[key].value = surgeryItem[key];
@@ -103,7 +103,15 @@ exports.updateSurgery = async (req, res) => {
   if (req.body.surgerydtc === '') {
     delete req.body.surgerydtc;
   }
+  const caseItem = await Case.findById(caseId);
+  const origianlModel = await getSurgeryItemByCaseId(caseId);
+  const originalValue = origianlModel.toObject();
+  originalValue._id = originalValue._id.toString();
+  const logData = {
+    original: originalValue,
+    update: updateValue
+  };
   await createOrUpdateSurgery(caseId, req.body);
-  logger.info(loggerHelper.createLogMessage(req.user, 'update', 'surgery', caseId), req.body);
+  logger.info(loggerHelper.createLogMessage(req.user, 'update', 'surgery', caseId, caseItem.status), logData);
   res.redirect(`/surgery/${caseId}`);
 };

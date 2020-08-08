@@ -3,6 +3,7 @@ moment.locale('zh-cn');
 
 const mongoose = require('mongoose');
 const Sae = mongoose.model('Sae');
+const Case = mongoose.model('Case');
 
 const helpers = require('./helpers');
 const decorationHelper = require('./decorationHelper');
@@ -167,7 +168,11 @@ exports.createSae = async (req, res) => {
     delete req.body.saecaus_2;
   }
   await (new Sae(req.body)).save();
-  logger.info(loggerHelper.createLogMessage(req.user, 'create', 'sae', req.params.caseId), req.body);
+  const caseItem = await Case.findById(caseId);
+  const logData = {
+    update: req.body
+  };
+  logger.info(loggerHelper.createLogMessage(req.user, 'create', 'sae', req.params.caseId, caseItem.status), logData);
   res.redirect(`/saelist/${caseId}`);
 };
 
@@ -187,8 +192,17 @@ exports.updateSae = async (req, res) => {
   if (req.body.saecaus_2 === '') {
     delete req.body.saecaus_2;
   }
+
+  const caseItem = await Case.findById(caseId);
+  const originalModel = await Sae.findById(saeId);
+  const originalValue = originalModel.toObject();
+  originalValue._id = originalValue._id.toString();
+  const logData = {
+    original: originalValue,
+    update: req.body
+  };
   await Sae.findByIdAndUpdate(saeId, req.body);
-  logger.info(loggerHelper.createLogMessage(req.user, 'update', 'sae', req.params.caseId), req.body);
+  logger.info(loggerHelper.createLogMessage(req.user, 'update', 'sae', req.params.caseId, caseItem.status), logData);
   res.redirect(`/saelist/${caseId}`);
 };
 
@@ -196,6 +210,7 @@ exports.removeSae = async (req, res) => {
   const caseId = req.params.caseId;
   const id = req.params.saeId;
   await Sae.findByIdAndRemove(id);
-  logger.info(loggerHelper.createLogMessage(req.user, 'remove', 'sae', req.params.caseId), {id});
+  const caseItem = await Case.findById(caseId);
+  logger.info(loggerHelper.createLogMessage(req.user, 'remove', 'sae', req.params.caseId, caseItem.status), { id });
   res.redirect(`/saelist/${caseId}`);
 };

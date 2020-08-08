@@ -112,6 +112,22 @@ async function getScreeningItemByCaseId(caseId) {
   return screeningItem;
 }
 
+async function getLogData(caseId, updateValue) {
+  const origianlModel = await getScreeningItemByCaseId(caseId);
+  const originalValue = origianlModel.toObject();
+  originalValue._id = originalValue._id.toString();
+  const logData = {
+    original: originalValue,
+    update: updateValue
+  };
+  return logData;
+}
+
+async function getCaseStatus(caseId) {
+  const caseItem = await Case.findById(caseId);
+  return caseItem.status;
+}
+
 const tableName = 'screening';
 
 exports.caseBasicForm = async (req, res) => {
@@ -157,8 +173,10 @@ exports.updateCaseBasic = async (req, res) => {
   if (req.body.screeningdate === '') {
     delete req.body.screeningdate;
   }
+  const caseStatus = await getCaseStatus(caseId);
+  const logData = await getLogData(caseId, req.body);
   await createOrUpdateScreening(caseId, req.body);
-  logger.info(loggerHelper.createLogMessage(req.user, 'update', 'screening-basic', req.params.caseId), req.body);
+  logger.info(loggerHelper.createLogMessage(req.user, 'update', 'screening-basic', req.params.caseId, caseStatus), logData);
   res.redirect(`/screening-basic/${caseId}`);
 };
 
@@ -194,8 +212,10 @@ exports.updateCaseInclusion = async (req, res) => {
       }
     }
   });
+  const caseStatus = await getCaseStatus(caseId);
+  const logData = await getLogData(caseId, req.body);
   await createOrUpdateScreening(caseId, req.body);
-  logger.info(loggerHelper.createLogMessage(req.user, 'update', 'screening-inclusion', req.params.caseId), req.body);
+  logger.info(loggerHelper.createLogMessage(req.user, 'update', 'screening-inclusion', req.params.caseId, caseStatus), logData);
   res.redirect(`/screening-inclusion/${caseId}`);
 };
 
@@ -231,8 +251,10 @@ exports.updateCaseExclusion = async (req, res) => {
       }
     }
   });
+  const caseStatus = await getCaseStatus(caseId);
+  const logData = await getLogData(caseId, req.body);
   await createOrUpdateScreening(caseId, req.body);
-  logger.info(loggerHelper.createLogMessage(req.user, 'update', 'screening-exclusion', caseId), req.body);
+  logger.info(loggerHelper.createLogMessage(req.user, 'update', 'screening-exclusion', caseId, caseStatus), logData);
   res.redirect(`/screening-exclusion/${caseId}`);
 };
 
@@ -268,8 +290,10 @@ exports.updateCaseDisease = async (req, res) => {
       }
     }
   });
+  const caseStatus = await getCaseStatus(caseId);
+  const logData = await getLogData(caseId, req.body);
   await createOrUpdateScreening(caseId, req.body);
-  logger.info(loggerHelper.createLogMessage(req.user, 'update', 'screening-disease', caseId), req.body);
+  logger.info(loggerHelper.createLogMessage(req.user, 'update', 'screening-disease', caseId, caseStatus), logData);
   res.redirect(`/screening-disease/${caseId}`);
 };
 
@@ -305,8 +329,10 @@ exports.updateCaseConMed = async (req, res) => {
       }
     }
   });
+  const caseStatus = await getCaseStatus(caseId);
+  const logData = await getLogData(caseId, req.body);
   await createOrUpdateScreening(caseId, req.body);
-  logger.info(loggerHelper.createLogMessage(req.user, 'update', 'screening-conmed', caseId), req.body);
+  logger.info(loggerHelper.createLogMessage(req.user, 'update', 'screening-conmed', caseId, caseStatus), logData);
   res.redirect(`/screening-conmed/${caseId}`);
 };
 
@@ -354,8 +380,10 @@ exports.updateCaseVitalSign = async (req, res) => {
       }
     }
   });
+  const caseStatus = await getCaseStatus(caseId);
+  const logData = await getLogData(caseId, req.body);
   await createOrUpdateScreening(caseId, req.body);
-  logger.info(loggerHelper.createLogMessage(req.user, 'update', 'screening-vitalsign', caseId), req.body);
+  logger.info(loggerHelper.createLogMessage(req.user, 'update', 'screening-vitalsign', caseId, caseStatus), logData);
   res.redirect(`/screening-vitalsign/${caseId}`);
 };
 
@@ -400,8 +428,10 @@ exports.updateCaseLab = async (req, res) => {
       }
     }
   });
+  const caseStatus = await getCaseStatus(caseId);
+  const logData = await getLogData(caseId, req.body);
   await createOrUpdateScreening(caseId, req.body);
-  logger.info(loggerHelper.createLogMessage(req.user, 'update', 'screening-lab', caseId), req.body);
+  logger.info(loggerHelper.createLogMessage(req.user, 'update', 'screening-lab', caseId, caseStatus), logData);
   res.redirect(`/screening-lab/${caseId}`);
 };
 
@@ -440,8 +470,10 @@ exports.updateCaseAssistant = async (req, res) => {
       }
     }
   });
+  const caseStatus = await getCaseStatus(caseId);
+  const logData = await getLogData(caseId, req.body);
   await createOrUpdateScreening(caseId, req.body);
-  logger.info(loggerHelper.createLogMessage(req.user, 'update', 'screening-assistant', caseId), req.body);
+  logger.info(loggerHelper.createLogMessage(req.user, 'update', 'screening-assistant', caseId, caseStatus), logData);
   res.redirect(`/screening-assistant/${caseId}`);
 };
 
@@ -477,8 +509,10 @@ exports.updateCaseMethod = async (req, res) => {
       }
     }
   });
+  const caseStatus = await getCaseStatus(caseId);
+  const logData = await getLogData(caseId, req.body);
   await createOrUpdateScreening(caseId, req.body);
-  logger.info(loggerHelper.createLogMessage(req.user, 'update', 'screening-method', caseId), req.body);
+  logger.info(loggerHelper.createLogMessage(req.user, 'update', 'screening-method', caseId, caseStatus), logData);
   res.redirect(`/screening-method/${caseId}`);
 };
 
@@ -514,8 +548,10 @@ exports.updateCaseRegion = async (req, res) => {
       }
     }
   });
+  const caseStatus = await getCaseStatus(caseId);
+  const logData = await getLogData(caseId, req.body);
   await createOrUpdateScreening(caseId, req.body);
-  logger.info(loggerHelper.createLogMessage(req.user, 'update', 'screening-region', caseId), req.body);
+  logger.info(loggerHelper.createLogMessage(req.user, 'update', 'screening-region', caseId, caseStatus), logData);
   res.redirect(`/screening-region/${caseId}`);
 };
 
@@ -554,7 +590,9 @@ exports.updateCaseDignose = async (req, res) => {
       }
     }
   });
+  const caseStatus = await getCaseStatus(caseId);
+  const logData = await getLogData(caseId, req.body);
   await createOrUpdateScreening(caseId, req.body);
-  logger.info(loggerHelper.createLogMessage(req.user, 'update', 'screening-exclusion', caseId), req.body);
+  logger.info(loggerHelper.createLogMessage(req.user, 'update', 'screening-exclusion', caseId, caseStatus), logData);
   res.redirect(`/screening-dignose/${caseId}`);
 };

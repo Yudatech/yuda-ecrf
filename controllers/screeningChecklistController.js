@@ -3,6 +3,7 @@ const moment = require('moment');
 const mongoose = require('mongoose');
 const ScreeningChecklist = mongoose.model('ScreeningChecklist');
 const Screening = mongoose.model('Screening');
+const Case = mongoose.model('Case');
 
 const helpers = require('./helpers');
 const getScreeningChecklistConfig = require('../config/getScreeningChecklistConfig');
@@ -91,7 +92,15 @@ exports.updateScreeningChecklist = async (req, res) => {
   if (req.body.screeningcheckdate === '') {
     delete req.body.screeningcheckdate;
   }
+  const caseItem = await Case.findById(caseId);
+  const origianlModel = await getScreeningChecklistItemByCaseId(caseId);
+  const originalValue = origianlModel.toObject();
+  originalValue._id = originalValue._id.toString();
+  const logData = {
+    original: originalValue,
+    update: updateValue
+  };
   await createOrUpdateScreeningChecklist(caseId, req.body);
-  logger.info(loggerHelper.createLogMessage(req.user, 'update', 'screeningchecklist', req.params.caseId), req.body);
+  logger.info(loggerHelper.createLogMessage(req.user, 'update', 'screeningchecklist', req.params.caseId, caseItem.status), logData);
   res.redirect(`/screeningchecklist/${caseId}`);
 };
