@@ -50,13 +50,6 @@ module.exports = [
       },
       link: '/screening-conmed'
     }, {
-      name: 'screening-vitalsign',
-      title: {
-        zh: '体格检查',
-        en: 'Clinical status'
-      },
-      link: '/screening-vitalsign'
-    }, {
       name: 'screening-method',
       title: {
         zh: '诊断方法',

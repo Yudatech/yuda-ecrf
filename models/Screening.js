@@ -83,26 +83,6 @@ const screeningSchema = new Schema({
   conmed_4: Boolean,
   // 其他药物
   conmed_5: Boolean,
-  // 神志清楚
-  vitalsign_1: Boolean,
-  // 心脏杂音
-  vitalsign_2: Boolean,
-  // 呼吸音清晰
-  vitalsign_3: Boolean,
-  // 腹部检查
-  vitalsign_4: Number,
-  // 脉搏 (次/分)
-  vitalsign_5: Number,
-  // 肿瘤可触及
-  vitalsign_6: Boolean,
-  // 血压-高压 (mmHg)
-  vitalsign_7_high: Number,
-  // 血压-低压 (mmHg)
-  vitalsign_7_low: Number,
-  // 肝脏可触及
-  vitalsign_8: Boolean,
-  // 其他相关情况
-  vitalsign_9: String,
   // 内窥镜检查
   method_1: Boolean,
   // CT检查

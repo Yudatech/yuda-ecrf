@@ -16,7 +16,6 @@ const getScreeningInclusionConfig = require('../config/screening/getScreeningInc
 const getScreeningExclusionConfig = require('../config/screening/getScreeningExclusionConfig');
 const getScreeningDiseaseConfig = require('../config/screening/getScreeningDiseaseConfig');
 const getScreeningConMedConfig = require('../config/screening/getScreeningConMedConfig');
-const getScreeningVitalSignConfig = require('../config/screening/getScreeningVitalSignConfig');
 const getScreeningMethodConfig = require('../config/screening/getScreeningMethodConfig');
 const getScreeningRegionConfig = require('../config/screening/getScreeningRegionConfig');
 const getScreeningDignoseConfig = require('../config/screening/getScreeningDignoseConfig');
@@ -47,7 +46,6 @@ exports.getConfigForQuestion = function(table, lang) {
     formConfigs = Object.assign(formConfigs, getScreeningInclusionConfig(lang).formConfigs);
     formConfigs = Object.assign(formConfigs, getScreeningMethodConfig(lang).formConfigs);
     formConfigs = Object.assign(formConfigs, getScreeningRegionConfig(lang).formConfigs);
-    formConfigs = Object.assign(formConfigs, getScreeningVitalSignConfig(lang).formConfigs);
   }
   else if (table === 'reviewchecklist') {
     formConfigs = getReviewChecklistConfig(lang).formConfigs;

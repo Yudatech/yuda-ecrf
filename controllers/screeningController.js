@@ -6,7 +6,6 @@ const getScreeningInclusionConfig = require('../config/screening/getScreeningInc
 const getScreeningExclusionConfig = require('../config/screening/getScreeningExclusionConfig');
 const getScreeningDiseaseConfig = require('../config/screening/getScreeningDiseaseConfig');
 const getScreeningConMedConfig = require('../config/screening/getScreeningConMedConfig');
-const getScreeningVitalSignConfig = require('../config/screening/getScreeningVitalSignConfig');
 const getScreeningMethodConfig = require('../config/screening/getScreeningMethodConfig');
 const getScreeningRegionConfig = require('../config/screening/getScreeningRegionConfig');
 const getScreeningDignoseConfig = require('../config/screening/getScreeningDignoseConfig');
@@ -333,57 +332,6 @@ exports.updateCaseConMed = async (req, res) => {
   await createOrUpdateScreening(caseId, req.body);
   logger.info(loggerHelper.createLogMessage(req.user, 'update', 'screening-conmed', caseId, caseStatus), logData);
   res.redirect(`/screening-conmed/${caseId}`);
-};
-
-exports.caseVitalSignForm = async (req, res) => {
-  const caseId = req.params.caseId;
-  const CaseNav = helpers.appendCaseIdToCaseNav(caseId, req.user.language);
-  const screeningItem = await getScreeningItemByCaseId(caseId);
-  const config = getScreeningVitalSignConfig(req.user.language);
-  Object.keys(config.formConfigs).forEach((key) => {
-    if (config.formConfigs[key].type === 'select') {
-      config.formConfigs[key].options = decorationHelper[config.formConfigs[key].optionsGetter](req.user.language);
-    }
-    config.formConfigs[key].value = screeningItem[key];
-    config.formConfigs[key].questionLink = helpers.getQuestionLink(tableName, 'screening-vitalsign', req.params.caseId, config.formConfigs[key]);
-    if (config.formConfigs[key].type === 'checkbox' && config.formConfigs[key].value === undefined) {
-      config.formConfigs[key].value = false;
-    }
-
-    if (key === 'vitalsign_9') {
-      const extraDataKeys = ['disease_6', 'disease_7', 'conmed_1', 'conmed_2', 'conmed_4'];
-      const extraObj = {};
-      extraDataKeys.forEach((item) => {
-        extraObj[item] = screeningItem[item] === true;
-      });
-      config.formConfigs[key].extra = JSON.stringify(extraObj);
-    }
-  });
-  logger.info(loggerHelper.createLogMessage(req.user, 'show', 'screening-vitalsign', caseId));
-  res.render('case/screening-vitalsign', {
-    caseNav: CaseNav,
-    buttonConfig: getButtonConfig(req.user.language),
-    config,
-    caseId: req.params.caseId
-  });
-};
-
-exports.updateCaseVitalSign = async (req, res) => {
-  const caseId = req.params.caseId;
-  const config = getScreeningVitalSignConfig(req.user.language);
-  Object.keys(config.formConfigs).forEach((key) => {
-    const type = config.formConfigs[key].type;
-    if (type === 'textarea' || type === 'textfield' || type === 'numberfield') {
-      if (req.body[key] !== undefined) {
-        req.body[key] = req.sanitizeBody(key).escape();
-      }
-    }
-  });
-  const caseStatus = await getCaseStatus(caseId);
-  const logData = await getLogData(caseId, req.body);
-  await createOrUpdateScreening(caseId, req.body);
-  logger.info(loggerHelper.createLogMessage(req.user, 'update', 'screening-vitalsign', caseId, caseStatus), logData);
-  res.redirect(`/screening-vitalsign/${caseId}`);
 };
 
 exports.caseMethodForm = async (req, res) => {

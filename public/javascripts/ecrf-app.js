@@ -10,7 +10,6 @@ import initSurgeryHandlers from './modules/initSurgeryHandlers';
 import initVisitHandlers from './modules/initVisitHandlers';
 import initSaeHandlers from './modules/initSaeHandlers';
 import initScreeningConmedHandlers from './modules/initScreeningConmedHandlers';
-import initScreeningVitalsignHandlers from './modules/initScreeningVitalsignHandlers';
 import initReviewChecklistHandlers from './modules/initReviewChecklistHandlers';
 import initCMHandlers from './modules/initCMHandlers';
 import initDiscontinuationHandlers from './modules/initDiscontinuationHandlers';
@@ -116,9 +115,6 @@ window.onload = function () {
   }
   else if (pathname.startsWith('/screening-conmed')) {
     initScreeningConmedHandlers();
-  }
-  else if (pathname.startsWith('/screening-vitalsign')) {
-    initScreeningVitalsignHandlers();
   }
   else if (pathname.startsWith('/reviewchecklist/')) {
     initReviewChecklistHandlers();
