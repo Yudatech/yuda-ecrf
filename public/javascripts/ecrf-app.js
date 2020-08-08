@@ -4,12 +4,10 @@ import acceptDocPreview from './modules/acceptDocPreview';
 import initScreeningBasicHandlers from './modules/initScreeningBasicHandlers';
 import initScreeningExclusionHandlers from './modules/initScreeningExclusionHandlers';
 import initScreeningInclusionHandlers from './modules/initScreeningInclusionHandlers';
-import initScreeningDiseaseHandlers from './modules/initScreeningDiseaseHandlers';
 import initScreeningRegionHandlers from './modules/initScreeningRegionHandlers';
 import initSurgeryHandlers from './modules/initSurgeryHandlers';
 import initVisitHandlers from './modules/initVisitHandlers';
 import initSaeHandlers from './modules/initSaeHandlers';
-import initScreeningConmedHandlers from './modules/initScreeningConmedHandlers';
 import initReviewChecklistHandlers from './modules/initReviewChecklistHandlers';
 import initCMHandlers from './modules/initCMHandlers';
 import initDiscontinuationHandlers from './modules/initDiscontinuationHandlers';
@@ -83,9 +81,6 @@ window.onload = function () {
   else if (pathname.startsWith('/screening-inclusion')) {
     initScreeningInclusionHandlers();
   }
-  else if (pathname.startsWith('/screening-disease')) {
-    initScreeningDiseaseHandlers();
-  }
   else if (pathname.startsWith('/screening-dignose')) {
     initScreeningDignoseHandlers();
   }
@@ -112,9 +107,6 @@ window.onload = function () {
   }
   else if (pathname.startsWith('/aelist/')) {
     initAeTableHandlers();
-  }
-  else if (pathname.startsWith('/screening-conmed')) {
-    initScreeningConmedHandlers();
   }
   else if (pathname.startsWith('/reviewchecklist/')) {
     initReviewChecklistHandlers();

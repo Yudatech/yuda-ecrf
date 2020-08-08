@@ -14,7 +14,6 @@ const helpers = require('./helpers');
 
 const getScreeningBasicConfig = require('../config/screening/getScreeningBasicConfig');
 const getScreeningDignoseConfig = require('../config/screening/getScreeningDignoseConfig');
-const getScreeningDiseaseConfig = require('../config/screening/getScreeningDiseaseConfig');
 const getScreeningExclusionConfig = require('../config/screening/getScreeningExclusionConfig');
 const getScreeningInclusionConfig = require('../config/screening/getScreeningInclusionConfig');
 const getScreeningMethodConfig = require('../config/screening/getScreeningMethodConfig');
@@ -326,9 +325,6 @@ exports.validateScreeningForm = async function(caseId, lang) {
       }
       else if (childResult.name === 'screening-region') {
         formConfigs = getScreeningRegionConfig(lang).formConfigs;
-      }
-      else if (childResult.name === 'screening-disease') {
-        formConfigs = getScreeningDiseaseConfig(lang).formConfigs;
       }
       else if (childResult.name === 'screening-dignose') {
         formConfigs = getScreeningDignoseConfig(lang).formConfigs;

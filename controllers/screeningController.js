@@ -4,7 +4,6 @@ moment.locale('zh-cn');
 const getScreeningBasicConfig = require('../config/screening/getScreeningBasicConfig');
 const getScreeningInclusionConfig = require('../config/screening/getScreeningInclusionConfig');
 const getScreeningExclusionConfig = require('../config/screening/getScreeningExclusionConfig');
-const getScreeningDiseaseConfig = require('../config/screening/getScreeningDiseaseConfig');
 const getScreeningMethodConfig = require('../config/screening/getScreeningMethodConfig');
 const getScreeningRegionConfig = require('../config/screening/getScreeningRegionConfig');
 const getScreeningDignoseConfig = require('../config/screening/getScreeningDignoseConfig');
@@ -254,46 +253,6 @@ exports.updateCaseExclusion = async (req, res) => {
   logger.info(loggerHelper.createLogMessage(req.user, 'update', 'screening-exclusion', caseId, caseStatus), logData);
   res.redirect(`/screening-exclusion/${caseId}`);
 };
-
-exports.caseDiseaseForm = async (req, res) => {
-  const caseId = req.params.caseId;
-  const CaseNav = helpers.appendCaseIdToCaseNav(caseId, req.user.language);
-  const screeningItem = await getScreeningItemByCaseId(caseId);
-  const config = getScreeningDiseaseConfig(req.user.language);
-  Object.keys(config.formConfigs).forEach((key) => {
-    config.formConfigs[key].value = screeningItem[key];
-    config.formConfigs[key].questionLink = helpers.getQuestionLink(tableName, 'screening-disease', req.params.caseId, config.formConfigs[key]);
-    if (config.formConfigs[key].type === 'checkbox' && config.formConfigs[key].value === undefined) {
-      config.formConfigs[key].value = false;
-    }
-  });
-  logger.info(loggerHelper.createLogMessage(req.user, 'show', 'screening-disease', caseId));
-  res.render('case/screening-disease', {
-    caseNav: CaseNav,
-    buttonConfig: getButtonConfig(req.user.language),
-    config,
-    caseId: req.params.caseId
-  });
-};
-
-exports.updateCaseDisease = async (req, res) => {
-  const caseId = req.params.caseId;
-  const config = getScreeningDiseaseConfig(req.user.language);
-  Object.keys(config.formConfigs).forEach((key) => {
-    const type = config.formConfigs[key].type;
-    if (type === 'textarea' || type === 'textfield' || type === 'numberfield') {
-      if (req.body[key] !== undefined) {
-        req.body[key] = req.sanitizeBody(key).escape();
-      }
-    }
-  });
-  const caseStatus = await getCaseStatus(caseId);
-  const logData = await getLogData(caseId, req.body);
-  await createOrUpdateScreening(caseId, req.body);
-  logger.info(loggerHelper.createLogMessage(req.user, 'update', 'screening-disease', caseId, caseStatus), logData);
-  res.redirect(`/screening-disease/${caseId}`);
-};
-
 
 exports.caseMethodForm = async (req, res) => {
   const caseId = req.params.caseId;

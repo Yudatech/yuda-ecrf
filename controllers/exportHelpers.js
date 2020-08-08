@@ -14,7 +14,6 @@ const Visit = mongoose.model('Visit');
 const getScreeningBasicConfig = require('../config/screening/getScreeningBasicConfig');
 const getScreeningInclusionConfig = require('../config/screening/getScreeningInclusionConfig');
 const getScreeningExclusionConfig = require('../config/screening/getScreeningExclusionConfig');
-const getScreeningDiseaseConfig = require('../config/screening/getScreeningDiseaseConfig');
 const getScreeningMethodConfig = require('../config/screening/getScreeningMethodConfig');
 const getScreeningRegionConfig = require('../config/screening/getScreeningRegionConfig');
 const getScreeningDignoseConfig = require('../config/screening/getScreeningDignoseConfig');
@@ -39,7 +38,6 @@ exports.getConfigForQuestion = function(table, lang) {
 
     formConfigs = Object.assign(formConfigs, getScreeningBasicConfig(lang).formConfigs);
     formConfigs = Object.assign(formConfigs, getScreeningDignoseConfig(lang).formConfigs);
-    formConfigs = Object.assign(formConfigs, getScreeningDiseaseConfig(lang).formConfigs);
     formConfigs = Object.assign(formConfigs, getScreeningExclusionConfig(lang).formConfigs);
     formConfigs = Object.assign(formConfigs, getScreeningInclusionConfig(lang).formConfigs);
     formConfigs = Object.assign(formConfigs, getScreeningMethodConfig(lang).formConfigs);

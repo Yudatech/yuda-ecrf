@@ -36,13 +36,6 @@ module.exports = [
       },
       link: '/screening-exclusion'
     }, {
-      name: 'screening-disease',
-      title: {
-        zh: '既往史',
-        en: 'Anamnesis'
-      },
-      link: '/screening-disease'
-    }, {
       name: 'screening-method',
       title: {
         zh: '诊断方法',

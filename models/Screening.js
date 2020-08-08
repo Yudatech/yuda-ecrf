@@ -55,24 +55,6 @@ const screeningSchema = new Schema({
   },
   // 其他外科医生认为不适宜参加本试验研究的情况 说明
   exclusion_17: String,
-  // 饮酒
-  disease_1: Boolean,
-  // 肝硬化
-  disease_2: Boolean,
-  // 吸烟
-  disease_3: Boolean,
-  // 阻塞性肺疾患
-  disease_4: Boolean,
-  // 糖尿病
-  disease_5: Boolean,
-  // 心脏病
-  disease_6: Boolean,
-  // 较大腹部手术史
-  disease_7: Boolean,
-  // 其他疾病
-  disease_8: Boolean,
-  // 其他疾病(请注明)
-  disease_9: String,
   // 内窥镜检查
   method_1: Boolean,
   // CT检查
