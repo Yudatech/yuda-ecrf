@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router(); // eslint-disable-line
 
-const {catchErrors} = require('../handlers/errorHandlers');
+const { catchErrors } = require('../handlers/errorHandlers');
 
 const mainController = require('../controllers/mainController');
 const siteController = require('../controllers/siteController');
@@ -67,7 +67,7 @@ router.get('/set/userlang/:lang',
 
 /**
  * Router for case
- */ 
+ */
 // Show create case form
 router.get('/case',
   authController.isLoggedIn,
@@ -177,74 +177,18 @@ router.post('/screening-exclusion/:caseId',
   catchErrors(screeningController.updateCaseExclusion)
 );
 
-router.get('/screening-disease/:caseId',
+router.get('/screening-prioradiationtherapy/:caseId',
   authController.isLoggedIn,
   catchErrors(authController.checkCaseStatus),
   catchErrors(authController.checkCasePermission),
   catchErrors(questionController.checkQuestionedFields),
-  catchErrors(screeningController.caseDiseaseForm)
+  catchErrors(screeningController.casePrioRadiationTherapyForm)
 );
-router.post('/screening-disease/:caseId',
+router.post('/screening-prioradiationtherapy/:caseId',
   authController.isLoggedIn,
   catchErrors(authController.checkCaseStatus),
   catchErrors(authController.checkCasePermission),
-  catchErrors(screeningController.updateCaseDisease)
-);
-
-router.get('/screening-conmed/:caseId',
-  authController.isLoggedIn,
-  catchErrors(authController.checkCaseStatus),
-  catchErrors(authController.checkCasePermission),
-  catchErrors(questionController.checkQuestionedFields),
-  catchErrors(screeningController.caseConMedForm)
-);
-router.post('/screening-conmed/:caseId',
-  authController.isLoggedIn,
-  catchErrors(authController.checkCaseStatus),
-  catchErrors(authController.checkCasePermission),
-  catchErrors(screeningController.updateCaseConMed)
-);
-
-router.get('/screening-vitalsign/:caseId',
-  authController.isLoggedIn,
-  catchErrors(authController.checkCaseStatus),
-  catchErrors(authController.checkCasePermission),
-  catchErrors(questionController.checkQuestionedFields),
-  catchErrors(screeningController.caseVitalSignForm)
-);
-router.post('/screening-vitalsign/:caseId',
-  authController.isLoggedIn,
-  catchErrors(authController.checkCaseStatus),
-  catchErrors(authController.checkCasePermission),
-  catchErrors(screeningController.updateCaseVitalSign)
-);
-
-router.get('/screening-lab/:caseId',
-  authController.isLoggedIn,
-  catchErrors(authController.checkCaseStatus),
-  catchErrors(authController.checkCasePermission),
-  catchErrors(questionController.checkQuestionedFields),
-  catchErrors(screeningController.caseLabForm)
-);
-router.post('/screening-lab/:caseId',
-  authController.isLoggedIn,
-  catchErrors(authController.checkCaseStatus),
-  catchErrors(authController.checkCasePermission),
-  catchErrors(screeningController.updateCaseLab)
-);
-
-router.get('/screening-assistant/:caseId',
-  authController.isLoggedIn,
-  catchErrors(authController.checkCaseStatus),
-  catchErrors(authController.checkCasePermission),
-  catchErrors(questionController.checkQuestionedFields),
-  catchErrors(screeningController.caseAssistantForm)
-);
-router.post('/screening-assistant/:caseId',
-  authController.isLoggedIn,
-  catchErrors(authController.checkCaseStatus),
-  catchErrors(authController.checkCasePermission),
-  catchErrors(screeningController.updateCaseAssistant)
+  catchErrors(screeningController.updateCasePrioRadiationTherapy)
 );
 
 router.get('/screening-method/:caseId',

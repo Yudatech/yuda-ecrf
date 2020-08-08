@@ -1,19 +1,10 @@
 const moment = require('moment');
 moment.locale('zh-cn');
 
-const mongoose = require('mongoose');
-const Screening = mongoose.model('Screening');
-const ReviewChecklist = mongoose.model('ReviewChecklist');
-const Discontinuation = mongoose.model('Discontinuation');
-const Cm = mongoose.model('Cm');
-const Sae = mongoose.model('Sae');
-const Ae = mongoose.model('Ae');
-const Surgery = mongoose.model('Surgery');
-const Visit = mongoose.model('Visit');
-
 const getScreeningBasicConfig = require('../config/screening/getScreeningBasicConfig');
 const getScreeningInclusionConfig = require('../config/screening/getScreeningInclusionConfig');
 const getScreeningExclusionConfig = require('../config/screening/getScreeningExclusionConfig');
+const getScreeningPrioRadiationTherapyConfig = require('../config/screening/getScreeningPrioRadiationTherapyConfig');
 const getScreeningMethodConfig = require('../config/screening/getScreeningMethodConfig');
 const getScreeningRegionConfig = require('../config/screening/getScreeningRegionConfig');
 const getScreeningDignoseConfig = require('../config/screening/getScreeningDignoseConfig');
@@ -31,7 +22,7 @@ const decorationHelper = require('./decorationHelper');
 const dateFormat = 'YYYY-MM-DD';
 const datetimeFormat = 'YYYY-MM-DD HH:mm';
 
-exports.getConfigForQuestion = function(table, lang) {
+exports.getConfigForQuestion = function (table, lang) {
   let formConfigs;
   if (table === 'screening') {
     formConfigs = {};
@@ -39,6 +30,7 @@ exports.getConfigForQuestion = function(table, lang) {
     formConfigs = Object.assign(formConfigs, getScreeningBasicConfig(lang).formConfigs);
     formConfigs = Object.assign(formConfigs, getScreeningDignoseConfig(lang).formConfigs);
     formConfigs = Object.assign(formConfigs, getScreeningExclusionConfig(lang).formConfigs);
+    formConfigs = Object.assign(formConfigs, getScreeningPrioRadiationTherapyConfig(lang).formConfigs);
     formConfigs = Object.assign(formConfigs, getScreeningInclusionConfig(lang).formConfigs);
     formConfigs = Object.assign(formConfigs, getScreeningMethodConfig(lang).formConfigs);
     formConfigs = Object.assign(formConfigs, getScreeningRegionConfig(lang).formConfigs);
@@ -81,7 +73,7 @@ function getUsername(auditBy, userList, role) {
   return user ? user.username : '';
 }
 
-exports.getExportCommonData = function(config, caseList, userList, caseStatusConfig) {
+exports.getExportCommonData = function (config, caseList, userList, caseStatusConfig) {
   return caseList.map((caseItem) => {
     const configItem = JSON.parse(JSON.stringify(config));
     const result = {};
@@ -116,9 +108,9 @@ exports.getExportCommonData = function(config, caseList, userList, caseStatusCon
   });
 };
 
-exports.addDataToWorksheet = function(worksheet, commonColumnDefs, dataColumnDefs, commonData, data, aeSourceConfigList, saeSourceConfigList) {
+exports.addDataToWorksheet = function (worksheet, commonColumnDefs, dataColumnDefs, commonData, data, aeSourceConfigList, saeSourceConfigList) {
   const caseIdArray = commonData.map((item) => {
-    const caseIdObj = item.caseId; 
+    const caseIdObj = item.caseId;
     return caseIdObj.value;
   });
   const dataIncluded = data.filter((item) => {

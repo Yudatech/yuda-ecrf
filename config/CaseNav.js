@@ -36,6 +36,13 @@ module.exports = [
       },
       link: '/screening-exclusion'
     }, {
+      name: 'screening-prioradiationtherapy',
+      title: {
+        zh: '直肠癌的先前放射疗法',
+        en: 'Prior radiation therapy for rectal cancer'
+      },
+      link: '/screening-prioradiationtherapy'
+    }, {
       name: 'screening-method',
       title: {
         zh: '诊断方法',

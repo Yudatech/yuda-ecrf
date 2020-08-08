@@ -55,6 +55,11 @@ const screeningSchema = new Schema({
   },
   // 其他外科医生认为不适宜参加本试验研究的情况 说明
   exclusion_17: String,
+  priorradiationtherapy_1: {
+    type: Boolean,
+    default: false
+  },
+  priorradiationtherapy_2: String,
   // 内窥镜检查
   method_1: Boolean,
   // CT检查

@@ -3,6 +3,7 @@ import acceptDocPreview from './modules/acceptDocPreview';
 
 import initScreeningBasicHandlers from './modules/initScreeningBasicHandlers';
 import initScreeningExclusionHandlers from './modules/initScreeningExclusionHandlers';
+import initScreeningPrioradiationtherapyHandlers from './modules/initScreeningPrioradiationtherapyHandlers';
 import initScreeningInclusionHandlers from './modules/initScreeningInclusionHandlers';
 import initScreeningRegionHandlers from './modules/initScreeningRegionHandlers';
 import initSurgeryHandlers from './modules/initSurgeryHandlers';
@@ -77,6 +78,9 @@ window.onload = function () {
   }
   else if (pathname.startsWith('/screening-exclusion')) {
     initScreeningExclusionHandlers();
+  }
+  else if (pathname.startsWith('/screening-prioradiationtherapy')) {
+    initScreeningPrioradiationtherapyHandlers();
   }
   else if (pathname.startsWith('/screening-inclusion')) {
     initScreeningInclusionHandlers();

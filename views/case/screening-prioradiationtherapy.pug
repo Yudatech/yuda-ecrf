@@ -1,0 +1,28 @@
+extends ../caseLayout
+
+include ../mixins/_formTemplate
+include ../mixins/_questionBtn
+
+block case-content
+  .case-content
+    form.form-horizontal(id="screening-prioradiationtherapy-form" action=`/screening-prioradiationtherapy/${caseId}` method="POST")
+      - const formDisabled = !((locals.case.status === 'open' && locals.user.role === 'cra') || locals.user.role === 'admin')
+      fieldset(disabled=formDisabled)
+        legend #{config.title}
+
+        .row
+          .col-sm-10
+            .form-group
+              +_formTemplate(config.formConfigs.priorradiationtherapy_1)
+          .col-sm-2
+            +_questionBtn(config.formConfigs.priorradiationtherapy_1, questionFields)
+
+        - config.formConfigs.priorradiationtherapy_2.hidden = !(config.formConfigs.priorradiationtherapy_1.value === true)
+        .row
+          .col-sm-10
+            +_formTemplate(config.formConfigs.priorradiationtherapy_2)
+          .col-sm-2
+            +_questionBtn(config.formConfigs.priorradiationtherapy_2, questionFields)
+
+      if formDisabled === false
+        input.btn.btn-default.yuda-input-btn(type="submit" value=buttonConfig.buttons.save.text)
