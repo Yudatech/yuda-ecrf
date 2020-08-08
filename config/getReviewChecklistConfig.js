@@ -3,7 +3,7 @@ const getOptionsLang = require('./configHelpers').getOptionsLang;
 const config = {
   title: {
     zh: '复诊（入组）',
-    en: 'Visit 2 (Enrollment)'
+    en: 'Day prior to surgery'
   },
   formConfigs: [{
     name: 'reviewcheckdate',
@@ -18,18 +18,25 @@ const config = {
       en: 'Visit 2 Date'
     }
   }, {
-    name: 'reviewcheck_1',
-    type: 'checkbox',
-    text: {
-      zh: '受试者住院',
-      en: 'Admission of the patient'
-    }
-  }, {
     name: 'reviewcheck_2',
     type: 'checkbox',
     text: {
       zh: '肠道清洁',
-      en: 'Bowel Cleansing'
+      en: 'Full bowel cleansing'
+    }
+  }, {
+    name: 'reviewcheck_1',
+    type: 'checkbox',
+    text: {
+      zh: '手术前1周的粪便软化剂和手术前1天的灌肠剂',
+      en: 'Stool softener 1 week prior to surgery and enema 1 day prior to surgery'
+    }
+  }, {
+    name: 'reviewcheck_5',
+    type: 'checkbox',
+    text: {
+      zh: '粪便松软',
+      en: 'Loose to watery stool'
     }
   }, {
     name: 'reviewcheck_3',
@@ -78,10 +85,16 @@ const config = {
       zh: '若使用抗凝血药，请完整填写《合并用药情况表》',
       en: 'Complete Concomitant Medication Report, please'
     }
+  }, {
+    name: 'error_4',
+    text: {
+      zh: '请参阅PMCIP了解所需的下一步',
+      en: 'See PMCIP for required next step'
+    }
   }]
 };
 
-module.exports = function(lang) {
+module.exports = function (lang) {
   if (lang === undefined) {
     lang = 'zh';
   }

@@ -68,7 +68,7 @@ module.exports = [
   {
     title: {
       zh: '复诊(入组)',
-      en: 'Enrollment'
+      en: 'Day prior to surgery'
     },
     name: 'reviewchecklist',
     link: '/reviewchecklist'
