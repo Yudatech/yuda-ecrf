@@ -57,13 +57,6 @@ module.exports = [
       },
       link: '/screening-vitalsign'
     }, {
-      name: 'screening-lab',
-      title: {
-        zh: '实验室检查',
-        en: 'Laboratorial tests'
-      },
-      link: '/screening-lab'
-    }, {
       name: 'screening-method',
       title: {
         zh: '诊断方法',

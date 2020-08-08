@@ -7,7 +7,6 @@ const getScreeningExclusionConfig = require('../config/screening/getScreeningExc
 const getScreeningDiseaseConfig = require('../config/screening/getScreeningDiseaseConfig');
 const getScreeningConMedConfig = require('../config/screening/getScreeningConMedConfig');
 const getScreeningVitalSignConfig = require('../config/screening/getScreeningVitalSignConfig');
-const getScreeningLabConfig = require('../config/screening/getScreeningLabConfig');
 const getScreeningMethodConfig = require('../config/screening/getScreeningMethodConfig');
 const getScreeningRegionConfig = require('../config/screening/getScreeningRegionConfig');
 const getScreeningDignoseConfig = require('../config/screening/getScreeningDignoseConfig');
@@ -385,54 +384,6 @@ exports.updateCaseVitalSign = async (req, res) => {
   await createOrUpdateScreening(caseId, req.body);
   logger.info(loggerHelper.createLogMessage(req.user, 'update', 'screening-vitalsign', caseId, caseStatus), logData);
   res.redirect(`/screening-vitalsign/${caseId}`);
-};
-
-exports.caseLabForm = async (req, res) => {
-  const caseId = req.params.caseId;
-  const CaseNav = helpers.appendCaseIdToCaseNav(caseId, req.user.language);
-  const screeningItem = await getScreeningItemByCaseId(caseId);
-  const config = getScreeningLabConfig(req.user.language);
-  Object.keys(config.formConfigs).forEach((key) => {
-    if (config.formConfigs[key].type === 'select') {
-      config.formConfigs[key].options = decorationHelper[config.formConfigs[key].optionsGetter](req.user.language);
-    }
-    config.formConfigs[key].value = screeningItem[key];
-    config.formConfigs[key].questionLink = helpers.getQuestionLink(tableName, 'screening-lab', req.params.caseId, config.formConfigs[key]);
-    if (config.formConfigs[key].type === 'checkbox' && config.formConfigs[key].value === undefined) {
-      config.formConfigs[key].value = false;
-    }
-
-    // 对于某些参数，根据性别的不同需要有不同的上下限
-    const sexIndex = screeningItem.sex === 1 ? 'female' : 'male';
-    if (key === 'lab_1' || key === 'lab_5') {
-      config.formConfigs[key].validation = config.formConfigs[key].validation[sexIndex];
-    }
-  });
-  logger.info(loggerHelper.createLogMessage(req.user, 'show', 'screening-lab', caseId));
-  res.render('case/screening-lab', {
-    caseNav: CaseNav,
-    buttonConfig: getButtonConfig(req.user.language),
-    config,
-    caseId: req.params.caseId
-  });
-};
-
-exports.updateCaseLab = async (req, res) => {
-  const caseId = req.params.caseId;
-  const config = getScreeningLabConfig(req.user.language);
-  Object.keys(config.formConfigs).forEach((key) => {
-    const type = config.formConfigs[key].type;
-    if (type === 'textarea' || type === 'textfield' || type === 'numberfield') {
-      if (req.body[key] !== undefined) {
-        req.body[key] = req.sanitizeBody(key).escape();
-      }
-    }
-  });
-  const caseStatus = await getCaseStatus(caseId);
-  const logData = await getLogData(caseId, req.body);
-  await createOrUpdateScreening(caseId, req.body);
-  logger.info(loggerHelper.createLogMessage(req.user, 'update', 'screening-lab', caseId, caseStatus), logData);
-  res.redirect(`/screening-lab/${caseId}`);
 };
 
 exports.caseMethodForm = async (req, res) => {

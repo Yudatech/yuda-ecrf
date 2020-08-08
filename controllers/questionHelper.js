@@ -17,7 +17,6 @@ const getScreeningExclusionConfig = require('../config/screening/getScreeningExc
 const getScreeningDiseaseConfig = require('../config/screening/getScreeningDiseaseConfig');
 const getScreeningConMedConfig = require('../config/screening/getScreeningConMedConfig');
 const getScreeningVitalSignConfig = require('../config/screening/getScreeningVitalSignConfig');
-const getScreeningLabConfig = require('../config/screening/getScreeningLabConfig');
 const getScreeningMethodConfig = require('../config/screening/getScreeningMethodConfig');
 const getScreeningRegionConfig = require('../config/screening/getScreeningRegionConfig');
 const getScreeningDignoseConfig = require('../config/screening/getScreeningDignoseConfig');
@@ -59,10 +58,6 @@ exports.getConfigForQuestion = function(table, field, lang) {
     formConfigs = getScreeningInclusionConfig(lang).formConfigs;
     if (formConfigs[field]) {
       return getScreeningInclusionConfig(lang);
-    }
-    formConfigs = getScreeningLabConfig(lang).formConfigs;
-    if (formConfigs[field]) {
-      return getScreeningLabConfig(lang);
     }
     formConfigs = getScreeningMethodConfig(lang).formConfigs;
     if (formConfigs[field]) {

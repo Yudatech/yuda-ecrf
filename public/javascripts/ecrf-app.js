@@ -6,7 +6,6 @@ import initScreeningExclusionHandlers from './modules/initScreeningExclusionHand
 import initScreeningInclusionHandlers from './modules/initScreeningInclusionHandlers';
 import initScreeningDiseaseHandlers from './modules/initScreeningDiseaseHandlers';
 import initScreeningRegionHandlers from './modules/initScreeningRegionHandlers';
-import initScreeningAssistantHandlers from './modules/initScreeningAssistantHandlers';
 import initSurgeryHandlers from './modules/initSurgeryHandlers';
 import initVisitHandlers from './modules/initVisitHandlers';
 import initSaeHandlers from './modules/initSaeHandlers';
@@ -15,7 +14,6 @@ import initScreeningVitalsignHandlers from './modules/initScreeningVitalsignHand
 import initReviewChecklistHandlers from './modules/initReviewChecklistHandlers';
 import initCMHandlers from './modules/initCMHandlers';
 import initDiscontinuationHandlers from './modules/initDiscontinuationHandlers';
-import initScreeningLabHandlers from './modules/initScreeningLabHandlers';
 import initHomeHandlers from './modules/initHomeHandlers';
 import initCaseFormHandlers from './modules/initCaseFormHandlers';
 import initScreeningDignoseHandlers from './modules/initScreeningDignoseHandlers';
@@ -95,9 +93,6 @@ window.onload = function () {
   else if (pathname.startsWith('/screening-region')) {
     initScreeningRegionHandlers();
   }
-  else if (pathname.startsWith('/screening-assistant')) {
-    initScreeningAssistantHandlers();
-  }
   else if (pathname.startsWith('/surgery')) {
     initSurgeryHandlers();
   }
@@ -136,9 +131,6 @@ window.onload = function () {
   }
   else if (pathname.startsWith('/discontinuation/')) {
     initDiscontinuationHandlers();
-  }
-  else if (pathname.startsWith('/screening-lab')) {
-    initScreeningLabHandlers();
   }
   else if (pathname.startsWith('/sites')) {
     initSitesHandlers();
