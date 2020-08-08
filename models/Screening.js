@@ -75,15 +75,7 @@ const screeningSchema = new Schema({
   // 直肠上段 (距离肛缘11-15cm以上)
   region_5: Boolean,
   // 病理诊断
-  dignose_1: String,
-  // 入组前临床诊断
-  dignose_2: String,
-  // 临床分期 (若适用)
-  dignose_3: Number,
-  // 转移灶
-  dignose_4: Boolean,
-  // 转移灶部位
-  dignose_5: String
+  dignose_1: String
 });
 
 screeningSchema.plugin(mongodbErrorHandler);
