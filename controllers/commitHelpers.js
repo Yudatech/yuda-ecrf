@@ -13,7 +13,6 @@ const getCommitCaseConfig = require('../config/getCommitCaseConfig');
 const helpers = require('./helpers');
 
 const getScreeningBasicConfig = require('../config/screening/getScreeningBasicConfig');
-const getScreeningAssistantConfig = require('../config/screening/getScreeningAssistantConfig');
 const getScreeningConMedConfig = require('../config/screening/getScreeningConMedConfig');
 const getScreeningDignoseConfig = require('../config/screening/getScreeningDignoseConfig');
 const getScreeningDiseaseConfig = require('../config/screening/getScreeningDiseaseConfig');
@@ -333,9 +332,6 @@ exports.validateScreeningForm = async function(caseId, lang) {
       }
       else if (childResult.name === 'screening-lab') {
         formConfigs = getScreeningLabConfig(lang).formConfigs;
-      }
-      else if (childResult.name === 'screening-assistant') {
-        formConfigs = getScreeningAssistantConfig(lang).formConfigs;
       }
       else if (childResult.name === 'screening-disease') {
         formConfigs = getScreeningDiseaseConfig(lang).formConfigs;

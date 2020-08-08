@@ -64,13 +64,6 @@ module.exports = [
       },
       link: '/screening-lab'
     }, {
-      name: 'screening-assistant',
-      title: {
-        zh: '辅助检查',
-        en: 'Equipment examinations'
-      },
-      link: '/screening-assistant'
-    }, {
       name: 'screening-method',
       title: {
         zh: '诊断方法',

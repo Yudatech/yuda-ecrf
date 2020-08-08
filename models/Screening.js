@@ -171,18 +171,6 @@ const screeningSchema = new Schema({
   lab_33: Number,
   // 纤维蛋白原 (FIB)临床评估
   lab_34: Number,
-  // 心电图
-  assistant_1: Number,
-  // 心电图(异常，有临床意义),请注明
-  assistant_2: String,
-  // 腹部B超
-  assistant_3: Number,
-  // 腹部B超(异常，有临床意义),请注明
-  assistant_4: String,
-  // 胸部CT/胸部X线
-  assistant_5: Number,
-  // 胸部CT/胸部X线(异常，有临床意义),请注明
-  assistant_6: String,
   // 内窥镜检查
   method_1: Boolean,
   // CT检查
