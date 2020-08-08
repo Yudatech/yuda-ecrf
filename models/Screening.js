@@ -28,8 +28,6 @@ const screeningSchema = new Schema({
   inclusion_2: Boolean,
   // 患者具有参加本试验研究的认知能力，并能理解他/她收到的关于本研究的资料
   inclusion_3: Boolean,
-  // 签署知情同意书
-  inclusion_4: Boolean,
   // 当前病情需要紧急救护
   exclusion_1: {
     type: Boolean,
