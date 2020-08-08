@@ -9,42 +9,41 @@ const config = {
     name: 'region_1',
     type: 'checkbox',
     text: {
+      zh: '升结肠',
+      en: 'Ascending colon'
+    }
+  }, {
+    name: 'region_2',
+    type: 'checkbox',
+    text: {
+      zh: '横结肠',
+      en: 'Transverse colon'
+    }
+  }, {
+    name: 'region_3',
+    type: 'checkbox',
+    text: {
       zh: '降结肠',
       en: 'Descending colon'
     }
   }, {
-    name: 'region_2',
+    name: 'region_4',
     type: 'checkbox',
     text: {
       zh: '乙状结肠',
       en: 'Sigmoid colon'
     }
   }, {
-    name: 'region_3',
-    type: 'checkbox',
-    text: {
-      zh: '直肠上段 (距离肛缘15cm以上)',
-      en: 'Upper rectum (15 cm above the anal rim)'
-    }
-  }, {
-    name: 'region_4',
-    type: 'checkbox',
-    text: {
-      zh: '其他位置',
-      en: 'Other location'
-    }
-  }, {
     name: 'region_5',
-    type: 'textarea',
-    required: true,
+    type: 'checkbox',
     text: {
-      zh: '请注明',
-      en: 'Please specify:'
+      zh: '直肠上段 (距离肛缘11-15cm以上)',
+      en: 'Upper rectum (11 - 15 cm above the anal verge)'
     }
   }]
 };
 
-module.exports = function(lang) {
+module.exports = function (lang) {
   if (lang === undefined) {
     lang = 'zh';
   }

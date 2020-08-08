@@ -68,16 +68,16 @@ const screeningSchema = new Schema({
   method_3: Boolean,
   // 肛门指诊
   method_4: Boolean,
-  // 降结肠
+  // 升结肠
   region_1: Boolean,
-  // 乙状结肠
+  // 横结肠
   region_2: Boolean,
-  // 直肠上段 (距离肛缘15cm以上)
+  // 降结肠
   region_3: Boolean,
-  // 其他位置
+  // 乙状结肠
   region_4: Boolean,
-  // 其他位置，请注明：
-  region_5: String,
+  // 直肠上段 (距离肛缘11-15cm以上)
+  region_5: Boolean,
   // 病理诊断
   dignose_1: String,
   // 入组前临床诊断

@@ -38,10 +38,10 @@ block case-content
           .col-sm-2
             +_questionBtn(config.formConfigs.region_4, questionFields)
 
-        - config.formConfigs.region_5.hidden = !config.formConfigs.region_4.value === true 
         .row
           .col-sm-10
-            +_formTemplate(config.formConfigs.region_5)
+            .form-group
+              +_formTemplate(config.formConfigs.region_5)
           .col-sm-2
             +_questionBtn(config.formConfigs.region_5, questionFields)
 

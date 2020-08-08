@@ -43,19 +43,19 @@ module.exports = [
       },
       link: '/screening-prioradiationtherapy'
     }, {
-      name: 'screening-method',
-      title: {
-        zh: '诊断方法',
-        en: 'Methods of diagnosis'
-      },
-      link: '/screening-method'
-    }, {
       name: 'screening-region',
       title: {
         zh: '病变位置',
         en: 'Location of the disease'
       },
       link: '/screening-region'
+    }, {
+      name: 'screening-method',
+      title: {
+        zh: '诊断方法',
+        en: 'Methods of diagnosis'
+      },
+      link: '/screening-method'
     }, {
       name: 'screening-dignose',
       title: {
