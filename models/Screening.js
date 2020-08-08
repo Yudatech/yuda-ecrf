@@ -43,58 +43,8 @@ const screeningSchema = new Schema({
     type: Boolean,
     default: false
   },
-  // 既往有较大腹部手术病史，既往腹部或盆腔的放射治疗
-  exclusion_4: {
-    type: Boolean,
-    default: false
-  },
-  // ASA III - VI 
-  exclusion_5: {
-    type: Boolean,
-    default: false
-  },
-  // 白蛋白低于35 g/l
-  exclusion_6: {
-    type: Boolean,
-    default: false
-  },
-  // 炎性肠病(溃疡性结肠炎或克罗恩病)
-  exclusion_7: {
-    type: Boolean,
-    default: false
-  },
-  // 病情需要两处或以上肠吻合
-  exclusion_8: {
-    type: Boolean,
-    default: false
-  },
-  // 术前一个月内使用过皮质激素、免疫抑制剂
-  exclusion_9: {
-    type: Boolean,
-    default: false
-  },
   // 全身麻醉禁忌症
   exclusion_10: {
-    type: Boolean,
-    default: false
-  },
-  // 术前或术中发现肠管直径异常或肠壁厚度异常
-  exclusion_11: {
-    type: Boolean,
-    default: false
-  },
-  // 因认知能力所限，不能理解与试验研究相关的资料，不能了解试验研究的目的和设计，或患者不同意参加本试验
-  exclusion_12: {
-    type: Boolean,
-    default: false
-  },
-  // 术前六个月内发生过心肌梗死或其他严重心脏疾病
-  exclusion_14: {
-    type: Boolean,
-    default: false
-  },
-  // 严重凝血方面疾病
-  exclusion_15: {
     type: Boolean,
     default: false
   },
