@@ -43,13 +43,6 @@ module.exports = [
       },
       link: '/screening-disease'
     }, {
-      name: 'screening-conmed',
-      title: {
-        zh: '合并用药情况',
-        en: 'Concomitant medication'
-      },
-      link: '/screening-conmed'
-    }, {
       name: 'screening-method',
       title: {
         zh: '诊断方法',

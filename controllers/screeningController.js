@@ -5,7 +5,6 @@ const getScreeningBasicConfig = require('../config/screening/getScreeningBasicCo
 const getScreeningInclusionConfig = require('../config/screening/getScreeningInclusionConfig');
 const getScreeningExclusionConfig = require('../config/screening/getScreeningExclusionConfig');
 const getScreeningDiseaseConfig = require('../config/screening/getScreeningDiseaseConfig');
-const getScreeningConMedConfig = require('../config/screening/getScreeningConMedConfig');
 const getScreeningMethodConfig = require('../config/screening/getScreeningMethodConfig');
 const getScreeningRegionConfig = require('../config/screening/getScreeningRegionConfig');
 const getScreeningDignoseConfig = require('../config/screening/getScreeningDignoseConfig');
@@ -295,44 +294,6 @@ exports.updateCaseDisease = async (req, res) => {
   res.redirect(`/screening-disease/${caseId}`);
 };
 
-exports.caseConMedForm = async (req, res) => {
-  const caseId = req.params.caseId;
-  const CaseNav = helpers.appendCaseIdToCaseNav(caseId, req.user.language);
-  const screeningItem = await getScreeningItemByCaseId(caseId);
-  const config = getScreeningConMedConfig(req.user.language);
-  Object.keys(config.formConfigs).forEach((key) => {
-    config.formConfigs[key].value = screeningItem[key];
-    config.formConfigs[key].questionLink = helpers.getQuestionLink(tableName, 'screening-conmed', req.params.caseId, config.formConfigs[key]);
-    if (config.formConfigs[key].type === 'checkbox' && config.formConfigs[key].value === undefined) {
-      config.formConfigs[key].value = false;
-    }
-  });
-  logger.info(loggerHelper.createLogMessage(req.user, 'show', 'screening-conmed', caseId));
-  res.render('case/screening-conmed', {
-    caseNav: CaseNav,
-    buttonConfig: getButtonConfig(req.user.language),
-    config,
-    caseId: req.params.caseId
-  });
-};
-
-exports.updateCaseConMed = async (req, res) => {
-  const caseId = req.params.caseId;
-  const config = getScreeningConMedConfig(req.user.language);
-  Object.keys(config.formConfigs).forEach((key) => {
-    const type = config.formConfigs[key].type;
-    if (type === 'textarea' || type === 'textfield' || type === 'numberfield') {
-      if (req.body[key] !== undefined) {
-        req.body[key] = req.sanitizeBody(key).escape();
-      }
-    }
-  });
-  const caseStatus = await getCaseStatus(caseId);
-  const logData = await getLogData(caseId, req.body);
-  await createOrUpdateScreening(caseId, req.body);
-  logger.info(loggerHelper.createLogMessage(req.user, 'update', 'screening-conmed', caseId, caseStatus), logData);
-  res.redirect(`/screening-conmed/${caseId}`);
-};
 
 exports.caseMethodForm = async (req, res) => {
   const caseId = req.params.caseId;

@@ -13,7 +13,6 @@ const getCommitCaseConfig = require('../config/getCommitCaseConfig');
 const helpers = require('./helpers');
 
 const getScreeningBasicConfig = require('../config/screening/getScreeningBasicConfig');
-const getScreeningConMedConfig = require('../config/screening/getScreeningConMedConfig');
 const getScreeningDignoseConfig = require('../config/screening/getScreeningDignoseConfig');
 const getScreeningDiseaseConfig = require('../config/screening/getScreeningDiseaseConfig');
 const getScreeningExclusionConfig = require('../config/screening/getScreeningExclusionConfig');
@@ -333,9 +332,6 @@ exports.validateScreeningForm = async function(caseId, lang) {
       }
       else if (childResult.name === 'screening-dignose') {
         formConfigs = getScreeningDignoseConfig(lang).formConfigs;
-      }
-      else if (childResult.name === 'screening-conmed') {
-        formConfigs = getScreeningConMedConfig(lang).formConfigs;
       }
 
       doCommitValidationForWholeTable(caseId, childResult, commitCaseConfig, formConfigs, screeningItem, extra);

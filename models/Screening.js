@@ -73,16 +73,6 @@ const screeningSchema = new Schema({
   disease_8: Boolean,
   // 其他疾病(请注明)
   disease_9: String,
-  // 抗生素
-  conmed_1: Boolean,
-  // 抗凝血剂
-  conmed_2: Boolean,
-  // 止痛药
-  conmed_3: Boolean,
-  // 激素药物
-  conmed_4: Boolean,
-  // 其他药物
-  conmed_5: Boolean,
   // 内窥镜检查
   method_1: Boolean,
   // CT检查
