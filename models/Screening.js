@@ -64,10 +64,6 @@ const screeningSchema = new Schema({
   method_1: Boolean,
   // CT检查
   method_2: Boolean,
-  // 气钡双重造影
-  method_3: Boolean,
-  // 肛门指诊
-  method_4: Boolean,
   // 升结肠
   region_1: Boolean,
   // 横结肠

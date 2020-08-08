@@ -16,27 +16,13 @@ const config = {
     name: 'method_2',
     type: 'checkbox',
     text: {
-      zh: 'CT检查',
-      en: 'CT'
-    }
-  }, {
-    name: 'method_3',
-    type: 'checkbox',
-    text: {
-      zh: '气钡双重造影',
-      en: 'Double colonic contrast X-ray'
-    }
-  }, {
-    name: 'method_4',
-    type: 'checkbox',
-    text: {
-      zh: '肛门指诊',
-      en: 'Rectal examination'
+      zh: 'CT/MR检查',
+      en: 'CT/MR'
     }
   }]
 };
 
-module.exports = function(lang) {
+module.exports = function (lang) {
   if (lang === undefined) {
     lang = 'zh';
   }
