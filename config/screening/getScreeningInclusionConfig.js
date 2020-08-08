@@ -13,8 +13,8 @@ const config = {
       rule: 'must_true'
     }],
     text: {
-      zh: '年龄在18至80岁的男／女患者',
-      en: 'Male or female age ≥ 18 years and ≤ 80 years'
+      zh: '年龄在18以上的男／女患者',
+      en: 'Male or female age ≥ 18 years'
     }
   }, {
     name: 'inclusion_2',

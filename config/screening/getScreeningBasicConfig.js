@@ -6,18 +6,6 @@ const config = {
     en: 'Demographic data'
   },
   formConfigs: [{
-    name: 'screeningdate',
-    type: 'date',
-    commit: [{
-      rule: 'date',
-      start: 'subjAcceptDate',
-      end: 'now'
-    }],
-    text: {
-      zh: '首诊日期',
-      en: 'Screening Date'
-    }
-  }, {
     name: 'sex',
     type: 'select',
     optionsGetter: 'getSexConfig',
@@ -27,12 +15,11 @@ const config = {
     }
   }, {
     name: 'birth',
-    type: 'numberfield',
-    step: '1',
+    type: 'date',
     requireCustomRange: true,
     text: {
-      zh: '出生年份',
-      en: 'Year of Birth'
+      zh: '出生日期',
+      en: 'Date of Birth'
     }
   }, {
     name: 'weight',
@@ -60,13 +47,13 @@ const config = {
   }, {
     name: 'error_1',
     text: {
-      zh: '病人年龄需在18至80岁之间',
-      en: 'Male or female age ≥ 18 years and ≤ 80 years'
+      zh: '病人年龄需在18以上',
+      en: 'Male or female age ≥ 18 years'
     }
   }]
 };
 
-module.exports = function(lang) {
+module.exports = function (lang) {
   if (lang === undefined) {
     lang = 'zh';
   }

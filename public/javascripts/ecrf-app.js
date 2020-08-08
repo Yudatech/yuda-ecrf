@@ -10,7 +10,6 @@ import initScreeningAssistantHandlers from './modules/initScreeningAssistantHand
 import initSurgeryHandlers from './modules/initSurgeryHandlers';
 import initVisitHandlers from './modules/initVisitHandlers';
 import initSaeHandlers from './modules/initSaeHandlers';
-import initScreeningChecklistHandlers from './modules/initScreeningChecklistHandlers';
 import initScreeningConmedHandlers from './modules/initScreeningConmedHandlers';
 import initScreeningVitalsignHandlers from './modules/initScreeningVitalsignHandlers';
 import initReviewChecklistHandlers from './modules/initReviewChecklistHandlers';
@@ -31,7 +30,7 @@ import initSaeTableHandlers from './modules/initSaeTableHandlers';
 
 $('.input-group.date').datepicker({
   endDate: new Date()
-}).on('changeDate', function(e){
+}).on('changeDate', function (e) {
   const targetId = e.target.id;
   const realId = `#${targetId}Real`;
   $(realId).val(e.format('mm/dd/yyyy'))
@@ -39,29 +38,29 @@ $('.input-group.date').datepicker({
 $('.bootstrap-timepicker.timepicker>input').timepicker({
   showMeridian: false,
   defaultTime: false
-}).on('changeTime.timepicker', function(e){
+}).on('changeTime.timepicker', function (e) {
   const targetId = e.target.id;
   const realId = `#${targetId}Real`;
   $(realId).val(e.time.value);
 });
 window.acceptDocPreview = acceptDocPreview;
 
-window.handleCheckboxClick = function(el) {
+window.handleCheckboxClick = function (el) {
   const checked = el.checked;
   const realId = '#' + el.id + 'Real';
   const value = checked === true ? 'true' : 'false';
   $(realId).val(value);
 }
 
-window.onload = function() {
+window.onload = function () {
   const pathname = window.location.pathname;
 
   // If there is a form, add dirty form plugin
   if ($('form').length > 0) {
     $('form').dirtyForms({
       dialog: {
-        dialogID: 'confirm-leave-dialog', 
-        proceedButtonClass: 'custom-proceed', 
+        dialogID: 'confirm-leave-dialog',
+        proceedButtonClass: 'custom-proceed',
         proceedButtonText: '放弃修改',
         stayButtonClass: 'custom-stay',
         stayButtonText: '取消'
@@ -119,9 +118,6 @@ window.onload = function() {
   }
   else if (pathname.startsWith('/aelist/')) {
     initAeTableHandlers();
-  }
-  else if (pathname.startsWith('/screeningchecklist')) {
-    initScreeningChecklistHandlers();
   }
   else if (pathname.startsWith('/screening-conmed')) {
     initScreeningConmedHandlers();

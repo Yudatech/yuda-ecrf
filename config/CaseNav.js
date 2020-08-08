@@ -95,14 +95,6 @@ module.exports = [
   },
   {
     title: {
-      zh: '首诊清单',
-      en: 'Screening Checklist'
-    },
-    name: 'screeningchecklist',
-    link: '/screeningchecklist'
-  },
-  {
-    title: {
       zh: '复诊(入组)',
       en: 'Enrollment'
     },

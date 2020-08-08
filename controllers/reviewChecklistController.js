@@ -62,7 +62,7 @@ exports.reviewChecklistForm = async (req, res) => {
     else if (config.formConfigs[key].type === 'date') {
       config.formConfigs[key].value = reviewChecklistItem[key] ? moment(reviewChecklistItem[key]).format('MM/DD/YYYY') : '';
       if (key === 'reviewcheckdate') {
-        const screeningcheckDate = screeningItem ? moment(screeningItem.screeningdate).format('MM/DD/YYYY') : '';
+        const screeningcheckDate = '';
         config.formConfigs[key].extra = JSON.stringify({screeningdate: screeningcheckDate});
       }
     }

@@ -3,7 +3,6 @@ moment.locale('zh-cn');
 
 const mongoose = require('mongoose');
 const Screening = mongoose.model('Screening');
-const ScreeningChecklist = mongoose.model('ScreeningChecklist');
 const ReviewChecklist = mongoose.model('ReviewChecklist');
 const Discontinuation = mongoose.model('Discontinuation');
 const Cm = mongoose.model('Cm');
@@ -24,7 +23,6 @@ const getScreeningMethodConfig = require('../config/screening/getScreeningMethod
 const getScreeningRegionConfig = require('../config/screening/getScreeningRegionConfig');
 const getScreeningDignoseConfig = require('../config/screening/getScreeningDignoseConfig');
 
-const getScreeningChecklistConfig = require('../config/getScreeningChecklistConfig');
 const getReviewChecklistConfig = require('../config/getReviewChecklistConfig');
 const getDiscontinuationConfig = require('../config/getDiscontinuationConfig');
 const getCmConfig = require('../config/cm/getCmConfig');
@@ -84,9 +82,6 @@ exports.getConfigForQuestion = function(table, field, lang) {
       return getScreeningVitalSignConfig(lang);
     }
   }
-  else if (table === 'screeningchecklist') {
-    return getScreeningChecklistConfig(lang);
-  }
   else if (table === 'reviewchecklist') {
     return getReviewChecklistConfig(lang);
   }
@@ -116,11 +111,6 @@ exports.getValueForQuestion = async function(table, caseId, secondaryId) {
   let item;
   if (table === 'screening') {
     item = await Screening.findOne({
-      case: caseId
-    });
-  }
-  else if (table === 'screeningchecklist') {
-    item = await ScreeningChecklist.findOne({
       case: caseId
     });
   }
@@ -157,11 +147,6 @@ exports.updateValueForQuestion = async function(table, caseId, secondaryId, fiel
   obj[field] = value;
   if (table === 'screening') {
     await Screening.findOneAndUpdate({
-      case: caseId
-    }, obj);
-  }
-  else if (table === 'screeningchecklist') {
-    await ScreeningChecklist.findOneAndUpdate({
       case: caseId
     }, obj);
   }

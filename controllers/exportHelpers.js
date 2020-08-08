@@ -3,7 +3,6 @@ moment.locale('zh-cn');
 
 const mongoose = require('mongoose');
 const Screening = mongoose.model('Screening');
-const ScreeningChecklist = mongoose.model('ScreeningChecklist');
 const ReviewChecklist = mongoose.model('ReviewChecklist');
 const Discontinuation = mongoose.model('Discontinuation');
 const Cm = mongoose.model('Cm');
@@ -24,7 +23,6 @@ const getScreeningMethodConfig = require('../config/screening/getScreeningMethod
 const getScreeningRegionConfig = require('../config/screening/getScreeningRegionConfig');
 const getScreeningDignoseConfig = require('../config/screening/getScreeningDignoseConfig');
 
-const getScreeningChecklistConfig = require('../config/getScreeningChecklistConfig');
 const getReviewChecklistConfig = require('../config/getReviewChecklistConfig');
 const getDiscontinuationConfig = require('../config/getDiscontinuationConfig');
 const getCmConfig = require('../config/cm/getCmConfig');
@@ -54,9 +52,6 @@ exports.getConfigForQuestion = function(table, lang) {
     formConfigs = Object.assign(formConfigs, getScreeningMethodConfig(lang).formConfigs);
     formConfigs = Object.assign(formConfigs, getScreeningRegionConfig(lang).formConfigs);
     formConfigs = Object.assign(formConfigs, getScreeningVitalSignConfig(lang).formConfigs);
-  }
-  else if (table === 'screeningchecklist') {
-    formConfigs = getScreeningChecklistConfig(lang).formConfigs;
   }
   else if (table === 'reviewchecklist') {
     formConfigs = getReviewChecklistConfig(lang).formConfigs;

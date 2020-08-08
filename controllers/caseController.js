@@ -18,7 +18,6 @@ const mongoose = require('mongoose');
 const Case = mongoose.model('Case');
 const User = mongoose.model('User');
 const Screening = mongoose.model('Screening');
-const ScreeningChecklist = mongoose.model('ScreeningChecklist');
 const ReviewChecklist = mongoose.model('ReviewChecklist');
 const Discontinuation = mongoose.model('Discontinuation');
 const Cm = mongoose.model('Cm');
@@ -91,7 +90,6 @@ exports.createCase = async (req, res) => {
 async function doRemoveCase(caseId) {
   await Case.remove({_id: caseId});
   await Screening.remove({case: caseId});
-  await ScreeningChecklist.remove({case: caseId});
   await ReviewChecklist.remove({case: caseId});
   await Discontinuation.remove({case: caseId});
   await Cm.remove({case: caseId});
@@ -346,7 +344,6 @@ exports.showCaseCommitForm = async (req, res) => {
   const result = [];
   result.push(await commitHelpers.validateCaseOverview(caseId, req.user.language));
   result.push(await commitHelpers.validateScreeningForm(caseId, req.user.language));
-  result.push(await commitHelpers.validateScreeningChecklistForm(caseId, req.user.language));
   result.push(await commitHelpers.validateReviewChecklistForm(caseId, req.user.language));
   result.push(await commitHelpers.validateSurgeryForm(caseId, req.user.language));
   result.push(await commitHelpers.validateVisitForm(caseId, req.user.language));
@@ -403,9 +400,6 @@ exports.exportCases = async (req, res) => {
   }
   const users = await User.find();
   const screeningList = await Screening.find().sort({
-    case: 'asc'
-  });
-  const screeningChecklistList = await ScreeningChecklist.find().sort({
     case: 'asc'
   });
   const reviewChecklistList = await ReviewChecklist.find().sort({
@@ -474,9 +468,6 @@ exports.exportCases = async (req, res) => {
     let data;
     if (tableName === 'screening') {
       data = screeningList;
-    }
-    else if (tableName === 'screeningchecklist') {
-      data = screeningChecklistList;
     }
     else if (tableName === 'reviewchecklist') {
       data = reviewChecklistList;

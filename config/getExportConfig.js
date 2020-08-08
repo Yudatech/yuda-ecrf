@@ -8,13 +8,6 @@ const config = {
       }
     },
     {
-      name: 'screeningchecklist',
-      text: {
-        zh: '首诊清单',
-        en: 'Screening Checklist'
-      }
-    },
-    {
       name: 'reviewchecklist',
       text: {
         zh: '复诊(入组)',

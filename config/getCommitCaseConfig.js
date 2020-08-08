@@ -128,14 +128,6 @@ const config = {
       linkBase: '/screening-dignose'
     }]
   }, {
-    name: 'screeningchecklist',
-    total: 9,
-    text: {
-      zh: '首诊清单',
-      en: 'Screening Checklist'
-    },
-    linkBase: '/screeningchecklist'
-  }, {
     name: 'reviewchecklist',
     total: 4,
     text: {

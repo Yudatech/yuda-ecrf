@@ -7,8 +7,8 @@ mixin _dateTemplate(config, disabled)
   .form-group(id=`${name}-container` class=(config.hidden === true ? 'hidden' : ''))
     label.control-label #{config.text}
     div.input-group.date(data-provide="datepicker" id=name data-extra=config.extra)
-      input.form-control(disabled=disabled value=value data-customvalidator data-customrequired=config.required)
+      input.form-control(disabled=disabled value=value data-customvalidator data-customrequired=config.required data-customrange=config.requireCustomRange)
       span.input-group-addon
         i.glyphicon.glyphicon-th
     if disabled !== true
-      input(id=idReal type="hidden" name=name value=value data-customrequired=config.required)
+      input(id=idReal type="hidden" name=name value=value data-customrequired=config.required data-customrange=config.requireCustomRange)

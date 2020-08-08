@@ -8,7 +8,6 @@ const siteController = require('../controllers/siteController');
 const authController = require('../controllers/authController');
 const userController = require('../controllers/userController');
 const caseController = require('../controllers/caseController');
-const screeningChecklistController = require('../controllers/screeningChecklistController');
 const reviewChecklistController = require('../controllers/reviewChecklistController');
 const discontinuationController = require('../controllers/discontinuationController');
 const surgeryController = require('../controllers/surgeryController');
@@ -288,21 +287,6 @@ router.post('/screening-dignose/:caseId',
   catchErrors(authController.checkCaseStatus),
   catchErrors(authController.checkCasePermission),
   catchErrors(screeningController.updateCaseDignose)
-);
-
-// Router for screening-checklist
-router.get('/screeningchecklist/:caseId',
-  authController.isLoggedIn,
-  catchErrors(authController.checkCaseStatus),
-  catchErrors(authController.checkCasePermission),
-  catchErrors(questionController.checkQuestionedFields),
-  catchErrors(screeningChecklistController.screeningChecklistForm)
-);
-router.post('/screeningchecklist/:caseId',
-  authController.isLoggedIn,
-  catchErrors(authController.checkCaseStatus),
-  catchErrors(authController.checkCasePermission),
-  catchErrors(screeningChecklistController.updateScreeningChecklist)
 );
 
 // Router for review-checklist

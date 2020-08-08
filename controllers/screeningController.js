@@ -114,8 +114,13 @@ async function getScreeningItemByCaseId(caseId) {
 
 async function getLogData(caseId, updateValue) {
   const origianlModel = await getScreeningItemByCaseId(caseId);
-  const originalValue = origianlModel.toObject();
-  originalValue._id = originalValue._id.toString();
+  let originalValue = origianlModel;
+  if (origianlModel.toObject) {
+    originalValue = origianlModel.toObject();
+  }
+  if (originalValue._id) {
+    originalValue._id = originalValue._id.toString();
+  }
   const logData = {
     original: originalValue,
     update: updateValue
@@ -142,12 +147,8 @@ exports.caseBasicForm = async (req, res) => {
     config.formConfigs[key].value = screeningItem[key];
     config.formConfigs[key].questionLink = helpers.getQuestionLink(tableName, 'screening-basic', req.params.caseId, config.formConfigs[key]);
 
-    if (key === 'screeningdate') {
+    if (key === 'birth') {
       config.formConfigs[key].value = screeningItem[key] ? moment(screeningItem[key]).format('MM/DD/YYYY') : '';
-      const startDateStr = moment(caseItem.subjAcceptDate).format('MM/DD/YYYY');
-      config.formConfigs[key].extra = JSON.stringify({
-        start: startDateStr
-      });
     }
   });
   logger.info(loggerHelper.createLogMessage(req.user, 'show', 'screening-basic', req.params.caseId));
@@ -170,8 +171,8 @@ exports.updateCaseBasic = async (req, res) => {
       }
     }
   });
-  if (req.body.screeningdate === '') {
-    delete req.body.screeningdate;
+  if (req.body.birth === '') {
+    delete req.body.birth;
   }
   const caseStatus = await getCaseStatus(caseId);
   const logData = await getLogData(caseId, req.body);

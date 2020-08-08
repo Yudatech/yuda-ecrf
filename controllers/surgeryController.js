@@ -105,8 +105,13 @@ exports.updateSurgery = async (req, res) => {
   }
   const caseItem = await Case.findById(caseId);
   const origianlModel = await getSurgeryItemByCaseId(caseId);
-  const originalValue = origianlModel.toObject();
-  originalValue._id = originalValue._id.toString();
+  let originalValue = origianlModel;
+  if (origianlModel.toObject) {
+    originalValue = origianlModel.toObject();
+  }
+  if (originalValue._id) {
+    originalValue._id = originalValue._id.toString();
+  }
   const logData = {
     original: originalValue,
     update: updateValue

@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
 const Screening = mongoose.model('Screening');
-const ScreeningChecklist = mongoose.model('ScreeningChecklist');
 const ReviewChecklist = mongoose.model('ReviewChecklist');
 const Cm = mongoose.model('Cm');
 const Sae = mongoose.model('Sae');
@@ -25,7 +24,6 @@ const getScreeningMethodConfig = require('../config/screening/getScreeningMethod
 const getScreeningRegionConfig = require('../config/screening/getScreeningRegionConfig');
 const getScreeningVitalSignConfig = require('../config/screening/getScreeningVitalSignConfig');
 
-const getScreeningChecklistConfig = require('../config/getScreeningChecklistConfig');
 const getReviewChecklistConfig = require('../config/getReviewChecklistConfig');
 const getSurgeryConfig = require('../config/surgery/getSurgeryConfig');
 const getVisitConfig = require('../config/visit/getVisitConfig');
@@ -359,33 +357,6 @@ exports.validateScreeningForm = async function(caseId, lang) {
   }
 
   return screeningValidateResult;
-};
-
-exports.validateScreeningChecklistForm = async function(caseId, lang) {
-  const commitCaseConfig = getCommitCaseConfig(lang);
-  const screeningChecklistItem = await ScreeningChecklist.findOne({
-    case: caseId
-  });
-  const screeningChecklistValidateResult = initValidateResult(getCommitCaseConfigItem(commitCaseConfig.records, 'screeningchecklist'));
-
-  if (screeningChecklistItem === null) {
-    screeningChecklistValidateResult.pass = false;
-    screeningChecklistValidateResult.link = `${screeningChecklistValidateResult.linkBase}/${caseId}`;
-    screeningChecklistValidateResult.message = screeningChecklistValidateResult.text;
-    screeningChecklistValidateResult.resultText = commitCaseConfig.empty;
-    screeningChecklistValidateResult.resultType = 'empty';
-  }
-  else {
-    const formConfigs = getScreeningChecklistConfig(lang).formConfigs;
-    const screeningItem = await Screening.findOne({
-      case: caseId
-    });
-    const extra = {
-      screeningdate: screeningItem.screeningdate.valueOf()
-    };
-    doCommitValidationForWholeTable(caseId, screeningChecklistValidateResult, commitCaseConfig, formConfigs, screeningChecklistItem, extra);
-  }
-  return screeningChecklistValidateResult;
 };
 
 exports.validateReviewChecklistForm = async function(caseId, lang) {

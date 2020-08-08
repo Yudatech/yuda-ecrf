@@ -12,18 +12,17 @@ const screeningSchema = new Schema({
   /**
    * SCREENING
    */
-  screeningdate: {
-    type: Date
-  },
   // 性别
   sex: Number,
   // 出生年份
-  birth: Number,
+  birth: {
+    type: Date
+  },
   // 体重
   weight: Number,
   // 身高
   height: Number,
-  // 年龄在18至80岁的男／女患者
+  // 年龄在18以上的男／女患者
   inclusion_1: Boolean,
   // 欲行择期手术切除左侧结肠 (降结肠、乙状结肠) 或直肠上段 (距离肛缘15cm以上)  良性或恶性病变的患者
   inclusion_2: Boolean,
@@ -88,11 +87,6 @@ const screeningSchema = new Schema({
   },
   // 因认知能力所限，不能理解与试验研究相关的资料，不能了解试验研究的目的和设计，或患者不同意参加本试验
   exclusion_12: {
-    type: Boolean,
-    default: false
-  },
-  // BMI > 35
-  exclusion_13: {
     type: Boolean,
     default: false
   },

@@ -138,17 +138,6 @@ const config = {
       en: 'Cognitive ability that limits the patient’s ability to take part in the study and understand the information he/she received about participating in the study, or the patient does not agree to join the study.'
     }
   }, {
-    name: 'exclusion_13',
-    type: 'checkbox',
-    requireFalseValue: true,
-    commit: [{
-      rule: 'must_false'
-    }],
-    text: {
-      zh: 'BMI > 35',
-      en: 'BMI > 35'
-    }
-  }, {
     name: 'exclusion_14',
     type: 'checkbox',
     requireFalseValue: true,
