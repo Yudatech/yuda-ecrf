@@ -14,12 +14,25 @@ const saeSchema = new Schema({
    */
   // 来源
   saeorigion: String,
+  saeorigion_1: String,
   // 报告类型
   saetpe: Number,
   // 报告时间
   saedtc: {
     type: Date
   },
+  saedeviceclass: Number,
+  saeindicationofsurgery: String,
+  saecomoandtreatment: Boolean,
+  saecomoandtreatment_1_diagnosis: String,
+  saecomoandtreatment_1_medication: String,
+  saecomoandtreatment_1_dose: String,
+  saecomoandtreatment_2_diagnosis: String,
+  saecomoandtreatment_2_medication: String,
+  saecomoandtreatment_2_dose: String,
+  saecomoandtreatment_3_diagnosis: String,
+  saecomoandtreatment_3_medication: String,
+  saecomoandtreatment_3_dose: String,
   // SAE的医学术语(诊断)
   saeterm: String,
   // SAE是否预期

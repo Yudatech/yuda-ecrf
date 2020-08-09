@@ -589,7 +589,7 @@ exports.validateSaeForm = async function (caseId, lang) {
         pass: true,
         linkBase: `/sae`,
         invalidFields: [],
-        text: aeItem.event
+        text: aeItem ? aeItem.event : ''
       };
       saeValidateResult.children.push(saeItemValidateResult);
       doCommitValidationForWholeTable(caseId, saeItemValidateResult, commitCaseConfig, formConfigs, saeItem, extra);

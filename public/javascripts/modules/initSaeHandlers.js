@@ -4,25 +4,33 @@ import setErrorStyle from './helpers/setErrorStyle';
 
 function initSaeHandlers() {
   const saecaus_9El = $('#saecaus_9');
-  
-  saecaus_9El.change(function(){
+
+  saecaus_9El.change(function () {
     setSaecaus10Visibility();
   });
 
-  $('#saecaus_1').change(function(){
+  $('#saeorigion').change(function () {
+    setSaeOrigin1Visibility();
+  });
+
+  $('#saecomoandtreatment').change(function () {
+    setSaeComoAndTreatmentVisibility();
+  });
+
+  $('#saecaus_1').change(function () {
     setSaecaus2Visibility();
   });
 
-  $('#saeres_1').change(function(){
+  $('#saeres_1').change(function () {
     setSaeres2Visibility();
   });
-  
-  $('#saestdtc_date').datepicker().on('changeDate', function(e){
+
+  $('#saestdtc_date').datepicker().on('changeDate', function (e) {
     $('#saecaus_2').datepicker('setStartDate', e.date);
     setSaecause2ErrorStyle();
   });
 
-  $('#saecaus_2').datepicker().on('changeDate', function(e){
+  $('#saecaus_2').datepicker().on('changeDate', function (e) {
     setSaecause2ErrorStyle();
   });
 
@@ -41,9 +49,28 @@ function setSaecaus10Visibility() {
   setFieldVisibility('saecaus_10', checked);
 }
 
+function setSaeComoAndTreatmentVisibility() {
+  const checked = $('#saecomoandtreatment').is(':checked');
+  setFieldVisibility('saecomoandtreatment_1_diagnosis', checked);
+  setFieldVisibility('saecomoandtreatment_1_medication', checked);
+  setFieldVisibility('saecomoandtreatment_1_dose', checked);
+  setFieldVisibility('saecomoandtreatment_2_diagnosis', checked);
+  setFieldVisibility('saecomoandtreatment_2_medication', checked);
+  setFieldVisibility('saecomoandtreatment_2_dose', checked);
+  setFieldVisibility('saecomoandtreatment_3_diagnosis', checked);
+  setFieldVisibility('saecomoandtreatment_3_medication', checked);
+  setFieldVisibility('saecomoandtreatment_3_dose', checked);
+}
+
 function setSaecaus2Visibility() {
   const checked = $('#saecaus_1').is(':checked');
   setFieldVisibility('saecaus_2', checked);
+}
+
+function setSaeOrigin1Visibility() {
+  const value = $('#saeorigion').val();
+  setFieldVisibility('saeorigion_1', value === 'other');
+  $('#sae-form').validator('update');
 }
 
 function setSaecause2ErrorStyle() {

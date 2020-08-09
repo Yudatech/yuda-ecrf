@@ -16,6 +16,13 @@ block case-content
           .col-sm-2
             +_questionBtn(config.formConfigs.saeorigion, questionFields)
 
+        - config.formConfigs.saeorigion_1.hidden = !(config.formConfigs.saeorigion.value === 'other')
+        .row
+          .col-sm-10
+            +_formTemplate(config.formConfigs.saeorigion_1)
+          .col-sm-2
+            +_questionBtn(config.formConfigs.saeorigion_1, questionFields)
+
         .row
           .col-sm-10
             +_formTemplate(config.formConfigs.saetpe)
@@ -27,6 +34,91 @@ block case-content
             +_formTemplate(config.formConfigs.saedtc)
           .col-sm-2
             +_questionBtn(config.formConfigs.saedtc, questionFields)
+
+        .row
+          .col-sm-10
+            +_formTemplate(config.formConfigs.saedeviceclass)
+          .col-sm-2
+            +_questionBtn(config.formConfigs.saedeviceclass, questionFields)
+
+        .row
+          .col-sm-10
+            +_formTemplate(config.formConfigs.saeindicationofsurgery)
+          .col-sm-2
+            +_questionBtn(config.formConfigs.saeindicationofsurgery, questionFields)
+
+      fieldset(disabled=formDisabled)
+        legend #{config.subtitles.subtitle_5.text}
+
+        .row
+          .col-sm-10
+            .form-group
+              +_formTemplate(config.formConfigs.saecomoandtreatment)
+          .col-sm-2
+            +_questionBtn(config.formConfigs.saecomoandtreatment, questionFields)
+
+        - config.formConfigs.saecomoandtreatment_1_diagnosis.hidden = !(config.formConfigs.saecomoandtreatment.value)
+        .row
+          .col-sm-10
+            +_formTemplate(config.formConfigs.saecomoandtreatment_1_diagnosis)
+          .col-sm-2
+            +_questionBtn(config.formConfigs.saecomoandtreatment_1_diagnosis, questionFields)
+
+        - config.formConfigs.saecomoandtreatment_1_medication.hidden = !(config.formConfigs.saecomoandtreatment.value)
+        .row
+          .col-sm-10
+            +_formTemplate(config.formConfigs.saecomoandtreatment_1_medication)
+          .col-sm-2
+            +_questionBtn(config.formConfigs.saecomoandtreatment_1_medication, questionFields)
+
+        - config.formConfigs.saecomoandtreatment_1_dose.hidden = !(config.formConfigs.saecomoandtreatment.value)
+        .row
+          .col-sm-10
+            +_formTemplate(config.formConfigs.saecomoandtreatment_1_dose)
+          .col-sm-2
+            +_questionBtn(config.formConfigs.saecomoandtreatment_1_dose, questionFields)
+
+        - config.formConfigs.saecomoandtreatment_2_diagnosis.hidden = !(config.formConfigs.saecomoandtreatment.value)
+        .row
+          .col-sm-10
+            +_formTemplate(config.formConfigs.saecomoandtreatment_2_diagnosis)
+          .col-sm-2
+            +_questionBtn(config.formConfigs.saecomoandtreatment_2_diagnosis, questionFields)
+
+        - config.formConfigs.saecomoandtreatment_2_medication.hidden = !(config.formConfigs.saecomoandtreatment.value)
+        .row
+          .col-sm-10
+            +_formTemplate(config.formConfigs.saecomoandtreatment_2_medication)
+          .col-sm-2
+            +_questionBtn(config.formConfigs.saecomoandtreatment_2_medication, questionFields)
+
+        - config.formConfigs.saecomoandtreatment_2_dose.hidden = !(config.formConfigs.saecomoandtreatment.value)
+        .row
+          .col-sm-10
+            +_formTemplate(config.formConfigs.saecomoandtreatment_2_dose)
+          .col-sm-2
+            +_questionBtn(config.formConfigs.saecomoandtreatment_2_dose, questionFields)
+
+        - config.formConfigs.saecomoandtreatment_3_diagnosis.hidden = !(config.formConfigs.saecomoandtreatment.value)
+        .row
+          .col-sm-10
+            +_formTemplate(config.formConfigs.saecomoandtreatment_3_diagnosis)
+          .col-sm-2
+            +_questionBtn(config.formConfigs.saecomoandtreatment_3_diagnosis, questionFields)
+
+        - config.formConfigs.saecomoandtreatment_3_medication.hidden = !(config.formConfigs.saecomoandtreatment.value)
+        .row
+          .col-sm-10
+            +_formTemplate(config.formConfigs.saecomoandtreatment_3_medication)
+          .col-sm-2
+            +_questionBtn(config.formConfigs.saecomoandtreatment_3_medication, questionFields)
+
+        - config.formConfigs.saecomoandtreatment_3_dose.hidden = !(config.formConfigs.saecomoandtreatment.value)
+        .row
+          .col-sm-10
+            +_formTemplate(config.formConfigs.saecomoandtreatment_3_dose)
+          .col-sm-2
+            +_questionBtn(config.formConfigs.saecomoandtreatment_3_dose, questionFields)
 
       fieldset(disabled=formDisabled)
         legend #{config.subtitles.subtitle_2.text}

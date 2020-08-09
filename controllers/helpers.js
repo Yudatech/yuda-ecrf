@@ -10,7 +10,7 @@ const Visit = mongoose.model('Visit');
 const getAeSourceConfig = require('../config/ae/getAeSourceConfig');
 const getCmSourceConfig = require('../config/cm/getCmSourceConfig');
 
-exports.appendCaseIdToCaseNav = function(caseId, lang) {
+exports.appendCaseIdToCaseNav = function (caseId, lang) {
   const navs = JSON.parse(JSON.stringify(CaseNav));
   if (lang === undefined) {
     lang = 'zh';
@@ -28,7 +28,7 @@ exports.appendCaseIdToCaseNav = function(caseId, lang) {
   return navs;
 };
 
-exports.getQuestionLink = function(table, linkBase, caseId, formConfig, secondaryId) {
+exports.getQuestionLink = function (table, linkBase, caseId, formConfig, secondaryId) {
   if (secondaryId === undefined) {
     return `/new/question?table=${table}&caseId=${caseId}&field=${formConfig.name}&linkBase=${linkBase}`;
   }
@@ -37,7 +37,7 @@ exports.getQuestionLink = function(table, linkBase, caseId, formConfig, secondar
   }
 };
 
-exports.getSaeSourceOptions = async function(caseId) {
+exports.getSaeSourceOptions = async function (caseId) {
   const aeList = await Ae.find({
     case: caseId
   });
@@ -47,10 +47,14 @@ exports.getSaeSourceOptions = async function(caseId) {
       text: item.event
     };
   });
+  saeSourceOptions.push({
+    value: 'other',
+    text: 'Other'
+  });
   return saeSourceOptions;
 };
 
-exports.getSaeSourceOptionsSync = function(caseId, allAe) {
+exports.getSaeSourceOptionsSync = function (caseId, allAe) {
   const aeList = allAe.filter((item) => item.case === caseId);
   const saeSourceOptions = aeList.map((item) => {
     return {
@@ -58,10 +62,14 @@ exports.getSaeSourceOptionsSync = function(caseId, allAe) {
       text: item.event
     };
   });
+  saeSourceOptions.push({
+    value: 'other',
+    text: 'Other'
+  });
   return saeSourceOptions;
 }
 
-exports.getAeSourceConfig = async function(caseId, lang) {
+exports.getAeSourceConfig = async function (caseId, lang) {
   const surgeryItem = await Surgery.findOne({
     case: caseId
   });
@@ -84,7 +92,7 @@ exports.getAeSourceConfig = async function(caseId, lang) {
   return getAeSourceConfig(lang, visits);
 };
 
-exports.getAeSourceConfigSync = function(caseId, lang, surgeryList, visitList) {
+exports.getAeSourceConfigSync = function (caseId, lang, surgeryList, visitList) {
   const surgeryItem = surgeryList.find((item) => item.case === caseId);
   const visitItems = visitList.filter((item) => item.case === caseId);
   const visits = [];
@@ -103,7 +111,7 @@ exports.getAeSourceConfigSync = function(caseId, lang, surgeryList, visitList) {
   return getAeSourceConfig(lang, visits);
 }
 
-exports.getCmSourceConfig = async function(caseId, lang) {
+exports.getCmSourceConfig = async function (caseId, lang) {
   const surgeryItem = await Surgery.findOne({
     case: caseId
   });
@@ -126,7 +134,7 @@ exports.getCmSourceConfig = async function(caseId, lang) {
   return getCmSourceConfig(lang, visits);
 };
 
-exports.getVisitNameList = async function(caseId, lang) {
+exports.getVisitNameList = async function (caseId, lang) {
   const surgeryItem = await Surgery.findOne({
     case: caseId
   });

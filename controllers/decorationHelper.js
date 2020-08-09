@@ -13,6 +13,7 @@ const getSaeRelConfig = require('../config/sae/getSaeRelConfig');
 const getSaeResConfig = require('../config/sae/getSaeResConfig');
 const getSaeTypesConfig = require('../config/sae/getSaeTypesConfig');
 const getSaeCauseConfig = require('../config/sae/getSaeCauseConfig');
+const getSaeDeviceClassConfig = require('../config/sae/getSaeDeviceClassConfig');
 const getSurgeryAnastomoticMethodsConfig = require('../config/surgery/getSurgeryAnastomoticMethodsConfig');
 const getSurgeryDeviceSizeConfig = require('../config/surgery/getSurgeryDeviceSizeConfig');
 const getSurgeryDeviceTypeConfig = require('../config/surgery/getSurgeryDeviceTypeConfig');
@@ -45,6 +46,7 @@ module.exports = {
   'getSaeResConfig': getSaeResConfig,
   'getSaeTypesConfig': getSaeTypesConfig,
   'getSaeCauseConfig': getSaeCauseConfig,
+  'getSaeDeviceClassConfig': getSaeDeviceClassConfig,
   'getSurgeryAnastomoticMethodsConfig': getSurgeryAnastomoticMethodsConfig,
   'getSurgeryDeviceSizeConfig': getSurgeryDeviceSizeConfig,
   'getSurgeryDeviceTypeConfig': getSurgeryDeviceTypeConfig,

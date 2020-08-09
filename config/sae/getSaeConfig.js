@@ -34,6 +34,13 @@ const config = {
         zh: '其他',
         en: 'Others'
       },
+    },
+    {
+      name: 'subtitle_5',
+      text: {
+        zh: '患者信息',
+        en: 'Information of the patient'
+      },
     }
   ],
 
@@ -47,6 +54,14 @@ const config = {
     text: {
       zh: '来源',
       en: 'Source'
+    }
+  }, {
+    name: 'saeorigion_1',
+    type: 'textfield',
+    required: true,
+    text: {
+      zh: '请注明其他来源',
+      en: 'Please specify other source'
     }
   }, {
     name: 'saetpe',
@@ -70,6 +85,96 @@ const config = {
     text: {
       zh: '报告时间',
       en: 'Time of report'
+    }
+  }, {
+    name: 'saedeviceclass',
+    type: 'select',
+    optionsGetter: 'getSaeDeviceClassConfig',
+    required: true,
+    commit: [{
+      rule: 'required'
+    }],
+    text: {
+      zh: '医疗器械类别',
+      en: 'Class of the medical device'
+    }
+  }, {
+    name: 'saeindicationofsurgery',
+    type: 'textfield',
+    required: true,
+    text: {
+      zh: '手术指征',
+      en: 'Indication of surgery'
+    }
+  }, {
+    name: 'saecomoandtreatment',
+    type: 'checkbox',
+    text: {
+      zh: '合并症和治疗',
+      en: 'Comorbidity and treatment'
+    }
+  }, {
+    name: 'saecomoandtreatment_1_diagnosis',
+    type: 'textfield',
+    text: {
+      zh: '合并症和治疗1 - 诊断',
+      en: 'Comorbidity and treatment 1 - Diagnosis'
+    }
+  }, {
+    name: 'saecomoandtreatment_1_medication',
+    type: 'textfield',
+    text: {
+      zh: '合并症和治疗1 - 药物',
+      en: 'Comorbidity and treatment 1 - Medication'
+    }
+  }, {
+    name: 'saecomoandtreatment_1_dose',
+    type: 'textfield',
+    text: {
+      zh: '合并症和治疗1 - 用量',
+      en: 'Comorbidity and treatment 1 - Dose'
+    }
+  }, {
+    name: 'saecomoandtreatment_2_diagnosis',
+    type: 'textfield',
+    text: {
+      zh: '合并症和治疗2 - 诊断',
+      en: 'Comorbidity and treatment 2 - Diagnosis'
+    }
+  }, {
+    name: 'saecomoandtreatment_2_medication',
+    type: 'textfield',
+    text: {
+      zh: '合并症和治疗2 - 药物',
+      en: 'Comorbidity and treatment 2 - Medication'
+    }
+  }, {
+    name: 'saecomoandtreatment_2_dose',
+    type: 'textfield',
+    text: {
+      zh: '合并症和治疗2 - 用量',
+      en: 'Comorbidity and treatment 2 - Dose'
+    }
+  }, {
+    name: 'saecomoandtreatment_3_diagnosis',
+    type: 'textfield',
+    text: {
+      zh: '合并症和治疗3 - 诊断',
+      en: 'Comorbidity and treatment 3 - Diagnosis'
+    }
+  }, {
+    name: 'saecomoandtreatment_3_medication',
+    type: 'textfield',
+    text: {
+      zh: '合并症和治疗3 - 药物',
+      en: 'Comorbidity and treatment 3 - Medication'
+    }
+  }, {
+    name: 'saecomoandtreatment_3_dose',
+    type: 'textfield',
+    text: {
+      zh: '合并症和治疗3 - 用量',
+      en: 'Comorbidity and treatment 3 - Dose'
     }
   }, {
     name: 'saeterm',
@@ -254,7 +359,7 @@ const config = {
     }],
     text: {
       zh: 'SAE报道情况(国内)',
-      en: 'SAE has been reported (In China)'
+      en: 'SAE has been reported (In Sweden)'
     }
   }, {
     name: 'saerpt_2',
@@ -282,7 +387,7 @@ const config = {
   }]
 };
 
-module.exports = function(lang) {
+module.exports = function (lang) {
   if (lang === undefined) {
     lang = 'zh';
   }
