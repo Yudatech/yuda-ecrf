@@ -1,10 +1,4 @@
 const aeRes = [{
-  value: 0,
-  text: {
-    zh: '消失',
-    en: 'Disapear'
-  }
-}, {
   value: 1,
   text: {
     zh: '继续',
@@ -25,14 +19,14 @@ const aeRes = [{
 }, {
   value: 4,
   text: {
-    zh: '有后遗症',
-    en: 'Sequela Yes'
+    zh: '消失(有后遗症)',
+    en: 'Disapear (Sequela Yes)'
   }
 }, {
   value: 5,
   text: {
-    zh: '无后遗症',
-    en: 'Sequela No'
+    zh: '消失(无后遗症)',
+    en: 'Disapear (Sequela No)'
   }
 }];
 
