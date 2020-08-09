@@ -14,8 +14,9 @@ const getSaeResConfig = require('../config/sae/getSaeResConfig');
 const getSaeTypesConfig = require('../config/sae/getSaeTypesConfig');
 const getSaeCauseConfig = require('../config/sae/getSaeCauseConfig');
 const getSurgeryAnastomoticMethodsConfig = require('../config/surgery/getSurgeryAnastomoticMethodsConfig');
-const getSurgeryDmhDmhcModelConfig = require('../config/surgery/getSurgeryDmhDmhcModelConfig');
-const getSurgeryLapAidModelConfig = require('../config/surgery/getSurgeryLapAidModelConfig');
+const getSurgeryDeviceSizeConfig = require('../config/surgery/getSurgeryDeviceSizeConfig');
+const getSurgeryDeviceTypeConfig = require('../config/surgery/getSurgeryDeviceTypeConfig');
+const getAirLeakTestConfig = require('../config/surgery/getAirLeakTestConfig');
 const getSurgeryMethodsConfig = require('../config/surgery/getSurgeryMethodsConfig');
 const getVisitFoodTypesConfig = require('../config/visit/getVisitFoodTypesConfig');
 const getVisitParam1Config = require('../config/visit/getVisitParam1Config');
@@ -45,8 +46,9 @@ module.exports = {
   'getSaeTypesConfig': getSaeTypesConfig,
   'getSaeCauseConfig': getSaeCauseConfig,
   'getSurgeryAnastomoticMethodsConfig': getSurgeryAnastomoticMethodsConfig,
-  'getSurgeryDmhDmhcModelConfig': getSurgeryDmhDmhcModelConfig,
-  'getSurgeryLapAidModelConfig': getSurgeryLapAidModelConfig,
+  'getSurgeryDeviceSizeConfig': getSurgeryDeviceSizeConfig,
+  'getSurgeryDeviceTypeConfig': getSurgeryDeviceTypeConfig,
+  'getAirLeakTestConfig': getAirLeakTestConfig,
   'getSurgeryMethodsConfig': getSurgeryMethodsConfig,
   'getVisitFoodTypesConfig': getVisitFoodTypesConfig,
   'getVisitParam1Config': getVisitParam1Config,

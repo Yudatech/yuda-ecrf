@@ -51,31 +51,29 @@ block case-content
           .col-sm-2
             +_questionBtn(config.formConfigs.surgery_3, questionFields)
 
-      fieldset(disabled=formDisabled)
-        legend #{config.groups.surgery.text}
         .row
           .col-sm-10
-            +_formTemplate(config.formConfigs.surgery_4)
+            .form-group
+              +_formTemplate(config.formConfigs.surgery_4)
           .col-sm-2
             +_questionBtn(config.formConfigs.surgery_4, questionFields)
 
         .row
           .col-sm-10
-            +_formTemplate(config.formConfigs.surgery_5)
+            .form-group
+              +_formTemplate(config.formConfigs.surgery_5)
           .col-sm-2
             +_questionBtn(config.formConfigs.surgery_5, questionFields)
 
         .row
           .col-sm-10
-            +_formTemplate(config.formConfigs.surgery_6)
+            .form-group
+              +_formTemplate(config.formConfigs.surgery_6)
           .col-sm-2
             +_questionBtn(config.formConfigs.surgery_6, questionFields)
 
-        .row
-          .col-sm-10
-            +_formTemplate(config.formConfigs.surgery_7)
-          .col-sm-2
-            +_questionBtn(config.formConfigs.surgery_7, questionFields)
+      fieldset(disabled=formDisabled)
+        legend #{config.groups.surgery.text}
 
         .row
           .col-sm-10
@@ -97,7 +95,8 @@ block case-content
 
         .row
           .col-sm-10
-            +_formTemplate(config.formConfigs.surgery_11)
+            .form-group
+              +_formTemplate(config.formConfigs.surgery_11)
           .col-sm-2
             +_questionBtn(config.formConfigs.surgery_11, questionFields)
 

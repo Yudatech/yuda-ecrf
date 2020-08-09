@@ -76,7 +76,7 @@ module.exports = [
   {
     title: {
       zh: '手术',
-      en: 'Operation'
+      en: 'Surgery'
     },
     name: 'surgery',
     link: '/surgery'

@@ -184,9 +184,9 @@ function doCommitValidation(caseId, key, obj, rules, extra, validateResult) {
       if (key === 'reviewcheck_3' || key === 'reviewcheck_4') {
         result = doReviewChecklistCustomValidation(caseId, key, obj, ruleConfig, validateResult, extra.cmList);
       }
-      else if (key === 'surgery_14') {
-        result = doSurgeryCustomValidation(caseId, key, obj, ruleConfig, validateResult, extra.aeList);
-      }
+      // else if (key === 'surgery_14') {
+      //   result = doSurgeryCustomValidation(caseId, key, obj, ruleConfig, validateResult, extra.aeList);
+      // }
       else if (key === 'param_18' || key === 'param_22') {
         result = doVisitCustomValidation(caseId, key, obj, ruleConfig, validateResult, extra.aeList, extra.cmList);
       }
@@ -254,7 +254,7 @@ function initValidateResult(config) {
     resultText: '',
     link: ''
   };
-  return Object.assign({invalidFields: []}, result, config);
+  return Object.assign({ invalidFields: [] }, result, config);
 }
 
 function getCommitCaseConfigItem(configs, name) {
@@ -263,7 +263,7 @@ function getCommitCaseConfigItem(configs, name) {
   });
 }
 
-exports.validateCaseOverview = async function(caseId, lang) {
+exports.validateCaseOverview = async function (caseId, lang) {
   const commitCaseConfig = getCommitCaseConfig(lang);
   const caseItem = await Case.findById(caseId);
   const caseOverviewValidateResult = initValidateResult(getCommitCaseConfigItem(commitCaseConfig.records, 'overview'));
@@ -286,7 +286,7 @@ exports.validateCaseOverview = async function(caseId, lang) {
   return caseOverviewValidateResult;
 };
 
-exports.validateScreeningForm = async function(caseId, lang) {
+exports.validateScreeningForm = async function (caseId, lang) {
   const commitCaseConfig = getCommitCaseConfig(lang);
   const screeningItem = await Screening.findOne({
     case: caseId
@@ -343,7 +343,7 @@ exports.validateScreeningForm = async function(caseId, lang) {
   return screeningValidateResult;
 };
 
-exports.validateReviewChecklistForm = async function(caseId, lang) {
+exports.validateReviewChecklistForm = async function (caseId, lang) {
   const commitCaseConfig = getCommitCaseConfig(lang);
   const reviewChecklistItem = await ReviewChecklist.findOne({
     case: caseId
@@ -372,7 +372,7 @@ exports.validateReviewChecklistForm = async function(caseId, lang) {
   return reviewChecklistValidateResult;
 };
 
-exports.validateSurgeryForm = async function(caseId, lang) {
+exports.validateSurgeryForm = async function (caseId, lang) {
   const commitCaseConfig = getCommitCaseConfig(lang);
   const surgeryItem = await Surgery.findOne({
     case: caseId
@@ -403,7 +403,7 @@ exports.validateSurgeryForm = async function(caseId, lang) {
   return surgeryValidateResult;
 };
 
-exports.validateVisitForm = async function(caseId, lang) {
+exports.validateVisitForm = async function (caseId, lang) {
   const commitCaseConfig = getCommitCaseConfig(lang);
   const visitList = await Visit.find({
     case: caseId
@@ -469,7 +469,7 @@ exports.validateVisitForm = async function(caseId, lang) {
   return visitValidateResult;
 };
 
-exports.validateCmForm = async function(caseId, lang) {
+exports.validateCmForm = async function (caseId, lang) {
   const commitCaseConfig = getCommitCaseConfig(lang);
   const cmList = await Cm.find({
     case: caseId
@@ -511,7 +511,7 @@ exports.validateCmForm = async function(caseId, lang) {
   return cmValidateResult;
 };
 
-exports.validateAeForm = async function(caseId, lang) {
+exports.validateAeForm = async function (caseId, lang) {
   const commitCaseConfig = getCommitCaseConfig(lang);
   const aeList = await Ae.find({
     case: caseId
@@ -556,7 +556,7 @@ exports.validateAeForm = async function(caseId, lang) {
   return aeValidateResult;
 };
 
-exports.validateSaeForm = async function(caseId, lang) {
+exports.validateSaeForm = async function (caseId, lang) {
   const commitCaseConfig = getCommitCaseConfig(lang);
   const saeList = await Sae.find({
     case: caseId

@@ -3,7 +3,7 @@ const getOptionsLang = require('../configHelpers').getOptionsLang;
 const config = {
   title: {
     zh: '手术',
-    en: 'Operation'
+    en: 'Surgery'
   },
 
   subtitles: [
@@ -11,7 +11,7 @@ const config = {
       name: 'subtitle_1',
       text: {
         zh: '肠切除部位',
-        en: 'Intestinal Resection'
+        en: 'Surgical Area'
       }
     }
   ],
@@ -26,7 +26,7 @@ const config = {
     name: 'surgery',
     text: {
       zh: '手术',
-      en: 'Operation'
+      en: 'Surgery'
     }
   }],
   formConfigs: [{
@@ -44,18 +44,18 @@ const config = {
   }, {
     name: 'device_1',
     type: 'select',
-    optionsGetter: 'getSurgeryLapAidModelConfig',
+    optionsGetter: 'getSurgeryDeviceTypeConfig',
     text: {
-      zh: 'C-REX LapAid型号',
-      en: 'C-REX LapAid'
+      zh: '设备型号',
+      en: 'Type of device'
     }
   }, {
     name: 'device_2',
     type: 'select',
-    optionsGetter: 'getSurgeryDmhDmhcModelConfig',
+    optionsGetter: 'getSurgeryDeviceSizeConfig',
     text: {
-      zh: 'C-REX DMH/DMHC型号',
-      en: 'C-REX DMH/DMHC'
+      zh: '设备尺寸',
+      en: 'Size of device'
     }
   }, {
     name: 'surgery_1',
@@ -80,42 +80,32 @@ const config = {
     }
   }, {
     name: 'surgery_4',
-    type: 'numberfield',
-    step: 'any',
+    type: 'checkbox',
     text: {
-      zh: '肿瘤距离肛门(cm)',
-      en: 'Distance from the anal verge'
+      zh: '盲肠',
+      en: 'Cecum'
     }
   }, {
     name: 'surgery_5',
-    type: 'numberfield',
-    step: 'any',
+    type: 'checkbox',
     text: {
-      zh: '肿瘤大小-长度(cm)',
-      en: 'Size of tumor-length(cm)'
+      zh: '升结肠',
+      en: 'Ascending colon'
     }
   }, {
     name: 'surgery_6',
-    type: 'numberfield',
-    step: 'any',
+    type: 'checkbox',
     text: {
-      zh: '肿瘤大小-宽度(cm)',
-      en: 'Size of tumor-width(cm)'
-    }
-  }, {
-    name: 'surgery_7',
-    type: 'textfield',
-    text: {
-      zh: '肿瘤浸润范围',
-      en: 'Tumor involvement'
+      zh: '横结肠',
+      en: 'Transverse colon'
     }
   }, {
     name: 'surgery_8',
     type: 'select',
-    optionsGetter: 'getSurgeryAnastomoticMethodsConfig',
+    optionsGetter: 'getAirLeakTestConfig',
     text: {
-      zh: '吻合方式',
-      en: 'Type of anastomosis'
+      zh: '漏气测试',
+      en: 'Air leak test'
     }
   }, {
     name: 'surgery_9',
@@ -130,16 +120,15 @@ const config = {
     type: 'numberfield',
     step: 'any',
     text: {
-      zh: '术中吻合口完整性压力-若使用DMHC(mbar)',
-      en: 'Integrity pressure (mbar) (in case DMHC is applied)'
+      zh: '术中吻合口完整性压力(mbar)',
+      en: 'C-REX integrity pressure test (mbar) (optional)'
     }
   }, {
     name: 'surgery_11',
-    type: 'numberfield',
-    step: 'any',
+    type: 'checkbox',
     text: {
-      zh: '肛门外监测导管长度-若使用DMHC(cm)',
-      en: 'Length of catheters (cm) (in case DMHC is applied)'
+      zh: 'C-REX真空泵完整性检查',
+      en: 'C-REX vacuum pump integrity check'
     }
   }, {
     name: 'surgery_12',
@@ -147,7 +136,7 @@ const config = {
     step: '1',
     text: {
       zh: '手术时间(分钟)',
-      en: 'Time of surgery'
+      en: 'Time of surgery (Minutes)'
     }
   }, {
     name: 'surgery_13',
@@ -181,7 +170,7 @@ const config = {
   }]
 };
 
-module.exports = function(lang) {
+module.exports = function (lang) {
   if (lang === undefined) {
     lang = 'zh';
   }
