@@ -22,9 +22,21 @@ const aeRes = [{
     zh: '死亡',
     en: 'Death'
   }
+}, {
+  value: 4,
+  text: {
+    zh: '有后遗症',
+    en: 'Sequela Yes'
+  }
+}, {
+  value: 5,
+  text: {
+    zh: '无后遗症',
+    en: 'Sequela No'
+  }
 }];
 
-module.exports = function(lang) {
+module.exports = function (lang) {
   if (lang === undefined) {
     lang = 'zh';
   }

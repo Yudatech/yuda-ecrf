@@ -16,6 +16,13 @@ block case-content
           .col-sm-2
             +_questionBtn(config.formConfigs.aeorigion, questionFields)
 
+        - config.formConfigs.aeorigion_1.hidden = !(config.formConfigs.aeorigion.value === 'other')
+        .row
+          .col-sm-10
+            +_formTemplate(config.formConfigs.aeorigion_1)
+          .col-sm-2
+            +_questionBtn(config.formConfigs.aeorigion_1, questionFields)
+
         .row
           .col-sm-10
             +_formTemplate(config.formConfigs.event)

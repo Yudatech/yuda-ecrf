@@ -2,14 +2,18 @@ import setFieldVisibility from './helpers/setFieldVisibility';
 import requireValidator from './validators/requireValidator';
 
 function initSaeHandlers() {
-  $('#aeres_1').change(function(){
+  $('#aeres_1').change(function () {
     setAeres2Visibility();
   });
 
-  $('#aeserv').change(function(){
+  $('#aeorigion').change(function () {
+    setAeOrigin1Visibility();
+  });
+
+  $('#aeserv').change(function () {
     setErrorElementVisibility();
   });
-  $('#aerpt').change(function(){
+  $('#aerpt').change(function () {
     setErrorElementVisibility();
   });
   setErrorElementVisibility();
@@ -28,6 +32,12 @@ function setAeres2Visibility() {
   const aeres1 = $('#aeres_1').val();
   const checked = aeres1 === '0';
   setFieldVisibility('aeres_2', checked);
+}
+
+function setAeOrigin1Visibility() {
+  const value = $('#aeorigion').val();
+  setFieldVisibility('aeorigion_1', value === 'other');
+  $('#ae-form').validator('update');
 }
 
 function setErrorElementVisibility() {

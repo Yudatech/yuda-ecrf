@@ -4,6 +4,12 @@ const aeSources = [{
     zh: '手术中',
     en: 'Operation'
   }
+}, {
+  value: 'other',
+  text: {
+    zh: '其他',
+    en: 'Other'
+  }
 }];
 
 const template = {
@@ -11,7 +17,7 @@ const template = {
   en: '__DAYNUM__ days the __NUM__ visit after Operation'
 };
 
-module.exports = function(lang, visits) {
+module.exports = function (lang, visits) {
   if (lang === undefined) {
     lang = 'zh';
   }

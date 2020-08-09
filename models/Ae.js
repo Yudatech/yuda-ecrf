@@ -14,6 +14,7 @@ const aeSchema = new Schema({
    */
   // 来源
   aeorigion: String,
+  aeorigion_1: String,
   // 事件 (名称及症状)
   event: String,
   // 发生时间

@@ -44,6 +44,14 @@ const config = {
       en: 'Source'
     }
   }, {
+    name: 'aeorigion_1',
+    type: 'textfield',
+    required: true,
+    text: {
+      zh: '请注明其他来源',
+      en: 'Please specify other source'
+    }
+  }, {
     name: 'event',
     type: 'textfield',
     text: {
@@ -71,7 +79,7 @@ const config = {
     }],
     text: {
       zh: '结束时间',
-      en: 'Date of stop'
+      en: 'Date of resolution'
     }
   }, {
     name: 'aeserv',
@@ -160,7 +168,7 @@ const config = {
   }]
 };
 
-module.exports = function(lang) {
+module.exports = function (lang) {
   if (lang === undefined) {
     lang = 'zh';
   }
