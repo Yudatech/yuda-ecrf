@@ -20,7 +20,7 @@ const aeLevels = [{
 
 module.exports = function(lang) {
   if (lang === undefined) {
-    lang = 'zh';
+    lang = 'en';
   }
 
   return aeLevels.map((item) => {

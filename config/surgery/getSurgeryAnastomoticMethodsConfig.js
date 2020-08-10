@@ -20,7 +20,7 @@ const anastomoticMethods = [{
 
 module.exports = function(lang) {
   if (lang === undefined) {
-    lang = 'zh';
+    lang = 'en';
   }
 
   return anastomoticMethods.map((item) => {

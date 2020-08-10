@@ -14,7 +14,7 @@ const saeRes = [{
 
 module.exports = function(lang) {
   if (lang === undefined) {
-    lang = 'zh';
+    lang = 'en';
   }
 
   return saeRes.map((item) => {

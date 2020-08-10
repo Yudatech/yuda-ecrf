@@ -13,7 +13,7 @@ const getCmSourceConfig = require('../config/cm/getCmSourceConfig');
 exports.appendCaseIdToCaseNav = function (caseId, lang) {
   const navs = JSON.parse(JSON.stringify(CaseNav));
   if (lang === undefined) {
-    lang = 'zh';
+    lang = 'en';
   }
   navs.forEach((item) => {
     item.caseId = caseId;

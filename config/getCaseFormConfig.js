@@ -39,15 +39,15 @@ const config = {
       en: 'Upload Informed Consent signature page'
     }
   }],
-  infoDescription:{
+  infoDescription: {
     zh: '此处内容填写完毕，点击保存后不可更改，请确认填写内容无误。',
     en: 'The information on this page can not be modified after clicking "save" bottom, please confirm that the information is correct.'
   }
 };
 
-module.exports = function(lang) {
+module.exports = function (lang) {
   if (lang === undefined) {
-    lang = 'zh';
+    lang = 'en';
   }
 
   const result = {};

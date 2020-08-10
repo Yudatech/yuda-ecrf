@@ -1,6 +1,6 @@
-exports.getOptionsLang = function(options, lang) {
+exports.getOptionsLang = function (options, lang) {
   if (lang === undefined) {
-    lang = 'zh';
+    lang = 'en';
   }
 
   const result = {};

@@ -26,7 +26,7 @@ const aeRels = [{
 
 module.exports = function(lang) {
   if (lang === undefined) {
-    lang = 'zh';
+    lang = 'en';
   }
 
   return aeRels.map((item) => {

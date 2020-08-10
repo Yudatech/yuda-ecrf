@@ -30,7 +30,7 @@ const visitRes = [{
 
 module.exports = function(lang) {
   if (lang === undefined) {
-    lang = 'zh';
+    lang = 'en';
   }
 
   return visitRes.map((item) => {

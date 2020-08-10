@@ -50,7 +50,7 @@ const saeCauses = [{
 
 module.exports = function(lang) {
   if (lang === undefined) {
-    lang = 'zh';
+    lang = 'en';
   }
 
   return saeCauses.map((item) => {

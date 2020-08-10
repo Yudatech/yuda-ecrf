@@ -22,7 +22,7 @@ const abdominalExamResult = [{
 
 module.exports = function(lang) {
   if (lang === undefined) {
-    lang = 'zh';
+    lang = 'en';
   }
 
   return abdominalExamResult.map((item) => {

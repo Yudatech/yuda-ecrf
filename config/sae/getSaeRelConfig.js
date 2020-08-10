@@ -32,7 +32,7 @@ const saeRels = [{
 
 module.exports = function(lang) {
   if (lang === undefined) {
-    lang = 'zh';
+    lang = 'en';
   }
 
   return saeRels.map((item) => {

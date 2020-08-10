@@ -20,7 +20,7 @@ const saeTypes = [{
 
 module.exports = function(lang) {
   if (lang === undefined) {
-    lang = 'zh';
+    lang = 'en';
   }
 
   return saeTypes.map((item) => {

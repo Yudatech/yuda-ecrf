@@ -20,7 +20,7 @@ const saeDeviceClasses = [{
 
 module.exports = function (lang) {
   if (lang === undefined) {
-    lang = 'zh';
+    lang = 'en';
   }
 
   return saeDeviceClasses.map((item) => {

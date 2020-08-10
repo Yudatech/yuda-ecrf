@@ -24,7 +24,7 @@ const param14 = [{
 
 module.exports = function(lang) {
   if (lang === undefined) {
-    lang = 'zh';
+    lang = 'en';
   }
 
   return param14.map((item) => {

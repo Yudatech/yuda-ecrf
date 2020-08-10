@@ -67,7 +67,7 @@ const config = {
 
 module.exports = function(lang) {
   if (lang === undefined) {
-    lang = 'zh';
+    lang = 'en';
   }
 
   const result = {};

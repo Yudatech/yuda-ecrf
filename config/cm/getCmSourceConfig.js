@@ -19,7 +19,7 @@ const template = {
 
 module.exports = function(lang, visits) {
   if (lang === undefined) {
-    lang = 'zh';
+    lang = 'en';
   }
 
   const templateLang = template[lang];

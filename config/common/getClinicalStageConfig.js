@@ -28,7 +28,7 @@ const clinicalStages = [{
 
 module.exports = function(lang) {
   if (lang === undefined) {
-    lang = 'zh';
+    lang = 'en';
   }
 
   return clinicalStages.map((item) => {
