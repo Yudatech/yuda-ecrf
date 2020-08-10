@@ -2,7 +2,7 @@ mixin _numberfieldTemplate(config, disabled)
   - const validation = config.validation
   - const max = validation ? validation.max : undefined
   - const min = validation ? validation.min : undefined
-  .form-group(id=`${config.name}-container`)
+  .form-group(id=`${config.name}-container` class=(config.hidden === true ? 'hidden' : ''))
     label.control-label #{config.text}
     if config.unit === undefined
       input.form-control(disabled=disabled id=config.name type="number" data-minvalidation=min data-maxvalidation=max step=config.step name=config.name value=config.value data-customrequired=config.required data-customrange=config.requireCustomRange)

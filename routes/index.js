@@ -17,6 +17,7 @@ const saeController = require('../controllers/saeController');
 const visitController = require('../controllers/visitController');
 const questionController = require('../controllers/questionController');
 const screeningController = require('../controllers/screeningController');
+const lifeAssessmentController = require('../controllers/lifeAssessmentController');
 
 router.get('/', authController.isLoggedIn, mainController.homePage);
 
@@ -276,6 +277,21 @@ router.post('/surgery/:caseId',
   catchErrors(authController.checkCaseStatus),
   catchErrors(authController.checkCasePermission),
   catchErrors(surgeryController.updateSurgery)
+);
+
+// Router for life quality
+router.get('/life/:caseId',
+  authController.isLoggedIn,
+  catchErrors(authController.checkCaseStatus),
+  catchErrors(authController.checkCasePermission),
+  catchErrors(questionController.checkQuestionedFields),
+  catchErrors(lifeAssessmentController.lifeAssessmentForm)
+);
+router.post('/life/:caseId',
+  authController.isLoggedIn,
+  catchErrors(authController.checkCaseStatus),
+  catchErrors(authController.checkCasePermission),
+  catchErrors(lifeAssessmentController.updateLifeAssessment)
 );
 
 // Router for cm

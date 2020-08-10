@@ -1,0 +1,224 @@
+extends caseLayout
+
+include mixins/_formTemplate
+include mixins/_questionBtn
+
+block case-content
+  .case-content
+    form.form-horizontal(id="life-form" action=`/life/${caseId}` method="POST")
+      - const formDisabled = !((locals.case.status === 'open' && locals.user.role === 'cra') || locals.user.role === 'admin')
+
+      fieldset(disabled=formDisabled)
+        legend #{config.groups.life.text}
+        .row
+          .col-sm-10
+            +_formTemplate(config.formConfigs.assessmentdtc)
+          .col-sm-2
+            +_questionBtn(config.formConfigs.assessmentdtc, questionFields)
+
+        .row
+          .col-sm-10
+            +_formTemplate(config.formConfigs.life_1)
+          .col-sm-2
+            +_questionBtn(config.formConfigs.life_1, questionFields)
+
+      fieldset(disabled=formDisabled)
+        legend #{config.groups.healthcare.text}
+
+        .row
+          .col-sm-10
+            .form-group
+              +_formTemplate(config.formConfigs.healthcare_1)
+          .col-sm-2
+            +_questionBtn(config.formConfigs.healthcare_1, questionFields)
+
+        - config.formConfigs.healthcare_1_1.hidden = !(config.formConfigs.healthcare_1.value === true)
+        .row
+          .col-sm-10
+            +_formTemplate(config.formConfigs.healthcare_1_1)
+          .col-sm-2
+            +_questionBtn(config.formConfigs.healthcare_1_1, questionFields)
+
+        .row
+          .col-sm-10
+            .form-group
+              +_formTemplate(config.formConfigs.healthcare_2)
+          .col-sm-2
+            +_questionBtn(config.formConfigs.healthcare_2, questionFields)
+
+        - config.formConfigs.healthcare_2_1.hidden = !(config.formConfigs.healthcare_2.value === true)
+        .row
+          .col-sm-10
+            +_formTemplate(config.formConfigs.healthcare_2_1)
+          .col-sm-2
+            +_questionBtn(config.formConfigs.healthcare_2_1, questionFields)
+
+        - config.formConfigs.healthcare_2_2.hidden = !(config.formConfigs.healthcare_1.value === true)
+        .row
+          .col-sm-10
+            +_formTemplate(config.formConfigs.healthcare_2_2)
+          .col-sm-2
+            +_questionBtn(config.formConfigs.healthcare_2_2, questionFields)
+
+        .row
+          .col-sm-10
+            .form-group
+              +_formTemplate(config.formConfigs.healthcare_3)
+          .col-sm-2
+            +_questionBtn(config.formConfigs.healthcare_3, questionFields)
+
+        - config.formConfigs.healthcare_3_1.hidden = !(config.formConfigs.healthcare_3.value === true)
+        .row
+          .col-sm-10
+            +_formTemplate(config.formConfigs.healthcare_3_1)
+          .col-sm-2
+            +_questionBtn(config.formConfigs.healthcare_3_1, questionFields)
+
+        .row
+          .col-sm-10
+            .form-group
+              +_formTemplate(config.formConfigs.healthcare_4)
+          .col-sm-2
+            +_questionBtn(config.formConfigs.healthcare_4, questionFields)
+
+        - config.formConfigs.healthcare_4_1.hidden = !(config.formConfigs.healthcare_4.value === true)
+        .row
+          .col-sm-10
+            +_formTemplate(config.formConfigs.healthcare_4_1)
+          .col-sm-2
+            +_questionBtn(config.formConfigs.healthcare_4_1, questionFields)
+
+      fieldset(disabled=formDisabled)
+        legend #{config.groups.procedure.text}
+
+        .row
+          .col-sm-10
+            .form-group
+              +_formTemplate(config.formConfigs.procedure_1)
+          .col-sm-2
+            +_questionBtn(config.formConfigs.procedure_1, questionFields)
+
+        - config.formConfigs.procedure_1_1.hidden = !(config.formConfigs.procedure_1.value === true)
+        .row
+          .col-sm-10
+            +_formTemplate(config.formConfigs.procedure_1_1)
+          .col-sm-2
+            +_questionBtn(config.formConfigs.procedure_1_1, questionFields)
+
+        .row
+          .col-sm-10
+            .form-group
+              +_formTemplate(config.formConfigs.procedure_2)
+          .col-sm-2
+            +_questionBtn(config.formConfigs.procedure_2, questionFields)
+
+        - config.formConfigs.procedure_2_1.hidden = !(config.formConfigs.procedure_2.value === true)
+        .row
+          .col-sm-10
+            +_formTemplate(config.formConfigs.procedure_2_1)
+          .col-sm-2
+            +_questionBtn(config.formConfigs.procedure_2_1, questionFields)
+
+        .row
+          .col-sm-10
+            .form-group
+              +_formTemplate(config.formConfigs.procedure_3)
+          .col-sm-2
+            +_questionBtn(config.formConfigs.procedure_3, questionFields)
+
+        - config.formConfigs.procedure_3_1.hidden = !(config.formConfigs.procedure_3.value === true)
+        .row
+          .col-sm-10
+            +_formTemplate(config.formConfigs.procedure_3_1)
+          .col-sm-2
+            +_questionBtn(config.formConfigs.procedure_3_1, questionFields)
+
+        .row
+          .col-sm-10
+            .form-group
+              +_formTemplate(config.formConfigs.procedure_4)
+          .col-sm-2
+            +_questionBtn(config.formConfigs.procedure_4, questionFields)
+
+        - config.formConfigs.procedure_4_1.hidden = !(config.formConfigs.procedure_4.value === true)
+        .row
+          .col-sm-10
+            +_formTemplate(config.formConfigs.procedure_4_1)
+          .col-sm-2
+            +_questionBtn(config.formConfigs.procedure_4_1, questionFields)
+
+      fieldset(disabled=formDisabled)
+        legend #{config.groups.complications.text}
+
+        .row
+          .col-sm-10
+            .form-group
+              +_formTemplate(config.formConfigs.complications_1)
+          .col-sm-2
+            +_questionBtn(config.formConfigs.complications_1, questionFields)
+
+        - config.formConfigs.complications_1_1.hidden = !(config.formConfigs.complications_1.value === true)
+        .row
+          .col-sm-10
+            +_formTemplate(config.formConfigs.complications_1_1)
+          .col-sm-2
+            +_questionBtn(config.formConfigs.complications_1_1, questionFields)
+
+        .row
+          .col-sm-10
+            .form-group
+              +_formTemplate(config.formConfigs.complications_2)
+          .col-sm-2
+            +_questionBtn(config.formConfigs.complications_2, questionFields)
+
+        - config.formConfigs.complications_2_1.hidden = !(config.formConfigs.complications_2.value === true)
+        .row
+          .col-sm-10
+            +_formTemplate(config.formConfigs.complications_2_1)
+          .col-sm-2
+            +_questionBtn(config.formConfigs.complications_2_1, questionFields)
+
+        .row
+          .col-sm-10
+            .form-group
+              +_formTemplate(config.formConfigs.complications_3)
+          .col-sm-2
+            +_questionBtn(config.formConfigs.complications_3, questionFields)
+
+        - config.formConfigs.complications_3_1.hidden = !(config.formConfigs.complications_3.value === true)
+        .row
+          .col-sm-10
+            +_formTemplate(config.formConfigs.complications_3_1)
+          .col-sm-2
+            +_questionBtn(config.formConfigs.complications_3_1, questionFields)
+
+        .row
+          .col-sm-10
+            .form-group
+              +_formTemplate(config.formConfigs.complications_4)
+          .col-sm-2
+            +_questionBtn(config.formConfigs.complications_4, questionFields)
+
+        - config.formConfigs.complications_4_1.hidden = !(config.formConfigs.complications_4.value === true)
+        .row
+          .col-sm-10
+            +_formTemplate(config.formConfigs.complications_4_1)
+          .col-sm-2
+            +_questionBtn(config.formConfigs.complications_4_1, questionFields)
+
+        .row
+          .col-sm-10
+            .form-group
+              +_formTemplate(config.formConfigs.complications_5)
+          .col-sm-2
+            +_questionBtn(config.formConfigs.complications_5, questionFields)
+
+        - config.formConfigs.complications_5_1.hidden = !(config.formConfigs.complications_5.value === true)
+        .row
+          .col-sm-10
+            +_formTemplate(config.formConfigs.complications_5_1)
+          .col-sm-2
+            +_questionBtn(config.formConfigs.complications_5_1, questionFields)
+
+      if formDisabled === false
+        input.btn.btn-default.yuda-input-btn(type="submit" value=buttonConfig.buttons.save.text)

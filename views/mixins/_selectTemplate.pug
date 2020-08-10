@@ -1,6 +1,6 @@
 mixin _selectTemplate(config, disabled)
   - const value = config.value
-  .form-group(id=`${config.name}-container`)
+  .form-group(id=`${config.name}-container`  class=(config.hidden === true ? 'hidden' : ''))
     label.control-label #{config.text}
     select.form-control(disabled=disabled id=config.name name=config.name data-customrequired=config.required)
       option(value='')

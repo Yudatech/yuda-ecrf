@@ -114,7 +114,7 @@ exports.updateSurgery = async (req, res) => {
   }
   const logData = {
     original: originalValue,
-    update: updateValue
+    update: req.body
   };
   await createOrUpdateSurgery(caseId, req.body);
   logger.info(loggerHelper.createLogMessage(req.user, 'update', 'surgery', caseId, caseItem.status), logData);

@@ -23,6 +23,7 @@ import initVisitTableHandlers from './modules/initVisitTableHandlers';
 import initCMTableHandlers from './modules/initCMTableHandlers';
 import initAeTableHandlers from './modules/initAeTableHandlers';
 import initSaeTableHandlers from './modules/initSaeTableHandlers';
+import initLifeAssessmentHandlers from './modules/initLifeAssessmentHandlers';
 
 $('.input-group.date').datepicker({
   endDate: new Date()
@@ -129,5 +130,8 @@ window.onload = function () {
   }
   else if (pathname.startsWith('/users')) {
     initUsersHandlers();
+  }
+  else if (pathname.startsWith('/life')) {
+    initLifeAssessmentHandlers();
   }
 }
