@@ -15,6 +15,7 @@ const getCmConfig = require('../config/cm/getCmConfig');
 const getSaeConfig = require('../config/sae/getSaeConfig');
 const getAeConfig = require('../config/ae/getAeConfig');
 const getSurgeryConfig = require('../config/surgery/getSurgeryConfig');
+const getLifeAssessmentConfig = require('../config/life/getLifeAssessmentConfig');
 const getVisitConfig = require('../config/visit/getVisitConfig');
 
 const decorationHelper = require('./decorationHelper');
@@ -55,6 +56,9 @@ exports.getConfigForQuestion = function (table, lang) {
   }
   else if (table === 'visit') {
     formConfigs = getVisitConfig(lang).formConfigs;
+  }
+  else if (table === 'life') {
+    formConfigs = getLifeAssessmentConfig(lang).formConfigs;
   }
 
   return formConfigs;

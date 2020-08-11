@@ -25,11 +25,12 @@ const getCmConfig = require('../config/cm/getCmConfig');
 const getSaeConfig = require('../config/sae/getSaeConfig');
 const getAeConfig = require('../config/ae/getAeConfig');
 const getSurgeryConfig = require('../config/surgery/getSurgeryConfig');
+const getLifeAssessmentConfig = require('../config/life/getLifeAssessmentConfig');
 const getVisitConfig = require('../config/visit/getVisitConfig');
 
 const decorationHelper = require('./decorationHelper');
 
-exports.getConfigForQuestion = function(table, field, lang) {
+exports.getConfigForQuestion = function (table, field, lang) {
   if (table === 'screening') {
     let formConfigs;
 
@@ -85,9 +86,12 @@ exports.getConfigForQuestion = function(table, field, lang) {
   else if (table === 'visit') {
     return getVisitConfig(lang);
   }
+  else if (table === 'life') {
+    return getLifeAssessmentConfig(lang);
+  }
 };
 
-exports.getValueForQuestion = async function(table, caseId, secondaryId) {
+exports.getValueForQuestion = async function (table, caseId, secondaryId) {
   let item;
   if (table === 'screening') {
     item = await Screening.findOne({
@@ -122,7 +126,7 @@ exports.getValueForQuestion = async function(table, caseId, secondaryId) {
   return item;
 };
 
-exports.updateValueForQuestion = async function(table, caseId, secondaryId, field, value) {
+exports.updateValueForQuestion = async function (table, caseId, secondaryId, field, value) {
   const obj = {};
   obj[field] = value;
   if (table === 'screening') {
@@ -157,7 +161,7 @@ exports.updateValueForQuestion = async function(table, caseId, secondaryId, fiel
   }
 };
 
-exports.appendValueAndOptionsToFormConfig = function(fieldConfig, fieldValue, aeSourceConfig, saeSourceConfig, cmSourceConfig) {
+exports.appendValueAndOptionsToFormConfig = function (fieldConfig, fieldValue, aeSourceConfig, saeSourceConfig, cmSourceConfig) {
   if (fieldConfig.type === 'date') {
     fieldConfig.value = moment(fieldValue).format('MM/DD/YYYY');
   }
