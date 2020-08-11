@@ -49,41 +49,6 @@ const config = {
       },
       linkBase: '/screening-exclusion'
     }, {
-      name: 'screening-disease',
-      text: {
-        zh: '既往史',
-        en: 'Anamnesis'
-      },
-      linkBase: '/screening-disease'
-    }, {
-      name: 'screening-conmed',
-      text: {
-        zh: '合并用药情况',
-        en: 'Concomitant medication'
-      },
-      linkBase: '/screening-conmed'
-    }, {
-      name: 'screening-vitalsign',
-      text: {
-        zh: '体格检查',
-        en: 'Clinical status'
-      },
-      linkBase: '/screening-vitalsign'
-    }, {
-      name: 'screening-lab',
-      text: {
-        zh: '实验室检查',
-        en: 'Laboratorial tests'
-      },
-      linkBase: '/screening-lab'
-    }, {
-      name: 'screening-assistant',
-      text: {
-        zh: '辅助检查',
-        en: 'Equipment examinations'
-      },
-      linkBase: '/screening-assistant'
-    }, {
       name: 'screening-method',
       text: {
         zh: '诊断方法',
@@ -118,7 +83,7 @@ const config = {
     total: 22,
     text: {
       zh: '手术',
-      en: 'Operation'
+      en: 'Surgery'
     },
     linkBase: '/surgery'
   }, {
@@ -132,7 +97,7 @@ const config = {
   }]
 };
 
-module.exports = function(lang) {
+module.exports = function (lang) {
   if (lang === undefined) {
     lang = 'en';
   }
