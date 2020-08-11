@@ -2,7 +2,7 @@ const aeSources = [{
   value: 'surgery',
   text: {
     zh: '手术中',
-    en: 'Operation'
+    en: 'Surgery'
   }
 }, {
   value: 'other',

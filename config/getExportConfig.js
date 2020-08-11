@@ -46,7 +46,7 @@ const config = {
       name: 'surgery',
       text: {
         zh: '手术',
-        en: 'Operation'
+        en: 'Surgery'
       }
     },
     {
