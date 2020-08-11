@@ -13,29 +13,26 @@ const discontinuationSchema = new Schema({
    * DISCONTINUATION
    */
   // 退出阶段
-  discontinuetype: Number,
+  discontinuebeforesurgery: Boolean,
   // 退出时间
   discontinuedt: {
     type: Date
   },
-  // 进行试验相关手术前，受试者希望退出试验
   discontinuersn_1: Boolean,
-  // 临床研究者认为不良事件和器械缺陷将引起受试者严重或永久性损伤
   discontinuersn_2: Boolean,
-  // 临床研究者认为受试者应被排除或受试者自己认为应被排除
+  discontinuersn_2_1: Boolean,
+  discontinuersn_2_2: Boolean,
+  discontinuersn_2_3: Boolean,
+  discontinuersn_2_4: Boolean,
+  discontinuersn_2_5: String,
   discontinuersn_3: Boolean,
-  // 临床研究者认为受试者应被排除或受试者自己认为应被排除,请注明原因
-  discontinuersn_4: String,
-  // 受试者违反知情同意书中所列条款或不能遵从临床研究者医嘱
+  discontinuersn_3_1: String,
+  discontinuersn_4: Boolean,
+  discontinuersn_4_1: String,
   discontinuersn_5: Boolean,
-  // 其他原因
+  discontinuersn_5_1: String,
   discontinuersn_6: Boolean,
-  // 其他原因，请注明
-  discontinuersn_7: String,
-  // 术中发现肠管直径异常或肠管壁厚度异常，例如憩室炎，慢性的肠梗阻
-  discontinuersn_8: Boolean,
-  // 术中发现癌扩散
-  discontinuersn_9: Boolean
+  discontinuersn_6_1: String
 });
 
 discontinuationSchema.plugin(mongodbErrorHandler);

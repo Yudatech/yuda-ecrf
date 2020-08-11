@@ -4,30 +4,30 @@ import requireTrueValueValidator from './validators/requireTrueValueValidator';
 
 function initDiscontinuationHandlers() {
   // 退出阶段
-  $('#discontinuetype').change(function(){
-    setFormFieldsVisibility();
+  $('#discontinuebeforesurgery').change(function () {
     setDateRange();
-    updateFormValidationCondition();
   });
-  setFormFieldsVisibility();
   setDateRange();
-  
 
-  $('#discontinuation-form').find(':checkbox').change(function(){
-    updateFormValidationCondition();
+  $('#discontinuersn_2').change(function () {
+    setDiscontinueReason_2Visibility();
   });
 
-  // 临床研究者认为受试者应被排除或受试者自己认为应被排除
-  $('#discontinuersn_3').change(function(){
-    setDiscontinueRsn4Visibility();
+  $('#discontinuersn_3').change(function () {
+    setDiscontinueReason_3Visibility();
   });
-  setDiscontinueRsn4Visibility();
 
-  // 其他原因
-  $('#discontinuersn_6').change(function(){
-    setDiscontinueRsn7Visibility();
+  $('#discontinuersn_4').change(function () {
+    setDiscontinueReason_4Visibility();
   });
-  setDiscontinueRsn7Visibility();
+
+  $('#discontinuersn_5').change(function () {
+    setDiscontinueReason_5Visibility();
+  });
+
+  $('#discontinuersn_6').change(function () {
+    setDiscontinueReason_6Visibility();
+  });
 
   $('#discontinuation-form').validator({
     delay: 100,
@@ -38,152 +38,51 @@ function initDiscontinuationHandlers() {
     }
   });
   $('#discontinuation-form').validator('validate');
-  updateFormValidationCondition();
 }
 
 function setDateRange() {
-  const discontinuetypeValue = $('#discontinuetype').val();
+  const isBeforeSurgery = $('#discontinuebeforesurgery').is(':checked');
   const surgerydate = $('#discontinuedt').data('extra').surgerydate
-  if (discontinuetypeValue === '0') {
+  if (isBeforeSurgery === true) {
     $('#discontinuedt').datepicker('setEndDate', surgerydate);
   }
-  else if (discontinuetypeValue === '1') {
-    $('#discontinuedt').datepicker('setStartDate', surgerydate);
-    $('#discontinuedt').datepicker('setEndDate', surgerydate);
-  }
-  else if (discontinuetypeValue === '2') {
+  else {
     $('#discontinuedt').datepicker('setStartDate', surgerydate);
   }
-  else {
-    $('#discontinuedt').datepicker('setStartDate', new Date());
-  }
 }
 
-function setDiscontinueRsn4Visibility() {
-  const checked = $('#discontinuersn_3').is(':checked');
-  setFieldVisibility('discontinuersn_4', checked);
-}
-
-function setDiscontinueRsn7Visibility() {
-  const checked = $('#discontinuersn_6').is(':checked');
-  setFieldVisibility('discontinuersn_7', checked);
-}
-
-function updateCheckboxValidationCondition(checkboxIdList) {
-  const checkedList = checkboxIdList.filter((id) => {
-    return $(`#${id}`).is(':checked') === true;
-  });
-  if (checkedList.length > 0){
-    checkboxIdList.forEach((id) => {
-      $(`#${id}`).removeAttr('data-customrequiretrue');
-    });
-  }
-  else {
-    checkboxIdList.forEach((id) => {
-      $(`#${id}`).attr('data-customrequiretrue', true);
-    });
-  }
-  $('#discontinuation-form').find(':checkbox').each(function(index, el){
-    if (!checkboxIdList.includes($(el).attr('id'))) {
-      $(el).removeAttr('data-customrequiretrue');
-    }
-  });
-}
-
-function updateTextareaValidationCondition(textareaIdList) {
-  const discontinuetypeValue = $('#discontinuetype').val();
-  textareaIdList.forEach((id) => {
-    if (id === 'discontinuersn_4') {
-      if ($('#discontinuersn_3').is(':checked') === true) {
-        $('#discontinuersn_4').attr('data-customrequired', true);
-      }
-      else {
-        $('#discontinuersn_4').removeAttr('data-customrequired');
-      }
-    }
-    else if (id === 'discontinuersn_7') {
-      if ($('#discontinuersn_6').is(':checked') === true) {
-        $('#discontinuersn_7').attr('data-customrequired', true);
-      }
-      else {
-        $('#discontinuersn_7').removeAttr('data-customrequired');
-      }
-    }
-  }); 
-  $('#discontinuation-form').find('textarea').each(function(el){
-    if (!textareaIdList.includes($(el).attr('id'))) {
-      $(el).removeAttr('data-customrequired');
-    }
-  }); 
-}
-
-function updateFormValidationCondition() {
-  const discontinuetypeValue = $('#discontinuetype').val();
-  if (discontinuetypeValue === '0') {
-    const checkboxIdList = ['discontinuersn_1', 'discontinuersn_3', 'discontinuersn_5', 'discontinuersn_6'];
-    const textareaIdList = ['discontinuersn_4', 'discontinuersn_7'];
-
-    updateCheckboxValidationCondition(checkboxIdList);
-    updateTextareaValidationCondition(textareaIdList);
-  }
-  else if (discontinuetypeValue === '1') {
-    const checkboxIdList = ['discontinuersn_6', 'discontinuersn_8', 'discontinuersn_9'];
-    const textareaIdList = ['discontinuersn_7'];
-    updateCheckboxValidationCondition(checkboxIdList);
-    updateTextareaValidationCondition(textareaIdList);
-  }
-  else if (discontinuetypeValue === '2') {
-    const checkboxIdList = ['discontinuersn_2', 'discontinuersn_6'];
-    const textareaIdList = ['discontinuersn_7'];
-    updateCheckboxValidationCondition(checkboxIdList);
-    updateTextareaValidationCondition(textareaIdList);
-  }
-  else {
-    updateCheckboxValidationCondition([]);
-    updateTextareaValidationCondition([]);
-  }
+function setDiscontinueReason_2Visibility() {
+  const checked = $('#discontinuersn_2').is(':checked');
+  setFieldVisibility('discontinuersn_2_1', checked);
+  setFieldVisibility('discontinuersn_2_2', checked);
+  setFieldVisibility('discontinuersn_2_3', checked);
+  setFieldVisibility('discontinuersn_2_4', checked);
+  setFieldVisibility('discontinuersn_2_5', checked);
   $('#discontinuation-form').validator('update');
-  $('#discontinuation-form').validator('validate');
 }
 
-function setFormFieldsVisibility() {
-  const discontinuetypeValue = $('#discontinuetype').val();
-  const allIds = ['discontinuedt', 'discontinuersn_1', 'discontinuersn_2', 'discontinuersn_3', 'discontinuersn_4', 'discontinuersn_5', 'discontinuersn_6', 'discontinuersn_7', 'discontinuersn_8', 'discontinuersn_9'];
-  const ids_0 = ['discontinuedt', 'discontinuersn_1', 'discontinuersn_3', 'discontinuersn_4', 'discontinuersn_5', 'discontinuersn_6', 'discontinuersn_7'];
-  const ids_1 = ['discontinuedt', 'discontinuersn_6', 'discontinuersn_7', 'discontinuersn_8', 'discontinuersn_9'];
-  const ids_2 = ['discontinuedt', 'discontinuersn_2', 'discontinuersn_6', 'discontinuersn_7'];
-
-  if (discontinuetypeValue === '0') {
-    showRelevantFields(ids_0, allIds);
-    setDiscontinueRsn4Visibility();
-    setDiscontinueRsn7Visibility();
-  }
-  else if (discontinuetypeValue === '1') {
-    showRelevantFields(ids_1, allIds);
-    setDiscontinueRsn7Visibility();
-  }
-  else if (discontinuetypeValue === '2') {
-    showRelevantFields(ids_2, allIds);
-    setDiscontinueRsn7Visibility();
-  }
-  else {
-    showRelevantFields([], allIds);
-  }
+function setDiscontinueReason_3Visibility() {
+  const checked = $('#discontinuersn_3').is(':checked');
+  setFieldVisibility('discontinuersn_3_1', checked);
+  $('#discontinuation-form').validator('update');
 }
 
-function showRelevantFields(idsToShow, allIds) {
-  allIds.forEach((id) => {
-    const containerEl = $(`#${id}-container`);
-    const questionBtnEl = $(`#${id}-question-btn`);
-    if (idsToShow.includes(id)) {
-      containerEl.removeClass('hidden');
-      questionBtnEl.removeClass('hidden');
-    }
-    else {
-      containerEl.addClass('hidden');
-      questionBtnEl.addClass('hidden');
-    }
-  });
+function setDiscontinueReason_4Visibility() {
+  const checked = $('#discontinuersn_4').is(':checked');
+  setFieldVisibility('discontinuersn_4_1', checked);
+  $('#discontinuation-form').validator('update');
+}
+
+function setDiscontinueReason_5Visibility() {
+  const checked = $('#discontinuersn_5').is(':checked');
+  setFieldVisibility('discontinuersn_5_1', checked);
+  $('#discontinuation-form').validator('update');
+}
+
+function setDiscontinueReason_6Visibility() {
+  const checked = $('#discontinuersn_6').is(':checked');
+  setFieldVisibility('discontinuersn_6_1', checked);
+  $('#discontinuation-form').validator('update');
 }
 
 export default initDiscontinuationHandlers;

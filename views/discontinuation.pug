@@ -7,13 +7,13 @@ block case-content
   .case-content
     form.form-horizontal(id="discontinuation-form" action=`/discontinuation/${caseId}` method="POST")
       fieldset
-        legend #{config.title}
+        legend #{config.groups.discontinue.text}
 
         .row
           .col-sm-10
-            +_formTemplate(config.formConfigs.discontinuetype)
+            +_formTemplate(config.formConfigs.discontinuebeforesurgery)
           .col-sm-2
-            +_questionBtn(config.formConfigs.discontinuetype, questionFields)
+            +_questionBtn(config.formConfigs.discontinuebeforesurgery, questionFields)
 
         .row
           .col-sm-10
@@ -21,10 +21,12 @@ block case-content
           .col-sm-2
             +_questionBtn(config.formConfigs.discontinuedt, questionFields)
 
+      fieldset
+        legend #{config.groups.discontinuersn.text}
+
         .row
           .col-sm-10
-            .form-group
-              
+            .form-group             
                 +_formTemplate(config.formConfigs.discontinuersn_1)
           .col-sm-2
             +_questionBtn(config.formConfigs.discontinuersn_1, questionFields)
@@ -32,62 +34,104 @@ block case-content
         .row
           .col-sm-10
             .form-group
-              
                 +_formTemplate(config.formConfigs.discontinuersn_2)
           .col-sm-2
             +_questionBtn(config.formConfigs.discontinuersn_2, questionFields)
 
+        - config.formConfigs.discontinuersn_2_1.hidden = !(config.formConfigs.discontinuersn_2.value === true)
         .row
           .col-sm-10
             .form-group
-              
-                +_formTemplate(config.formConfigs.discontinuersn_3)
+                +_formTemplate(config.formConfigs.discontinuersn_2_1)
+          .col-sm-2
+            +_questionBtn(config.formConfigs.discontinuersn_2_1, questionFields)
+
+        - config.formConfigs.discontinuersn_2_2.hidden = !(config.formConfigs.discontinuersn_2.value === true)
+        .row
+          .col-sm-10
+            .form-group
+                +_formTemplate(config.formConfigs.discontinuersn_2_2)
+          .col-sm-2
+            +_questionBtn(config.formConfigs.discontinuersn_2_2, questionFields)
+
+        - config.formConfigs.discontinuersn_2_3.hidden = !(config.formConfigs.discontinuersn_2.value === true)
+        .row
+          .col-sm-10
+            .form-group
+                +_formTemplate(config.formConfigs.discontinuersn_2_3)
+          .col-sm-2
+            +_questionBtn(config.formConfigs.discontinuersn_2_3, questionFields)
+
+        - config.formConfigs.discontinuersn_2_4.hidden = !(config.formConfigs.discontinuersn_2.value === true)
+        .row
+          .col-sm-10
+            .form-group
+                +_formTemplate(config.formConfigs.discontinuersn_2_4)
+          .col-sm-2
+            +_questionBtn(config.formConfigs.discontinuersn_2_4, questionFields)
+
+        - config.formConfigs.discontinuersn_2_5.hidden = !(config.formConfigs.discontinuersn_2.value === true)
+        .row
+          .col-sm-10
+            +_formTemplate(config.formConfigs.discontinuersn_2_5)
+          .col-sm-2
+            +_questionBtn(config.formConfigs.discontinuersn_2_5, questionFields)
+
+        .row
+          .col-sm-10
+            .form-group
+              +_formTemplate(config.formConfigs.discontinuersn_3)
           .col-sm-2
             +_questionBtn(config.formConfigs.discontinuersn_3, questionFields)
 
+        - config.formConfigs.discontinuersn_3_1.hidden = !(config.formConfigs.discontinuersn_3.value === true)
         .row
           .col-sm-10
-            +_formTemplate(config.formConfigs.discontinuersn_4)
+            +_formTemplate(config.formConfigs.discontinuersn_3_1)
           .col-sm-2
-            +_questionBtn(config.formConfigs.discontinuersn_4, questionFields)
+            +_questionBtn(config.formConfigs.discontinuersn_3_1, questionFields)
 
         .row
           .col-sm-10
             .form-group
-              
+              +_formTemplate(config.formConfigs.discontinuersn_4)
+          .col-sm-2
+            +_questionBtn(config.formConfigs.discontinuersn_4, questionFields)
+
+        - config.formConfigs.discontinuersn_4_1.hidden = !(config.formConfigs.discontinuersn_4.value === true)
+        .row
+          .col-sm-10
+            +_formTemplate(config.formConfigs.discontinuersn_4_1)
+          .col-sm-2
+            +_questionBtn(config.formConfigs.discontinuersn_4_1, questionFields)
+
+        .row
+          .col-sm-10
+            .form-group
                 +_formTemplate(config.formConfigs.discontinuersn_5)
           .col-sm-2
             +_questionBtn(config.formConfigs.discontinuersn_5, questionFields)
 
+        - config.formConfigs.discontinuersn_5_1.hidden = !(config.formConfigs.discontinuersn_5.value === true)
         .row
           .col-sm-10
-            .form-group
-              
-                +_formTemplate(config.formConfigs.discontinuersn_8)
+            +_formTemplate(config.formConfigs.discontinuersn_5_1)
           .col-sm-2
-            +_questionBtn(config.formConfigs.discontinuersn_8, questionFields)
+            +_questionBtn(config.formConfigs.discontinuersn_5_1, questionFields)
 
         .row
           .col-sm-10
             .form-group
-              
-                +_formTemplate(config.formConfigs.discontinuersn_9)
-          .col-sm-2
-            +_questionBtn(config.formConfigs.discontinuersn_9, questionFields)
-
-        .row
-          .col-sm-10
-            .form-group
-              
                 +_formTemplate(config.formConfigs.discontinuersn_6)
           .col-sm-2
             +_questionBtn(config.formConfigs.discontinuersn_6, questionFields)
 
+        - config.formConfigs.discontinuersn_6_1.hidden = !(config.formConfigs.discontinuersn_6.value === true)
         .row
           .col-sm-10
-            +_formTemplate(config.formConfigs.discontinuersn_7)
+            +_formTemplate(config.formConfigs.discontinuersn_6_1)
           .col-sm-2
-            +_questionBtn(config.formConfigs.discontinuersn_7, questionFields)
+            +_questionBtn(config.formConfigs.discontinuersn_6_1, questionFields)
 
         if caseStatus === 'open'
           hr

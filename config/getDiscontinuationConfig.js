@@ -5,14 +5,25 @@ const config = {
     zh: '中途退出试验',
     en: 'Withdrawal from the study'
   },
-  formConfigs: [{
-    name: 'discontinuetype',
-    type: 'select',
-    required: true,
-    optionsGetter: 'getDiscontinuationTypeConfig',
+  groups: [{
+    name: 'discontinue',
     text: {
-      zh: '退出阶段',
-      en: 'Withdrawal time'
+      zh: '中途退出试验',
+      en: 'Withdrawal from the study'
+    }
+  }, {
+    name: 'discontinuersn',
+    text: {
+      zh: '退出原因',
+      en: 'Reasons for exclusion '
+    }
+  }],
+  formConfigs: [{
+    name: 'discontinuebeforesurgery',
+    type: 'checkbox',
+    text: {
+      zh: '手术前退出',
+      en: 'Exclusion/withdrawal before surgery'
     }
   }, {
     name: 'discontinuedt',
@@ -25,36 +36,92 @@ const config = {
     name: 'discontinuersn_1',
     type: 'checkbox',
     text: {
-      zh: '进行试验相关手术前，受试者希望退出试验',
-      en: 'The subject wishes to stop participating in the study before the surgery has been conducted.'
+      zh: '患者希望停止参与研究',
+      en: 'The patient wishes to stop participating in the study.'
     }
   }, {
     name: 'discontinuersn_2',
     type: 'checkbox',
     text: {
-      zh: '临床研究者认为不良事件和器械缺陷将引起受试者严重或永久性损伤',
-      en: 'The clinical investigator believes that the subject should be removed from thestudy or if the subject alone believes that he/she should be removed from the study.'
+      zh: '根据临床研究者的判断，不利的术中事件会给患者带来风险',
+      en: 'Unfavorable intra-operative event carrying a risk to the patient, upon discretion of the clinical investigator.'
+    }
+  }, {
+    name: 'discontinuersn_2_1',
+    type: 'checkbox',
+    text: {
+      zh: '围手术期检测肠壁厚度和肠腔直径的极端变异。',
+      en: 'Perioperative detection of extreme variants of intestinal wall thickness and intestinal lumen diameter.'
+    }
+  }, {
+    name: 'discontinuersn_2_2',
+    type: 'checkbox',
+    text: {
+      zh: '腹腔多处转移的围手术期检测。',
+      en: 'Perioperative detection of multiple metastases in abdominal cavity.'
+    }
+  }, {
+    name: 'discontinuersn_2_3',
+    type: 'checkbox',
+    text: {
+      zh: '肠清洁不当，或在吻合口附近的结肠排泄粪便。',
+      en: 'Improper bowel cleansing, or packed stool in colon proximal to the anastomosis.'
+    }
+  }, {
+    name: 'discontinuersn_2_4',
+    type: 'checkbox',
+    text: {
+      zh: '肠内循环不良。',
+      en: 'Poor circulation in intestine.'
+    }
+  }, {
+    name: 'discontinuersn_2_5',
+    type: 'textarea',
+    text: {
+      zh: '手术期间其他不利发现，请注明',
+      en: 'Other unfavorable finding during surgery, please specify.'
     }
   }, {
     name: 'discontinuersn_3',
     type: 'checkbox',
     text: {
-      zh: '临床研究者认为受试者应被排除或受试者自己认为应被排除',
-      en: ' The subject violates conditions laid out in the consent form or disregards instructions by the clinical investigation personnel'
+      zh: '设备缺陷/故障/外科医生的决定。',
+      en: 'Device deficiencies / malfunction / surgeon’s decision.'
+    }
+  }, {
+    name: 'discontinuersn_3_1',
+    type: 'textarea',
+    text: {
+      zh: '请注明',
+      en: 'Please specify:'
     }
   }, {
     name: 'discontinuersn_4',
+    type: 'checkbox',
+    text: {
+      zh: '不遵守规定的患者。',
+      en: 'Non-compliance of patient.'
+    }
+  }, {
+    name: 'discontinuersn_4_1',
     type: 'textarea',
     text: {
-      zh: '请注明原因',
-      en: 'Please sepcify:'
+      zh: '请注明',
+      en: 'Please specify:'
     }
   }, {
     name: 'discontinuersn_5',
     type: 'checkbox',
     text: {
-      zh: '受试者违反知情同意书中所列条款或不能遵从临床研究者医嘱',
-      en: 'The subject violates conditions laid out in the consent form or disregards instructions by the clinical investigation personnel'
+      zh: '研究人员或研究人员的方案不合规',
+      en: 'Protocol non-compliance of investigator or study personnel '
+    }
+  }, {
+    name: 'discontinuersn_5_1',
+    type: 'textarea',
+    text: {
+      zh: '请注明',
+      en: 'Please specify:'
     }
   }, {
     name: 'discontinuersn_6',
@@ -64,36 +131,23 @@ const config = {
       en: 'Others'
     }
   }, {
-    name: 'discontinuersn_7',
+    name: 'discontinuersn_6_1',
     type: 'textarea',
     text: {
       zh: '请注明',
       en: 'Please specify:'
     }
-  }, {
-    name: 'discontinuersn_8',
-    type: 'checkbox',
-    text: {
-      zh: '术中发现肠管直径异常或肠管壁厚度异常，例如憩室炎，慢性的肠梗阻',
-      en: 'Detection of extreme variants of intestinal wall thickness during operation, for instance diverticulitis, chronic obstruction'
-    }
-  }, {
-    name: 'discontinuersn_9',
-    type: 'checkbox',
-    text: {
-      zh: '术中发现癌扩散',
-      en: 'Detection of metastasis during operation'
-    }
   }]
 };
 
-module.exports = function(lang) {
+module.exports = function (lang) {
   if (lang === undefined) {
     lang = 'en';
   }
 
   const result = {};
   result.formConfigs = getOptionsLang(config.formConfigs, lang);
+  result.groups = getOptionsLang(config.groups, lang);
   result.title = config.title[lang];
 
   return result;

@@ -78,39 +78,8 @@ exports.discontinuationForm = async (req, res) => {
     if (config.formConfigs[key].type === 'checkbox' && config.formConfigs[key].value === undefined) {
       config.formConfigs[key].value = false;
     }
-
-    // hide everything except discontinuetype select box
-    if (key !== 'discontinuetype') {
-      config.formConfigs[key].hidden = true;
-    }
   });
 
-  const discontinuetypeValue = config.formConfigs.discontinuetype.value;
-  switch (discontinuetypeValue) {
-    case 0:
-      config.formConfigs.discontinuedt.hidden = false;
-      config.formConfigs.discontinuersn_1.hidden = false;
-      config.formConfigs.discontinuersn_3.hidden = false;
-      config.formConfigs.discontinuersn_4.hidden = false;
-      config.formConfigs.discontinuersn_5.hidden = false;
-      config.formConfigs.discontinuersn_6.hidden = false;
-      config.formConfigs.discontinuersn_7.hidden = false;
-      break;
-    case 1:
-      config.formConfigs.discontinuedt.hidden = true;
-      config.formConfigs.discontinuersn_8.hidden = false;
-      config.formConfigs.discontinuersn_9.hidden = false;
-      config.formConfigs.discontinuersn_6.hidden = false;
-      config.formConfigs.discontinuersn_7.hidden = false;
-      break;
-    case 2:
-      config.formConfigs.discontinuedt.hidden = true;
-      config.formConfigs.discontinuersn_2.hidden = false;
-      config.formConfigs.discontinuersn_4.hidden = false;
-      config.formConfigs.discontinuersn_6.hidden = false;
-      config.formConfigs.discontinuersn_7.hidden = false;
-      break;
-  }
   res.render('discontinuation', {
     caseNav: CaseNav,
     config,
@@ -145,16 +114,11 @@ exports.updateDiscontinuation = async (req, res) => {
       await createOrUpdateDiscontinuation(caseId, req.body);
 
       const result = [];
-      const discontinuetype = req.body.discontinuetype;
-      if (discontinuetype === '0') {
+      const discontinuebeforesurgery = req.body.discontinuebeforesurgery;
+      if (discontinuebeforesurgery === true) {
         result.push(await commitHelpers.validateScreeningForm(caseId, req.user.language));
       }
-      else if (discontinuetype === '1') {
-        result.push(await commitHelpers.validateScreeningForm(caseId, req.user.language));
-        result.push(await commitHelpers.validateReviewChecklistForm(caseId, req.user.language));
-        result.push(await commitHelpers.validateSurgeryForm(caseId, req.user.language));
-      }
-      else if (discontinuetype === '2') {
+      else {
         result.push(await commitHelpers.validateScreeningForm(caseId, req.user.language));
         result.push(await commitHelpers.validateReviewChecklistForm(caseId, req.user.language));
         result.push(await commitHelpers.validateSurgeryForm(caseId, req.user.language));
