@@ -38,15 +38,21 @@ exports.getQuestionLink = function (table, linkBase, caseId, formConfig, seconda
 };
 
 exports.getSaeSourceOptions = async function (caseId) {
-  const aeList = await Ae.find({
+  const surgeryItem = await Surgery.findOne({
     case: caseId
   });
-  const saeSourceOptions = aeList.map((item) => {
-    return {
-      value: item._id.toString(),
-      text: item.event
-    };
+  const saeSourceOptions = [];
+  const visitItems = await Visit.find({
+    case: caseId
   });
+  if (surgeryItem && visitItems.length > 0) {
+    visitItems.filter(item => item.postoperative_2_1 === 3 || item.postoperative_2_1 === 4).forEach((item) => {
+      saeSourceOptions.push({
+        value: item._id.toString(),
+        text: getPostoperativeDayText(item.postoperativeday)
+      });
+    });
+  }
   saeSourceOptions.push({
     value: 'other',
     text: 'Other'
@@ -54,14 +60,18 @@ exports.getSaeSourceOptions = async function (caseId) {
   return saeSourceOptions;
 };
 
-exports.getSaeSourceOptionsSync = function (caseId, allAe) {
-  const aeList = allAe.filter((item) => item.case === caseId);
-  const saeSourceOptions = aeList.map((item) => {
-    return {
-      value: item._id.toString(),
-      text: item.event
-    };
-  });
+exports.getSaeSourceOptionsSync = function (caseId, surgeryList, visitList) {
+  const surgeryItem = surgeryList.find((item) => item.case === caseId);
+  const visitItems = visitList.filter((item) => item.case === caseId);
+  const saeSourceOptions = [];
+  if (surgeryItem && visitItems.length > 0) {
+    visitItems.filter(item => item.postoperative_2_1 === 3 || item.postoperative_2_1 === 4).forEach((item) => {
+      saeSourceOptions.push({
+        value: item._id.toString(),
+        text: getPostoperativeDayText(item.postoperativeday)
+      });
+    });
+  }
   saeSourceOptions.push({
     value: 'other',
     text: 'Other'
@@ -78,14 +88,10 @@ exports.getAeSourceConfig = async function (caseId, lang) {
     case: caseId
   });
   if (surgeryItem && visitItems.length > 0) {
-    const surgerydtc = surgeryItem.surgerydtc;
-    const surgerydtcValue = moment(surgerydtc).valueOf();
-    visitItems.forEach((item) => {
-      const visitdtcValue = moment(item.visitdtc).valueOf();
+    visitItems.filter(item => item.postoperative_2_1 === 1 || item.postoperative_2_1 === 2 || item.postoperative_2_1 === 3 || item.postoperative_2_1 === 4).forEach((item) => {
       visits.push({
         _id: item._id,
-        visitnum: item.visitnum,
-        days: (visitdtcValue - surgerydtcValue) / 24 / 60 / 60 / 1000
+        postoperativedayText: getPostoperativeDayText(item.postoperativeday)
       });
     });
   }
@@ -97,14 +103,10 @@ exports.getAeSourceConfigSync = function (caseId, lang, surgeryList, visitList) 
   const visitItems = visitList.filter((item) => item.case === caseId);
   const visits = [];
   if (surgeryItem && visitItems.length > 0) {
-    const surgerydtc = surgeryItem.surgerydtc;
-    const surgerydtcValue = moment(surgerydtc).valueOf();
-    visitItems.forEach((item) => {
-      const visitdtcValue = moment(item.visitdtc).valueOf();
+    visitItems.filter(item => item.postoperative_2_1 === 1 || item.postoperative_2_1 === 2 || item.postoperative_2_1 === 3 || item.postoperative_2_1 === 4).forEach((item) => {
       visits.push({
-        _id: item._id,
-        visitnum: item.visitnum,
-        days: (visitdtcValue - surgerydtcValue) / 24 / 60 / 60 / 1000
+        _id: item._id.toString(),
+        postoperativedayText: getPostoperativeDayText(item.postoperativeday)
       });
     });
   }
@@ -120,14 +122,10 @@ exports.getCmSourceConfig = async function (caseId, lang) {
     case: caseId
   });
   if (surgeryItem && visitItems.length > 0) {
-    const surgerydtc = surgeryItem.surgerydtc;
-    const surgerydtcValue = moment(surgerydtc).valueOf();
     visitItems.forEach((item) => {
-      const visitdtcValue = moment(item.visitdtc).valueOf();
       visits.push({
-        _id: item._id,
-        visitnum: item.visitnum,
-        days: (visitdtcValue - surgerydtcValue) / 24 / 60 / 60 / 1000
+        _id: item._id.toString(),
+        postoperativedayText: getPostoperativeDayText(item.postoperativeday)
       });
     });
   }
@@ -143,14 +141,10 @@ exports.getVisitNameList = async function (caseId, lang) {
     case: caseId
   });
   if (surgeryItem && visitItems.length > 0) {
-    const surgerydtc = surgeryItem.surgerydtc;
-    const surgerydtcValue = moment(surgerydtc).valueOf();
     visitItems.forEach((item) => {
-      const visitdtcValue = moment(item.visitdtc).valueOf();
       visits.push({
-        _id: item._id,
-        visitnum: item.visitnum,
-        days: Math.floor((visitdtcValue - surgerydtcValue) / 24 / 60 / 60 / 1000)
+        _id: item._id.toString(),
+        postoperativedayText: getPostoperativeDayText(item.postoperativeday)
       });
     });
   }
@@ -158,3 +152,24 @@ exports.getVisitNameList = async function (caseId, lang) {
   aeSourceConfig.shift();
   return aeSourceConfig;
 };
+
+const completeList = [{ text: 'POD 1-3', value: 0 }, { text: 'POD 4-6', value: 1 }, { text: 'POD 7-9', value: 2 }, { text: 'POD 10-12', value: 3 }, { text: 'POD 13-15', value: 4 }, { text: 'POD 16-18', value: 5 }, { text: 'POD 19-21', value: 6 }, { text: 'POD 22-24', value: 7 }, { text: 'POD 25-27', value: 8 }, { text: 'POD 28-30', value: 9 }];
+
+exports.getCompletePostoperativeDayList = function() {
+  return completeList;
+}
+
+exports.getPostoperativeDayConfig = async function (caseId, currentValue) {
+  const visitItems = await Visit.find({
+    case: caseId
+  });
+  const existList = visitItems.map(item => item.postoperativeday);
+  return completeList.filter(item => existList.indexOf(item.value) === -1 || item.value === currentValue);
+}
+
+function getPostoperativeDayText(postoperativeDayValue) {
+  const match = completeList.find(item => item.value === postoperativeDayValue);
+  return match ? match.text : '';
+}
+
+exports.getPostoperativeDayText = getPostoperativeDayText;

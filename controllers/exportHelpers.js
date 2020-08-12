@@ -1,5 +1,5 @@
 const moment = require('moment');
-moment.locale('zh-cn');
+moment.locale('en');
 
 const getScreeningBasicConfig = require('../config/screening/getScreeningBasicConfig');
 const getScreeningInclusionConfig = require('../config/screening/getScreeningInclusionConfig');
@@ -19,6 +19,7 @@ const getLifeAssessmentConfig = require('../config/life/getLifeAssessmentConfig'
 const getVisitConfig = require('../config/visit/getVisitConfig');
 
 const decorationHelper = require('./decorationHelper');
+const helpers = require('./helpers');
 const getEvacuationConfig = require('../config/evacuation/getEvacuationConfig');
 
 const dateFormat = 'YYYY-MM-DD';
@@ -171,6 +172,13 @@ exports.addDataToWorksheet = function (worksheet, commonColumnDefs, dataColumnDe
           const matchSaeSource = saeSourceConfig.find((saeSource) => saeSource.value === value);
           if (matchSaeSource) {
             value = matchSaeSource.text;
+          }
+        }
+        else if (dataColumn.name === 'postoperativeday') {
+          const completeList = helpers.getCompletePostoperativeDayList();
+          const match = completeList.find(item => item.value === value);
+          if (match) {
+            value = match.text;
           }
         }
       }

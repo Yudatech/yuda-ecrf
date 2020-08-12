@@ -24,6 +24,7 @@ import initCMTableHandlers from './modules/initCMTableHandlers';
 import initAeTableHandlers from './modules/initAeTableHandlers';
 import initSaeTableHandlers from './modules/initSaeTableHandlers';
 import initLifeAssessmentHandlers from './modules/initLifeAssessmentHandlers';
+import initEvacuationHandlers from './modules/initEvacuationHandlers';
 
 $('.input-group.date').datepicker({
   endDate: new Date()
@@ -133,5 +134,8 @@ window.onload = function () {
   }
   else if (pathname.startsWith('/life')) {
     initLifeAssessmentHandlers();
+  }
+  else if (pathname.startsWith('/evacuation')) {
+    initEvacuationHandlers();
   }
 }

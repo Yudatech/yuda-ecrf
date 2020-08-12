@@ -5,7 +5,7 @@ const User = mongoose.model('User');
 const Site = mongoose.model('Site');
 
 const moment = require('moment');
-moment.locale('zh-cn');
+moment.locale('en');
 
 const getHomeConfig = require('../config/getHomeConfig');
 const getSearchConfig = require('../config/getSearchConfig');
@@ -157,7 +157,7 @@ exports.searchPage = async (req, res) => {
     }
   }
   const questionStatusConfig = getQuestionStatusConfig(req.user.language);
-  const questionsFormated = questions.map((item)=> {
+  const questionsFormated = questions.map((item) => {
     const createDate = moment(item.createdAt).millisecond(0).second(0).hour(0).minute(0).valueOf();
     const nowDate = moment().millisecond(0).second(0).hour(0).minute(0).valueOf();
     const numOfDays = (nowDate - createDate) / 1000 / 60 / 60 / 24;
@@ -262,7 +262,7 @@ exports.homePage = async (req, res) => {
   }
   const questionStatusConfig = getQuestionStatusConfig(req.user.language);
   const users = [];
-  const questionsFormated = questions.map((item)=> {
+  const questionsFormated = questions.map((item) => {
     const createDate = moment(item.createdAt).millisecond(0).second(0).hour(0).minute(0).valueOf();
     const nowDate = moment().millisecond(0).second(0).hour(0).minute(0).valueOf();
     const numOfDays = (nowDate - createDate) / 1000 / 60 / 60 / 24;

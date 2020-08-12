@@ -1,5 +1,5 @@
 const moment = require('moment');
-moment.locale('zh-cn');
+moment.locale('en');
 
 const mongoose = require('mongoose');
 const Sae = mongoose.model('Sae');

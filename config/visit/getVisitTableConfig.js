@@ -6,28 +6,34 @@ const config = {
     en: 'Postoperative visit'
   },
   headers: [{
-    name: 'visitid',
-    text: {
-      zh: '访视ID',
-      en: 'Visit ID'
-    }
-  }, {
-    name: 'visitdtc',
-    text: {
-      zh: '访视日期',
-      en: 'Date'
-    }
-  }, {
-    name: 'daysaftersurgery',
+    name: 'postoperativeday',
     text: {
       zh: '术后天数',
-      en: 'Number of day after surgery'
+      en: 'Postoperative day'
     }
   }, {
-    name: 'visitnum',
+    name: 'assessmentdtc',
     text: {
-      zh: '当天第n次访视',
-      en: 'Patient rounds no. of the day'
+      zh: '评估日期',
+      en: 'Assessment date'
+    }
+  }, {
+    name: 'postoperative_1',
+    text: {
+      zh: '出院评估',
+      en: 'Discharge assessment'
+    }
+  }, {
+    name: 'postoperative_2',
+    text: {
+      zh: '有术后并发症',
+      en: 'Has postoperative complications'
+    }
+  }, {
+    name: 'postoperative_2_1',
+    text: {
+      zh: 'Clavien-Dindo分类',
+      en: 'Clavien-Dindo Classification'
     }
   }, {
     name: 'operations',
@@ -45,7 +51,7 @@ const config = {
   }]
 };
 
-module.exports = function(lang) {
+module.exports = function (lang) {
   if (lang === undefined) {
     lang = 'en';
   }

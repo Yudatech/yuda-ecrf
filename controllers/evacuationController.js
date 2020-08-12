@@ -1,9 +1,10 @@
 const moment = require('moment');
-moment.locale('zh-cn');
+moment.locale('en');
 
 const mongoose = require('mongoose');
 const Case = mongoose.model('Case');
 const Evacuation = mongoose.model('Evacuation');
+const Surgery = mongoose.model('Surgery');
 
 const helpers = require('./helpers');
 const decorationHelper = require('./decorationHelper');
@@ -55,12 +56,21 @@ exports.evacuationForm = async (req, res) => {
   const evacuationItem = await getEvacuationItemByCaseId(req.params.caseId);
   const config = getEvacuationConfig(req.user.language);
 
+  const surgery = await Surgery.findOne({
+    case: req.params.caseId
+  });
+  const surgerydtc = (surgery && surgery.surgerydtc) ? surgery.surgerydtc : null;
+
   Object.keys(config.formConfigs).forEach((key) => {
     if (config.formConfigs[key].type === 'select') {
       config.formConfigs[key].options = decorationHelper[config.formConfigs[key].optionsGetter](req.user.language);
     }
     if (key === 'evacuationdtc') {
       config.formConfigs[key].value = evacuationItem.evacuationdtc ? moment(evacuationItem.evacuationdtc).format('MM/DD/YYYY') : '';
+      const startDateStr = surgerydtc === null ? null : moment(surgerydtc).format('MM/DD/YYYY');
+      config.formConfigs[key].extra = JSON.stringify({
+        start: startDateStr
+      });
     }
     else {
       config.formConfigs[key].value = evacuationItem[key];

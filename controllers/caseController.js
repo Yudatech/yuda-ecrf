@@ -1,5 +1,5 @@
 const moment = require('moment');
-moment.locale('zh-cn');
+moment.locale('en');
 
 const Excel = require('exceljs');
 const getExportConfig = require('../config/getExportConfig');
@@ -438,7 +438,7 @@ exports.exportCases = async (req, res) => {
   cases.forEach((caseItem) => {
     const caseId = caseItem._id;
     aeSourceConfigList[caseId] = helpers.getAeSourceConfigSync(caseId, req.user.language, surgeryList, visitList);
-    saeSourceConfigList[caseId] = helpers.getSaeSourceOptionsSync(caseId, aeList);
+    saeSourceConfigList[caseId] = helpers.getSaeSourceOptionsSync(caseId, surgeryList, visitList);
   });
 
   const resultItems = {};

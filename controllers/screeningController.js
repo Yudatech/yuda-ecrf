@@ -1,5 +1,5 @@
 const moment = require('moment');
-moment.locale('zh-cn');
+moment.locale('en');
 
 const getScreeningBasicConfig = require('../config/screening/getScreeningBasicConfig');
 const getScreeningInclusionConfig = require('../config/screening/getScreeningInclusionConfig');

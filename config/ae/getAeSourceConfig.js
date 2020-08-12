@@ -12,17 +12,10 @@ const aeSources = [{
   }
 }];
 
-const template = {
-  zh: '术后第__DAYNUM__天第__NUM__次访视',
-  en: '__DAYNUM__ days the __NUM__ visit after Operation'
-};
-
 module.exports = function (lang, visits) {
   if (lang === undefined) {
     lang = 'en';
   }
-
-  const templateLang = template[lang];
 
   const result = aeSources.map((item) => {
     return {
@@ -32,11 +25,9 @@ module.exports = function (lang, visits) {
   });
 
   visits.forEach((item) => {
-    let text = templateLang.replace('__DAYNUM__', item.days);
-    text = text.replace('__NUM__', item.visitnum);
     result.push({
       value: item._id.toString(),
-      text
+      text: item.postoperativedayText
     });
   });
 

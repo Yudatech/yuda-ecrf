@@ -8,219 +8,40 @@ block case-content
     form.form-horizontal(id="visit-form" action=`/visit/${caseId}/${visitId || ''}` method="POST")
       - const formDisabled = !((locals.case.status === 'open' && locals.user.role === 'cra') || locals.user.role === 'admin')
       fieldset(disabled=formDisabled)
-        legend #{config.subtitles.subtitle_1.text}
+        legend #{config.title}
         .row
           .col-sm-10
-            +_formTemplate(config.formConfigs.visitnum)
+            +_formTemplate(config.formConfigs.postoperativeday)
           .col-sm-2
-            +_questionBtn(config.formConfigs.visitnum, questionFields)
+            +_questionBtn(config.formConfigs.postoperativeday, questionFields)
 
         .row
           .col-sm-10
-            +_formTemplate(config.formConfigs.visitdtc)
+            +_formTemplate(config.formConfigs.assessmentdtc)
           .col-sm-2
-            +_questionBtn(config.formConfigs.visitdtc, questionFields)
-
-        .row
-          .col-sm-10
-            +_formTemplate(config.formConfigs.visittype)
-          .col-sm-2
-            +_questionBtn(config.formConfigs.visittype, questionFields)
-
-        .row
-          .col-sm-10
-            +_formTemplate(config.formConfigs.visitreason)
-          .col-sm-2
-            +_questionBtn(config.formConfigs.visitreason, questionFields)
-
-        .row
-          .col-sm-10
-            +_formTemplate(config.formConfigs.visittreat)
-          .col-sm-2
-            +_questionBtn(config.formConfigs.visittreat, questionFields)
-
-        .row
-          .col-sm-10
-            +_formTemplate(config.formConfigs.visitres)
-          .col-sm-2
-            +_questionBtn(config.formConfigs.visitres, questionFields)
-
-      fieldset(disabled=formDisabled)
-        legend #{config.subtitles.subtitle_2.text}
-        .row
-          .col-sm-10
-            +_formTemplate(config.formConfigs.param_1)
-          .col-sm-2
-            +_questionBtn(config.formConfigs.param_1, questionFields)
-
-        .row
-          .col-sm-10
-            +_formTemplate(config.formConfigs.param_2)
-          .col-sm-2
-            +_questionBtn(config.formConfigs.param_2, questionFields)
-
-        .row
-          .col-sm-10
-            +_formTemplate(config.formConfigs.param_3)
-          .col-sm-2
-            +_questionBtn(config.formConfigs.param_3, questionFields)
-
-
-      fieldset(disabled=formDisabled)
-        legend #{config.subtitles.subtitle_3.text}
-        .row
-          .col-sm-10
-            .form-group
-              
-                +_formTemplate(config.formConfigs.param_4)
-          .col-sm-2
-            +_questionBtn(config.formConfigs.param_4, questionFields)
-
-        .row
-          .col-sm-10
-            +_formTemplate(config.formConfigs.param_5)
-          .col-sm-2
-            +_questionBtn(config.formConfigs.param_5, questionFields)
-
-        .row
-          .col-sm-10
-            +_formTemplate(config.formConfigs.param_6)
-          .col-sm-2
-            +_questionBtn(config.formConfigs.param_6, questionFields)
-
-      fieldset(disabled=formDisabled)
-        legend #{config.subtitles.subtitle_4.text}
-        .row
-          .col-sm-10
-            +_formTemplate(config.formConfigs.param_7)
-          .col-sm-2
-            +_questionBtn(config.formConfigs.param_7, questionFields)
-
-      fieldset(disabled=formDisabled)
-        legend #{config.subtitles.subtitle_5.text}
-        .row
-          .col-sm-10
-            +_formTemplate(config.formConfigs.param_8)
-          .col-sm-2
-            +_questionBtn(config.formConfigs.param_8, questionFields)
-
-      fieldset(disabled=formDisabled)
-        legend #{config.subtitles.subtitle_6.text}
-        .row
-          .col-sm-10
-            .form-group
-              
-                +_formTemplate(config.formConfigs.param_9)
-          .col-sm-2
-            +_questionBtn(config.formConfigs.param_9, questionFields)
+            +_questionBtn(config.formConfigs.assessmentdtc, questionFields)
 
         .row
           .col-sm-10
             .form-group
-              
-                +_formTemplate(config.formConfigs.param_10)
+              +_formTemplate(config.formConfigs.postoperative_1)
           .col-sm-2
-            +_questionBtn(config.formConfigs.param_10, questionFields)
+            +_questionBtn(config.formConfigs.postoperative_1, questionFields)
 
         .row
           .col-sm-10
             .form-group
-              
-                +_formTemplate(config.formConfigs.param_11)
+              +_formTemplate(config.formConfigs.postoperative_2)
           .col-sm-2
-            +_questionBtn(config.formConfigs.param_11, questionFields)
+            +_questionBtn(config.formConfigs.postoperative_2, questionFields)
 
-      fieldset(disabled=formDisabled)
-        legend #{config.subtitles.subtitle_7.text}
+        - config.formConfigs.postoperative_2_1.hidden = !(config.formConfigs.postoperative_2.value === true)
         .row
           .col-sm-10
-            .form-group
-              
-                +_formTemplate(config.formConfigs.param_12)
+            +_formTemplate(config.formConfigs.postoperative_2_1)
           .col-sm-2
-            +_questionBtn(config.formConfigs.param_12, questionFields)
+            +_questionBtn(config.formConfigs.postoperative_2_1, questionFields)
 
-        .row
-          .col-sm-10
-            +_formTemplate(config.formConfigs.param_13)
-          .col-sm-2
-            +_questionBtn(config.formConfigs.param_13, questionFields)
-
-      fieldset(disabled=formDisabled)
-        legend #{config.subtitles.subtitle_8.text}
-        .row
-          .col-sm-10
-            +_formTemplate(config.formConfigs.param_14)
-          .col-sm-2
-            +_questionBtn(config.formConfigs.param_14, questionFields)
-
-        .row
-          .col-sm-10
-            +_formTemplate(config.formConfigs.param_15)
-          .col-sm-2
-            +_questionBtn(config.formConfigs.param_15, questionFields)
-
-      fieldset(disabled=formDisabled)
-        legend #{config.subtitles.subtitle_9.text}
-        .row
-          .col-sm-10
-            .form-group
-              
-                +_formTemplate(config.formConfigs.param_16)
-          .col-sm-2
-            +_questionBtn(config.formConfigs.param_16, questionFields)
-
-        - config.formConfigs.param_17.hidden = !(config.formConfigs.param_16.value === true)
-        .row
-          .col-sm-10
-            +_formTemplate(config.formConfigs.param_17)
-          .col-sm-2
-            +_questionBtn(config.formConfigs.param_17, questionFields)
-
-      fieldset(disabled=formDisabled)
-        legend #{config.subtitles.subtitle_10.text}
-        .row
-          .col-sm-10
-            .form-group
-              
-                +_formTemplate(config.formConfigs.param_18)
-          .col-sm-2
-            +_questionBtn(config.formConfigs.param_18, questionFields)
-
-      fieldset(disabled=formDisabled)
-        legend #{config.subtitles.subtitle_11.text}
-        .row
-          .col-sm-10
-            .form-group
-                +_formTemplate(config.formConfigs.param_19)
-          .col-sm-2
-            +_questionBtn(config.formConfigs.param_19, questionFields)
-
-        - config.formConfigs.param_20.hidden = !(config.formConfigs.param_19.value === true)
-        .row
-          .col-sm-10
-            .form-group
-              +_formTemplate(config.formConfigs.param_20)
-          .col-sm-2
-            +_questionBtn(config.formConfigs.param_20, questionFields)
-
-        - config.formConfigs.param_21.hidden = !(config.formConfigs.param_19.value === true)
-        .row
-          .col-sm-10
-            .form-group
-              +_formTemplate(config.formConfigs.param_21)
-          .col-sm-2
-            +_questionBtn(config.formConfigs.param_21, questionFields)
-
-      fieldset(disabled=formDisabled)
-        legend #{config.subtitles.subtitle_12.text}
-        .row
-          .col-sm-10
-            .form-group
-              
-                +_formTemplate(config.formConfigs.param_22)
-          .col-sm-2
-            +_questionBtn(config.formConfigs.param_22, questionFields)
 
       .row.hidden(id="visit-error-1")
         .col-sm-12

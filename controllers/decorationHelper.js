@@ -21,14 +21,7 @@ const getAirLeakTestConfig = require('../config/surgery/getAirLeakTestConfig');
 const getSurgeryMethodsConfig = require('../config/surgery/getSurgeryMethodsConfig');
 const getLARSScoreConfig = require('../config/life/getLARSScoreConfig');
 const getWasStomaFormedConfig = require('../config/life/getWasStomaFormedConfig');
-const getVisitFoodTypesConfig = require('../config/visit/getVisitFoodTypesConfig');
-const getVisitParam1Config = require('../config/visit/getVisitParam1Config');
-const getVisitParam2Config = require('../config/visit/getVisitParam2Config');
-const getVisitParam3Config = require('../config/visit/getVisitParam3Config');
-const getVisitParam8Config = require('../config/visit/getVisitParam8Config');
-const getVisitParam14Config = require('../config/visit/getVisitParam14Config');
-const getVisitResConfig = require('../config/visit/getVisitResConfig');
-const getVisitTypesConfig = require('../config/visit/getVisitTypesConfig');
+const getCDClassificationConfig = require('../config/visit/getCDClassificationConfig');
 const getCmSourceConfig = require('../config/cm/getCmSourceConfig');
 const getEvacuationTypesConfig = require('../config/evacuation/getEvacuationTypesConfig');
 const getDiscontinuationTypeConfig = require('../config/getDiscontinuationTypeConfig');
@@ -57,14 +50,7 @@ module.exports = {
   'getWasStomaFormedConfig': getWasStomaFormedConfig,
   'getAirLeakTestConfig': getAirLeakTestConfig,
   'getSurgeryMethodsConfig': getSurgeryMethodsConfig,
-  'getVisitFoodTypesConfig': getVisitFoodTypesConfig,
-  'getVisitParam1Config': getVisitParam1Config,
-  'getVisitParam2Config': getVisitParam2Config,
-  'getVisitParam3Config': getVisitParam3Config,
-  'getVisitParam8Config': getVisitParam8Config,
-  'getVisitParam14Config': getVisitParam14Config,
-  'getVisitResConfig': getVisitResConfig,
-  'getVisitTypesConfig': getVisitTypesConfig,
+  'getCDClassificationConfig': getCDClassificationConfig,
   'getCmSourceConfig': getCmSourceConfig,
   'getEvacuationTypesConfig': getEvacuationTypesConfig,
   'getDiscontinuationTypeConfig': getDiscontinuationTypeConfig

@@ -1,5 +1,5 @@
 const moment = require('moment');
-moment.locale('zh-cn');
+moment.locale('en');
 
 const mongoose = require('mongoose');
 const Discontinuation = mongoose.model('Discontinuation');
@@ -68,7 +68,7 @@ exports.discontinuationForm = async (req, res) => {
     if (key === 'discontinuedt') {
       config.formConfigs[key].value = discontinuationItem.discontinuedt ? moment(discontinuationItem.discontinuedt).format('MM/DD/YYYY') : '';
       const surgerydate = surgeryItem ? moment(surgeryItem.surgerydtc).format('MM/DD/YYYY') : moment().format('MM/DD/YYYY');
-      config.formConfigs[key].extra = JSON.stringify({surgerydate: surgerydate});
+      config.formConfigs[key].extra = JSON.stringify({ surgerydate: surgerydate });
     }
     else {
       config.formConfigs[key].value = discontinuationItem[key];
@@ -91,7 +91,7 @@ exports.discontinuationForm = async (req, res) => {
 };
 
 exports.updateDiscontinuation = async (req, res) => {
-  req.user.authenticate(req.body.password, async function(err, model) {
+  req.user.authenticate(req.body.password, async function (err, model) {
     if (model === false) {
       req.flash('error', 'Wrong password.');
       res.redirect('back');
@@ -129,7 +129,7 @@ exports.updateDiscontinuation = async (req, res) => {
       }) === undefined;
 
       if (discontinuationCompleted) {
-        const caseItem = await Case.findByIdAndUpdate(caseId, {status: 'quit'}, {new: true});
+        const caseItem = await Case.findByIdAndUpdate(caseId, { status: 'quit' }, { new: true });
         res.locals.case = caseItem;
         res.redirect(`/discontinuation/${caseId}`);
       }
@@ -145,7 +145,7 @@ exports.updateDiscontinuation = async (req, res) => {
           buttonConfig: getButtonConfig(req.user.language),
           result: result
         });
-      }      
+      }
     }
   });
 };
