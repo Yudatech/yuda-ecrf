@@ -30,6 +30,7 @@ const getVisitParam14Config = require('../config/visit/getVisitParam14Config');
 const getVisitResConfig = require('../config/visit/getVisitResConfig');
 const getVisitTypesConfig = require('../config/visit/getVisitTypesConfig');
 const getCmSourceConfig = require('../config/cm/getCmSourceConfig');
+const getEvacuationTypesConfig = require('../config/evacuation/getEvacuationTypesConfig');
 const getDiscontinuationTypeConfig = require('../config/getDiscontinuationTypeConfig');
 
 module.exports = {
@@ -65,5 +66,6 @@ module.exports = {
   'getVisitResConfig': getVisitResConfig,
   'getVisitTypesConfig': getVisitTypesConfig,
   'getCmSourceConfig': getCmSourceConfig,
+  'getEvacuationTypesConfig': getEvacuationTypesConfig,
   'getDiscontinuationTypeConfig': getDiscontinuationTypeConfig
 };

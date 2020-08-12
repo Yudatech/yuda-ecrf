@@ -19,6 +19,7 @@ const getLifeAssessmentConfig = require('../config/life/getLifeAssessmentConfig'
 const getVisitConfig = require('../config/visit/getVisitConfig');
 
 const decorationHelper = require('./decorationHelper');
+const getEvacuationConfig = require('../config/evacuation/getEvacuationConfig');
 
 const dateFormat = 'YYYY-MM-DD';
 const datetimeFormat = 'YYYY-MM-DD HH:mm';
@@ -59,6 +60,9 @@ exports.getConfigForQuestion = function (table, lang) {
   }
   else if (table === 'life') {
     formConfigs = getLifeAssessmentConfig(lang).formConfigs;
+  }
+  else if (table === 'evacuation') {
+    formConfigs = getEvacuationConfig(lang).formConfigs;
   }
 
   return formConfigs;

@@ -18,6 +18,7 @@ const visitController = require('../controllers/visitController');
 const questionController = require('../controllers/questionController');
 const screeningController = require('../controllers/screeningController');
 const lifeAssessmentController = require('../controllers/lifeAssessmentController');
+const evacuationController = require('../controllers/evacuationController');
 
 router.get('/', authController.isLoggedIn, mainController.homePage);
 
@@ -292,6 +293,21 @@ router.post('/life/:caseId',
   catchErrors(authController.checkCaseStatus),
   catchErrors(authController.checkCasePermission),
   catchErrors(lifeAssessmentController.updateLifeAssessment)
+);
+
+// Router for evacuation
+router.get('/evacuation/:caseId',
+  authController.isLoggedIn,
+  catchErrors(authController.checkCaseStatus),
+  catchErrors(authController.checkCasePermission),
+  catchErrors(questionController.checkQuestionedFields),
+  catchErrors(evacuationController.evacuationForm)
+);
+router.post('/evacuation/:caseId',
+  authController.isLoggedIn,
+  catchErrors(authController.checkCaseStatus),
+  catchErrors(authController.checkCasePermission),
+  catchErrors(evacuationController.updateEvacuation)
 );
 
 // Router for cm

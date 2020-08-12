@@ -27,6 +27,8 @@ const Surgery = mongoose.model('Surgery');
 const Visit = mongoose.model('Visit');
 const Question = mongoose.model('Question');
 const History = mongoose.model('History');
+const Life = mongoose.model('Life');
+const Evacuation = mongoose.model('Evacuation');
 
 const multer = require('multer');
 const jimp = require('jimp');
@@ -88,17 +90,17 @@ exports.createCase = async (req, res) => {
 };
 
 async function doRemoveCase(caseId) {
-  await Case.remove({_id: caseId});
-  await Screening.remove({case: caseId});
-  await ReviewChecklist.remove({case: caseId});
-  await Discontinuation.remove({case: caseId});
-  await Cm.remove({case: caseId});
-  await Sae.remove({case: caseId});
-  await Ae.remove({case: caseId});
-  await Surgery.remove({case: caseId});
-  await Visit.remove({case: caseId});
-  await Question.remove({case: caseId});
-  await History.remove({case: caseId});
+  await Case.remove({ _id: caseId });
+  await Screening.remove({ case: caseId });
+  await ReviewChecklist.remove({ case: caseId });
+  await Discontinuation.remove({ case: caseId });
+  await Cm.remove({ case: caseId });
+  await Sae.remove({ case: caseId });
+  await Ae.remove({ case: caseId });
+  await Surgery.remove({ case: caseId });
+  await Visit.remove({ case: caseId });
+  await Question.remove({ case: caseId });
+  await History.remove({ case: caseId });
 }
 
 exports.removeCase = async (req, res) => {
@@ -183,14 +185,14 @@ exports.auditCase = async (req, res) => {
   }
   else {
     const password = req.body.password;
-    req.user.authenticate(password, function(err, model) {
+    req.user.authenticate(password, function (err, model) {
       if (model === false) {
         req.flash('error', 'Wrong password.');
         logger.warn(loggerHelper.createLogMessage(req.user, 'input wrong', 'password when audit', caseId));
         res.redirect('back');
       }
       else {
-        caseItem.audit(req.user._id, function(err, caseNew) {
+        caseItem.audit(req.user._id, function (err, caseNew) {
           if (err) {
             req.flash('error', err.toString());
             logger.warn(err);
@@ -250,14 +252,14 @@ exports.lockCase = async (req, res) => {
   }
   else {
     const password = req.body.password;
-    req.user.authenticate(password, function(err, model) {
+    req.user.authenticate(password, function (err, model) {
       if (model === false) {
         req.flash('error', 'Wrong password.');
         logger.warn(loggerHelper.createLogMessage(req.user, 'input wrong', 'password when lock', caseId));
         res.redirect('back');
       }
       else {
-        caseItem.lock(req.user._id, function(err, caseNew) {
+        caseItem.lock(req.user._id, function (err, caseNew) {
           if (err) {
             req.flash('error', err.toString());
             logger.warn(err);
@@ -295,7 +297,7 @@ exports.commitCase = async (req, res) => {
   }
   else {
     const password = req.body.password;
-    req.user.authenticate(password, function(err, model) {
+    req.user.authenticate(password, function (err, model) {
       if (model === false) {
         req.flash('error', 'Wrong password.');
         logger.warn(loggerHelper.createLogMessage(req.user, 'input wrong', 'password when commit', caseId));
@@ -306,7 +308,7 @@ exports.commitCase = async (req, res) => {
           status: 'committed',
           commitDate: new Date()
         };
-        Case.findByIdAndUpdate(caseId, obj, {new: true}, function(err, caseNew) {
+        Case.findByIdAndUpdate(caseId, obj, { new: true }, function (err, caseNew) {
           if (err) {
             req.flash('error', err.toString());
             logger.warn(err);
@@ -423,6 +425,12 @@ exports.exportCases = async (req, res) => {
   const saeList = await Sae.find().sort({
     case: 'asc'
   });
+  const lifeList = await Life.find().sort({
+    case: 'asc'
+  });
+  const evacuationList = await Evacuation.find().sort({
+    case: 'asc'
+  });
   const commonData = exportHelpers.getExportCommonData(commonConfig, cases, users, caseStatusConfig);
 
   const aeSourceConfigList = {};
@@ -490,10 +498,16 @@ exports.exportCases = async (req, res) => {
     else if (tableName === 'sae') {
       data = saeList;
     }
+    else if (tableName === 'life') {
+      data = lifeList;
+    }
+    else if (tableName === 'evacuation') {
+      data = evacuationList;
+    }
     exportHelpers.addDataToWorksheet(worksheet, commonColumnDefs, dataColumnDefs, commonData, data, aeSourceConfigList, saeSourceConfigList);
   });
 
-  workbook.xlsx.writeFile(fileName).then(function() {
+  workbook.xlsx.writeFile(fileName).then(function () {
     res.download(fileName);
   });
 };

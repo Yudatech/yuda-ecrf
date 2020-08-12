@@ -1,0 +1,32 @@
+extends caseLayout
+
+include mixins/_formTemplate
+include mixins/_questionBtn
+
+block case-content
+  .case-content
+    form.form-horizontal(id="evacuation-form" action=`/evacuation/${caseId}` method="POST")
+      - const formDisabled = !((locals.case.status === 'open' && locals.user.role === 'cra') || locals.user.role === 'admin')
+      fieldset(disabled=formDisabled)
+        legend #{config.title}
+
+        .row
+          .col-sm-10
+            +_formTemplate(config.formConfigs.evacuationdtc)
+          .col-sm-2
+            +_questionBtn(config.formConfigs.evacuationdtc, questionFields)
+
+        .row
+          .col-sm-10
+            +_formTemplate(config.formConfigs.evacuationtype)
+          .col-sm-2
+            +_questionBtn(config.formConfigs.evacuationtype, questionFields)
+
+        .row
+          .col-sm-10
+            +_formTemplate(config.formConfigs.evacuation_1)
+          .col-sm-2
+            +_questionBtn(config.formConfigs.evacuation_1, questionFields)
+        
+      if formDisabled === false
+        input.btn.btn-default.yuda-input-btn(type="submit" value=buttonConfig.buttons.save.text)

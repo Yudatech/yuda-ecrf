@@ -100,6 +100,15 @@ module.exports = [
   },
   {
     title: {
+      zh: '取出植入物',
+      en: 'Evacuation of the implant'
+
+    },
+    name: 'evacuation',
+    link: '/evacuation'
+  },
+  {
+    title: {
       zh: '合并用药情况',
       en: 'Concomitant Medication'
     },
