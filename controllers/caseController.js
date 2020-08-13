@@ -101,6 +101,8 @@ async function doRemoveCase(caseId) {
   await Visit.remove({ case: caseId });
   await Question.remove({ case: caseId });
   await History.remove({ case: caseId });
+  await Evacuation.remove({ case: caseId });
+  await Life.remove({ case: caseId });
 }
 
 exports.removeCase = async (req, res) => {
