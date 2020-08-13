@@ -9,10 +9,6 @@ function initVisitHandlers() {
     setPostoperative_2_1Visibility();
   });
 
-  $('#param_19').change(function () {
-    setParam2021Visibility();
-  });
-
   $('#postoperative_2_1').change(function () {
     setErrorElementVisibility();
   });

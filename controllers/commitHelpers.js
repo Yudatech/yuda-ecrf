@@ -435,7 +435,6 @@ exports.validateVisitForm = async function (caseId, lang) {
       'surgerydtc': surgeryItem.surgerydtc === undefined ? null : surgeryItem.surgerydtc.valueOf(),
       aeList,
       cmList,
-      'param_19': visitList
     };
     const formConfigs = getVisitConfig(lang).formConfigs;
     visitValidateResult.children = [];
@@ -456,14 +455,6 @@ exports.validateVisitForm = async function (caseId, lang) {
     if (falseItem) {
       visitValidateResult.resultText = commitCaseConfig.ongoing;
       visitValidateResult.resultType = 'ongoing';
-
-      const visitParam19TrueItems = visitList.filter((visitItem) => visitItem.param_19 === true);
-      if (visitParam19TrueItems.length !== 1) {
-        if (visitValidateResult.errors === undefined) {
-          visitValidateResult.errors = [];
-        }
-        visitValidateResult.errors.push(commitCaseConfig.errorMessages.error_1.text);
-      }
     }
   }
   return visitValidateResult;
