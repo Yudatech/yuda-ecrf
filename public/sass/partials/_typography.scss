@@ -4,8 +4,26 @@
          url('/fonts/panama-bold-webfont.woff') format('woff');
     font-weight: normal;
     font-style: normal;
-
 }
+
+/* fira-sans-regular - latin */
+@font-face {
+  font-family: 'Fira Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: url('/fonts/fira-sans-v10-latin-regular.woff2') format('woff2'), url('/fonts/fira-sans-v10-latin-regular.woff') format('woff');
+}
+
+
+/* fira-sans-600 - latin */
+@font-face {
+  font-family: 'Fira Sans';
+  font-style: normal;
+  font-weight: 600;
+  src: url('/fonts/fira-sans-v10-latin-600.woff2') format('woff2'), /* Super Modern Browsers */
+       url('/fonts/fira-sans-v10-latin-600.woff') format('woff'); /* Legacy iOS */
+}
+
 
 html {
   font-size:10px;
@@ -13,13 +31,15 @@ html {
 
 body {
   font-size:1.5rem;
-  color:$black;
+  font-family: 'Fira Sans';
+  color: #172445;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'Panama';
+  font-family: 'Fira Sans';
   font-weight: 600;
   letter-spacing:-1px;
+  color: #172445;
 }
 
 a {
