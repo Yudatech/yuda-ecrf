@@ -50,10 +50,24 @@ const config = {
       }
     },
     {
+      name: 'life',
+      text: {
+        zh: '生活质量和医疗利用模式评估',
+        en: 'Life quality and healthcare utilization pattern assessment'
+      }
+    },
+    {
       name: 'visit',
       text: {
         zh: '访视',
         en: 'Postoperative Visit'
+      }
+    },
+    {
+      name: 'evacuation',
+      text: {
+        zh: '取出植入物',
+        en: 'Evacuation of the implant'
       }
     }
   ],
@@ -108,7 +122,7 @@ const config = {
   }]
 };
 
-module.exports = function(lang) {
+module.exports = function (lang) {
   if (lang === undefined) {
     lang = 'en';
   }
