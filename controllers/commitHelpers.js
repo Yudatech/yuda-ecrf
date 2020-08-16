@@ -102,46 +102,49 @@ function doSurgeryCustomValidation(caseId, key, obj, ruleConfig, validateResult,
   }
 }
 
-function doVisitCustomValidation(caseId, key, obj, ruleConfig, validateResult, aeList, cmList) {
-  if (obj[key] !== true) {
+function doVisitCustomValidation(caseId, key, obj, ruleConfig, validateResult, aeList, cmList, saeList, errors) {
+  if (obj[key] === 0) {
     return true;
   }
   else {
-    if (key === 'param_22') {
-      if (aeList.length === 0 || aeList.find((item) => item.aeorigion === obj._id.toString()) === undefined) {
-        if (validateResult.children === undefined) {
-          validateResult.children = [];
+    if (key === 'postoperative_2_1') {
+      const validateValue = obj[key];
+      if (validateValue === 3 || validateValue === 4) {
+        if (saeList.length === 0 || saeList.find((item) => item.saeorigion === obj._id.toString()) === undefined) {
+          if (validateResult.children === undefined) {
+            validateResult.children = [];
+          }
+          validateResult.children.push({
+            pass: false,
+            message: errors.error_2.text,
+            link: `/saelist/${caseId}`
+          });
+          return false;
         }
-        validateResult.children.push({
-          pass: false,
-          message: ruleConfig.message,
-          link: `/aelist/${caseId}`
-        });
-        return false;
       }
-    }
-    else if (key === 'param_18') {
-      if (cmList.length === 0 || cmList.find((item) => item.source === obj._id.toString()) === undefined) {
-        if (validateResult.children === undefined) {
-          validateResult.children = [];
+      else if (validateValue === 1 || validateValue === 2) {
+        if (aeList.length === 0 || aeList.find((item) => item.aeorigion === obj._id.toString()) === undefined) {
+          if (validateResult.children === undefined) {
+            validateResult.children = [];
+          }
+          validateResult.children.push({
+            pass: false,
+            message: errors.error_1.text,
+            link: `/aelist/${caseId}`
+          });
+          return false;
         }
-        validateResult.children.push({
-          pass: false,
-          message: ruleConfig.message,
-          link: `/cmlist/${caseId}`
-        });
-        return false;
       }
     }
   }
 }
 
 function doAeCustomValidation(caseId, key, obj, ruleConfig, validateResult, saeList, idToAppend) {
-  if (obj[key] !== 2) {
+  if (obj[key] !== true) {
     return true;
   }
   else {
-    if (saeList.length === 0 || saeList.find((item) => item.saeorigion.toString() === obj._id.toString()) === undefined) {
+    if (saeList.length === 0 || saeList.find((item) => item.saeorigion.toString() === obj.aeorigion.toString()) === undefined) {
       if (validateResult.children === undefined) {
         validateResult.children = [];
       }
@@ -187,10 +190,10 @@ function doCommitValidation(caseId, key, obj, rules, extra, validateResult) {
       // else if (key === 'surgery_14') {
       //   result = doSurgeryCustomValidation(caseId, key, obj, ruleConfig, validateResult, extra.aeList);
       // }
-      else if (key === 'param_18' || key === 'param_22') {
-        result = doVisitCustomValidation(caseId, key, obj, ruleConfig, validateResult, extra.aeList, extra.cmList);
+      else if (key === 'postoperative_2_1') {
+        result = doVisitCustomValidation(caseId, key, obj, ruleConfig, validateResult, extra.aeList, extra.cmList, extra.saeList, extra.errors);
       }
-      else if (key === 'aeserv') {
+      else if (key === 'aesae') {
         result = doAeCustomValidation(caseId, key, obj, ruleConfig, validateResult, extra.saeList, extra.idToAppend);
       }
     }
@@ -418,15 +421,20 @@ exports.validateVisitForm = async function (caseId, lang) {
     const aeList = await Ae.find({
       case: caseId
     });
+    const saeList = await Sae.find({
+      case: caseId
+    });
     const cmList = await Cm.find({
       case: caseId
     });
+    const formConfigs = getVisitConfig(lang).formConfigs;
     const extra = {
       'surgerydtc': surgeryItem.surgerydtc === undefined ? null : surgeryItem.surgerydtc.valueOf(),
       aeList,
       cmList,
+      saeList,
+      errors: getVisitConfig(lang).errors
     };
-    const formConfigs = getVisitConfig(lang).formConfigs;
     visitValidateResult.children = [];
     visitList.forEach((visitItem) => {
       const visitNameItem = visitNameList.find((item) => item.value === visitItem._id.toString());

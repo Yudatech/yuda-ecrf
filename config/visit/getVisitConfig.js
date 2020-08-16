@@ -44,6 +44,13 @@ const config = {
     type: 'select',
     required: true,
     optionsGetter: 'getCDClassificationConfig',
+    commit: [{
+      rule: 'custom',
+      message: {
+        zh: '请完整填写《不良事件及器械缺陷报告表》',
+        en: 'Complete Adverse Events and Device Deficiency (AE) Report'
+      }
+    }],
     text: {
       zh: 'Clavien-Dindo分类',
       en: 'Clavien-Dindo Classification'
