@@ -27,16 +27,17 @@ require('./models/User');
 require('./models/Site');
 require('./models/Case');
 require('./models/Screening');
-require('./models/ScreeningChecklist');
 require('./models/ReviewChecklist');
 require('./models/Discontinuation');
 require('./models/Surgery');
+require('./models/Life');
 require('./models/Cm');
 require('./models/Ae');
 require('./models/Sae');
 require('./models/Visit');
 require('./models/Question');
 require('./models/History');
+require('./models/Evacuation');
 
 // Start our app!
 const app = require('./app');
