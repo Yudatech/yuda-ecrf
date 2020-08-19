@@ -4,7 +4,8 @@ const config = {
   cases: {
     title: {
       zh: '病例',
-      en: 'Cases'
+      en: 'Cases',
+      sv: 'swedish',
     },
     headers: [{
       name: '_id',
