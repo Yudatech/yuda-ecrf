@@ -5,7 +5,7 @@ const config = {
     title: {
       zh: '病例',
       en: 'Cases',
-      sv: 'swedish',
+      sv: 'svenska',
     },
     headers: [{
       name: '_id',
