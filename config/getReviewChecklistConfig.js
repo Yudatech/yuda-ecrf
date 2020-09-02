@@ -3,7 +3,8 @@ const getOptionsLang = require('./configHelpers').getOptionsLang;
 const config = {
   title: {
     zh: '复诊（入组）',
-    en: 'Day prior to surgery'
+    en: 'Day prior to surgery',
+    sv: 'Dagen före operation'
   },
   formConfigs: [{
     name: 'reviewcheckdate',
@@ -15,28 +16,32 @@ const config = {
     }],
     text: {
       zh: '复诊日期',
-      en: 'Visit 2 Date'
+      en: 'Visit 2 Date',
+      sv: 'Datum för dagen före operation'
     }
   }, {
     name: 'reviewcheck_2',
     type: 'checkbox',
     text: {
       zh: '肠道清洁',
-      en: 'Full bowel cleansing'
+      en: 'Full bowel cleansing',
+      sv: 'Fullständig tarmregöring'     
     }
   }, {
     name: 'reviewcheck_1',
     type: 'checkbox',
     text: {
-      zh: '手术前1周的粪便软化剂和手术前1天的灌肠剂',
-      en: 'Stool softener 1 week prior to surgery and enema 1 day prior to surgery'
+      zh: '术前1周使用粪便软化剂以及术前1天使用灌肠剂',
+      en: 'Stool softener 1 week prior to surgery and enema 1 day prior to surgery'，
+      sv: 'Bulkmedel 1 vecka före kirugi och lavemang 1 dag före kirugi'
     }
   }, {
     name: 'reviewcheck_5',
     type: 'checkbox',
     text: {
-      zh: '粪便松软',
-      en: 'Loose to watery stool'
+      zh: '软便-水样便',
+      en: 'Loose to watery stool'，
+      sv: 'Lös till vattning avföring'
     }
   }, {
     name: 'reviewcheck_3',
@@ -44,8 +49,9 @@ const config = {
     commit: [{
       rule: 'custom',
       message: {
-        zh: '已使用抗生素，请完整填写《合并用药情况表》',
-        en: 'Complete Concomitant Medication Report, please.'
+        zh: '使用预防性抗生素',
+        en: 'Prophylactic antibiotics',
+        sv: 'Profylaktisk antibiotika'
       }
     }],
     text: {
@@ -58,8 +64,8 @@ const config = {
     commit: [{
       rule: 'custom',
       message: {
-        zh: '已使用抗凝血药，请完整填写《合并用药情况表》',
-        en: 'Complete Concomitant Medication Report, please.'
+        zh: '使用预防性抗凝血药',
+        en: 'Prophylactic anti-thrombotics'
       }
     }],
     text: {
@@ -88,8 +94,9 @@ const config = {
   }, {
     name: 'error_4',
     text: {
-      zh: '请参阅PMCIP了解所需的下一步',
-      en: 'See PMCIP for required next step'
+      zh: '请参阅PMCIP了解所需的下一步处理',
+      en: 'See PMCIP for required next step'，
+      sv: 'se PMCIP för åtgärd'
     }
   }]
 };
