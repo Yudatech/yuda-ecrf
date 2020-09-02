@@ -2,7 +2,7 @@ module.exports = [
   {
     title: {
       zh: '概况',
-      en: 'Overview'
+      en: 'Overview',
       sv: 'Översikt'
     },
     name: 'overview',
@@ -77,7 +77,7 @@ module.exports = [
   {
     title: {
       zh: '复诊(入组)',
-      en: 'Day prior to surgery'，
+      en: 'Day prior to surgery',
       sv: 'Dagen före operation'
     },
     name: 'reviewchecklist',
@@ -95,7 +95,7 @@ module.exports = [
   {
     title: {
       zh: '生活质量和医疗服务利用模式评估',
-      en: 'Life quality and healthcare utilization pattern assessment'，
+      en: 'Life quality and healthcare utilization pattern assessment',
       sv: 'Frågor om livskvalitet och utvärderingsmönster för hälso- och sjukvård'
     },
     name: 'life',
@@ -114,7 +114,7 @@ module.exports = [
   {
     title: {
       zh: '排出植入吻合环',
-      en: 'Evacuation of the implant'，
+      en: 'Evacuation of the implant',
       sv: 'Evakuering av implantatet'
 
     },

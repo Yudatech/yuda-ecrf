@@ -25,14 +25,14 @@ const config = {
     text: {
       zh: '肠道清洁',
       en: 'Full bowel cleansing',
-      sv: 'Fullständig tarmregöring'     
+      sv: 'Fullständig tarmregöring'
     }
   }, {
     name: 'reviewcheck_1',
     type: 'checkbox',
     text: {
       zh: '术前1周使用粪便软化剂以及术前1天使用灌肠剂',
-      en: 'Stool softener 1 week prior to surgery and enema 1 day prior to surgery'，
+      en: 'Stool softener 1 week prior to surgery and enema 1 day prior to surgery',
       sv: 'Bulkmedel 1 vecka före kirugi och lavemang 1 dag före kirugi'
     }
   }, {
@@ -40,7 +40,7 @@ const config = {
     type: 'checkbox',
     text: {
       zh: '软便-水样便',
-      en: 'Loose to watery stool'，
+      en: 'Loose to watery stool',
       sv: 'Lös till vattning avföring'
     }
   }, {
@@ -95,7 +95,7 @@ const config = {
     name: 'error_4',
     text: {
       zh: '请参阅PMCIP了解所需的下一步处理',
-      en: 'See PMCIP for required next step'，
+      en: 'See PMCIP for required next step',
       sv: 'se PMCIP för åtgärd'
     }
   }]
