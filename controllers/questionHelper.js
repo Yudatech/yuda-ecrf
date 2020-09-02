@@ -118,7 +118,9 @@ exports.getValueForQuestion = async function (table, caseId, secondaryId) {
     item = await Ae.findById(secondaryId);
   }
   else if (table === 'surgery') {
-    item = await Surgery.findById(secondaryId);
+    item = await Surgery.findOne({
+      case: caseId
+    });
   }
   else if (table === 'visit') {
     item = await Visit.findById(secondaryId);
@@ -154,7 +156,9 @@ exports.updateValueForQuestion = async function (table, caseId, secondaryId, fie
     await Ae.findByIdAndUpdate(secondaryId, obj);
   }
   else if (table === 'surgery') {
-    await Surgery.findByIdAndUpdate(secondaryId, obj);
+    await Surgery.findOneAndUpdate({
+      case: caseId
+    }, obj)
   }
   else if (table === 'visit') {
     await Visit.findByIdAndUpdate(secondaryId, obj);
