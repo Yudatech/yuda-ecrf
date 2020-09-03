@@ -90,7 +90,11 @@ exports.showQuestionPage = async (req, res) => {
     obj.status = getQuestionStatusConfig(req.user.language).find((questionStatusConfig) => questionStatusConfig.value === itemObj.status).text;
     const fieldType = fieldConfig.type;
     if (fieldType === 'select') {
-      obj.value = decorationHelper[fieldConfig.optionsGetter]().find((option) => option.value === itemObj.content.value).text;
+      obj.value = '';
+      const match = decorationHelper[fieldConfig.optionsGetter]().find((option) => option.value === itemObj.content.value);
+      if (match) {
+        obj.value = match.text;
+      }
     }
     else if (fieldType === 'date') {
       obj.value = moment(itemObj.content.value).format('LL');
@@ -149,8 +153,12 @@ exports.updateQuestion = async (req, res) => {
     req.body[field] = req.sanitizeBody(field).escape();
   }
   await questionHelper.updateValueForQuestion(table, caseId, secondaryId, field, req.body[field]);
+  let questionStatus = req.body.question_status;
+  if (questionStatus === '0') {
+    questionStatus = '1';
+  }
   await Question.findByIdAndUpdate(questionId, {
-    status: req.body.question_status
+    status: questionStatus
   });
 
   if (req.body.new_comment !== '') {
