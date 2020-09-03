@@ -97,7 +97,7 @@ const config = {
     total: 4,
     text: {
       zh: '复诊',
-      en: 'Enrollment (Visit 2)'
+      en: 'Day prior to surgery'
     },
     linkBase: '/reviewchecklist'
   }, {
