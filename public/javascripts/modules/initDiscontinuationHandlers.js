@@ -3,11 +3,7 @@ import requireValidator from './validators/requireValidator';
 import requireTrueValueValidator from './validators/requireTrueValueValidator';
 
 function initDiscontinuationHandlers() {
-  // 退出阶段
-  $('#discontinuebeforesurgery').change(function () {
-    setDateRange();
-  });
-  setDateRange();
+  $('#discontinuedt').datepicker('setEndDate', new Date());
 
   $('#discontinuersn_2').change(function () {
     setDiscontinueReason_2Visibility();
@@ -38,17 +34,6 @@ function initDiscontinuationHandlers() {
     }
   });
   $('#discontinuation-form').validator('validate');
-}
-
-function setDateRange() {
-  const isBeforeSurgery = $('#discontinuebeforesurgery').is(':checked');
-  const surgerydate = $('#discontinuedt').data('extra').surgerydate
-  if (isBeforeSurgery === true) {
-    $('#discontinuedt').datepicker('setEndDate', surgerydate);
-  }
-  else {
-    $('#discontinuedt').datepicker('setStartDate', surgerydate);
-  }
 }
 
 function setDiscontinueReason_2Visibility() {

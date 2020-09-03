@@ -67,8 +67,6 @@ exports.discontinuationForm = async (req, res) => {
     }
     if (key === 'discontinuedt') {
       config.formConfigs[key].value = discontinuationItem.discontinuedt ? moment(discontinuationItem.discontinuedt).format('YYYY/MM/DD') : '';
-      const surgerydate = surgeryItem ? moment(surgeryItem.surgerydtc).format('YYYY/MM/DD') : moment().format('YYYY/MM/DD');
-      config.formConfigs[key].extra = JSON.stringify({ surgerydate: surgerydate });
     }
     else {
       config.formConfigs[key].value = discontinuationItem[key];
