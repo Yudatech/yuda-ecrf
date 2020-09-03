@@ -59,9 +59,9 @@ window.onload = function () {
       dialog: {
         dialogID: 'confirm-leave-dialog',
         proceedButtonClass: 'custom-proceed',
-        proceedButtonText: '放弃修改',
+        proceedButtonText: 'Discard',
         stayButtonClass: 'custom-stay',
-        stayButtonText: '取消'
+        stayButtonText: 'Cancel'
       }
     });
   }

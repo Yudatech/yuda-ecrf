@@ -9,7 +9,7 @@ block content
         form.form-horizontal.h-sm-100(action=`/question/${questionId}` method="POST")
           .panel.panel-default.yuda-panel
             .panel-heading
-              h3 质疑
+              h3 #{questionConfig.title.question}
             .panel-body.yuda-panel-body
               fieldset
                 legend #{config.title}

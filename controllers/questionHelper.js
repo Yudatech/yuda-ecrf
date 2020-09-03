@@ -80,7 +80,7 @@ exports.getConfigForQuestion = function (table, field, lang) {
   }
   else if (table === 'surgery') {
     const surgeryConfig = getSurgeryConfig(lang);
-    surgeryConfig.title = surgeryConfig.title.surgery;
+    surgeryConfig.title = surgeryConfig.title;
     return surgeryConfig;
   }
   else if (table === 'visit') {
