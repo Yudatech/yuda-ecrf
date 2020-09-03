@@ -80,7 +80,7 @@ exports.saeForm = async (req, res) => {
     }
     if (key === 'saecaus_2') {
       if (sae.saecaus_2) {
-        config.formConfigs[key].value = moment(sae.saecaus_2).format('MM/DD/YYYY');
+        config.formConfigs[key].value = moment(sae.saecaus_2).format('YYYY/MM/DD');
       }
       else {
         config.formConfigs[key].value = '';
@@ -89,7 +89,7 @@ exports.saeForm = async (req, res) => {
     else if (key === 'saestdtc') {
       config.formConfigs[key].date = {
         name: 'saestdtc_date',
-        value: sae.saestdtc ? moment(sae.saestdtc).format('MM/DD/YYYY') : ''
+        value: sae.saestdtc ? moment(sae.saestdtc).format('YYYY/MM/DD') : ''
       };
       config.formConfigs[key].time = {
         name: 'saestdtc_time',
@@ -99,7 +99,7 @@ exports.saeForm = async (req, res) => {
     else if (key === 'saenoticedtc') {
       config.formConfigs[key].date = {
         name: 'saenoticedtc_date',
-        value: sae.saenoticedtc ? moment(sae.saenoticedtc).format('MM/DD/YYYY') : ''
+        value: sae.saenoticedtc ? moment(sae.saenoticedtc).format('YYYY/MM/DD') : ''
       };
       config.formConfigs[key].time = {
         name: 'saenoticedtc_time',
@@ -109,7 +109,7 @@ exports.saeForm = async (req, res) => {
     else if (key === 'saedtc') {
       config.formConfigs[key].date = {
         name: 'saedtc_date',
-        value: sae.saedtc ? moment(sae.saedtc).format('MM/DD/YYYY') : ''
+        value: sae.saedtc ? moment(sae.saedtc).format('YYYY/MM/DD') : ''
       };
       config.formConfigs[key].time = {
         name: 'saedtc_time',

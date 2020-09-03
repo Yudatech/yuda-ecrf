@@ -144,7 +144,7 @@ exports.caseBasicForm = async (req, res) => {
     config.formConfigs[key].questionLink = helpers.getQuestionLink(tableName, 'screening-basic', req.params.caseId, config.formConfigs[key]);
 
     if (key === 'birth') {
-      config.formConfigs[key].value = screeningItem[key] ? moment(screeningItem[key]).format('MM/DD/YYYY') : '';
+      config.formConfigs[key].value = screeningItem[key] ? moment(screeningItem[key]).format('YYYY/MM/DD') : '';
     }
   });
   logger.info(loggerHelper.createLogMessage(req.user, 'show', 'screening-basic', req.params.caseId));

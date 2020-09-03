@@ -66,8 +66,8 @@ exports.discontinuationForm = async (req, res) => {
       config.formConfigs[key].options = decorationHelper[config.formConfigs[key].optionsGetter](req.user.language);
     }
     if (key === 'discontinuedt') {
-      config.formConfigs[key].value = discontinuationItem.discontinuedt ? moment(discontinuationItem.discontinuedt).format('MM/DD/YYYY') : '';
-      const surgerydate = surgeryItem ? moment(surgeryItem.surgerydtc).format('MM/DD/YYYY') : moment().format('MM/DD/YYYY');
+      config.formConfigs[key].value = discontinuationItem.discontinuedt ? moment(discontinuationItem.discontinuedt).format('YYYY/MM/DD') : '';
+      const surgerydate = surgeryItem ? moment(surgeryItem.surgerydtc).format('YYYY/MM/DD') : moment().format('YYYY/MM/DD');
       config.formConfigs[key].extra = JSON.stringify({ surgerydate: surgerydate });
     }
     else {

@@ -60,7 +60,7 @@ exports.lifeAssessmentForm = async (req, res) => {
       config.formConfigs[key].options = decorationHelper[config.formConfigs[key].optionsGetter](req.user.language);
     }
     if (key === 'assessmentdtc') {
-      config.formConfigs[key].value = lifeItem.assessmentdtc ? moment(lifeItem.assessmentdtc).format('MM/DD/YYYY') : '';
+      config.formConfigs[key].value = lifeItem.assessmentdtc ? moment(lifeItem.assessmentdtc).format('YYYY/MM/DD') : '';
     }
     else {
       config.formConfigs[key].value = lifeItem[key];

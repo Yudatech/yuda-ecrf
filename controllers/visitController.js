@@ -106,8 +106,8 @@ exports.visitForm = async (req, res) => {
       }
     }
     if (key === 'assessmentdtc') {
-      config.formConfigs[key].value = visit.assessmentdtc ? moment(visit.assessmentdtc).format('MM/DD/YYYY') : '';
-      const startDateStr = surgerydtc === null ? null : moment(surgerydtc).format('MM/DD/YYYY');
+      config.formConfigs[key].value = visit.assessmentdtc ? moment(visit.assessmentdtc).format('YYYY/MM/DD') : '';
+      const startDateStr = surgerydtc === null ? null : moment(surgerydtc).format('YYYY/MM/DD');
       config.formConfigs[key].extra = JSON.stringify({
         start: startDateStr
       });

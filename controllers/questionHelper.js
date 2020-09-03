@@ -167,12 +167,12 @@ exports.updateValueForQuestion = async function (table, caseId, secondaryId, fie
 
 exports.appendValueAndOptionsToFormConfig = function (fieldConfig, fieldValue, aeSourceConfig, saeSourceConfig, cmSourceConfig) {
   if (fieldConfig.type === 'date') {
-    fieldConfig.value = moment(fieldValue).format('MM/DD/YYYY');
+    fieldConfig.value = moment(fieldValue).format('YYYY/MM/DD');
   }
   else if (fieldConfig.name === 'aestdtc') {
     fieldConfig.date = {
       name: 'aestdtc_date',
-      value: moment(fieldValue).format('MM/DD/YYYY')
+      value: moment(fieldValue).format('YYYY/MM/DD')
     };
     fieldConfig.time = {
       name: 'aestdtc_time',
@@ -182,7 +182,7 @@ exports.appendValueAndOptionsToFormConfig = function (fieldConfig, fieldValue, a
   else if (fieldConfig.name === 'aeeddtc') {
     fieldConfig.date = {
       name: 'aeeddtc_date',
-      value: moment(fieldValue).format('MM/DD/YYYY')
+      value: moment(fieldValue).format('YYYY/MM/DD')
     };
     fieldConfig.time = {
       name: 'aeeddtc_time',
@@ -192,7 +192,7 @@ exports.appendValueAndOptionsToFormConfig = function (fieldConfig, fieldValue, a
   else if (fieldConfig.name === 'saestdtc') {
     fieldConfig.date = {
       name: 'saestdtc_date',
-      value: moment(fieldValue).format('MM/DD/YYYY')
+      value: moment(fieldValue).format('YYYY/MM/DD')
     };
     fieldConfig.time = {
       name: 'saestdtc_time',
@@ -202,7 +202,7 @@ exports.appendValueAndOptionsToFormConfig = function (fieldConfig, fieldValue, a
   else if (fieldConfig.name === 'saenoticedtc') {
     fieldConfig.date = {
       name: 'saenoticedtc_date',
-      value: moment(fieldValue).format('MM/DD/YYYY')
+      value: moment(fieldValue).format('YYYY/MM/DD')
     };
     fieldConfig.time = {
       name: 'saenoticedtc_time',
@@ -212,7 +212,7 @@ exports.appendValueAndOptionsToFormConfig = function (fieldConfig, fieldValue, a
   else if (fieldConfig.name === 'saedtc') {
     fieldConfig.date = {
       name: 'saedtc_date',
-      value: moment(fieldValue).format('MM/DD/YYYY')
+      value: moment(fieldValue).format('YYYY/MM/DD')
     };
     fieldConfig.time = {
       name: 'saedtc_time',

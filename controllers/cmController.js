@@ -83,10 +83,10 @@ exports.cmForm = async (req, res) => {
       config.formConfigs[key].options = decorationHelper[config.formConfigs[key].optionsGetter](req.user.language);
     }
     if (key === 'cmstdtc') {
-      config.formConfigs[key].value = cm.cmstdtc ? moment(cm.cmstdtc).format('MM/DD/YYYY') : '';
+      config.formConfigs[key].value = cm.cmstdtc ? moment(cm.cmstdtc).format('YYYY/MM/DD') : '';
     }
     else if (key === 'cmeddtc') {
-      config.formConfigs[key].value = cm.cmeddtc ? moment(cm.cmeddtc).format('MM/DD/YYYY') : '';
+      config.formConfigs[key].value = cm.cmeddtc ? moment(cm.cmeddtc).format('YYYY/MM/DD') : '';
     }
     else if (key === 'source') {
       config.formConfigs[key].options = cmSourceConfig;

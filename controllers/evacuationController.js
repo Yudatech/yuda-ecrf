@@ -66,8 +66,8 @@ exports.evacuationForm = async (req, res) => {
       config.formConfigs[key].options = decorationHelper[config.formConfigs[key].optionsGetter](req.user.language);
     }
     if (key === 'evacuationdtc') {
-      config.formConfigs[key].value = evacuationItem.evacuationdtc ? moment(evacuationItem.evacuationdtc).format('MM/DD/YYYY') : '';
-      const startDateStr = surgerydtc === null ? null : moment(surgerydtc).format('MM/DD/YYYY');
+      config.formConfigs[key].value = evacuationItem.evacuationdtc ? moment(evacuationItem.evacuationdtc).format('YYYY/MM/DD') : '';
+      const startDateStr = surgerydtc === null ? null : moment(surgerydtc).format('YYYY/MM/DD');
       config.formConfigs[key].extra = JSON.stringify({
         start: startDateStr
       });

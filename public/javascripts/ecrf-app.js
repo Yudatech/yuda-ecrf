@@ -31,7 +31,7 @@ $('.input-group.date').datepicker({
 }).on('changeDate', function (e) {
   const targetId = e.target.id;
   const realId = `#${targetId}Real`;
-  $(realId).val(e.format('mm/dd/yyyy'))
+  $(realId).val(e.format('yyyy/mm/dd'))
 });
 $('.bootstrap-timepicker.timepicker>input').timepicker({
   showMeridian: false,

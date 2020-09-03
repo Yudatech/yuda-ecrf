@@ -35,9 +35,9 @@ function initReviewChecklistHandlers() {
 }
 
 function setReviewcheckDateRange() {
-  const screeningcheckDate = $('#reviewcheckdate').data('extra').screeningdate;
-  if (screeningcheckDate !== '') {
-    $('#reviewcheckdate').datepicker('setStartDate', screeningcheckDate);
+  const subjAcceptDate = $('#reviewcheckdate').data('extra').subjAcceptDate;
+  if (subjAcceptDate !== '') {
+    $('#reviewcheckdate').datepicker('setStartDate', subjAcceptDate);
   }
 }
 

@@ -98,7 +98,7 @@ exports.aeForm = async (req, res) => {
     if (key === 'aestdtc') {
       config.formConfigs[key].date = {
         name: 'aestdtc_date',
-        value: ae.aestdtc ? moment(ae.aestdtc).format('MM/DD/YYYY') : ''
+        value: ae.aestdtc ? moment(ae.aestdtc).format('YYYY/MM/DD') : ''
       };
       config.formConfigs[key].time = {
         name: 'aestdtc_time',
@@ -108,7 +108,7 @@ exports.aeForm = async (req, res) => {
     else if (key === 'aeeddtc') {
       config.formConfigs[key].date = {
         name: 'aeeddtc_date',
-        value: ae.aeeddtc ? moment(ae.aeeddtc).format('MM/DD/YYYY') : ''
+        value: ae.aeeddtc ? moment(ae.aeeddtc).format('YYYY/MM/DD') : ''
       };
       config.formConfigs[key].time = {
         name: 'aeeddtc_time',

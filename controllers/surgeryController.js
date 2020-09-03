@@ -67,8 +67,8 @@ exports.surgeryForm = async (req, res) => {
       config.formConfigs[key].options = decorationHelper[config.formConfigs[key].optionsGetter](req.user.language);
     }
     if (key === 'surgerydtc') {
-      config.formConfigs[key].value = surgeryItem.surgerydtc ? moment(surgeryItem.surgerydtc).format('MM/DD/YYYY') : '';
-      const startDateStr = reviewcheckdate === null ? null : moment(reviewcheckdate).format('MM/DD/YYYY');
+      config.formConfigs[key].value = surgeryItem.surgerydtc ? moment(surgeryItem.surgerydtc).format('YYYY/MM/DD') : '';
+      const startDateStr = reviewcheckdate === null ? null : moment(reviewcheckdate).format('YYYY/MM/DD');
       config.formConfigs[key].extra = JSON.stringify({ start: startDateStr });
     }
     else {
