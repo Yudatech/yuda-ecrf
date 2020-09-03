@@ -87,26 +87,6 @@ const config = {
       en: 'Time of report'
     }
   }, {
-    name: 'saedeviceclass',
-    type: 'select',
-    optionsGetter: 'getSaeDeviceClassConfig',
-    required: true,
-    commit: [{
-      rule: 'required'
-    }],
-    text: {
-      zh: '医疗器械类别',
-      en: 'Class of the medical device'
-    }
-  }, {
-    name: 'saeindicationofsurgery',
-    type: 'textfield',
-    required: true,
-    text: {
-      zh: '手术指征',
-      en: 'Indication of surgery'
-    }
-  }, {
     name: 'saecomoandtreatment',
     type: 'checkbox',
     text: {

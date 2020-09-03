@@ -9,6 +9,7 @@ const config = {
   formConfigs: [{
     name: 'reviewcheckdate',
     type: 'date',
+    required: true,
     commit: [{
       rule: 'date',
       start: 'subjAcceptDate',

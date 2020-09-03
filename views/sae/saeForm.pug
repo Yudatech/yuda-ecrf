@@ -35,18 +35,6 @@ block case-content
           .col-sm-2
             +_questionBtn(config.formConfigs.saedtc, questionFields)
 
-        .row
-          .col-sm-10
-            +_formTemplate(config.formConfigs.saedeviceclass)
-          .col-sm-2
-            +_questionBtn(config.formConfigs.saedeviceclass, questionFields)
-
-        .row
-          .col-sm-10
-            +_formTemplate(config.formConfigs.saeindicationofsurgery)
-          .col-sm-2
-            +_questionBtn(config.formConfigs.saeindicationofsurgery, questionFields)
-
       fieldset(disabled=formDisabled)
         legend #{config.subtitles.subtitle_5.text}
 

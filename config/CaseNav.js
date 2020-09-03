@@ -94,15 +94,6 @@ module.exports = [
   },
   {
     title: {
-      zh: '生活质量和医疗服务利用模式评估',
-      en: 'Life quality and healthcare utilization pattern assessment',
-      sv: 'Frågor om livskvalitet och utvärderingsmönster för hälso- och sjukvård'
-    },
-    name: 'life',
-    link: '/life'
-  },
-  {
-    title: {
       zh: '访视',
       en: 'Postoperative Visit',
       sv: 'Postoperativ bedömning'
@@ -120,6 +111,15 @@ module.exports = [
     },
     name: 'evacuation',
     link: '/evacuation'
+  },
+  {
+    title: {
+      zh: '生活质量和医疗服务利用模式评估',
+      en: 'Life quality and healthcare utilization pattern assessment',
+      sv: 'Frågor om livskvalitet och utvärderingsmönster för hälso- och sjukvård'
+    },
+    name: 'life',
+    link: '/life'
   },
   {
     title: {

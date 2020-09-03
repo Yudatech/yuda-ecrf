@@ -1,4 +1,5 @@
 import setWarningStyle from './helpers/setWarningStyle';
+import requireValidator from './validators/requireValidator';
 
 function initReviewChecklistHandlers() {
   // 复诊日期不能早于首诊日期
@@ -32,6 +33,15 @@ function initReviewChecklistHandlers() {
   setWarningStyle('reviewcheck_4');
 
   setErrorElementVisibility();
+
+  $('#reviewchecklist-form').validator({
+    delay: 100,
+    disable: false,
+    custom: {
+      customrequired: requireValidator
+    }
+  });
+  $('#reviewchecklist-form').validator('validate');
 }
 
 function setReviewcheckDateRange() {

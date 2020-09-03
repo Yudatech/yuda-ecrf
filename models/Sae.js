@@ -21,8 +21,6 @@ const saeSchema = new Schema({
   saedtc: {
     type: Date
   },
-  saedeviceclass: Number,
-  saeindicationofsurgery: String,
   saecomoandtreatment: Boolean,
   saecomoandtreatment_1_diagnosis: String,
   saecomoandtreatment_1_medication: String,
