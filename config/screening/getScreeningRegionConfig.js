@@ -40,6 +40,13 @@ const config = {
       zh: '直肠上段 (距离肛缘11-15cm以上)',
       en: 'Upper rectum (11 - 15 cm above the anal verge)'
     }
+  }, {
+    name: 'region_6',
+    type: 'checkbox',
+    text: {
+      zh: '直肠下段',
+      en: 'Lower rectum'
+    }
   }]
 };
 
