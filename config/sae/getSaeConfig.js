@@ -165,7 +165,7 @@ const config = {
     }],
     text: {
       zh: 'SAE的医学术语(诊断)',
-      en: 'Medical terminology of SAE (diagnosis)'
+      en: 'Medical terminology of SAE (diagnosis according to ICD)'
     }
   }, {
     name: 'saeanti',

@@ -44,8 +44,8 @@ module.exports = [
       name: 'screening-prioradiationtherapy',
       title: {
         zh: '直肠癌术前放疗',
-        en: 'Prior radiation therapy for rectal cancer',
-        sv: 'Tidigare strålbehandling för rektal cancer'
+        en: 'Prior radiation therapy',
+        sv: 'Tidigare strålbehandling'
       },
       link: '/screening-prioradiationtherapy'
     }, {
@@ -68,8 +68,8 @@ module.exports = [
       name: 'screening-dignose',
       title: {
         zh: '临床诊断/手术指征',
-        en: 'Diagnosis/Indication for surgery',
-        sv: 'Diagnos/Indication för operation'
+        en: 'Diagnosis/Indication',
+        sv: 'Diagnos/Indication'
       },
       link: '/screening-dignose'
     }]
@@ -77,7 +77,7 @@ module.exports = [
   {
     title: {
       zh: '复诊(入组)',
-      en: 'Day prior to surgery',
+      en: 'Before Surgery',
       sv: 'Dagen före operation'
     },
     name: 'reviewchecklist',
@@ -115,7 +115,7 @@ module.exports = [
   {
     title: {
       zh: '生活质量和医疗服务利用模式评估',
-      en: 'Life quality and healthcare utilization pattern assessment',
+      en: 'Life Quality and Healthcare Utilization',
       sv: 'Frågor om livskvalitet och utvärderingsmönster för hälso- och sjukvård'
     },
     name: 'life',
@@ -140,7 +140,7 @@ module.exports = [
   {
     title: {
       zh: '严重不良事件',
-      en: 'Severe Adverse Event',
+      en: 'Serious Adverse Event',
       sv: 'Allvarliga incidenter'
     },
     name: 'sae',

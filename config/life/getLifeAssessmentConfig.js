@@ -225,7 +225,7 @@ const config = {
     type: 'checkbox',
     text: {
       zh: 'IV级并发症',
-      en: 'Grade IV'
+      en: 'Grade IV complications'
     }
   }, {
     name: 'complications_4_1',
@@ -240,7 +240,7 @@ const config = {
     type: 'checkbox',
     text: {
       zh: 'V级并发症',
-      en: 'Grade V'
+      en: 'Grade V complications'
     }
   }, {
     name: 'complications_5_1',

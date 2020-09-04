@@ -34,13 +34,13 @@ function setErrorElementVisibility() {
   const errorEl1 = $('#visit-error-1');
   const errorEl2 = $('#visit-error-2');
   const postoperative_2_1Value = $('#postoperative_2_1').val();
-  if (postoperative_2_1Value === '1' || postoperative_2_1Value === '2') {
+  if (postoperative_2_1Value === '0' || postoperative_2_1Value === '1' || postoperative_2_1Value === '2') {
     errorEl1.removeClass('hidden');
     errorEl2.addClass('hidden');
   }
   else if (postoperative_2_1Value === '3' || postoperative_2_1Value === '4') {
     errorEl2.removeClass('hidden');
-    errorEl1.removeClass('hidden');
+    errorEl1.addClass('hidden');
   }
   else {
     errorEl1.addClass('hidden');

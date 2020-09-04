@@ -14,7 +14,7 @@ const config = {
     }],
     text: {
       zh: '年龄在18以上的男／女患者',
-      en: 'Male or female age ≥ 18 years'
+      en: 'Male or female age ≥ 18 years.'
     }
   }, {
     name: 'inclusion_2',

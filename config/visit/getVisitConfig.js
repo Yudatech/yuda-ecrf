@@ -60,13 +60,13 @@ const config = {
     name: 'error_1',
     text: {
       zh: '请完整填写《不良事件及器械缺陷报告表》',
-      en: 'Complete Adverse Events and Device Deficiency (AE) Report, please'
+      en: 'Complete Adverse Events (AE) and Device Deficiency Report.'
     }
   }, {
     name: 'error_2',
     text: {
       zh: '请完整填写《严重不良事件及器械缺陷报告表》',
-      en: 'Complete Severe Adverse Events and Device Deficiency (SAE) Report, please'
+      en: 'Complete Serious Adverse Events (SAE) Report.'
     }
   }]
 };

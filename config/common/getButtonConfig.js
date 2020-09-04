@@ -65,7 +65,7 @@ const config = {
     name: 'quit',
     text: {
       zh: '中途退出',
-      en: 'Discontinue'
+      en: 'Exclusion/withdrawal'
     }
   }, {
     name: 'lock',
@@ -142,7 +142,7 @@ const config = {
   }]
 };
 
-module.exports = function(lang) {
+module.exports = function (lang) {
   if (lang === undefined) {
     lang = 'en';
   }

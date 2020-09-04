@@ -156,7 +156,7 @@ const config = {
     type: 'checkbox',
     text: {
       zh: '因该事件退出试验（请完整填写《中途退出试验》表)',
-      en: 'Withdrawal from the study (Complete Withdrawal from the Study report, please.)'
+      en: 'Withdrawal from the study (Complete Exclsion/withdrawal from the Study report, please.)'
     }
   }],
   errors: [{

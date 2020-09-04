@@ -136,15 +136,15 @@ const config = {
     step: '1',
     text: {
       zh: '手术时间(分钟)',
-      en: 'Time of surgery (Minutes)'
+      en: 'Time of surgery (minutes)'
     }
   }, {
     name: 'surgery_13',
     type: 'numberfield',
     step: 'any',
     text: {
-      zh: '术中出血量(mL)',
-      en: 'Blood lost(mL)'
+      zh: '术中出血量 (mL)',
+      en: 'Blood lost (mL)'
     }
   }, {
     name: 'surgery_14',
@@ -158,7 +158,7 @@ const config = {
     }],
     text: {
       zh: '不良事件(请完整填写《不良事件及器械缺陷报告表》)',
-      en: 'Adverse events (Complete Adverse Events and Device Deficiency (AE) Report)'
+      en: 'Adverse events (Complete Adverse Events (AE) and Device Deficiency Report)'
     }
   }],
   errors: [{
