@@ -8,7 +8,7 @@ html
     link(rel='stylesheet', href='/datatable/css/jquery.dataTables.min.css')
     link(rel='stylesheet', href='/datatable/css/dataTables.bootstrap.min.css')
     link(rel='stylesheet', href='/dist/style.css')
-    link(rel='shortcut icon' type='image/x-icon' href='/images/icons/favicon.ico')
+    link(rel='shortcut icon' type='image/png' href='/images/icons/logo.png')
     meta(name="viewport" content="width=device-width, initial-scale=1")
   body
     block header
@@ -20,8 +20,9 @@ html
               span.icon-bar
               span.icon-bar
               span.icon-bar
-            a.navbar-brand(href="/") eCRF
-          
+            a.navbar-brand(href="/")
+              img(src="/images/carpo.png" class="brand")
+
           #navbar-collapse-1.collapse.navbar-collapse
             ul.nav.navbar-nav
               if user

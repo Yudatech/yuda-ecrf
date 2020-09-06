@@ -1,47 +1,51 @@
 .table {
-  width: 100%;
+  width        : 100%;
   margin-bottom: 0;
+
   td {
     padding: 5px;
   }
+
   tr:nth-child(even) {
     background: white;
   }
+
   tr:nth-child(odd):not(:first-child) {
     background: #f7f7f7;
   }
+
   thead tr {
-    background: $black;
-    color: white;
+    background: $blue;
+    color     : white;
   }
 }
 
-.table-filter{
-  text-align: right;
+.table-filter {
+  text-align   : right;
   padding-right: 0;
-  padding-top: 20px;
-  float: right;
-  position: absolute;
-  right: 25px;
-  top: 10px;
+  padding-top  : 20px;
+  float        : right;
+  position     : absolute;
+  right        : 25px;
+  top          : 10px;
 
   .active {
     background: $grey;
   }
 }
 
-.yuda-dashboard-table tr{
+.yuda-dashboard-table tr {
   border-left: 5px solid red;
 }
 
-table.dataTable thead .sorting:after{
-  opacity: 0!important;
+table.dataTable thead .sorting:after {
+  opacity: 0 !important;
 }
 
-table.dataTable thead .sorting_asc:after{
-  opacity: 0!important;
+table.dataTable thead .sorting_asc:after {
+  opacity: 0 !important;
 }
 
-table.dataTable thead .sorting_desc:after{
-  opacity: 0!important;
+table.dataTable thead .sorting_desc:after {
+  opacity: 0 !important;
 }

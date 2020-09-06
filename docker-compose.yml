@@ -1,0 +1,31 @@
+version: "3.7"
+
+volumes:
+  mongodb_data:
+    driver: local
+
+services:
+  mongodb:
+    image: mongo
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: rootpass
+      MONGO_INITDB_DATABASE: yuda01
+    restart: always
+    ports:
+      - 27017:27017
+    volumes:
+      - mongodb_data:/data/db
+      - ./init.js:/docker-entrypoint-initdb.d/init.js
+  ecrf:
+    build: .
+    ports:
+      - "9229:9229"
+      - "7777:7777"
+    volumes:
+      - ".:/opt/yuda-ecrf/"
+      - /opt/yuda-ecrf/node_modules
+    links:
+      - mongodb
+    depends_on:
+      - mongodb
