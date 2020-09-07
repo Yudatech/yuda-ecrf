@@ -48,14 +48,12 @@ const app = require("./app");
 //   console.log(`Express running → PORT ${server.address().port}`);
 // });
 
-// const serverHttp = http
-//   .createServer(app)
-//   .listen(process.env.PORT || 7777, () => {
-//     console.log(`Express running → PORT ${serverHttp.address().port}`);
-//   });
+const serverHttp = http
+  .createServer(app)
+  .listen(process.env.PORT || 7777, () => {
+    console.log(`Express running → PORT ${serverHttp.address().port}`);
+  });
 
-// set up plain http server
-var serverHttp = http.createServer();
 
 // set up a route to redirect http to https
 serverHttp.get('*', function (req, res) {
@@ -64,11 +62,6 @@ serverHttp.get('*', function (req, res) {
   // Or, if you don't want to automatically detect the domain name from the request header, you can hard code it:
   // res.redirect('https://example.com' + req.url);
 })
-
-// have it listen on 8080
-serverHttp.listen(process.env.PORT || 7777, () => {
-  console.log(`Express running → PORT ${serverHttp.address().port}`);
-});
 
 // start https server
 let sslOptions = {
