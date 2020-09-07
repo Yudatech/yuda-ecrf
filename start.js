@@ -48,11 +48,11 @@ const app = require("./app");
 //   console.log(`Express running → PORT ${server.address().port}`);
 // });
 
-const serverHttp = http
-  .createServer(app)
-  .listen(process.env.PORT || 7777, () => {
-    console.log(`Express running → PORT ${serverHttp.address().port}`);
-  });
+// const serverHttp = http
+//   .createServer(app)
+//   .listen(process.env.PORT || 7777, () => {
+//     console.log(`Express running → PORT ${serverHttp.address().port}`);
+//   });
 
 // start https server
 let sslOptions = {
