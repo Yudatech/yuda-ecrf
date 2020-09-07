@@ -55,7 +55,7 @@ const app = require("./app");
 //   });
 
 // set up plain http server
-var serverHttp = express.createServer();
+var serverHttp = http.createServer();
 
 // set up a route to redirect http to https
 serverHttp.get('*', function (req, res) {
