@@ -152,10 +152,10 @@ exports.updateQuestion = async (req, res) => {
   const linkBase = questionItem.linkBase;
   const caseId = questionItem.case._id;
   const secondaryId = questionItem.secondaryid;
+  await questionHelper.updateValueForQuestion(table, caseId, secondaryId, field, req.body[field]);
   if (typeof req.body[field] === 'string') {
     req.body[field] = req.sanitizeBody(field).escape();
   }
-  await questionHelper.updateValueForQuestion(table, caseId, secondaryId, field, req.body[field]);
   let questionStatus = req.body.question_status;
   await Question.findByIdAndUpdate(questionId, {
     status: questionStatus
