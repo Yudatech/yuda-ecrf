@@ -5,6 +5,7 @@ const Case = mongoose.model('Case');
 const Question = mongoose.model('Question');
 
 const getCaseStatusConfig = require('../config/common/getCaseStatusConfig');
+const { getQuestionLink } = require('./helpers');
 
 exports.login = passport.authenticate('local', {
   failureRedirect: '/login',
@@ -86,10 +87,12 @@ exports.checkQuestionStatus = async (req, res, next) => {
     res.redirect('back');
   }
   else {
-    if (method === 'get') {
-      const caseId = questionItem.case;
-      const caseItem = await Case.findById(caseId);
-      res.locals.case = caseItem;
+    if (method === 'get' || method === 'post') {
+      if (questionItem && questionItem.case) {
+        const caseId = questionItem.case;
+        const caseItem = await Case.findById(caseId);
+        res.locals.case = caseItem;
+      }
     }
     next();
   }

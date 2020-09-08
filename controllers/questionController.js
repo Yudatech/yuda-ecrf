@@ -152,7 +152,9 @@ exports.updateQuestion = async (req, res) => {
   const linkBase = questionItem.linkBase;
   const caseId = questionItem.case._id;
   const secondaryId = questionItem.secondaryid;
-  await questionHelper.updateValueForQuestion(table, caseId, secondaryId, field, req.body[field]);
+  if (res.locals.case.status === 'open' || res.locals.case.user.role === 'admin') {
+    await questionHelper.updateValueForQuestion(table, caseId, secondaryId, field, req.body[field]);
+  }
   if (typeof req.body[field] === 'string') {
     req.body[field] = req.sanitizeBody(field).escape();
   }
