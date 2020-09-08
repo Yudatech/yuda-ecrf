@@ -1,8 +1,8 @@
 const saeRels = [{
   value: 0,
   text: {
-    zh: '肯定有关',
-    en: 'Definitely yes'
+    zh: '有关',
+    en: 'Yes'
   }
 }, {
   value: 1,
@@ -13,24 +13,24 @@ const saeRels = [{
 }, {
   value: 2,
   text: {
-    zh: '有关',
-    en: 'Yes'
-  }
-}, {
-  value: 3,
-  text: {
     zh: '可能无关',
     en: 'Possibly no'
   }
 }, {
-  value: 4,
+  value: 3,
   text: {
     zh: '无关',
     en: 'No'
   }
+}, {
+  value: 4,
+  text: {
+    zh: '无法确定',
+    en: 'Cannot determine'
+  }
 }];
 
-module.exports = function(lang) {
+module.exports = function (lang) {
   if (lang === undefined) {
     lang = 'en';
   }
