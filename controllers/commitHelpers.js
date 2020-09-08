@@ -189,9 +189,9 @@ function doCommitValidation(caseId, key, obj, rules, extra, validateResult) {
       if (key === 'reviewcheck_3' || key === 'reviewcheck_4') {
         result = doReviewChecklistCustomValidation(caseId, key, obj, ruleConfig, validateResult, extra.cmList);
       }
-      // else if (key === 'surgery_14') {
-      //   result = doSurgeryCustomValidation(caseId, key, obj, ruleConfig, validateResult, extra.aeList);
-      // }
+      else if (key === 'surgery_14') {
+        result = doSurgeryCustomValidation(caseId, key, obj, ruleConfig, validateResult, extra.aeList);
+      }
       else if (key === 'postoperative_2_1') {
         result = doVisitCustomValidation(caseId, key, obj, ruleConfig, validateResult, extra.aeList, extra.cmList, extra.saeList, extra.errors);
       }
