@@ -42,7 +42,7 @@ exports.visitTable = async (req, res) => {
       _id: item._id,
       case: item.case,
       postoperativedayValue: item.postoperativeday,
-      assessmentdtc: moment(item.visitdtc).format('ll'),
+      assessmentdtc: moment(item.assessmentdtc).format('ll'),
       postoperativeday: helpers.getPostoperativeDayText(item.postoperativeday),
       postoperative_1: item.postoperative_1 === true ? 'Yes' : 'No',
       postoperative_2: item.postoperative_2 === true ? 'Yes' : 'No',
