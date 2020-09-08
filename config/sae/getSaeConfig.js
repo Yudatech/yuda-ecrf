@@ -49,7 +49,11 @@ const config = {
     type: 'customselect',
     required: true,
     commit: [{
-      rule: 'required'
+      rule: 'required',
+      message: {
+        zh: '未填写来源',
+        en: 'Source is required.'
+      }
     }],
     text: {
       zh: '来源',
@@ -69,7 +73,11 @@ const config = {
     optionsGetter: 'getSaeTypesConfig',
     required: true,
     commit: [{
-      rule: 'required'
+      rule: 'required',
+      message: {
+        zh: '未填写报告类型',
+        en: 'Type of report is required.'
+      }
     }],
     text: {
       zh: '报告类型',
@@ -79,7 +87,11 @@ const config = {
     name: 'saedtc',
     type: 'datetime',
     commit: [{
-      rule: 'custom_date'
+      rule: 'custom_date',
+      message: {
+        zh: '报告时间错误',
+        en: 'Time of report is wrong.'
+      }
     }],
     required: true,
     text: {
@@ -161,7 +173,11 @@ const config = {
     type: 'textfield',
     required: true,
     commit: [{
-      rule: 'required'
+      rule: 'required',
+      message: {
+        zh: '未填写SAE的医学术语(诊断)',
+        en: 'Medical terminology of SAE (diagnosis according to ICD) is required.'
+      }
     }],
     text: {
       zh: 'SAE的医学术语(诊断)',
@@ -187,7 +203,11 @@ const config = {
     commit: [{
       rule: 'conditional_require',
       field: 'saecaus_1',
-      value: true
+      value: true,
+      message: {
+        zh: '未填写死亡时间',
+        en: 'Death time is required.'
+      }
     }],
     required: true,
     text: {
@@ -250,7 +270,11 @@ const config = {
     commit: [{
       rule: 'conditional_require',
       field: 'saecaus_9',
-      value: true
+      value: true,
+      message: {
+        zh: '未填写其它SAE情况',
+        en: 'Other (Consequence of SAE) is required.'
+      }
     }],
     text: {
       zh: '其它SAE情况(填写)',
@@ -261,7 +285,11 @@ const config = {
     type: 'datetime',
     commit: [{
       rule: 'date',
-      end: 'now'
+      end: 'now',
+      message: {
+        zh: 'SAE发生时间错误',
+        en: 'Time of onset is wrong.'
+      }
     }],
     required: true,
     text: {
@@ -274,7 +302,11 @@ const config = {
     commit: [{
       rule: 'date',
       start: 'saestdtc',
-      end: 'now'
+      end: 'now',
+      message: {
+        zh: '研究者获知SAE时间错误',
+        en: 'Time for clinical investigator be informed is wrong.'
+      }
     }],
     required: true,
     text: {
@@ -287,7 +319,11 @@ const config = {
     optionsGetter: 'getSaeActConfig',
     required: true,
     commit: [{
-      rule: 'required'
+      rule: 'required',
+      message: {
+        zh: '未填写对受试器械采取的措施',
+        en: 'Actions is required.'
+      }
     }],
     text: {
       zh: '对受试器械采取的措施',
@@ -299,7 +335,11 @@ const config = {
     optionsGetter: 'getSaeResConfig',
     required: true,
     commit: [{
-      rule: 'required'
+      rule: 'required',
+      message: {
+        zh: '未填写SAE转归',
+        en: 'Outcome of SAE is required.'
+      }
     }],
     text: {
       zh: 'SAE转归',
@@ -311,7 +351,11 @@ const config = {
     commit: [{
       rule: 'conditional_require',
       field: 'saeres_1',
-      value: 0
+      value: 0,
+      message: {
+        zh: '未填写有后遗症',
+        en: 'Sequela is required.'
+      }
     }],
     text: {
       zh: '有后遗症',
@@ -323,7 +367,11 @@ const config = {
     optionsGetter: 'getSaeRelConfig',
     required: true,
     commit: [{
-      rule: 'required'
+      rule: 'required',
+      message: {
+        zh: '未填写SAE与受试器械的关系',
+        en: 'Related to investigational device/procedure is required.'
+      }
     }],
     text: {
       zh: 'SAE与受试器械的关系',
@@ -335,7 +383,11 @@ const config = {
     optionsGetter: 'getSaeReportConfig',
     required: true,
     commit: [{
-      rule: 'required'
+      rule: 'required',
+      message: {
+        zh: '未填写SAE报道情况(国内)',
+        en: 'SAE has been reported (In Sweden) is required.'
+      }
     }],
     text: {
       zh: 'SAE报道情况(国内)',
@@ -347,7 +399,11 @@ const config = {
     optionsGetter: 'getSaeReportConfig',
     required: true,
     commit: [{
-      rule: 'required'
+      rule: 'required',
+      message: {
+        zh: '未填写SAE报道情况(国外)',
+        en: 'SAE has been reported (In other countries) is required.'
+      }
     }],
     text: {
       zh: 'SAE报道情况(国外)',
@@ -358,7 +414,11 @@ const config = {
     type: 'textarea',
     required: true,
     commit: [{
-      rule: 'required'
+      rule: 'required',
+      message: {
+        zh: '未填写SAE发生及处理的详细情况',
+        en: 'Detailed information and treatment of SAE is required.'
+      }
     }],
     text: {
       zh: 'SAE发生及处理的详细情况',

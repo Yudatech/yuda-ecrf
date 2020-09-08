@@ -146,7 +146,7 @@ function doAeCustomValidation(caseId, key, obj, ruleConfig, validateResult, saeL
     return true;
   }
   else {
-    if (saeList.length === 0 || saeList.find((item) => item.saeorigion.toString() === obj.aeorigion.toString()) === undefined) {
+    if (saeList.length === 0 || saeList.find((item) => item.saeorigion.toString() === obj._id.toString()) === undefined) {
       if (validateResult.children === undefined) {
         validateResult.children = [];
       }
@@ -220,6 +220,9 @@ function doCommitValidation(caseId, key, obj, rules, extra, validateResult) {
         result = doDateCheck(date, 0, end);
       }
     }
+    if (result === false && ruleConfig.message) {
+      validateResult.message = ruleConfig.message;
+    }
     return result === false;
   });
   return failed === undefined;
@@ -241,7 +244,7 @@ function doCommitValidationForWholeTable(caseId, validateResult, commitCaseConfi
     if (extra && extra.idToAppend !== undefined) {
       validateResult.link = validateResult.link + '/' + extra.idToAppend;
     }
-    validateResult.message = validateResult.text;
+    validateResult.message = validateResult.text + ' - ' + validateResult.message;
     validateResult.resultText = commitCaseConfig.ongoing;
     validateResult.resultType = 'ongoing';
   }

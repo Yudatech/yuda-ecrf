@@ -41,6 +41,9 @@ exports.getSaeSourceOptions = async function (caseId) {
   const surgeryItem = await Surgery.findOne({
     case: caseId
   });
+  const aeItems = await Ae.find({
+    case: caseId
+  });
   const saeSourceOptions = [];
   const visitItems = await Visit.find({
     case: caseId
@@ -52,6 +55,16 @@ exports.getSaeSourceOptions = async function (caseId) {
         text: getPostoperativeDayText(item.postoperativeday)
       });
     });
+  }
+  if (aeItems && aeItems.length > 0) {
+    aeItems.forEach(aeItem => {
+      if (aeItem.aesae) {
+        saeSourceOptions.push({
+          value: aeItem._id.toString(),
+          text: aeItem.event
+        });
+      }
+    })
   }
   saeSourceOptions.push({
     value: 'other',
