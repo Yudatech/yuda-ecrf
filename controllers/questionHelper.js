@@ -10,6 +10,7 @@ const Sae = mongoose.model('Sae');
 const Ae = mongoose.model('Ae');
 const Surgery = mongoose.model('Surgery');
 const Visit = mongoose.model('Visit');
+const Evacuation = mongoose.model('Evacuation');
 
 const getScreeningBasicConfig = require('../config/screening/getScreeningBasicConfig');
 const getScreeningInclusionConfig = require('../config/screening/getScreeningInclusionConfig');
@@ -27,6 +28,7 @@ const getAeConfig = require('../config/ae/getAeConfig');
 const getSurgeryConfig = require('../config/surgery/getSurgeryConfig');
 const getLifeAssessmentConfig = require('../config/life/getLifeAssessmentConfig');
 const getVisitConfig = require('../config/visit/getVisitConfig');
+const getEvacuationConfig = require('../config/evacuation/getEvacuationConfig');
 
 const decorationHelper = require('./decorationHelper');
 
@@ -91,6 +93,9 @@ exports.getConfigForQuestion = function (table, field, lang) {
   else if (table === 'life') {
     return getLifeAssessmentConfig(lang);
   }
+  else if (table === 'evacuation') {
+    return getEvacuationConfig(lang);
+  }
 };
 
 exports.getValueForQuestion = async function (table, caseId, secondaryId) {
@@ -126,6 +131,11 @@ exports.getValueForQuestion = async function (table, caseId, secondaryId) {
   }
   else if (table === 'visit') {
     item = await Visit.findById(secondaryId);
+  }
+  else if (table === 'evacuation') {
+    item = await Evacuation.findOne({
+      case: caseId
+    });
   }
   return item;
 };
@@ -164,6 +174,11 @@ exports.updateValueForQuestion = async function (table, caseId, secondaryId, fie
   }
   else if (table === 'visit') {
     await Visit.findByIdAndUpdate(secondaryId, obj);
+  }
+  else if (table === 'evacuation') {
+    await Evacuation.findOneAndUpdate({
+      case: caseId
+    }, obj);
   }
 };
 
