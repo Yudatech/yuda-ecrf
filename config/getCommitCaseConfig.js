@@ -117,6 +117,14 @@ const config = {
     },
     linkBase: '/visit'
   }, {
+    name: 'evacuation',
+    total: 3,
+    text: {
+      zh: '取出植入物',
+      en: 'Evacuation of the implant'
+    },
+    linkBase: '/evacuation'
+  }, {
     name: 'cm',
     total: 7,
     text: {

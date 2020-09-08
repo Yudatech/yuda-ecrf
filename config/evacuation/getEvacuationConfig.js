@@ -9,6 +9,8 @@ const config = {
     name: 'evacuationdtc',
     type: 'date',
     commit: [{
+      rule: 'required'
+    }, {
       rule: 'date',
       start: 'surgerydtc',
       end: 'now'
@@ -21,6 +23,9 @@ const config = {
     name: 'evacuationtype',
     type: 'select',
     optionsGetter: 'getEvacuationTypesConfig',
+    commit: [{
+      rule: 'required'
+    }],
     text: {
       zh: '取出方式',
       en: 'Evacuation'
@@ -28,6 +33,9 @@ const config = {
   }, {
     name: 'evacuation_1',
     type: 'textarea',
+    commit: [{
+      rule: 'required'
+    }],
     text: {
       zh: '病理诊断',
       en: 'Pathological diagnosis'

@@ -7,6 +7,7 @@ const Ae = mongoose.model('Ae');
 const Surgery = mongoose.model('Surgery');
 const Visit = mongoose.model('Visit');
 const Case = mongoose.model('Case');
+const Evacuation = mongoose.model('Evacuation');
 
 const getCommitCaseConfig = require('../config/getCommitCaseConfig');
 
@@ -23,6 +24,7 @@ const getScreeningRegionConfig = require('../config/screening/getScreeningRegion
 const getReviewChecklistConfig = require('../config/getReviewChecklistConfig');
 const getSurgeryConfig = require('../config/surgery/getSurgeryConfig');
 const getVisitConfig = require('../config/visit/getVisitConfig');
+const getEvacuationConfig = require('../config/evacuation/getEvacuationConfig');
 const getCmConfig = require('../config/cm/getCmConfig');
 const getAeConfig = require('../config/ae/getAeConfig');
 const getSaeConfig = require('../config/sae/getSaeConfig');
@@ -456,6 +458,33 @@ exports.validateVisitForm = async function (caseId, lang) {
     }
   }
   return visitValidateResult;
+};
+
+exports.validateEvacuationForm = async function (caseId, lang) {
+  const commitCaseConfig = getCommitCaseConfig(lang);
+  const evacuationItem = await Evacuation.findOne({
+    case: caseId
+  });
+  const evacuationValidateResult = initValidateResult(getCommitCaseConfigItem(commitCaseConfig.records, 'evacuation'));
+
+  if (evacuationItem === null) {
+    evacuationValidateResult.pass = false;
+    evacuationValidateResult.link = `${evacuationValidateResult.linkBase}/${caseId}`;
+    evacuationValidateResult.message = evacuationValidateResult.text;
+    evacuationValidateResult.resultText = commitCaseConfig.empty;
+    evacuationValidateResult.resultType = 'empty';
+  }
+  else {
+    const surgeryItem = await Surgery.findOne({
+      case: caseId
+    });
+    const extra = {
+      'surgerydtc': surgeryItem && surgeryItem.surgerydtc === undefined ? null : surgeryItem.surgerydtc.valueOf()
+    };
+    const formConfigs = getEvacuationConfig(lang).formConfigs;
+    doCommitValidationForWholeTable(caseId, evacuationValidateResult, commitCaseConfig, formConfigs, evacuationItem, extra);
+  }
+  return evacuationValidateResult;
 };
 
 exports.validateCmForm = async function (caseId, lang) {
