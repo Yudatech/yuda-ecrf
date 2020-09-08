@@ -186,13 +186,29 @@ exports.updateQuestion = async (req, res) => {
 
 exports.checkQuestionedFields = async (req, res, next) => {
   const caseId = req.params.caseId;
+  let secondaryid = '';
+  if (req.params.visitId) {
+    secondaryid = req.params.visitId;
+  }
+  else if (req.param.saeId) {
+    secondaryid = req.params.saeId;
+  }
+  else if (req.param.aeId) {
+    secondaryid = req.params.aeId;
+  }
+  else if (req.param.cmId) {
+    secondaryid = req.params.cmId;
+  }
+
   if (req.query.deletequestion) {
     await Question.findByIdAndRemove(req.query.deletequestion);
   }
   const questions = await Question.find({
     case: caseId
   });
-  const fields = questions.map((question) => {
+  const fields = questions.filter((question) => {
+    return question.secondaryid === secondaryid;
+  }).map((question) => {
     return question.fieldname;
   });
   res.locals.questionFields = fields;
