@@ -154,7 +154,7 @@ exports.updateQuestion = async (req, res) => {
   }
   await questionHelper.updateValueForQuestion(table, caseId, secondaryId, field, req.body[field]);
   let questionStatus = req.body.question_status;
-  if (questionStatus === '0') {
+  if (questionStatus === '0' && questionItem.owner._id.toString() === req.user._id.toString()) {
     questionStatus = '1';
   }
   await Question.findByIdAndUpdate(questionId, {
