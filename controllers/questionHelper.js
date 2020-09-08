@@ -30,6 +30,8 @@ const getVisitConfig = require('../config/visit/getVisitConfig');
 
 const decorationHelper = require('./decorationHelper');
 
+const helpers = require('./helpers');
+
 exports.getConfigForQuestion = function (table, field, lang) {
   if (table === 'screening') {
     let formConfigs;
@@ -224,7 +226,12 @@ exports.appendValueAndOptionsToFormConfig = function (fieldConfig, fieldValue, a
   }
 
   if (fieldConfig.type === 'select') {
-    fieldConfig.options = decorationHelper[fieldConfig.optionsGetter]();
+    if (fieldConfig.name === 'postoperativeday') {
+      fieldConfig.options = helpers.getCompletePostoperativeDayList();
+    }
+    else {
+      fieldConfig.options = decorationHelper[fieldConfig.optionsGetter]();
+    }
   }
   else if (fieldConfig.type === 'customselect') {
     if (fieldConfig.name === 'saeorigion') {
