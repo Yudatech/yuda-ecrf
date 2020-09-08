@@ -387,7 +387,7 @@ exports.validateSurgeryForm = async function (caseId, lang) {
       case: caseId
     });
     const extra = {
-      reviewcheckdate: reviewItem.reviewcheckdate ? reviewItem.reviewcheckdate.valueOf() : '',
+      reviewcheckdate: reviewItem && reviewItem.reviewcheckdate ? reviewItem.reviewcheckdate.valueOf() : '',
       aeList
     };
     const formConfigs = getSurgeryConfig(lang).formConfigs;
