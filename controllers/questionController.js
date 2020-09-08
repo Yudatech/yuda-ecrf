@@ -72,6 +72,9 @@ exports.showQuestionPage = async (req, res) => {
   const questionConfig = getQuestionConfig(req.user.language);
   questionConfig.questionConfigs.question_status.options = getQuestionStatusConfig(req.user.language);
   questionConfig.questionConfigs.question_status.value = question.status;
+  if (questionConfig.questionConfigs.question_status.value === 0 && source === 'update') {
+    questionConfig.questionConfigs.question_status.value = 1;
+  }
   if (req.user.role === 'cra') {
     questionConfig.questionConfigs.question_status.options = questionConfig.questionConfigs.question_status.options.filter((option) => {
       return option.value !== 2;
@@ -154,9 +157,6 @@ exports.updateQuestion = async (req, res) => {
   }
   await questionHelper.updateValueForQuestion(table, caseId, secondaryId, field, req.body[field]);
   let questionStatus = req.body.question_status;
-  if (questionStatus === '0' && questionItem.owner._id.toString() === req.user._id.toString()) {
-    questionStatus = '1';
-  }
   await Question.findByIdAndUpdate(questionId, {
     status: questionStatus
   });
