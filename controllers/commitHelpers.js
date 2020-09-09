@@ -244,7 +244,7 @@ function doCommitValidationForWholeTable(caseId, validateResult, commitCaseConfi
     if (extra && extra.idToAppend !== undefined) {
       validateResult.link = validateResult.link + '/' + extra.idToAppend;
     }
-    validateResult.message = validateResult.text + ' - ' + validateResult.message;
+    validateResult.message = validateResult.text;
     validateResult.resultText = commitCaseConfig.ongoing;
     validateResult.resultType = 'ongoing';
   }
