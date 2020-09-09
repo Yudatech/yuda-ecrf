@@ -585,6 +585,9 @@ exports.validateSaeForm = async function (caseId, lang) {
   const aeList = await Ae.find({
     case: caseId
   });
+  const visitItems = await Visit.find({
+    case: caseId
+  });
   const saeValidateResult = initValidateResult(getCommitCaseConfigItem(commitCaseConfig.records, 'sae'));
 
   if (saeList.length === 0) {
@@ -606,11 +609,23 @@ exports.validateSaeForm = async function (caseId, lang) {
       const aeItem = aeList.find((item) => {
         return item._id.toString() === saeItem.saeorigion;
       });
+      let saeText = '';
+      if (saeItem.saeorigion === 'other') {
+        saeText = saeItem.saeorigion_1 ? saeItem.saeorigion_1 : 'other';
+      }
+      else {
+        const matchVisit = visitItems.find(visitItem => {
+          return visitItem._id.toString() === saeItem.saeorigion;
+        });
+        if (matchVisit) {
+          saeText = helpers.getPostoperativeDayText(matchVisit.postoperativeday)
+        }
+      }
       const saeItemValidateResult = {
         pass: true,
         linkBase: `/sae`,
         invalidFields: [],
-        text: aeItem ? aeItem.event : ''
+        text: aeItem ? aeItem.event : saeText
       };
       saeValidateResult.children.push(saeItemValidateResult);
       doCommitValidationForWholeTable(caseId, saeItemValidateResult, commitCaseConfig, formConfigs, saeItem, extra);
