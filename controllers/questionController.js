@@ -92,25 +92,30 @@ exports.showQuestionPage = async (req, res) => {
     obj.username = itemObj.user.username;
     obj.status = getQuestionStatusConfig(req.user.language).find((questionStatusConfig) => questionStatusConfig.value === itemObj.status).text;
     const fieldType = fieldConfig.type;
-    if (fieldType === 'select') {
-      obj.value = '';
-      const match = decorationHelper[fieldConfig.optionsGetter]().find((option) => option.value === itemObj.content.value);
-      if (match) {
-        obj.value = match.text;
+    if (itemObj.content) {
+      if (fieldType === 'select') {
+        obj.value = '';
+        const match = decorationHelper[fieldConfig.optionsGetter]().find((option) => option.value === itemObj.content.value);
+        if (match) {
+          obj.value = match.text;
+        }
+      }
+      else if (fieldType === 'date') {
+        obj.value = moment(itemObj.content.value).format('LL');
+      }
+      else if (fieldType === 'datetime') {
+        obj.value = moment(itemObj.content.value).format('LLL');
+      }
+      else if (fieldType === 'checkbox') {
+        itemObj.content.value = itemObj.content.value === 'true' ? true : false;
+        obj.value = getTrueFalseConfig(req.user.language).find((option) => option.value === itemObj.content.value).text;
+      }
+      else {
+        obj.value = itemObj.content.value;
       }
     }
-    else if (fieldType === 'date') {
-      obj.value = moment(itemObj.content.value).format('LL');
-    }
-    else if (fieldType === 'datetime') {
-      obj.value = moment(itemObj.content.value).format('LLL');
-    }
-    else if (fieldType === 'checkbox') {
-      itemObj.content.value = itemObj.content.value === 'true' ? true : false;
-      obj.value = getTrueFalseConfig(req.user.language).find((option) => option.value === itemObj.content.value).text;
-    }
     else {
-      obj.value = itemObj.content.value;
+      obj.value = '';
     }
 
     obj.createDate = moment(itemObj.createDate).format('LLL');
