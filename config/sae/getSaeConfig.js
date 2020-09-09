@@ -86,13 +86,13 @@ const config = {
   }, {
     name: 'saedtc',
     type: 'datetime',
-    commit: [{
-      rule: 'custom_date',
-      message: {
-        zh: '报告时间错误',
-        en: 'Time of report is wrong.'
-      }
-    }],
+    // commit: [{
+    //   rule: 'custom_date',
+    //   message: {
+    //     zh: '报告时间错误',
+    //     en: 'Time of report is wrong.'
+    //   }
+    // }],
     required: true,
     text: {
       zh: '报告时间',
