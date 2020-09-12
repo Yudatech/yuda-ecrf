@@ -1,17 +1,11 @@
 const airLeakTests = [{
   value: 0,
   text: {
-    zh: '阳性',
-    en: 'Positive'
+    zh: '已进行',
+    en: 'Performed'
   }
 }, {
   value: 1,
-  text: {
-    zh: '阴性',
-    en: 'Negative'
-  }
-}, {
-  value: 2,
   text: {
     zh: '未进行',
     en: 'Not performed'
