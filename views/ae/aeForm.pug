@@ -56,13 +56,6 @@ block case-content
           .col-sm-2
             +_questionBtn(config.formConfigs.aeact, questionFields)
 
-        .row
-          .col-sm-10
-            .form-group
-              +_formTemplate(config.formConfigs.aerpt)
-          .col-sm-2
-            +_questionBtn(config.formConfigs.aerpt, questionFields)
-
       fieldset(disabled=formDisabled)
         legend #{config.subtitles.subtitle_3.text}
         .row

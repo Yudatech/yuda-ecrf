@@ -97,13 +97,6 @@ const config = {
       en: 'Actions taken'
     }
   }, {
-    name: 'aerpt',
-    type: 'checkbox',
-    text: {
-      zh: '报告',
-      en: 'Report'
-    }
-  }, {
     name: 'aerel',
     type: 'select',
     required: true,

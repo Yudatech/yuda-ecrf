@@ -29,8 +29,6 @@ const aeSchema = new Schema({
   aeserv: Number,
   // 采取措施
   aeact: Boolean,
-  // 报告
-  aerpt: Boolean,
   // 与试验器械和/或试验操作的关系
   aerel: Number,
   // 转归

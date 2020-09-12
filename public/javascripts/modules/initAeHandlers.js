@@ -13,9 +13,6 @@ function initSaeHandlers() {
   $('#aeserv').change(function () {
     setErrorElementVisibility();
   });
-  $('#aerpt').change(function () {
-    setErrorElementVisibility();
-  });
   setErrorElementVisibility();
 
   $('#ae-form').validator({
@@ -44,9 +41,8 @@ function setErrorElementVisibility() {
   const error1El = $('#ae-error-1');
 
   const aeservValue = $('#aeserv').val();
-  const aerptValue = $('#aerpt').is(':checked');
 
-  if (aeservValue == 2 && aerptValue === false) {
+  if (aeservValue == 2) {
     error1El.removeClass('hidden');
   }
   else {
