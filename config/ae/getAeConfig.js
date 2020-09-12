@@ -3,7 +3,7 @@ const getOptionsLang = require('../configHelpers').getOptionsLang;
 const config = {
   title: {
     zh: '添加不良事件',
-    en: 'add Adverse Event (AE)/ Device Deficiency '
+    en: 'Add Adverse Event (AE)/ Device Deficiency'
   },
 
   subtitles: [
@@ -56,7 +56,7 @@ const config = {
     type: 'textfield',
     text: {
       zh: '事件 (名称及症状)',
-      en: 'Event'
+      en: 'Event (In case of anastomotic leakage, please specify grade classification, i.e. Grade A, B or C)'
     }
   }, {
     name: 'aestdtc',

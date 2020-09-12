@@ -101,7 +101,7 @@ exports.getAeSourceConfig = async function (caseId, lang) {
     case: caseId
   });
   if (surgeryItem && visitItems.length > 0) {
-    visitItems.filter(item.postoperative_2_1 === 1 || item.postoperative_2_1 === 2 || item.postoperative_2_1 === 3 || item.postoperative_2_1 === 4).forEach((item) => {
+    visitItems.filter(item => item.postoperative_2_1 === 1 || item.postoperative_2_1 === 2 || item.postoperative_2_1 === 3 || item.postoperative_2_1 === 4).forEach((item) => {
       visits.push({
         _id: item._id,
         postoperativedayText: getPostoperativeDayText(item.postoperativeday)
@@ -116,7 +116,7 @@ exports.getAeSourceConfigSync = function (caseId, lang, surgeryList, visitList) 
   const visitItems = visitList.filter((item) => item.case === caseId);
   const visits = [];
   if (surgeryItem && visitItems.length > 0) {
-    visitItems.filter(item.postoperative_2_1 === 1 || item.postoperative_2_1 === 2 || item.postoperative_2_1 === 3 || item.postoperative_2_1 === 4).forEach((item) => {
+    visitItems.filter(item => item.postoperative_2_1 === 1 || item.postoperative_2_1 === 2 || item.postoperative_2_1 === 3 || item.postoperative_2_1 === 4).forEach((item) => {
       visits.push({
         _id: item._id.toString(),
         postoperativedayText: getPostoperativeDayText(item.postoperativeday)
