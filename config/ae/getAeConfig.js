@@ -135,7 +135,7 @@ const config = {
     }],
     text: {
       zh: 'SAE（请完整填写《严重不良事件（SAE）报告》表)',
-      en: 'SAE (Complete Severe Adverse Event (SAE) report, please.)'
+      en: 'SAE (Complete Serious Adverse Event (SAE) report, please.)'
     }
   }, {
     name: 'aedevicedft',
