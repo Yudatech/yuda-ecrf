@@ -33,8 +33,6 @@ const saeSchema = new Schema({
   saecomoandtreatment_3_dose: String,
   // SAE的医学术语(诊断)
   saeterm: String,
-  // SAE是否预期
-  saeanti: Boolean,
   // SAE情况 - 死亡
   saecaus_1: Boolean,
   // SAE情况 死亡时间

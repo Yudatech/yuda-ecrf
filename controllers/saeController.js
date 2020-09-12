@@ -43,7 +43,6 @@ exports.saeTable = async (req, res) => {
       saetpe: getSaeTypeText(item.saetpe, req.user.language),
       saedtc: moment(item.saedtc).format('ll'),
       saestdtc: moment(item.saestdtc).format('ll'),
-      saeanti: trueFalseConfig.find((config) => config.value === item.saeanti).text
     };
   });
   logger.info(loggerHelper.createLogMessage(req.user, 'show', 'sae table', req.params.caseId));

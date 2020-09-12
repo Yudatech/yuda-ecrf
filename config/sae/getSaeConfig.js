@@ -184,13 +184,6 @@ const config = {
       en: 'Medical terminology of SAE (diagnosis according to ICD)'
     }
   }, {
-    name: 'saeanti',
-    type: 'checkbox',
-    text: {
-      zh: '预期的SAE',
-      en: 'Anticipated SAE'
-    }
-  }, {
     name: 'saecaus_1',
     type: 'checkbox',
     text: {

@@ -18,12 +18,6 @@ const config = {
       en: 'Time of report'
     }
   }, {
-    name: 'saeanti',
-    text: {
-      zh: 'SAE是否预期',
-      en: 'Anticipated SAE?'
-    }
-  }, {
     name: 'saestdtc',
     text: {
       zh: 'SAE发生时间',
