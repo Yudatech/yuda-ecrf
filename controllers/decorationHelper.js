@@ -18,6 +18,7 @@ const getSurgeryDeviceSizeConfig = require('../config/surgery/getSurgeryDeviceSi
 const getSurgeryDeviceTypeConfig = require('../config/surgery/getSurgeryDeviceTypeConfig');
 const getAirLeakTestConfig = require('../config/surgery/getAirLeakTestConfig');
 const getSurgeryMethodsConfig = require('../config/surgery/getSurgeryMethodsConfig');
+const getTypeOfAnastomosisConfig = require('../config/surgery/getTypeOfAnastomosisConfig');
 const getLARSScoreConfig = require('../config/life/getLARSScoreConfig');
 const getWasStomaFormedConfig = require('../config/life/getWasStomaFormedConfig');
 const getCDClassificationConfig = require('../config/visit/getCDClassificationConfig');
@@ -48,6 +49,7 @@ module.exports = {
   'getWasStomaFormedConfig': getWasStomaFormedConfig,
   'getAirLeakTestConfig': getAirLeakTestConfig,
   'getSurgeryMethodsConfig': getSurgeryMethodsConfig,
+  'getTypeOfAnastomosisConfig': getTypeOfAnastomosisConfig,
   'getCDClassificationConfig': getCDClassificationConfig,
   'getCmSourceConfig': getCmSourceConfig,
   'getEvacuationTypesConfig': getEvacuationTypesConfig,

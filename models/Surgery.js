@@ -36,6 +36,7 @@ const surgerySchema = new Schema({
   surgery_8: Number,
   // 手术方式
   surgery_9: Number,
+  surgery_15: Number,
   // 术中吻合口完整性压力
   surgery_10: Number,
   // 肛门外监测导管长度(若使用DMC)

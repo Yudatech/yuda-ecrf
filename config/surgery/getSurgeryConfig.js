@@ -116,6 +116,14 @@ const config = {
       en: 'Type of surgery'
     }
   }, {
+    name: 'surgery_15',
+    type: 'select',
+    optionsGetter: 'getTypeOfAnastomosisConfig',
+    text: {
+      zh: '吻合类型',
+      en: 'Type of anastomosis'
+    }
+  }, {
     name: 'surgery_10',
     type: 'numberfield',
     step: 'any',
