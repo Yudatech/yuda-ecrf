@@ -18,7 +18,7 @@ const config = {
       name: 'subtitle_2',
       text: {
         zh: 'SAE 情况',
-        en: 'SAE Description'
+        en: 'Consequence of SAE'
       }
     },
     {
@@ -219,7 +219,7 @@ const config = {
     type: 'checkbox',
     text: {
       zh: '导致住院',
-      en: 'In-patient'
+      en: 'Re-admission to in-patient care'
     }
   }, {
     name: 'saecaus_4',
