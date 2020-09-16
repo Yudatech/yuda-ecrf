@@ -61,43 +61,50 @@ const config = {
     name: 'surgery_1',
     type: 'checkbox',
     text: {
-      zh: '降结肠',
-      en: 'Descending colon'
-    }
-  }, {
-    name: 'surgery_2',
-    type: 'checkbox',
-    text: {
-      zh: '乙状结肠',
-      en: 'Sigmoid colon'
-    }
-  }, {
-    name: 'surgery_3',
-    type: 'checkbox',
-    text: {
-      zh: '直肠',
-      en: 'Rectum'
-    }
-  }, {
-    name: 'surgery_4',
-    type: 'checkbox',
-    text: {
       zh: '盲肠',
       en: 'Cecum'
     }
   }, {
-    name: 'surgery_5',
+    name: 'surgery_2',
     type: 'checkbox',
     text: {
       zh: '升结肠',
       en: 'Ascending colon'
     }
   }, {
-    name: 'surgery_6',
+    name: 'surgery_3',
     type: 'checkbox',
     text: {
       zh: '横结肠',
       en: 'Transverse colon'
+    }
+  }, {
+    name: 'surgery_4',
+    type: 'checkbox',
+    text: {
+      zh: '降结肠',
+      en: 'Descending colon'
+    }
+  }, {
+    name: 'surgery_5',
+    type: 'checkbox',
+    text: {
+      zh: '乙状结肠',
+      en: 'Sigmoid colon'
+    }
+  }, {
+    name: 'surgery_6',
+    type: 'checkbox',
+    text: {
+      zh: '直肠上段 (距离肛缘11-15cm以上)',
+      en: 'Upper rectum (15 cm above the anal verge)'
+    }
+  }, {
+    name: 'surgery_16',
+    type: 'checkbox',
+    text: {
+      zh: '直肠下段',
+      en: 'Lower rectum (up to 15 cm above the anal verge)'
     }
   }, {
     name: 'surgery_8',

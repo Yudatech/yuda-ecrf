@@ -32,6 +32,7 @@ const surgerySchema = new Schema({
   surgery_5: Boolean,
   // 肿瘤大小-宽度(cm)
   surgery_6: Boolean,
+  surgery_16: Boolean,
   // 吻合方式
   surgery_8: Number,
   // 手术方式

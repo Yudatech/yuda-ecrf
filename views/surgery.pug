@@ -72,6 +72,13 @@ block case-content
           .col-sm-2
             +_questionBtn(config.formConfigs.surgery_6, questionFields)
 
+        .row
+          .col-sm-10
+            .form-group
+              +_formTemplate(config.formConfigs.surgery_16)
+          .col-sm-2
+            +_questionBtn(config.formConfigs.surgery_16, questionFields)
+
       fieldset(disabled=formDisabled)
         legend #{config.groups.surgery.text}
 
