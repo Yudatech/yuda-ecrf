@@ -16,18 +16,6 @@ const surgeryMethods = [{
     zh: '机器人手术',
     en: 'Robotic surgery'
   }
-}, {
-  value: 3,
-  text: {
-    zh: '端到端吻合',
-    en: 'End-to-end anastomosis'
-  }
-}, {
-  value: 4,
-  text: {
-    zh: '端侧吻合',
-    en: 'End-to-side anastomosis'
-  }
 }];
 
 module.exports = function (lang) {
