@@ -10,7 +10,7 @@ const config = {
       name: 'subtitle_1',
       text: {
         zh: '直肠癌的先前放射疗法',
-        en: 'Prior radiation therapy for rectal cancer'
+        en: 'Preoperative radiotherapy (rectal cancer)'
       }
     }
   ],

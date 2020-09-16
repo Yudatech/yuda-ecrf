@@ -44,7 +44,7 @@ module.exports = [
       name: 'screening-prioradiationtherapy',
       title: {
         zh: '直肠癌术前放疗',
-        en: 'Prior radiation therapy',
+        en: 'Preoperative radiotherapy',
         sv: 'Tidigare strålbehandling'
       },
       link: '/screening-prioradiationtherapy'
