@@ -3,7 +3,7 @@ const getOptionsLang = require('../configHelpers').getOptionsLang;
 const config = {
   title: {
     zh: '取出植入物',
-    en: 'Evacuation of the implant'
+    en: 'Evacuation of the Implant'
   },
   formConfigs: [{
     name: 'evacuationdtc',

@@ -3,7 +3,7 @@ const getOptionsLang = require('../configHelpers').getOptionsLang;
 const config = {
   title: {
     zh: '生活质量和医疗利用模式评估',
-    en: 'Life quality and healthcare utilization pattern assessment (12 months after surgery)'
+    en: 'Life Quality and Healthcare Utilization Pattern Assessment (12 months after surgery)'
   },
 
   groups: [{

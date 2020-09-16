@@ -68,7 +68,7 @@ module.exports = [
       name: 'screening-dignose',
       title: {
         zh: '临床诊断/手术指征',
-        en: 'Diagnosis/Indication',
+        en: 'Diagnosis/Planned surgery',
         sv: 'Diagnos/Indication'
       },
       link: '/screening-dignose'
