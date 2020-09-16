@@ -3,9 +3,18 @@ const getOptionsLang = require('./configHelpers').getOptionsLang;
 const config = {
   title: {
     zh: '复诊（入组）',
-    en: 'Prior to surgery',
+    en: 'Prior to Surgery',
     sv: 'Dagen före operation'
   },
+  subtitles: [
+    {
+      name: 'subtitle_1',
+      text: {
+        zh: '复诊（入组）',
+        en: 'The day prior to surgery'
+      }
+    }
+  ],
   formConfigs: [{
     name: 'reviewcheckdate',
     type: 'date',
@@ -110,6 +119,7 @@ module.exports = function (lang) {
   const result = {};
   result.formConfigs = getOptionsLang(config.formConfigs, lang);
   result.title = config.title[lang];
+  result.subtitles = getOptionsLang(config.subtitles, lang);
   result.errors = getOptionsLang(config.errors, lang);
 
   return result;
