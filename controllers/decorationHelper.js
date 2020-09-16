@@ -25,6 +25,7 @@ const getCDClassificationConfig = require('../config/visit/getCDClassificationCo
 const getCmSourceConfig = require('../config/cm/getCmSourceConfig');
 const getEvacuationTypesConfig = require('../config/evacuation/getEvacuationTypesConfig');
 const getDiscontinuationTypeConfig = require('../config/getDiscontinuationTypeConfig');
+const getPriorRadiationTherapyConfig = require('../config/screening/getPriorRadiationTherapyConfig');
 
 module.exports = {
   'getSexConfig': getSexConfig,
@@ -53,5 +54,6 @@ module.exports = {
   'getCDClassificationConfig': getCDClassificationConfig,
   'getCmSourceConfig': getCmSourceConfig,
   'getEvacuationTypesConfig': getEvacuationTypesConfig,
-  'getDiscontinuationTypeConfig': getDiscontinuationTypeConfig
+  'getDiscontinuationTypeConfig': getDiscontinuationTypeConfig,
+  'getPriorRadiationTherapyConfig': getPriorRadiationTherapyConfig
 };

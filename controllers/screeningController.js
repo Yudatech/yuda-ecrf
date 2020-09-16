@@ -266,6 +266,9 @@ exports.casePrioRadiationTherapyForm = async (req, res) => {
     if (config.formConfigs[key].type === 'checkbox' && config.formConfigs[key].value === undefined) {
       config.formConfigs[key].value = false;
     }
+    if (config.formConfigs[key].type === 'select') {
+      config.formConfigs[key].options = decorationHelper[config.formConfigs[key].optionsGetter](req.user.language);
+    }
   });
   logger.info(loggerHelper.createLogMessage(req.user, 'show', 'screening-prioradiationtherapy', caseId));
   res.render('case/screening-prioradiationtherapy', {

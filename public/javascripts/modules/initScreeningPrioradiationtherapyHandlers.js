@@ -9,7 +9,8 @@ function initScreeningPrioradiationtherapyHandlers() {
 }
 
 function setPriorradiationtherapy_2Visibility() {
-  const checked = $('#priorradiationtherapy_1').is(':checked');
+  const value = $('#priorradiationtherapy_1').val();
+  const checked = value === '0';
   setFieldVisibility('priorradiationtherapy_2', checked);
   $('#screening-prioradiationtherapy-form').validator('update');
 }
