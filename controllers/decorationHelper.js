@@ -22,6 +22,7 @@ const getTypeOfAnastomosisConfig = require('../config/surgery/getTypeOfAnastomos
 const getLARSScoreConfig = require('../config/life/getLARSScoreConfig');
 const getWasStomaFormedConfig = require('../config/life/getWasStomaFormedConfig');
 const getCDClassificationConfig = require('../config/visit/getCDClassificationConfig');
+const getHasPostoperativeComplicationsConfig = require('../config/visit/getHasPostoperativeComplicationsConfig');
 const getCmSourceConfig = require('../config/cm/getCmSourceConfig');
 const getEvacuationTypesConfig = require('../config/evacuation/getEvacuationTypesConfig');
 const getDiscontinuationTypeConfig = require('../config/getDiscontinuationTypeConfig');
@@ -55,5 +56,6 @@ module.exports = {
   'getCmSourceConfig': getCmSourceConfig,
   'getEvacuationTypesConfig': getEvacuationTypesConfig,
   'getDiscontinuationTypeConfig': getDiscontinuationTypeConfig,
-  'getPriorRadiationTherapyConfig': getPriorRadiationTherapyConfig
+  'getPriorRadiationTherapyConfig': getPriorRadiationTherapyConfig,
+  'getHasPostoperativeComplicationsConfig': getHasPostoperativeComplicationsConfig
 };

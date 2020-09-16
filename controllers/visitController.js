@@ -45,7 +45,7 @@ exports.visitTable = async (req, res) => {
       assessmentdtc: moment(item.assessmentdtc).format('ll'),
       postoperativeday: helpers.getPostoperativeDayText(item.postoperativeday),
       postoperative_1: item.postoperative_1 === true ? 'Yes' : 'No',
-      postoperative_2: item.postoperative_2 === true ? 'Yes' : 'No',
+      postoperative_2: item.postoperative_2 === 0 ? 'Yes' : 'No',
       postoperative_2_1: match ? match.text : ''
     };
   });

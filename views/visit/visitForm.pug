@@ -8,7 +8,7 @@ block case-content
     form.form-horizontal(id="visit-form" action=`/visit/${caseId}/${visitId || ''}` method="POST")
       - const formDisabled = !((locals.case.status === 'open' && locals.user.role === 'cra') || locals.user.role === 'admin')
       fieldset(disabled=formDisabled)
-        legend #{config.title}
+        legend #{config.subtitles.subtitle_1.text}
         .row
           .col-sm-10
             +_formTemplate(config.formConfigs.postoperativeday)
@@ -30,8 +30,7 @@ block case-content
 
         .row
           .col-sm-10
-            .form-group
-              +_formTemplate(config.formConfigs.postoperative_2)
+            +_formTemplate(config.formConfigs.postoperative_2)
           .col-sm-2
             +_questionBtn(config.formConfigs.postoperative_2, questionFields)
 

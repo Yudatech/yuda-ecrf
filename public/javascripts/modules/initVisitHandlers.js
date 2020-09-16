@@ -8,6 +8,7 @@ function initVisitHandlers() {
   postoperative_2El.change(function () {
     setPostoperative_2_1Visibility();
   });
+  setPostoperative_2_1Visibility();
 
   $('#postoperative_2_1').change(function () {
     setErrorElementVisibility();
@@ -49,7 +50,8 @@ function setErrorElementVisibility() {
 }
 
 function setPostoperative_2_1Visibility() {
-  const checked = $('#postoperative_2').is(':checked');
+  const value = $('#postoperative_2').val();
+  const checked = value === '0'
   setFieldVisibility('postoperative_2_1', checked);
 }
 

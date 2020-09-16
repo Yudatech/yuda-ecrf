@@ -15,7 +15,7 @@ const visitSchema = new Schema({
     default: Date.now
   },
   postoperative_1: Boolean,
-  postoperative_2: Boolean,
+  postoperative_2: Number,
   postoperative_2_1: Number
 });
 

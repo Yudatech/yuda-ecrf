@@ -3,8 +3,17 @@ const getOptionsLang = require('../configHelpers').getOptionsLang;
 const config = {
   title: {
     zh: '术后并发症',
-    en: 'Postoperative complications'
+    en: 'Postoperative Assessment'
   },
+  subtitles: [
+    {
+      name: 'subtitle_1',
+      text: {
+        zh: '术后过程/并发症/出院评估',
+        en: 'Postoperative course/complications/discharge assessment'
+      }
+    }
+  ],
   formConfigs: [{
     name: 'postoperativeday',
     type: 'select',
@@ -34,10 +43,11 @@ const config = {
     }
   }, {
     name: 'postoperative_2',
-    type: 'checkbox',
+    type: 'select',
+    optionsGetter: 'getHasPostoperativeComplicationsConfig',
     text: {
       zh: '有术后并发症',
-      en: 'Has postoperative complications'
+      en: 'Postoperative complications'
     }
   }, {
     name: 'postoperative_2_1',
@@ -79,6 +89,7 @@ module.exports = function (lang) {
   const result = {};
   result.formConfigs = getOptionsLang(config.formConfigs, lang);
   result.title = config.title[lang];
+  result.subtitles = getOptionsLang(config.subtitles, lang);
   result.errors = getOptionsLang(config.errors, lang);
 
   return result;
