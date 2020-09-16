@@ -11,7 +11,7 @@ module.exports = [
   {
     title: {
       zh: '首诊(筛选)',
-      en: 'Preoperative screening',
+      en: 'Preoperative Screening',
       sv: 'Preoperativ undersökning'
     },
     name: 'screening',
@@ -77,7 +77,7 @@ module.exports = [
   {
     title: {
       zh: '复诊(入组)',
-      en: 'Before Surgery',
+      en: 'Prior to Surgery',
       sv: 'Dagen före operation'
     },
     name: 'reviewchecklist',
@@ -95,7 +95,7 @@ module.exports = [
   {
     title: {
       zh: '访视',
-      en: 'Postoperative Visit',
+      en: 'Postoperative Assessment',
       sv: 'Postoperativ bedömning'
 
     },
@@ -105,7 +105,7 @@ module.exports = [
   {
     title: {
       zh: '排出植入吻合环',
-      en: 'Evacuation of the implant',
+      en: 'Evacuation of the Implant',
       sv: 'Evakuering av implantatet'
 
     },

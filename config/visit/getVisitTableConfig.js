@@ -3,7 +3,7 @@ const getOptionsLang = require('../configHelpers').getOptionsLang;
 const config = {
   title: {
     zh: '访视',
-    en: 'Postoperative visit'
+    en: 'Postoperative Assessment'
   },
   headers: [{
     name: 'postoperativeday',

@@ -2,9 +2,18 @@ const getOptionsLang = require('../configHelpers').getOptionsLang;
 
 const config = {
   title: {
-    zh: '入选标准',
-    en: 'Inclusion criteria'
+    zh: '首诊(筛选)',
+    en: 'Preoperative Screening'
   },
+  subtitles: [
+    {
+      name: 'subtitle_1',
+      text: {
+        zh: '入选标准',
+        en: 'Inclusion criteria'
+      }
+    }
+  ],
   formConfigs: [{
     name: 'inclusion_1',
     type: 'checkbox',
@@ -48,7 +57,7 @@ const config = {
   }]
 };
 
-module.exports = function(lang) {
+module.exports = function (lang) {
   if (lang === undefined) {
     lang = 'en';
   }
@@ -56,6 +65,7 @@ module.exports = function(lang) {
   const result = {};
   result.formConfigs = getOptionsLang(config.formConfigs, lang);
   result.title = config.title[lang];
+  result.subtitles = getOptionsLang(config.subtitles, lang);
   result.errors = getOptionsLang(config.errors, lang);
 
   return result;

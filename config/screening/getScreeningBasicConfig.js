@@ -2,9 +2,18 @@ const getOptionsLang = require('../configHelpers').getOptionsLang;
 
 const config = {
   title: {
-    zh: '人口学资料',
-    en: 'Demographic data'
+    zh: '首诊(筛选)',
+    en: 'Preoperative Screening'
   },
+  subtitles: [
+    {
+      name: 'subtitle_1',
+      text: {
+        zh: '人口学资料',
+        en: 'Demographic data'
+      }
+    }
+  ],
   formConfigs: [{
     name: 'sex',
     type: 'select',
@@ -62,6 +71,7 @@ module.exports = function (lang) {
   result.formConfigs = getOptionsLang(config.formConfigs, lang);
   result.errors = getOptionsLang(config.errors, lang);
   result.title = config.title[lang];
+  result.subtitles = getOptionsLang(config.subtitles, lang);
 
   return result;
 };

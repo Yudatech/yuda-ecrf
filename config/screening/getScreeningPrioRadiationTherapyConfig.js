@@ -2,9 +2,18 @@ const getOptionsLang = require('../configHelpers').getOptionsLang;
 
 const config = {
   title: {
-    zh: '直肠癌的先前放射疗法',
-    en: 'Prior radiation therapy for rectal cancer'
+    zh: '首诊(筛选)',
+    en: 'Preoperative Screening'
   },
+  subtitles: [
+    {
+      name: 'subtitle_1',
+      text: {
+        zh: '直肠癌的先前放射疗法',
+        en: 'Prior radiation therapy for rectal cancer'
+      }
+    }
+  ],
   formConfigs: [{
     name: 'priorradiationtherapy_1',
     type: 'checkbox',
@@ -32,6 +41,7 @@ module.exports = function (lang) {
   const result = {};
   result.formConfigs = getOptionsLang(config.formConfigs, lang);
   result.title = config.title[lang];
+  result.subtitles = getOptionsLang(config.subtitles, lang);
   result.errors = getOptionsLang(config.errors, lang);
 
   return result;

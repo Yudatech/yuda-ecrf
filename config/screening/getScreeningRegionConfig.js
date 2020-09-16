@@ -2,9 +2,18 @@ const getOptionsLang = require('../configHelpers').getOptionsLang;
 
 const config = {
   title: {
-    zh: '病变位置',
-    en: 'Location of the disease'
+    zh: '首诊(筛选)',
+    en: 'Preoperative Screening'
   },
+  subtitles: [
+    {
+      name: 'subtitle_1',
+      text: {
+        zh: '病变位置',
+        en: 'Location of the disease'
+      }
+    }
+  ],
   formConfigs: [{
     name: 'region_1',
     type: 'checkbox',
@@ -58,6 +67,7 @@ module.exports = function (lang) {
   const result = {};
   result.formConfigs = getOptionsLang(config.formConfigs, lang);
   result.title = config.title[lang];
+  result.subtitles = getOptionsLang(config.subtitles, lang);
 
   return result;
 };

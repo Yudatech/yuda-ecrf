@@ -8,7 +8,7 @@ const questionStatus = [{
   value: 1,
   text: {
     zh: '待审核',
-    en: 'Commited'
+    en: 'Submitted'
   }
 }, {
   value: 2,
@@ -18,7 +18,7 @@ const questionStatus = [{
   }
 }];
 
-module.exports = function(lang) {
+module.exports = function (lang) {
   if (lang === undefined) {
     lang = 'en';
   }

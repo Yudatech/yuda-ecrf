@@ -17,7 +17,7 @@ const config = {
     name: 'committed',
     text: {
       zh: '待审核',
-      en: 'Committed'
+      en: 'Submitted'
     }
   }, {
     name: 'ongoing',
@@ -47,7 +47,7 @@ const config = {
     name: 'commit',
     text: {
       zh: '提交',
-      en: 'Commit'
+      en: 'Submit'
     }
   }, {
     name: 'publish',

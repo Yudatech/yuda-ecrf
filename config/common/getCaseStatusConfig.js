@@ -8,7 +8,7 @@ const status = [{
   value: 'committed',
   text: {
     zh: '待审核',
-    en: 'Committed'
+    en: 'Submitted'
   }
 }, {
   value: 'audited',

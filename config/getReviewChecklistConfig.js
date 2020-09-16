@@ -3,7 +3,7 @@ const getOptionsLang = require('./configHelpers').getOptionsLang;
 const config = {
   title: {
     zh: '复诊（入组）',
-    en: 'The day prior to surgery',
+    en: 'Prior to surgery',
     sv: 'Dagen före operation'
   },
   formConfigs: [{
@@ -17,7 +17,7 @@ const config = {
     }],
     text: {
       zh: '复诊日期',
-      en: 'Visit 2 Date',
+      en: 'Date',
       sv: 'Datum för dagen före operation'
     }
   }, {

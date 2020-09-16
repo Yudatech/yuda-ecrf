@@ -8,7 +8,7 @@ block case-content
     form.form-horizontal(id="screening-prioradiationtherapy-form" action=`/screening-prioradiationtherapy/${caseId}` method="POST")
       - const formDisabled = !((locals.case.status === 'open' && locals.user.role === 'cra') || locals.user.role === 'admin')
       fieldset(disabled=formDisabled)
-        legend #{config.title}
+        legend #{config.subtitles.subtitle_1.text}
 
         .row
           .col-sm-10
