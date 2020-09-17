@@ -88,7 +88,7 @@ const config = {
       name: 'screening-dignose',
       text: {
         zh: '临床，病理诊断及分期',
-        en: 'Diagnosis'
+        en: 'Diagnosis/Planned surgery'
       },
       linkBase: '/screening-dignose'
     }]
