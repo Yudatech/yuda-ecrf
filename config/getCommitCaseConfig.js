@@ -145,7 +145,7 @@ const config = {
     total: 24,
     text: {
       zh: '严重不良事件',
-      en: 'Severe Adverse Event (SAE)'
+      en: 'Serious Adverse Event (SAE)'
     },
     linkBase: '/sae'
   }],

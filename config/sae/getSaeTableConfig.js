@@ -3,7 +3,7 @@ const getOptionsLang = require('../configHelpers').getOptionsLang;
 const config = {
   title: {
     zh: '严重不良事件报告表',
-    en: 'Serious Advers Event (SAE)'
+    en: 'Serious Adverse Event (SAE)'
   },
   headers: [{
     name: 'saetpe',
