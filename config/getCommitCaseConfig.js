@@ -3,13 +3,13 @@ const getOptionsLang = require('./configHelpers').getOptionsLang;
 const config = {
   title: {
     zh: '提交',
-    en: 'Commit'
+    en: 'Submit'
   },
   subtitles: [{
     name: 'subtitle_1',
     text: {
       zh: '提交受试者数据',
-      en: 'Commit data of participant'
+      en: 'Submit data of participant'
     }
   }, {
     name: 'subtitle_2',
@@ -38,7 +38,7 @@ const config = {
     name: 'overview',
     text: {
       zh: '病例概况',
-      en: 'Case overview'
+      en: 'Case Overview'
     },
     linkBase: '/overview'
   }, {
@@ -46,7 +46,7 @@ const config = {
     total: 103,
     text: {
       zh: '首诊',
-      en: 'Screening (Visit 1)'
+      en: 'Preoperative Screening'
     },
     linkBase: '/screening-basic',
     children: [{
@@ -71,19 +71,19 @@ const config = {
       },
       linkBase: '/screening-exclusion'
     }, {
-      name: 'screening-method',
-      text: {
-        zh: '诊断方法',
-        en: 'Methods of diagnosis'
-      },
-      linkBase: '/screening-method'
-    }, {
       name: 'screening-region',
       text: {
         zh: '病变位置',
         en: 'Location of the disease'
       },
       linkBase: '/screening-region'
+    }, {
+      name: 'screening-method',
+      text: {
+        zh: '诊断方法',
+        en: 'Diagnostic methods'
+      },
+      linkBase: '/screening-method'
     }, {
       name: 'screening-dignose',
       text: {
@@ -97,7 +97,7 @@ const config = {
     total: 4,
     text: {
       zh: '复诊',
-      en: 'Day prior to surgery'
+      en: 'Prior to Surgery'
     },
     linkBase: '/reviewchecklist'
   }, {
@@ -113,7 +113,7 @@ const config = {
     total: 28,
     text: {
       zh: '访视',
-      en: 'Postoperative Visit'
+      en: 'Postoperative Assessment'
     },
     linkBase: '/visit'
   }, {
@@ -121,7 +121,7 @@ const config = {
     total: 3,
     text: {
       zh: '取出植入物',
-      en: 'Evacuation of the implant'
+      en: 'Evacuation of the Implant'
     },
     linkBase: '/evacuation'
   }, {

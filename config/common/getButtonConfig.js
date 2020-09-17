@@ -65,7 +65,7 @@ const config = {
     name: 'quit',
     text: {
       zh: '中途退出',
-      en: 'Exclusion/withdrawal'
+      en: 'Exclusion/Withdrawal'
     }
   }, {
     name: 'lock',
