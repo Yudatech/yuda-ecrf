@@ -60,7 +60,7 @@ module.exports = [
       name: 'screening-method',
       title: {
         zh: '诊断方法',
-        en: 'Diagnostic Methods',
+        en: 'Diagnostic methods',
         sv: 'Metod för diagnos'
       },
       link: '/screening-method'
