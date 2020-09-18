@@ -67,7 +67,7 @@ const config = {
     }],
     text: {
       zh: '其他外科医生认为不适宜参加本试验研究的情况',
-      en: 'The patient has other conditions that make him/her unsuitable to paticipate in the study.'
+      en: 'The patient has other conditions that make him/her unsuitable to participate in the study.'
     }
   }, {
     name: 'exclusion_17',
@@ -82,7 +82,7 @@ const config = {
     name: 'error_1',
     text: {
       zh: '病人须不满足所有排除标准',
-      en: 'Patient should fulfill NONE of the exclusion criteria above'
+      en: 'The patient should fulfill NONE of the exclusion criterias above'
     }
   }]
 };

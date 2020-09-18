@@ -26,7 +26,7 @@ const config = {
     name: 'surgery',
     text: {
       zh: '手术',
-      en: 'Surgery'
+      en: 'Surgical procedure'
     }
   }],
   formConfigs: [{

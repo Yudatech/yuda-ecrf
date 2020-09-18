@@ -2,7 +2,7 @@ const aeRes = [{
   value: 1,
   text: {
     zh: '继续',
-    en: 'Continue'
+    en: 'Ongoing'
   }
 }, {
   value: 2,

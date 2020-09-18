@@ -20,7 +20,7 @@ const config = {
     required: true,
     text: {
       zh: '术后天数',
-      en: 'Postoperative day'
+      en: 'Postoperative day (POD)'
     }
   }, {
     name: 'assessmentdtc',
