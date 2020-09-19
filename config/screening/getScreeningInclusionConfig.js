@@ -45,14 +45,14 @@ const config = {
     }],
     text: {
       zh: '患者具有参加本试验研究的认知能力，能理解他/她收到的关于本研究的资料并提供所需许可文件',
-      en: 'Cognitive ability to take part in the study，to understand the information the he/she receives about participating in the study, and to provide informed consent.'
+      en: 'Cognitive ability to take part in the study, to understand the information he/she receives about participating in the study, and to provide informed consent.'
     }
   }],
   errors: [{
     name: 'error_1',
     text: {
       zh: '病人须符合所有入选标准',
-      en: 'The patient should fulfill ALL inclusion criterias above.'
+      en: 'The patient should fulfill ALL of the inclusion criterias above.'
     }
   }]
 };
