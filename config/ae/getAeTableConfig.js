@@ -21,7 +21,7 @@ const config = {
     name: 'aeeddtc',
     text: {
       zh: '结束时间',
-      en: 'Date of stop'
+      en: 'Date of resolution'
     }
   }, {
     name: 'aeserv',

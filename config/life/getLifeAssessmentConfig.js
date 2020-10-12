@@ -51,7 +51,7 @@ const config = {
     type: 'checkbox',
     text: {
       zh: '在过去的12个月中，该患者是否已重新住院',
-      en: 'Has the patient been readmitted to hospital in the past 12 months'
+      en: 'The patient has been readmitted to hospital in the past 12 months related to surgical complications'
     }
   }, {
     name: 'healthcare_1_1',
@@ -59,14 +59,14 @@ const config = {
     required: true,
     text: {
       zh: '总住院天数',
-      en: 'Total number of days of stay'
+      en: 'Total number of days of hospitalization'
     }
   }, {
     name: 'healthcare_2',
     type: 'checkbox',
     text: {
       zh: '患者是否因外科手术并发症而接受了外科手术',
-      en: 'Has the patient undergone resurgery in relation to surgical complications'
+      en: 'The patient has undergone resurgery related to surgical complications'
     }
   }, {
     name: 'healthcare_2_1',
@@ -83,14 +83,14 @@ const config = {
     required: true,
     text: {
       zh: '形成气孔',
-      en: 'Was stoma formed'
+      en: 'Stoma was formed'
     }
   }, {
     name: 'healthcare_3',
     type: 'checkbox',
     text: {
       zh: '在过去的12个月中，患者是否曾就外科并发症去过门诊诊所',
-      en: 'Has the patient visited outpatient clinic in the past 12 months in relation to surgical complications'
+      en: 'The patient has visited outpatient clinics in the past 12 months related to surgical complications'
     }
   }, {
     name: 'healthcare_3_1',
@@ -105,7 +105,7 @@ const config = {
     type: 'checkbox',
     text: {
       zh: '患者是否接受过与手术并发症有关的任何药物治疗',
-      en: 'Has the patient received any pharmacological treatment in relation to surgical complications'
+      en: 'The patient has received pharmacological treatment related to surgical complications'
     }
   }, {
     name: 'healthcare_4_1',
@@ -113,7 +113,7 @@ const config = {
     required: true,
     text: {
       zh: '请注明诊断药理剂，剂量方案，持续时间',
-      en: 'Please specify diagnosis pharmacological agent, dose regimen, duration'
+      en: 'Please specify diagnosis, pharmacological agent, dose regimen, duration'
     }
   }, {
     name: 'procedure_1',
@@ -128,7 +128,7 @@ const config = {
     required: true,
     text: {
       zh: 'X射线次数',
-      en: 'Times of X-ray'
+      en: 'Numbers of X-ray'
     }
   }, {
     name: 'procedure_2',
@@ -143,7 +143,7 @@ const config = {
     required: true,
     text: {
       zh: 'CT次数',
-      en: 'Times of CT'
+      en: 'Numbers of CT'
     }
   }, {
     name: 'procedure_3',
@@ -158,7 +158,7 @@ const config = {
     required: true,
     text: {
       zh: 'MRI次数',
-      en: 'Times of MRI'
+      en: 'Numbers of MRI'
     }
   }, {
     name: 'procedure_4',
@@ -173,7 +173,7 @@ const config = {
     required: true,
     text: {
       zh: '内镜检查次数',
-      en: 'Times of Endoscopy'
+      en: 'Numbers of Endoscopy'
     }
   }, {
     name: 'complications_1',

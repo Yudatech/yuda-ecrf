@@ -2,7 +2,7 @@ const hasPostoperativeComplicationsConfig = [{
   value: 0,
   text: {
     zh: '是的，有术后并发症',
-    en: 'Yes, has postoperative complications'
+    en: 'Status according to Clavien-Dindo Classification, fill in grade below'
   }
 }, {
   value: 1,

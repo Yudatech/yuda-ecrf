@@ -30,7 +30,7 @@ const config = {
     required: true,
     text: {
       zh: '知情同意书签署日期',
-      en: 'Informed Consent filling date'
+      en: 'Date of Informed Consent'
     }
   }, {
     name: 'attachedDoc',

@@ -143,7 +143,7 @@ const config = {
     type: 'checkbox',
     text: {
       zh: 'C-REX真空泵完整性检查',
-      en: 'C-REX vacuum pump integrity check'
+      en: 'C-REX vacuum pump integrity check (optional)'
     }
   }, {
     name: 'surgery_12',

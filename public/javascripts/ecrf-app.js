@@ -59,9 +59,9 @@ window.onload = function () {
       dialog: {
         dialogID: 'confirm-leave-dialog',
         proceedButtonClass: 'custom-proceed',
-        proceedButtonText: 'Discard',
+        proceedButtonText: 'Continue without saving',
         stayButtonClass: 'custom-stay',
-        stayButtonText: 'Cancel'
+        stayButtonText: 'Go back and save'
       }
     });
   }

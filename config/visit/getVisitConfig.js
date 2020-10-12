@@ -47,7 +47,7 @@ const config = {
     optionsGetter: 'getHasPostoperativeComplicationsConfig',
     text: {
       zh: '有术后并发症',
-      en: 'Postoperative complications'
+      en: 'Postoperative status'
     }
   }, {
     name: 'postoperative_2_1',
@@ -76,7 +76,7 @@ const config = {
     name: 'error_2',
     text: {
       zh: '请完整填写《严重不良事件及器械缺陷报告表》',
-      en: 'Complete Serious Adverse Events (SAE) Report.'
+      en: 'Complete both Adverse Events (AE) and Serious Adverse Events (SAE) Reports.'
     }
   }]
 };

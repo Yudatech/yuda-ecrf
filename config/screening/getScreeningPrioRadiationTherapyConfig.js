@@ -20,7 +20,7 @@ const config = {
     optionsGetter: 'getPriorRadiationTherapyConfig',
     text: {
       zh: '直肠癌的先前放射疗法',
-      en: 'Prior radiation therapy for rectal cancer.'
+      en: 'Preoperative radiotherapy for rectal cancer.'
     }
   }, {
     name: 'priorradiationtherapy_2',

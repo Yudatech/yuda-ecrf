@@ -2,13 +2,13 @@ const saeRes = [{
   value: 0,
   text: {
     zh: '症状消失',
-    en: 'Disappear'
+    en: 'Disappeared/Healed'
   }
 }, {
   value: 1,
   text: {
     zh: '症状持续',
-    en: 'Continue'
+    en: 'Ongoing'
   }
 }];
 

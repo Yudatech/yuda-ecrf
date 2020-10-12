@@ -8,7 +8,7 @@ const priorRadiationTherapyConfig = [{
   value: 1,
   text: {
     zh: '没有术前放疗',
-    en: 'No preoperative radiotherapy'
+    en: 'No'
   }
 }];
 

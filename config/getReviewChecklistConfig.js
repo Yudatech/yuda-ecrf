@@ -66,7 +66,7 @@ const config = {
     }],
     text: {
       zh: '预防性抗生素 (若使用抗生素，请完整填写《合并用药情况表》)',
-      en: 'Prophylactic Antibiotics (Complete Concomitant Medication Report, please.)'
+      en: 'Prophylactic Antibiotics'
     }
   }, {
     name: 'reviewcheck_4',
@@ -80,7 +80,7 @@ const config = {
     }],
     text: {
       zh: '预防性抗凝血药 (若使用抗凝血药，请完整填写《合并用药情况表》)',
-      en: 'Prophylactic Anti-Thrombotic (Complete Concomitant Medication Report, please.)'
+      en: 'Prophylactic Anti-Thrombotic therapy'
     }
   }],
   errors: [{
@@ -88,18 +88,6 @@ const config = {
     text: {
       zh: '依据研究方案，受试者在术前应进行肠道清洁',
       en: 'Provide prescription for pre-operative bowel cleansing, please.'
-    }
-  }, {
-    name: 'error_2',
-    text: {
-      zh: '若使用抗生素，请完整填写《合并用药情况表》',
-      en: 'Complete Concomitant Medication Report, please'
-    }
-  }, {
-    name: 'error_3',
-    text: {
-      zh: '若使用抗凝血药，请完整填写《合并用药情况表》',
-      en: 'Complete Concomitant Medication Report, please'
     }
   }, {
     name: 'error_4',

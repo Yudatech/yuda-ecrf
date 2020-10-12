@@ -20,13 +20,13 @@ const aeRes = [{
   value: 4,
   text: {
     zh: '消失(有后遗症)',
-    en: 'Disappear (Sequela Yes)'
+    en: 'Disappeared/Healed (Sequela Yes)'
   }
 }, {
   value: 5,
   text: {
     zh: '消失(无后遗症)',
-    en: 'Disappear (Sequela No)'
+    en: 'Disappeared/Healed (Sequela No)'
   }
 }];
 

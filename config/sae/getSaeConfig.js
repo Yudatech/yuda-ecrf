@@ -39,7 +39,7 @@ const config = {
       name: 'subtitle_5',
       text: {
         zh: '患者信息',
-        en: 'Information of the patient'
+        en: 'Additional information about the patient'
       },
     }
   ],

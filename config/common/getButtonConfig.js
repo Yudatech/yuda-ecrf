@@ -125,7 +125,7 @@ const config = {
     name: 'formmodified',
     text: {
       zh: '表单已被修改',
-      en: 'Form has been changed'
+      en: 'You did not save the information'
     }
   }, {
     name: 'search',

@@ -31,7 +31,7 @@ const config = {
     name: 'subjAcceptDate',
     text: {
       zh: '知情同意书签署日期',
-      en: 'Informed Consent filling date'
+      en: 'Date of Informed Consent'
     }
   }, {
     name: 'attachedDoc',
@@ -59,13 +59,13 @@ const config = {
       en: 'Date'
     }
   }],
-  attachmentDesc:{
+  attachmentDesc: {
     zh: '知情同意书签字页上传后不得修改，请确认上传文件无误。',
     en: 'The signature page of ICF can not be modified after uploading, please confirm that the document is correctly uploaded.'
   }
 };
 
-module.exports = function(lang) {
+module.exports = function (lang) {
   if (lang === undefined) {
     lang = 'en';
   }
