@@ -146,18 +146,45 @@ exports.getVisitNameList = async function (caseId, lang) {
   return aeSourceConfig;
 };
 
-const completeList = [{ text: 'POD 1-3', value: 0 }, { text: 'POD 4-6', value: 1 }, { text: 'POD 7-9', value: 2 }, { text: 'POD 10-12', value: 3 }, { text: 'POD 13-15', value: 4 }, { text: 'POD 16-18', value: 5 }, { text: 'POD 19-21', value: 6 }, { text: 'POD 22-24', value: 7 }, { text: 'POD 25-27', value: 8 }, { text: 'POD 28-30', value: 9 }];
+const completeList = [
+  { text: 'POD 1', value: 0 },
+  { text: 'POD 2', value: 1 },
+  { text: 'POD 3', value: 2 },
+  { text: 'POD 4', value: 3 },
+  { text: 'POD 5', value: 4 },
+  { text: 'POD 6', value: 5 },
+  { text: 'POD 7', value: 6 },
+  { text: 'POD 8', value: 7 },
+  { text: 'POD 9', value: 8 },
+  { text: 'POD 10', value: 9 },
+  { text: 'POD 11', value: 10 },
+  { text: 'POD 12', value: 11 },
+  { text: 'POD 13', value: 12 },
+  { text: 'POD 14', value: 13 },
+  { text: 'POD 15', value: 14 },
+  { text: 'POD 16', value: 15 },
+  { text: 'POD 17', value: 16 },
+  { text: 'POD 18', value: 17 },
+  { text: 'POD 19', value: 18 },
+  { text: 'POD 20', value: 19 },
+  { text: 'POD 21', value: 20 },
+  { text: 'POD 22', value: 21 },
+  { text: 'POD 23', value: 22 },
+  { text: 'POD 24', value: 23 },
+  { text: 'POD 25', value: 24 },
+  { text: 'POD 26', value: 25 },
+  { text: 'POD 27', value: 26 },
+  { text: 'POD 28', value: 27 },
+  { text: 'POD 29', value: 28 },
+  { text: 'POD 30', value: 29 }
+];
 
 exports.getCompletePostoperativeDayList = function () {
   return completeList;
 }
 
 exports.getPostoperativeDayConfig = async function (caseId, currentValue) {
-  const visitItems = await Visit.find({
-    case: caseId
-  });
-  const existList = visitItems.map(item => item.postoperativeday);
-  return completeList.filter(item => existList.indexOf(item.value) === -1 || item.value === currentValue);
+  return completeList;
 }
 
 function getPostoperativeDayText(postoperativeDayValue) {
