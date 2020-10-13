@@ -20,12 +20,6 @@ const surgerySchema = new Schema({
   device_1: Number,
   // C-REX DMH/DMHC型号
   device_2: Number,
-  // 肠切除术-Descending colon
-  surgery_1: Boolean,
-  // 肠切除术-Sigmoid colon
-  surgery_2: Boolean,
-  // 肠切除术-Rectum
-  surgery_3: Boolean,
   // 肿瘤距离肛门
   surgery_4: Boolean,
   // 肿瘤大小-长度(cm)

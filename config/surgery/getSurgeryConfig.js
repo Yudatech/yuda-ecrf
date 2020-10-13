@@ -58,27 +58,6 @@ const config = {
       en: 'Size of device'
     }
   }, {
-    name: 'surgery_1',
-    type: 'checkbox',
-    text: {
-      zh: '盲肠',
-      en: 'Cecum'
-    }
-  }, {
-    name: 'surgery_2',
-    type: 'checkbox',
-    text: {
-      zh: '升结肠',
-      en: 'Ascending colon'
-    }
-  }, {
-    name: 'surgery_3',
-    type: 'checkbox',
-    text: {
-      zh: '横结肠',
-      en: 'Transverse colon'
-    }
-  }, {
     name: 'surgery_4',
     type: 'checkbox',
     text: {
