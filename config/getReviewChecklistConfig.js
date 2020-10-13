@@ -38,22 +38,6 @@ const config = {
       sv: 'Fullständig tarmregöring'
     }
   }, {
-    name: 'reviewcheck_1',
-    type: 'checkbox',
-    text: {
-      zh: '术前1周使用粪便软化剂以及术前1天使用灌肠剂',
-      en: 'Stool softener 1 week prior to surgery and enema 1 day prior to surgery',
-      sv: 'Bulkmedel 1 vecka före kirugi och lavemang 1 dag före kirugi'
-    }
-  }, {
-    name: 'reviewcheck_5',
-    type: 'checkbox',
-    text: {
-      zh: '软便-水样便',
-      en: 'Loose to watery stool',
-      sv: 'Lös till vattning avföring'
-    }
-  }, {
     name: 'reviewcheck_3',
     type: 'checkbox',
     commit: [{
