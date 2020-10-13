@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
 const Screening = mongoose.model('Screening');
 const ReviewChecklist = mongoose.model('ReviewChecklist');
-const Cm = mongoose.model('Cm');
 const Sae = mongoose.model('Sae');
 const Ae = mongoose.model('Ae');
 const Surgery = mongoose.model('Surgery');
@@ -25,7 +24,6 @@ const getReviewChecklistConfig = require('../config/getReviewChecklistConfig');
 const getSurgeryConfig = require('../config/surgery/getSurgeryConfig');
 const getVisitConfig = require('../config/visit/getVisitConfig');
 const getEvacuationConfig = require('../config/evacuation/getEvacuationConfig');
-const getCmConfig = require('../config/cm/getCmConfig');
 const getAeConfig = require('../config/ae/getAeConfig');
 const getSaeConfig = require('../config/sae/getSaeConfig');
 
@@ -66,22 +64,12 @@ function doConditionalRequireCheck(value, requiredValue, currentValue) {
   }
 }
 
-function doReviewChecklistCustomValidation(caseId, key, obj, ruleConfig, validateResult, cmList) {
+function doReviewChecklistCustomValidation(caseId, key, obj, ruleConfig, validateResult) {
   if (obj[key] !== true) {
     return true;
   }
   else {
-    if (cmList.length === 0 || cmList.find((item) => item.source === 'visit2') === undefined) {
-      if (validateResult.children === undefined) {
-        validateResult.children = [];
-      }
-      validateResult.children.push({
-        pass: false,
-        message: ruleConfig.message,
-        link: `/cmlist/${caseId}`
-      });
-      return false;
-    }
+    return true
   }
 }
 
@@ -104,7 +92,7 @@ function doSurgeryCustomValidation(caseId, key, obj, ruleConfig, validateResult,
   }
 }
 
-function doVisitCustomValidation(caseId, key, obj, ruleConfig, validateResult, aeList, cmList, saeList, errors) {
+function doVisitCustomValidation(caseId, key, obj, ruleConfig, validateResult, aeList, saeList, errors) {
   if (obj[key] === 0) {
     return true;
   }
@@ -187,13 +175,13 @@ function doCommitValidation(caseId, key, obj, rules, extra, validateResult) {
     }
     else if (ruleName === 'custom') {
       if (key === 'reviewcheck_3' || key === 'reviewcheck_4') {
-        result = doReviewChecklistCustomValidation(caseId, key, obj, ruleConfig, validateResult, extra.cmList);
+        result = doReviewChecklistCustomValidation(caseId, key, obj, ruleConfig, validateResult);
       }
       else if (key === 'surgery_14') {
         result = doSurgeryCustomValidation(caseId, key, obj, ruleConfig, validateResult, extra.aeList);
       }
       else if (key === 'postoperative_2_1') {
-        result = doVisitCustomValidation(caseId, key, obj, ruleConfig, validateResult, extra.aeList, extra.cmList, extra.saeList, extra.errors);
+        result = doVisitCustomValidation(caseId, key, obj, ruleConfig, validateResult, extra.aeList, extra.saeList, extra.errors);
       }
       else if (key === 'aesae') {
         result = doAeCustomValidation(caseId, key, obj, ruleConfig, validateResult, extra.saeList, extra.idToAppend);
@@ -357,12 +345,8 @@ exports.validateReviewChecklistForm = async function (caseId, lang) {
   }
   else {
     const caseItem = await Case.findById(caseId);
-    const cmList = await Cm.find({
-      case: caseId
-    });
     const extra = {
-      subjAcceptDate: caseItem.subjAcceptDate.valueOf(),
-      cmList
+      subjAcceptDate: caseItem.subjAcceptDate.valueOf()
     };
     const formConfigs = getReviewChecklistConfig(lang).formConfigs;
     doCommitValidationForWholeTable(caseId, reviewChecklistValidateResult, commitCaseConfig, formConfigs, reviewChecklistItem, extra);
@@ -429,14 +413,10 @@ exports.validateVisitForm = async function (caseId, lang) {
     const saeList = await Sae.find({
       case: caseId
     });
-    const cmList = await Cm.find({
-      case: caseId
-    });
     const formConfigs = getVisitConfig(lang).formConfigs;
     const extra = {
       'surgerydtc': surgeryItem.surgerydtc === undefined ? null : surgeryItem.surgerydtc.valueOf(),
       aeList,
-      cmList,
       saeList,
       errors: getVisitConfig(lang).errors
     };
@@ -488,48 +468,6 @@ exports.validateEvacuationForm = async function (caseId, lang) {
     doCommitValidationForWholeTable(caseId, evacuationValidateResult, commitCaseConfig, formConfigs, evacuationItem, extra);
   }
   return evacuationValidateResult;
-};
-
-exports.validateCmForm = async function (caseId, lang) {
-  const commitCaseConfig = getCommitCaseConfig(lang);
-  const cmList = await Cm.find({
-    case: caseId
-  });
-  const cmValidateResult = initValidateResult(getCommitCaseConfigItem(commitCaseConfig.records, 'cm'));
-
-  if (cmList.length === 0) {
-    cmValidateResult.pass = null;
-  }
-  else {
-    cmValidateResult.message = `${cmValidateResult.text}`;
-    cmValidateResult.resultText = commitCaseConfig.finish;
-    cmValidateResult.resultType = 'finish';
-    const formConfigs = getCmConfig(lang).formConfigs;
-    cmValidateResult.children = [];
-    cmList.forEach((cmItem) => {
-      const extra = {
-        cmstdtc: cmItem.cmstdtc === undefined ? null : cmItem.cmstdtc.valueOf(),
-        cmeddtc: cmItem.cmeddtc === undefined ? null : cmItem.cmeddtc.valueOf(),
-        idToAppend: cmItem._id.toString()
-      };
-      const cmItemValidateResult = {
-        pass: true,
-        linkBase: `/cm`,
-        invalidFields: [],
-        text: cmItem.drug
-      };
-      cmValidateResult.children.push(cmItemValidateResult);
-      doCommitValidationForWholeTable(caseId, cmItemValidateResult, commitCaseConfig, formConfigs, cmItem, extra);
-    });
-
-    const falseItem = cmValidateResult.children.find((item) => item.pass === false);
-    if (falseItem) {
-      cmValidateResult.resultText = commitCaseConfig.ongoing;
-      cmValidateResult.resultType = 'ongoing';
-    }
-  }
-
-  return cmValidateResult;
 };
 
 exports.validateAeForm = async function (caseId, lang) {

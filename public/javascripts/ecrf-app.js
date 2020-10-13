@@ -10,7 +10,6 @@ import initSurgeryHandlers from './modules/initSurgeryHandlers';
 import initVisitHandlers from './modules/initVisitHandlers';
 import initSaeHandlers from './modules/initSaeHandlers';
 import initReviewChecklistHandlers from './modules/initReviewChecklistHandlers';
-import initCMHandlers from './modules/initCMHandlers';
 import initDiscontinuationHandlers from './modules/initDiscontinuationHandlers';
 import initHomeHandlers from './modules/initHomeHandlers';
 import initCaseFormHandlers from './modules/initCaseFormHandlers';
@@ -20,7 +19,6 @@ import initAeHandlers from './modules/initAeHandlers';
 import initSitesHandlers from './modules/initSitesHandlers';
 import initUsersHandlers from './modules/initUsersHandlers';
 import initVisitTableHandlers from './modules/initVisitTableHandlers';
-import initCMTableHandlers from './modules/initCMTableHandlers';
 import initAeTableHandlers from './modules/initAeTableHandlers';
 import initSaeTableHandlers from './modules/initSaeTableHandlers';
 import initLifeAssessmentHandlers from './modules/initLifeAssessmentHandlers';
@@ -116,12 +114,6 @@ window.onload = function () {
   }
   else if (pathname.startsWith('/reviewchecklist/')) {
     initReviewChecklistHandlers();
-  }
-  else if (pathname.startsWith('/cm/')) {
-    initCMHandlers();
-  }
-  else if (pathname.startsWith('/cmlist/')) {
-    initCMTableHandlers();
   }
   else if (pathname.startsWith('/discontinuation/')) {
     initDiscontinuationHandlers();

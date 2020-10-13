@@ -11,7 +11,6 @@ const getScreeningDignoseConfig = require('../config/screening/getScreeningDigno
 
 const getReviewChecklistConfig = require('../config/getReviewChecklistConfig');
 const getDiscontinuationConfig = require('../config/getDiscontinuationConfig');
-const getCmConfig = require('../config/cm/getCmConfig');
 const getSaeConfig = require('../config/sae/getSaeConfig');
 const getAeConfig = require('../config/ae/getAeConfig');
 const getSurgeryConfig = require('../config/surgery/getSurgeryConfig');
@@ -43,9 +42,6 @@ exports.getConfigForQuestion = function (table, lang) {
   }
   else if (table === 'discontinuation') {
     formConfigs = getDiscontinuationConfig(lang).formConfigs;
-  }
-  else if (table === 'cm') {
-    formConfigs = getCmConfig(lang).formConfigs;
   }
   else if (table === 'sae') {
     formConfigs = getSaeConfig(lang).formConfigs;

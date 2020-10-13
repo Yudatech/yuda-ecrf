@@ -125,14 +125,6 @@ const config = {
     },
     linkBase: '/evacuation'
   }, {
-    name: 'cm',
-    total: 7,
-    text: {
-      zh: '合并用药情况',
-      en: 'Concomitant Medication (CM)'
-    },
-    linkBase: '/cm'
-  }, {
     name: 'ae',
     total: 13,
     text: {

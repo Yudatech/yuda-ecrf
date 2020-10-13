@@ -22,13 +22,6 @@ const config = {
       }
     },
     {
-      name: 'cm',
-      text: {
-        zh: '合并用药情况',
-        en: 'Concomitant Medication'
-      }
-    },
-    {
       name: 'sae',
       text: {
         zh: '严重不良事件',

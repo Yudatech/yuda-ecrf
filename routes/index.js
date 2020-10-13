@@ -11,7 +11,6 @@ const caseController = require('../controllers/caseController');
 const reviewChecklistController = require('../controllers/reviewChecklistController');
 const discontinuationController = require('../controllers/discontinuationController');
 const surgeryController = require('../controllers/surgeryController');
-const cmController = require('../controllers/cmController');
 const aeController = require('../controllers/aeController');
 const saeController = require('../controllers/saeController');
 const visitController = require('../controllers/visitController');
@@ -308,46 +307,6 @@ router.post('/evacuation/:caseId',
   catchErrors(authController.checkCaseStatus),
   catchErrors(authController.checkCasePermission),
   catchErrors(evacuationController.updateEvacuation)
-);
-
-// Router for cm
-router.get('/cmlist/:caseId',
-  authController.isLoggedIn,
-  catchErrors(authController.checkCaseStatus),
-  catchErrors(authController.checkCasePermission),
-  catchErrors(cmController.cmTable)
-);
-router.get('/cm/:caseId',
-  authController.isLoggedIn,
-  catchErrors(authController.checkCaseStatus),
-  catchErrors(authController.checkCasePermission),
-  catchErrors(questionController.checkQuestionedFields),
-  catchErrors(cmController.cmForm)
-);
-router.post('/cm/:caseId',
-  authController.isLoggedIn,
-  catchErrors(authController.checkCaseStatus),
-  catchErrors(authController.checkCasePermission),
-  catchErrors(cmController.createCm)
-);
-router.get('/cm/:caseId/:cmId',
-  authController.isLoggedIn,
-  catchErrors(authController.checkCaseStatus),
-  catchErrors(authController.checkCasePermission),
-  catchErrors(questionController.checkQuestionedFields),
-  catchErrors(cmController.cmForm)
-);
-router.post('/cm/:caseId/:cmId',
-  authController.isLoggedIn,
-  catchErrors(authController.checkCaseStatus),
-  catchErrors(authController.checkCasePermission),
-  catchErrors(cmController.updateCm)
-);
-router.get('/remove/cm/:caseId/:cmId',
-  authController.isLoggedIn,
-  catchErrors(authController.checkCaseStatus),
-  catchErrors(authController.checkCasePermission),
-  catchErrors(cmController.removeCm)
 );
 
 // Router for ae

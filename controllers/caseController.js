@@ -20,7 +20,6 @@ const User = mongoose.model('User');
 const Screening = mongoose.model('Screening');
 const ReviewChecklist = mongoose.model('ReviewChecklist');
 const Discontinuation = mongoose.model('Discontinuation');
-const Cm = mongoose.model('Cm');
 const Sae = mongoose.model('Sae');
 const Ae = mongoose.model('Ae');
 const Surgery = mongoose.model('Surgery');
@@ -94,7 +93,6 @@ async function doRemoveCase(caseId) {
   await Screening.remove({ case: caseId });
   await ReviewChecklist.remove({ case: caseId });
   await Discontinuation.remove({ case: caseId });
-  await Cm.remove({ case: caseId });
   await Sae.remove({ case: caseId });
   await Ae.remove({ case: caseId });
   await Surgery.remove({ case: caseId });
@@ -352,7 +350,6 @@ exports.showCaseCommitForm = async (req, res) => {
   result.push(await commitHelpers.validateSurgeryForm(caseId, req.user.language));
   result.push(await commitHelpers.validateVisitForm(caseId, req.user.language));
   result.push(await commitHelpers.validateEvacuationForm(caseId, req.user.language));
-  result.push(await commitHelpers.validateCmForm(caseId, req.user.language));
   result.push(await commitHelpers.validateAeForm(caseId, req.user.language));
   result.push(await commitHelpers.validateSaeForm(caseId, req.user.language));
 
@@ -411,9 +408,6 @@ exports.exportCases = async (req, res) => {
     case: 'asc'
   });
   const discontinuationList = await Discontinuation.find().sort({
-    case: 'asc'
-  });
-  const cmList = await Cm.find().sort({
     case: 'asc'
   });
   const surgeryList = await Surgery.find().sort({
@@ -491,9 +485,6 @@ exports.exportCases = async (req, res) => {
     }
     else if (tableName === 'visit') {
       data = visitList;
-    }
-    else if (tableName === 'cm') {
-      data = cmList;
     }
     else if (tableName === 'ae') {
       data = aeList;

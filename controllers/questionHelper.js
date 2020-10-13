@@ -5,7 +5,6 @@ const mongoose = require('mongoose');
 const Screening = mongoose.model('Screening');
 const ReviewChecklist = mongoose.model('ReviewChecklist');
 const Discontinuation = mongoose.model('Discontinuation');
-const Cm = mongoose.model('Cm');
 const Sae = mongoose.model('Sae');
 const Ae = mongoose.model('Ae');
 const Surgery = mongoose.model('Surgery');
@@ -22,7 +21,6 @@ const getScreeningDignoseConfig = require('../config/screening/getScreeningDigno
 
 const getReviewChecklistConfig = require('../config/getReviewChecklistConfig');
 const getDiscontinuationConfig = require('../config/getDiscontinuationConfig');
-const getCmConfig = require('../config/cm/getCmConfig');
 const getSaeConfig = require('../config/sae/getSaeConfig');
 const getAeConfig = require('../config/ae/getAeConfig');
 const getSurgeryConfig = require('../config/surgery/getSurgeryConfig');
@@ -73,9 +71,6 @@ exports.getConfigForQuestion = function (table, field, lang) {
   else if (table === 'discontinuation') {
     return getDiscontinuationConfig(lang);
   }
-  else if (table === 'cm') {
-    return getCmConfig(lang);
-  }
   else if (table === 'sae') {
     return getSaeConfig(lang);
   }
@@ -114,9 +109,6 @@ exports.getValueForQuestion = async function (table, caseId, secondaryId) {
     item = await Discontinuation.findOne({
       case: caseId
     });
-  }
-  else if (table === 'cm') {
-    item = await Cm.findById(secondaryId);
   }
   else if (table === 'sae') {
     item = await Sae.findById(secondaryId);
@@ -158,9 +150,6 @@ exports.updateValueForQuestion = async function (table, caseId, secondaryId, fie
       case: caseId
     }, obj);
   }
-  else if (table === 'cm') {
-    await Cm.findByIdAndUpdate(secondaryId, obj);
-  }
   else if (table === 'sae') {
     await Sae.findByIdAndUpdate(secondaryId, obj);
   }
@@ -182,7 +171,7 @@ exports.updateValueForQuestion = async function (table, caseId, secondaryId, fie
   }
 };
 
-exports.appendValueAndOptionsToFormConfig = function (fieldConfig, fieldValue, aeSourceConfig, saeSourceConfig, cmSourceConfig) {
+exports.appendValueAndOptionsToFormConfig = function (fieldConfig, fieldValue, aeSourceConfig, saeSourceConfig) {
   if (fieldConfig.type === 'date') {
     fieldConfig.value = moment(fieldValue).format('YYYY/MM/DD');
   }
@@ -254,9 +243,6 @@ exports.appendValueAndOptionsToFormConfig = function (fieldConfig, fieldValue, a
     }
     else if (fieldConfig.name === 'aeorigion') {
       fieldConfig.options = aeSourceConfig;
-    }
-    else if (fieldConfig.name === 'source') {
-      fieldConfig.options = cmSourceConfig;
     }
   }
 

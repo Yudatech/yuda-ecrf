@@ -123,14 +123,6 @@ module.exports = [
   },
   {
     title: {
-      zh: '合并用药情况',
-      en: 'Concomitant Medication'
-    },
-    name: 'cm',
-    link: '/cmlist'
-  },
-  {
-    title: {
       zh: '不良事件',
       en: 'Adverse Event'
     },

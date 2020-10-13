@@ -8,7 +8,6 @@ const Surgery = mongoose.model('Surgery');
 const Visit = mongoose.model('Visit');
 
 const getAeSourceConfig = require('../config/ae/getAeSourceConfig');
-const getCmSourceConfig = require('../config/cm/getCmSourceConfig');
 
 exports.appendCaseIdToCaseNav = function (caseId, lang) {
   const navs = JSON.parse(JSON.stringify(CaseNav));
@@ -125,25 +124,6 @@ exports.getAeSourceConfigSync = function (caseId, lang, surgeryList, visitList) 
   }
   return getAeSourceConfig(lang, visits);
 }
-
-exports.getCmSourceConfig = async function (caseId, lang) {
-  const surgeryItem = await Surgery.findOne({
-    case: caseId
-  });
-  const visits = [];
-  const visitItems = await Visit.find({
-    case: caseId
-  });
-  if (surgeryItem && visitItems.length > 0) {
-    visitItems.forEach((item) => {
-      visits.push({
-        _id: item._id.toString(),
-        postoperativedayText: getPostoperativeDayText(item.postoperativeday)
-      });
-    });
-  }
-  return getCmSourceConfig(lang, visits);
-};
 
 exports.getVisitNameList = async function (caseId, lang) {
   const surgeryItem = await Surgery.findOne({
