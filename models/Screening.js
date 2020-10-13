@@ -61,10 +61,6 @@ const screeningSchema = new Schema({
   method_1: Boolean,
   // CT检查
   method_2: Boolean,
-  // 升结肠
-  region_1: Boolean,
-  // 横结肠
-  region_2: Boolean,
   // 降结肠
   region_3: Boolean,
   // 乙状结肠
@@ -72,7 +68,6 @@ const screeningSchema = new Schema({
   // 直肠上段 (距离肛缘11-15cm以上)
   region_5: Boolean,
   region_6: Boolean,
-  region_7: Boolean,
   // 病理诊断
   dignose_1: String
 });

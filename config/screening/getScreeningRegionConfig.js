@@ -15,20 +15,6 @@ const config = {
     }
   ],
   formConfigs: [{
-    name: 'region_1',
-    type: 'checkbox',
-    text: {
-      zh: '升结肠',
-      en: 'Ascending colon'
-    }
-  }, {
-    name: 'region_2',
-    type: 'checkbox',
-    text: {
-      zh: '横结肠',
-      en: 'Transverse colon'
-    }
-  }, {
     name: 'region_3',
     type: 'checkbox',
     text: {
@@ -55,13 +41,6 @@ const config = {
     text: {
       zh: '直肠下段',
       en: 'Lower rectum (up to 15 cm above the anal verge)'
-    }
-  }, {
-    name: 'region_7',
-    type: 'checkbox',
-    text: {
-      zh: '盲肠',
-      en: 'Cecum'
     }
   }]
 };
