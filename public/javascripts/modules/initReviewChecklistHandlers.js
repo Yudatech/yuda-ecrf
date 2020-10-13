@@ -1,4 +1,4 @@
-import setWarningStyle from './helpers/setWarningStyle';
+import setErrorStyle from './helpers/setErrorStyle';
 import requireValidator from './validators/requireValidator';
 
 function initReviewChecklistHandlers() {
@@ -8,9 +8,15 @@ function initReviewChecklistHandlers() {
   // 其他疾病 checkbox
   $('#reviewcheck_2').change(function () {
     setErrorElementVisibility();
-    setWarningStyle('reviewcheck_2', true);
   });
-  setWarningStyle('reviewcheck_2', true);
+
+  $('#reviewcheck_3').change(function () {
+    setErrorElementVisibility();
+  });
+
+  $('#reviewcheck_4').change(function () {
+    setErrorElementVisibility();
+  });
 
   setErrorElementVisibility();
 
@@ -35,12 +41,18 @@ function setErrorElementVisibility() {
   const error1El = $('#reviewchecklist-error-1');
 
   const reviewcheck_2Value = $('#reviewcheck_2').is(':checked');
+  const reviewcheck_3Value = $('#reviewcheck_3').is(':checked');
+  const reviewcheck_4Value = $('#reviewcheck_4').is(':checked');
 
-  if (!reviewcheck_2Value) {
-    error1El.removeClass('hidden');
+  setErrorStyle('reviewcheck_2', !reviewcheck_2Value);
+  setErrorStyle('reviewcheck_3', !reviewcheck_3Value);
+  setErrorStyle('reviewcheck_4', !reviewcheck_4Value);
+
+  if (reviewcheck_2Value && reviewcheck_3Value && reviewcheck_4Value) {
+    error1El.addClass('hidden');
   }
   else {
-    error1El.addClass('hidden');
+    error1El.removeClass('hidden');
   }
 }
 

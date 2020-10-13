@@ -32,6 +32,9 @@ const config = {
   }, {
     name: 'reviewcheck_2',
     type: 'checkbox',
+    commit: [{
+      rule: 'must_true'
+    }],
     text: {
       zh: '肠道清洁',
       en: 'Full bowel cleansing',
@@ -41,12 +44,7 @@ const config = {
     name: 'reviewcheck_3',
     type: 'checkbox',
     commit: [{
-      rule: 'custom',
-      message: {
-        zh: '使用预防性抗生素',
-        en: 'Prophylactic antibiotics',
-        sv: 'Profylaktisk antibiotika'
-      }
+      rule: 'must_true'
     }],
     text: {
       zh: '预防性抗生素 (若使用抗生素，请完整填写《合并用药情况表》)',
@@ -56,11 +54,7 @@ const config = {
     name: 'reviewcheck_4',
     type: 'checkbox',
     commit: [{
-      rule: 'custom',
-      message: {
-        zh: '使用预防性抗凝血药',
-        en: 'Prophylactic anti-thrombotics'
-      }
+      rule: 'must_true'
     }],
     text: {
       zh: '预防性抗凝血药 (若使用抗凝血药，请完整填写《合并用药情况表》)',
@@ -70,15 +64,8 @@ const config = {
   errors: [{
     name: 'error_1',
     text: {
-      zh: '依据研究方案，受试者在术前应进行肠道清洁',
-      en: 'Provide prescription for pre-operative bowel cleansing, please.'
-    }
-  }, {
-    name: 'error_4',
-    text: {
-      zh: '请参阅PMCIP了解所需的下一步处理',
-      en: 'See PMCIP for required next step',
-      sv: 'se PMCIP för åtgärd'
+      zh: '患者应完成上述所有术前准备和药物治疗',
+      en: 'The patient should fullfill ALL of the preoperative preparation and medications above.'
     }
   }]
 };
