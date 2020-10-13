@@ -10,6 +10,12 @@ const typeofAnastomosis = [{
     zh: '端侧吻合',
     en: 'End-to-side anastomosis'
   }
+}, {
+  value: 2,
+  text: {
+    zh: '并排吻合',
+    en: 'Side-to-side anastomosis'
+  }
 }];
 
 module.exports = function (lang) {
