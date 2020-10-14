@@ -71,6 +71,13 @@ const config = {
       },
       linkBase: '/screening-exclusion'
     }, {
+      name: 'screening-prioradiationtherapy',
+      text: {
+        zh: '直肠癌术前放疗',
+        en: 'Preoperative radiotherapy'
+      },
+      linkBase: '/screening-prioradiationtherapy'
+    }, {
       name: 'screening-region',
       text: {
         zh: '病变位置',
