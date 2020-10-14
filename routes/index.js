@@ -18,6 +18,7 @@ const questionController = require('../controllers/questionController');
 const screeningController = require('../controllers/screeningController');
 const lifeAssessmentController = require('../controllers/lifeAssessmentController');
 const evacuationController = require('../controllers/evacuationController');
+const pathologicalController = require('../controllers/pathologicalController');
 
 router.get('/', authController.isLoggedIn, mainController.homePage);
 
@@ -307,6 +308,21 @@ router.post('/evacuation/:caseId',
   catchErrors(authController.checkCaseStatus),
   catchErrors(authController.checkCasePermission),
   catchErrors(evacuationController.updateEvacuation)
+);
+
+// Router for pathological
+router.get('/pathological/:caseId',
+  authController.isLoggedIn,
+  catchErrors(authController.checkCaseStatus),
+  catchErrors(authController.checkCasePermission),
+  catchErrors(questionController.checkQuestionedFields),
+  catchErrors(pathologicalController.pathologicalForm)
+);
+router.post('/pathological/:caseId',
+  authController.isLoggedIn,
+  catchErrors(authController.checkCaseStatus),
+  catchErrors(authController.checkCasePermission),
+  catchErrors(pathologicalController.updatePathological)
 );
 
 // Router for ae

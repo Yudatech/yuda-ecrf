@@ -33,13 +33,13 @@ require("./models/ReviewChecklist");
 require("./models/Discontinuation");
 require("./models/Surgery");
 require("./models/Life");
-require("./models/Cm");
 require("./models/Ae");
 require("./models/Sae");
 require("./models/Visit");
 require("./models/Question");
 require("./models/History");
 require("./models/Evacuation");
+require("./models/Pathological");
 
 // Start our app!
 const app = require("./app");

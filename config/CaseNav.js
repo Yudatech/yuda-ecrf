@@ -114,6 +114,14 @@ module.exports = [
   },
   {
     title: {
+      zh: '病理诊断',
+      en: 'Pathological diagnosis'
+    },
+    name: 'pathological',
+    link: '/pathological'
+  },
+  {
+    title: {
       zh: '生活质量和医疗服务利用模式评估',
       en: 'Life Quality and Healthcare Utilization',
       sv: 'Frågor om livskvalitet och utvärderingsmönster för hälso- och sjukvård'

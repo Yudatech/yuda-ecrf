@@ -3,18 +3,18 @@ const Schema = mongoose.Schema;
 mongoose.Promise = global.Promise;
 const mongodbErrorHandler = require('mongoose-mongodb-errors');
 
-const evacuationSchema = new Schema({
+const pathologicalSchema = new Schema({
   case: {
     type: String,
     ref: 'Case',
     required: 'You must supply a caseid'
   },
-  evacuationdtc: {
-    type: Date
-  },
-  evacuationtype: Number
+  /**
+   * REVIEW_CHECKLIST
+   */
+  pathological_1: String
 });
 
-evacuationSchema.plugin(mongodbErrorHandler);
+pathologicalSchema.plugin(mongodbErrorHandler);
 
-module.exports = mongoose.model('Evacuation', evacuationSchema);
+module.exports = mongoose.model('Pathological', pathologicalSchema);

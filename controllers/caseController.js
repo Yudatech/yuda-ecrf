@@ -28,6 +28,7 @@ const Question = mongoose.model('Question');
 const History = mongoose.model('History');
 const Life = mongoose.model('Life');
 const Evacuation = mongoose.model('Evacuation');
+const Pathological = mongoose.model('Pathological');
 
 const multer = require('multer');
 const jimp = require('jimp');
@@ -350,6 +351,7 @@ exports.showCaseCommitForm = async (req, res) => {
   result.push(await commitHelpers.validateSurgeryForm(caseId, req.user.language));
   result.push(await commitHelpers.validateVisitForm(caseId, req.user.language));
   result.push(await commitHelpers.validateEvacuationForm(caseId, req.user.language));
+  result.push(await commitHelpers.validatePathologicalForm(caseId, req.user.language));
   result.push(await commitHelpers.validateAeForm(caseId, req.user.language));
   result.push(await commitHelpers.validateSaeForm(caseId, req.user.language));
 
@@ -428,6 +430,9 @@ exports.exportCases = async (req, res) => {
   const evacuationList = await Evacuation.find().sort({
     case: 'asc'
   });
+  const pathologicalList = await Pathological.find().sort({
+    case: 'asc'
+  });
   const commonData = exportHelpers.getExportCommonData(commonConfig, cases, users, caseStatusConfig);
 
   const aeSourceConfigList = {};
@@ -497,6 +502,9 @@ exports.exportCases = async (req, res) => {
     }
     else if (tableName === 'evacuation') {
       data = evacuationList;
+    }
+    else if (tableName === 'pathological') {
+      data = pathologicalList;
     }
     exportHelpers.addDataToWorksheet(worksheet, commonColumnDefs, dataColumnDefs, commonData, data, aeSourceConfigList, saeSourceConfigList);
   });

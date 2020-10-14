@@ -30,16 +30,6 @@ const config = {
       zh: '取出方式',
       en: 'Evacuation'
     }
-  }, {
-    name: 'evacuation_1',
-    type: 'textarea',
-    commit: [{
-      rule: 'required'
-    }],
-    text: {
-      zh: '病理诊断',
-      en: 'Pathological diagnosis'
-    }
   }],
   errors: []
 };

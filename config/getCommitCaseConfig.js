@@ -125,6 +125,14 @@ const config = {
     },
     linkBase: '/evacuation'
   }, {
+    text: {
+      zh: '病理诊断',
+      en: 'Pathological diagnosis'
+    },
+    name: 'pathological',
+    total: 1,
+    linkBase: '/pathological'
+  }, {
     name: 'ae',
     total: 13,
     text: {

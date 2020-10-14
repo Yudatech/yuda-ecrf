@@ -7,6 +7,7 @@ const Surgery = mongoose.model('Surgery');
 const Visit = mongoose.model('Visit');
 const Case = mongoose.model('Case');
 const Evacuation = mongoose.model('Evacuation');
+const Pathological = mongoose.model('Pathological');
 
 const getCommitCaseConfig = require('../config/getCommitCaseConfig');
 
@@ -26,6 +27,7 @@ const getVisitConfig = require('../config/visit/getVisitConfig');
 const getEvacuationConfig = require('../config/evacuation/getEvacuationConfig');
 const getAeConfig = require('../config/ae/getAeConfig');
 const getSaeConfig = require('../config/sae/getSaeConfig');
+const getPathologicalConfig = require('../config/getPathologicalConfig');
 
 function doMustTrueCheck(value) {
   return value === true;
@@ -468,6 +470,28 @@ exports.validateEvacuationForm = async function (caseId, lang) {
     doCommitValidationForWholeTable(caseId, evacuationValidateResult, commitCaseConfig, formConfigs, evacuationItem, extra);
   }
   return evacuationValidateResult;
+};
+
+exports.validatePathologicalForm = async function (caseId, lang) {
+  const commitCaseConfig = getCommitCaseConfig(lang);
+  const pathologicalItem = await Pathological.findOne({
+    case: caseId
+  });
+  const pathologicalValidateResult = initValidateResult(getCommitCaseConfigItem(commitCaseConfig.records, 'pathological'));
+
+  if (pathologicalItem === null) {
+    pathologicalValidateResult.pass = false;
+    pathologicalValidateResult.link = `${pathologicalValidateResult.linkBase}/${caseId}`;
+    pathologicalValidateResult.message = pathologicalValidateResult.text;
+    pathologicalValidateResult.resultText = commitCaseConfig.empty;
+    pathologicalValidateResult.resultType = 'empty';
+  }
+  else {
+    const extra = {};
+    const formConfigs = getPathologicalConfig(lang).formConfigs;
+    doCommitValidationForWholeTable(caseId, pathologicalValidateResult, commitCaseConfig, formConfigs, pathologicalItem, extra);
+  }
+  return pathologicalValidateResult;
 };
 
 exports.validateAeForm = async function (caseId, lang) {

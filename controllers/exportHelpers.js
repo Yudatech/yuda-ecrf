@@ -20,6 +20,7 @@ const getVisitConfig = require('../config/visit/getVisitConfig');
 const decorationHelper = require('./decorationHelper');
 const helpers = require('./helpers');
 const getEvacuationConfig = require('../config/evacuation/getEvacuationConfig');
+const getPathologicalConfig = require('../config/getPathologicalConfig');
 
 const dateFormat = 'YYYY-MM-DD';
 const datetimeFormat = 'YYYY-MM-DD HH:mm';
@@ -60,6 +61,9 @@ exports.getConfigForQuestion = function (table, lang) {
   }
   else if (table === 'evacuation') {
     formConfigs = getEvacuationConfig(lang).formConfigs;
+  }
+  else if (table === 'pathological') {
+    formConfigs = getPathologicalConfig(lang).formConfigs;
   }
 
   return formConfigs;
