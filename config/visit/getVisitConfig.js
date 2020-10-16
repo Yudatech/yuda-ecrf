@@ -17,6 +17,9 @@ const config = {
   formConfigs: [{
     name: 'postoperativeday',
     type: 'select',
+    commit: [{
+      rule: 'required'
+    }],
     required: true,
     text: {
       zh: '术后天数',
@@ -44,6 +47,9 @@ const config = {
   }, {
     name: 'postoperative_2',
     type: 'select',
+    commit: [{
+      rule: 'required'
+    }],
     optionsGetter: 'getHasPostoperativeComplicationsConfig',
     text: {
       zh: '有术后并发症',

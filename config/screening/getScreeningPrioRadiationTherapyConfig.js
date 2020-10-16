@@ -25,6 +25,11 @@ const config = {
   }, {
     name: 'priorradiationtherapy_2',
     type: 'textfield',
+    commit: [{
+      rule: 'conditional_require',
+      field: 'priorradiationtherapy_1',
+      value: 0
+    }],
     required: true,
     text: {
       zh: '请注明用量',

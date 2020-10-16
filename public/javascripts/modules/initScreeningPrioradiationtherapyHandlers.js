@@ -6,6 +6,8 @@ function initScreeningPrioradiationtherapyHandlers() {
   priorradiationtherapy_1El.change(function () {
     setPriorradiationtherapy_2Visibility();
   });
+
+  setPriorradiationtherapy_2Visibility();
 }
 
 function setPriorradiationtherapy_2Visibility() {

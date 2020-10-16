@@ -18,6 +18,9 @@ const config = {
     name: 'sex',
     type: 'select',
     optionsGetter: 'getSexConfig',
+    commit: [{
+      rule: 'required'
+    }],
     text: {
       zh: '性别',
       en: 'Gender'
@@ -26,6 +29,9 @@ const config = {
     name: 'birth',
     type: 'date',
     requireCustomRange: true,
+    commit: [{
+      rule: 'required'
+    }],
     text: {
       zh: '出生日期',
       en: 'Date of Birth'
@@ -34,6 +40,9 @@ const config = {
     name: 'weight',
     type: 'numberfield',
     step: 'any',
+    commit: [{
+      rule: 'required'
+    }],
     text: {
       zh: '体重(KG)',
       en: 'Body Weight (kg)'
@@ -41,6 +50,9 @@ const config = {
   }, {
     name: 'height',
     type: 'numberfield',
+    commit: [{
+      rule: 'required'
+    }],
     step: '1',
     text: {
       zh: '身高(CM)',

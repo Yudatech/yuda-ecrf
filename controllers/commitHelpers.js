@@ -59,11 +59,17 @@ function doOnlyOnceCheck(fieldName, ruleConfig, listToCheck) {
 
 function doConditionalRequireCheck(value, requiredValue, currentValue) {
   if (requiredValue === currentValue) {
-    return value !== undefined;
+    return value !== undefined && value !== '';
   }
   else {
     return true;
   }
+}
+
+function doAtLeastOneTrueCheck(value, fields, extra) {
+  const fieldArray = fields.split(',');
+  const foundTrue = fieldArray.find(item => extra[item] === true);
+  return foundTrue !== undefined;
 }
 
 function doReviewChecklistCustomValidation(caseId, key, obj, ruleConfig, validateResult) {
@@ -94,7 +100,10 @@ function doSurgeryCustomValidation(caseId, key, obj, ruleConfig, validateResult,
   }
 }
 
-function doVisitCustomValidation(caseId, key, obj, ruleConfig, validateResult, aeList, saeList, errors) {
+function doVisitCustomValidation(caseId, key, obj, ruleConfig, validateResult, aeList, saeList, postoperative_2, errors) {
+  if ((obj[key] === undefined || obj[key] === null) && postoperative_2 === 0) {
+    return false;
+  }
   if (obj[key] === 0) {
     return true;
   }
@@ -183,7 +192,7 @@ function doCommitValidation(caseId, key, obj, rules, extra, validateResult) {
         result = doSurgeryCustomValidation(caseId, key, obj, ruleConfig, validateResult, extra.aeList);
       }
       else if (key === 'postoperative_2_1') {
-        result = doVisitCustomValidation(caseId, key, obj, ruleConfig, validateResult, extra.aeList, extra.saeList, extra.errors);
+        result = doVisitCustomValidation(caseId, key, obj, ruleConfig, validateResult, extra.aeList, extra.saeList, extra.postoperative_2, extra.errors);
       }
       else if (key === 'aesae') {
         result = doAeCustomValidation(caseId, key, obj, ruleConfig, validateResult, extra.saeList, extra.idToAppend);
@@ -194,6 +203,9 @@ function doCommitValidation(caseId, key, obj, rules, extra, validateResult) {
     }
     else if (ruleName === 'conditional_require') {
       result = doConditionalRequireCheck(obj[key], ruleConfig.value, extra[ruleConfig.field]);
+    }
+    else if (ruleName === 'atleast_one_true') {
+      result = doAtLeastOneTrueCheck(obj[key], ruleConfig.fields, extra);
     }
     else if (ruleName === 'custom_date') {
       if (key === 'saedtc') {
@@ -311,12 +323,19 @@ exports.validateScreeningForm = async function (caseId, lang) {
       }
       else if (childResult.name === 'screening-prioradiationtherapy') {
         formConfigs = getScreeningPrioRadiationTherapyConfig(lang).formConfigs;
+        extra.priorradiationtherapy_1 = screeningItem ? screeningItem.priorradiationtherapy_1 : undefined;
       }
       else if (childResult.name === 'screening-method') {
         formConfigs = getScreeningMethodConfig(lang).formConfigs;
+        extra.method_1 = screeningItem ? screeningItem.method_1 : false;
+        extra.method_2 = screeningItem ? screeningItem.method_2 : false;
       }
       else if (childResult.name === 'screening-region') {
         formConfigs = getScreeningRegionConfig(lang).formConfigs;
+        extra.region_3 = screeningItem ? screeningItem.region_3 : false;
+        extra.region_4 = screeningItem ? screeningItem.region_4 : false;
+        extra.region_5 = screeningItem ? screeningItem.region_5 : false;
+        extra.region_6 = screeningItem ? screeningItem.region_6 : false;
       }
       else if (childResult.name === 'screening-dignose') {
         formConfigs = getScreeningDignoseConfig(lang).formConfigs;
@@ -374,12 +393,18 @@ exports.validateSurgeryForm = async function (caseId, lang) {
     const reviewItem = await ReviewChecklist.findOne({
       case: caseId
     });
+
     const aeList = await Ae.find({
       case: caseId
     });
+
     const extra = {
       reviewcheckdate: reviewItem && reviewItem.reviewcheckdate ? reviewItem.reviewcheckdate.valueOf() : '',
-      aeList
+      aeList,
+      surgery_4: surgeryItem.surgery_4,
+      surgery_5: surgeryItem.surgery_5,
+      surgery_6: surgeryItem.surgery_6,
+      surgery_16: surgeryItem.surgery_16
     };
     const formConfigs = getSurgeryConfig(lang).formConfigs;
     doCommitValidationForWholeTable(caseId, surgeryValidateResult, commitCaseConfig, formConfigs, surgeryItem, extra);
@@ -432,6 +457,7 @@ exports.validateVisitForm = async function (caseId, lang) {
         text: visitNameItem.text
       };
       extra.idToAppend = visitItem._id.toString();
+      extra.postoperative_2 = visitItem.postoperative_2;
       visitValidateResult.children.push(visitItemValidateResult);
       doCommitValidationForWholeTable(caseId, visitItemValidateResult, commitCaseConfig, formConfigs, visitItem, extra);
     });

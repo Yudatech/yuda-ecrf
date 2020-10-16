@@ -17,6 +17,10 @@ const config = {
   formConfigs: [{
     name: 'method_1',
     type: 'checkbox',
+    commit: [{
+      rule: 'atleast_one_true',
+      fields: 'method_1,method_2',
+    }],
     text: {
       zh: '内窥镜检查',
       en: 'Endoscopy'
@@ -24,6 +28,10 @@ const config = {
   }, {
     name: 'method_2',
     type: 'checkbox',
+    commit: [{
+      rule: 'atleast_one_true',
+      fields: 'method_1,method_2',
+    }],
     text: {
       zh: 'CT/MR检查',
       en: 'CT/MR'

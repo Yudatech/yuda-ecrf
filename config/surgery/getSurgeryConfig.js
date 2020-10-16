@@ -44,6 +44,9 @@ const config = {
   }, {
     name: 'device_1',
     type: 'select',
+    commit: [{
+      rule: 'required'
+    }],
     optionsGetter: 'getSurgeryDeviceTypeConfig',
     text: {
       zh: '设备型号',
@@ -52,6 +55,9 @@ const config = {
   }, {
     name: 'device_2',
     type: 'select',
+    commit: [{
+      rule: 'required'
+    }],
     optionsGetter: 'getSurgeryDeviceSizeConfig',
     text: {
       zh: '设备尺寸',
@@ -60,6 +66,10 @@ const config = {
   }, {
     name: 'surgery_4',
     type: 'checkbox',
+    commit: [{
+      rule: 'atleast_one_true',
+      fields: 'surgery_4,surgery_5,surgery_6,surgery_16',
+    }],
     text: {
       zh: '降结肠',
       en: 'Descending colon'
@@ -67,6 +77,10 @@ const config = {
   }, {
     name: 'surgery_5',
     type: 'checkbox',
+    commit: [{
+      rule: 'atleast_one_true',
+      fields: 'surgery_4,surgery_5,surgery_6,surgery_16',
+    }],
     text: {
       zh: '乙状结肠',
       en: 'Sigmoid colon'
@@ -74,6 +88,10 @@ const config = {
   }, {
     name: 'surgery_6',
     type: 'checkbox',
+    commit: [{
+      rule: 'atleast_one_true',
+      fields: 'surgery_4,surgery_5,surgery_6,surgery_16',
+    }],
     text: {
       zh: '直肠上段 (距离肛缘11-15cm以上)',
       en: 'Upper rectum (15 cm above the anal verge)'
@@ -81,6 +99,10 @@ const config = {
   }, {
     name: 'surgery_16',
     type: 'checkbox',
+    commit: [{
+      rule: 'atleast_one_true',
+      fields: 'surgery_4,surgery_5,surgery_6,surgery_16',
+    }],
     text: {
       zh: '直肠下段',
       en: 'Lower rectum (up to 15 cm above the anal verge)'
@@ -88,6 +110,9 @@ const config = {
   }, {
     name: 'surgery_8',
     type: 'select',
+    commit: [{
+      rule: 'required'
+    }],
     optionsGetter: 'getAirLeakTestConfig',
     text: {
       zh: '漏气测试',
@@ -96,6 +121,9 @@ const config = {
   }, {
     name: 'surgery_9',
     type: 'select',
+    commit: [{
+      rule: 'required'
+    }],
     optionsGetter: 'getSurgeryMethodsConfig',
     text: {
       zh: '手术方式',
@@ -104,6 +132,9 @@ const config = {
   }, {
     name: 'surgery_15',
     type: 'select',
+    commit: [{
+      rule: 'required'
+    }],
     optionsGetter: 'getTypeOfAnastomosisConfig',
     text: {
       zh: '吻合类型',
@@ -127,6 +158,9 @@ const config = {
   }, {
     name: 'surgery_12',
     type: 'numberfield',
+    commit: [{
+      rule: 'required'
+    }],
     step: '1',
     text: {
       zh: '手术时间(分钟)',
@@ -135,6 +169,9 @@ const config = {
   }, {
     name: 'surgery_13',
     type: 'numberfield',
+    commit: [{
+      rule: 'required'
+    }],
     step: 'any',
     text: {
       zh: '术中出血量 (mL)',

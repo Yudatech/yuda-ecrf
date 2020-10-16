@@ -17,6 +17,10 @@ const config = {
   formConfigs: [{
     name: 'region_3',
     type: 'checkbox',
+    commit: [{
+      rule: 'atleast_one_true',
+      fields: 'region_3,region_4,region_5,region_6',
+    }],
     text: {
       zh: '降结肠',
       en: 'Descending colon'
@@ -24,6 +28,10 @@ const config = {
   }, {
     name: 'region_4',
     type: 'checkbox',
+    commit: [{
+      rule: 'atleast_one_true',
+      fields: 'region_3,region_4,region_5,region_6',
+    }],
     text: {
       zh: '乙状结肠',
       en: 'Sigmoid colon'
@@ -31,6 +39,10 @@ const config = {
   }, {
     name: 'region_5',
     type: 'checkbox',
+    commit: [{
+      rule: 'atleast_one_true',
+      fields: 'region_3,region_4,region_5,region_6',
+    }],
     text: {
       zh: '直肠上段 (距离肛缘11-15cm以上)',
       en: 'Upper rectum (15 cm above the anal verge)'
@@ -38,6 +50,10 @@ const config = {
   }, {
     name: 'region_6',
     type: 'checkbox',
+    commit: [{
+      rule: 'atleast_one_true',
+      fields: 'region_3,region_4,region_5,region_6',
+    }],
     text: {
       zh: '直肠下段',
       en: 'Lower rectum (up to 15 cm above the anal verge)'
