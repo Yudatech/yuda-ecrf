@@ -126,24 +126,7 @@ exports.getAeSourceConfigSync = function (caseId, lang, surgeryList, visitList) 
 }
 
 exports.getVisitNameList = async function (caseId, lang) {
-  const surgeryItem = await Surgery.findOne({
-    case: caseId
-  });
-  const visits = [];
-  const visitItems = await Visit.find({
-    case: caseId
-  });
-  if (surgeryItem && visitItems.length > 0) {
-    visitItems.forEach((item) => {
-      visits.push({
-        _id: item._id.toString(),
-        postoperativedayText: getPostoperativeDayText(item.postoperativeday)
-      });
-    });
-  }
-  const aeSourceConfig = getAeSourceConfig(lang, visits);
-  aeSourceConfig.shift();
-  return aeSourceConfig;
+  return completeList;
 };
 
 const completeList = [

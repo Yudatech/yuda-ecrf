@@ -442,14 +442,14 @@ exports.validateVisitForm = async function (caseId, lang) {
     });
     const formConfigs = getVisitConfig(lang).formConfigs;
     const extra = {
-      'surgerydtc': surgeryItem.surgerydtc === undefined ? null : surgeryItem.surgerydtc.valueOf(),
+      'surgerydtc': !surgeryItem || surgeryItem.surgerydtc === undefined ? null : surgeryItem.surgerydtc.valueOf(),
       aeList,
       saeList,
       errors: getVisitConfig(lang).errors
     };
     visitValidateResult.children = [];
     visitList.forEach((visitItem) => {
-      const visitNameItem = visitNameList.find((item) => item.value === visitItem._id.toString());
+      const visitNameItem = visitNameList.find((item) => item.value === visitItem.postoperativeday);
       const visitItemValidateResult = {
         pass: true,
         linkBase: `/visit`,
