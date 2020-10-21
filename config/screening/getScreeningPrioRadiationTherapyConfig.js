@@ -17,6 +17,9 @@ const config = {
   formConfigs: [{
     name: 'priorradiationtherapy_1',
     type: 'select',
+    commit: [{
+      rule: 'required'
+    }],
     optionsGetter: 'getPriorRadiationTherapyConfig',
     text: {
       zh: '直肠癌的先前放射疗法',
