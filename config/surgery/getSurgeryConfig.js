@@ -184,7 +184,7 @@ const config = {
       rule: 'custom',
       message: {
         zh: '请完整填写《不良事件及器械缺陷报告表》',
-        en: 'Complete Adverse Events and Device Deficiency (AE) Report'
+        en: 'Complete Adverse Events (AE) and Device Deficiency Report'
       }
     }],
     text: {
@@ -196,7 +196,7 @@ const config = {
     name: 'error_1',
     text: {
       zh: '请完整填写《不良事件及器械缺陷报告表》',
-      en: 'Complete Adverse Events and Device Deficiency (AE) Report, please'
+      en: 'Complete Adverse Events (AE) and Device Deficiency Report, please'
     }
   }]
 };
