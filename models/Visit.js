@@ -9,7 +9,6 @@ const visitSchema = new Schema({
     ref: 'Case',
     required: 'You must supply a caseid'
   },
-  postoperativeday: Number,
   assessmentdtc: {
     type: Date,
     default: Date.now

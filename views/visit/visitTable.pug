@@ -21,7 +21,8 @@ block case-content
                     a.btn.btn-default(role="button" data-toggle="modal" data-target="#deleteVisitConfirmModal" data-caseid=caseId data-visitid=visit._id)
                       span.glyphicon.glyphicon-trash
 
-    a.btn.btn-default.yuda-input-btn(href=`/visit/${caseId}` role="button") #{buttonConfig.buttons.add.text}
+    if canAdd
+      a.btn.btn-default.yuda-input-btn(href=`/visit/${caseId}` role="button") #{buttonConfig.buttons.add.text}
 
     .modal.fade(id='deleteVisitConfirmModal' tabindex="-1" role="dialog")
       .modal-dialog(role="document")

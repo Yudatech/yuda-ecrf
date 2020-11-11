@@ -17,10 +17,6 @@ const config = {
   formConfigs: [{
     name: 'postoperativeday',
     type: 'select',
-    commit: [{
-      rule: 'required'
-    }],
-    required: true,
     text: {
       zh: '术后天数',
       en: 'Postoperative day (POD)'

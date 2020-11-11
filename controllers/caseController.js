@@ -371,6 +371,12 @@ exports.showCaseCommitForm = async (req, res) => {
   });
 };
 
+function getDaysAfterSurgery(surgerydtc, visitdtc) {
+  const surgerydtcValue = moment(surgerydtc).valueOf();
+  const visitdtcValue = moment(visitdtc).valueOf();
+  return Math.floor((visitdtcValue - surgerydtcValue) / 24 / 60 / 60 / 1000);
+}
+
 exports.exportCases = async (req, res) => {
   if (req.user.role !== 'admin') {
     req.flash('error', `You do not have permission to export.`);
@@ -441,6 +447,14 @@ exports.exportCases = async (req, res) => {
     const caseId = caseItem._id;
     aeSourceConfigList[caseId] = helpers.getAeSourceConfigSync(caseId, req.user.language, surgeryList, visitList);
     saeSourceConfigList[caseId] = helpers.getSaeSourceOptionsSync(caseId, surgeryList, visitList);
+  });
+
+  visitList.forEach((visitItem) => {
+    const surgeryItem = surgeryList.find((item) => item.case === visitItem.case);
+    const surgerydtc = (surgeryItem && surgeryItem.surgerydtc) ? surgeryItem.surgerydtc : null;
+    if (surgerydtc && visitItem.assessmentdtc) {
+      visitItem.postoperativeday = Math.max(getDaysAfterSurgery(surgerydtc, visitItem.assessmentdtc) - 1);
+    }
   });
 
   const resultItems = {};

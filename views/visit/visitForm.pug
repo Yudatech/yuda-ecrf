@@ -11,12 +11,6 @@ block case-content
         legend #{config.subtitles.subtitle_1.text}
         .row
           .col-sm-10
-            +_formTemplate(config.formConfigs.postoperativeday)
-          .col-sm-2
-            +_questionBtn(config.formConfigs.postoperativeday, questionFields)
-
-        .row
-          .col-sm-10
             +_formTemplate(config.formConfigs.assessmentdtc)
           .col-sm-2
             +_questionBtn(config.formConfigs.assessmentdtc, questionFields)

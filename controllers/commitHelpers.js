@@ -1,3 +1,5 @@
+const moment = require('moment');
+moment.locale('en');
 const mongoose = require('mongoose');
 const Screening = mongoose.model('Screening');
 const ReviewChecklist = mongoose.model('ReviewChecklist');
@@ -422,6 +424,12 @@ exports.validateSurgeryForm = async function (caseId, lang) {
   return surgeryValidateResult;
 };
 
+function getDaysAfterSurgery(surgerydtc, visitdtc) {
+  const surgerydtcValue = moment(surgerydtc).valueOf();
+  const visitdtcValue = moment(visitdtc).valueOf();
+  return Math.floor((visitdtcValue - surgerydtcValue) / 24 / 60 / 60 / 1000);
+}
+
 exports.validateVisitForm = async function (caseId, lang) {
   const commitCaseConfig = getCommitCaseConfig(lang);
   const visitList = await Visit.find({
@@ -444,6 +452,7 @@ exports.validateVisitForm = async function (caseId, lang) {
     const surgeryItem = await Surgery.findOne({
       case: caseId
     });
+    const surgerydtc = (surgeryItem && surgeryItem.surgerydtc) ? surgeryItem.surgerydtc : null;
     const aeList = await Ae.find({
       case: caseId
     });
@@ -459,7 +468,8 @@ exports.validateVisitForm = async function (caseId, lang) {
     };
     visitValidateResult.children = [];
     visitList.forEach((visitItem) => {
-      const visitNameItem = visitNameList.find((item) => item.value === visitItem.postoperativeday);
+      const daysAfterSurgery = getDaysAfterSurgery(surgerydtc, visitItem.assessmentdtc);
+      const visitNameItem = visitNameList.find((item) => item.value === daysAfterSurgery - 1);
       const visitItemValidateResult = {
         pass: true,
         linkBase: `/visit`,
@@ -588,6 +598,11 @@ exports.validateSaeForm = async function (caseId, lang) {
   });
   const saeValidateResult = initValidateResult(getCommitCaseConfigItem(commitCaseConfig.records, 'sae'));
 
+  const surgeryItem = await Surgery.findOne({
+    case: caseId
+  });
+  const surgerydtc = (surgeryItem && surgeryItem.surgerydtc) ? surgeryItem.surgerydtc : null;
+
   if (saeList.length === 0) {
     saeValidateResult.pass = null;
   }
@@ -616,7 +631,8 @@ exports.validateSaeForm = async function (caseId, lang) {
           return visitItem._id.toString() === saeItem.saeorigion;
         });
         if (matchVisit) {
-          saeText = helpers.getPostoperativeDayText(matchVisit.postoperativeday)
+          const daysAfterSurgery = getDaysAfterSurgery(surgerydtc, matchVisit.assessmentdtc);
+          saeText = helpers.getPostoperativeDayText(daysAfterSurgery)
         }
       }
       const saeItemValidateResult = {

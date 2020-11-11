@@ -9,6 +9,12 @@ const Visit = mongoose.model('Visit');
 
 const getAeSourceConfig = require('../config/ae/getAeSourceConfig');
 
+function getDaysAfterSurgery(surgerydtc, visitdtc) {
+  const surgerydtcValue = moment(surgerydtc).valueOf();
+  const visitdtcValue = moment(visitdtc).valueOf();
+  return Math.floor((visitdtcValue - surgerydtcValue) / 24 / 60 / 60 / 1000);
+}
+
 exports.appendCaseIdToCaseNav = function (caseId, lang) {
   const navs = JSON.parse(JSON.stringify(CaseNav));
   if (lang === undefined) {
@@ -40,6 +46,7 @@ exports.getSaeSourceOptions = async function (caseId) {
   const surgeryItem = await Surgery.findOne({
     case: caseId
   });
+  const surgerydtc = (surgeryItem && surgeryItem.surgerydtc) ? surgeryItem.surgerydtc : null;
   const aeItems = await Ae.find({
     case: caseId
   });
@@ -51,7 +58,7 @@ exports.getSaeSourceOptions = async function (caseId) {
     visitItems.filter(item => item.postoperative_2_1 === 3 || item.postoperative_2_1 === 4).forEach((item) => {
       saeSourceOptions.push({
         value: item._id.toString(),
-        text: getPostoperativeDayText(item.postoperativeday)
+        text: getPostoperativeDayText(getDaysAfterSurgery(surgerydtc, item.assessmentdtc))
       });
     });
   }
@@ -74,13 +81,14 @@ exports.getSaeSourceOptions = async function (caseId) {
 
 exports.getSaeSourceOptionsSync = function (caseId, surgeryList, visitList) {
   const surgeryItem = surgeryList.find((item) => item.case === caseId);
+  const surgerydtc = (surgeryItem && surgeryItem.surgerydtc) ? surgeryItem.surgerydtc : null;
   const visitItems = visitList.filter((item) => item.case === caseId);
   const saeSourceOptions = [];
   if (surgeryItem && visitItems.length > 0) {
     visitItems.filter(item => item.postoperative_2_1 === 3 || item.postoperative_2_1 === 4).forEach((item) => {
       saeSourceOptions.push({
         value: item._id.toString(),
-        text: getPostoperativeDayText(item.postoperativeday)
+        text: getPostoperativeDayText(getDaysAfterSurgery(surgerydtc, item.assessmentdtc))
       });
     });
   }
@@ -95,6 +103,7 @@ exports.getAeSourceConfig = async function (caseId, lang) {
   const surgeryItem = await Surgery.findOne({
     case: caseId
   });
+  const surgerydtc = (surgeryItem && surgeryItem.surgerydtc) ? surgeryItem.surgerydtc : null;
   const visits = [];
   const visitItems = await Visit.find({
     case: caseId
@@ -103,7 +112,7 @@ exports.getAeSourceConfig = async function (caseId, lang) {
     visitItems.filter(item => item.postoperative_2_1 === 1 || item.postoperative_2_1 === 2 || item.postoperative_2_1 === 3 || item.postoperative_2_1 === 4).forEach((item) => {
       visits.push({
         _id: item._id,
-        postoperativedayText: getPostoperativeDayText(item.postoperativeday)
+        postoperativedayText: getPostoperativeDayText(getDaysAfterSurgery(surgerydtc, item.assessmentdtc))
       });
     });
   }
@@ -112,13 +121,14 @@ exports.getAeSourceConfig = async function (caseId, lang) {
 
 exports.getAeSourceConfigSync = function (caseId, lang, surgeryList, visitList) {
   const surgeryItem = surgeryList.find((item) => item.case === caseId);
+  const surgerydtc = (surgeryItem && surgeryItem.surgerydtc) ? surgeryItem.surgerydtc : null;
   const visitItems = visitList.filter((item) => item.case === caseId);
   const visits = [];
   if (surgeryItem && visitItems.length > 0) {
     visitItems.filter(item => item.postoperative_2_1 === 1 || item.postoperative_2_1 === 2 || item.postoperative_2_1 === 3 || item.postoperative_2_1 === 4).forEach((item) => {
       visits.push({
         _id: item._id.toString(),
-        postoperativedayText: getPostoperativeDayText(item.postoperativeday)
+        postoperativedayText: getPostoperativeDayText(getDaysAfterSurgery(surgerydtc, item.assessmentdtc))
       });
     });
   }
@@ -171,7 +181,7 @@ exports.getPostoperativeDayConfig = async function (caseId, currentValue) {
 }
 
 function getPostoperativeDayText(postoperativeDayValue) {
-  const match = completeList.find(item => item.value === postoperativeDayValue);
+  const match = completeList.find(item => item.value === postoperativeDayValue - 1);
   return match ? match.text : '';
 }
 

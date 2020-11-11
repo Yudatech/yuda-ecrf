@@ -39,6 +39,7 @@ const config = {
   formConfigs: [{
     name: 'aeorigion',
     type: 'customselect',
+    required: true,
     text: {
       zh: '来源',
       en: 'Source'
@@ -54,6 +55,7 @@ const config = {
   }, {
     name: 'event',
     type: 'textfield',
+    required: true,
     text: {
       zh: '事件 (名称及症状)',
       en: 'Event (In case of anastomotic leakage, please specify grade classification, i.e. Grade A, B or C)'
@@ -61,6 +63,7 @@ const config = {
   }, {
     name: 'aestdtc',
     type: 'datetime',
+    required: true,
     commit: [{
       rule: 'date',
       end: 'aeeddtc'
@@ -72,6 +75,7 @@ const config = {
   }, {
     name: 'aeeddtc',
     type: 'datetime',
+    required: true,
     commit: [{
       rule: 'date',
       start: 'aestdtc',

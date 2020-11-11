@@ -33,6 +33,11 @@ const tableName = 'visit';
 exports.visitTable = async (req, res) => {
   const CaseNav = helpers.appendCaseIdToCaseNav(req.params.caseId, req.user.language);
 
+  const surgery = await Surgery.findOne({
+    case: req.params.caseId
+  });
+  const surgerydtc = (surgery && surgery.surgerydtc) ? surgery.surgerydtc : null;
+
   const cdClassificationsConfig = decorationHelper.getCDClassificationConfig(req.user.language);
 
   const visitList = await getVisitListByCaseId(req.params.caseId);
@@ -41,9 +46,9 @@ exports.visitTable = async (req, res) => {
     return {
       _id: item._id,
       case: item.case,
-      postoperativedayValue: item.postoperativeday,
+      postoperativedayValue: getDaysAfterSurgery(surgerydtc, item.assessmentdtc),
       assessmentdtc: moment(item.assessmentdtc).format('ll'),
-      postoperativeday: helpers.getPostoperativeDayText(item.postoperativeday),
+      postoperativeday: helpers.getPostoperativeDayText(getDaysAfterSurgery(surgerydtc, item.assessmentdtc)),
       postoperative_1: item.postoperative_1 === true ? 'Yes' : 'No',
       postoperative_2: item.postoperative_2 === 0 ? 'Yes' : 'No',
       postoperative_2_1: match ? match.text : ''
@@ -68,7 +73,8 @@ exports.visitTable = async (req, res) => {
     config: getVisitTableConfig(req.user.language),
     buttonConfig: getButtonConfig(req.user.language),
     visitList: visitListFormated,
-    caseId: req.params.caseId
+    caseId: req.params.caseId,
+    canAdd: !!surgerydtc
   });
 };
 
