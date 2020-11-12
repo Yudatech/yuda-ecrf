@@ -175,11 +175,7 @@ exports.addDataToWorksheet = function (worksheet, commonColumnDefs, dataColumnDe
           }
         }
         else if (dataColumn.name === 'postoperativeday') {
-          const completeList = helpers.getCompletePostoperativeDayList();
-          const match = completeList.find(item => item.value === value);
-          if (match) {
-            value = match.text;
-          }
+          value = 'POD ' + value;
         }
       }
       dataToAdd[dataColumn.name] = value;

@@ -16,7 +16,7 @@ const config = {
   ],
   formConfigs: [{
     name: 'postoperativeday',
-    type: 'select',
+    type: 'textfield',
     text: {
       zh: '术后天数',
       en: 'Postoperative day (POD)'

@@ -181,8 +181,7 @@ exports.getPostoperativeDayConfig = async function (caseId, currentValue) {
 }
 
 function getPostoperativeDayText(postoperativeDayValue) {
-  const match = completeList.find(item => item.value === postoperativeDayValue - 1);
-  return match ? match.text : '';
+  return 'POD ' + postoperativeDayValue;
 }
 
 exports.getPostoperativeDayText = getPostoperativeDayText;

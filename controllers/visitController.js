@@ -104,12 +104,7 @@ exports.visitForm = async (req, res) => {
   const config = getVisitConfig(req.user.language);
   Object.keys(config.formConfigs).forEach((key) => {
     if (config.formConfigs[key].type === 'select') {
-      if (key === 'postoperativeday') {
-        config.formConfigs[key].options = postoperativedayConfig;
-      }
-      else {
-        config.formConfigs[key].options = decorationHelper[config.formConfigs[key].optionsGetter](req.user.language);
-      }
+      config.formConfigs[key].options = decorationHelper[config.formConfigs[key].optionsGetter](req.user.language);
     }
     if (key === 'assessmentdtc') {
       config.formConfigs[key].value = visit.assessmentdtc ? moment(visit.assessmentdtc).format('YYYY/MM/DD') : '';
@@ -117,6 +112,16 @@ exports.visitForm = async (req, res) => {
       config.formConfigs[key].extra = JSON.stringify({
         start: startDateStr
       });
+    }
+    else if (key === 'postoperativeday') {
+      const assessmentDate = visit.assessmentdtc;
+      if (surgerydtc && assessmentDate) {
+        const daysAfterSurgery = getDaysAfterSurgery(surgerydtc, assessmentDate);
+        config.formConfigs[key].value = 'Postoperative day (POD) ' + daysAfterSurgery;
+      }
+      else {
+        config.formConfigs[key].value = '';
+      }
     }
     else {
       config.formConfigs[key].value = visit[key];

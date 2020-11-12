@@ -1,4 +1,7 @@
-mixin _textfieldTemplate(config, disabled)
+mixin _textfieldTemplate(config, disabled, hideLabel)
   .form-group(id=`${config.name}-container` class=(config.hidden === true ? 'hidden' : ''))
-    label.control-label #{config.text}
-    input.form-control(disabled=disabled type="text" name=config.name value=config.value data-customrequired=config.required)
+    if hideLabel === true
+      label.control-label #{''}
+    if hideLabel !== true
+      label.control-label #{config.text}
+    input.form-control(disabled=disabled type="text" id=config.name name=config.name value=config.value data-customrequired=config.required)

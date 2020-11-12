@@ -6,12 +6,12 @@ include _numberfieldTemplate
 include _selectTemplate
 include _datetimeTemplate
 
-mixin _formTemplate(formConfig, disabled)
+mixin _formTemplate(formConfig, disabled, hideLabel)
   if formConfig.type === 'checkbox'
     +_checkboxTemplate(formConfig, disabled)
 
   else if formConfig.type === 'textfield'
-    +_textfieldTemplate(formConfig, disabled)
+    +_textfieldTemplate(formConfig, disabled, hideLabel)
 
   else if formConfig.type === 'textarea'
     +_textareaTemplate(formConfig, disabled)

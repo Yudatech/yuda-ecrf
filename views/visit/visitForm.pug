@@ -17,6 +17,10 @@ block case-content
 
         .row
           .col-sm-10
+            +_formTemplate(config.formConfigs.postoperativeday, true, true)
+
+        .row
+          .col-sm-10
             .form-group
               +_formTemplate(config.formConfigs.postoperative_1)
           .col-sm-2

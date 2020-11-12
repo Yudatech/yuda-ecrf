@@ -435,7 +435,6 @@ exports.validateVisitForm = async function (caseId, lang) {
   const visitList = await Visit.find({
     case: caseId
   });
-  const visitNameList = await helpers.getVisitNameList(caseId, lang);
   const visitValidateResult = initValidateResult(getCommitCaseConfigItem(commitCaseConfig.records, 'visit'));
 
   if (visitList.length === 0) {
@@ -469,12 +468,11 @@ exports.validateVisitForm = async function (caseId, lang) {
     visitValidateResult.children = [];
     visitList.forEach((visitItem) => {
       const daysAfterSurgery = getDaysAfterSurgery(surgerydtc, visitItem.assessmentdtc);
-      const visitNameItem = visitNameList.find((item) => item.value === daysAfterSurgery - 1);
       const visitItemValidateResult = {
         pass: true,
         linkBase: `/visit`,
         invalidFields: [],
-        text: visitNameItem.text
+        text: 'POD ' + daysAfterSurgery
       };
       extra.idToAppend = visitItem._id.toString();
       extra.postoperative_2 = visitItem.postoperative_2;
