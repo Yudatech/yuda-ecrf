@@ -3,7 +3,7 @@ const getOptionsLang = require('./configHelpers').getOptionsLang;
 const config = {
   title: {
     zh: '病理诊断',
-    en: 'Pathological diagnosis'
+    en: 'Pathological Diagnosis'
   },
   formConfigs: [{
     name: 'pathological_1',

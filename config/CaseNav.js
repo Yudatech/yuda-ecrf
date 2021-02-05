@@ -115,7 +115,7 @@ module.exports = [
   {
     title: {
       zh: '病理诊断',
-      en: 'Pathological diagnosis'
+      en: 'Pathological Diagnosis'
     },
     name: 'pathological',
     link: '/pathological'
