@@ -14,7 +14,7 @@ const config = {
     }],
     text: {
       zh: '病理诊断',
-      en: 'Pathological diagnosis'
+      en: 'Pathological diagnosis (ICD10/TNM)'
     }
   }],
   errors: []
