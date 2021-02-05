@@ -11,7 +11,7 @@ const config = {
       name: 'subtitle_1',
       text: {
         zh: '复诊（入组）',
-        en: 'The day prior to surgery'
+        en: 'Prior to surgery'
       }
     }
   ],
@@ -37,7 +37,7 @@ const config = {
     }],
     text: {
       zh: '肠道清洁',
-      en: 'Full bowel cleansing',
+      en: 'Full bowel cleansing (3-4 liter Movprep the evening before surgery and ad 1 liter in the morning as an option)',
       sv: 'Fullständig tarmregöring'
     }
   }, {
@@ -48,7 +48,7 @@ const config = {
     }],
     text: {
       zh: '预防性抗生素 (若使用抗生素，请完整填写《合并用药情况表》)',
-      en: 'Prophylactic Antibiotics'
+      en: 'Prophylactic Antibiotics (T. Bactrim forte/Eusaprim forte 1 x 1 and T. Metronidazole 500 mg 3 x 1, 2–4 h before surgery (if sulfa allergy give Zinacef 1.5 gx 1 IV and Metronidazole 1 gx 1 IV 30–60 min before surgery) If surgery is delayed more than 8 h after given T. Bactrim forte give a new dose prior surgery)'
     }
   }, {
     name: 'reviewcheck_4',
@@ -58,7 +58,7 @@ const config = {
     }],
     text: {
       zh: '预防性抗凝血药 (若使用抗凝血药，请完整填写《合并用药情况表》)',
-      en: 'Prophylactic Anti-Thrombotic therapy'
+      en: 'Trombosprofylax (Prophylactic Anti-Thrombotic therapy = Inj Innohep 4500 E /Fragmin 5000 E evening before surgery) '
     }
   }],
   errors: [{
