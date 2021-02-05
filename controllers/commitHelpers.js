@@ -417,7 +417,8 @@ exports.validateSurgeryForm = async function (caseId, lang) {
       surgery_4: surgeryItem.surgery_4,
       surgery_5: surgeryItem.surgery_5,
       surgery_6: surgeryItem.surgery_6,
-      surgery_16: surgeryItem.surgery_16
+      surgery_16: surgeryItem.surgery_16,
+      surgery_17: surgeryItem.surgery_17
     };
     const formConfigs = getSurgeryConfig(lang).formConfigs;
     doCommitValidationForWholeTable(caseId, surgeryValidateResult, commitCaseConfig, formConfigs, surgeryItem, extra);

@@ -11,7 +11,7 @@ const config = {
       name: 'subtitle_1',
       text: {
         zh: '肠切除部位',
-        en: 'Surgical Area'
+        en: 'Level of Anastomosis'
       }
     }
   ],
@@ -68,7 +68,7 @@ const config = {
     type: 'checkbox',
     commit: [{
       rule: 'atleast_one_true',
-      fields: 'surgery_4,surgery_5,surgery_6,surgery_16',
+      fields: 'surgery_4,surgery_5,surgery_6,surgery_16,surgery_17',
     }],
     text: {
       zh: '降结肠',
@@ -79,7 +79,7 @@ const config = {
     type: 'checkbox',
     commit: [{
       rule: 'atleast_one_true',
-      fields: 'surgery_4,surgery_5,surgery_6,surgery_16',
+      fields: 'surgery_4,surgery_5,surgery_6,surgery_16,surgery_17',
     }],
     text: {
       zh: '乙状结肠',
@@ -90,22 +90,33 @@ const config = {
     type: 'checkbox',
     commit: [{
       rule: 'atleast_one_true',
-      fields: 'surgery_4,surgery_5,surgery_6,surgery_16',
+      fields: 'surgery_4,surgery_5,surgery_6,surgery_16,surgery_17',
     }],
     text: {
       zh: '直肠上段 (距离肛缘11-15cm以上)',
-      en: 'Upper rectum (15 cm above the anal verge)'
+      en: 'Upper rectum (10 - 15 cm above the anal verge)'
     }
   }, {
     name: 'surgery_16',
     type: 'checkbox',
     commit: [{
       rule: 'atleast_one_true',
-      fields: 'surgery_4,surgery_5,surgery_6,surgery_16',
+      fields: 'surgery_4,surgery_5,surgery_6,surgery_16,surgery_17',
     }],
     text: {
       zh: '直肠下段',
-      en: 'Lower rectum (up to 15 cm above the anal verge)'
+      en: 'Lower rectum (0 - 5 cm above the anal verge)'
+    }
+  }, {
+    name: 'surgery_17',
+    type: 'checkbox',
+    commit: [{
+      rule: 'atleast_one_true',
+      fields: 'surgery_4,surgery_5,surgery_6,surgery_16,surgery_17',
+    }],
+    text: {
+      zh: '直肠下段',
+      en: 'Mid rectum (5 - 10 cm above the anal verge)'
     }
   }, {
     name: 'surgery_8',
