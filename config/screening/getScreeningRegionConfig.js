@@ -19,7 +19,7 @@ const config = {
     type: 'checkbox',
     commit: [{
       rule: 'atleast_one_true',
-      fields: 'region_3,region_4,region_5,region_6',
+      fields: 'region_3,region_4,region_5,region_6,region_7',
     }],
     text: {
       zh: '降结肠',
@@ -30,7 +30,7 @@ const config = {
     type: 'checkbox',
     commit: [{
       rule: 'atleast_one_true',
-      fields: 'region_3,region_4,region_5,region_6',
+      fields: 'region_3,region_4,region_5,region_6,region_7',
     }],
     text: {
       zh: '乙状结肠',
@@ -41,22 +41,33 @@ const config = {
     type: 'checkbox',
     commit: [{
       rule: 'atleast_one_true',
-      fields: 'region_3,region_4,region_5,region_6',
+      fields: 'region_3,region_4,region_5,region_6,region_7',
     }],
     text: {
-      zh: '直肠上段 (距离肛缘11-15cm以上)',
-      en: 'Upper rectum (15 cm above the anal verge)'
+      zh: '直肠上段 (距离肛缘10-15cm以上)',
+      en: 'Upper rectum (10 - 15 cm above the anal verge)'
     }
   }, {
     name: 'region_6',
     type: 'checkbox',
     commit: [{
       rule: 'atleast_one_true',
-      fields: 'region_3,region_4,region_5,region_6',
+      fields: 'region_3,region_4,region_5,region_6,region_7',
     }],
     text: {
       zh: '直肠下段',
-      en: 'Lower rectum (up to 15 cm above the anal verge)'
+      en: 'Lower rectum (0 - 5 cm above the anal verge)'
+    }
+  }, {
+    name: 'region_7',
+    type: 'checkbox',
+    commit: [{
+      rule: 'atleast_one_true',
+      fields: 'region_3,region_4,region_5,region_6,region_7',
+    }],
+    text: {
+      zh: '直肠中段',
+      en: 'Mid rectum (5 - 10 cm above the anal verge)'
     }
   }]
 };

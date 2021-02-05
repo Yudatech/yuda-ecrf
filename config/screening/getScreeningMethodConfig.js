@@ -10,7 +10,7 @@ const config = {
       name: 'subtitle_1',
       text: {
         zh: '诊断方法',
-        en: 'Diagnostic methods'
+        en: 'Examination methods'
       }
     }
   ],

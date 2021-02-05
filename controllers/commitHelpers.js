@@ -348,6 +348,7 @@ exports.validateScreeningForm = async function (caseId, lang) {
         extra.region_4 = screeningItem ? screeningItem.region_4 : false;
         extra.region_5 = screeningItem ? screeningItem.region_5 : false;
         extra.region_6 = screeningItem ? screeningItem.region_6 : false;
+        extra.region_7 = screeningItem ? screeningItem.region_7 : false;
       }
       else if (childResult.name === 'screening-dignose') {
         formConfigs = getScreeningDignoseConfig(lang).formConfigs;
