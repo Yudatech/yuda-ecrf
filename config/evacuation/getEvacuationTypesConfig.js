@@ -7,8 +7,14 @@ const evacuationTypes = [{
 }, {
   value: 1,
   text: {
-    zh: '手动移除或手术干预',
-    en: 'Manual removal or surgical intervention'
+    zh: '手动移除',
+    en: 'Manual removal'
+  }
+}, {
+  value: 2,
+  text: {
+    zh: '手术干预',
+    en: 'Surgical intervention'
   }
 }];
 
