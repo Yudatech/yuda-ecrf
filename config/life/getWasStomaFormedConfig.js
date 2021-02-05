@@ -8,10 +8,16 @@ const wasStomaFormed = [{
   value: 1,
   text: {
     zh: '暂时性的',
-    en: 'Temporary'
+    en: 'Temporary closed'
   }
 }, {
   value: 2,
+  text: {
+    zh: '暂时性的',
+    en: 'Temporary open'
+  }
+}, {
+  value: 3,
   text: {
     zh: '永久性的',
     en: 'Permanent'

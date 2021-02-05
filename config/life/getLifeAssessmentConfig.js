@@ -19,12 +19,6 @@ const config = {
       en: 'Healthcare utilization pattern assessment'
     }
   }, {
-    name: 'procedure',
-    text: {
-      zh: '执行以下步骤',
-      en: 'The following procedures were performed'
-    }
-  }, {
     name: 'complications',
     text: {
       zh: '根据Clavien-Dindo分类的并发症总数',
@@ -86,6 +80,14 @@ const config = {
       en: 'Stoma was formed'
     }
   }, {
+    name: 'healthcare_2_3',
+    type: 'textarea',
+    required: true,
+    text: {
+      zh: '造口的原因',
+      en: 'Reason for stoma'
+    }
+  }, {
     name: 'healthcare_3',
     type: 'checkbox',
     text: {
@@ -99,156 +101,6 @@ const config = {
     text: {
       zh: '就诊次数',
       en: 'Number of visits'
-    }
-  }, {
-    name: 'healthcare_4',
-    type: 'checkbox',
-    text: {
-      zh: '患者是否接受过与手术并发症有关的任何药物治疗',
-      en: 'The patient has received pharmacological treatment related to surgical complications'
-    }
-  }, {
-    name: 'healthcare_4_1',
-    type: 'textarea',
-    required: true,
-    text: {
-      zh: '请注明诊断药理剂，剂量方案，持续时间',
-      en: 'Please specify diagnosis, pharmacological agent, dose regimen, duration'
-    }
-  }, {
-    name: 'procedure_1',
-    type: 'checkbox',
-    text: {
-      zh: 'X射线',
-      en: 'X-ray'
-    }
-  }, {
-    name: 'procedure_1_1',
-    type: 'numberfield',
-    required: true,
-    text: {
-      zh: 'X射线次数',
-      en: 'Numbers of X-ray'
-    }
-  }, {
-    name: 'procedure_2',
-    type: 'checkbox',
-    text: {
-      zh: 'CT',
-      en: 'CT'
-    }
-  }, {
-    name: 'procedure_2_1',
-    type: 'numberfield',
-    required: true,
-    text: {
-      zh: 'CT次数',
-      en: 'Numbers of CT'
-    }
-  }, {
-    name: 'procedure_3',
-    type: 'checkbox',
-    text: {
-      zh: 'MRI',
-      en: 'MRI'
-    }
-  }, {
-    name: 'procedure_3_1',
-    type: 'numberfield',
-    required: true,
-    text: {
-      zh: 'MRI次数',
-      en: 'Numbers of MRI'
-    }
-  }, {
-    name: 'procedure_4',
-    type: 'checkbox',
-    text: {
-      zh: '内镜检查',
-      en: 'Endoscopy'
-    }
-  }, {
-    name: 'procedure_4_1',
-    type: 'numberfield',
-    required: true,
-    text: {
-      zh: '内镜检查次数',
-      en: 'Numbers of Endoscopy'
-    }
-  }, {
-    name: 'complications_1',
-    type: 'checkbox',
-    text: {
-      zh: 'I级并发症',
-      en: 'Grade I complications'
-    }
-  }, {
-    name: 'complications_1_1',
-    type: 'numberfield',
-    required: true,
-    text: {
-      zh: 'I级并发症总数',
-      en: 'Total number of Grade I complications'
-    }
-  }, {
-    name: 'complications_2',
-    type: 'checkbox',
-    text: {
-      zh: 'II级并发症',
-      en: 'Grade II complications'
-    }
-  }, {
-    name: 'complications_2_1',
-    type: 'numberfield',
-    required: true,
-    text: {
-      zh: 'II级并发症总数',
-      en: 'Total number of Grade II complications'
-    }
-  }, {
-    name: 'complications_3',
-    type: 'checkbox',
-    text: {
-      zh: 'III级并发症',
-      en: 'Grade III complications'
-    }
-  }, {
-    name: 'complications_3_1',
-    type: 'numberfield',
-    required: true,
-    text: {
-      zh: 'III级并发症总数',
-      en: 'Total number of Grade III complications'
-    }
-  }, {
-    name: 'complications_4',
-    type: 'checkbox',
-    text: {
-      zh: 'IV级并发症',
-      en: 'Grade IV complications'
-    }
-  }, {
-    name: 'complications_4_1',
-    type: 'numberfield',
-    required: true,
-    text: {
-      zh: 'IV级并发症总数',
-      en: 'Total number of Grade IV complications'
-    }
-  }, {
-    name: 'complications_5',
-    type: 'checkbox',
-    text: {
-      zh: 'V级并发症',
-      en: 'Grade V complications'
-    }
-  }, {
-    name: 'complications_5_1',
-    type: 'numberfield',
-    required: true,
-    text: {
-      zh: 'V级并发症总数',
-      en: 'Total number of Grade V complications'
     }
   }],
   errors: []
