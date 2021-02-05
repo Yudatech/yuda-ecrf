@@ -141,6 +141,17 @@ const config = {
       en: 'Type of surgery'
     }
   }, {
+    name: 'surgery_18',
+    type: 'select',
+    commit: [{
+      rule: 'required'
+    }],
+    optionsGetter: 'getSurgeryStomaConfig',
+    text: {
+      zh: '气孔',
+      en: 'Stoma'
+    }
+  }, {
     name: 'surgery_15',
     type: 'select',
     commit: [{
@@ -155,9 +166,12 @@ const config = {
     name: 'surgery_10',
     type: 'numberfield',
     step: 'any',
+    commit: [{
+      rule: 'required'
+    }],
     text: {
       zh: '术中吻合口完整性压力(mbar)',
-      en: 'C-REX integrity pressure test (mbar) (optional)'
+      en: 'C-REX integrity pressure test (mbar)'
     }
   }, {
     name: 'surgery_11',

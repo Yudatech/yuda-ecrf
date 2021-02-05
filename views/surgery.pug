@@ -82,6 +82,12 @@ block case-content
 
         .row
           .col-sm-10
+            +_formTemplate(config.formConfigs.surgery_18)
+          .col-sm-2
+            +_questionBtn(config.formConfigs.surgery_18, questionFields)
+
+        .row
+          .col-sm-10
             +_formTemplate(config.formConfigs.surgery_8)
           .col-sm-2
             +_questionBtn(config.formConfigs.surgery_8, questionFields)

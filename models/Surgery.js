@@ -28,6 +28,7 @@ const surgerySchema = new Schema({
   surgery_6: Boolean,
   surgery_16: Boolean,
   surgery_17: Boolean,
+  surgery_18: Number,
   // 吻合方式
   surgery_8: Number,
   // 手术方式
