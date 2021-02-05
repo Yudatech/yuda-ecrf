@@ -10,20 +10,31 @@ const config = {
       name: 'subtitle_1',
       text: {
         zh: '手术诊断/指征',
-        en: 'Diagnosis/Planned surgery'
+        en: 'Preoperative diagnosis'
       }
     }
   ],
   formConfigs: [{
     name: 'dignose_1',
-    type: 'textarea',
-    required: true,
+    type: 'select',
     commit: [{
       rule: 'required'
     }],
+    optionsGetter: 'getPreoperativeDiagnosisConfig',
     text: {
-      zh: '手术诊断/指征',
-      en: 'Diagnosis (ICD-10)/Planned surgery'
+      zh: '术前诊断',
+      en: 'Preoperative diagnosis'
+    }
+  }, {
+    name: 'dignose_2',
+    type: 'select',
+    commit: [{
+      rule: 'required'
+    }],
+    optionsGetter: 'getASAClassificationConfig',
+    text: {
+      zh: 'ASA分类',
+      en: 'ASA-classification'
     }
   }]
 };

@@ -70,7 +70,8 @@ const screeningSchema = new Schema({
   region_6: Boolean,
   region_7: Boolean,
   // 病理诊断
-  dignose_1: String
+  dignose_1: Number,
+  dignose_2: Number,
 });
 
 screeningSchema.plugin(mongodbErrorHandler);

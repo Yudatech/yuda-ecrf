@@ -25,6 +25,8 @@ const getHasPostoperativeComplicationsConfig = require('../config/visit/getHasPo
 const getEvacuationTypesConfig = require('../config/evacuation/getEvacuationTypesConfig');
 const getDiscontinuationTypeConfig = require('../config/getDiscontinuationTypeConfig');
 const getPriorRadiationTherapyConfig = require('../config/screening/getPriorRadiationTherapyConfig');
+const getPreoperativeDiagnosisConfig = require('../config/screening/getPreoperativeDiagnosisConfig');
+const getASAClassificationConfig = require('../config/screening/getASAClassificationConfig');
 
 module.exports = {
   'getSexConfig': getSexConfig,
@@ -53,5 +55,7 @@ module.exports = {
   'getEvacuationTypesConfig': getEvacuationTypesConfig,
   'getDiscontinuationTypeConfig': getDiscontinuationTypeConfig,
   'getPriorRadiationTherapyConfig': getPriorRadiationTherapyConfig,
-  'getHasPostoperativeComplicationsConfig': getHasPostoperativeComplicationsConfig
+  'getHasPostoperativeComplicationsConfig': getHasPostoperativeComplicationsConfig,
+  'getPreoperativeDiagnosisConfig': getPreoperativeDiagnosisConfig,
+  'getASAClassificationConfig': getASAClassificationConfig
 };

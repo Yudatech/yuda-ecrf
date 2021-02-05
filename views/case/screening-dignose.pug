@@ -16,5 +16,11 @@ block case-content
           .col-sm-2
             +_questionBtn(config.formConfigs.dignose_1, questionFields)
 
+        .row
+          .col-sm-10
+            +_formTemplate(config.formConfigs.dignose_2)
+          .col-sm-2
+            +_questionBtn(config.formConfigs.dignose_2, questionFields)
+
       if formDisabled === false
         input.btn.btn-default.yuda-input-btn(type="submit" value=buttonConfig.buttons.save.text)
