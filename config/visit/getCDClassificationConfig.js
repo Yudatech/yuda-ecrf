@@ -8,25 +8,7 @@ const cdClassifications = [{
   value: 1,
   text: {
     zh: 'II级',
-    en: 'Grade II'
-  }
-}, {
-  value: 2,
-  text: {
-    zh: 'III级',
-    en: 'Grade III'
-  }
-}, {
-  value: 3,
-  text: {
-    zh: 'IV级',
-    en: 'Grade IV'
-  }
-}, {
-  value: 4,
-  text: {
-    zh: 'V级',
-    en: 'Grade V'
+    en: 'Grade II - V'
   }
 }];
 

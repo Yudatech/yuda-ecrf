@@ -39,6 +39,13 @@ block case-content
           .col-sm-2
             +_questionBtn(config.formConfigs.postoperative_2_1, questionFields)
 
+        - config.formConfigs.postoperative_2_1_1.hidden = !(config.formConfigs.postoperative_2_1.value === 1)
+        .row
+          .col-sm-10
+            +_formTemplate(config.formConfigs.postoperative_2_1_1)
+          .col-sm-2
+            +_questionBtn(config.formConfigs.postoperative_2_1_1, questionFields)
+
 
       .row.hidden(id="visit-error-1")
         .col-sm-12

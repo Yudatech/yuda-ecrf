@@ -15,7 +15,8 @@ const visitSchema = new Schema({
   },
   postoperative_1: Boolean,
   postoperative_2: Number,
-  postoperative_2_1: Number
+  postoperative_2_1: Number,
+  postoperative_2_1_1: Number,
 });
 
 visitSchema.plugin(mongodbErrorHandler);

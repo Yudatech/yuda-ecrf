@@ -22,6 +22,7 @@ const getSurgeryStomaConfig = require('../config/surgery/getSurgeryStomaConfig')
 const getLARSScoreConfig = require('../config/life/getLARSScoreConfig');
 const getWasStomaFormedConfig = require('../config/life/getWasStomaFormedConfig');
 const getCDClassificationConfig = require('../config/visit/getCDClassificationConfig');
+const getPostoperativeComplicationRequiringTreatmentConfig = require('../config/visit/getPostoperativeComplicationRequiringTreatmentConfig');
 const getHasPostoperativeComplicationsConfig = require('../config/visit/getHasPostoperativeComplicationsConfig');
 const getEvacuationTypesConfig = require('../config/evacuation/getEvacuationTypesConfig');
 const getDiscontinuationTypeConfig = require('../config/getDiscontinuationTypeConfig');
@@ -60,4 +61,5 @@ module.exports = {
   'getPreoperativeDiagnosisConfig': getPreoperativeDiagnosisConfig,
   'getASAClassificationConfig': getASAClassificationConfig,
   'getSurgeryStomaConfig': getSurgeryStomaConfig,
+  'getPostoperativeComplicationRequiringTreatmentConfig': getPostoperativeComplicationRequiringTreatmentConfig,
 };

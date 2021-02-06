@@ -12,6 +12,7 @@ function initVisitHandlers() {
 
   $('#postoperative_2_1').change(function () {
     setErrorElementVisibility();
+    setPostoperative_2_1ChildrenVisibility();
   });
   setErrorElementVisibility();
 
@@ -61,6 +62,12 @@ function setPostoperative_2_1Visibility() {
   const value = $('#postoperative_2').val();
   const checked = value === '0'
   setFieldVisibility('postoperative_2_1', checked);
+}
+
+function setPostoperative_2_1ChildrenVisibility() {
+  const value = $('#postoperative_2_1').val();
+  const checked = value === '1'
+  setFieldVisibility('postoperative_2_1_1', checked);
 }
 
 export default initVisitHandlers;
