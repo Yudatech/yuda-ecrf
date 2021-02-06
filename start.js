@@ -40,6 +40,7 @@ require("./models/Question");
 require("./models/History");
 require("./models/Evacuation");
 require("./models/Pathological");
+require("./models/Followup");
 
 // Start our app!
 const app = require("./app");
