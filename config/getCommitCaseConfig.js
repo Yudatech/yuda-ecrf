@@ -140,6 +140,14 @@ const config = {
     total: 1,
     linkBase: '/pathological'
   }, {
+    text: {
+      zh: '30-days Follow-up',
+      en: '30-days Follow-up'
+    },
+    name: 'followup',
+    total: 1,
+    linkBase: '/followup'
+  }, {
     name: 'ae',
     total: 13,
     text: {

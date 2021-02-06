@@ -19,6 +19,7 @@ const screeningController = require('../controllers/screeningController');
 const lifeAssessmentController = require('../controllers/lifeAssessmentController');
 const evacuationController = require('../controllers/evacuationController');
 const pathologicalController = require('../controllers/pathologicalController');
+const followupController = require('../controllers/followupController');
 
 router.get('/', authController.isLoggedIn, mainController.homePage);
 
@@ -323,6 +324,21 @@ router.post('/pathological/:caseId',
   catchErrors(authController.checkCaseStatus),
   catchErrors(authController.checkCasePermission),
   catchErrors(pathologicalController.updatePathological)
+);
+
+// Router for followup
+router.get('/followup/:caseId',
+  authController.isLoggedIn,
+  catchErrors(authController.checkCaseStatus),
+  catchErrors(authController.checkCasePermission),
+  catchErrors(questionController.checkQuestionedFields),
+  catchErrors(followupController.followupForm)
+);
+router.post('/followup/:caseId',
+  authController.isLoggedIn,
+  catchErrors(authController.checkCaseStatus),
+  catchErrors(authController.checkCasePermission),
+  catchErrors(followupController.updateFollowup)
 );
 
 // Router for ae

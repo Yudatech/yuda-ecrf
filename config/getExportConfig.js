@@ -62,6 +62,13 @@ const config = {
         zh: '取出植入物',
         en: 'Evacuation of the implant'
       }
+    },
+    {
+      name: 'followup',
+      text: {
+        zh: '30-days Follow-up',
+        en: '30-days Follow-up'
+      }
     }
   ],
   common: [{

@@ -1,7 +1,6 @@
 import requireValidator from './validators/requireValidator';
 import setFieldVisibility from './helpers/setFieldVisibility';
 import setLabelVisibility from './helpers/setLabelVisibility';
-import setWarningStyle from './helpers/setWarningStyle';
 
 function initVisitHandlers() {
   const postoperative_2El = $('#postoperative_2');

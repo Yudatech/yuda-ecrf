@@ -1,0 +1,183 @@
+extends caseLayout
+
+include mixins/_formTemplate
+include mixins/_questionBtn
+
+block case-content
+  .case-content
+    form.form-horizontal(id="followup-form" action=`/followup/${caseId}` method="POST")
+      - const formDisabled = !((locals.case.status === 'open' && locals.user.role === 'cra') || locals.user.role === 'admin')
+      fieldset(disabled=formDisabled)
+        legend #{config.subtitles.subtitle_1.text}
+        .row
+          .col-sm-10
+            +_formTemplate(config.formConfigs.followup_1)
+          .col-sm-2
+            +_questionBtn(config.formConfigs.followup_1, questionFields)
+
+        br
+
+        label.control-label(id=`followup_label_1`) #{config.subtitles.subtitle_2.text}
+
+        .row
+          .col-sm-10
+            +_formTemplate(config.formConfigs.followup_2)
+          .col-sm-2
+            +_questionBtn(config.formConfigs.followup_2, questionFields)
+
+        .row
+          .col-sm-10
+            +_formTemplate(config.formConfigs.followup_3)
+          .col-sm-2
+            +_questionBtn(config.formConfigs.followup_3, questionFields)
+
+        .row
+          .col-sm-10
+            +_formTemplate(config.formConfigs.followup_4)
+          .col-sm-2
+            +_questionBtn(config.formConfigs.followup_4, questionFields)
+
+        br
+
+        label.control-label(id=`followup_label_2`) #{config.subtitles.subtitle_3.text}
+
+        .row
+          .col-sm-10
+            +_formTemplate(config.formConfigs.followup_5)
+          .col-sm-2
+            +_questionBtn(config.formConfigs.followup_5, questionFields)
+
+        .row
+          .col-sm-10
+            +_formTemplate(config.formConfigs.followup_6)
+          .col-sm-2
+            +_questionBtn(config.formConfigs.followup_6, questionFields)
+
+        .row
+          .col-sm-10
+            +_formTemplate(config.formConfigs.followup_7)
+          .col-sm-2
+            +_questionBtn(config.formConfigs.followup_7, questionFields)
+
+        .row
+          .col-sm-10
+            +_formTemplate(config.formConfigs.followup_8)
+          .col-sm-2
+            +_questionBtn(config.formConfigs.followup_8, questionFields)
+
+        .row
+          .col-sm-10
+            +_formTemplate(config.formConfigs.followup_9)
+          .col-sm-2
+            +_questionBtn(config.formConfigs.followup_9, questionFields)
+
+        br
+
+        label.control-label(id=`followup_label_3`) #{config.subtitles.subtitle_4.text}
+
+        .row
+          .col-sm-10
+            +_formTemplate(config.formConfigs.followup_10)
+          .col-sm-2
+            +_questionBtn(config.formConfigs.followup_10, questionFields)
+
+        .row
+          .col-sm-10
+            +_formTemplate(config.formConfigs.followup_11)
+          .col-sm-2
+            +_questionBtn(config.formConfigs.followup_11, questionFields)
+
+        br
+
+        label.control-label(id=`followup_label_4`) #{config.subtitles.subtitle_5.text}
+
+        .row
+          .col-sm-10
+            +_formTemplate(config.formConfigs.followup_12)
+          .col-sm-2
+            +_questionBtn(config.formConfigs.followup_12, questionFields)
+
+        .row
+          .col-sm-10
+            +_formTemplate(config.formConfigs.followup_13)
+          .col-sm-2
+            +_questionBtn(config.formConfigs.followup_13, questionFields)
+
+        .row
+          .col-sm-10
+            +_formTemplate(config.formConfigs.followup_14)
+          .col-sm-2
+            +_questionBtn(config.formConfigs.followup_14, questionFields)
+
+        .row
+          .col-sm-10
+            +_formTemplate(config.formConfigs.followup_15)
+          .col-sm-2
+            +_questionBtn(config.formConfigs.followup_15, questionFields)
+
+        .row
+          .col-sm-10
+            +_formTemplate(config.formConfigs.followup_16)
+          .col-sm-2
+            +_questionBtn(config.formConfigs.followup_16, questionFields)
+
+        .row
+          .col-sm-10
+            +_formTemplate(config.formConfigs.followup_17)
+          .col-sm-2
+            +_questionBtn(config.formConfigs.followup_17, questionFields)
+
+        br
+
+        .row
+          .col-sm-10
+            +_formTemplate(config.formConfigs.followup_18)
+          .col-sm-2
+            +_questionBtn(config.formConfigs.followup_18, questionFields)
+
+        - config.formConfigs.followup_18_1.hidden = !(config.formConfigs.followup_18.value > 0)
+        .row
+          .col-sm-10
+            +_formTemplate(config.formConfigs.followup_18_1)
+          .col-sm-2
+            +_questionBtn(config.formConfigs.followup_18_1, questionFields)
+
+        br
+
+        .row
+          .col-sm-10
+            +_formTemplate(config.formConfigs.followup_19)
+          .col-sm-2
+            +_questionBtn(config.formConfigs.followup_19, questionFields)
+
+      if formDisabled === false
+        input.btn.btn-default.yuda-input-btn(id="followup-submit-btn" type="submit" value=buttonConfig.buttons.save.text)
+
+      br
+      br
+      br
+      span #{"Explanation of Clavien grading:"}
+      br
+      span
+        b #{"Grade 2: "}
+        span #{"Pharmacological treatment was required including blood transfusion or parenteral nutrition. Exceptions: antiemetics, antipyretics, analgesics, diuretics, electrolyte replacement."}
+      br
+      span
+        b #{"Grade 3a: "}
+        span #{"Complication requiring surgical, endoscopic or radiological (percutaneous drainage) treatment without anesthesia."}
+      br
+      span
+        b #{"Grade 3b: "}
+        span #{"Complication requiring surgical, endoscopic or radiological treatment under anesthesia."}
+      br
+      span
+        b #{"Grade 4a: "}
+        span #{"Life-threatening complication (incl. CNS) that required intensive care with failure of an organ (incl. Dialysis)."}
+      br
+      span
+        b #{"Grade 4b: "}
+        span #{"Life-threatening complication (incl. CNS) that required intensive care with multi-organ failure."}
+      br
+      span
+        b #{"Grade 5: "}
+        span #{"Dead."}

@@ -11,6 +11,6 @@ const followupSchema = new Schema({
   },
 });
 
-visitSchema.plugin(mongodbErrorHandler);
+followupSchema.plugin(mongodbErrorHandler);
 
 module.exports = mongoose.model('Followup', followupSchema);
