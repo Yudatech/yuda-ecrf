@@ -12,12 +12,14 @@ function initVisitHandlers() {
   setPostoperative_2_1Visibility();
 
   $('#postoperative_2_1').change(function () {
-    setErrorElementVisibility();
     setPostoperative_2_1ChildrenVisibility();
   });
 
   $('input[type=radio][name=postoperative_2_1_18]').change(function () {
     setPostoperative_2_18ChildrenVisibility();
+  });
+  $('input[type=radio]').change(function () {
+    setErrorElementVisibility();
   });
   setErrorElementVisibility();
 
@@ -48,12 +50,17 @@ function initVisitHandlers() {
 function setErrorElementVisibility() {
   const errorEl1 = $('#visit-error-1');
   const errorEl2 = $('#visit-error-2');
-  const postoperative_2_1Value = $('#postoperative_2_1').val();
-  if (postoperative_2_1Value === '1' || postoperative_2_1Value === '2') {
+  const children = ['postoperative_2_1_2', 'postoperative_2_1_3', 'postoperative_2_1_4', 'postoperative_2_1_5', 'postoperative_2_1_6', 'postoperative_2_1_7', 'postoperative_2_1_8', 'postoperative_2_1_9', 'postoperative_2_1_10', 'postoperative_2_1_11', 'postoperative_2_1_12', 'postoperative_2_1_13', 'postoperative_2_1_14', 'postoperative_2_1_15', 'postoperative_2_1_16', 'postoperative_2_1_17', 'postoperative_2_1_18'];
+  const values = children.map(function (child) {
+    return parseInt($(`input[type=radio][name=${child}]:checked`).val());
+  });
+  const maxValue = Math.max(...values);
+
+  if (maxValue >= 1 && maxValue <= 3) {
     errorEl1.removeClass('hidden');
     errorEl2.addClass('hidden');
   }
-  else if (postoperative_2_1Value === '3' || postoperative_2_1Value === '4') {
+  else if (maxValue > 3) {
     errorEl2.removeClass('hidden');
     errorEl1.addClass('hidden');
   }
@@ -70,8 +77,8 @@ function setPostoperative_2_1Visibility() {
 }
 
 function setPostoperative_2_18ChildrenVisibility() {
-  const value = $('input[type=radio][name=postoperative_2_1_18]').val();
-  const checked = value > 0
+  const value = $('input[type=radio][name=postoperative_2_1_18]:checked').val();
+  const checked = parseInt(value) > 0
   setFieldVisibility('postoperative_2_1_18_1', checked);
 }
 
@@ -79,7 +86,7 @@ function setPostoperative_2_1ChildrenVisibility() {
   const value = $('#postoperative_2_1').val();
   const checked = value === '1';
   const labels = ['postoperative_2_1_label_1', 'postoperative_2_1_label_2', 'postoperative_2_1_label_3', 'postoperative_2_1_label_4'];
-  const children = ['postoperative_2_1_1', 'postoperative_2_1_2', 'postoperative_2_1_3', 'postoperative_2_1_4', 'postoperative_2_1_5', 'postoperative_2_1_6', 'postoperative_2_1_7', 'postoperative_2_1_8', 'postoperative_2_1_9', 'postoperative_2_1_10', 'postoperative_2_1_11', 'postoperative_2_1_12', 'postoperative_2_1_13', 'postoperative_2_1_14', 'postoperative_2_1_15', 'postoperative_2_1_16', 'postoperative_2_1_17', 'postoperative_2_1_18', 'postoperative_2_1_18'];
+  const children = ['postoperative_2_1_1', 'postoperative_2_1_2', 'postoperative_2_1_3', 'postoperative_2_1_4', 'postoperative_2_1_5', 'postoperative_2_1_6', 'postoperative_2_1_7', 'postoperative_2_1_8', 'postoperative_2_1_9', 'postoperative_2_1_10', 'postoperative_2_1_11', 'postoperative_2_1_12', 'postoperative_2_1_13', 'postoperative_2_1_14', 'postoperative_2_1_15', 'postoperative_2_1_16', 'postoperative_2_1_17', 'postoperative_2_1_18', 'postoperative_2_1_19'];
   children.forEach(function (child) {
     setFieldVisibility(child, checked);
   });
