@@ -3,6 +3,8 @@ const getAbdominalExamResultConfig = require('../config/common/getAbdominalExamR
 const getLabResultEvaluationConfig = require('../config/common/getLabResultEvaluationConfig');
 const getAssistantExamResultConfig = require('../config/common/getAssistantExamResultConfig');
 const getClinicalStageConfig = require('../config/common/getClinicalStageConfig');
+const getClavienGradingConfig = require('../config/common/getClavienGradingConfig');
+const getYesNoConfig = require('../config/common/getYesNoConfig');
 const getAeLevelConfig = require('../config/ae/getAeLevelConfig');
 const getAeRelConfig = require('../config/ae/getAeRelConfig');
 const getAeResConfig = require('../config/ae/getAeResConfig');
@@ -33,6 +35,8 @@ const getASAClassificationConfig = require('../config/screening/getASAClassifica
 module.exports = {
   'getSexConfig': getSexConfig,
   'getAbdominalExamResultConfig': getAbdominalExamResultConfig,
+  'getClavienGradingConfig': getClavienGradingConfig,
+  'getYesNoConfig': getYesNoConfig,
   'getLabResultEvaluationConfig': getLabResultEvaluationConfig,
   'getAssistantExamResultConfig': getAssistantExamResultConfig,
   'getClinicalStageConfig': getClinicalStageConfig,

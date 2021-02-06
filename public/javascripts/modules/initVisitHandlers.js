@@ -1,5 +1,6 @@
 import requireValidator from './validators/requireValidator';
 import setFieldVisibility from './helpers/setFieldVisibility';
+import setLabelVisibility from './helpers/setLabelVisibility';
 import setWarningStyle from './helpers/setWarningStyle';
 
 function initVisitHandlers() {
@@ -13,6 +14,10 @@ function initVisitHandlers() {
   $('#postoperative_2_1').change(function () {
     setErrorElementVisibility();
     setPostoperative_2_1ChildrenVisibility();
+  });
+
+  $('input[type=radio][name=postoperative_2_1_18]').change(function () {
+    setPostoperative_2_18ChildrenVisibility();
   });
   setErrorElementVisibility();
 
@@ -64,10 +69,23 @@ function setPostoperative_2_1Visibility() {
   setFieldVisibility('postoperative_2_1', checked);
 }
 
+function setPostoperative_2_18ChildrenVisibility() {
+  const value = $('input[type=radio][name=postoperative_2_1_18]').val();
+  const checked = value > 0
+  setFieldVisibility('postoperative_2_1_18_1', checked);
+}
+
 function setPostoperative_2_1ChildrenVisibility() {
   const value = $('#postoperative_2_1').val();
-  const checked = value === '1'
-  setFieldVisibility('postoperative_2_1_1', checked);
+  const checked = value === '1';
+  const labels = ['postoperative_2_1_label_1', 'postoperative_2_1_label_2', 'postoperative_2_1_label_3', 'postoperative_2_1_label_4'];
+  const children = ['postoperative_2_1_1', 'postoperative_2_1_2', 'postoperative_2_1_3', 'postoperative_2_1_4', 'postoperative_2_1_5', 'postoperative_2_1_6', 'postoperative_2_1_7', 'postoperative_2_1_8', 'postoperative_2_1_9', 'postoperative_2_1_10', 'postoperative_2_1_11', 'postoperative_2_1_12', 'postoperative_2_1_13', 'postoperative_2_1_14', 'postoperative_2_1_15', 'postoperative_2_1_16', 'postoperative_2_1_17', 'postoperative_2_1_18', 'postoperative_2_1_18'];
+  children.forEach(function (child) {
+    setFieldVisibility(child, checked);
+  });
+  labels.forEach(function (label) {
+    setLabelVisibility(label, checked);
+  })
 }
 
 export default initVisitHandlers;

@@ -103,7 +103,7 @@ exports.visitForm = async (req, res) => {
 
   const config = getVisitConfig(req.user.language);
   Object.keys(config.formConfigs).forEach((key) => {
-    if (config.formConfigs[key].type === 'select') {
+    if (config.formConfigs[key].type === 'select' || config.formConfigs[key].type === 'radio') {
       config.formConfigs[key].options = decorationHelper[config.formConfigs[key].optionsGetter](req.user.language);
     }
     if (key === 'assessmentdtc') {
