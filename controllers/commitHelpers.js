@@ -98,6 +98,12 @@ function doConditionalAtleastOneCheck(key, obj, rule) {
   }
 }
 
+function doAtleastOneCheck(key, obj, rule) {
+  const fields = rule.fields.split(',');
+  const match = fields.find(field => obj[field])
+  return match !== undefined;
+}
+
 function doConditionalAtleastOneTrueCheck(key, obj, rule) {
   const conditionField = rule.conditionField;
   const conditionValue = rule.conditionValue;
@@ -266,6 +272,9 @@ function doCommitValidation(caseId, key, obj, rules, extra, validateResult) {
     }
     else if (ruleName === 'conditional_atleast_one') {
       result = doConditionalAtleastOneCheck(key, obj, ruleConfig);
+    }
+    else if (ruleName === 'atleast_one') {
+      result = doAtleastOneCheck(key, obj, ruleConfig);
     }
     else if (ruleName === 'conditional_atleast_one_true') {
       result = doConditionalAtleastOneTrueCheck(key, obj, ruleConfig);
