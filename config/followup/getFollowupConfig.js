@@ -36,6 +36,12 @@ const config = {
         zh: 'Surgical',
         en: 'Surgical'
       }
+    }, {
+      name: 'subtitle_6',
+      text: {
+        zh: 'Continued planning/treatment',
+        en: 'Continued planning/treatment'
+      }
     }
   ],
   formConfigs: [{
@@ -491,6 +497,523 @@ const config = {
     text: {
       zh: 'Cause of death:',
       en: 'Cause of death:'
+    }
+  }, {
+    name: 'followup_24',
+    type: 'select',
+    required: true,
+    optionsGetter: 'getDischargedToConfig',
+    commit: [{
+      rule: 'required',
+    }],
+    text: {
+      zh: 'Discharged to',
+      en: 'Discharged to'
+    }
+  }, {
+    name: 'followup_25',
+    type: 'date',
+    commit: [{
+      rule: 'required',
+    }],
+    text: {
+      zh: 'Discharged date',
+      en: 'Discharged date'
+    }
+  }, {
+    name: 'followup_26',
+    type: 'select',
+    required: true,
+    optionsGetter: 'getYesNoConfig',
+    commit: [{
+      rule: 'required',
+    }],
+    text: {
+      zh: 'Remote metastasis diagnosed',
+      en: 'Remote metastasis diagnosed'
+    }
+  }, {
+    name: 'followup_26_1',
+    type: 'checkbox',
+    commit: [{
+      rule: 'conditional_atleast_one_true',
+      conditionField: 'followup_26',
+      conditionValue: 1,
+      fields: 'followup_26_1,followup_26_2,followup_26_3,followup_26_4,followup_26_5,followup_26_6,followup_26_7,followup_26_8,followup_26_9,followup_26_10,followup_26_11,followup_26_12,followup_26_13,followup_26_14',
+    }],
+    text: {
+      zh: 'Liver',
+      en: 'Liver'
+    }
+  }, {
+    name: 'followup_26_2',
+    type: 'checkbox',
+    commit: [{
+      rule: 'conditional_atleast_one_true',
+      conditionField: 'followup_26',
+      conditionValue: 1,
+      fields: 'followup_26_1,followup_26_2,followup_26_3,followup_26_4,followup_26_5,followup_26_6,followup_26_7,followup_26_8,followup_26_9,followup_26_10,followup_26_11,followup_26_12,followup_26_13,followup_26_14',
+    }],
+    text: {
+      zh: 'Lung',
+      en: 'Lung'
+    }
+  }, {
+    name: 'followup_26_3',
+    type: 'checkbox',
+    commit: [{
+      rule: 'conditional_atleast_one_true',
+      conditionField: 'followup_26',
+      conditionValue: 1,
+      fields: 'followup_26_1,followup_26_2,followup_26_3,followup_26_4,followup_26_5,followup_26_6,followup_26_7,followup_26_8,followup_26_9,followup_26_10,followup_26_11,followup_26_12,followup_26_13,followup_26_14',
+    }],
+    text: {
+      zh: 'Pleura',
+      en: 'Pleura'
+    }
+  }, {
+    name: 'followup_26_4',
+    type: 'checkbox',
+    commit: [{
+      rule: 'conditional_atleast_one_true',
+      conditionField: 'followup_26',
+      conditionValue: 1,
+      fields: 'followup_26_1,followup_26_2,followup_26_3,followup_26_4,followup_26_5,followup_26_6,followup_26_7,followup_26_8,followup_26_9,followup_26_10,followup_26_11,followup_26_12,followup_26_13,followup_26_14',
+    }],
+    text: {
+      zh: 'Peritoneum',
+      en: 'Peritoneum'
+    }
+  }, {
+    name: 'followup_26_5',
+    type: 'checkbox',
+    commit: [{
+      rule: 'conditional_atleast_one_true',
+      conditionField: 'followup_26',
+      conditionValue: 1,
+      fields: 'followup_26_1,followup_26_2,followup_26_3,followup_26_4,followup_26_5,followup_26_6,followup_26_7,followup_26_8,followup_26_9,followup_26_10,followup_26_11,followup_26_12,followup_26_13,followup_26_14',
+    }],
+    text: {
+      zh: 'Ovarian',
+      en: 'Ovarian'
+    }
+  }, {
+    name: 'followup_26_6',
+    type: 'checkbox',
+    commit: [{
+      rule: 'conditional_atleast_one_true',
+      conditionField: 'followup_26',
+      conditionValue: 1,
+      fields: 'followup_26_1,followup_26_2,followup_26_3,followup_26_4,followup_26_5,followup_26_6,followup_26_7,followup_26_8,followup_26_9,followup_26_10,followup_26_11,followup_26_12,followup_26_13,followup_26_14',
+    }],
+    text: {
+      zh: 'lymph nodes paraaortic / central abdomen',
+      en: 'lymph nodes paraaortic / central abdomen'
+    }
+  }, {
+    name: 'followup_26_7',
+    type: 'checkbox',
+    commit: [{
+      rule: 'conditional_atleast_one_true',
+      conditionField: 'followup_26',
+      conditionValue: 1,
+      fields: 'followup_26_1,followup_26_2,followup_26_3,followup_26_4,followup_26_5,followup_26_6,followup_26_7,followup_26_8,followup_26_9,followup_26_10,followup_26_11,followup_26_12,followup_26_13,followup_26_14',
+    }],
+    text: {
+      zh: 'Lymph nodes groin / lower extremity',
+      en: 'Lymph nodes groin / lower extremity'
+    }
+  }, {
+    name: 'followup_26_8',
+    type: 'checkbox',
+    commit: [{
+      rule: 'conditional_atleast_one_true',
+      conditionField: 'followup_26',
+      conditionValue: 1,
+      fields: 'followup_26_1,followup_26_2,followup_26_3,followup_26_4,followup_26_5,followup_26_6,followup_26_7,followup_26_8,followup_26_9,followup_26_10,followup_26_11,followup_26_12,followup_26_13,followup_26_14',
+    }],
+    text: {
+      zh: 'Lymph nodes supraclavian / upper extremity',
+      en: 'Lymph nodes supraclavian / upper extremity'
+    }
+  }, {
+    name: 'followup_26_9',
+    type: 'checkbox',
+    commit: [{
+      rule: 'conditional_atleast_one_true',
+      conditionField: 'followup_26',
+      conditionValue: 1,
+      fields: 'followup_26_1,followup_26_2,followup_26_3,followup_26_4,followup_26_5,followup_26_6,followup_26_7,followup_26_8,followup_26_9,followup_26_10,followup_26_11,followup_26_12,followup_26_13,followup_26_14',
+    }],
+    text: {
+      zh: 'Lymph nodes intrathoracic',
+      en: 'Lymph nodes intrathoracic'
+    }
+  }, {
+    name: 'followup_26_10',
+    type: 'checkbox',
+    commit: [{
+      rule: 'conditional_atleast_one_true',
+      conditionField: 'followup_26',
+      conditionValue: 1,
+      fields: 'followup_26_1,followup_26_2,followup_26_3,followup_26_4,followup_26_5,followup_26_6,followup_26_7,followup_26_8,followup_26_9,followup_26_10,followup_26_11,followup_26_12,followup_26_13,followup_26_14',
+    }],
+    text: {
+      zh: 'Lymph nodes in pelvis',
+      en: 'Lymph nodes in pelvis'
+    }
+  }, {
+    name: 'followup_26_11',
+    type: 'checkbox',
+    commit: [{
+      rule: 'conditional_atleast_one_true',
+      conditionField: 'followup_26',
+      conditionValue: 1,
+      fields: 'followup_26_1,followup_26_2,followup_26_3,followup_26_4,followup_26_5,followup_26_6,followup_26_7,followup_26_8,followup_26_9,followup_26_10,followup_26_11,followup_26_12,followup_26_13,followup_26_14',
+    }],
+    text: {
+      zh: 'Skeletal',
+      en: 'Skeletal'
+    }
+  }, {
+    name: 'followup_26_12',
+    type: 'checkbox',
+    commit: [{
+      rule: 'conditional_atleast_one_true',
+      conditionField: 'followup_26',
+      conditionValue: 1,
+      fields: 'followup_26_1,followup_26_2,followup_26_3,followup_26_4,followup_26_5,followup_26_6,followup_26_7,followup_26_8,followup_26_9,followup_26_10,followup_26_11,followup_26_12,followup_26_13,followup_26_14',
+    }],
+    text: {
+      zh: 'Adrenal Gland',
+      en: 'Adrenal Gland'
+    }
+  }, {
+    name: 'followup_26_13',
+    type: 'checkbox',
+    commit: [{
+      rule: 'conditional_atleast_one_true',
+      conditionField: 'followup_26',
+      conditionValue: 1,
+      fields: 'followup_26_1,followup_26_2,followup_26_3,followup_26_4,followup_26_5,followup_26_6,followup_26_7,followup_26_8,followup_26_9,followup_26_10,followup_26_11,followup_26_12,followup_26_13,followup_26_14',
+    }],
+    text: {
+      zh: 'CNS',
+      en: 'CNS'
+    }
+  }, {
+    name: 'followup_26_14',
+    type: 'checkbox',
+    commit: [{
+      rule: 'conditional_atleast_one_true',
+      conditionField: 'followup_26',
+      conditionValue: 1,
+      fields: 'followup_26_1,followup_26_2,followup_26_3,followup_26_4,followup_26_5,followup_26_6,followup_26_7,followup_26_8,followup_26_9,followup_26_10,followup_26_11,followup_26_12,followup_26_13,followup_26_14',
+    }],
+    text: {
+      zh: 'Other organs',
+      en: 'Other organs'
+    }
+  }, {
+    name: 'followup_26_14_1',
+    type: 'textarea',
+    commit: [{
+      rule: 'conditional_require',
+      field: 'followup_26_14',
+      value: true
+    }],
+    text: {
+      zh: 'Specify',
+      en: 'Specify'
+    }
+  }, {
+    name: 'followup_27',
+    type: 'select',
+    required: true,
+    optionsGetter: 'getYesNoConfig',
+    commit: [{
+      rule: 'required',
+    }],
+    text: {
+      zh: 'Post-assessment in multidisciplinary therapy group',
+      en: 'Post-assessment in multidisciplinary therapy group'
+    }
+  }, {
+    name: 'followup_27_1',
+    type: 'date',
+    commit: [{
+      rule: 'condition_require',
+      field: 'followup_27',
+      value: 1
+    }],
+    text: {
+      zh: 'Date',
+      en: 'Date'
+    }
+  }, {
+    name: 'followup_27_2',
+    type: 'checkbox',
+    commit: [{
+      rule: 'conditional_atleast_one_true',
+      conditionField: 'followup_27',
+      conditionValue: 1,
+      fields: 'followup_27_2,followup_27_3,followup_27_4,followup_27_5,followup_27_6',
+    }],
+    text: {
+      zh: 'Surgeon',
+      en: 'Surgeon'
+    }
+  }, {
+    name: 'followup_27_3',
+    type: 'checkbox',
+    commit: [{
+      rule: 'conditional_atleast_one_true',
+      conditionField: 'followup_27',
+      conditionValue: 1,
+      fields: 'followup_27_2,followup_27_3,followup_27_4,followup_27_5,followup_27_6',
+    }],
+    text: {
+      zh: 'Oncologist',
+      en: 'Oncologist'
+    }
+  }, {
+    name: 'followup_27_4',
+    type: 'checkbox',
+    commit: [{
+      rule: 'conditional_atleast_one_true',
+      conditionField: 'followup_27',
+      conditionValue: 1,
+      fields: 'followup_27_2,followup_27_3,followup_27_4,followup_27_5,followup_27_6',
+    }],
+    text: {
+      zh: 'Pathologist',
+      en: 'Pathologist'
+    }
+  }, {
+    name: 'followup_27_5',
+    type: 'checkbox',
+    commit: [{
+      rule: 'conditional_atleast_one_true',
+      conditionField: 'followup_27',
+      conditionValue: 1,
+      fields: 'followup_27_2,followup_27_3,followup_27_4,followup_27_5,followup_27_6',
+    }],
+    text: {
+      zh: 'Radiologist',
+      en: 'Radiologist'
+    }
+  }, {
+    name: 'followup_27_6',
+    type: 'checkbox',
+    commit: [{
+      rule: 'conditional_atleast_one_true',
+      conditionField: 'followup_27',
+      conditionValue: 1,
+      fields: 'followup_27_2,followup_27_3,followup_27_4,followup_27_5,followup_27_6',
+    }],
+    text: {
+      zh: 'Nurse',
+      en: 'Nurse'
+    }
+  }, {
+    name: 'followup_28',
+    type: 'select',
+    required: true,
+    optionsGetter: 'getYesNoConfig',
+    commit: [{
+      rule: 'required',
+    }],
+    text: {
+      zh: 'Referred to oncology treatment',
+      en: 'Referred to oncology treatment'
+    }
+  }, {
+    name: 'followup_28_1',
+    type: 'textarea',
+    commit: [{
+      rule: 'conditional_require',
+      field: 'followup_28',
+      value: 1
+    }],
+    text: {
+      zh: 'Hospital/clinic',
+      en: 'Hospital/clinic'
+    }
+  }, {
+    name: 'followup_29',
+    type: 'select',
+    required: true,
+    optionsGetter: 'getYesNoConfig',
+    commit: [{
+      rule: 'required',
+    }],
+    text: {
+      zh: 'Further treatment and reassessment with curative intention planned',
+      en: 'Further treatment and reassessment with curative intention planned'
+    }
+  }, {
+    name: 'followup_30',
+    type: 'select',
+    required: true,
+    optionsGetter: 'getYesNoDontknowConfig',
+    commit: [{
+      rule: 'required',
+    }],
+    text: {
+      zh: 'Has the patient been referred to or assessed by organ specialist for metastatic surgery',
+      en: 'Has the patient been referred to or assessed by organ specialist for metastatic surgery'
+    }
+  }, {
+    name: 'followup_31',
+    type: 'select',
+    required: true,
+    optionsGetter: 'getYesNoConfig',
+    commit: [{
+      rule: 'required',
+    }],
+    text: {
+      zh: 'Follow-up planned in addition to postoperative return visit',
+      en: 'Follow-up planned in addition to postoperative return visit'
+    }
+  }, {
+    name: 'followup_31_1',
+    type: 'textarea',
+    commit: [{
+      rule: 'conditional_require',
+      field: 'followup_31',
+      value: 1
+    }],
+    text: {
+      zh: 'Follow-up hospital / clinic',
+      en: 'Follow-up hospital / clinic'
+    }
+  }, {
+    name: 'followup_32',
+    type: 'select',
+    required: true,
+    optionsGetter: 'getYesNoConfig',
+    commit: [{
+      rule: 'required',
+    }],
+    text: {
+      zh: 'Patient included in study',
+      en: 'Patient included in study'
+    }
+  }, {
+    name: 'followup_32_1',
+    type: 'checkbox',
+    commit: [{
+      rule: 'conditional_atleast_one_true',
+      conditionField: 'followup_32',
+      conditionValue: 1,
+      fields: 'followup_32_1,followup_32_2,followup_32_3,followup_32_4,followup_32_5,followup_32_6,followup_32_7,followup_32_8',
+    }],
+    text: {
+      zh: 'ADEPT',
+      en: 'ADEPT'
+    }
+  }, {
+    name: 'followup_32_2',
+    type: 'checkbox',
+    commit: [{
+      rule: 'conditional_atleast_one_true',
+      conditionField: 'followup_32',
+      conditionValue: 1,
+      fields: 'followup_32_1,followup_32_2,followup_32_3,followup_32_4,followup_32_5,followup_32_6,followup_32_7,followup_32_8',
+    }],
+    text: {
+      zh: 'Screened in ALASCCA',
+      en: 'Screened in ALASCCA'
+    }
+  }, {
+    name: 'followup_32_3',
+    type: 'checkbox',
+    commit: [{
+      rule: 'conditional_atleast_one_true',
+      conditionField: 'followup_32',
+      conditionValue: 1,
+      fields: 'followup_32_1,followup_32_2,followup_32_3,followup_32_4,followup_32_5,followup_32_6,followup_32_7,followup_32_8',
+    }],
+    text: {
+      zh: 'Randomized in ALASCCA',
+      en: 'Randomized in ALASCCA'
+    }
+  }, {
+    name: 'followup_32_4',
+    type: 'checkbox',
+    commit: [{
+      rule: 'conditional_atleast_one_true',
+      conditionField: 'followup_32',
+      conditionValue: 1,
+      fields: 'followup_32_1,followup_32_2,followup_32_3,followup_32_4,followup_32_5,followup_32_6,followup_32_7,followup_32_8',
+    }],
+    text: {
+      zh: 'FOxTROT',
+      en: 'FOxTROT'
+    }
+  }, {
+    name: 'followup_32_5',
+    type: 'checkbox',
+    commit: [{
+      rule: 'conditional_atleast_one_true',
+      conditionField: 'followup_32',
+      conditionValue: 1,
+      fields: 'followup_32_1,followup_32_2,followup_32_3,followup_32_4,followup_32_5,followup_32_6,followup_32_7,followup_32_8',
+    }],
+    text: {
+      zh: 'HAPIrect',
+      en: 'HAPIrect'
+    }
+  }, {
+    name: 'followup_32_6',
+    type: 'checkbox',
+    commit: [{
+      rule: 'conditional_atleast_one_true',
+      conditionField: 'followup_32',
+      conditionValue: 1,
+      fields: 'followup_32_1,followup_32_2,followup_32_3,followup_32_4,followup_32_5,followup_32_6,followup_32_7,followup_32_8',
+    }],
+    text: {
+      zh: 'NEAPE',
+      en: 'NEAPE'
+    }
+  }, {
+    name: 'followup_32_7',
+    type: 'checkbox',
+    commit: [{
+      rule: 'conditional_atleast_one_true',
+      conditionField: 'followup_32',
+      conditionValue: 1,
+      fields: 'followup_32_1,followup_32_2,followup_32_3,followup_32_4,followup_32_5,followup_32_6,followup_32_7,followup_32_8',
+    }],
+    text: {
+      zh: 'QoLiCOL',
+      en: 'QoLiCOL'
+    }
+  }, {
+    name: 'followup_32_8',
+    type: 'checkbox',
+    commit: [{
+      rule: 'conditional_atleast_one_true',
+      conditionField: 'followup_32',
+      conditionValue: 1,
+      fields: 'followup_32_1,followup_32_2,followup_32_3,followup_32_4,followup_32_5,followup_32_6,followup_32_7,followup_32_8',
+    }],
+    text: {
+      zh: 'Other/local study',
+      en: 'Other/local study'
+    }
+  }, {
+    name: 'followup_32_8_1',
+    type: 'textarea',
+    commit: [{
+      rule: 'conditional_require',
+      field: 'followup_32_8',
+      value: true
+    }],
+    text: {
+      zh: 'Specify',
+      en: 'Specify'
     }
   }],
   errors: []
