@@ -17,7 +17,7 @@ block case-content
 
         br
 
-        label.control-label(id=`followup_label_1`) #{config.subtitles.subtitle_2.text}
+        label.control-label(style="font-size: 2rem;" id=`followup_label_1`) #{config.subtitles.subtitle_2.text}
 
         .row
           .col-sm-10
@@ -39,7 +39,7 @@ block case-content
 
         br
 
-        label.control-label(id=`followup_label_2`) #{config.subtitles.subtitle_3.text}
+        label.control-label(style="font-size: 2rem;" id=`followup_label_2`) #{config.subtitles.subtitle_3.text}
 
         .row
           .col-sm-10
@@ -73,7 +73,7 @@ block case-content
 
         br
 
-        label.control-label(id=`followup_label_3`) #{config.subtitles.subtitle_4.text}
+        label.control-label(style="font-size: 2rem;" id=`followup_label_3`) #{config.subtitles.subtitle_4.text}
 
         .row
           .col-sm-10
@@ -89,7 +89,7 @@ block case-content
 
         br
 
-        label.control-label(id=`followup_label_4`) #{config.subtitles.subtitle_5.text}
+        label.control-label(style="font-size: 2rem;" id=`followup_label_4`) #{config.subtitles.subtitle_5.text}
 
         .row
           .col-sm-10
@@ -159,14 +159,14 @@ block case-content
             +_questionBtn(config.formConfigs.followup_20, questionFields)
 
         - config.formConfigs.followup_20_1.hidden = !(config.formConfigs.followup_20.value === 1)
-        .row
+        .row(id=`followup_20_1_row` class=(config.formConfigs.followup_20_1.hidden === true ? 'hidden' : ''))
           .col-sm-10
             +_formTemplate(config.formConfigs.followup_20_1)
           .col-sm-2
             +_questionBtn(config.formConfigs.followup_20_1, questionFields)
 
         - config.formConfigs.followup_20_2.hidden = !(config.formConfigs.followup_20.value === 1)
-        .row
+        .row(id=`followup_20_2_row` class=(config.formConfigs.followup_20_2.hidden === true ? 'hidden' : ''))
           .col-sm-10
             +_formTemplate(config.formConfigs.followup_20_2)
           .col-sm-2
@@ -181,40 +181,40 @@ block case-content
             +_questionBtn(config.formConfigs.followup_21, questionFields)
         
         - config.formConfigs.followup_21_1.hidden = !(config.formConfigs.followup_21.value === 1)
-        .row
+        .row(id=`followup_21_1_row` class=(config.formConfigs.followup_21_1.hidden === true ? 'hidden' : ''))
           .col-sm-10
             +_formTemplate(config.formConfigs.followup_21_1)
           .col-sm-2
             +_questionBtn(config.formConfigs.followup_21_1, questionFields)
 
         - config.formConfigs.followup_21_2.hidden = !(config.formConfigs.followup_21.value === 1)
-        .row
+        .row(id=`followup_21_2_row` class=(config.formConfigs.followup_21_2.hidden === true ? 'hidden' : ''))
           .col-sm-10
             +_formTemplate(config.formConfigs.followup_21_2)
           .col-sm-2
             +_questionBtn(config.formConfigs.followup_21_2, questionFields)
 
         - config.formConfigs.followup_21_3.hidden = !(config.formConfigs.followup_21.value === 1)
-        .row
+        .row(id=`followup_21_3_row` class=(config.formConfigs.followup_21_3.hidden === true ? 'hidden' : ''))
           .col-sm-10
             +_formTemplate(config.formConfigs.followup_21_3)
           .col-sm-2
             +_questionBtn(config.formConfigs.followup_21_3, questionFields)
 
         - config.formConfigs.followup_21_4.hidden = !(config.formConfigs.followup_21.value === 1)
-        .row
+        .row(id=`followup_21_4_row` class=(config.formConfigs.followup_21_4.hidden === true ? 'hidden' : ''))
           .col-sm-10
             +_formTemplate(config.formConfigs.followup_21_4)
           .col-sm-2
             +_questionBtn(config.formConfigs.followup_21_4, questionFields)
 
         if !(config.formConfigs.followup_21.value === 1)
-          label.control-label.hidden(id=`followup_21_label_1`) #{"Unplanned laparotomy due to"}
+          label.control-label.hidden(style="font-size: 2rem;" id=`followup_21_label_1`) #{"Unplanned laparotomy due to"}
         else
-          label.control-label(id=`followup_21_label_1`) #{"Unplanned laparotomy due to"}
+          label.control-label(style="font-size: 2rem;" id=`followup_21_label_1`) #{"Unplanned laparotomy due to"}
 
         - config.formConfigs.followup_21_5_1.hidden = !(config.formConfigs.followup_21.value === 1)
-        .row
+        .row(id=`followup_21_5_1_row` class=(config.formConfigs.followup_21_5_1.hidden === true ? 'hidden' : ''))
           .col-sm-10
             .form-group
               +_formTemplate(config.formConfigs.followup_21_5_1)
@@ -222,7 +222,7 @@ block case-content
             +_questionBtn(config.formConfigs.followup_21_5_1, questionFields)
 
         - config.formConfigs.followup_21_5_2.hidden = !(config.formConfigs.followup_21.value === 1)
-        .row
+        .row(id=`followup_21_5_2_row` class=(config.formConfigs.followup_21_5_2.hidden === true ? 'hidden' : ''))
           .col-sm-10
             .form-group
               +_formTemplate(config.formConfigs.followup_21_5_2)
@@ -230,7 +230,7 @@ block case-content
             +_questionBtn(config.formConfigs.followup_21_5_2, questionFields)
 
         - config.formConfigs.followup_21_5_3.hidden = !(config.formConfigs.followup_21.value === 1)
-        .row
+        .row(id=`followup_21_5_3_row` class=(config.formConfigs.followup_21_5_3.hidden === true ? 'hidden' : ''))
           .col-sm-10
             .form-group
               +_formTemplate(config.formConfigs.followup_21_5_3)
@@ -238,7 +238,7 @@ block case-content
             +_questionBtn(config.formConfigs.followup_21_5_3, questionFields)
 
         - config.formConfigs.followup_21_5_4.hidden = !(config.formConfigs.followup_21.value === 1)
-        .row
+        .row(id=`followup_21_5_4_row` class=(config.formConfigs.followup_21_5_4.hidden === true ? 'hidden' : ''))
           .col-sm-10
             .form-group
               +_formTemplate(config.formConfigs.followup_21_5_4)
@@ -246,7 +246,7 @@ block case-content
             +_questionBtn(config.formConfigs.followup_21_5_4, questionFields)
 
         - config.formConfigs.followup_21_5_4_1.hidden = !(config.formConfigs.followup_21.value === 1 && config.formConfigs.followup_21_5_4)
-        .row
+        .row(id=`followup_21_5_4_1_row` class=(config.formConfigs.followup_21_5_4_1.hidden === true ? 'hidden' : ''))
           .col-sm-10
             +_formTemplate(config.formConfigs.followup_21_5_4_1)
           .col-sm-2
@@ -261,7 +261,7 @@ block case-content
             +_questionBtn(config.formConfigs.followup_22, questionFields)
 
         - config.formConfigs.followup_22_1.hidden = !(config.formConfigs.followup_22.value === 1)
-        .row
+        .row(id=`followup_22_1_row` class=(config.formConfigs.followup_22_1.hidden === true ? 'hidden' : ''))
           .col-sm-10
             +_formTemplate(config.formConfigs.followup_22_1)
           .col-sm-2
@@ -276,7 +276,7 @@ block case-content
             +_questionBtn(config.formConfigs.followup_23, questionFields)
 
         - config.formConfigs.followup_23_1.hidden = !(config.formConfigs.followup_23.value === 1)
-        .row
+        .row(id=`followup_23_1_row` class=(config.formConfigs.followup_23_1.hidden === true ? 'hidden' : ''))
           .col-sm-10
             +_formTemplate(config.formConfigs.followup_23_1)
           .col-sm-2
@@ -304,7 +304,7 @@ block case-content
             +_questionBtn(config.formConfigs.followup_26, questionFields)
 
         - config.formConfigs.followup_26_1.hidden = !(config.formConfigs.followup_26.value === 1)
-        .row
+        .row(id=`followup_26_1_row` class=(config.formConfigs.followup_26_1.hidden === true ? 'hidden' : ''))
           .col-sm-10
             .form-group
               +_formTemplate(config.formConfigs.followup_26_1)
@@ -312,7 +312,7 @@ block case-content
             +_questionBtn(config.formConfigs.followup_26_1, questionFields)
 
         - config.formConfigs.followup_26_2.hidden = !(config.formConfigs.followup_26.value === 1)
-        .row
+        .row(id=`followup_26_2_row` class=(config.formConfigs.followup_26_2.hidden === true ? 'hidden' : ''))
           .col-sm-10
             .form-group
               +_formTemplate(config.formConfigs.followup_26_2)
@@ -320,7 +320,7 @@ block case-content
             +_questionBtn(config.formConfigs.followup_26_2, questionFields)
 
         - config.formConfigs.followup_26_3.hidden = !(config.formConfigs.followup_26.value === 1)
-        .row
+        .row(id=`followup_26_3_row` class=(config.formConfigs.followup_26_3.hidden === true ? 'hidden' : ''))
           .col-sm-10
             .form-group
               +_formTemplate(config.formConfigs.followup_26_3)
@@ -328,7 +328,7 @@ block case-content
             +_questionBtn(config.formConfigs.followup_26_3, questionFields)
 
         - config.formConfigs.followup_26_4.hidden = !(config.formConfigs.followup_26.value === 1)
-        .row
+        .row(id=`followup_26_4_row` class=(config.formConfigs.followup_26_4.hidden === true ? 'hidden' : ''))
           .col-sm-10
             .form-group
               +_formTemplate(config.formConfigs.followup_26_4)
@@ -336,7 +336,7 @@ block case-content
             +_questionBtn(config.formConfigs.followup_26_4, questionFields)
 
         - config.formConfigs.followup_26_5.hidden = !(config.formConfigs.followup_26.value === 1)
-        .row
+        .row(id=`followup_26_5_row` class=(config.formConfigs.followup_26_5.hidden === true ? 'hidden' : ''))
           .col-sm-10
             .form-group
               +_formTemplate(config.formConfigs.followup_26_5)
@@ -344,7 +344,7 @@ block case-content
             +_questionBtn(config.formConfigs.followup_26_5, questionFields)
 
         - config.formConfigs.followup_26_6.hidden = !(config.formConfigs.followup_26.value === 1)
-        .row
+        .row(id=`followup_26_6_row` class=(config.formConfigs.followup_26_6.hidden === true ? 'hidden' : ''))
           .col-sm-10
             .form-group
               +_formTemplate(config.formConfigs.followup_26_6)
@@ -352,7 +352,7 @@ block case-content
             +_questionBtn(config.formConfigs.followup_26_6, questionFields)
 
         - config.formConfigs.followup_26_7.hidden = !(config.formConfigs.followup_26.value === 1)
-        .row
+        .row(id=`followup_26_7_row` class=(config.formConfigs.followup_26_7.hidden === true ? 'hidden' : ''))
           .col-sm-10
             .form-group
               +_formTemplate(config.formConfigs.followup_26_7)
@@ -360,7 +360,7 @@ block case-content
             +_questionBtn(config.formConfigs.followup_26_7, questionFields)
 
         - config.formConfigs.followup_26_8.hidden = !(config.formConfigs.followup_26.value === 1)
-        .row
+        .row(id=`followup_26_8_row` class=(config.formConfigs.followup_26_8.hidden === true ? 'hidden' : ''))
           .col-sm-10
             .form-group
               +_formTemplate(config.formConfigs.followup_26_8)
@@ -368,7 +368,7 @@ block case-content
             +_questionBtn(config.formConfigs.followup_26_8, questionFields)
 
         - config.formConfigs.followup_26_9.hidden = !(config.formConfigs.followup_26.value === 1)
-        .row
+        .row(id=`followup_26_9_row` class=(config.formConfigs.followup_26_9.hidden === true ? 'hidden' : ''))
           .col-sm-10
             .form-group
               +_formTemplate(config.formConfigs.followup_26_9)
@@ -376,7 +376,7 @@ block case-content
             +_questionBtn(config.formConfigs.followup_26_9, questionFields)
 
         - config.formConfigs.followup_26_10.hidden = !(config.formConfigs.followup_26.value === 1)
-        .row
+        .row(id=`followup_26_10_row` class=(config.formConfigs.followup_26_10.hidden === true ? 'hidden' : ''))
           .col-sm-10
             .form-group
               +_formTemplate(config.formConfigs.followup_26_10)
@@ -384,7 +384,7 @@ block case-content
             +_questionBtn(config.formConfigs.followup_26_10, questionFields)
 
         - config.formConfigs.followup_26_11.hidden = !(config.formConfigs.followup_26.value === 1)
-        .row
+        .row(id=`followup_26_11_row` class=(config.formConfigs.followup_26_11.hidden === true ? 'hidden' : ''))
           .col-sm-10
             .form-group
               +_formTemplate(config.formConfigs.followup_26_11)
@@ -392,7 +392,7 @@ block case-content
             +_questionBtn(config.formConfigs.followup_26_11, questionFields)
 
         - config.formConfigs.followup_26_12.hidden = !(config.formConfigs.followup_26.value === 1)
-        .row
+        .row(id=`followup_26_12_row` class=(config.formConfigs.followup_26_12.hidden === true ? 'hidden' : ''))
           .col-sm-10
             .form-group
               +_formTemplate(config.formConfigs.followup_26_12)
@@ -400,7 +400,7 @@ block case-content
             +_questionBtn(config.formConfigs.followup_26_12, questionFields)
 
         - config.formConfigs.followup_26_13.hidden = !(config.formConfigs.followup_26.value === 1)
-        .row
+        .row(id=`followup_26_13_row` class=(config.formConfigs.followup_26_13.hidden === true ? 'hidden' : ''))
           .col-sm-10
             .form-group
               +_formTemplate(config.formConfigs.followup_26_13)
@@ -408,7 +408,7 @@ block case-content
             +_questionBtn(config.formConfigs.followup_26_13, questionFields)
 
         - config.formConfigs.followup_26_14.hidden = !(config.formConfigs.followup_26.value === 1)
-        .row
+        .row(id=`followup_26_14_row` class=(config.formConfigs.followup_26_14.hidden === true ? 'hidden' : ''))
           .col-sm-10
             .form-group
               +_formTemplate(config.formConfigs.followup_26_14)
@@ -416,7 +416,7 @@ block case-content
             +_questionBtn(config.formConfigs.followup_26_14, questionFields)
 
         - config.formConfigs.followup_26_14_1.hidden = !(config.formConfigs.followup_26.value === 1 && config.formConfigs.followup_26_14)
-        .row
+        .row(id=`followup_26_14_1_row` class=(config.formConfigs.followup_26_14_1.hidden === true ? 'hidden' : ''))
           .col-sm-10
             +_formTemplate(config.formConfigs.followup_26_14_1)
           .col-sm-2
@@ -429,19 +429,19 @@ block case-content
             +_questionBtn(config.formConfigs.followup_27, questionFields)
 
         - config.formConfigs.followup_27_1.hidden = !(config.formConfigs.followup_27.value === 1)
-        .row
+        .row(id=`followup_27_1_row` class=(config.formConfigs.followup_27_1.hidden === true ? 'hidden' : ''))
           .col-sm-10
             +_formTemplate(config.formConfigs.followup_27_1)
           .col-sm-2
             +_questionBtn(config.formConfigs.followup_27_1, questionFields)
 
         if !(config.formConfigs.followup_27.value === 1)
-          label.control-label.hidden(id=`followup_27_label_1`) #{"Assessed by"}
+          label.control-label.hidden(style="font-size: 2rem;" id=`followup_27_label_1`) #{"Assessed by"}
         else
-          label.control-label(id=`followup_27_label_1`) #{"Assessed by"}
+          label.control-label(style="font-size: 2rem;" id=`followup_27_label_1`) #{"Assessed by"}
 
         - config.formConfigs.followup_27_2.hidden = !(config.formConfigs.followup_27.value === 1)
-        .row
+        .row(id=`followup_27_2_row` class=(config.formConfigs.followup_27_2.hidden === true ? 'hidden' : ''))
           .col-sm-10
             .form-group
               +_formTemplate(config.formConfigs.followup_27_2)
@@ -449,7 +449,7 @@ block case-content
             +_questionBtn(config.formConfigs.followup_27_2, questionFields)
 
         - config.formConfigs.followup_27_3.hidden = !(config.formConfigs.followup_27.value === 1)
-        .row
+        .row(id=`followup_27_3_row` class=(config.formConfigs.followup_27_3.hidden === true ? 'hidden' : ''))
           .col-sm-10
             .form-group
               +_formTemplate(config.formConfigs.followup_27_3)
@@ -457,7 +457,7 @@ block case-content
             +_questionBtn(config.formConfigs.followup_27_3, questionFields)
 
         - config.formConfigs.followup_27_4.hidden = !(config.formConfigs.followup_27.value === 1)
-        .row
+        .row(id=`followup_27_4_row` class=(config.formConfigs.followup_27_4.hidden === true ? 'hidden' : ''))
           .col-sm-10
             .form-group
               +_formTemplate(config.formConfigs.followup_27_4)
@@ -465,7 +465,7 @@ block case-content
             +_questionBtn(config.formConfigs.followup_27_4, questionFields)
 
         - config.formConfigs.followup_27_5.hidden = !(config.formConfigs.followup_27.value === 1)
-        .row
+        .row(id=`followup_27_5_row` class=(config.formConfigs.followup_27_5.hidden === true ? 'hidden' : ''))
           .col-sm-10
             .form-group
               +_formTemplate(config.formConfigs.followup_27_5)
@@ -473,7 +473,7 @@ block case-content
             +_questionBtn(config.formConfigs.followup_27_5, questionFields)
 
         - config.formConfigs.followup_27_6.hidden = !(config.formConfigs.followup_27.value === 1)
-        .row
+        .row(id=`followup_27_6_row` class=(config.formConfigs.followup_27_6.hidden === true ? 'hidden' : ''))
           .col-sm-10
             .form-group
               +_formTemplate(config.formConfigs.followup_27_6)
@@ -487,7 +487,7 @@ block case-content
             +_questionBtn(config.formConfigs.followup_28, questionFields)
 
         - config.formConfigs.followup_28_1.hidden = !(config.formConfigs.followup_28.value === 1)
-        .row
+        .row(id=`followup_28_1_row` class=(config.formConfigs.followup_28_1.hidden === true ? 'hidden' : ''))
           .col-sm-10
             +_formTemplate(config.formConfigs.followup_28_1)
           .col-sm-2
@@ -512,7 +512,7 @@ block case-content
             +_questionBtn(config.formConfigs.followup_31, questionFields)
 
         - config.formConfigs.followup_31_1.hidden = !(config.formConfigs.followup_31.value === 1)
-        .row
+        .row(id=`followup_31_1_row` class=(config.formConfigs.followup_31_1.hidden === true ? 'hidden' : ''))
           .col-sm-10
             +_formTemplate(config.formConfigs.followup_31_1)
           .col-sm-2
@@ -525,7 +525,7 @@ block case-content
             +_questionBtn(config.formConfigs.followup_32, questionFields)
 
         - config.formConfigs.followup_32_1.hidden = !(config.formConfigs.followup_32.value === 1)
-        .row
+        .row(id=`followup_32_1_row` class=(config.formConfigs.followup_32_1.hidden === true ? 'hidden' : ''))
           .col-sm-10
             .form-group
               +_formTemplate(config.formConfigs.followup_32_1)
@@ -533,7 +533,7 @@ block case-content
             +_questionBtn(config.formConfigs.followup_32_1, questionFields)
 
         - config.formConfigs.followup_32_2.hidden = !(config.formConfigs.followup_32.value === 1)
-        .row
+        .row(id=`followup_32_2_row` class=(config.formConfigs.followup_32_2.hidden === true ? 'hidden' : ''))
           .col-sm-10
             .form-group
               +_formTemplate(config.formConfigs.followup_32_2)
@@ -541,7 +541,7 @@ block case-content
             +_questionBtn(config.formConfigs.followup_32_2, questionFields)
 
         - config.formConfigs.followup_32_3.hidden = !(config.formConfigs.followup_32.value === 1)
-        .row
+        .row(id=`followup_32_3_row` class=(config.formConfigs.followup_32_3.hidden === true ? 'hidden' : ''))
           .col-sm-10
             .form-group
               +_formTemplate(config.formConfigs.followup_32_3)
@@ -549,7 +549,7 @@ block case-content
             +_questionBtn(config.formConfigs.followup_32_3, questionFields)
 
         - config.formConfigs.followup_32_4.hidden = !(config.formConfigs.followup_32.value === 1)
-        .row
+        .row(id=`followup_32_4_row` class=(config.formConfigs.followup_32_4.hidden === true ? 'hidden' : ''))
           .col-sm-10
             .form-group
               +_formTemplate(config.formConfigs.followup_32_4)
@@ -557,7 +557,7 @@ block case-content
             +_questionBtn(config.formConfigs.followup_32_4, questionFields)
 
         - config.formConfigs.followup_32_5.hidden = !(config.formConfigs.followup_32.value === 1)
-        .row
+        .row(id=`followup_32_5_row` class=(config.formConfigs.followup_32_5.hidden === true ? 'hidden' : ''))
           .col-sm-10
             .form-group
               +_formTemplate(config.formConfigs.followup_32_5)
@@ -565,7 +565,7 @@ block case-content
             +_questionBtn(config.formConfigs.followup_32_5, questionFields)
 
         - config.formConfigs.followup_32_6.hidden = !(config.formConfigs.followup_32.value === 1)
-        .row
+        .row(id=`followup_32_6_row` class=(config.formConfigs.followup_32_6.hidden === true ? 'hidden' : ''))
           .col-sm-10
             .form-group
               +_formTemplate(config.formConfigs.followup_32_6)
@@ -573,7 +573,7 @@ block case-content
             +_questionBtn(config.formConfigs.followup_32_6, questionFields)
 
         - config.formConfigs.followup_32_7.hidden = !(config.formConfigs.followup_32.value === 1)
-        .row
+        .row(id=`followup_32_7_row` class=(config.formConfigs.followup_32_7.hidden === true ? 'hidden' : ''))
           .col-sm-10
             .form-group
               +_formTemplate(config.formConfigs.followup_32_7)
@@ -581,7 +581,7 @@ block case-content
             +_questionBtn(config.formConfigs.followup_32_7, questionFields)
 
         - config.formConfigs.followup_32_8.hidden = !(config.formConfigs.followup_32.value === 1)
-        .row
+        .row(id=`followup_32_8_row` class=(config.formConfigs.followup_32_8.hidden === true ? 'hidden' : ''))
           .col-sm-10
             .form-group
               +_formTemplate(config.formConfigs.followup_32_8)
@@ -589,7 +589,7 @@ block case-content
             +_questionBtn(config.formConfigs.followup_32_8, questionFields)
 
         - config.formConfigs.followup_32_8_1.hidden = !(config.formConfigs.followup_32.value === 1 && config.formConfigs.followup_32_8)
-        .row
+        .row(id=`followup_32_8_1_row` class=(config.formConfigs.followup_32_8_1.hidden === true ? 'hidden' : ''))
           .col-sm-10
             +_formTemplate(config.formConfigs.followup_32_8_1)
           .col-sm-2

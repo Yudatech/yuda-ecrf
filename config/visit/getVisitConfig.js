@@ -347,7 +347,7 @@ const config = {
     name: 'postoperative_2_1_18_1',
     type: 'textarea',
     commit: [{
-      rule: 'conditional_require',
+      rule: 'conditional_require_multiple_values',
       field: 'postoperative_2_1_18',
       values: [1, 2, 3, 4, 5, 6]
     }],

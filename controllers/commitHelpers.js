@@ -10,6 +10,7 @@ const Visit = mongoose.model('Visit');
 const Case = mongoose.model('Case');
 const Evacuation = mongoose.model('Evacuation');
 const Pathological = mongoose.model('Pathological');
+const Followup = mongoose.model('Followup');
 
 const getCommitCaseConfig = require('../config/getCommitCaseConfig');
 
@@ -30,6 +31,7 @@ const getEvacuationConfig = require('../config/evacuation/getEvacuationConfig');
 const getAeConfig = require('../config/ae/getAeConfig');
 const getSaeConfig = require('../config/sae/getSaeConfig');
 const getPathologicalConfig = require('../config/getPathologicalConfig');
+const getFollowupConfig = require('../config/followup/getFollowupConfig');
 
 function doMustTrueCheck(value) {
   return value === true;
@@ -68,10 +70,45 @@ function doConditionalRequireCheck(value, requiredValue, currentValue) {
   }
 }
 
+function doConditionalRequireMultipleValuesCheck(value, requiredValues, currentValue) {
+  if (requiredValues.find(item => item === currentValue) !== undefined) {
+    return value !== undefined && value !== '';
+  }
+  else {
+    return true;
+  }
+}
+
 function doAtLeastOneTrueCheck(value, fields, extra) {
   const fieldArray = fields.split(',');
   const foundTrue = fieldArray.find(item => extra[item] === true);
   return foundTrue !== undefined;
+}
+
+function doConditionalAtleastOneCheck(key, obj, rule) {
+  const conditionField = rule.conditionField;
+  const conditionValue = rule.conditionValue;
+  if (obj[conditionField] === conditionValue) {
+    const fields = rule.fields.split(',');
+    const match = fields.find(field => obj[field])
+    return match !== undefined;
+  }
+  else {
+    return true;
+  }
+}
+
+function doConditionalAtleastOneTrueCheck(key, obj, rule) {
+  const conditionField = rule.conditionField;
+  const conditionValue = rule.conditionValue;
+  if (obj[conditionField] === conditionValue) {
+    const fields = rule.fields.split(',');
+    const match = fields.find(field => obj[field] === true)
+    return match !== undefined;
+  }
+  else {
+    return true;
+  }
 }
 
 function doReviewChecklistCustomValidation(caseId, key, obj, ruleConfig, validateResult) {
@@ -112,7 +149,7 @@ function doVisitCustomValidation(caseId, key, obj, ruleConfig, validateResult, a
   else {
     if (key === 'postoperative_2_1') {
       const validateValue = obj[key];
-      if (validateValue === 3 || validateValue === 4) {
+      if (helpers.isVisitSaeSource(obj)) {
         if (saeList.length === 0 || saeList.find((item) => item.saeorigion === obj._id.toString()) === undefined) {
           if (validateResult.children === undefined) {
             validateResult.children = [];
@@ -125,7 +162,7 @@ function doVisitCustomValidation(caseId, key, obj, ruleConfig, validateResult, a
           return false;
         }
       }
-      else if (validateValue === 1 || validateValue === 2) {
+      else if (helpers.isVisitAeSource(obj) && !helpers.isVisitSaeSource(obj)) {
         if (aeList.length === 0 || aeList.find((item) => item.aeorigion === obj._id.toString()) === undefined) {
           if (validateResult.children === undefined) {
             validateResult.children = [];
@@ -206,6 +243,9 @@ function doCommitValidation(caseId, key, obj, rules, extra, validateResult) {
     else if (ruleName === 'conditional_require') {
       result = doConditionalRequireCheck(obj[key], ruleConfig.value, extra[ruleConfig.field]);
     }
+    else if (ruleName === 'conditional_require_multiple_values') {
+      result = doConditionalRequireMultipleValuesCheck(obj[key], ruleConfig.values, extra[ruleConfig.field]);
+    }
     else if (ruleName === 'atleast_one_true') {
       result = doAtLeastOneTrueCheck(obj[key], ruleConfig.fields, extra);
     }
@@ -223,6 +263,12 @@ function doCommitValidation(caseId, key, obj, rules, extra, validateResult) {
         }
         result = doDateCheck(date, 0, end);
       }
+    }
+    else if (ruleName === 'conditional_atleast_one') {
+      result = doConditionalAtleastOneCheck(key, obj, ruleConfig);
+    }
+    else if (ruleName === 'conditional_atleast_one_true') {
+      result = doConditionalAtleastOneTrueCheck(key, obj, ruleConfig);
     }
     if (result === false && ruleConfig.message) {
       validateResult.message = ruleConfig.message;
@@ -538,6 +584,28 @@ exports.validatePathologicalForm = async function (caseId, lang) {
     doCommitValidationForWholeTable(caseId, pathologicalValidateResult, commitCaseConfig, formConfigs, pathologicalItem, extra);
   }
   return pathologicalValidateResult;
+};
+
+exports.validateFollowupForm = async function (caseId, lang) {
+  const commitCaseConfig = getCommitCaseConfig(lang);
+  const followupItem = await Followup.findOne({
+    case: caseId
+  });
+  const followupValidateResult = initValidateResult(getCommitCaseConfigItem(commitCaseConfig.records, 'followup'));
+
+  if (followupItem === null) {
+    followupValidateResult.pass = false;
+    followupValidateResult.link = `${followupValidateResult.linkBase}/${caseId}`;
+    followupValidateResult.message = followupValidateResult.text;
+    followupValidateResult.resultText = commitCaseConfig.empty;
+    followupValidateResult.resultType = 'empty';
+  }
+  else {
+    const extra = {};
+    const formConfigs = getFollowupConfig(lang).formConfigs;
+    doCommitValidationForWholeTable(caseId, followupValidateResult, commitCaseConfig, formConfigs, followupItem, extra);
+  }
+  return followupValidateResult;
 };
 
 exports.validateAeForm = async function (caseId, lang) {
