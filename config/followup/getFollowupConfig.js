@@ -280,6 +280,218 @@ const config = {
       zh: '出院时导尿管',
       en: 'Urinary catheter at discharge'
     }
+  }, {
+    name: 'followup_20',
+    type: 'select',
+    required: true,
+    optionsGetter: 'getYesNoConfig',
+    commit: [{
+      rule: 'required',
+    }],
+    text: {
+      zh: 'IVA care',
+      en: 'IVA care'
+    }
+  }, {
+    name: 'followup_20_1',
+    type: 'date',
+    commit: [{
+      rule: 'condition_require',
+      field: 'followup_20',
+      value: 1
+    }],
+    text: {
+      zh: 'In, date',
+      en: 'In, date'
+    }
+  }, {
+    name: 'followup_20_2',
+    type: 'date',
+    commit: [{
+      rule: 'condition_require',
+      field: 'followup_20',
+      value: 1
+    }],
+    text: {
+      zh: 'Out, date',
+      en: 'Out, date'
+    }
+  }, {
+    name: 'followup_21',
+    type: 'select',
+    required: true,
+    optionsGetter: 'getYesNoConfig',
+    commit: [{
+      rule: 'required',
+    }],
+    text: {
+      zh: 'Re-surgery',
+      en: 'Re-surgery'
+    }
+  }, {
+    name: 'followup_21_1',
+    type: 'date',
+    commit: [{
+      rule: 'conditional_atleast_one',
+      conditionField: 'followup_21',
+      conditionValue: 1,
+      fields: 'followup_21_1,followup_21_2,followup_21_3,followup_21_4'
+    }],
+    text: {
+      zh: 'Date re-surgery 1',
+      en: 'Date re-surgery 1'
+    }
+  }, {
+    name: 'followup_21_2',
+    type: 'date',
+    commit: [{
+      rule: 'conditional_atleast_one',
+      conditionField: 'followup_21',
+      conditionValue: 1,
+      fields: 'followup_21_1,followup_21_2,followup_21_3,followup_21_4'
+    }],
+    text: {
+      zh: 'Date re-surgery 2',
+      en: 'Date re-surgery 2'
+    }
+  }, {
+    name: 'followup_21_3',
+    type: 'date',
+    commit: [{
+      rule: 'conditional_atleast_one',
+      conditionField: 'followup_21',
+      conditionValue: 1,
+      fields: 'followup_21_1,followup_21_2,followup_21_3,followup_21_4'
+    }],
+    text: {
+      zh: 'Date re-surgery 3',
+      en: 'Date re-surgery 3'
+    }
+  }, {
+    name: 'followup_21_4',
+    type: 'date',
+    commit: [{
+      rule: 'conditional_atleast_one',
+      conditionField: 'followup_21',
+      conditionValue: 1,
+      fields: 'followup_21_1,followup_21_2,followup_21_3,followup_21_4'
+    }],
+    text: {
+      zh: 'Date re-surgery 4',
+      en: 'Date re-surgery 4'
+    }
+  }, {
+    name: 'followup_21_5_1',
+    type: 'checkbox',
+    commit: [{
+      rule: 'conditional_atleast_one_true',
+      conditionField: 'followup_21',
+      conditionValue: 1,
+      fields: 'followup_21_5_1,followup_21_5_2,followup_21_5_3,followup_21_5_4',
+    }],
+    text: {
+      zh: 'Wound rupture',
+      en: 'Wound rupture'
+    }
+  }, {
+    name: 'followup_21_5_2',
+    type: 'checkbox',
+    commit: [{
+      rule: 'conditional_atleast_one_true',
+      conditionField: 'followup_21',
+      conditionValue: 1,
+      fields: 'followup_21_5_1,followup_21_5_2,followup_21_5_3,followup_21_5_4',
+    }],
+    text: {
+      zh: 'Bleeding Infection',
+      en: 'Bleeding Infection'
+    }
+  }, {
+    name: 'followup_21_5_3',
+    type: 'checkbox',
+    commit: [{
+      rule: 'conditional_atleast_one_true',
+      conditionField: 'followup_21',
+      conditionValue: 1,
+      fields: 'followup_21_5_1,followup_21_5_2,followup_21_5_3,followup_21_5_4',
+    }],
+    text: {
+      zh: 'Anastomosis insufficiency',
+      en: 'Anastomosis insufficiency'
+    }
+  }, {
+    name: 'followup_21_5_4',
+    type: 'checkbox',
+    commit: [{
+      rule: 'conditional_atleast_one_true',
+      conditionField: 'followup_21',
+      conditionValue: 1,
+      fields: 'followup_21_5_1,followup_21_5_2,followup_21_5_3,followup_21_5_4',
+    }],
+    text: {
+      zh: 'Other causes',
+      en: 'Other causes'
+    }
+  }, {
+    name: 'followup_21_5_4_1',
+    type: 'textarea',
+    commit: [{
+      rule: 'conditional_require',
+      field: 'followup_21_5_4',
+      value: true
+    }],
+    text: {
+      zh: 'Specify',
+      en: 'Specify'
+    }
+  }, {
+    name: 'followup_22',
+    type: 'select',
+    required: true,
+    optionsGetter: 'getYesNoConfig',
+    commit: [{
+      rule: 'required',
+    }],
+    text: {
+      zh: 'Scheduled readmission',
+      en: 'Scheduled readmission'
+    }
+  }, {
+    name: 'followup_22_1',
+    type: 'textarea',
+    commit: [{
+      rule: 'conditional_require',
+      field: 'followup_22',
+      value: 1
+    }],
+    text: {
+      zh: 'Cause(s)',
+      en: 'Cause(s)'
+    }
+  }, {
+    name: 'followup_23',
+    type: 'select',
+    required: true,
+    optionsGetter: 'getYesNoConfig',
+    commit: [{
+      rule: 'required',
+    }],
+    text: {
+      zh: 'Death within 30 days postop',
+      en: 'Death within 30 days postop'
+    }
+  }, {
+    name: 'followup_23_1',
+    type: 'textarea',
+    commit: [{
+      rule: 'conditional_require',
+      field: 'followup_23',
+      value: 1
+    }],
+    text: {
+      zh: 'Cause of death:',
+      en: 'Cause of death:'
+    }
   }],
   errors: []
 };

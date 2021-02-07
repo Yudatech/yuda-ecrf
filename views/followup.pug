@@ -150,6 +150,138 @@ block case-content
           .col-sm-2
             +_questionBtn(config.formConfigs.followup_19, questionFields)
 
+        br
+
+        .row
+          .col-sm-10
+            +_formTemplate(config.formConfigs.followup_20)
+          .col-sm-2
+            +_questionBtn(config.formConfigs.followup_20, questionFields)
+
+        - config.formConfigs.followup_20_1.hidden = !(config.formConfigs.followup_20.value === 1)
+        .row
+          .col-sm-10
+            +_formTemplate(config.formConfigs.followup_20_1)
+          .col-sm-2
+            +_questionBtn(config.formConfigs.followup_20_1, questionFields)
+
+        - config.formConfigs.followup_20_2.hidden = !(config.formConfigs.followup_20.value === 1)
+        .row
+          .col-sm-10
+            +_formTemplate(config.formConfigs.followup_20_2)
+          .col-sm-2
+            +_questionBtn(config.formConfigs.followup_20_2, questionFields)
+
+        br
+
+        .row
+          .col-sm-10
+            +_formTemplate(config.formConfigs.followup_21)
+          .col-sm-2
+            +_questionBtn(config.formConfigs.followup_21, questionFields)
+        
+        - config.formConfigs.followup_21_1.hidden = !(config.formConfigs.followup_21.value === 1)
+        .row
+          .col-sm-10
+            +_formTemplate(config.formConfigs.followup_21_1)
+          .col-sm-2
+            +_questionBtn(config.formConfigs.followup_21_1, questionFields)
+
+        - config.formConfigs.followup_21_2.hidden = !(config.formConfigs.followup_21.value === 1)
+        .row
+          .col-sm-10
+            +_formTemplate(config.formConfigs.followup_21_2)
+          .col-sm-2
+            +_questionBtn(config.formConfigs.followup_21_2, questionFields)
+
+        - config.formConfigs.followup_21_3.hidden = !(config.formConfigs.followup_21.value === 1)
+        .row
+          .col-sm-10
+            +_formTemplate(config.formConfigs.followup_21_3)
+          .col-sm-2
+            +_questionBtn(config.formConfigs.followup_21_3, questionFields)
+
+        - config.formConfigs.followup_21_4.hidden = !(config.formConfigs.followup_21.value === 1)
+        .row
+          .col-sm-10
+            +_formTemplate(config.formConfigs.followup_21_4)
+          .col-sm-2
+            +_questionBtn(config.formConfigs.followup_21_4, questionFields)
+
+        if !(config.formConfigs.followup_21.value === 1)
+          label.control-label.hidden(id=`followup_21_label_1`) #{"Unplanned laparotomy due to"}
+        else
+          label.control-label(id=`followup_21_label_1`) #{"Unplanned laparotomy due to"}
+
+        - config.formConfigs.followup_21_5_1.hidden = !(config.formConfigs.followup_21.value === 1)
+        .row
+          .col-sm-10
+            .form-group
+              +_formTemplate(config.formConfigs.followup_21_5_1)
+          .col-sm-2
+            +_questionBtn(config.formConfigs.followup_21_5_1, questionFields)
+
+        - config.formConfigs.followup_21_5_2.hidden = !(config.formConfigs.followup_21.value === 1)
+        .row
+          .col-sm-10
+            .form-group
+              +_formTemplate(config.formConfigs.followup_21_5_2)
+          .col-sm-2
+            +_questionBtn(config.formConfigs.followup_21_5_2, questionFields)
+
+        - config.formConfigs.followup_21_5_3.hidden = !(config.formConfigs.followup_21.value === 1)
+        .row
+          .col-sm-10
+            .form-group
+              +_formTemplate(config.formConfigs.followup_21_5_3)
+          .col-sm-2
+            +_questionBtn(config.formConfigs.followup_21_5_3, questionFields)
+
+        - config.formConfigs.followup_21_5_4.hidden = !(config.formConfigs.followup_21.value === 1)
+        .row
+          .col-sm-10
+            .form-group
+              +_formTemplate(config.formConfigs.followup_21_5_4)
+          .col-sm-2
+            +_questionBtn(config.formConfigs.followup_21_5_4, questionFields)
+
+        - config.formConfigs.followup_21_5_4_1.hidden = !(config.formConfigs.followup_21.value === 1 && config.formConfigs.followup_21_5_4)
+        .row
+          .col-sm-10
+            +_formTemplate(config.formConfigs.followup_21_5_4_1)
+          .col-sm-2
+            +_questionBtn(config.formConfigs.followup_21_5_4_1, questionFields)
+
+        br
+
+        .row
+          .col-sm-10
+            +_formTemplate(config.formConfigs.followup_22)
+          .col-sm-2
+            +_questionBtn(config.formConfigs.followup_22, questionFields)
+
+        - config.formConfigs.followup_22_1.hidden = !(config.formConfigs.followup_22.value === 1)
+        .row
+          .col-sm-10
+            +_formTemplate(config.formConfigs.followup_22_1)
+          .col-sm-2
+            +_questionBtn(config.formConfigs.followup_22_1, questionFields)
+
+        br
+
+        .row
+          .col-sm-10
+            +_formTemplate(config.formConfigs.followup_23)
+          .col-sm-2
+            +_questionBtn(config.formConfigs.followup_23, questionFields)
+
+        - config.formConfigs.followup_23_1.hidden = !(config.formConfigs.followup_23.value === 1)
+        .row
+          .col-sm-10
+            +_formTemplate(config.formConfigs.followup_23_1)
+          .col-sm-2
+            +_questionBtn(config.formConfigs.followup_23_1, questionFields)
+
       if formDisabled === false
         input.btn.btn-default.yuda-input-btn(id="followup-submit-btn" type="submit" value=buttonConfig.buttons.save.text)
 
