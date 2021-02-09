@@ -5,6 +5,7 @@ include _textareaTemplate
 include _numberfieldTemplate
 include _selectTemplate
 include _datetimeTemplate
+include _radioTemplate
 
 mixin _formTemplate(formConfig, disabled, hideLabel)
   if formConfig.type === 'checkbox'
@@ -27,3 +28,6 @@ mixin _formTemplate(formConfig, disabled, hideLabel)
 
   else if formConfig.type === 'datetime'
     +_datetimeTemplate(formConfig, disabled)
+
+  else if formConfig.type === 'radio'
+    +_radioTemplate(formConfig, disabled)

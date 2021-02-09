@@ -1,14 +1,14 @@
-const cdClassifications = [{
-  value: 0,
-  text: {
-    zh: 'I级',
-    en: 'Grade I'
-  }
-}, {
+const config = [{
   value: 1,
   text: {
-    zh: 'II级',
-    en: 'Grade II - V'
+    zh: '是',
+    en: 'Yes'
+  }
+}, {
+  value: 0,
+  text: {
+    zh: '否',
+    en: 'No'
   }
 }];
 
@@ -17,7 +17,7 @@ module.exports = function (lang) {
     lang = 'en';
   }
 
-  return cdClassifications.map((item) => {
+  return config.map((item) => {
     return {
       value: item.value,
       text: item.text[lang]

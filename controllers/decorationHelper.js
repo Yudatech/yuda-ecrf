@@ -3,6 +3,9 @@ const getAbdominalExamResultConfig = require('../config/common/getAbdominalExamR
 const getLabResultEvaluationConfig = require('../config/common/getLabResultEvaluationConfig');
 const getAssistantExamResultConfig = require('../config/common/getAssistantExamResultConfig');
 const getClinicalStageConfig = require('../config/common/getClinicalStageConfig');
+const getClavienGradingConfig = require('../config/common/getClavienGradingConfig');
+const getYesNoConfig = require('../config/common/getYesNoConfig');
+const getYesNoDontknowConfig = require('../config/common/getYesNoDontknowConfig');
 const getAeLevelConfig = require('../config/ae/getAeLevelConfig');
 const getAeRelConfig = require('../config/ae/getAeRelConfig');
 const getAeResConfig = require('../config/ae/getAeResConfig');
@@ -22,16 +25,21 @@ const getSurgeryStomaConfig = require('../config/surgery/getSurgeryStomaConfig')
 const getLARSScoreConfig = require('../config/life/getLARSScoreConfig');
 const getWasStomaFormedConfig = require('../config/life/getWasStomaFormedConfig');
 const getCDClassificationConfig = require('../config/visit/getCDClassificationConfig');
+const getPostoperativeComplicationRequiringTreatmentConfig = require('../config/visit/getPostoperativeComplicationRequiringTreatmentConfig');
 const getHasPostoperativeComplicationsConfig = require('../config/visit/getHasPostoperativeComplicationsConfig');
 const getEvacuationTypesConfig = require('../config/evacuation/getEvacuationTypesConfig');
 const getDiscontinuationTypeConfig = require('../config/getDiscontinuationTypeConfig');
 const getPriorRadiationTherapyConfig = require('../config/screening/getPriorRadiationTherapyConfig');
 const getPreoperativeDiagnosisConfig = require('../config/screening/getPreoperativeDiagnosisConfig');
 const getASAClassificationConfig = require('../config/screening/getASAClassificationConfig');
+const getDischargedToConfig = require('../config/followup/getDischargedToConfig');
 
 module.exports = {
   'getSexConfig': getSexConfig,
   'getAbdominalExamResultConfig': getAbdominalExamResultConfig,
+  'getClavienGradingConfig': getClavienGradingConfig,
+  'getYesNoConfig': getYesNoConfig,
+  'getYesNoDontknowConfig': getYesNoDontknowConfig,
   'getLabResultEvaluationConfig': getLabResultEvaluationConfig,
   'getAssistantExamResultConfig': getAssistantExamResultConfig,
   'getClinicalStageConfig': getClinicalStageConfig,
@@ -60,4 +68,6 @@ module.exports = {
   'getPreoperativeDiagnosisConfig': getPreoperativeDiagnosisConfig,
   'getASAClassificationConfig': getASAClassificationConfig,
   'getSurgeryStomaConfig': getSurgeryStomaConfig,
+  'getPostoperativeComplicationRequiringTreatmentConfig': getPostoperativeComplicationRequiringTreatmentConfig,
+  'getDischargedToConfig': getDischargedToConfig,
 };

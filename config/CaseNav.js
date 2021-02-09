@@ -122,6 +122,14 @@ module.exports = [
   },
   {
     title: {
+      zh: '30-days Follow-up',
+      en: '30-days Follow-up'
+    },
+    name: 'followup',
+    link: '/followup'
+  },
+  {
+    title: {
       zh: '生活质量和医疗服务利用模式评估',
       en: 'Life Quality and Healthcare Utilization',
       sv: 'Frågor om livskvalitet och utvärderingsmönster för hälso- och sjukvård'

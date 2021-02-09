@@ -1,0 +1,12 @@
+mixin _radioTemplate(config, disabled)
+  - const value = config.value
+  .form-group(id=`${config.name}-container` class=(config.hidden === true ? 'hidden' : ''))
+    .row
+      .col-sm-3
+        label.control-label #{config.text}
+      .col-sm-9
+        .row
+          each optionItem in config.options
+            div(style="width:14%;float:left;")
+              input.custom-control-input(disabled=disabled type="radio" id=`${config.name}-${optionItem.value}` name=config.name value=optionItem.value checked=(optionItem.value === config.value || (!config.value && !optionItem.value)))
+              label.control-label(style="padding-left: 5px;" for=`${config.name}-${optionItem.value}`) #{`${optionItem.text}`}

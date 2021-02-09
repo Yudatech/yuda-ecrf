@@ -42,6 +42,27 @@ exports.getQuestionLink = function (table, linkBase, caseId, formConfig, seconda
   }
 };
 
+const VISIT_SPECIAL_FIELDS = ['postoperative_2_1_2', 'postoperative_2_1_3', 'postoperative_2_1_4', 'postoperative_2_1_5', 'postoperative_2_1_6', 'postoperative_2_1_7', 'postoperative_2_1_8', 'postoperative_2_1_9', 'postoperative_2_1_10', 'postoperative_2_1_11', 'postoperative_2_1_12', 'postoperative_2_1_13', 'postoperative_2_1_14', 'postoperative_2_1_15', 'postoperative_2_1_16', 'postoperative_2_1_17', 'postoperative_2_1_18'];
+
+function isVisitAeSource(visitItem) {
+  const match = VISIT_SPECIAL_FIELDS.find(item => {
+    const valueToCheck = visitItem[item];
+    return valueToCheck && valueToCheck > 0;
+  });
+  return match !== undefined;
+}
+
+function isVisitSaeSource(visitItem) {
+  const match = VISIT_SPECIAL_FIELDS.find(item => {
+    const valueToCheck = visitItem[item];
+    return valueToCheck && valueToCheck > 3;
+  });
+  return match !== undefined;
+}
+
+exports.isVisitAeSource = isVisitAeSource;
+exports.isVisitSaeSource = isVisitSaeSource;
+
 exports.getSaeSourceOptions = async function (caseId) {
   const surgeryItem = await Surgery.findOne({
     case: caseId
@@ -55,7 +76,7 @@ exports.getSaeSourceOptions = async function (caseId) {
     case: caseId
   });
   if (surgeryItem && visitItems.length > 0) {
-    visitItems.filter(item => item.postoperative_2_1 === 3 || item.postoperative_2_1 === 4).forEach((item) => {
+    visitItems.filter(item => isVisitSaeSource(item)).forEach((item) => {
       saeSourceOptions.push({
         value: item._id.toString(),
         text: getPostoperativeDayText(getDaysAfterSurgery(surgerydtc, item.assessmentdtc))
@@ -85,7 +106,7 @@ exports.getSaeSourceOptionsSync = function (caseId, surgeryList, visitList) {
   const visitItems = visitList.filter((item) => item.case === caseId);
   const saeSourceOptions = [];
   if (surgeryItem && visitItems.length > 0) {
-    visitItems.filter(item => item.postoperative_2_1 === 3 || item.postoperative_2_1 === 4).forEach((item) => {
+    visitItems.filter(item => isVisitSaeSource(item)).forEach((item) => {
       saeSourceOptions.push({
         value: item._id.toString(),
         text: getPostoperativeDayText(getDaysAfterSurgery(surgerydtc, item.assessmentdtc))
@@ -109,7 +130,7 @@ exports.getAeSourceConfig = async function (caseId, lang) {
     case: caseId
   });
   if (surgeryItem && visitItems.length > 0) {
-    visitItems.filter(item => item.postoperative_2_1 === 1 || item.postoperative_2_1 === 2 || item.postoperative_2_1 === 3 || item.postoperative_2_1 === 4).forEach((item) => {
+    visitItems.filter(item => isVisitAeSource(item)).forEach((item) => {
       visits.push({
         _id: item._id,
         postoperativedayText: getPostoperativeDayText(getDaysAfterSurgery(surgerydtc, item.assessmentdtc))
@@ -125,7 +146,7 @@ exports.getAeSourceConfigSync = function (caseId, lang, surgeryList, visitList) 
   const visitItems = visitList.filter((item) => item.case === caseId);
   const visits = [];
   if (surgeryItem && visitItems.length > 0) {
-    visitItems.filter(item => item.postoperative_2_1 === 1 || item.postoperative_2_1 === 2 || item.postoperative_2_1 === 3 || item.postoperative_2_1 === 4).forEach((item) => {
+    visitItems.filter(item => isVisitAeSource(item)).forEach((item) => {
       visits.push({
         _id: item._id.toString(),
         postoperativedayText: getPostoperativeDayText(getDaysAfterSurgery(surgerydtc, item.assessmentdtc))
