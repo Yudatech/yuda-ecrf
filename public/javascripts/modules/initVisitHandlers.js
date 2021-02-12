@@ -84,7 +84,7 @@ function setPostoperative_2_18ChildrenVisibility() {
 function setPostoperative_2_1ChildrenVisibility() {
   const value = $('#postoperative_2_1').val();
   const checked = value === '1';
-  const labels = ['postoperative_2_1_label_1', 'postoperative_2_1_label_2', 'postoperative_2_1_label_3', 'postoperative_2_1_label_4'];
+  const labels = ['postoperative_2_1_label_1', 'postoperative_2_1_label_2', 'postoperative_2_1_label_3', 'postoperative_2_1_label_4', 'visit_doc_1', 'postoperative_2_1_div'];
   const children = ['postoperative_2_1_1', 'postoperative_2_1_2', 'postoperative_2_1_3', 'postoperative_2_1_4', 'postoperative_2_1_5', 'postoperative_2_1_6', 'postoperative_2_1_7', 'postoperative_2_1_8', 'postoperative_2_1_9', 'postoperative_2_1_10', 'postoperative_2_1_11', 'postoperative_2_1_12', 'postoperative_2_1_13', 'postoperative_2_1_14', 'postoperative_2_1_15', 'postoperative_2_1_16', 'postoperative_2_1_17', 'postoperative_2_1_18', 'postoperative_2_1_19'];
   children.forEach(function (child) {
     setFieldVisibility(child, checked);

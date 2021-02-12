@@ -88,14 +88,14 @@ const config = {
       name: 'screening-method',
       text: {
         zh: '诊断方法',
-        en: 'Diagnostic methods'
+        en: 'Examination methods'
       },
       linkBase: '/screening-method'
     }, {
       name: 'screening-dignose',
       text: {
         zh: '临床，病理诊断及分期',
-        en: 'Diagnosis/Planned surgery'
+        en: 'Preoperative diagnosis'
       },
       linkBase: '/screening-dignose'
     }]
@@ -134,7 +134,7 @@ const config = {
   }, {
     text: {
       zh: '病理诊断',
-      en: 'Pathological diagnosis'
+      en: 'Pathological Diagnosis'
     },
     name: 'pathological',
     total: 1,

@@ -17,7 +17,7 @@ block case-content
 
         br
 
-        label.control-label(style="font-size: 2rem;" id=`followup_label_1`) #{config.subtitles.subtitle_2.text}
+        label.control-label(id=`followup_label_1`) #{config.subtitles.subtitle_2.text}
 
         .row
           .col-sm-10
@@ -39,7 +39,7 @@ block case-content
 
         br
 
-        label.control-label(style="font-size: 2rem;" id=`followup_label_2`) #{config.subtitles.subtitle_3.text}
+        label.control-label(id=`followup_label_2`) #{config.subtitles.subtitle_3.text}
 
         .row
           .col-sm-10
@@ -73,7 +73,7 @@ block case-content
 
         br
 
-        label.control-label(style="font-size: 2rem;" id=`followup_label_3`) #{config.subtitles.subtitle_4.text}
+        label.control-label(id=`followup_label_3`) #{config.subtitles.subtitle_4.text}
 
         .row
           .col-sm-10
@@ -89,7 +89,7 @@ block case-content
 
         br
 
-        label.control-label(style="font-size: 2rem;" id=`followup_label_4`) #{config.subtitles.subtitle_5.text}
+        label.control-label(id=`followup_label_4`) #{config.subtitles.subtitle_5.text}
 
         .row
           .col-sm-10
@@ -150,6 +150,37 @@ block case-content
           .col-sm-2
             +_questionBtn(config.formConfigs.followup_19, questionFields)
 
+        div
+          br
+          span #{"Explanation of Clavien grading:"}
+          br
+          span
+            b #{"Grade 2: "}
+            span #{"Pharmacological treatment was required including blood transfusion or parenteral nutrition. Exceptions: antiemetics, antipyretics, analgesics, diuretics, electrolyte replacement."}
+          br
+          span
+            b #{"Grade 3a: "}
+            span #{"Complication requiring surgical, endoscopic or radiological (percutaneous drainage) treatment without anesthesia."}
+          br
+          span
+            b #{"Grade 3b: "}
+            span #{"Complication requiring surgical, endoscopic or radiological treatment under anesthesia."}
+          br
+          span
+            b #{"Grade 4a: "}
+            span #{"Life-threatening complication (incl. CNS) that required intensive care with failure of an organ (incl. Dialysis)."}
+          br
+          span
+            b #{"Grade 4b: "}
+            span #{"Life-threatening complication (incl. CNS) that required intensive care with multi-organ failure."}
+          br
+          span
+            b #{"Grade 5: "}
+            span #{"Dead."}
+
+          hr(style="border: 1px solid #c0c0c0;")
+          
+
         br
 
         .row
@@ -157,6 +188,8 @@ block case-content
             +_formTemplate(config.formConfigs.followup_20)
           .col-sm-2
             +_questionBtn(config.formConfigs.followup_20, questionFields)
+        span #{"Admission to IVA from the care department, or unplanned treatment on IVA longer than 1 day immediately after op"}
+
 
         - config.formConfigs.followup_20_1.hidden = !(config.formConfigs.followup_20.value === 1)
         .row(id=`followup_20_1_row` class=(config.formConfigs.followup_20_1.hidden === true ? 'hidden' : ''))
@@ -172,6 +205,7 @@ block case-content
           .col-sm-2
             +_questionBtn(config.formConfigs.followup_20_2, questionFields)
 
+        hr(style="border: 1px solid #c0c0c0;")
         br
 
         .row
@@ -209,9 +243,9 @@ block case-content
             +_questionBtn(config.formConfigs.followup_21_4, questionFields)
 
         if !(config.formConfigs.followup_21.value === 1)
-          label.control-label.hidden(style="font-size: 2rem;" id=`followup_21_label_1`) #{"Unplanned laparotomy due to"}
+          label.control-label.hidden(id=`followup_21_label_1`) #{"Unplanned laparotomy due to"}
         else
-          label.control-label(style="font-size: 2rem;" id=`followup_21_label_1`) #{"Unplanned laparotomy due to"}
+          label.control-label(id=`followup_21_label_1`) #{"Unplanned laparotomy due to"}
 
         - config.formConfigs.followup_21_5_1.hidden = !(config.formConfigs.followup_21.value === 1)
         .row(id=`followup_21_5_1_row` class=(config.formConfigs.followup_21_5_1.hidden === true ? 'hidden' : ''))
@@ -252,6 +286,7 @@ block case-content
           .col-sm-2
             +_questionBtn(config.formConfigs.followup_21_5_4_1, questionFields)
 
+        hr(style="border: 1px solid #c0c0c0;")
         br
 
         .row
@@ -259,6 +294,7 @@ block case-content
             +_formTemplate(config.formConfigs.followup_22)
           .col-sm-2
             +_questionBtn(config.formConfigs.followup_22, questionFields)
+        span #{"Any unplanned readmission to inpatient care, regardless of clinic, within 30 days of op."}
 
         - config.formConfigs.followup_22_1.hidden = !(config.formConfigs.followup_22.value === 1)
         .row(id=`followup_22_1_row` class=(config.formConfigs.followup_22_1.hidden === true ? 'hidden' : ''))
@@ -267,6 +303,7 @@ block case-content
           .col-sm-2
             +_questionBtn(config.formConfigs.followup_22_1, questionFields)
 
+        hr(style="border: 1px solid #c0c0c0;")
         br
 
         .row
@@ -274,6 +311,7 @@ block case-content
             +_formTemplate(config.formConfigs.followup_23)
           .col-sm-2
             +_questionBtn(config.formConfigs.followup_23, questionFields)
+        span #{"or during the same care session (regardless of cause)."}
 
         - config.formConfigs.followup_23_1.hidden = !(config.formConfigs.followup_23.value === 1)
         .row(id=`followup_23_1_row` class=(config.formConfigs.followup_23_1.hidden === true ? 'hidden' : ''))
@@ -436,9 +474,9 @@ block case-content
             +_questionBtn(config.formConfigs.followup_27_1, questionFields)
 
         if !(config.formConfigs.followup_27.value === 1)
-          label.control-label.hidden(style="font-size: 2rem;" id=`followup_27_label_1`) #{"Assessed by"}
+          label.control-label.hidden(id=`followup_27_label_1`) #{"Assessed by"}
         else
-          label.control-label(style="font-size: 2rem;" id=`followup_27_label_1`) #{"Assessed by"}
+          label.control-label(id=`followup_27_label_1`) #{"Assessed by"}
 
         - config.formConfigs.followup_27_2.hidden = !(config.formConfigs.followup_27.value === 1)
         .row(id=`followup_27_2_row` class=(config.formConfigs.followup_27_2.hidden === true ? 'hidden' : ''))
@@ -485,6 +523,7 @@ block case-content
             +_formTemplate(config.formConfigs.followup_28)
           .col-sm-2
             +_questionBtn(config.formConfigs.followup_28, questionFields)
+        span #{"(chemo / antibodies / radiation)"}
 
         - config.formConfigs.followup_28_1.hidden = !(config.formConfigs.followup_28.value === 1)
         .row(id=`followup_28_1_row` class=(config.formConfigs.followup_28_1.hidden === true ? 'hidden' : ''))
@@ -597,32 +636,3 @@ block case-content
 
       if formDisabled === false
         input.btn.btn-default.yuda-input-btn(id="followup-submit-btn" type="submit" value=buttonConfig.buttons.save.text)
-
-      br
-      br
-      br
-      span #{"Explanation of Clavien grading:"}
-      br
-      span
-        b #{"Grade 2: "}
-        span #{"Pharmacological treatment was required including blood transfusion or parenteral nutrition. Exceptions: antiemetics, antipyretics, analgesics, diuretics, electrolyte replacement."}
-      br
-      span
-        b #{"Grade 3a: "}
-        span #{"Complication requiring surgical, endoscopic or radiological (percutaneous drainage) treatment without anesthesia."}
-      br
-      span
-        b #{"Grade 3b: "}
-        span #{"Complication requiring surgical, endoscopic or radiological treatment under anesthesia."}
-      br
-      span
-        b #{"Grade 4a: "}
-        span #{"Life-threatening complication (incl. CNS) that required intensive care with failure of an organ (incl. Dialysis)."}
-      br
-      span
-        b #{"Grade 4b: "}
-        span #{"Life-threatening complication (incl. CNS) that required intensive care with multi-organ failure."}
-      br
-      span
-        b #{"Grade 5: "}
-        span #{"Dead."}

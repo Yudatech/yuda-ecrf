@@ -256,8 +256,8 @@ const config = {
       fields: 'postoperative_2_1_2,postoperative_2_1_3,postoperative_2_1_4,postoperative_2_1_5,postoperative_2_1_6,postoperative_2_1_7,postoperative_2_1_8,postoperative_2_1_9,postoperative_2_1_10,postoperative_2_1_11,postoperative_2_1_12,postoperative_2_1_13,postoperative_2_1_14,postoperative_2_1_15,postoperative_2_1_16,postoperative_2_1_17,postoperative_2_1_18'
     }],
     text: {
-      zh: 'Other',
-      en: 'Other'
+      zh: 'Wound infection',
+      en: 'Wound infection'
     }
   }, {
     name: 'postoperative_2_1_13',
@@ -270,8 +270,8 @@ const config = {
       fields: 'postoperative_2_1_2,postoperative_2_1_3,postoperative_2_1_4,postoperative_2_1_5,postoperative_2_1_6,postoperative_2_1_7,postoperative_2_1_8,postoperative_2_1_9,postoperative_2_1_10,postoperative_2_1_11,postoperative_2_1_12,postoperative_2_1_13,postoperative_2_1_14,postoperative_2_1_15,postoperative_2_1_16,postoperative_2_1_17,postoperative_2_1_18'
     }],
     text: {
-      zh: 'Other',
-      en: 'Other'
+      zh: 'Intraabdominal infection',
+      en: 'Intraabdominal infection'
     }
   }, {
     name: 'postoperative_2_1_14',
@@ -284,8 +284,8 @@ const config = {
       fields: 'postoperative_2_1_2,postoperative_2_1_3,postoperative_2_1_4,postoperative_2_1_5,postoperative_2_1_6,postoperative_2_1_7,postoperative_2_1_8,postoperative_2_1_9,postoperative_2_1_10,postoperative_2_1_11,postoperative_2_1_12,postoperative_2_1_13,postoperative_2_1_14,postoperative_2_1_15,postoperative_2_1_16,postoperative_2_1_17,postoperative_2_1_18'
     }],
     text: {
-      zh: 'Other',
-      en: 'Other'
+      zh: 'Bleeding',
+      en: 'Bleeding'
     }
   }, {
     name: 'postoperative_2_1_15',
@@ -298,8 +298,8 @@ const config = {
       fields: 'postoperative_2_1_2,postoperative_2_1_3,postoperative_2_1_4,postoperative_2_1_5,postoperative_2_1_6,postoperative_2_1_7,postoperative_2_1_8,postoperative_2_1_9,postoperative_2_1_10,postoperative_2_1_11,postoperative_2_1_12,postoperative_2_1_13,postoperative_2_1_14,postoperative_2_1_15,postoperative_2_1_16,postoperative_2_1_17,postoperative_2_1_18'
     }],
     text: {
-      zh: 'Other',
-      en: 'Other'
+      zh: 'Wound rupture',
+      en: 'Wound rupture'
     }
   }, {
     name: 'postoperative_2_1_16',
@@ -312,8 +312,8 @@ const config = {
       fields: 'postoperative_2_1_2,postoperative_2_1_3,postoperative_2_1_4,postoperative_2_1_5,postoperative_2_1_6,postoperative_2_1_7,postoperative_2_1_8,postoperative_2_1_9,postoperative_2_1_10,postoperative_2_1_11,postoperative_2_1_12,postoperative_2_1_13,postoperative_2_1_14,postoperative_2_1_15,postoperative_2_1_16,postoperative_2_1_17,postoperative_2_1_18'
     }],
     text: {
-      zh: 'Other',
-      en: 'Other'
+      zh: 'Anastomosis insufficiency',
+      en: 'Anastomosis insufficiency'
     }
   }, {
     name: 'postoperative_2_1_17',
@@ -326,8 +326,8 @@ const config = {
       fields: 'postoperative_2_1_2,postoperative_2_1_3,postoperative_2_1_4,postoperative_2_1_5,postoperative_2_1_6,postoperative_2_1_7,postoperative_2_1_8,postoperative_2_1_9,postoperative_2_1_10,postoperative_2_1_11,postoperative_2_1_12,postoperative_2_1_13,postoperative_2_1_14,postoperative_2_1_15,postoperative_2_1_16,postoperative_2_1_17,postoperative_2_1_18'
     }],
     text: {
-      zh: 'Other',
-      en: 'Other'
+      zh: 'Stoma complication',
+      en: 'Stoma complication'
     }
   }, {
     name: 'postoperative_2_1_18',

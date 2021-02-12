@@ -60,7 +60,7 @@ module.exports = [
       name: 'screening-method',
       title: {
         zh: '诊断方法',
-        en: 'Diagnostic methods',
+        en: 'Examination methods',
         sv: 'Metod för diagnos'
       },
       link: '/screening-method'
@@ -68,7 +68,7 @@ module.exports = [
       name: 'screening-dignose',
       title: {
         zh: '临床诊断/手术指征',
-        en: 'Diagnosis/Planned surgery',
+        en: 'Preoperative diagnosis',
         sv: 'Diagnos/Indication'
       },
       link: '/screening-dignose'

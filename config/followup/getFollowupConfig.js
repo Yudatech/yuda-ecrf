@@ -185,8 +185,8 @@ const config = {
       fields: 'followup_2,followup_3,followup_4,followup_5,followup_6,followup_7,followup_8,followup_9,followup_10,followup_11,followup_12,followup_13,followup_14,followup_15,followup_16,followup_17,followup_18'
     }],
     text: {
-      zh: 'Other',
-      en: 'Other'
+      zh: 'Wound infection',
+      en: 'Wound infection'
     }
   }, {
     name: 'followup_13',
@@ -197,8 +197,8 @@ const config = {
       fields: 'followup_2,followup_3,followup_4,followup_5,followup_6,followup_7,followup_8,followup_9,followup_10,followup_11,followup_12,followup_13,followup_14,followup_15,followup_16,followup_17,followup_18'
     }],
     text: {
-      zh: 'Other',
-      en: 'Other'
+      zh: 'Intraabdominal infection',
+      en: 'Intraabdominal infection'
     }
   }, {
     name: 'followup_14',
@@ -209,8 +209,8 @@ const config = {
       fields: 'followup_2,followup_3,followup_4,followup_5,followup_6,followup_7,followup_8,followup_9,followup_10,followup_11,followup_12,followup_13,followup_14,followup_15,followup_16,followup_17,followup_18'
     }],
     text: {
-      zh: 'Other',
-      en: 'Other'
+      zh: 'Bleeding',
+      en: 'Bleeding'
     }
   }, {
     name: 'followup_15',
@@ -221,8 +221,8 @@ const config = {
       fields: 'followup_2,followup_3,followup_4,followup_5,followup_6,followup_7,followup_8,followup_9,followup_10,followup_11,followup_12,followup_13,followup_14,followup_15,followup_16,followup_17,followup_18'
     }],
     text: {
-      zh: 'Other',
-      en: 'Other'
+      zh: 'Wound rupture',
+      en: 'Wound rupture'
     }
   }, {
     name: 'followup_16',
@@ -233,8 +233,8 @@ const config = {
       fields: 'followup_2,followup_3,followup_4,followup_5,followup_6,followup_7,followup_8,followup_9,followup_10,followup_11,followup_12,followup_13,followup_14,followup_15,followup_16,followup_17,followup_18'
     }],
     text: {
-      zh: 'Other',
-      en: 'Other'
+      zh: 'Anastomosis insufficiency',
+      en: 'Anastomosis insufficiency'
     }
   }, {
     name: 'followup_17',
@@ -245,8 +245,8 @@ const config = {
       fields: 'followup_2,followup_3,followup_4,followup_5,followup_6,followup_7,followup_8,followup_9,followup_10,followup_11,followup_12,followup_13,followup_14,followup_15,followup_16,followup_17,followup_18'
     }],
     text: {
-      zh: 'Other',
-      en: 'Other'
+      zh: 'Stoma complication',
+      en: 'Stoma complication'
     }
   }, {
     name: 'followup_18',
