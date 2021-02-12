@@ -65,6 +65,10 @@ exports.followupForm = async (req, res) => {
     if (config.formConfigs[key].type === 'checkbox' && config.formConfigs[key].value === undefined) {
       config.formConfigs[key].value = false;
     }
+
+    if (key === 'followup_20_1' || key === 'followup_20_2' || key === 'followup_21_1' || key === 'followup_21_2' || key === 'followup_21_3' || key === 'followup_21_4') {
+      config.formConfigs[key].value = followupItem[key] ? moment(followupItem[key]).format('YYYY/MM/DD') : '';
+    }
   });
   logger.info(loggerHelper.createLogMessage(req.user, 'show', 'followup', req.params.caseId));
   console.log(getButtonConfig(req.user.language));
