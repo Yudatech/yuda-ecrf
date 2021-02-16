@@ -57,9 +57,7 @@ const followupSchema = new Schema({
   followup_22: Number,
   followup_22_1: String,
   followup_23: Number,
-  followup_23_1: {
-    type: Date
-  },
+  followup_23_1: String,
   followup_24: Number,
   followup_25: {
     type: Date
@@ -79,7 +77,7 @@ const followupSchema = new Schema({
   followup_26_12: Boolean,
   followup_26_13: Boolean,
   followup_26_14: Boolean,
-  followup_26_14_1: Boolean,
+  followup_26_14_1: String,
   followup_27: Number,
   followup_27_1: Boolean,
   followup_27_2: Boolean,

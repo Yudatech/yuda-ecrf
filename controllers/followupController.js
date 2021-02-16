@@ -71,7 +71,6 @@ exports.followupForm = async (req, res) => {
     }
   });
   logger.info(loggerHelper.createLogMessage(req.user, 'show', 'followup', req.params.caseId));
-  console.log(getButtonConfig(req.user.language));
   res.render('followup', {
     caseNav: CaseNav,
     config,

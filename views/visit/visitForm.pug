@@ -203,7 +203,7 @@ block case-content
           .col-sm-2
             +_questionBtn(config.formConfigs.postoperative_2_1_18, questionFields)
 
-        - config.formConfigs.postoperative_2_1_18_1.hidden = !(config.formConfigs.postoperative_2_1.value === true && config.formConfigs.postoperative_2_1_18.value > 0)
+        - config.formConfigs.postoperative_2_1_18_1.hidden = !(config.formConfigs.postoperative_2_1.value === 1 && config.formConfigs.postoperative_2_1_18.value > 0)
         .row
           .col-sm-10
             +_formTemplate(config.formConfigs.postoperative_2_1_18_1)

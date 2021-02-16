@@ -363,7 +363,7 @@ const config = {
     commit: [{
       rule: 'conditional_require',
       field: 'postoperative_2_1',
-      value: true,
+      value: 1,
     }],
     text: {
       zh: '出院时导尿管',

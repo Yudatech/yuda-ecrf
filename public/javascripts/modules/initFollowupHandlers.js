@@ -90,6 +90,7 @@ function setFollowup_21ChildrenVisibility() {
     setLabelVisibility(`${childField}_row`, checked);
   })
   setLabelVisibility('followup_21_label_1', checked);
+  setFollowup_21_5_4ChildrenVisibility();
 }
 
 function setFollowup_21_5_4ChildrenVisibility() {
@@ -121,7 +122,8 @@ function setFollowup_26ChildrenVisibility() {
   childrenFields.forEach(function (childField) {
     setFieldVisibility(childField, checked);
     setLabelVisibility(`${childField}_row`, checked);
-  })
+  });
+  setFollowup_26_14ChildrenVisibility();
 }
 
 function setFollowup_26_14ChildrenVisibility() {
@@ -165,6 +167,7 @@ function setFollowup_32ChildrenVisibility() {
     setFieldVisibility(childField, checked);
     setLabelVisibility(`${childField}_row`, checked);
   });
+  setFollowup_32_8ChildrenVisibility();
 }
 
 function setFollowup_32_8ChildrenVisibility() {

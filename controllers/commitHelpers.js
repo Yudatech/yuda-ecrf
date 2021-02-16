@@ -250,7 +250,7 @@ function doCommitValidation(caseId, key, obj, rules, extra, validateResult) {
       result = doConditionalRequireCheck(obj[key], ruleConfig.value, extra[ruleConfig.field]);
     }
     else if (ruleName === 'conditional_require_multiple_values') {
-      result = doConditionalRequireMultipleValuesCheck(obj[key], ruleConfig.values, extra[ruleConfig.field]);
+      result = doConditionalRequireMultipleValuesCheck(obj[key], ruleConfig.values, obj[ruleConfig.field]);
     }
     else if (ruleName === 'atleast_one_true') {
       result = doAtLeastOneTrueCheck(obj[key], ruleConfig.fields, extra);
