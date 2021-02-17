@@ -11,7 +11,7 @@ const config = {
       name: 'subtitle_1',
       text: {
         zh: '肠切除部位',
-        en: 'Level of Anastomosis'
+        en: 'Level of anastomosis'
       }
     }
   ],
