@@ -66,7 +66,7 @@ exports.followupForm = async (req, res) => {
       config.formConfigs[key].value = false;
     }
 
-    if (key === 'followup_20_1' || key === 'followup_20_2' || key === 'followup_21_1' || key === 'followup_21_2' || key === 'followup_21_3' || key === 'followup_21_4') {
+    if (key === 'followup_20_1' || key === 'followup_20_2' || key === 'followup_21_1' || key === 'followup_21_2' || key === 'followup_21_3' || key === 'followup_21_4' || key === 'followup_25' || key === 'followup_27_1') {
       config.formConfigs[key].value = followupItem[key] ? moment(followupItem[key]).format('YYYY/MM/DD') : '';
     }
   });

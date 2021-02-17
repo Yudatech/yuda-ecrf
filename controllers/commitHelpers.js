@@ -70,6 +70,20 @@ function doConditionalRequireCheck(value, requiredValue, currentValue) {
   }
 }
 
+function doConditionalRequireExtraCheck(key, obj, rule) {
+  const requiredValue = rule.value;
+  const currentValue = obj[rule.field];
+  const baseFieldRequiredValue = rule.baseFieldValue;
+  const baseFieldCurrentValue = obj[rule.baseField];
+  const value = obj[key];
+  if (requiredValue === currentValue && baseFieldCurrentValue === baseFieldRequiredValue) {
+    return value !== undefined && value !== '';
+  }
+  else {
+    return true;
+  }
+}
+
 function doConditionalRequireMultipleValuesCheck(value, requiredValues, currentValue) {
   if (requiredValues.find(item => item === currentValue) !== undefined) {
     return value !== undefined && value !== '';
@@ -248,6 +262,9 @@ function doCommitValidation(caseId, key, obj, rules, extra, validateResult) {
     }
     else if (ruleName === 'conditional_require') {
       result = doConditionalRequireCheck(obj[key], ruleConfig.value, extra[ruleConfig.field]);
+    }
+    else if (ruleName === 'conditional_require_extra') {
+      result = doConditionalRequireExtraCheck(key, obj, ruleConfig);
     }
     else if (ruleName === 'conditional_require_multiple_values') {
       result = doConditionalRequireMultipleValuesCheck(obj[key], ruleConfig.values, obj[ruleConfig.field]);
@@ -610,7 +627,7 @@ exports.validateFollowupForm = async function (caseId, lang) {
     followupValidateResult.resultType = 'empty';
   }
   else {
-    const extra = {};
+    const extra = followupItem;
     const formConfigs = getFollowupConfig(lang).formConfigs;
     doCommitValidationForWholeTable(caseId, followupValidateResult, commitCaseConfig, formConfigs, followupItem, extra);
   }

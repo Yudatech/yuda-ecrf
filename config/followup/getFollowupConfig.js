@@ -442,7 +442,9 @@ const config = {
     name: 'followup_21_5_4_1',
     type: 'textarea',
     commit: [{
-      rule: 'conditional_require',
+      rule: 'conditional_require_extra',
+      baseField: 'followup_21',
+      baseFieldValue: 1,
       field: 'followup_21_5_4',
       value: true
     }],
@@ -718,7 +720,9 @@ const config = {
     name: 'followup_26_14_1',
     type: 'textarea',
     commit: [{
-      rule: 'conditional_require',
+      rule: 'conditional_require_extra',
+      baseField: 'followup_26',
+      baseFieldValue: 1,
       field: 'followup_26_14',
       value: true
     }],
@@ -1007,7 +1011,9 @@ const config = {
     name: 'followup_32_8_1',
     type: 'textarea',
     commit: [{
-      rule: 'conditional_require',
+      rule: 'conditional_require_extra',
+      baseField: 'followup_32',
+      baseFieldValue: 1,
       field: 'followup_32_8',
       value: true
     }],
