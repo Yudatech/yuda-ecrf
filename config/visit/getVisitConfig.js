@@ -81,11 +81,7 @@ const config = {
     required: true,
     optionsGetter: 'getCDClassificationConfig',
     commit: [{
-      rule: 'custom',
-      message: {
-        zh: '请完整填写《不良事件及器械缺陷报告表》',
-        en: 'Complete Adverse Events and Device Deficiency (AE) Report'
-      }
+      rule: 'custom'
     }],
     text: {
       zh: 'Clavien-Dindo分类',
@@ -110,9 +106,12 @@ const config = {
     type: 'radio',
     optionsGetter: 'getClavienGradingConfig',
     commit: [{
-      rule: 'conditional_atleast_one',
+      rule: 'conditional_atleast_one_extra',
       conditionField: 'postoperative_2_1',
       conditionValue: 1,
+      baseField: 'postoperative_2',
+      baseFieldValue: 0, baseField: 'postoperative_2',
+      baseFieldValue: 0,
       fields: 'postoperative_2_1_2,postoperative_2_1_3,postoperative_2_1_4,postoperative_2_1_5,postoperative_2_1_6,postoperative_2_1_7,postoperative_2_1_8,postoperative_2_1_9,postoperative_2_1_10,postoperative_2_1_11,postoperative_2_1_12,postoperative_2_1_13,postoperative_2_1_14,postoperative_2_1_15,postoperative_2_1_16,postoperative_2_1_17,postoperative_2_1_18'
     }],
     text: {
@@ -124,9 +123,11 @@ const config = {
     type: 'radio',
     optionsGetter: 'getClavienGradingConfig',
     commit: [{
-      rule: 'conditional_atleast_one',
+      rule: 'conditional_atleast_one_extra',
       conditionField: 'postoperative_2_1',
       conditionValue: 1,
+      baseField: 'postoperative_2',
+      baseFieldValue: 0,
       fields: 'postoperative_2_1_2,postoperative_2_1_3,postoperative_2_1_4,postoperative_2_1_5,postoperative_2_1_6,postoperative_2_1_7,postoperative_2_1_8,postoperative_2_1_9,postoperative_2_1_10,postoperative_2_1_11,postoperative_2_1_12,postoperative_2_1_13,postoperative_2_1_14,postoperative_2_1_15,postoperative_2_1_16,postoperative_2_1_17,postoperative_2_1_18'
     }],
     text: {
@@ -138,9 +139,11 @@ const config = {
     type: 'radio',
     optionsGetter: 'getClavienGradingConfig',
     commit: [{
-      rule: 'conditional_atleast_one',
+      rule: 'conditional_atleast_one_extra',
       conditionField: 'postoperative_2_1',
       conditionValue: 1,
+      baseField: 'postoperative_2',
+      baseFieldValue: 0,
       fields: 'postoperative_2_1_2,postoperative_2_1_3,postoperative_2_1_4,postoperative_2_1_5,postoperative_2_1_6,postoperative_2_1_7,postoperative_2_1_8,postoperative_2_1_9,postoperative_2_1_10,postoperative_2_1_11,postoperative_2_1_12,postoperative_2_1_13,postoperative_2_1_14,postoperative_2_1_15,postoperative_2_1_16,postoperative_2_1_17,postoperative_2_1_18'
     }],
     text: {
@@ -152,9 +155,11 @@ const config = {
     type: 'radio',
     optionsGetter: 'getClavienGradingConfig',
     commit: [{
-      rule: 'conditional_atleast_one',
+      rule: 'conditional_atleast_one_extra',
       conditionField: 'postoperative_2_1',
       conditionValue: 1,
+      baseField: 'postoperative_2',
+      baseFieldValue: 0,
       fields: 'postoperative_2_1_2,postoperative_2_1_3,postoperative_2_1_4,postoperative_2_1_5,postoperative_2_1_6,postoperative_2_1_7,postoperative_2_1_8,postoperative_2_1_9,postoperative_2_1_10,postoperative_2_1_11,postoperative_2_1_12,postoperative_2_1_13,postoperative_2_1_14,postoperative_2_1_15,postoperative_2_1_16,postoperative_2_1_17,postoperative_2_1_18'
     }],
     text: {
@@ -166,9 +171,11 @@ const config = {
     type: 'radio',
     optionsGetter: 'getClavienGradingConfig',
     commit: [{
-      rule: 'conditional_atleast_one',
+      rule: 'conditional_atleast_one_extra',
       conditionField: 'postoperative_2_1',
       conditionValue: 1,
+      baseField: 'postoperative_2',
+      baseFieldValue: 0,
       fields: 'postoperative_2_1_2,postoperative_2_1_3,postoperative_2_1_4,postoperative_2_1_5,postoperative_2_1_6,postoperative_2_1_7,postoperative_2_1_8,postoperative_2_1_9,postoperative_2_1_10,postoperative_2_1_11,postoperative_2_1_12,postoperative_2_1_13,postoperative_2_1_14,postoperative_2_1_15,postoperative_2_1_16,postoperative_2_1_17,postoperative_2_1_18'
     }],
     text: {
@@ -180,9 +187,11 @@ const config = {
     type: 'radio',
     optionsGetter: 'getClavienGradingConfig',
     commit: [{
-      rule: 'conditional_atleast_one',
+      rule: 'conditional_atleast_one_extra',
       conditionField: 'postoperative_2_1',
       conditionValue: 1,
+      baseField: 'postoperative_2',
+      baseFieldValue: 0,
       fields: 'postoperative_2_1_2,postoperative_2_1_3,postoperative_2_1_4,postoperative_2_1_5,postoperative_2_1_6,postoperative_2_1_7,postoperative_2_1_8,postoperative_2_1_9,postoperative_2_1_10,postoperative_2_1_11,postoperative_2_1_12,postoperative_2_1_13,postoperative_2_1_14,postoperative_2_1_15,postoperative_2_1_16,postoperative_2_1_17,postoperative_2_1_18'
     }],
     text: {
@@ -194,9 +203,11 @@ const config = {
     type: 'radio',
     optionsGetter: 'getClavienGradingConfig',
     commit: [{
-      rule: 'conditional_atleast_one',
+      rule: 'conditional_atleast_one_extra',
       conditionField: 'postoperative_2_1',
       conditionValue: 1,
+      baseField: 'postoperative_2',
+      baseFieldValue: 0,
       fields: 'postoperative_2_1_2,postoperative_2_1_3,postoperative_2_1_4,postoperative_2_1_5,postoperative_2_1_6,postoperative_2_1_7,postoperative_2_1_8,postoperative_2_1_9,postoperative_2_1_10,postoperative_2_1_11,postoperative_2_1_12,postoperative_2_1_13,postoperative_2_1_14,postoperative_2_1_15,postoperative_2_1_16,postoperative_2_1_17,postoperative_2_1_18'
     }],
     text: {
@@ -208,9 +219,11 @@ const config = {
     type: 'radio',
     optionsGetter: 'getClavienGradingConfig',
     commit: [{
-      rule: 'conditional_atleast_one',
+      rule: 'conditional_atleast_one_extra',
       conditionField: 'postoperative_2_1',
       conditionValue: 1,
+      baseField: 'postoperative_2',
+      baseFieldValue: 0,
       fields: 'postoperative_2_1_2,postoperative_2_1_3,postoperative_2_1_4,postoperative_2_1_5,postoperative_2_1_6,postoperative_2_1_7,postoperative_2_1_8,postoperative_2_1_9,postoperative_2_1_10,postoperative_2_1_11,postoperative_2_1_12,postoperative_2_1_13,postoperative_2_1_14,postoperative_2_1_15,postoperative_2_1_16,postoperative_2_1_17,postoperative_2_1_18'
     }],
     text: {
@@ -222,9 +235,11 @@ const config = {
     type: 'radio',
     optionsGetter: 'getClavienGradingConfig',
     commit: [{
-      rule: 'conditional_atleast_one',
+      rule: 'conditional_atleast_one_extra',
       conditionField: 'postoperative_2_1',
       conditionValue: 1,
+      baseField: 'postoperative_2',
+      baseFieldValue: 0,
       fields: 'postoperative_2_1_2,postoperative_2_1_3,postoperative_2_1_4,postoperative_2_1_5,postoperative_2_1_6,postoperative_2_1_7,postoperative_2_1_8,postoperative_2_1_9,postoperative_2_1_10,postoperative_2_1_11,postoperative_2_1_12,postoperative_2_1_13,postoperative_2_1_14,postoperative_2_1_15,postoperative_2_1_16,postoperative_2_1_17,postoperative_2_1_18'
     }],
     text: {
@@ -236,9 +251,11 @@ const config = {
     type: 'radio',
     optionsGetter: 'getClavienGradingConfig',
     commit: [{
-      rule: 'conditional_atleast_one',
+      rule: 'conditional_atleast_one_extra',
       conditionField: 'postoperative_2_1',
       conditionValue: 1,
+      baseField: 'postoperative_2',
+      baseFieldValue: 0,
       fields: 'postoperative_2_1_2,postoperative_2_1_3,postoperative_2_1_4,postoperative_2_1_5,postoperative_2_1_6,postoperative_2_1_7,postoperative_2_1_8,postoperative_2_1_9,postoperative_2_1_10,postoperative_2_1_11,postoperative_2_1_12,postoperative_2_1_13,postoperative_2_1_14,postoperative_2_1_15,postoperative_2_1_16,postoperative_2_1_17,postoperative_2_1_18'
     }],
     text: {
@@ -250,9 +267,11 @@ const config = {
     type: 'radio',
     optionsGetter: 'getClavienGradingConfig',
     commit: [{
-      rule: 'conditional_atleast_one',
+      rule: 'conditional_atleast_one_extra',
       conditionField: 'postoperative_2_1',
       conditionValue: 1,
+      baseField: 'postoperative_2',
+      baseFieldValue: 0,
       fields: 'postoperative_2_1_2,postoperative_2_1_3,postoperative_2_1_4,postoperative_2_1_5,postoperative_2_1_6,postoperative_2_1_7,postoperative_2_1_8,postoperative_2_1_9,postoperative_2_1_10,postoperative_2_1_11,postoperative_2_1_12,postoperative_2_1_13,postoperative_2_1_14,postoperative_2_1_15,postoperative_2_1_16,postoperative_2_1_17,postoperative_2_1_18'
     }],
     text: {
@@ -264,9 +283,11 @@ const config = {
     type: 'radio',
     optionsGetter: 'getClavienGradingConfig',
     commit: [{
-      rule: 'conditional_atleast_one',
+      rule: 'conditional_atleast_one_extra',
       conditionField: 'postoperative_2_1',
       conditionValue: 1,
+      baseField: 'postoperative_2',
+      baseFieldValue: 0,
       fields: 'postoperative_2_1_2,postoperative_2_1_3,postoperative_2_1_4,postoperative_2_1_5,postoperative_2_1_6,postoperative_2_1_7,postoperative_2_1_8,postoperative_2_1_9,postoperative_2_1_10,postoperative_2_1_11,postoperative_2_1_12,postoperative_2_1_13,postoperative_2_1_14,postoperative_2_1_15,postoperative_2_1_16,postoperative_2_1_17,postoperative_2_1_18'
     }],
     text: {
@@ -278,9 +299,11 @@ const config = {
     type: 'radio',
     optionsGetter: 'getClavienGradingConfig',
     commit: [{
-      rule: 'conditional_atleast_one',
+      rule: 'conditional_atleast_one_extra',
       conditionField: 'postoperative_2_1',
       conditionValue: 1,
+      baseField: 'postoperative_2',
+      baseFieldValue: 0,
       fields: 'postoperative_2_1_2,postoperative_2_1_3,postoperative_2_1_4,postoperative_2_1_5,postoperative_2_1_6,postoperative_2_1_7,postoperative_2_1_8,postoperative_2_1_9,postoperative_2_1_10,postoperative_2_1_11,postoperative_2_1_12,postoperative_2_1_13,postoperative_2_1_14,postoperative_2_1_15,postoperative_2_1_16,postoperative_2_1_17,postoperative_2_1_18'
     }],
     text: {
@@ -292,9 +315,11 @@ const config = {
     type: 'radio',
     optionsGetter: 'getClavienGradingConfig',
     commit: [{
-      rule: 'conditional_atleast_one',
+      rule: 'conditional_atleast_one_extra',
       conditionField: 'postoperative_2_1',
       conditionValue: 1,
+      baseField: 'postoperative_2',
+      baseFieldValue: 0,
       fields: 'postoperative_2_1_2,postoperative_2_1_3,postoperative_2_1_4,postoperative_2_1_5,postoperative_2_1_6,postoperative_2_1_7,postoperative_2_1_8,postoperative_2_1_9,postoperative_2_1_10,postoperative_2_1_11,postoperative_2_1_12,postoperative_2_1_13,postoperative_2_1_14,postoperative_2_1_15,postoperative_2_1_16,postoperative_2_1_17,postoperative_2_1_18'
     }],
     text: {
@@ -306,9 +331,11 @@ const config = {
     type: 'radio',
     optionsGetter: 'getClavienGradingConfig',
     commit: [{
-      rule: 'conditional_atleast_one',
+      rule: 'conditional_atleast_one_extra',
       conditionField: 'postoperative_2_1',
       conditionValue: 1,
+      baseField: 'postoperative_2',
+      baseFieldValue: 0,
       fields: 'postoperative_2_1_2,postoperative_2_1_3,postoperative_2_1_4,postoperative_2_1_5,postoperative_2_1_6,postoperative_2_1_7,postoperative_2_1_8,postoperative_2_1_9,postoperative_2_1_10,postoperative_2_1_11,postoperative_2_1_12,postoperative_2_1_13,postoperative_2_1_14,postoperative_2_1_15,postoperative_2_1_16,postoperative_2_1_17,postoperative_2_1_18'
     }],
     text: {
@@ -320,9 +347,11 @@ const config = {
     type: 'radio',
     optionsGetter: 'getClavienGradingConfig',
     commit: [{
-      rule: 'conditional_atleast_one',
+      rule: 'conditional_atleast_one_extra',
       conditionField: 'postoperative_2_1',
       conditionValue: 1,
+      baseField: 'postoperative_2',
+      baseFieldValue: 0,
       fields: 'postoperative_2_1_2,postoperative_2_1_3,postoperative_2_1_4,postoperative_2_1_5,postoperative_2_1_6,postoperative_2_1_7,postoperative_2_1_8,postoperative_2_1_9,postoperative_2_1_10,postoperative_2_1_11,postoperative_2_1_12,postoperative_2_1_13,postoperative_2_1_14,postoperative_2_1_15,postoperative_2_1_16,postoperative_2_1_17,postoperative_2_1_18'
     }],
     text: {
@@ -334,9 +363,8 @@ const config = {
     type: 'radio',
     optionsGetter: 'getClavienGradingConfig',
     commit: [{
-      rule: 'conditional_atleast_one',
-      conditionField: 'postoperative_2_1',
-      conditionValue: 1,
+      baseField: 'postoperative_2',
+      baseFieldValue: 0,
       fields: 'postoperative_2_1_2,postoperative_2_1_3,postoperative_2_1_4,postoperative_2_1_5,postoperative_2_1_6,postoperative_2_1_7,postoperative_2_1_8,postoperative_2_1_9,postoperative_2_1_10,postoperative_2_1_11,postoperative_2_1_12,postoperative_2_1_13,postoperative_2_1_14,postoperative_2_1_15,postoperative_2_1_16,postoperative_2_1_17,postoperative_2_1_18'
     }],
     text: {
@@ -347,7 +375,11 @@ const config = {
     name: 'postoperative_2_1_18_1',
     type: 'textarea',
     commit: [{
-      rule: 'conditional_require_multiple_values',
+      rule: 'conditional_require_multiple_values_extra',
+      baseField1: 'postoperative_2',
+      baseField1Value: 0,
+      baseField2: 'postoperative_2_1',
+      baseField2Value: 1,
       field: 'postoperative_2_1_18',
       values: [1, 2, 3, 4, 5, 6]
     }],
@@ -361,7 +393,9 @@ const config = {
     required: true,
     optionsGetter: 'getYesNoConfig',
     commit: [{
-      rule: 'conditional_require',
+      rule: 'conditional_require_extra',
+      baseField: 'postoperative_2',
+      baseFieldValue: 0,
       field: 'postoperative_2_1',
       value: 1,
     }],

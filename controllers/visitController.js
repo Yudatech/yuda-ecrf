@@ -51,7 +51,7 @@ exports.visitTable = async (req, res) => {
       postoperativeday: helpers.getPostoperativeDayText(getDaysAfterSurgery(surgerydtc, item.assessmentdtc)),
       postoperative_1: item.postoperative_1 === true ? 'Yes' : 'No',
       postoperative_2: item.postoperative_2 === 0 ? 'Yes' : 'No',
-      postoperative_2_1: match ? match.text : ''
+      postoperative_2_1: item.postoperative_2 === 0 && match ? match.text : ''
     };
   });
   visitListFormated.sort(function (a, b) {

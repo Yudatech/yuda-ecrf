@@ -32,6 +32,7 @@ const getAeConfig = require('../config/ae/getAeConfig');
 const getSaeConfig = require('../config/sae/getSaeConfig');
 const getPathologicalConfig = require('../config/getPathologicalConfig');
 const getFollowupConfig = require('../config/followup/getFollowupConfig');
+const { ignoredPseudos } = require('juice');
 
 function doMustTrueCheck(value) {
   return value === true;
@@ -93,6 +94,19 @@ function doConditionalRequireMultipleValuesCheck(value, requiredValues, currentV
   }
 }
 
+function doConditionalRequireMultipleValuesExtraCheck(value, requiredValues, currentValue, obj, rule) {
+  const baseField1RequiredValue = rule.baseField1Value;
+  const baseField1CurrentValue = obj[rule.baseField1];
+  const baseField2RequiredValue = rule.baseField2Value;
+  const baseField2CurrentValue = obj[rule.baseField2];
+  if (baseField1CurrentValue === baseField1RequiredValue && baseField2CurrentValue === baseField2RequiredValue && requiredValues.find(item => item === currentValue) !== undefined) {
+    return value !== undefined && value !== '';
+  }
+  else {
+    return true;
+  }
+}
+
 function doAtLeastOneTrueCheck(value, fields, extra) {
   const fieldArray = fields.split(',');
   const foundTrue = fieldArray.find(item => extra[item] === true);
@@ -103,6 +117,21 @@ function doConditionalAtleastOneCheck(key, obj, rule) {
   const conditionField = rule.conditionField;
   const conditionValue = rule.conditionValue;
   if (obj[conditionField] === conditionValue) {
+    const fields = rule.fields.split(',');
+    const match = fields.find(field => obj[field])
+    return match !== undefined;
+  }
+  else {
+    return true;
+  }
+}
+
+function doConditionalAtleastOneExtraCheck(key, obj, rule) {
+  const baseFieldRequiredValue = rule.baseFieldValue;
+  const baseFieldCurrentValue = obj[rule.baseField];
+  const conditionField = rule.conditionField;
+  const conditionValue = rule.conditionValue;
+  if (obj[conditionField] === conditionValue && baseFieldRequiredValue === baseFieldCurrentValue) {
     const fields = rule.fields.split(',');
     const match = fields.find(field => obj[field])
     return match !== undefined;
@@ -169,6 +198,7 @@ function doVisitCustomValidation(caseId, key, obj, ruleConfig, validateResult, a
   else {
     if (key === 'postoperative_2_1') {
       const validateValue = obj[key];
+      if (validateValue !== 1 || obj['postoperative_2'] !== 0) return true;
       if (helpers.isVisitSaeSource(obj)) {
         if (saeList.length === 0 || saeList.find((item) => item.saeorigion === obj._id.toString()) === undefined) {
           if (validateResult.children === undefined) {
@@ -269,6 +299,9 @@ function doCommitValidation(caseId, key, obj, rules, extra, validateResult) {
     else if (ruleName === 'conditional_require_multiple_values') {
       result = doConditionalRequireMultipleValuesCheck(obj[key], ruleConfig.values, obj[ruleConfig.field]);
     }
+    else if (ruleName === 'conditional_require_multiple_values_extra') {
+      result = doConditionalRequireMultipleValuesExtraCheck(obj[key], ruleConfig.values, obj[ruleConfig.field], obj, ruleConfig);
+    }
     else if (ruleName === 'atleast_one_true') {
       result = doAtLeastOneTrueCheck(obj[key], ruleConfig.fields, extra);
     }
@@ -289,6 +322,9 @@ function doCommitValidation(caseId, key, obj, rules, extra, validateResult) {
     }
     else if (ruleName === 'conditional_atleast_one') {
       result = doConditionalAtleastOneCheck(key, obj, ruleConfig);
+    }
+    else if (ruleName === 'conditional_atleast_one_extra') {
+      result = doConditionalAtleastOneExtraCheck(key, obj, ruleConfig);
     }
     else if (ruleName === 'atleast_one') {
       result = doAtleastOneCheck(key, obj, ruleConfig);
