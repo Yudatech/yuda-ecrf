@@ -279,7 +279,7 @@ block case-content
           .col-sm-2
             +_questionBtn(config.formConfigs.followup_21_5_4, questionFields)
 
-        - config.formConfigs.followup_21_5_4_1.hidden = !(config.formConfigs.followup_21.value === 1 && config.formConfigs.followup_21_5_4)
+        - config.formConfigs.followup_21_5_4_1.hidden = !(config.formConfigs.followup_21.value === 1 && config.formConfigs.followup_21_5_4.value)
         .row(id=`followup_21_5_4_1_row` class=(config.formConfigs.followup_21_5_4_1.hidden === true ? 'hidden' : ''))
           .col-sm-10
             +_formTemplate(config.formConfigs.followup_21_5_4_1)
@@ -453,7 +453,7 @@ block case-content
           .col-sm-2
             +_questionBtn(config.formConfigs.followup_26_14, questionFields)
 
-        - config.formConfigs.followup_26_14_1.hidden = !(config.formConfigs.followup_26.value === 1 && config.formConfigs.followup_26_14)
+        - config.formConfigs.followup_26_14_1.hidden = !(config.formConfigs.followup_26.value === 1 && config.formConfigs.followup_26_14.value)
         .row(id=`followup_26_14_1_row` class=(config.formConfigs.followup_26_14_1.hidden === true ? 'hidden' : ''))
           .col-sm-10
             +_formTemplate(config.formConfigs.followup_26_14_1)
@@ -627,7 +627,7 @@ block case-content
           .col-sm-2
             +_questionBtn(config.formConfigs.followup_32_8, questionFields)
 
-        - config.formConfigs.followup_32_8_1.hidden = !(config.formConfigs.followup_32.value === 1 && config.formConfigs.followup_32_8)
+        - config.formConfigs.followup_32_8_1.hidden = !(config.formConfigs.followup_32.value === 1 && config.formConfigs.followup_32_8.value)
         .row(id=`followup_32_8_1_row` class=(config.formConfigs.followup_32_8_1.hidden === true ? 'hidden' : ''))
           .col-sm-10
             +_formTemplate(config.formConfigs.followup_32_8_1)
