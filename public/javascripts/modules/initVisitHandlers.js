@@ -77,12 +77,14 @@ function setPostoperative_2_1Visibility() {
   setFieldVisibility('postoperative_2_1', checked);
   setErrorElementVisibility();
   setPostoperative_2_1ChildrenVisibility();
+  setPostoperative_2_18ChildrenVisibility();
 }
 
 function setPostoperative_2_18ChildrenVisibility() {
   const parentValue = $('#postoperative_2_1').val();
+  const postoperative_2_value = $('#postoperative_2').val();
   const value = $('input[type=radio][name=postoperative_2_1_18]:checked').val();
-  const checked = parentValue === '1' && parseInt(value) > 0;
+  const checked = parentValue === '1' && postoperative_2_value === '0' && parseInt(value) > 0;
   setFieldVisibility('postoperative_2_1_18_1', checked);
 }
 
