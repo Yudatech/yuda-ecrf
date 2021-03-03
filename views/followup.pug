@@ -144,12 +144,6 @@ block case-content
 
         br
 
-        .row
-          .col-sm-10
-            +_formTemplate(config.formConfigs.followup_19)
-          .col-sm-2
-            +_questionBtn(config.formConfigs.followup_19, questionFields)
-
         div
           br
           span #{"Explanation of Clavien grading:"}
@@ -182,6 +176,26 @@ block case-content
           
 
         br
+
+        .row
+          .col-sm-10
+            +_formTemplate(config.formConfigs.followup_19)
+          .col-sm-2
+            +_questionBtn(config.formConfigs.followup_19, questionFields)
+
+        .row
+          .col-sm-10
+            +_formTemplate(config.formConfigs.followup_33)
+          .col-sm-2
+            +_questionBtn(config.formConfigs.followup_33, questionFields)
+
+
+        - config.formConfigs.followup_33_1.hidden = !(config.formConfigs.followup_33.value === 0)
+        .row(id=`followup_33_1_row` class=(config.formConfigs.followup_33_1.hidden === true ? 'hidden' : ''))
+          .col-sm-10
+            +_formTemplate(config.formConfigs.followup_33_1)
+          .col-sm-2
+            +_questionBtn(config.formConfigs.followup_33_1, questionFields)
 
         .row
           .col-sm-10
@@ -618,6 +632,14 @@ block case-content
               +_formTemplate(config.formConfigs.followup_32_7)
           .col-sm-2
             +_questionBtn(config.formConfigs.followup_32_7, questionFields)
+
+        - config.formConfigs.followup_32_9.hidden = !(config.formConfigs.followup_32.value === 1)
+        .row(id=`followup_32_9_row` class=(config.formConfigs.followup_32_9.hidden === true ? 'hidden' : ''))
+          .col-sm-10
+            .form-group
+              +_formTemplate(config.formConfigs.followup_32_9)
+          .col-sm-2
+            +_questionBtn(config.formConfigs.followup_32_9, questionFields)
 
         - config.formConfigs.followup_32_8.hidden = !(config.formConfigs.followup_32.value === 1)
         .row(id=`followup_32_8_row` class=(config.formConfigs.followup_32_8.hidden === true ? 'hidden' : ''))

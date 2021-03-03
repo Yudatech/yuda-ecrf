@@ -212,13 +212,6 @@ block case-content
 
         br
 
-        - config.formConfigs.postoperative_2_1_19.hidden = !(config.formConfigs.postoperative_2_1.value === 1)
-        .row
-          .col-sm-10
-            +_formTemplate(config.formConfigs.postoperative_2_1_19)
-          .col-sm-2
-            +_questionBtn(config.formConfigs.postoperative_2_1_19, questionFields)
-
         if !(config.formConfigs.postoperative_2_1.value === 1)
           div.hidden(id=`visit_doc_1`)
             br

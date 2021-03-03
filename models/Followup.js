@@ -7,7 +7,7 @@ const followupSchema = new Schema({
   case: {
     type: String,
     ref: 'Case',
-    required: 'You must supply a caseid'
+    required: 'You must supply a caseid',
   },
   followup_1: Number,
   followup_2: Number,
@@ -31,23 +31,23 @@ const followupSchema = new Schema({
   followup_19: Number,
   followup_20: Number,
   followup_20_1: {
-    type: Date
+    type: Date,
   },
   followup_20_2: {
-    type: Date
+    type: Date,
   },
   followup_21: Number,
   followup_21_1: {
-    type: Date
+    type: Date,
   },
   followup_21_2: {
-    type: Date
+    type: Date,
   },
   followup_21_3: {
-    type: Date
+    type: Date,
   },
   followup_21_4: {
-    type: Date
+    type: Date,
   },
   followup_21_5_1: Boolean,
   followup_21_5_2: Boolean,
@@ -60,7 +60,7 @@ const followupSchema = new Schema({
   followup_23_1: String,
   followup_24: Number,
   followup_25: {
-    type: Date
+    type: Date,
   },
   followup_26: Number,
   followup_26_1: Boolean,
@@ -80,7 +80,7 @@ const followupSchema = new Schema({
   followup_26_14_1: String,
   followup_27: Number,
   followup_27_1: {
-    type: Date
+    type: Date,
   },
   followup_27_2: Boolean,
   followup_27_3: Boolean,
@@ -102,7 +102,12 @@ const followupSchema = new Schema({
   followup_32_6: Boolean,
   followup_32_7: Boolean,
   followup_32_8: Boolean,
+  followup_32_9: Boolean,
   followup_32_8_1: String,
+  followup_33: Number,
+  followup_33_1: {
+    type: Date,
+  },
 });
 
 followupSchema.plugin(mongodbErrorHandler);

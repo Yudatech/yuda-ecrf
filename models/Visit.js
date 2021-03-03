@@ -7,11 +7,11 @@ const visitSchema = new Schema({
   case: {
     type: String,
     ref: 'Case',
-    required: 'You must supply a caseid'
+    required: 'You must supply a caseid',
   },
   assessmentdtc: {
     type: Date,
-    default: Date.now
+    default: Date.now,
   },
   postoperative_1: Boolean,
   postoperative_2: Number,
@@ -35,7 +35,6 @@ const visitSchema = new Schema({
   postoperative_2_1_17: Number,
   postoperative_2_1_18: Number,
   postoperative_2_1_18_1: String,
-  postoperative_2_1_19: Number,
 });
 
 visitSchema.plugin(mongodbErrorHandler);
