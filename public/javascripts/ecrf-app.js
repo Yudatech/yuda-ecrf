@@ -24,22 +24,27 @@ import initSaeTableHandlers from './modules/initSaeTableHandlers';
 import initLifeAssessmentHandlers from './modules/initLifeAssessmentHandlers';
 import initEvacuationHandlers from './modules/initEvacuationHandlers';
 import initFollowupHandlers from './modules/initFollowupHandlers';
+import initEvacuationFollowupHandler from './modules/initEvacuationFollowupHandler';
 
-$('.input-group.date').datepicker({
-  endDate: new Date()
-}).on('changeDate', function (e) {
-  const targetId = e.target.id;
-  const realId = `#${targetId}Real`;
-  $(realId).val(e.format('yyyy/mm/dd'))
-});
-$('.bootstrap-timepicker.timepicker>input').timepicker({
-  showMeridian: false,
-  defaultTime: false
-}).on('changeTime.timepicker', function (e) {
-  const targetId = e.target.id;
-  const realId = `#${targetId}Real`;
-  $(realId).val(e.time.value);
-});
+$('.input-group.date')
+  .datepicker({
+    endDate: new Date(),
+  })
+  .on('changeDate', function (e) {
+    const targetId = e.target.id;
+    const realId = `#${targetId}Real`;
+    $(realId).val(e.format('yyyy/mm/dd'));
+  });
+$('.bootstrap-timepicker.timepicker>input')
+  .timepicker({
+    showMeridian: false,
+    defaultTime: false,
+  })
+  .on('changeTime.timepicker', function (e) {
+    const targetId = e.target.id;
+    const realId = `#${targetId}Real`;
+    $(realId).val(e.time.value);
+  });
 window.acceptDocPreview = acceptDocPreview;
 
 window.handleCheckboxClick = function (el) {
@@ -47,7 +52,7 @@ window.handleCheckboxClick = function (el) {
   const realId = '#' + el.id + 'Real';
   const value = checked === true ? 'true' : 'false';
   $(realId).val(value);
-}
+};
 
 window.onload = function () {
   const pathname = window.location.pathname;
@@ -60,78 +65,58 @@ window.onload = function () {
         proceedButtonClass: 'custom-proceed',
         proceedButtonText: 'Continue without saving',
         stayButtonClass: 'custom-stay',
-        stayButtonText: 'Go back and save'
-      }
+        stayButtonText: 'Go back and save',
+      },
     });
   }
 
   if (pathname === '/') {
     initHomeHandlers();
-  }
-  else if (pathname === '/search') {
+  } else if (pathname === '/search') {
     initSearchHandlers();
-  }
-  else if (pathname === '/case') {
+  } else if (pathname === '/case') {
     initCaseFormHandlers();
-  }
-  else if (pathname.startsWith('/screening-basic')) {
+  } else if (pathname.startsWith('/screening-basic')) {
     initScreeningBasicHandlers();
-  }
-  else if (pathname.startsWith('/screening-exclusion')) {
+  } else if (pathname.startsWith('/screening-exclusion')) {
     initScreeningExclusionHandlers();
-  }
-  else if (pathname.startsWith('/screening-prioradiationtherapy')) {
+  } else if (pathname.startsWith('/screening-prioradiationtherapy')) {
     initScreeningPrioradiationtherapyHandlers();
-  }
-  else if (pathname.startsWith('/screening-inclusion')) {
+  } else if (pathname.startsWith('/screening-inclusion')) {
     initScreeningInclusionHandlers();
-  }
-  else if (pathname.startsWith('/screening-dignose')) {
+  } else if (pathname.startsWith('/screening-dignose')) {
     initScreeningDignoseHandlers();
-  }
-  else if (pathname.startsWith('/screening-region')) {
+  } else if (pathname.startsWith('/screening-region')) {
     initScreeningRegionHandlers();
-  }
-  else if (pathname.startsWith('/surgery')) {
+  } else if (pathname.startsWith('/surgery')) {
     initSurgeryHandlers();
-  }
-  else if (pathname.startsWith('/visit/')) {
+  } else if (pathname.startsWith('/visit/')) {
     initVisitHandlers();
-  }
-  else if (pathname.startsWith('/visitlist/')) {
+  } else if (pathname.startsWith('/visitlist/')) {
     initVisitTableHandlers();
-  }
-  else if (pathname.startsWith('/sae/')) {
+  } else if (pathname.startsWith('/sae/')) {
     initSaeHandlers();
-  }
-  else if (pathname.startsWith('/saelist/')) {
+  } else if (pathname.startsWith('/saelist/')) {
     initSaeTableHandlers();
-  }
-  else if (pathname.startsWith('/ae/')) {
+  } else if (pathname.startsWith('/ae/')) {
     initAeHandlers();
-  }
-  else if (pathname.startsWith('/aelist/')) {
+  } else if (pathname.startsWith('/aelist/')) {
     initAeTableHandlers();
-  }
-  else if (pathname.startsWith('/reviewchecklist/')) {
+  } else if (pathname.startsWith('/reviewchecklist/')) {
     initReviewChecklistHandlers();
-  }
-  else if (pathname.startsWith('/discontinuation/')) {
+  } else if (pathname.startsWith('/discontinuation/')) {
     initDiscontinuationHandlers();
-  }
-  else if (pathname.startsWith('/sites')) {
+  } else if (pathname.startsWith('/sites')) {
     initSitesHandlers();
-  }
-  else if (pathname.startsWith('/users')) {
+  } else if (pathname.startsWith('/users')) {
     initUsersHandlers();
-  }
-  else if (pathname.startsWith('/life')) {
+  } else if (pathname.startsWith('/life')) {
     initLifeAssessmentHandlers();
-  }
-  else if (pathname.startsWith('/evacuation')) {
+  } else if (pathname.startsWith('/evacuation/')) {
     initEvacuationHandlers();
-  }
-  else if (pathname.startsWith('/followup')) {
+  } else if (pathname.startsWith('/followup')) {
     initFollowupHandlers();
+  } else if (pathname.startsWith('/evacuationfollowup')) {
+    initEvacuationFollowupHandler();
   }
-}
+};

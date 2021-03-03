@@ -7,10 +7,56 @@ const config = {
   },
   subtitles: [
     {
-      name: 'subtitle_1',
+      name: 'subtitle_2',
       text: {
         zh: 'Evacuation of the Implant',
         en: 'Evacuation of the Implant',
+      },
+    },
+    {
+      name: 'subtitle_1',
+      text: {
+        zh: 'Follow-up Until Evacuation of C-REX',
+        en: 'Follow-up Until Evacuation of C-REX',
+      },
+    },
+  ],
+  headers: [
+    {
+      name: 'postoperativeday',
+      text: {
+        zh: '术后天数',
+        en: 'Postoperative day (POD)',
+      },
+    },
+    {
+      name: 'assessmentdtc',
+      text: {
+        zh: '评估日期',
+        en: 'Assessment date',
+      },
+    },
+    {
+      name: 'status',
+      text: {
+        zh: 'Status of the patient',
+        en: 'Status of the patient',
+      },
+    },
+    {
+      name: 'operations',
+      text: {
+        zh: '操作',
+        en: 'Operations',
+      },
+    },
+  ],
+  removeConfirm: [
+    {
+      name: 'message',
+      text: {
+        zh: '确认删除访视',
+        en: 'Confirm to remove visit',
       },
     },
   ],
@@ -61,6 +107,13 @@ module.exports = function (lang) {
   result.title = config.title[lang];
   result.subtitles = getOptionsLang(config.subtitles, lang);
   result.errors = getOptionsLang(config.errors, lang);
+  result.headers = config.headers.map((item) => {
+    return {
+      name: item.name,
+      text: item.text[lang],
+    };
+  });
+  result.removeConfirm = getOptionsLang(config.removeConfirm, lang);
 
   return result;
 };

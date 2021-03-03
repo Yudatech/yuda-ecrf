@@ -1,0 +1,58 @@
+extends caseLayout
+
+include mixins/_formTemplate
+include mixins/_questionBtn
+
+block case-content
+  .case-content
+    form.form-horizontal(id="evacuation-followup-form" action=`/evacuationfollowup/${caseId}/${followupId || ''}` method="POST")
+      - const formDisabled = !((locals.case.status === 'open' && locals.user.role === 'cra') || locals.user.role === 'admin')
+      fieldset(disabled=formDisabled)
+        legend #{config.title}
+        .row
+          .col-sm-10
+            +_formTemplate(config.formConfigs.assessmentdtc)
+          .col-sm-2
+            +_questionBtn(config.formConfigs.assessmentdtc, questionFields)
+
+        .row
+          .col-sm-10
+            +_formTemplate(config.formConfigs.postoperativeday, true, true)
+
+        .row
+          .col-sm-10
+            .form-group
+              +_formTemplate(config.formConfigs.status_1)
+          .col-sm-2
+            +_questionBtn(config.formConfigs.status_1, questionFields)
+
+        .row
+          .col-sm-10
+            .form-group
+              +_formTemplate(config.formConfigs.status_2)
+          .col-sm-2
+            +_questionBtn(config.formConfigs.status_2, questionFields)
+
+        .row
+          .col-sm-10
+            .form-group
+              +_formTemplate(config.formConfigs.status_3)
+          .col-sm-2
+            +_questionBtn(config.formConfigs.status_3, questionFields)
+
+        .row
+          .col-sm-10
+            .form-group
+              +_formTemplate(config.formConfigs.status_4)
+          .col-sm-2
+            +_questionBtn(config.formConfigs.status_4, questionFields)
+
+        .row
+          .col-sm-10
+            .form-group
+              +_formTemplate(config.formConfigs.status_5)
+          .col-sm-2
+            +_questionBtn(config.formConfigs.status_5, questionFields)
+
+      if formDisabled === false
+        input.btn.btn-default.yuda-input-btn(id="evacuation-followup-submit-btn" type="submit" value=buttonConfig.buttons.save.text)
