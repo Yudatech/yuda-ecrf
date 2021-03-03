@@ -75,6 +75,57 @@ const config = {
       },
     },
     {
+      name: 'postoperative_1_1',
+      type: 'select',
+      required: true,
+      optionsGetter: 'getYesNoConfig',
+      commit: [
+        {
+          rule: 'condition_require',
+          field: 'postoperative_1',
+          value: true,
+        },
+      ],
+      text: {
+        zh: 'Discharge conversation',
+        en: 'Discharge conversation',
+      },
+    },
+    {
+      name: 'postoperative_1_2',
+      type: 'select',
+      required: true,
+      optionsGetter: 'getYesNoConfig',
+      commit: [
+        {
+          rule: 'condition_require',
+          field: 'postoperative_1',
+          value: true,
+        },
+      ],
+      text: {
+        zh: 'Urinary tract catheter at discharge',
+        en: 'Urinary tract catheter at discharge',
+      },
+    },
+    {
+      name: 'postoperative_1_3',
+      type: 'select',
+      required: true,
+      optionsGetter: 'getYesNoConfig',
+      commit: [
+        {
+          rule: 'condition_require',
+          field: 'postoperative_1',
+          value: true,
+        },
+      ],
+      text: {
+        zh: 'C-REX at discharge',
+        en: 'C-REX at discharge',
+      },
+    },
+    {
       name: 'postoperative_2',
       type: 'select',
       commit: [

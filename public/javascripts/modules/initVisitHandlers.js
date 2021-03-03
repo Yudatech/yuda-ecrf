@@ -4,6 +4,12 @@ import setLabelVisibility from './helpers/setLabelVisibility';
 
 function initVisitHandlers() {
   const postoperative_2El = $('#postoperative_2');
+  const postoperative_1El = $('#postoperative_1');
+
+  postoperative_1El.change(function () {
+    setPostoperative_1ChildrenVisibility();
+  });
+  setPostoperative_1ChildrenVisibility();
 
   postoperative_2El.change(function () {
     setPostoperative_2_1Visibility();
@@ -160,6 +166,16 @@ function setPostoperative_2_1ChildrenVisibility() {
   });
   setPostoperative_2_18ChildrenVisibility();
   setErrorElementVisibility();
+}
+
+function setPostoperative_1ChildrenVisibility() {
+  const checked = $('#postoperative_1').is(':checked');
+  setFieldVisibility('postoperative_1_1', checked);
+  setLabelVisibility('postoperative_1_1_row', checked);
+  setFieldVisibility('postoperative_1_2', checked);
+  setLabelVisibility('postoperative_1_2_row', checked);
+  setFieldVisibility('postoperative_1_3', checked);
+  setLabelVisibility('postoperative_1_3_row', checked);
 }
 
 export default initVisitHandlers;

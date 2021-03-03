@@ -26,6 +26,30 @@ block case-content
           .col-sm-2
             +_questionBtn(config.formConfigs.postoperative_1, questionFields)
 
+        - config.formConfigs.postoperative_1_1.hidden = !(config.formConfigs.postoperative_1.value === true)
+        .row(id=`postoperative_1_1_row` class=(config.formConfigs.postoperative_1_1.hidden === true ? 'hidden' : ''))
+        .row
+          .col-sm-10
+            +_formTemplate(config.formConfigs.postoperative_1_1)
+          .col-sm-2
+            +_questionBtn(config.formConfigs.postoperative_1_1, questionFields)
+
+        - config.formConfigs.postoperative_1_2.hidden = !(config.formConfigs.postoperative_1.value === true)
+        .row(id=`postoperative_1_2_row` class=(config.formConfigs.postoperative_1_2.hidden === true ? 'hidden' : ''))
+        .row
+          .col-sm-10
+            +_formTemplate(config.formConfigs.postoperative_1_2)
+          .col-sm-2
+            +_questionBtn(config.formConfigs.postoperative_1_2, questionFields)
+
+        - config.formConfigs.postoperative_1_3.hidden = !(config.formConfigs.postoperative_1.value === true)
+        .row(id=`postoperative_1_3_row` class=(config.formConfigs.postoperative_1_3.hidden === true ? 'hidden' : ''))
+        .row
+          .col-sm-10
+            +_formTemplate(config.formConfigs.postoperative_1_3)
+          .col-sm-2
+            +_questionBtn(config.formConfigs.postoperative_1_3, questionFields)
+
         .row
           .col-sm-10
             +_formTemplate(config.formConfigs.postoperative_2)
