@@ -30,6 +30,7 @@ const Life = mongoose.model('Life');
 const Evacuation = mongoose.model('Evacuation');
 const Pathological = mongoose.model('Pathological');
 const Followup = mongoose.model('Followup');
+const EvacuationFollowup = mongoose.model('EvacuationFollowup');
 
 const multer = require('multer');
 const jimp = require('jimp');
@@ -44,13 +45,15 @@ const multerOptions = {
     const isPhoto = file.mimetype.startsWith('image/');
     if (isPhoto) {
       next(null, true);
+    } else {
+      next(
+        {
+          message: "That filetype isn't allowed!",
+        },
+        false
+      );
     }
-    else {
-      next({
-        message: 'That filetype isn\'t allowed!'
-      }, false);
-    }
-  }
+  },
 };
 
 exports.uploadAcceptDoc = multer(multerOptions).single('attachedDoc');
@@ -67,7 +70,7 @@ exports.saveAcceptDoc = async (req, res, next) => {
   const photo = await jimp.read(req.file.buffer);
   await photo.write(`./public/uploads/${req.body.attachedDoc}`);
   logger.info(loggerHelper.createLogMessage(req.user, 'upload', 'accept document'), {
-    filename: req.body.attachedDoc
+    filename: req.body.attachedDoc,
   });
   // once we have written the photo to our filesystem, keep going!
   next();
@@ -76,7 +79,7 @@ exports.saveAcceptDoc = async (req, res, next) => {
 exports.updateAcceptDoc = async (req, res) => {
   const caseId = req.params.caseId;
   await Case.findByIdAndUpdate(caseId, {
-    attachedDoc: req.body.attachedDoc
+    attachedDoc: req.body.attachedDoc,
   });
   logger.info(loggerHelper.createLogMessage(req.user, 'create', 'case'), req.body);
   res.redirect(`/overview/${caseId}`);
@@ -85,7 +88,7 @@ exports.updateAcceptDoc = async (req, res) => {
 exports.createCase = async (req, res) => {
   req.body.user = req.user._id;
   req.body.site = req.user.site._id;
-  await (new Case(req.body)).save();
+  await new Case(req.body).save();
   logger.info(loggerHelper.createLogMessage(req.user, 'create', 'case'), req.body);
   res.redirect(`/overview/${req.body._id}`);
 };
@@ -105,6 +108,7 @@ async function doRemoveCase(caseId) {
   await Life.remove({ case: caseId });
   await Followup.remove({ case: caseId });
   await Pathological.remove({ case: caseId });
+  await EvacuationFollowup.remove({ case: caseId });
 }
 
 exports.removeCase = async (req, res) => {
@@ -117,7 +121,7 @@ exports.removeCase = async (req, res) => {
 exports.caseForm = async (req, res) => {
   const userAbbr = req.user.userabbr;
   const userCases = await Case.find({
-    user: req.user._id
+    user: req.user._id,
   });
   const caseIndexArray = userCases.map((item) => {
     const caseId = item._id;
@@ -132,7 +136,7 @@ exports.caseForm = async (req, res) => {
   res.render('case/caseForm', {
     _id: newId,
     caseFormConfig: getCaseFormConfig(req.user.language),
-    buttonConfig: getButtonConfig(req.user.language)
+    buttonConfig: getButtonConfig(req.user.language),
   });
 };
 
@@ -145,25 +149,22 @@ exports.showAuditCaseForm = async (req, res) => {
     req.flash('error', `Case ${caseId} status is not committed anymore, you can not audit it.`);
     logger.warn(loggerHelper.createLogMessage(req.user, 'failed to audit', 'a not committed case', caseId));
     res.redirect('back');
-  }
-  else if (req.user.role !== 'supervisor' && req.user.role !== 'monitor') {
+  } else if (req.user.role !== 'supervisor' && req.user.role !== 'monitor') {
     req.flash('error', `You do not have permission to audit a case.`);
     logger.warn(loggerHelper.createLogMessage(req.user, 'do not have permission to audit', 'a case'));
     res.redirect('back');
-  }
-  else if (req.user.site._id.toString() !== caseItem.site._id.toString()) {
+  } else if (req.user.site._id.toString() !== caseItem.site._id.toString()) {
     req.flash('error', `You do not have permission audit this case.`);
     logger.warn(loggerHelper.createLogMessage(req.user, 'do not have permission to audit', 'a case'));
     res.redirect('back');
-  }
-  else {
+  } else {
     logger.info(loggerHelper.createLogMessage(req.user, 'show', 'audit case form', caseId));
     res.render('case-second-auth', {
       caseNav: CaseNav,
       buttonConfig: getButtonConfig(req.user.language),
       purpose: 'audit',
       config: getCaseSecondAuthConfig(req.user.language),
-      caseId: req.params.caseId
+      caseId: req.params.caseId,
     });
   }
 };
@@ -176,33 +177,28 @@ exports.auditCase = async (req, res) => {
     req.flash('error', `Case ${caseId} status is not committed anymore, you can not audit it.`);
     logger.warn(loggerHelper.createLogMessage(req.user, 'failed to audit', 'a not committed case', caseId));
     res.redirect('back');
-  }
-  else if (req.user.role !== 'supervisor' && req.user.role !== 'monitor') {
+  } else if (req.user.role !== 'supervisor' && req.user.role !== 'monitor') {
     req.flash('error', `You do not have permission to audit a case.`);
     logger.warn(loggerHelper.createLogMessage(req.user, 'do not have permission to audit', 'a case'));
     res.redirect('back');
-  }
-  else if (req.user.site._id.toString() !== caseItem.site._id.toString()) {
+  } else if (req.user.site._id.toString() !== caseItem.site._id.toString()) {
     req.flash('error', `You do not have permission audit this case.`);
     logger.warn(loggerHelper.createLogMessage(req.user, 'do not have permission to audit', 'a case'));
     res.redirect('back');
-  }
-  else {
+  } else {
     const password = req.body.password;
     req.user.authenticate(password, function (err, model) {
       if (model === false) {
         req.flash('error', 'Wrong password.');
         logger.warn(loggerHelper.createLogMessage(req.user, 'input wrong', 'password when audit', caseId));
         res.redirect('back');
-      }
-      else {
+      } else {
         caseItem.audit(req.user._id, function (err, caseNew) {
           if (err) {
             req.flash('error', err.toString());
             logger.warn(err);
             res.redirect('back');
-          }
-          else {
+          } else {
             res.locals.case = caseNew;
             logger.info(loggerHelper.createLogMessage(req.user, 'audit', 'case', caseId));
             res.redirect(`/overview/${caseId}`);
@@ -222,20 +218,18 @@ exports.showLockCaseForm = async (req, res) => {
     req.flash('error', `Case ${caseId} is already finished, you can not lock it.`);
     logger.warn(loggerHelper.createLogMessage(req.user, 'failed to lock', 'already finished case', caseId));
     res.redirect('back');
-  }
-  else if (req.user.role !== 'admin') {
+  } else if (req.user.role !== 'admin') {
     req.flash('error', `You do not have permission to lock a case.`);
     logger.warn(loggerHelper.createLogMessage(req.user, 'do not have permission to lock', 'a case'));
     res.redirect('back');
-  }
-  else {
+  } else {
     logger.info(loggerHelper.createLogMessage(req.user, 'show', 'lock case form', caseId));
     res.render('case-second-auth', {
       caseNav: CaseNav,
       buttonConfig: getButtonConfig(req.user.language),
       purpose: 'lock',
       config: getCaseSecondAuthConfig(req.user.language),
-      caseId: req.params.caseId
+      caseId: req.params.caseId,
     });
   }
 };
@@ -248,28 +242,24 @@ exports.lockCase = async (req, res) => {
     req.flash('error', `Case ${caseId} is already finished, you can not lock it.`);
     logger.warn(loggerHelper.createLogMessage(req.user, 'failed to lock', 'already finished case', caseId));
     res.redirect('back');
-  }
-  else if (req.user.role !== 'admin') {
+  } else if (req.user.role !== 'admin') {
     req.flash('error', `You do not have permission to lock a case.`);
     logger.warn(loggerHelper.createLogMessage(req.user, 'do not have permission to lock', 'a case'));
     res.redirect('back');
-  }
-  else {
+  } else {
     const password = req.body.password;
     req.user.authenticate(password, function (err, model) {
       if (model === false) {
         req.flash('error', 'Wrong password.');
         logger.warn(loggerHelper.createLogMessage(req.user, 'input wrong', 'password when lock', caseId));
         res.redirect('back');
-      }
-      else {
+      } else {
         caseItem.lock(req.user._id, function (err, caseNew) {
           if (err) {
             req.flash('error', err.toString());
             logger.warn(err);
             res.redirect('back');
-          }
-          else {
+          } else {
             res.locals.case = caseNew;
             logger.info(loggerHelper.createLogMessage(req.user, 'lock', 'case', caseId));
             res.redirect(`/overview/${caseId}`);
@@ -288,37 +278,32 @@ exports.commitCase = async (req, res) => {
     req.flash('error', `Case ${caseId} status is not open anymore, you can not commit it.`);
     logger.warn(loggerHelper.createLogMessage(req.user, 'failed to commit', 'a not open case', caseId));
     res.redirect('back');
-  }
-  else if (req.user.role !== 'cra') {
+  } else if (req.user.role !== 'cra') {
     req.flash('error', `You do not have permission to commit a case.`);
     logger.warn(loggerHelper.createLogMessage(req.user, 'do not have permission to commit', 'a case'));
     res.redirect('back');
-  }
-  else if (caseItem.user._id.toString() !== req.user._id.toString()) {
+  } else if (caseItem.user._id.toString() !== req.user._id.toString()) {
     req.flash('error', `You do not have permission to commit a case.`);
     logger.warn(loggerHelper.createLogMessage(req.user, 'do not have permission to commit', 'a case'));
     res.redirect('back');
-  }
-  else {
+  } else {
     const password = req.body.password;
     req.user.authenticate(password, function (err, model) {
       if (model === false) {
         req.flash('error', 'Wrong password.');
         logger.warn(loggerHelper.createLogMessage(req.user, 'input wrong', 'password when commit', caseId));
         res.redirect('back');
-      }
-      else {
+      } else {
         const obj = {
           status: 'committed',
-          commitDate: new Date()
+          commitDate: new Date(),
         };
         Case.findByIdAndUpdate(caseId, obj, { new: true }, function (err, caseNew) {
           if (err) {
             req.flash('error', err.toString());
             logger.warn(err);
             res.redirect('back');
-          }
-          else {
+          } else {
             res.locals.case = caseNew;
             logger.info(loggerHelper.createLogMessage(req.user, 'commit', 'case', caseId));
             res.redirect(`/overview/${caseId}`);
@@ -336,12 +321,10 @@ exports.showCaseCommitForm = async (req, res) => {
   if (caseItem.status !== 'open') {
     req.flash('error', `Case ${caseId} status is not open anymore, you can not commit it.`);
     res.redirect('back');
-  }
-  else if (req.user.role !== 'cra') {
+  } else if (req.user.role !== 'cra') {
     req.flash('error', `You do not have permission to commit a case.`);
     res.redirect('back');
-  }
-  else if (caseItem.user._id.toString() !== req.user._id.toString()) {
+  } else if (caseItem.user._id.toString() !== req.user._id.toString()) {
     req.flash('error', `You do not have permission to commit a case.`);
     res.redirect('back');
   }
@@ -354,14 +337,16 @@ exports.showCaseCommitForm = async (req, res) => {
   result.push(await commitHelpers.validateSurgeryForm(caseId, req.user.language));
   result.push(await commitHelpers.validateVisitForm(caseId, req.user.language));
   result.push(await commitHelpers.validateEvacuationForm(caseId, req.user.language));
+  result.push(await commitHelpers.validateEvacuationFollowupForm(caseId, req.user.language));
   result.push(await commitHelpers.validatePathologicalForm(caseId, req.user.language));
   result.push(await commitHelpers.validateFollowupForm(caseId, req.user.language));
   result.push(await commitHelpers.validateAeForm(caseId, req.user.language));
   result.push(await commitHelpers.validateSaeForm(caseId, req.user.language));
 
-  const showForm = result.find((item) => {
-    return item.pass === false;
-  }) === undefined;
+  const showForm =
+    result.find((item) => {
+      return item.pass === false;
+    }) === undefined;
 
   logger.info(loggerHelper.createLogMessage(req.user, 'tried to commit', 'case', caseId));
 
@@ -371,7 +356,7 @@ exports.showCaseCommitForm = async (req, res) => {
     config: commitCaseConfig,
     buttonConfig: getButtonConfig(req.user.language),
     result: result,
-    showForm
+    showForm,
   });
 };
 
@@ -396,7 +381,7 @@ exports.exportCases = async (req, res) => {
   const site = query.site;
   const status = query.status;
   let cases = await Case.find().sort({
-    _id: 'asc'
+    _id: 'asc',
   });
   if (cra) {
     cases = cases.filter((item) => item.user._id.toString() === cra);
@@ -414,37 +399,40 @@ exports.exportCases = async (req, res) => {
   }
   const users = await User.find();
   const screeningList = await Screening.find().sort({
-    case: 'asc'
+    case: 'asc',
   });
   const reviewChecklistList = await ReviewChecklist.find().sort({
-    case: 'asc'
+    case: 'asc',
   });
   const discontinuationList = await Discontinuation.find().sort({
-    case: 'asc'
+    case: 'asc',
   });
   const surgeryList = await Surgery.find().sort({
-    case: 'asc'
+    case: 'asc',
   });
   const visitList = await Visit.find().sort({
-    case: 'asc'
+    case: 'asc',
   });
   const aeList = await Ae.find().sort({
-    case: 'asc'
+    case: 'asc',
   });
   const saeList = await Sae.find().sort({
-    case: 'asc'
+    case: 'asc',
   });
   const lifeList = await Life.find().sort({
-    case: 'asc'
+    case: 'asc',
   });
   const evacuationList = await Evacuation.find().sort({
-    case: 'asc'
+    case: 'asc',
+  });
+  const evacuationFollowupList = await EvacuationFollowup.find().sort({
+    case: 'asc',
   });
   const pathologicalList = await Pathological.find().sort({
-    case: 'asc'
+    case: 'asc',
   });
   const followupList = await Followup.find().sort({
-    case: 'asc'
+    case: 'asc',
   });
   const commonData = exportHelpers.getExportCommonData(commonConfig, cases, users, caseStatusConfig);
 
@@ -458,9 +446,19 @@ exports.exportCases = async (req, res) => {
 
   visitList.forEach((visitItem) => {
     const surgeryItem = surgeryList.find((item) => item.case === visitItem.case);
-    const surgerydtc = (surgeryItem && surgeryItem.surgerydtc) ? surgeryItem.surgerydtc : null;
+    const surgerydtc = surgeryItem && surgeryItem.surgerydtc ? surgeryItem.surgerydtc : null;
     if (surgerydtc && visitItem.assessmentdtc) {
       visitItem.postoperativeday = Math.max(getDaysAfterSurgery(surgerydtc, visitItem.assessmentdtc) - 1);
+    }
+  });
+
+  evacuationFollowupList.forEach((evacuationFollowupItem) => {
+    const surgeryItem = surgeryList.find((item) => item.case === evacuationFollowupItem.case);
+    const surgerydtc = surgeryItem && surgeryItem.surgerydtc ? surgeryItem.surgerydtc : null;
+    if (surgerydtc && evacuationFollowupItem.assessmentdtc) {
+      evacuationFollowupItem.postoperativeday = Math.max(
+        getDaysAfterSurgery(surgerydtc, evacuationFollowupItem.assessmentdtc) - 1
+      );
     }
   });
 
@@ -479,11 +477,11 @@ exports.exportCases = async (req, res) => {
     const commonColumns = commonConfig.map((item) => {
       commonColumnDefs.push({
         name: item.name,
-        type: 'textfield'
+        type: 'textfield',
       });
       return {
         header: item.text,
-        key: item.name
+        key: item.name,
       };
     });
     const dataColumnDefs = [];
@@ -492,45 +490,45 @@ exports.exportCases = async (req, res) => {
       dataColumnDefs.push(config);
       return {
         header: config.text,
-        key: config.name
+        key: config.name,
       };
     });
     worksheet.columns = [...commonColumns, ...dataColumns];
     let data;
     if (tableName === 'screening') {
       data = screeningList;
-    }
-    else if (tableName === 'reviewchecklist') {
+    } else if (tableName === 'reviewchecklist') {
       data = reviewChecklistList;
-    }
-    else if (tableName === 'discontinuation') {
+    } else if (tableName === 'discontinuation') {
       data = discontinuationList;
-    }
-    else if (tableName === 'surgery') {
+    } else if (tableName === 'surgery') {
       data = surgeryList;
-    }
-    else if (tableName === 'visit') {
+    } else if (tableName === 'visit') {
       data = visitList;
-    }
-    else if (tableName === 'ae') {
+    } else if (tableName === 'ae') {
       data = aeList;
-    }
-    else if (tableName === 'sae') {
+    } else if (tableName === 'sae') {
       data = saeList;
-    }
-    else if (tableName === 'life') {
+    } else if (tableName === 'life') {
       data = lifeList;
-    }
-    else if (tableName === 'evacuation') {
+    } else if (tableName === 'evacuation') {
       data = evacuationList;
-    }
-    else if (tableName === 'pathological') {
+    } else if (tableName === 'evacuationfollowup') {
+      data = evacuationFollowupList;
+    } else if (tableName === 'pathological') {
       data = pathologicalList;
-    }
-    else if (tableName === 'followup') {
+    } else if (tableName === 'followup') {
       data = followupList;
     }
-    exportHelpers.addDataToWorksheet(worksheet, commonColumnDefs, dataColumnDefs, commonData, data, aeSourceConfigList, saeSourceConfigList);
+    exportHelpers.addDataToWorksheet(
+      worksheet,
+      commonColumnDefs,
+      dataColumnDefs,
+      commonData,
+      data,
+      aeSourceConfigList,
+      saeSourceConfigList
+    );
   });
 
   workbook.xlsx.writeFile(fileName).then(function () {

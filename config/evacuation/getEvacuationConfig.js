@@ -55,8 +55,8 @@ const config = {
     {
       name: 'message',
       text: {
-        zh: '确认删除访视',
-        en: 'Confirm to remove visit',
+        zh: 'Confirm to remove follow-up',
+        en: 'Confirm to remove follow-up',
       },
     },
   ],
