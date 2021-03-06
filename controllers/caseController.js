@@ -336,8 +336,8 @@ exports.showCaseCommitForm = async (req, res) => {
   result.push(await commitHelpers.validateReviewChecklistForm(caseId, req.user.language));
   result.push(await commitHelpers.validateSurgeryForm(caseId, req.user.language));
   result.push(await commitHelpers.validateVisitForm(caseId, req.user.language));
-  result.push(await commitHelpers.validateEvacuationForm(caseId, req.user.language));
   result.push(await commitHelpers.validateEvacuationFollowupForm(caseId, req.user.language));
+  result.push(await commitHelpers.validateEvacuationForm(caseId, req.user.language));
   result.push(await commitHelpers.validatePathologicalForm(caseId, req.user.language));
   result.push(await commitHelpers.validateFollowupForm(caseId, req.user.language));
   result.push(await commitHelpers.validateAeForm(caseId, req.user.language));
