@@ -1335,7 +1335,7 @@ const config = {
       type: 'date',
       commit: [
         {
-          rule: 'condition_require',
+          rule: 'conditional_require',
           field: 'followup_33',
           value: 0,
         },

@@ -81,7 +81,7 @@ const config = {
       optionsGetter: 'getYesNoConfig',
       commit: [
         {
-          rule: 'condition_require',
+          rule: 'conditional_require',
           field: 'postoperative_1',
           value: true,
         },
@@ -98,7 +98,7 @@ const config = {
       optionsGetter: 'getYesNoConfig',
       commit: [
         {
-          rule: 'condition_require',
+          rule: 'conditional_require',
           field: 'postoperative_1',
           value: true,
         },
@@ -115,7 +115,7 @@ const config = {
       optionsGetter: 'getYesNoConfig',
       commit: [
         {
-          rule: 'condition_require',
+          rule: 'conditional_require',
           field: 'postoperative_1',
           value: true,
         },

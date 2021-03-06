@@ -1,6 +1,6 @@
 mixin _radioTemplate(config, disabled)
   - const value = config.value
-  .form-group(id=`${config.name}-container` class=(config.hidden === true ? 'hidden' : ''))
+  .form-group(id=`${config.name}-container` style="margin-top: 27px;" class=(config.hidden === true ? 'hidden' : ''))
     .row
       .col-sm-3
         label.control-label #{config.text}

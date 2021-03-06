@@ -5,6 +5,15 @@ const config = {
     zh: '术后并发症',
     en: 'Follow-up Until Evacuation of C-REX',
   },
+  subtitles: [
+    {
+      name: 'subtitle_1',
+      text: {
+        zh: 'Status of the patient',
+        en: 'Status of the patient',
+      },
+    },
+  ],
   formConfigs: [
     {
       name: 'postoperativeday',
@@ -111,6 +120,7 @@ module.exports = function (lang) {
   const result = {};
   result.formConfigs = getOptionsLang(config.formConfigs, lang);
   result.title = config.title[lang];
+  result.subtitles = getOptionsLang(config.subtitles, lang);
   result.errors = getOptionsLang(config.errors, lang);
 
   return result;

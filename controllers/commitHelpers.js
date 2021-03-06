@@ -583,7 +583,7 @@ exports.validateVisitForm = async function (caseId, lang) {
         text: 'POD ' + daysAfterSurgery,
       };
       extra.idToAppend = visitItem._id.toString();
-      extra.postoperative_2 = visitItem.postoperative_2;
+      extra.postoperative_1 = visitItem.postoperative_1;
       visitValidateResult.children.push(visitItemValidateResult);
       doCommitValidationForWholeTable(caseId, visitItemValidateResult, commitCaseConfig, formConfigs, visitItem, extra);
     });
@@ -644,7 +644,7 @@ exports.validateEvacuationFollowupForm = async function (caseId, lang) {
       case: caseId,
     });
     const mustAdd = visitList.find((visitItem) => {
-      return visitItem.postoperative_1 === true && visitItem.postoperative_1_3 === 0;
+      return visitItem.postoperative_1 === true && visitItem.postoperative_1_3 === 1;
     });
     if (mustAdd) {
       evacuationFollowupValidateResult.pass = false;
