@@ -35,7 +35,7 @@ exports.caseOverviewForm = async (req, res) => {
     subjname: caseObj.subjname,
     subjabbr: caseObj.subjabbr,
     subjAcceptDate: moment(caseObj.subjAcceptDate).format('ll'),
-    attachedDoc: caseObj.attachedDoc
+    attachedDoc: caseObj.attachedDoc,
   };
   const auditInfo = [];
   const auditUserConfig = getReviewUserConfig(req.user.language);
@@ -47,7 +47,7 @@ exports.caseOverviewForm = async (req, res) => {
       auditInfo.push({
         role: userRole,
         name: userInfo.username,
-        auditDate: auditDate
+        auditDate: auditDate,
       });
     }
     if (caseItem.auditBy[1]) {
@@ -57,7 +57,7 @@ exports.caseOverviewForm = async (req, res) => {
       auditInfo.push({
         role: userRole,
         name: userInfo.username,
-        auditDate: auditDate
+        auditDate: auditDate,
       });
     }
   }
@@ -69,40 +69,42 @@ exports.caseOverviewForm = async (req, res) => {
     caseOverviewConfig: config,
     buttonConfig: getButtonConfig(req.user.language),
     config: getCaseOverviewConfig(req.user.language),
-    caseFormConfig: getCaseFormConfig(req.user.language)
+    caseFormConfig: getCaseFormConfig(req.user.language),
   });
 };
 
 async function createScreening(caseId, obj) {
   obj.case = caseId;
-  await (new Screening(obj)).save();
+  await new Screening(obj).save();
 }
 
 async function updateScreening(caseId, obj) {
-  await Screening.findOneAndUpdate({
-    case: caseId
-  }, obj);
+  await Screening.findOneAndUpdate(
+    {
+      case: caseId,
+    },
+    obj
+  );
 }
 
 async function createOrUpdateScreening(caseId, obj) {
   const caseItem = await Screening.findOne({
-    case: caseId
+    case: caseId,
   });
   if (caseItem === null) {
     await createScreening(caseId, obj);
-  }
-  else {
+  } else {
     await updateScreening(caseId, obj);
   }
 }
 
 async function getScreeningItemByCaseId(caseId) {
   let screeningItem = await Screening.findOne({
-    case: caseId
+    case: caseId,
   });
   if (!screeningItem) {
     screeningItem = {
-      case: caseId
+      case: caseId,
     };
   }
   return screeningItem;
@@ -119,7 +121,7 @@ async function getLogData(caseId, updateValue) {
   }
   const logData = {
     original: originalValue,
-    update: updateValue
+    update: updateValue,
   };
   return logData;
 }
@@ -141,7 +143,12 @@ exports.caseBasicForm = async (req, res) => {
       config.formConfigs[key].options = decorationHelper[config.formConfigs[key].optionsGetter](req.user.language);
     }
     config.formConfigs[key].value = screeningItem[key];
-    config.formConfigs[key].questionLink = helpers.getQuestionLink(tableName, 'screening-basic', req.params.caseId, config.formConfigs[key]);
+    config.formConfigs[key].questionLink = helpers.getQuestionLink(
+      tableName,
+      'screening-basic',
+      req.params.caseId,
+      config.formConfigs[key]
+    );
 
     if (key === 'birth') {
       config.formConfigs[key].value = screeningItem[key] ? moment(screeningItem[key]).format('YYYY/MM/DD') : '';
@@ -152,7 +159,7 @@ exports.caseBasicForm = async (req, res) => {
     caseNav: CaseNav,
     config,
     buttonConfig: getButtonConfig(req.user.language),
-    caseId: req.params.caseId
+    caseId: req.params.caseId,
   });
 };
 
@@ -173,7 +180,10 @@ exports.updateCaseBasic = async (req, res) => {
   const caseStatus = await getCaseStatus(caseId);
   const logData = await getLogData(caseId, req.body);
   await createOrUpdateScreening(caseId, req.body);
-  logger.info(loggerHelper.createLogMessage(req.user, 'update', 'screening-basic', req.params.caseId, caseStatus), logData);
+  logger.info(
+    loggerHelper.createLogMessage(req.user, 'update', 'screening-basic', req.params.caseId, caseStatus),
+    logData
+  );
   res.redirect(`/screening-basic/${caseId}`);
 };
 
@@ -184,7 +194,12 @@ exports.caseInclusionForm = async (req, res) => {
   const config = getScreeningInclusionConfig(req.user.language);
   Object.keys(config.formConfigs).forEach((key) => {
     config.formConfigs[key].value = screeningItem[key];
-    config.formConfigs[key].questionLink = helpers.getQuestionLink(tableName, 'screening-inclusion', req.params.caseId, config.formConfigs[key]);
+    config.formConfigs[key].questionLink = helpers.getQuestionLink(
+      tableName,
+      'screening-inclusion',
+      req.params.caseId,
+      config.formConfigs[key]
+    );
     if (config.formConfigs[key].type === 'checkbox' && config.formConfigs[key].value === undefined) {
       config.formConfigs[key].value = false;
     }
@@ -194,7 +209,7 @@ exports.caseInclusionForm = async (req, res) => {
     caseNav: CaseNav,
     buttonConfig: getButtonConfig(req.user.language),
     config,
-    caseId: req.params.caseId
+    caseId: req.params.caseId,
   });
 };
 
@@ -212,7 +227,10 @@ exports.updateCaseInclusion = async (req, res) => {
   const caseStatus = await getCaseStatus(caseId);
   const logData = await getLogData(caseId, req.body);
   await createOrUpdateScreening(caseId, req.body);
-  logger.info(loggerHelper.createLogMessage(req.user, 'update', 'screening-inclusion', req.params.caseId, caseStatus), logData);
+  logger.info(
+    loggerHelper.createLogMessage(req.user, 'update', 'screening-inclusion', req.params.caseId, caseStatus),
+    logData
+  );
   res.redirect(`/screening-inclusion/${caseId}`);
 };
 
@@ -223,7 +241,12 @@ exports.caseExclusionForm = async (req, res) => {
   const config = getScreeningExclusionConfig(req.user.language);
   Object.keys(config.formConfigs).forEach((key) => {
     config.formConfigs[key].value = screeningItem[key];
-    config.formConfigs[key].questionLink = helpers.getQuestionLink(tableName, 'screening-exclusion', req.params.caseId, config.formConfigs[key]);
+    config.formConfigs[key].questionLink = helpers.getQuestionLink(
+      tableName,
+      'screening-exclusion',
+      req.params.caseId,
+      config.formConfigs[key]
+    );
     if (config.formConfigs[key].type === 'checkbox' && config.formConfigs[key].value === undefined) {
       config.formConfigs[key].value = false;
     }
@@ -233,7 +256,7 @@ exports.caseExclusionForm = async (req, res) => {
     caseNav: CaseNav,
     buttonConfig: getButtonConfig(req.user.language),
     config,
-    caseId: req.params.caseId
+    caseId: req.params.caseId,
   });
 };
 
@@ -262,7 +285,12 @@ exports.casePrioRadiationTherapyForm = async (req, res) => {
   const config = getScreeningPrioRadiationTherapyConfig(req.user.language);
   Object.keys(config.formConfigs).forEach((key) => {
     config.formConfigs[key].value = screeningItem[key];
-    config.formConfigs[key].questionLink = helpers.getQuestionLink(tableName, 'screening-prioradiationtherapy', req.params.caseId, config.formConfigs[key]);
+    config.formConfigs[key].questionLink = helpers.getQuestionLink(
+      tableName,
+      'screening-prioradiationtherapy',
+      req.params.caseId,
+      config.formConfigs[key]
+    );
     if (config.formConfigs[key].type === 'checkbox' && config.formConfigs[key].value === undefined) {
       config.formConfigs[key].value = false;
     }
@@ -275,7 +303,7 @@ exports.casePrioRadiationTherapyForm = async (req, res) => {
     caseNav: CaseNav,
     buttonConfig: getButtonConfig(req.user.language),
     config,
-    caseId: req.params.caseId
+    caseId: req.params.caseId,
   });
 };
 
@@ -293,7 +321,10 @@ exports.updateCasePrioRadiationTherapy = async (req, res) => {
   const caseStatus = await getCaseStatus(caseId);
   const logData = await getLogData(caseId, req.body);
   await createOrUpdateScreening(caseId, req.body);
-  logger.info(loggerHelper.createLogMessage(req.user, 'update', 'screening-prioradiationtherapy', caseId, caseStatus), logData);
+  logger.info(
+    loggerHelper.createLogMessage(req.user, 'update', 'screening-prioradiationtherapy', caseId, caseStatus),
+    logData
+  );
   res.redirect(`/screening-prioradiationtherapy/${caseId}`);
 };
 
@@ -304,7 +335,12 @@ exports.caseMethodForm = async (req, res) => {
   const config = getScreeningMethodConfig(req.user.language);
   Object.keys(config.formConfigs).forEach((key) => {
     config.formConfigs[key].value = screeningItem[key];
-    config.formConfigs[key].questionLink = helpers.getQuestionLink(tableName, 'screening-method', req.params.caseId, config.formConfigs[key]);
+    config.formConfigs[key].questionLink = helpers.getQuestionLink(
+      tableName,
+      'screening-method',
+      req.params.caseId,
+      config.formConfigs[key]
+    );
     if (config.formConfigs[key].type === 'checkbox' && config.formConfigs[key].value === undefined) {
       config.formConfigs[key].value = false;
     }
@@ -314,7 +350,7 @@ exports.caseMethodForm = async (req, res) => {
     caseNav: CaseNav,
     buttonConfig: getButtonConfig(req.user.language),
     config,
-    caseId: req.params.caseId
+    caseId: req.params.caseId,
   });
 };
 
@@ -343,7 +379,12 @@ exports.caseRegionForm = async (req, res) => {
   const config = getScreeningRegionConfig(req.user.language);
   Object.keys(config.formConfigs).forEach((key) => {
     config.formConfigs[key].value = screeningItem[key];
-    config.formConfigs[key].questionLink = helpers.getQuestionLink(tableName, 'screening-region', req.params.caseId, config.formConfigs[key]);
+    config.formConfigs[key].questionLink = helpers.getQuestionLink(
+      tableName,
+      'screening-region',
+      req.params.caseId,
+      config.formConfigs[key]
+    );
     if (config.formConfigs[key].type === 'checkbox' && config.formConfigs[key].value === undefined) {
       config.formConfigs[key].value = false;
     }
@@ -353,7 +394,7 @@ exports.caseRegionForm = async (req, res) => {
     caseNav: CaseNav,
     buttonConfig: getButtonConfig(req.user.language),
     config,
-    caseId: req.params.caseId
+    caseId: req.params.caseId,
   });
 };
 
@@ -385,7 +426,12 @@ exports.caseDignoseForm = async (req, res) => {
       config.formConfigs[key].options = decorationHelper[config.formConfigs[key].optionsGetter](req.user.language);
     }
     config.formConfigs[key].value = screeningItem[key];
-    config.formConfigs[key].questionLink = helpers.getQuestionLink(tableName, 'screening-dignose', req.params.caseId, config.formConfigs[key]);
+    config.formConfigs[key].questionLink = helpers.getQuestionLink(
+      tableName,
+      'screening-dignose',
+      req.params.caseId,
+      config.formConfigs[key]
+    );
     if (config.formConfigs[key].type === 'checkbox' && config.formConfigs[key].value === undefined) {
       config.formConfigs[key].value = false;
     }
@@ -395,7 +441,7 @@ exports.caseDignoseForm = async (req, res) => {
     caseNav: CaseNav,
     buttonConfig: getButtonConfig(req.user.language),
     config,
-    caseId: req.params.caseId
+    caseId: req.params.caseId,
   });
 };
 

@@ -141,15 +141,6 @@ const config = {
       linkBase: '/visit',
     },
     {
-      name: 'evacuation',
-      total: 3,
-      text: {
-        zh: '取出植入物',
-        en: 'Evacuation of the Implant',
-      },
-      linkBase: '/evacuation',
-    },
-    {
       name: 'evacuationfollowup',
       total: 3,
       text: {
@@ -157,6 +148,15 @@ const config = {
         en: 'Follow-up Until Evacuation of C-REX',
       },
       linkBase: '/evacuationfollowup',
+    },
+    {
+      name: 'evacuation',
+      total: 3,
+      text: {
+        zh: '取出植入物',
+        en: 'Evacuation of the Implant',
+      },
+      linkBase: '/evacuation',
     },
     {
       text: {
