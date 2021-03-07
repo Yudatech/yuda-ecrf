@@ -64,7 +64,7 @@ function doOnlyOnceCheck(fieldName, ruleConfig, listToCheck) {
 
 function doConditionalRequireCheck(value, requiredValue, currentValue) {
   if (requiredValue === currentValue) {
-    return value !== undefined && value !== '';
+    return value !== undefined && value !== null && value !== '';
   } else {
     return true;
   }
