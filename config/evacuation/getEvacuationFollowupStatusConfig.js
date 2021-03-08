@@ -2,8 +2,8 @@ const config = [
   {
     value: 1,
     text: {
-      zh: 'Have symptoms',
-      en: 'Have symptoms',
+      zh: 'Has symptoms',
+      en: 'Has symptoms',
     },
   },
   {
