@@ -39,12 +39,29 @@ const config = {
       },
     },
     {
+      name: 'status',
+      type: 'select',
+      required: true,
+      optionsGetter: 'getEvacuationFollowupStatusConfig',
+      commit: [
+        {
+          rule: 'required',
+        },
+      ],
+      text: {
+        zh: 'Status of the patient',
+        en: 'Status of the patient',
+      },
+    },
+    {
       name: 'status_1',
       type: 'checkbox',
       commit: [
         {
-          rule: 'atleast_one_true',
-          fields: 'status_1,status_2,status_3,status_4,status_5',
+          rule: 'conditional_atleast_one_true',
+          conditionField: 'status',
+          conditionValue: 1,
+          fields: 'status_1,status_2,status_3,status_4',
         },
       ],
       text: {
@@ -57,8 +74,10 @@ const config = {
       type: 'checkbox',
       commit: [
         {
-          rule: 'atleast_one_true',
-          fields: 'status_1,status_2,status_3,status_4,status_5',
+          rule: 'conditional_atleast_one_true',
+          conditionField: 'status',
+          conditionValue: 1,
+          fields: 'status_1,status_2,status_3,status_4',
         },
       ],
       text: {
@@ -71,8 +90,10 @@ const config = {
       type: 'checkbox',
       commit: [
         {
-          rule: 'atleast_one_true',
-          fields: 'status_1,status_2,status_3,status_4,status_5',
+          rule: 'conditional_atleast_one_true',
+          conditionField: 'status',
+          conditionValue: 1,
+          fields: 'status_1,status_2,status_3,status_4',
         },
       ],
       text: {
@@ -85,27 +106,15 @@ const config = {
       type: 'checkbox',
       commit: [
         {
-          rule: 'atleast_one_true',
-          fields: 'status_1,status_2,status_3,status_4,status_5',
+          rule: 'conditional_atleast_one_true',
+          conditionField: 'status',
+          conditionValue: 1,
+          fields: 'status_1,status_2,status_3,status_4',
         },
       ],
       text: {
         zh: 'Abdominal pain',
         en: 'Abdominal pain',
-      },
-    },
-    {
-      name: 'status_5',
-      type: 'checkbox',
-      commit: [
-        {
-          rule: 'atleast_one_true',
-          fields: 'status_1,status_2,status_3,status_4,status_5',
-        },
-      ],
-      text: {
-        zh: 'No symptoms at all',
-        en: 'No symptoms at all',
       },
     },
   ],

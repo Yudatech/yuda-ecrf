@@ -13,11 +13,11 @@ const evacuationFollowupSchema = new Schema({
     type: Date,
     default: Date.now,
   },
+  status: Number,
   status_1: Boolean,
   status_2: Boolean,
   status_3: Boolean,
   status_4: Boolean,
-  status_5: Boolean,
 });
 
 evacuationFollowupSchema.plugin(mongodbErrorHandler);

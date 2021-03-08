@@ -19,10 +19,14 @@ block case-content
           .col-sm-10
             +_formTemplate(config.formConfigs.postoperativeday, true, true)
 
-        br
+        .row
+          .col-sm-10
+            +_formTemplate(config.formConfigs.status)
+          .col-sm-2
+            +_questionBtn(config.formConfigs.status, questionFields)
 
-        label.control-label #{config.subtitles.subtitle_1.text}
-
+        - config.formConfigs.status_1.hidden = !(config.formConfigs.status.value === 1)
+        .row(id=`status_1_row` class=(config.formConfigs.status_1.hidden === true ? 'hidden' : ''))
         .row
           .col-sm-10
             .form-group
@@ -30,6 +34,8 @@ block case-content
           .col-sm-2
             +_questionBtn(config.formConfigs.status_1, questionFields)
 
+        - config.formConfigs.status_2.hidden = !(config.formConfigs.status.value === 1)
+        .row(id=`status_2_row` class=(config.formConfigs.status_2.hidden === true ? 'hidden' : ''))
         .row
           .col-sm-10
             .form-group
@@ -37,6 +43,8 @@ block case-content
           .col-sm-2
             +_questionBtn(config.formConfigs.status_2, questionFields)
 
+        - config.formConfigs.status_3.hidden = !(config.formConfigs.status.value === 1)
+        .row(id=`status_3_row` class=(config.formConfigs.status_3.hidden === true ? 'hidden' : ''))
         .row
           .col-sm-10
             .form-group
@@ -44,19 +52,14 @@ block case-content
           .col-sm-2
             +_questionBtn(config.formConfigs.status_3, questionFields)
 
+        - config.formConfigs.status_4.hidden = !(config.formConfigs.status.value === 1)
+        .row(id=`status_4_row` class=(config.formConfigs.status_4.hidden === true ? 'hidden' : ''))
         .row
           .col-sm-10
             .form-group
               +_formTemplate(config.formConfigs.status_4)
           .col-sm-2
             +_questionBtn(config.formConfigs.status_4, questionFields)
-
-        .row
-          .col-sm-10
-            .form-group
-              +_formTemplate(config.formConfigs.status_5)
-          .col-sm-2
-            +_questionBtn(config.formConfigs.status_5, questionFields)
 
       if formDisabled === false
         input.btn.btn-default.yuda-input-btn(id="evacuation-followup-submit-btn" type="submit" value=buttonConfig.buttons.save.text)

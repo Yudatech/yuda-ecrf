@@ -108,16 +108,22 @@ exports.evacuationForm = async (req, res) => {
   const followupConfig = getEvacuationFollowupConfig(req.user.language);
   const followupList = await getFollowupListByCaseId(req.params.caseId);
   const followupListFormatted = followupList.map((item) => {
-    const statusKeys = ['status_1', 'status_2', 'status_3', 'status_4', 'status_5'];
-    const statusValues = statusKeys
-      .map((key) => {
-        if (item[key] === true) {
-          return followupConfig.formConfigs[key].text;
-        }
-        return undefined;
-      })
-      .filter((item) => item)
-      .join(', ');
+    let statusValues = '';
+    if (item['status'] === 1) {
+      const statusKeys = ['status_1', 'status_2', 'status_3', 'status_4'];
+      statusValues = statusKeys
+        .map((key) => {
+          if (item[key] === true) {
+            return followupConfig.formConfigs[key].text;
+          }
+          return undefined;
+        })
+        .filter((item) => item)
+        .join(', ');
+    } else if (item['status'] === 0) {
+      const options = decorationHelper[followupConfig.formConfigs['status'].optionsGetter](req.user.language);
+      statusValues = options.find((i) => i.value === 0).text;
+    }
     return {
       _id: item._id,
       case: item.case,

@@ -685,7 +685,6 @@ exports.validateEvacuationFollowupForm = async function (caseId, lang) {
       extra.status_2 = evacuationFollowupItem.status_2;
       extra.status_3 = evacuationFollowupItem.status_3;
       extra.status_4 = evacuationFollowupItem.status_4;
-      extra.status_5 = evacuationFollowupItem.status_5;
       evacuationFollowupValidateResult.children.push(evacuationFollowupItemValidateResult);
       doCommitValidationForWholeTable(
         caseId,

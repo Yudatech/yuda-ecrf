@@ -1,3 +1,5 @@
+import setFieldVisibility from './helpers/setFieldVisibility';
+import setLabelVisibility from './helpers/setLabelVisibility';
 import requireValidator from './validators/requireValidator';
 
 function initEvacuationFollowupHandler() {
@@ -31,6 +33,10 @@ function initEvacuationFollowupHandler() {
       $('#postoperativeday').val('Postoperative day (POD) ' + days);
     });
 
+  $('#status').change(function () {
+    setStatusChildrenVisibility();
+  });
+
   $('#evacuation-followup-form').validator({
     delay: 100,
     disable: false,
@@ -39,6 +45,16 @@ function initEvacuationFollowupHandler() {
     },
   });
   $('#evacuation-followup-form').validator('validate');
+}
+
+function setStatusChildrenVisibility() {
+  const value = $('#status').val();
+  const checked = value === '1';
+  const childrenFields = ['status_1', 'status_2', 'status_3', 'status_4'];
+  childrenFields.forEach(function (childField) {
+    setFieldVisibility(childField, checked);
+    setLabelVisibility(`${childField}_row`, checked);
+  });
 }
 
 export default initEvacuationFollowupHandler;
