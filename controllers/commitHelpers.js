@@ -592,6 +592,7 @@ exports.validateVisitForm = async function (caseId, lang) {
     if (falseItem) {
       visitValidateResult.resultText = commitCaseConfig.ongoing;
       visitValidateResult.resultType = 'ongoing';
+      visitValidateResult.pass = false;
     }
   }
   return visitValidateResult;
@@ -700,6 +701,7 @@ exports.validateEvacuationFollowupForm = async function (caseId, lang) {
     if (falseItem) {
       evacuationFollowupValidateResult.resultText = commitCaseConfig.ongoing;
       evacuationFollowupValidateResult.resultType = 'ongoing';
+      evacuationFollowupValidateResult.pass = false;
     }
   }
   return evacuationFollowupValidateResult;
