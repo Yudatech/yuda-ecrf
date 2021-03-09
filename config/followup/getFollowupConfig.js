@@ -583,8 +583,8 @@ const config = {
         },
       ],
       text: {
-        zh: 'Scheduled readmission',
-        en: 'Scheduled readmission',
+        zh: 'Unscheduled readmission',
+        en: 'Unscheduled readmission',
       },
     },
     {
@@ -773,8 +773,8 @@ const config = {
         },
       ],
       text: {
-        zh: 'lymph nodes paraaortic / central abdomen',
-        en: 'lymph nodes paraaortic / central abdomen',
+        zh: 'Lymph nodes paraaortic / central abdomen',
+        en: 'Lymph nodes paraaortic / central abdomen',
       },
     },
     {

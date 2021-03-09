@@ -3,14 +3,14 @@ const getOptionsLang = require('../configHelpers').getOptionsLang;
 const config = {
   title: {
     zh: '取出植入物',
-    en: 'Follow-up and Evacuation of the Implant',
+    en: 'Follow-up and Evacuation of C-REX',
   },
   subtitles: [
     {
       name: 'subtitle_2',
       text: {
-        zh: 'Evacuation of the Implant',
-        en: 'Evacuation of the Implant',
+        zh: 'Evacuation of C-REX',
+        en: 'Evacuation of C-REX',
       },
     },
     {

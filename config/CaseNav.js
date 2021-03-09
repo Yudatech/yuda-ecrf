@@ -112,7 +112,7 @@ module.exports = [
   {
     title: {
       zh: '排出植入吻合环',
-      en: 'Follow-up and Evacuation of the Implant',
+      en: 'Follow-up and Evacuation of C-REX',
       sv: 'Evakuering av implantatet',
     },
     name: 'evacuation',

@@ -2,57 +2,57 @@ const clavienGradingConfig = [
   {
     value: 0,
     text: {
-      zh: "No",
-      en: "No",
+      zh: 'No',
+      en: 'No',
     },
   },
   {
     value: 1,
     text: {
-      zh: "2",
-      en: "2",
+      zh: '2',
+      en: '2',
     },
   },
   {
     value: 2,
     text: {
-      zh: "3a",
-      en: "3a",
+      zh: '3a',
+      en: '3a',
     },
   },
   {
     value: 3,
     text: {
-      zh: "3b",
-      en: "3b",
+      zh: '3b',
+      en: '3b',
     },
   },
   {
     value: 4,
     text: {
-      zh: "4a",
-      en: "4a",
+      zh: '4a',
+      en: '4a',
     },
   },
   {
     value: 5,
     text: {
-      zh: "4b",
-      en: "4b",
+      zh: '4b',
+      en: '4b',
     },
   },
   {
     value: 6,
     text: {
-      zh: "(5)",
-      en: "(5)",
+      zh: '5',
+      en: '5',
     },
   },
 ];
 
 module.exports = function (lang) {
   if (lang === undefined) {
-    lang = "en";
+    lang = 'en';
   }
 
   return clavienGradingConfig.map((item) => {

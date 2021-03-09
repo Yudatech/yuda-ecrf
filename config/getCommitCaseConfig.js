@@ -154,7 +154,7 @@ const config = {
       total: 3,
       text: {
         zh: '取出植入物',
-        en: 'Evacuation of the Implant',
+        en: 'Evacuation of C-REX',
       },
       linkBase: '/evacuation',
     },
