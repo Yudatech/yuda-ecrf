@@ -76,6 +76,8 @@ exports.followupForm = async (req, res) => {
     if (
       key === 'followup_20_1' ||
       key === 'followup_20_2' ||
+      key === 'followup_20_3' ||
+      key === 'followup_20_4' ||
       key === 'followup_21_1' ||
       key === 'followup_21_2' ||
       key === 'followup_21_3' ||

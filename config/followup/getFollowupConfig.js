@@ -387,14 +387,15 @@ const config = {
       type: 'date',
       commit: [
         {
-          rule: 'condition_require',
-          field: 'followup_20',
-          value: 1,
+          rule: 'conditional_atleast_one',
+          conditionField: 'followup_20',
+          conditionValue: 1,
+          fields: 'followup_20_1,followup_20_2,followup_20_3,followup_20_4',
         },
       ],
       text: {
-        zh: 'In, date',
-        en: 'In, date',
+        zh: 'Date of IVA care 1',
+        en: 'Date of IVA care 1',
       },
     },
     {
@@ -402,14 +403,47 @@ const config = {
       type: 'date',
       commit: [
         {
-          rule: 'condition_require',
-          field: 'followup_20',
-          value: 1,
+          rule: 'conditional_atleast_one',
+          conditionField: 'followup_20',
+          conditionValue: 1,
+          fields: 'followup_20_1,followup_20_2,followup_20_3,followup_20_4',
         },
       ],
       text: {
-        zh: 'Out, date',
-        en: 'Out, date',
+        zh: 'Date of IVA care 2',
+        en: 'Date of IVA care 2',
+      },
+    },
+    {
+      name: 'followup_20_3',
+      type: 'date',
+      commit: [
+        {
+          rule: 'conditional_atleast_one',
+          conditionField: 'followup_20',
+          conditionValue: 1,
+          fields: 'followup_20_1,followup_20_2,followup_20_3,followup_20_4',
+        },
+      ],
+      text: {
+        zh: 'Date of IVA care 3',
+        en: 'Date of IVA care 3',
+      },
+    },
+    {
+      name: 'followup_20_4',
+      type: 'date',
+      commit: [
+        {
+          rule: 'conditional_atleast_one',
+          conditionField: 'followup_20',
+          conditionValue: 1,
+          fields: 'followup_20_1,followup_20_2,followup_20_3,followup_20_4',
+        },
+      ],
+      text: {
+        zh: 'Date of IVA care 4',
+        en: 'Date of IVA care 4',
       },
     },
     {

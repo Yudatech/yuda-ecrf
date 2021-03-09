@@ -69,14 +69,6 @@ block case-content
         else
           div(id=`postoperative_2_1_div`)
             hr(style="border: 1px solid #c0c0c0;")
-        
-
-        - config.formConfigs.postoperative_2_1_1.hidden = !(config.formConfigs.postoperative_2_1.value === 1)
-        .row
-          .col-sm-10
-            +_formTemplate(config.formConfigs.postoperative_2_1_1)
-          .col-sm-2
-            +_questionBtn(config.formConfigs.postoperative_2_1_1, questionFields)
 
         br
 

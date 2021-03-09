@@ -219,6 +219,20 @@ block case-content
           .col-sm-2
             +_questionBtn(config.formConfigs.followup_20_2, questionFields)
 
+        - config.formConfigs.followup_20_3.hidden = !(config.formConfigs.followup_20.value === 1)
+        .row(id=`followup_20_3_row` class=(config.formConfigs.followup_20_3.hidden === true ? 'hidden' : ''))
+          .col-sm-10
+            +_formTemplate(config.formConfigs.followup_20_3)
+          .col-sm-2
+            +_questionBtn(config.formConfigs.followup_20_3, questionFields)
+
+        - config.formConfigs.followup_20_4.hidden = !(config.formConfigs.followup_20.value === 1)
+        .row(id=`followup_20_4_row` class=(config.formConfigs.followup_20_4.hidden === true ? 'hidden' : ''))
+          .col-sm-10
+            +_formTemplate(config.formConfigs.followup_20_4)
+          .col-sm-2
+            +_questionBtn(config.formConfigs.followup_20_4, questionFields)
+
         hr(style="border: 1px solid #c0c0c0;")
         br
 

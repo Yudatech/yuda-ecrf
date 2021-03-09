@@ -82,6 +82,10 @@ function setFollowup_20ChildrenVisibility() {
   setLabelVisibility('followup_20_1_row', checked);
   setFieldVisibility('followup_20_2', checked);
   setLabelVisibility('followup_20_2_row', checked);
+  setFieldVisibility('followup_20_3', checked);
+  setLabelVisibility('followup_20_3_row', checked);
+  setFieldVisibility('followup_20_4', checked);
+  setLabelVisibility('followup_20_4_row', checked);
 }
 
 function setFollowup_33ChildrenVisibility() {

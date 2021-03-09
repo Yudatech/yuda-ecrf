@@ -155,23 +155,6 @@ const config = {
       },
     },
     {
-      name: 'postoperative_2_1_1',
-      type: 'select',
-      required: true,
-      optionsGetter: 'getPostoperativeComplicationRequiringTreatmentConfig',
-      commit: [
-        {
-          rule: 'conditional_require',
-          field: 'postoperative_2_1',
-          value: 1,
-        },
-      ],
-      text: {
-        zh: '术后并发症需要治疗',
-        en: 'Postoperative complication requiring treatment',
-      },
-    },
-    {
       name: 'postoperative_2_1_2',
       type: 'radio',
       optionsGetter: 'getClavienGradingConfig',

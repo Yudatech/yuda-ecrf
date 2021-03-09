@@ -139,7 +139,6 @@ function setPostoperative_2_1ChildrenVisibility() {
     'postoperative_2_1_div',
   ];
   const children = [
-    'postoperative_2_1_1',
     'postoperative_2_1_2',
     'postoperative_2_1_3',
     'postoperative_2_1_4',

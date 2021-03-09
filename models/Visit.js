@@ -19,7 +19,6 @@ const visitSchema = new Schema({
   postoperative_1_3: Number,
   postoperative_2: Number,
   postoperative_2_1: Number,
-  postoperative_2_1_1: Number,
   postoperative_2_1_2: Number,
   postoperative_2_1_3: Number,
   postoperative_2_1_4: Number,
