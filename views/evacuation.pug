@@ -60,6 +60,11 @@ block case-content
             +_formTemplate(config.formConfigs.evacuationtype)
           .col-sm-2
             +_questionBtn(config.formConfigs.evacuationtype, questionFields)
+
+      .row.hidden(id="evacuation-error-1")
+        .col-sm-12
+          .alert.alert-warning(role="alert")
+            span #{config.errors.error_1.text}
         
       if formDisabled === false
         input.btn.btn-default.yuda-input-btn(type="submit" value=buttonConfig.buttons.save.text)

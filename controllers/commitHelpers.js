@@ -598,6 +598,13 @@ exports.validateVisitForm = async function (caseId, lang) {
   return visitValidateResult;
 };
 
+async function getFollowupListByCaseId(caseId) {
+  const followupList = await EvacuationFollowup.find({
+    case: caseId,
+  });
+  return followupList;
+}
+
 exports.validateEvacuationForm = async function (caseId, lang) {
   const commitCaseConfig = getCommitCaseConfig(lang);
   const evacuationItem = await Evacuation.findOne({
@@ -615,8 +622,67 @@ exports.validateEvacuationForm = async function (caseId, lang) {
     const surgeryItem = await Surgery.findOne({
       case: caseId,
     });
+
+    const surgerydtc = surgeryItem && surgeryItem.surgerydtc ? surgeryItem.surgerydtc : null;
+
+    const followupConfig = getEvacuationFollowupConfig(lang);
+    const followupList = await getFollowupListByCaseId(caseId);
+    let lastFollowupDate;
+    const followupListFormatted = followupList.map((item) => {
+      let statusValues = '';
+      if (item['status'] === 1) {
+        const statusKeys = ['status_1', 'status_2', 'status_3', 'status_4'];
+        statusValues = statusKeys
+          .map((key) => {
+            if (item[key] === true) {
+              return followupConfig.formConfigs[key].text;
+            }
+            return undefined;
+          })
+          .filter((item) => item)
+          .join(', ');
+      } else if (item['status'] === 0) {
+        const options = decorationHelper[followupConfig.formConfigs['status'].optionsGetter](lang);
+        statusValues = options.find((i) => i.value === 0).text;
+      }
+      return {
+        _id: item._id,
+        case: item.case,
+        postoperativedayValue: getDaysAfterSurgery(surgerydtc, item.assessmentdtc),
+        assessmentdtcRaw: item.assessmentdtc,
+        assessmentdtc: moment(item.assessmentdtc).format('ll'),
+        postoperativeday: helpers.getPostoperativeDayText(getDaysAfterSurgery(surgerydtc, item.assessmentdtc)),
+        status: statusValues,
+      };
+    });
+    followupListFormatted.sort(function (a, b) {
+      let vA = parseFloat(a.postoperativedayValue);
+      let vB = parseFloat(b.postoperativedayValue);
+      if (vA < vB) {
+        return -1;
+      } else if (vA > vB) {
+        return 1;
+      } else {
+        return 0;
+      }
+    });
+    if (followupListFormatted.length) {
+      lastFollowupDate = followupListFormatted[followupListFormatted.length - 1].assessmentdtcRaw.valueOf();
+    }
+    const currentDate = evacuationItem.evacuationdtc.valueOf();
+    if (lastFollowupDate && currentDate) {
+      if (currentDate <= lastFollowupDate) {
+        evacuationValidateResult.pass = false;
+        evacuationValidateResult.link = `${evacuationValidateResult.linkBase}/${caseId}`;
+        evacuationValidateResult.message = evacuationValidateResult.text;
+        evacuationValidateResult.resultText = commitCaseConfig.ongoing;
+        evacuationValidateResult.resultType = 'ongoing';
+        return evacuationValidateResult;
+      }
+    }
+
     const extra = {
-      surgerydtc: surgeryItem && surgeryItem.surgerydtc === undefined ? null : surgeryItem.surgerydtc.valueOf(),
+      surgerydtc: surgeryItem && surgeryItem.surgerydtc ? surgeryItem.surgerydtc.valueOf() : null,
     };
     const formConfigs = getEvacuationConfig(lang).formConfigs;
     doCommitValidationForWholeTable(

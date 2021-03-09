@@ -94,7 +94,15 @@ const config = {
       },
     },
   ],
-  errors: [],
+  errors: [
+    {
+      name: 'error_1',
+      text: {
+        zh: 'Date of evacuation is earlier than the last follow-up assessment date, please check.',
+        en: 'Date of evacuation is earlier than the last follow-up assessment date, please check.',
+      },
+    },
+  ],
 };
 
 module.exports = function (lang) {

@@ -78,35 +78,9 @@ exports.evacuationForm = async (req, res) => {
   });
   const surgerydtc = surgery && surgery.surgerydtc ? surgery.surgerydtc : null;
 
-  Object.keys(config.formConfigs).forEach((key) => {
-    if (config.formConfigs[key].type === 'select') {
-      config.formConfigs[key].options = decorationHelper[config.formConfigs[key].optionsGetter](req.user.language);
-    }
-    if (key === 'evacuationdtc') {
-      config.formConfigs[key].value = evacuationItem.evacuationdtc
-        ? moment(evacuationItem.evacuationdtc).format('YYYY/MM/DD')
-        : '';
-      const startDateStr = surgerydtc === null ? null : moment(surgerydtc).format('YYYY/MM/DD');
-      config.formConfigs[key].extra = JSON.stringify({
-        start: startDateStr,
-      });
-    } else {
-      config.formConfigs[key].value = evacuationItem[key];
-    }
-    config.formConfigs[key].questionLink = helpers.getQuestionLink(
-      tableName,
-      'evacuation',
-      req.params.caseId,
-      config.formConfigs[key]
-    );
-
-    if (config.formConfigs[key].type === 'checkbox' && config.formConfigs[key].value === undefined) {
-      config.formConfigs[key].value = false;
-    }
-  });
-
   const followupConfig = getEvacuationFollowupConfig(req.user.language);
   const followupList = await getFollowupListByCaseId(req.params.caseId);
+  let lastFollowupDate = '';
   const followupListFormatted = followupList.map((item) => {
     let statusValues = '';
     if (item['status'] === 1) {
@@ -128,6 +102,7 @@ exports.evacuationForm = async (req, res) => {
       _id: item._id,
       case: item.case,
       postoperativedayValue: getDaysAfterSurgery(surgerydtc, item.assessmentdtc),
+      assessmentdtcRaw: item.assessmentdtc,
       assessmentdtc: moment(item.assessmentdtc).format('ll'),
       postoperativeday: helpers.getPostoperativeDayText(getDaysAfterSurgery(surgerydtc, item.assessmentdtc)),
       status: statusValues,
@@ -142,6 +117,40 @@ exports.evacuationForm = async (req, res) => {
       return 1;
     } else {
       return 0;
+    }
+  });
+  if (followupListFormatted.length) {
+    lastFollowupDate = moment(followupListFormatted[followupListFormatted.length - 1].assessmentdtcRaw).format(
+      'YYYY/MM/DD'
+    );
+  }
+
+  Object.keys(config.formConfigs).forEach((key) => {
+    if (config.formConfigs[key].type === 'select') {
+      config.formConfigs[key].options = decorationHelper[config.formConfigs[key].optionsGetter](req.user.language);
+    }
+    if (key === 'evacuationdtc') {
+      config.formConfigs[key].value = evacuationItem.evacuationdtc
+        ? moment(evacuationItem.evacuationdtc).format('YYYY/MM/DD')
+        : '';
+      const startDateStr = surgerydtc === null ? null : moment(surgerydtc).format('YYYY/MM/DD');
+      config.formConfigs[key].extra = JSON.stringify({
+        start: startDateStr,
+        current: config.formConfigs[key].value,
+        lock: lastFollowupDate,
+      });
+    } else {
+      config.formConfigs[key].value = evacuationItem[key];
+    }
+    config.formConfigs[key].questionLink = helpers.getQuestionLink(
+      tableName,
+      'evacuation',
+      req.params.caseId,
+      config.formConfigs[key]
+    );
+
+    if (config.formConfigs[key].type === 'checkbox' && config.formConfigs[key].value === undefined) {
+      config.formConfigs[key].value = false;
     }
   });
 
