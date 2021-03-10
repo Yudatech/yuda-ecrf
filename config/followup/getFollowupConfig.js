@@ -378,8 +378,8 @@ const config = {
         },
       ],
       text: {
-        zh: 'IVA care',
-        en: 'IVA care',
+        zh: 'ICU care',
+        en: 'ICU care',
       },
     },
     {
@@ -394,8 +394,8 @@ const config = {
         },
       ],
       text: {
-        zh: 'Date of IVA care 1',
-        en: 'Date of IVA care 1',
+        zh: 'Date of ICU care 1',
+        en: 'Date of ICU care 1',
       },
     },
     {
@@ -410,8 +410,8 @@ const config = {
         },
       ],
       text: {
-        zh: 'Date of IVA care 2',
-        en: 'Date of IVA care 2',
+        zh: 'Date of ICU care 2',
+        en: 'Date of ICU care 2',
       },
     },
     {
@@ -426,8 +426,8 @@ const config = {
         },
       ],
       text: {
-        zh: 'Date of IVA care 3',
-        en: 'Date of IVA care 3',
+        zh: 'Date of ICU care 3',
+        en: 'Date of ICU care 3',
       },
     },
     {
@@ -442,8 +442,8 @@ const config = {
         },
       ],
       text: {
-        zh: 'Date of IVA care 4',
-        en: 'Date of IVA care 4',
+        zh: 'Date of ICU care 4',
+        en: 'Date of ICU care 4',
       },
     },
     {
