@@ -17,6 +17,8 @@ const getCommitCaseConfig = require('../config/getCommitCaseConfig');
 
 const helpers = require('./helpers');
 
+const decorationHelper = require('./decorationHelper');
+
 const getScreeningBasicConfig = require('../config/screening/getScreeningBasicConfig');
 const getScreeningDignoseConfig = require('../config/screening/getScreeningDignoseConfig');
 const getScreeningExclusionConfig = require('../config/screening/getScreeningExclusionConfig');
@@ -671,7 +673,7 @@ exports.validateEvacuationForm = async function (caseId, lang) {
     }
     const currentDate = evacuationItem.evacuationdtc.valueOf();
     if (lastFollowupDate && currentDate) {
-      if (currentDate <= lastFollowupDate) {
+      if (currentDate < lastFollowupDate) {
         evacuationValidateResult.pass = false;
         evacuationValidateResult.link = `${evacuationValidateResult.linkBase}/${caseId}`;
         evacuationValidateResult.message = evacuationValidateResult.text;

@@ -42,7 +42,7 @@ function setErrorElementVisibility(current, lock) {
     ).getTime();
     const lockArray = lock.split('/');
     const lockDate = new Date(lockArray[0], parseInt(lockArray[1], 10) - 1, lockArray[2], 0, 0, 0).getTime();
-    displayError = currentDate <= lockDate;
+    displayError = currentDate < lockDate;
   }
 
   if (displayError) {
