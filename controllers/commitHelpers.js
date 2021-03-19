@@ -159,6 +159,21 @@ function doConditionalAtleastOneTrueCheck(key, obj, rule) {
   }
 }
 
+function doPairWithCheck(key, obj, ruleConfig) {
+  const pairField = ruleConfig.field;
+  const pairFieldValue = obj[pairField];
+  const conditionField = ruleConfig.conditionField;
+  const conditionValue = ruleConfig.conditionValue;
+  if (obj[conditionField] === conditionValue) {
+    if (pairFieldValue) {
+      return !!obj[key];
+    } else {
+      return !!!obj[key];
+    }
+  }
+  return true;
+}
+
 function doReviewChecklistCustomValidation(caseId, key, obj, ruleConfig, validateResult) {
   if (obj[key] !== true) {
     return true;
@@ -334,6 +349,8 @@ function doCommitValidation(caseId, key, obj, rules, extra, validateResult) {
       result = doAtleastOneCheck(key, obj, ruleConfig);
     } else if (ruleName === 'conditional_atleast_one_true') {
       result = doConditionalAtleastOneTrueCheck(key, obj, ruleConfig);
+    } else if (ruleName === 'pair_with') {
+      result = doPairWithCheck(key, obj, ruleConfig);
     }
     if (result === false && ruleConfig.message) {
       validateResult.message = ruleConfig.message;

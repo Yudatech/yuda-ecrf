@@ -447,6 +447,70 @@ const config = {
       },
     },
     {
+      name: 'followup_20_5',
+      type: 'date',
+      commit: [
+        {
+          rule: 'pair_with',
+          field: 'followup_20_1',
+          conditionField: 'followup_20',
+          conditionValue: 1,
+        },
+      ],
+      text: {
+        zh: 'Date of discharge from ICU care 1',
+        en: 'Date of discharge from ICU care 1',
+      },
+    },
+    {
+      name: 'followup_20_6',
+      type: 'date',
+      commit: [
+        {
+          rule: 'pair_with',
+          field: 'followup_20_2',
+          conditionField: 'followup_20',
+          conditionValue: 1,
+        },
+      ],
+      text: {
+        zh: 'Date of discharge from ICU care 2',
+        en: 'Date of discharge from ICU care 2',
+      },
+    },
+    {
+      name: 'followup_20_7',
+      type: 'date',
+      commit: [
+        {
+          rule: 'pair_with',
+          field: 'followup_20_3',
+          conditionField: 'followup_20',
+          conditionValue: 1,
+        },
+      ],
+      text: {
+        zh: 'Date of discharge from ICU care 3',
+        en: 'Date of discharge from ICU care 3',
+      },
+    },
+    {
+      name: 'followup_20_8',
+      type: 'date',
+      commit: [
+        {
+          rule: 'pair_with',
+          field: 'followup_20_4',
+          conditionField: 'followup_20',
+          conditionValue: 1,
+        },
+      ],
+      text: {
+        zh: 'Date of discharge from ICU care 4',
+        en: 'Date of discharge from ICU care 4',
+      },
+    },
+    {
       name: 'followup_21',
       type: 'select',
       required: true,

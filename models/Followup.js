@@ -42,6 +42,18 @@ const followupSchema = new Schema({
   followup_20_4: {
     type: Date,
   },
+  followup_20_5: {
+    type: Date,
+  },
+  followup_20_6: {
+    type: Date,
+  },
+  followup_20_7: {
+    type: Date,
+  },
+  followup_20_8: {
+    type: Date,
+  },
   followup_21: Number,
   followup_21_1: {
     type: Date,

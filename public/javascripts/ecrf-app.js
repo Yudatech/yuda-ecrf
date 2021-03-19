@@ -29,6 +29,7 @@ import initEvacuationFollowupHandler from './modules/initEvacuationFollowupHandl
 $('.input-group.date')
   .datepicker({
     endDate: new Date(),
+    clearBtn: true,
   })
   .on('changeDate', function (e) {
     const targetId = e.target.id;
