@@ -597,7 +597,7 @@ const config = {
           rule: 'conditional_atleast_one_true',
           conditionField: 'followup_21',
           conditionValue: 1,
-          fields: 'followup_21_5_1,followup_21_5_2,followup_21_5_3,followup_21_5_4',
+          fields: 'followup_21_5_1,followup_21_5_2,followup_21_5_5,followup_21_5_3,followup_21_5_4',
         },
       ],
       text: {
@@ -613,12 +613,28 @@ const config = {
           rule: 'conditional_atleast_one_true',
           conditionField: 'followup_21',
           conditionValue: 1,
-          fields: 'followup_21_5_1,followup_21_5_2,followup_21_5_3,followup_21_5_4',
+          fields: 'followup_21_5_1,followup_21_5_2,followup_21_5_5,followup_21_5_3,followup_21_5_4',
         },
       ],
       text: {
-        zh: 'Bleeding Infection',
-        en: 'Bleeding Infection',
+        zh: 'Bleeding',
+        en: 'Bleeding',
+      },
+    },
+    {
+      name: 'followup_21_5_5',
+      type: 'checkbox',
+      commit: [
+        {
+          rule: 'conditional_atleast_one_true',
+          conditionField: 'followup_21',
+          conditionValue: 1,
+          fields: 'followup_21_5_1,followup_21_5_2,followup_21_5_5,followup_21_5_3,followup_21_5_4',
+        },
+      ],
+      text: {
+        zh: 'Infection',
+        en: 'Infection',
       },
     },
     {
@@ -629,7 +645,7 @@ const config = {
           rule: 'conditional_atleast_one_true',
           conditionField: 'followup_21',
           conditionValue: 1,
-          fields: 'followup_21_5_1,followup_21_5_2,followup_21_5_3,followup_21_5_4',
+          fields: 'followup_21_5_1,followup_21_5_2,followup_21_5_5,followup_21_5_3,followup_21_5_4',
         },
       ],
       text: {
@@ -645,7 +661,7 @@ const config = {
           rule: 'conditional_atleast_one_true',
           conditionField: 'followup_21',
           conditionValue: 1,
-          fields: 'followup_21_5_1,followup_21_5_2,followup_21_5_3,followup_21_5_4',
+          fields: 'followup_21_5_1,followup_21_5_2,followup_21_5_5,followup_21_5_3,followup_21_5_4',
         },
       ],
       text: {

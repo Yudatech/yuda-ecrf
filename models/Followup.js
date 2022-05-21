@@ -69,6 +69,7 @@ const followupSchema = new Schema({
   },
   followup_21_5_1: Boolean,
   followup_21_5_2: Boolean,
+  followup_21_5_5: Boolean,
   followup_21_5_3: Boolean,
   followup_21_5_4: Boolean,
   followup_21_5_4_1: String,

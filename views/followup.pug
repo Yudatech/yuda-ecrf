@@ -354,6 +354,14 @@ block case-content
           .col-sm-2
             +_questionBtn(config.formConfigs.followup_21_5_2, questionFields)
 
+        - config.formConfigs.followup_21_5_5.hidden = !(config.formConfigs.followup_21.value === 1)
+        .row(id=`followup_21_5_5_row` class=(config.formConfigs.followup_21_5_5.hidden === true ? 'hidden' : ''))
+          .col-sm-10
+            .form-group
+              +_formTemplate(config.formConfigs.followup_21_5_5)
+          .col-sm-2
+            +_questionBtn(config.formConfigs.followup_21_5_5, questionFields)
+
         - config.formConfigs.followup_21_5_3.hidden = !(config.formConfigs.followup_21.value === 1)
         .row(id=`followup_21_5_3_row` class=(config.formConfigs.followup_21_5_3.hidden === true ? 'hidden' : ''))
           .col-sm-10

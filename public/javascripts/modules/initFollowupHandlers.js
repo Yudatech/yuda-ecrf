@@ -109,6 +109,7 @@ function setFollowup_21ChildrenVisibility() {
     'followup_21_4',
     'followup_21_5_1',
     'followup_21_5_2',
+    'followup_21_5_5',
     'followup_21_5_3',
     'followup_21_5_4',
   ];
